@@ -1,0 +1,44 @@
+.vp-drag-ruler {
+  position: relative;
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs);
+
+  &__h,
+  &__v {
+    position: absolute;
+    background: var(--surface-2, var(--surface-1));
+    border: 1px solid var(--ds-border, var(--border-color));
+    pointer-events: none;
+  }
+
+  &__h {
+    top: 0;
+    left: var(--spacing-xl);
+    right: 0;
+    height: var(--spacing-lg);
+  }
+
+  &__v {
+    top: var(--spacing-lg);
+    left: 0;
+    bottom: 0;
+    width: var(--spacing-xl);
+  }
+
+  &__tick {
+    position: absolute;
+    transform: translate(-50%, 0);
+    font-size: var(--font-size-xs);
+  }
+
+  &__v &__tick {
+    transform: translate(0, -50%);
+  }
+
+  &__guides {
+    position: relative;
+    margin-top: var(--spacing-lg);
+    margin-left: var(--spacing-xl);
+    min-height: 12rem;
+  }
+}

@@ -1,0 +1,107 @@
+@import './contract';
+
+/**
+ * Lamborghini — unexpected bold
+ * @see https://designmd.santiagoalonso.com/lamborghini
+ * Black canvas · gold #ffc000 · Anton (LamboType) · Material Symbols · radius 8px
+ */
+
+[data-design='lamborghini'] {
+  color-scheme: dark;
+  --theme-name: lamborghini;
+  --theme-icon-set: material;
+  --theme-font: anton;
+
+  --lb-bg: #000000;
+  --lb-surface: #202020;
+  --lb-surface-deep: #181818;
+  --lb-ink: #ffffff;
+  --lb-primary: #ffc000;
+  --lb-primary-hover: #917300;
+  --lb-primary-light: #ffce3e;
+  --lb-cyan: #29abe2;
+  --lb-graphite: #494949;
+  --lb-ash: #7d7d7d;
+  --lb-steel: #969696;
+  --lb-border: #333333;
+
+  --primary-500: var(--lb-primary);
+  --primary-400: var(--lb-primary-light);
+  --primary-600: var(--lb-primary-hover);
+  --primary-300: #ffd966;
+  --success-500: #27a644;
+  --warning-500: var(--lb-primary);
+  --danger-500: #ef4444;
+  --info-500: var(--lb-cyan);
+
+  --surface-0: var(--lb-bg);
+  --surface-1: var(--lb-surface-deep);
+  --surface-2: var(--lb-surface);
+  --surface-3: #2a2a2a;
+  --surface-4: var(--lb-graphite);
+  --surface-5: var(--lb-ash);
+
+  --text-primary: var(--lb-ink);
+  --text-secondary: var(--lb-steel);
+  --text-muted: var(--lb-ash);
+  --text-on-primary: #000000;
+
+  --border-color: var(--lb-border);
+  --border-color-hover: var(--lb-graphite);
+
+  --shadow-sm: 0 1px 0 rgba(255, 192, 0, 0.08);
+  --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.7);
+
+  --ds-glow: color-mix(in srgb, var(--lb-primary) 25%, transparent);
+  --ds-motion-lift: 2px;
+  --transition-normal: 180ms ease;
+  --icon-stroke-width: 2;
+
+  @include theme-type-scale(
+    $display-xl: 7.5rem,
+    $display-lg: 5rem,
+    $display: 3.375rem,
+    $h1: 2.5rem,
+    $h2: 1.6875rem,
+    $h3: 1.25rem,
+    $body-lg: 1.125rem,
+    $body: 1rem,
+    $body-sm: 0.875rem,
+    $caption: 0.75rem,
+    $weight-display: 400,
+    $weight-heading: 400,
+    $weight-body: 400,
+    $tracking-display: 0,
+    $tracking-body: 0.02em,
+    $leading: 1.4
+  );
+
+  @include theme-spacing($page: 1.75rem, $control-h-sm: 32px, $control-h-md: 40px, $control-h-lg: 48px);
+  @include theme-shape(2px, 4px, 8px, 8px, 9999px);
+  @include bridge-ds;
+
+  --theme-btn-solid-bg: var(--lb-primary);
+  --theme-btn-solid-fg: #000;
+  --theme-btn-solid-hover: var(--lb-primary-light);
+  --theme-btn-ghost-hover: var(--lb-surface);
+  --theme-alert-info-bg: color-mix(in srgb, var(--lb-cyan) 14%, #181818);
+  --theme-alert-success-bg: color-mix(in srgb, #27a644 14%, #181818);
+  --theme-alert-warn-bg: color-mix(in srgb, var(--lb-primary) 16%, #181818);
+  --theme-alert-danger-bg: color-mix(in srgb, #ef4444 14%, #181818);
+  --theme-nav-bg: var(--lb-bg);
+  --theme-nav-border: var(--lb-border);
+  --theme-tab-active-bg: var(--lb-primary);
+  --theme-tab-active-fg: #000;
+  --theme-stat-value-size: 2rem;
+  --theme-avatar-bg: var(--lb-surface);
+  --theme-slider-track: var(--lb-border);
+  --theme-slider-fill: var(--lb-primary);
+  --theme-table-header-bg: var(--lb-surface-deep);
+  --theme-menu-hover: var(--lb-surface);
+  --theme-badge-bg: color-mix(in srgb, var(--lb-primary) 22%, transparent);
+  --theme-badge-fg: var(--lb-primary-light);
+
+  color: var(--text-primary);
+  background-color: var(--surface-0);
+}

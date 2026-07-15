@@ -1,0 +1,460 @@
+@import './contract';
+
+/**
+ * Cross-theme component kit - uses --theme-* tokens from each brand pack.
+ * Showcase + library components both consume these patterns.
+ */
+
+/* Buttons */
+[data-design] {
+  .p-button.p-button-solid.p-button-primary,
+  .vp-button.vp-button--solid.vp-button--primary,
+  .theme-kit-btn-primary {
+    background: var(--theme-btn-solid-bg);
+    color: var(--theme-btn-solid-fg);
+    border-color: transparent;
+    border-radius: var(--theme-btn-radius);
+    font-weight: var(--font-weight-heading);
+    letter-spacing: var(--letter-spacing);
+
+    &:hover:not(:disabled) {
+      background: var(--theme-btn-solid-hover);
+    }
+  }
+
+  .theme-kit-btn-ghost,
+  .p-button.p-button-text,
+  .p-button.p-button-outlined,
+  .vp-button.vp-button--text,
+  .vp-button.vp-button--outlined {
+    border-radius: var(--theme-btn-radius);
+  }
+
+  .theme-kit-btn-ghost:hover,
+  .p-button.p-button-text:hover:not(:disabled),
+  .vp-button.vp-button--text:hover:not(:disabled) {
+    background: var(--theme-btn-ghost-hover);
+  }
+
+  /* Forms */
+  .p-inputtext,
+  .p-select,
+  .p-textarea,
+  .theme-kit-input {
+    border-radius: var(--theme-input-radius);
+    border-color: var(--border-color);
+    background: var(--surface-1);
+    color: var(--text-primary);
+    min-height: var(--height-md);
+
+    &:focus,
+    &:focus-within {
+      outline: 2px solid var(--focus-ring, var(--primary-500));
+      outline-offset: 1px;
+      border-color: var(--primary-500);
+    }
+  }
+
+  /* Cards */
+  .p-card,
+  .theme-kit-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    background: var(--surface-1);
+    border: 1px solid var(--border-color);
+    border-radius: var(--theme-card-radius);
+    padding: var(--theme-card-pad);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Alerts / Messages */
+  .theme-kit-alert,
+  .p-message {
+    border-radius: var(--theme-card-radius);
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+  }
+
+  .theme-kit-alert-info,
+  .p-message.p-message-info {
+    background: var(--theme-alert-info-bg);
+  }
+
+  .theme-kit-alert-success,
+  .p-message.p-message-success {
+    background: var(--theme-alert-success-bg);
+  }
+
+  .theme-kit-alert-warn,
+  .p-message.p-message-warn,
+  .p-message.p-message-warning {
+    background: var(--theme-alert-warn-bg);
+  }
+
+  .theme-kit-alert-danger,
+  .p-message.p-message-error,
+  .p-message.p-message-danger {
+    background: var(--theme-alert-danger-bg);
+  }
+
+  /* Badges */
+  .theme-kit-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--theme-badge-radius);
+    background: var(--theme-badge-bg);
+    color: var(--theme-badge-fg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-heading);
+  }
+
+  .theme-kit-badge-outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+  }
+
+  /* Tabs */
+  .theme-kit-tabs {
+    display: inline-flex;
+    gap: 2px;
+    padding: 2px;
+    background: var(--surface-2);
+    border-radius: var(--theme-tab-radius);
+  }
+
+  .theme-kit-tab {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 0.4rem 0.85rem;
+    border-radius: calc(var(--theme-tab-radius) - 1px);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    font-family: inherit;
+
+    &.is-active {
+      background: var(--theme-tab-active-bg);
+      color: var(--theme-tab-active-fg);
+    }
+  }
+
+  /* Stats */
+  .theme-kit-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--theme-section-gap);
+  }
+
+  .theme-kit-stat-value {
+    font-size: var(--theme-stat-value-size);
+    font-weight: var(--font-weight-display);
+    letter-spacing: var(--letter-spacing-display);
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
+
+  .theme-kit-stat-label {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .theme-kit-stat-delta {
+    font-size: var(--font-size-xs);
+    color: var(--success-500);
+    margin-top: 0.35rem;
+
+    &.is-down {
+      color: var(--danger-500);
+    }
+  }
+
+  /* Table */
+  .theme-kit-table,
+  .p-datatable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+  }
+
+  .theme-kit-table th,
+  .p-datatable thead th {
+    background: var(--theme-table-header-bg);
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-heading);
+    text-align: left;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .theme-kit-table td,
+  .p-datatable tbody td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+  }
+
+  /* Avatars */
+  .theme-kit-avatars {
+    display: flex;
+    align-items: center;
+  }
+
+  .theme-kit-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--theme-avatar-radius);
+    background: var(--theme-avatar-bg);
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    border: 2px solid var(--surface-0);
+    margin-left: -8px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .theme-kit-avatar-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .theme-kit-avatar-profile .theme-kit-avatar {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+  }
+
+  /* Slider / Progress */
+  .theme-kit-slider {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .theme-kit-slider-track {
+    height: 6px;
+    border-radius: var(--border-radius-full);
+    background: var(--theme-slider-track);
+    overflow: hidden;
+  }
+
+  .theme-kit-slider-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: var(--theme-slider-fill);
+  }
+
+  .theme-kit-slider-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+  }
+
+  /* Nav bar */
+  .theme-kit-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md) var(--theme-page-pad);
+    background: var(--theme-nav-bg);
+    border-bottom: 1px solid var(--theme-nav-border);
+    border-radius: var(--theme-card-radius);
+  }
+
+  .theme-kit-nav-brand {
+    font-weight: var(--font-weight-heading);
+    color: var(--text-primary);
+    letter-spacing: var(--letter-spacing);
+  }
+
+  .theme-kit-nav-links {
+    display: flex;
+    gap: var(--spacing-md);
+    flex: 1;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+
+    span {
+      cursor: default;
+    }
+  }
+
+  .theme-kit-nav-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+  }
+
+  /* Breadcrumb */
+  .theme-kit-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+
+    .is-current {
+      color: var(--text-primary);
+    }
+
+    .sep {
+      opacity: 0.5;
+    }
+  }
+
+  /* Menu */
+  .theme-kit-menu,
+  .p-menubar,
+  .p-contextmenu {
+    background: var(--surface-1);
+    border: 1px solid var(--border-color);
+    border-radius: var(--theme-card-radius);
+    box-shadow: var(--shadow-md);
+  }
+
+  .theme-kit-menu-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.55rem 0.85rem;
+    border: 0;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    font-family: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--theme-menu-hover);
+    }
+
+    &.is-danger {
+      color: var(--danger-500);
+    }
+  }
+
+  /* Typography samples */
+  .theme-kit-display-xl {
+    font-size: var(--font-size-display-xl);
+    font-weight: var(--font-weight-display);
+    letter-spacing: var(--letter-spacing-display);
+    line-height: 1.05;
+    font-family: var(--font-family-display);
+  }
+
+  .theme-kit-display {
+    font-size: var(--font-size-display);
+    font-weight: var(--font-weight-display);
+    letter-spacing: var(--letter-spacing-display);
+    font-family: var(--font-family-display);
+  }
+
+  .theme-kit-heading {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-heading);
+    line-height: 1.25;
+    color: var(--text-primary);
+  }
+
+  .theme-kit-body-lg {
+    margin: 0;
+    font-size: var(--theme-body-lg);
+    line-height: var(--line-height-body);
+    color: var(--text-secondary);
+  }
+
+  /* Spacing rhythm */
+  .theme-kit-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--theme-section-gap);
+  }
+
+  .theme-kit-palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+    gap: var(--spacing-sm);
+  }
+
+  .theme-kit-swatch {
+    aspect-ratio: 1;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.35rem;
+    font-size: 0.65rem;
+    color: var(--text-primary);
+    min-height: 72px;
+  }
+
+  .theme-kit-swatch span {
+    background: color-mix(in srgb, var(--surface-0) 75%, transparent);
+    padding: 0.1rem 0.25rem;
+    border-radius: 2px;
+  }
+}
+
+/* Per-brand interaction polish */
+[data-design='mercedes'] {
+  .p-button:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+[data-design='linear'] {
+  .p-button {
+    font-weight: 500;
+    letter-spacing: -0.011em;
+
+    &:active:not(:disabled) {
+      transform: scale(0.99);
+    }
+  }
+}
+
+[data-design='porsche'] {
+  .theme-kit-display-xl,
+  .theme-kit-display {
+    text-transform: none;
+  }
+}
+
+[data-design='lamborghini'] {
+  .theme-kit-display-xl,
+  .theme-kit-display,
+  .theme-kit-heading {
+    text-transform: uppercase;
+  }
+}
+
+[data-design='ferrari'] {
+  .theme-kit-btn-primary {
+    letter-spacing: 0.02em;
+  }
+}
+
+[data-design='apple'] {
+  .p-button.p-button-solid.p-button-primary {
+    border-radius: 980px;
+  }
+
+  .theme-kit-btn-primary {
+    border-radius: 980px;
+  }
+}

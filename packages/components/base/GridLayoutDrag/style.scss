@@ -1,0 +1,13 @@
+.vp-grid-layout-drag {
+  display: grid;
+  gap: var(--spacing-md);
+  min-height: 100%;
+  padding: var(--spacing-md);
+  background-image: linear-gradient(90deg, var(--ds-border, var(--border-color)) 1px, transparent 1px);
+  background-size: calc(100% / 24) 100%;
+
+  &--active {
+    outline: 1px dashed var(--primary-500);
+    outline-offset: calc(-1 * var(--spacing-xs));
+  }
+}

@@ -1,0 +1,8 @@
+.vp-form-tabs {
+  min-width: 0;
+
+  &--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}

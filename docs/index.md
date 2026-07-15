@@ -1,0 +1,31 @@
+# Docs（VitePress）— 对外官方文档站点
+
+**docs = 给业务开发者查阅的官方站点**：标准示例、API 参数、使用教程。  
+可打包部署线上。与 **example（仅本地调试）** 严格区分，见 [APP_WORKFLOW.md §0](./APP_WORKFLOW.md)。
+
+| | example | docs |
+|--|------|------|
+| 受众 | 库作者 | 业务开发者 |
+| 部署 | **不上线** | **可上线** |
+| 内容 | 半成品 / 压测 / bug 复现 / 边界 | 简洁标准示例 + API + 教程 |
+
+```bash
+npm run docs:dev          # 本地编写
+# 部署：vitepress build docs（产物上线；切勿部署 example / example-dist）
+```
+
+## 规范索引
+
+| 文档 | 说明 |
+|------|------|
+| [VISION.md](./VISION.md) | 愿景口号 |
+| [OVERTAKE_ELEMENT_PLUS.md](./OVERTAKE_ELEMENT_PLUS.md) | 六大维度深度超车 |
+| [LIBRARY_PLAN.md](./LIBRARY_PLAN.md) | 大型库总计划 |
+| [TELEMETRY.md](./TELEMETRY.md) | **Vp Telemetry** 交互观测内核 |
+| [THEME_STUDIO.md](./THEME_STUDIO.md) | 自定义主题生成工具 |
+| [ENGINEERING.md](./ENGINEERING.md) | 自动化脚本 · 性能包形 · 别名 |
+| [APP_WORKFLOW.md](./APP_WORKFLOW.md) | example 调试工程 · **example↔docs 区分** |
+| [CHANGELOG.md](./CHANGELOG.md) | 近期变更札记 |
+| [workflow.md](./workflow.md) · [i18n.md](./i18n.md) · [tokens.md](./tokens.md) · [design-specs.md](./design-specs.md) | 捷径 |
+
+源码：[`packages/README.md`](../packages/README.md)。调试壳：[`example/README.md`](../example/README.md)（不上线）。

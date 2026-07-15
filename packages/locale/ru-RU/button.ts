@@ -1,0 +1,17 @@
+export default {
+  'button.save': 'Сохранить',
+  'button.cancel': 'Отмена',
+  'button.delete': 'Удалить',
+  'button.confirm': 'Подтвердить',
+  'button.continue': 'Продолжить',
+  'button.refresh': 'Обновить',
+  'button.create': 'Создать',
+  'button.edit': 'Изменить',
+  'button.submit': 'Отправить',
+  'button.reset': 'Сбросить',
+  'button.signIn': 'Войти',
+  'button.signOut': 'Выйти',
+  'button.getStarted': 'Начать',
+  'button.learnMore': 'Подробнее',
+  'button.enter': 'Войти',
+} as Record<string, string>

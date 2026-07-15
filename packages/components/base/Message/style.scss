@@ -1,0 +1,113 @@
+
+.p-message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  background: var(--surface-1);
+  border: 1px solid var(--border-color);
+  animation: slideIn var(--transition-normal);
+
+  &-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  &-text {
+    flex: 1;
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  &-close {
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 2px;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: var(--surface-2);
+      color: var(--text-primary);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.p-message-success {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--success-500);
+    color: var(--success-500);
+
+    .p-message-icon {
+      color: var(--success-500);
+    }
+
+    .p-message-text {
+      color: var(--success-400);
+    }
+  }
+
+  &.p-message-warning {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: var(--warning-500);
+
+    .p-message-icon {
+      color: var(--warning-500);
+    }
+
+    .p-message-text {
+      color: var(--warning-400);
+    }
+  }
+
+  &.p-message-danger {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: var(--danger-500);
+
+    .p-message-icon {
+      color: var(--danger-500);
+    }
+
+    .p-message-text {
+      color: var(--danger-400);
+    }
+  }
+
+  &.p-message-info {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--info-500);
+
+    .p-message-icon {
+      color: var(--info-500);
+    }
+
+    .p-message-text {
+      color: var(--info-400);
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

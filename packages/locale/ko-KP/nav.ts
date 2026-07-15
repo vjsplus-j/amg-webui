@@ -1,0 +1,21 @@
+export default {
+  'nav.overview': '개요',
+  'nav.base': '기본 부품',
+  'nav.biz': '업무',
+  'nav.theme': '주제',
+  'nav.i18n': '다국어',
+  'nav.perf': '성능',
+  'nav.lab': '공용능력',
+  'nav.dev': '개발방조',
+  'nav.demo': '시범',
+  'nav.system': '체계',
+  'nav.base.category.general': '일반',
+  'nav.base.category.layout': '배치',
+  'nav.base.category.navigation': '항행',
+  'nav.base.category.dataEntry': '자료 입력',
+  'nav.base.category.dataDisplay': '자료 전시',
+  'nav.base.category.feedback': '반영',
+  'nav.base.category.other': '기타',
+  'nav.base.category.industry': '산업',
+  'nav.primary': '기본항행'
+} as Record<string, string>

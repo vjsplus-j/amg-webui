@@ -1,0 +1,61 @@
+.vp-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  &__mark {
+    width: var(--spacing-lg);
+    height: var(--spacing-lg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--surface-1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color var(--transition-normal), background var(--transition-normal);
+
+    &::after {
+      content: '';
+      width: var(--spacing-sm);
+      height: var(--spacing-sm);
+      border-radius: 50%;
+      background: var(--primary-500);
+      transform: scale(0);
+      transition: transform var(--transition-normal);
+    }
+  }
+
+  &__input:checked + &__mark {
+    border-color: var(--primary-500);
+
+    &::after {
+      transform: scale(1);
+    }
+  }
+
+  &__input:focus-visible + &__mark {
+    box-shadow: 0 0 0 2px var(--ds-focus-ring);
+  }
+
+  &__label {
+    line-height: var(--line-height-body);
+  }
+}

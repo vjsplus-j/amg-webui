@@ -1,0 +1,27 @@
+.vp-template-drag {
+  list-style: none;
+  margin: 0;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  background: var(--surface-1);
+  border: 1px solid var(--ds-border, var(--border-color));
+  border-radius: var(--theme-card-radius, var(--border-radius-md));
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+
+  &__item {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--theme-card-radius, var(--border-radius-md));
+    cursor: grab;
+    background: var(--surface-0, var(--surface-1));
+  }
+
+  &__muted {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+  }
+}

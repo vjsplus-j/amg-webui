@@ -1,0 +1,28 @@
+.vp-fade-enter-active,
+.vp-fade-leave-active {
+  transition: opacity var(--transition-normal, 150ms) ease;
+}
+.vp-fade-enter-from,
+.vp-fade-leave-to {
+  opacity: 0;
+}
+
+.vp-slide-up-enter-active,
+.vp-slide-up-leave-active {
+  transition: all var(--transition-normal, 150ms) ease;
+}
+.vp-slide-up-enter-from,
+.vp-slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.vp-scale-enter-active,
+.vp-scale-leave-active {
+  transition: all var(--transition-normal, 150ms) ease;
+}
+.vp-scale-enter-from,
+.vp-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.98);
+}

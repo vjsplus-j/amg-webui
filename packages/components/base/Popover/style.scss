@@ -1,0 +1,31 @@
+.vp-popover {
+  position: relative;
+  display: inline-flex;
+
+  &__trigger { display: inline-flex; cursor: pointer; }
+  &__panel {
+    position: fixed;
+    z-index: 1000;
+    min-width: 12rem;
+    max-width: 20rem;
+    padding: var(--spacing-md);
+    background: var(--surface-1);
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--theme-card-radius, var(--border-radius-md));
+    box-shadow: var(--shadow-md);
+    outline: none;
+  }
+  &__header { font-weight: 600; margin-bottom: var(--spacing-sm); }
+  &__close {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    appearance: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--text-secondary);
+  }
+}
+.vp-popover-fade-enter-active, .vp-popover-fade-leave-active { transition: opacity var(--transition-normal); }
+.vp-popover-fade-enter-from, .vp-popover-fade-leave-to { opacity: 0; }

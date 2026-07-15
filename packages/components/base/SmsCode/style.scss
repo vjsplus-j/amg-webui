@@ -1,0 +1,16 @@
+.vp-sms-code {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  min-width: 0;
+
+  &__input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__send {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,61 @@
+.vp-permission-panel {
+  background: var(--surface-1);
+  border: 1px solid var(--ds-border, var(--border-color));
+  border-radius: var(--theme-card-radius, var(--border-radius-md));
+  padding: var(--theme-card-pad, var(--spacing-md));
+  min-width: 0;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+  }
+
+  &__toolbar {
+    display: flex;
+    gap: var(--spacing-sm);
+  }
+
+  &__tree {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 20rem;
+    overflow-y: auto;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) 0;
+  }
+
+  &__expand {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    width: var(--height-sm);
+    padding: 0;
+  }
+
+  &__spacer {
+    width: var(--height-sm);
+    flex-shrink: 0;
+  }
+
+  &--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}

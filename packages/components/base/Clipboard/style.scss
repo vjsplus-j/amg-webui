@@ -1,0 +1,53 @@
+.vp-clipboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: center;
+  }
+
+  &__input {
+    flex: 1;
+    min-width: 8rem;
+    height: var(--height-md);
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--theme-input-radius, var(--border-radius-md));
+    padding: 0 var(--spacing-md);
+    background: var(--surface-0, var(--surface-1));
+    color: var(--text-primary);
+  }
+
+  &__btn {
+    appearance: none;
+    border: 1px solid transparent;
+    background: var(--primary-500);
+    color: var(--surface-0, var(--surface-1));
+    border-radius: var(--theme-btn-radius, var(--border-radius-md));
+    height: var(--height-md);
+    padding: 0 var(--spacing-lg);
+    cursor: pointer;
+    font-size: var(--font-size-md);
+  }
+
+  &__btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  &__tip {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--success-500, var(--primary-500));
+  }
+
+  &--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}

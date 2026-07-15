@@ -1,0 +1,86 @@
+@import '@amg-webui/animations/motion.scss';
+
+.vp-icon,
+.p-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0;
+  color: inherit;
+  opacity: var(--icon-opacity, 1);
+  transform-origin: center center;
+  transition:
+    color var(--transition-fast),
+    opacity var(--transition-fast);
+  --vp-icon-anim-duration: 1s;
+
+  /* Token sizes → type scale (no raw px) */
+  &.vp-icon--xs,
+  &.p-icon-xs {
+    font-size: var(--font-size-sm);
+    width: 1em;
+    height: 1em;
+  }
+
+  &.vp-icon--sm,
+  &.p-icon-sm {
+    font-size: var(--font-size-md);
+    width: 1em;
+    height: 1em;
+  }
+
+  &.vp-icon--md,
+  &.p-icon-md {
+    font-size: var(--font-size-xl);
+    width: 1em;
+    height: 1em;
+  }
+
+  &.vp-icon--lg,
+  &.p-icon-lg {
+    font-size: var(--font-size-2xl);
+    width: 1em;
+    height: 1em;
+  }
+
+  &.vp-icon--xl,
+  &.p-icon-xl {
+    font-size: calc(var(--font-size-2xl) + var(--spacing-xs));
+    width: 1em;
+    height: 1em;
+  }
+
+  /*
+   * Motion classes come from shared `@amg-webui/animations/motion.scss`
+   * (`vp-motion--*` + legacy `vp-icon--*`). Applied on THIS host —
+   * Lucide Vue overwrites any `class` on the inner <svg>.
+   */
+
+  &.vp-icon--disabled,
+  &.p-icon-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  &.vp-icon--selected,
+  &.p-icon-selected {
+    color: var(--ds-accent, var(--primary-500, currentColor));
+  }
+
+  &.vp-icon--lucide,
+  &.p-icon--lucide {
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: var(--icon-stroke-width, 1.75);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transform-origin: center center;
+      transform-box: fill-box;
+    }
+  }
+}

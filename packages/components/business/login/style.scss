@@ -1,0 +1,210 @@
+.biz-login {
+  display: grid;
+  place-items: center;
+  min-height: 100%;
+  padding: var(--theme-page-pad, 1.5rem);
+}
+
+.biz-login__card {
+  width: min(400px, 100%);
+}
+
+.biz-login__title {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-heading, 600);
+  letter-spacing: var(--letter-spacing-display, -0.02em);
+  line-height: 1.25;
+  color: var(--text-primary);
+}
+
+.biz-login__sub {
+  margin: var(--spacing-sm, 0.5rem) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-body, 1.5);
+}
+
+.biz-login__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md, 0.75rem);
+}
+
+.biz-login__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 0.5rem);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.biz-login__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md, 0.75rem);
+}
+
+.biz-login__check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.biz-login__foot {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+.biz-login__link {
+  border: 0;
+  background: none;
+  color: var(--ds-accent, var(--primary-500));
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+
+.biz-login__submit {
+  width: 100%;
+  justify-content: center;
+}
+
+/* —— Verify code —— */
+.biz-verify {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
+  width: 100%;
+}
+
+.biz-verify__input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.biz-verify__send {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* —— Captcha —— */
+.biz-captcha {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 0.5rem);
+  padding: var(--spacing-md, 0.75rem);
+  border: 1px solid var(--ds-border, var(--border-color));
+  border-radius: var(--theme-input-radius, var(--border-radius-md));
+  background: var(--surface-2);
+}
+
+.biz-captcha.is-passed {
+  border-color: color-mix(in srgb, var(--success-500) 45%, transparent);
+}
+
+.biz-captcha.is-failed {
+  border-color: color-mix(in srgb, var(--danger-500) 45%, transparent);
+}
+
+.biz-captcha__check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
+  border: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+
+.biz-captcha__box {
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: 0.25rem;
+  background: var(--surface-1);
+  flex-shrink: 0;
+}
+
+.biz-captcha__box.is-on {
+  border-color: var(--ds-accent, var(--primary-500));
+  background: var(--ds-accent, var(--primary-500));
+  box-shadow: inset 0 0 0 2px var(--surface-1);
+}
+
+.biz-captcha__label {
+  color: var(--text-secondary);
+}
+
+.biz-captcha__slider-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.biz-captcha__refresh {
+  border: 0;
+  background: none;
+  color: var(--ds-accent, var(--primary-500));
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--font-size-xs);
+  padding: 0;
+}
+
+.biz-captcha__track {
+  position: relative;
+  height: 2.25rem;
+  border-radius: var(--border-radius-full, 999px);
+  background: var(--surface-3, var(--surface-1));
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+}
+
+.biz-captcha__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: color-mix(in srgb, var(--ds-accent, var(--primary-500)) 35%, transparent);
+  pointer-events: none;
+}
+
+.biz-captcha__knob {
+  position: absolute;
+  top: 50%;
+  width: 2rem;
+  height: 2rem;
+  margin-top: -1rem;
+  border-radius: 999px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  cursor: grab;
+  z-index: 1;
+}
+
+.biz-captcha__hint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.biz-register .biz-login__card,
+.biz-forgot .biz-login__card {
+  width: min(440px, 100%);
+}

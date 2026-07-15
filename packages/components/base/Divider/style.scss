@@ -1,0 +1,80 @@
+.vp-divider {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-top: 1px solid var(--ds-border, var(--border-color));
+  background: transparent;
+  flex-shrink: 0;
+  box-sizing: border-box;
+
+  &--dashed {
+    border-top-style: dashed;
+  }
+
+  &--horizontal {
+    display: block;
+    width: 100%;
+    margin: var(--spacing-md) 0;
+  }
+
+  /* Inline pipe `|` — toolbars, links, Breadcrumb / Space rows */
+  &--vertical {
+    display: inline-block;
+    width: 0;
+    height: 1em;
+    margin: 0 var(--spacing-sm);
+    border-top: none;
+    border-left: 1px solid var(--ds-border, var(--border-color));
+    vertical-align: middle;
+
+    &.vp-divider--dashed {
+      border-left-style: dashed;
+      border-top-style: none;
+    }
+  }
+
+  /* Stretch to sibling control height inside Space / flex rows */
+  .vp-space > &--vertical {
+    align-self: stretch;
+    height: auto;
+    min-height: 1em;
+    margin-block: 0;
+  }
+
+  &--with-text {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: var(--spacing-md) 0;
+    border: none;
+    gap: var(--spacing-md);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-body);
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      border-top: 1px solid var(--ds-border, var(--border-color));
+    }
+
+    &.vp-divider--dashed::before,
+    &.vp-divider--dashed::after {
+      border-top-style: dashed;
+    }
+
+    &.vp-divider--left::before {
+      flex: 0 0 var(--spacing-xl);
+    }
+
+    &.vp-divider--right::after {
+      flex: 0 0 var(--spacing-xl);
+    }
+  }
+
+  &__text {
+    white-space: nowrap;
+    padding: 0 var(--spacing-xs);
+  }
+}

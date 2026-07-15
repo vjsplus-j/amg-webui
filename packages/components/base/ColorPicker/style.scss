@@ -1,0 +1,107 @@
+.vp-colorpicker {
+  position: relative;
+  display: inline-flex;
+  min-width: 180px;
+}
+
+.vp-colorpicker__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  height: var(--height-md);
+  padding: 0 var(--spacing-md);
+  background: var(--surface-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--theme-input-radius, var(--border-radius-md));
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color var(--transition-normal);
+
+  &:hover:not(:disabled) {
+    border-color: var(--border-color-hover);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 2px var(--ds-focus-ring);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.vp-colorpicker__swatch {
+  width: var(--spacing-lg);
+  height: var(--spacing-lg);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.vp-colorpicker__value {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-sans);
+  text-align: left;
+}
+
+.vp-colorpicker__panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-md);
+  background: var(--surface-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  min-width: 100%;
+}
+
+.vp-colorpicker__presets {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.vp-colorpicker__preset {
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &--active {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 1px;
+  }
+}
+
+.vp-colorpicker__input {
+  width: 100%;
+  height: var(--height-md);
+  padding: 0 var(--spacing-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  font-family: var(--font-family-sans);
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-500);
+  }
+}

@@ -1,0 +1,123 @@
+@import './contract';
+
+/**
+ * Ferrari — Rosso Corsa editorial
+ * @see https://designmd.santiagoalonso.com/ferrari
+ * Chiaroscuro · Ferrari Red #da291c · Archivo (FerrariSans) · Material · sharp 2px
+ */
+
+[data-design='ferrari'] {
+  color-scheme: light;
+  --theme-name: ferrari;
+  --theme-icon-set: material;
+  --theme-font: archivo;
+
+  --fe-primary: #da291c;
+  --fe-primary-hover: #b01e0a;
+  --fe-primary-active: #9d2211;
+  --fe-bg: #ffffff;
+  --fe-surface-dark: #000000;
+  --fe-surface-mid: #303030;
+  --fe-surface-light: #d2d2d2;
+  --fe-overlay: #121212;
+  --fe-ink: #181818;
+  --fe-ink-inverted: #ffffff;
+  --fe-text-secondary: #666666;
+  --fe-text-muted: #8f8f8f;
+  --fe-yellow: #fff200;
+  --fe-success: #03904a;
+  --fe-info: #4c98b9;
+  --fe-border: #cccccc;
+
+  --primary-500: var(--fe-primary);
+  --primary-400: #e84538;
+  --primary-600: var(--fe-primary-hover);
+  --primary-300: #f07167;
+  --success-500: var(--fe-success);
+  --warning-500: var(--fe-yellow);
+  --danger-500: var(--fe-primary);
+  --info-500: var(--fe-info);
+
+  --surface-0: var(--fe-bg);
+  --surface-1: #ffffff;
+  --surface-2: #f5f5f5;
+  --surface-3: var(--fe-surface-light);
+  --surface-4: #b8b8b8;
+  --surface-5: var(--fe-text-muted);
+
+  --text-primary: var(--fe-ink);
+  --text-secondary: var(--fe-text-secondary);
+  --text-muted: var(--fe-text-muted);
+  --text-on-primary: #ffffff;
+
+  --border-color: var(--fe-border);
+  --border-color-hover: #999999;
+
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #999 18%, transparent);
+  --shadow-md: 0 4px 16px color-mix(in srgb, #999 22%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #000 18%, transparent);
+
+  --ds-glow: color-mix(in srgb, var(--fe-primary) 18%, transparent);
+  --ds-motion-lift: 1px;
+  --transition-normal: 160ms ease;
+  --icon-stroke-width: 2;
+
+  @include theme-type-scale(
+    $display-xl: 3.5rem,
+    $display-lg: 2rem,
+    $display: 1.625rem,
+    $h1: 1.5rem,
+    $h2: 1.125rem,
+    $h3: 1rem,
+    $body-lg: 1rem,
+    $body: 1rem,
+    $body-sm: 0.875rem,
+    $caption: 0.75rem,
+    $weight-display: 500,
+    $weight-heading: 500,
+    $weight-body: 400,
+    $tracking-display: 0,
+    $tracking-body: 0.005em,
+    $leading: 1.5
+  );
+
+  @include theme-spacing($control-h-sm: 28px, $control-h-md: 36px, $control-h-lg: 44px);
+  /* surgical ~2px corners */
+  @include theme-shape(2px, 2px, 2px, 4px, 9999px);
+  @include bridge-ds;
+
+  --theme-btn-solid-bg: var(--fe-primary);
+  --theme-btn-solid-fg: #fff;
+  --theme-btn-solid-hover: var(--fe-primary-hover);
+  --theme-btn-ghost-hover: #f5f5f5;
+  --theme-alert-info-bg: color-mix(in srgb, var(--fe-info) 12%, #fff);
+  --theme-alert-success-bg: color-mix(in srgb, var(--fe-success) 10%, #fff);
+  --theme-alert-warn-bg: color-mix(in srgb, var(--fe-yellow) 28%, #fff);
+  --theme-alert-danger-bg: color-mix(in srgb, var(--fe-primary) 10%, #fff);
+  --theme-nav-bg: var(--fe-bg);
+  --theme-nav-border: var(--fe-border);
+  --theme-tab-active-bg: var(--fe-primary);
+  --theme-tab-active-fg: #fff;
+  --theme-stat-value-size: 1.75rem;
+  --theme-avatar-bg: var(--fe-surface-light);
+  --theme-slider-track: var(--fe-surface-light);
+  --theme-slider-fill: var(--fe-primary);
+  --theme-table-header-bg: #f5f5f5;
+  --theme-menu-hover: #f5f5f5;
+  --theme-badge-bg: color-mix(in srgb, var(--fe-primary) 12%, #fff);
+  --theme-badge-fg: var(--fe-primary);
+  --theme-surface-dark: var(--fe-surface-dark);
+  --theme-yellow-racing: var(--fe-yellow);
+
+  color: var(--text-primary);
+  background-color: var(--surface-0);
+}
+
+/* Dark cinematic panel variant for Ferrari editorial blocks */
+[data-design='ferrari'] .theme-panel-dark {
+  background: var(--fe-surface-dark);
+  color: var(--fe-ink-inverted);
+  --text-primary: var(--fe-ink-inverted);
+  --text-secondary: #a0a0a0;
+  --border-color: #303030;
+}

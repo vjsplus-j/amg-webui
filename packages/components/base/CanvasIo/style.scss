@@ -1,0 +1,38 @@
+.vp-canvas-io {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+
+  &__btn {
+    appearance: none;
+    border: 1px solid transparent;
+    background: var(--primary-500);
+    color: var(--surface-0, var(--surface-1));
+    border-radius: var(--theme-btn-radius, var(--border-radius-md));
+    height: var(--height-md);
+    padding: 0 var(--spacing-lg);
+    cursor: pointer;
+
+    &--ghost {
+      background: transparent;
+      border-color: var(--ds-border, var(--border-color));
+      color: var(--text-primary);
+    }
+
+    &:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+
+  &__file {
+    display: none;
+  }
+
+  &--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}

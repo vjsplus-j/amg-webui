@@ -1,0 +1,134 @@
+@import './contract';
+
+/**
+ * Linear — dark SaaS precision
+ * @see https://designmd.santiagoalonso.com/linear.app
+ * Near-black canvas · indigo accent #5e6ad2 · radius 6px · Lucide · Inter Variable
+ */
+
+[data-design='linear'] {
+  color-scheme: dark;
+  --theme-name: linear;
+  --theme-icon-set: lucide;
+  --theme-font: inter;
+
+  --ln-bg: #08090a;
+  --ln-bg-deep: #010102;
+  --ln-surface: #0f1011;
+  --ln-surface-elevated: #191a1b;
+  --ln-surface-hover: #28282c;
+  --ln-ink: #f7f8f8;
+  --ln-ink-secondary: #d0d6e0;
+  --ln-ink-tertiary: #8a8f98;
+  --ln-ink-quaternary: #62666d;
+  --ln-primary: #5e6ad2;
+  --ln-accent: #7170ff;
+  --ln-accent-hover: #828fff;
+  --ln-success: #27a644;
+  --ln-emerald: #10b981;
+  --ln-border: #23252a;
+  --ln-border-secondary: #34343a;
+  --ln-border-subtle: #1a1c1e;
+
+  --primary-500: var(--ln-primary);
+  --primary-400: var(--ln-accent);
+  --primary-600: var(--ln-accent-hover);
+  --primary-300: #9490ff;
+  --success-500: var(--ln-success);
+  --warning-500: #f59e0b;
+  --danger-500: #ef4444;
+  --info-500: var(--ln-accent);
+
+  --surface-0: var(--ln-bg);
+  --surface-1: var(--ln-surface);
+  --surface-2: var(--ln-surface-elevated);
+  --surface-3: var(--ln-surface-hover);
+  --surface-4: #34343a;
+  --surface-5: var(--ln-ink-quaternary);
+
+  --text-primary: var(--ln-ink);
+  --text-secondary: var(--ln-ink-secondary);
+  --text-muted: var(--ln-ink-tertiary);
+  --text-on-primary: #ffffff;
+
+  --border-color: var(--ln-border);
+  --border-color-hover: var(--ln-border-secondary);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.55);
+
+  --ds-glow: color-mix(in srgb, var(--ln-accent) 22%, transparent);
+  --ds-motion-lift: 1px;
+  --transition-normal: 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  --icon-stroke-width: 1.75;
+
+  @include theme-type-scale(
+    $display-xl: 4.5rem,
+    $display-lg: 4rem,
+    $display: 3rem,
+    $h1: 2rem,
+    $h2: 1.5rem,
+    $h3: 1.125rem,
+    $body-lg: 1.125rem,
+    $body: 0.875rem,
+    $body-sm: 0.8125rem,
+    $caption: 0.75rem,
+    $weight-display: 510,
+    $weight-heading: 400,
+    $weight-body: 400,
+    $tracking-display: -0.033em,
+    $tracking-body: -0.011em,
+    $leading: 1.5
+  );
+
+  @include theme-spacing($control-h-sm: 28px, $control-h-md: 32px, $control-h-lg: 36px);
+  @include theme-shape(4px, 6px, 8px, 12px, 9999px);
+  @include bridge-ds;
+
+  --theme-btn-solid-bg: var(--ln-primary);
+  --theme-btn-solid-fg: #fff;
+  --theme-btn-solid-hover: var(--ln-accent-hover);
+  --theme-btn-ghost-hover: var(--ln-surface-hover);
+  --theme-alert-info-bg: color-mix(in srgb, var(--ln-accent) 12%, var(--ln-surface));
+  --theme-alert-success-bg: color-mix(in srgb, var(--ln-success) 14%, var(--ln-surface));
+  --theme-alert-warn-bg: color-mix(in srgb, #f59e0b 14%, var(--ln-surface));
+  --theme-alert-danger-bg: color-mix(in srgb, #ef4444 14%, var(--ln-surface));
+  --theme-nav-bg: var(--ln-bg);
+  --theme-nav-border: var(--ln-border);
+  --theme-tab-active-bg: var(--ln-surface-elevated);
+  --theme-tab-active-fg: var(--ln-ink);
+  --theme-stat-value-size: 1.75rem;
+  --theme-avatar-bg: var(--ln-surface-elevated);
+  --theme-slider-track: var(--ln-border);
+  --theme-slider-fill: var(--ln-primary);
+  --theme-table-header-bg: var(--ln-surface);
+  --theme-menu-hover: var(--ln-surface-hover);
+  --theme-badge-bg: color-mix(in srgb, var(--ln-primary) 18%, transparent);
+  --theme-badge-fg: var(--ln-accent);
+
+  color: var(--text-primary);
+  background-color: var(--surface-0);
+}
+
+/* Optional light scheme override within Linear (rare) */
+[data-design='linear'][data-scheme='light'] {
+  color-scheme: light;
+  --ln-bg: #f7f8f8;
+  --ln-surface: #f3f4f5;
+  --ln-surface-elevated: #ffffff;
+  --ln-surface-hover: #e6e6e6;
+  --ln-ink: #08090a;
+  --ln-ink-secondary: #3c4149;
+  --ln-ink-tertiary: #8a8f98;
+  --ln-border: #d0d6e0;
+  --ln-border-secondary: #e6e6e6;
+  --surface-0: var(--ln-bg);
+  --surface-1: var(--ln-surface);
+  --surface-2: var(--ln-surface-elevated);
+  --surface-3: var(--ln-surface-hover);
+  --text-primary: var(--ln-ink);
+  --text-secondary: var(--ln-ink-secondary);
+  --text-muted: var(--ln-ink-tertiary);
+  --border-color: var(--ln-border);
+}

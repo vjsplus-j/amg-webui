@@ -1,0 +1,27 @@
+.vp-popconfirm {
+  display: inline-flex;
+  &__trigger { cursor: pointer; }
+  &__panel {
+    position: fixed;
+    z-index: 1000;
+    min-width: 14rem;
+    padding: var(--spacing-md);
+    background: var(--surface-1);
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--theme-card-radius, var(--border-radius-md));
+    box-shadow: var(--shadow-md);
+  }
+  &__message { margin: 0 0 var(--spacing-md); font-size: var(--font-size-sm); }
+  &__actions { display: flex; gap: var(--spacing-md); justify-content: flex-end; }
+  &__btn {
+    appearance: none;
+    height: var(--height-sm, 2rem);
+    padding: 0 var(--spacing-md);
+    border-radius: var(--theme-btn-radius, var(--border-radius-md));
+    cursor: pointer;
+    border: 1px solid var(--ds-border, var(--border-color));
+    background: var(--surface-2);
+    color: var(--text-primary);
+    &--primary { background: var(--primary-500); color: var(--surface-0, var(--surface-1)); border-color: transparent; }
+  }
+}

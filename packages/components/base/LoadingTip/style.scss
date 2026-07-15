@@ -1,0 +1,20 @@
+.vp-loading-tip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+
+  &__spinner {
+    width: var(--height-sm, 2rem);
+    height: var(--height-sm, 2rem);
+    border: 2px solid var(--ds-border, var(--border-color));
+    border-top-color: var(--primary-500);
+    border-radius: 50%;
+    animation: vp-loading-tip-spin 0.8s linear infinite;
+  }
+}
+
+@keyframes vp-loading-tip-spin {
+  to { transform: rotate(360deg); }
+}

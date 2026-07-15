@@ -1,0 +1,49 @@
+.vp-rate {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-family: var(--font-family-sans);
+
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &__item {
+    position: relative;
+    display: inline-flex;
+    cursor: pointer;
+    color: var(--border-color);
+    transition: color var(--transition-normal);
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    &--active {
+      color: var(--warning-500, var(--primary-500));
+    }
+
+    &:hover:not(:disabled) {
+      color: var(--warning-500, var(--primary-500));
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--ds-focus-ring);
+      border-radius: var(--border-radius-sm);
+    }
+  }
+
+  &__icon {
+    width: var(--spacing-xl);
+    height: var(--spacing-xl);
+  }
+
+  &__half {
+    position: absolute;
+    inset: 0;
+    width: 50%;
+    overflow: hidden;
+    color: var(--warning-500, var(--primary-500));
+  }
+}

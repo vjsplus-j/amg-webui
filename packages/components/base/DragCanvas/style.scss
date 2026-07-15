@@ -1,0 +1,35 @@
+.vp-drag-canvas {
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  border: 1px solid var(--ds-border, var(--border-color));
+  border-radius: var(--theme-card-radius, var(--border-radius-md));
+  background: var(--surface-1);
+  overflow: hidden;
+
+  &__surface {
+    position: relative;
+    min-height: 16rem;
+    padding: var(--theme-card-pad, var(--spacing-md));
+    background-image:
+      linear-gradient(var(--ds-border, var(--border-color)) 1px, transparent 1px),
+      linear-gradient(90deg, var(--ds-border, var(--border-color)) 1px, transparent 1px);
+    background-size: var(--spacing-lg) var(--spacing-lg);
+    background-position: -1px -1px;
+  }
+
+  &--grid &__surface {
+    background-size: calc(100% / 24) var(--spacing-xl);
+  }
+
+  &__empty {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    text-align: center;
+    padding: var(--spacing-2xl);
+  }
+
+  &--readonly {
+    opacity: 0.92;
+  }
+}

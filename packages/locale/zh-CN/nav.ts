@@ -1,0 +1,21 @@
+export default {
+  'nav.overview': '总览',
+  'nav.base': '基础组件',
+  'nav.biz': '业务复合',
+  'nav.theme': '多主题',
+  'nav.i18n': '国际化',
+  'nav.perf': '性能边界',
+  'nav.lab': '公共能力',
+  'nav.dev': '开发辅助',
+  'nav.demo': '演示',
+  'nav.system': '系统',
+  'nav.base.category.general': '通用',
+  'nav.base.category.layout': '布局',
+  'nav.base.category.navigation': '导航',
+  'nav.base.category.dataEntry': '数据录入',
+  'nav.base.category.dataDisplay': '数据展示',
+  'nav.base.category.feedback': '反馈',
+  'nav.base.category.other': '其他',
+  'nav.base.category.industry': '行业',
+  'nav.primary': '主导航'
+} as Record<string, string>

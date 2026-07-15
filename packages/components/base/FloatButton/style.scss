@@ -1,0 +1,114 @@
+.vp-float-button {
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-sm);
+  --vp-float-top: auto;
+  --vp-float-right: var(--spacing-xl);
+  --vp-float-bottom: var(--spacing-xl);
+  --vp-float-left: auto;
+  top: var(--vp-float-top);
+  right: var(--vp-float-right);
+  bottom: var(--vp-float-bottom);
+  left: var(--vp-float-left);
+}
+
+.vp-float-button__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--height-lg);
+  height: var(--height-lg);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  text-decoration: none;
+  color: var(--text-on-primary);
+  background: var(--primary-500);
+  font-family: var(--font-family-sans);
+
+  &:hover {
+    transform: translateY(calc(-1 * var(--spacing-xs)));
+    box-shadow: var(--shadow-lg);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--ds-focus-ring), var(--shadow-md);
+  }
+}
+
+.vp-float-button__trigger--circle {
+  border-radius: var(--border-radius-full);
+}
+
+.vp-float-button__trigger--square {
+  border-radius: var(--theme-btn-radius, var(--border-radius-md));
+}
+
+.vp-float-button__trigger--primary {
+  background: var(--primary-500);
+}
+
+.vp-float-button__trigger--success {
+  background: var(--success-500);
+}
+
+.vp-float-button__trigger--warning {
+  background: var(--warning-500);
+}
+
+.vp-float-button__trigger--danger {
+  background: var(--danger-500);
+}
+
+.vp-float-button__trigger--info {
+  background: var(--info-500, var(--primary-500));
+}
+
+.vp-float-button__trigger--secondary {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border: 1px solid var(--ds-border);
+}
+
+.vp-float-button__icon {
+  display: inline-flex;
+  font-size: var(--font-size-lg);
+  line-height: 1;
+}
+
+.vp-float-button__description {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  text-align: right;
+  max-width: 100%;
+}
+
+.vp-float-button__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-sm);
+  animation: vp-float-menu-in var(--transition-normal) ease;
+}
+
+@keyframes vp-float-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--spacing-sm));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vp-float-button__menu-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}

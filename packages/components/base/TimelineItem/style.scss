@@ -1,0 +1,106 @@
+.vp-timeline-item {
+  display: flex;
+  gap: var(--spacing-md);
+  position: relative;
+  padding-bottom: var(--spacing-lg);
+  list-style: none;
+
+  &:last-child {
+    padding-bottom: 0;
+
+    .vp-timeline-item__tail {
+      display: none;
+    }
+  }
+}
+
+.vp-timeline-item__axis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--spacing-lg);
+  position: relative;
+}
+
+.vp-timeline-item__dot {
+  width: var(--spacing-sm);
+  height: var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  background: var(--vp-timeline-color, var(--primary-500));
+  border: 1px solid var(--vp-timeline-color, var(--primary-500));
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.vp-timeline-item__dot--hollow {
+  background: var(--surface-1);
+}
+
+.vp-timeline-item__dot--primary {
+  --vp-timeline-color: var(--primary-500);
+}
+
+.vp-timeline-item__dot--success {
+  --vp-timeline-color: var(--success-500);
+}
+
+.vp-timeline-item__dot--warning {
+  --vp-timeline-color: var(--warning-500);
+}
+
+.vp-timeline-item__dot--danger {
+  --vp-timeline-color: var(--danger-500);
+}
+
+.vp-timeline-item__dot--info {
+  --vp-timeline-color: var(--info-500, var(--primary-500));
+}
+
+.vp-timeline-item__dot--secondary {
+  --vp-timeline-color: var(--text-secondary);
+}
+
+.vp-timeline-item__tail {
+  position: absolute;
+  top: var(--spacing-sm);
+  bottom: calc(-1 * var(--spacing-lg));
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: var(--ds-border);
+}
+
+.vp-timeline-item__content {
+  flex: 1;
+  min-width: 0;
+  padding-top: 0;
+}
+
+.vp-timeline-item__timestamp {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  line-height: var(--line-height-body);
+  margin-bottom: var(--spacing-xs);
+}
+
+.vp-timeline-item__timestamp--top {
+  order: -1;
+  margin-bottom: var(--spacing-xs);
+}
+
+.vp-timeline-item__timestamp--bottom {
+  margin-top: var(--spacing-xs);
+  margin-bottom: 0;
+}
+
+.vp-timeline-item__body {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  line-height: var(--line-height-body);
+}
+
+.vp-timeline-item--placement-top .vp-timeline-item__content {
+  display: flex;
+  flex-direction: column;
+}

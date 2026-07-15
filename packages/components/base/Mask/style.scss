@@ -1,0 +1,12 @@
+.vp-mask {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--surface-0, #000) 45%, transparent);
+
+  &__content { position: relative; }
+}
+.vp-mask-fade-enter-active, .vp-mask-fade-leave-active { transition: opacity var(--transition-normal); }
+.vp-mask-fade-enter-from, .vp-mask-fade-leave-to { opacity: 0; }

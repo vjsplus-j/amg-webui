@@ -1,0 +1,216 @@
+.vp-badge-wrapper {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.vp-badge {
+  --vp-badge-h: var(--spacing-lg);
+  --vp-badge-fs: var(--font-size-xs);
+  --vp-badge-pad-x: var(--spacing-xs);
+  --vp-badge-dot: var(--spacing-sm);
+  --vp-badge-bg: var(--danger-500);
+  --vp-badge-fg: var(--text-on-primary, var(--surface-0));
+
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--vp-badge-h);
+  height: var(--vp-badge-h);
+  padding: 0 var(--vp-badge-pad-x);
+  font-size: var(--vp-badge-fs);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--vp-badge-fg);
+  background: var(--vp-badge-bg);
+  border-radius: var(--border-radius-full);
+  border: 1px solid var(--surface-0);
+  z-index: 1;
+  pointer-events: none;
+  transform-origin: center;
+  white-space: nowrap;
+
+  &--top-right {
+    top: 0;
+    right: 0;
+    transform: translate(
+      calc(50% + var(--vp-badge-offset-x, 0) * 1px),
+      calc(-50% + var(--vp-badge-offset-y, 0) * 1px)
+    );
+  }
+
+  &--top-left {
+    top: 0;
+    left: 0;
+    transform: translate(
+      calc(-50% + var(--vp-badge-offset-x, 0) * 1px),
+      calc(-50% + var(--vp-badge-offset-y, 0) * 1px)
+    );
+  }
+
+  &--bottom-right {
+    bottom: 0;
+    right: 0;
+    transform: translate(
+      calc(50% + var(--vp-badge-offset-x, 0) * 1px),
+      calc(50% + var(--vp-badge-offset-y, 0) * 1px)
+    );
+  }
+
+  &--bottom-left {
+    bottom: 0;
+    left: 0;
+    transform: translate(
+      calc(-50% + var(--vp-badge-offset-x, 0) * 1px),
+      calc(50% + var(--vp-badge-offset-y, 0) * 1px)
+    );
+  }
+
+  &--xs {
+    --vp-badge-h: var(--spacing-md);
+    --vp-badge-fs: var(--font-size-xs);
+    --vp-badge-pad-x: 0;
+    --vp-badge-dot: var(--spacing-xs);
+  }
+
+  &--sm {
+    --vp-badge-h: var(--spacing-lg);
+    --vp-badge-fs: var(--font-size-xs);
+    --vp-badge-pad-x: var(--spacing-xs);
+    --vp-badge-dot: var(--spacing-sm);
+  }
+
+  &--md {
+    --vp-badge-h: var(--height-xs);
+    --vp-badge-fs: var(--font-size-xs);
+    --vp-badge-pad-x: var(--spacing-xs);
+    --vp-badge-dot: var(--spacing-sm);
+  }
+
+  &--lg {
+    --vp-badge-h: var(--height-sm);
+    --vp-badge-fs: var(--font-size-sm);
+    --vp-badge-pad-x: var(--spacing-sm);
+    --vp-badge-dot: var(--spacing-md);
+  }
+
+  &--xl {
+    --vp-badge-h: var(--height-md);
+    --vp-badge-fs: var(--font-size-sm);
+    --vp-badge-pad-x: var(--spacing-sm);
+    --vp-badge-dot: var(--spacing-md);
+  }
+
+  &--dot {
+    min-width: var(--vp-badge-dot);
+    width: var(--vp-badge-dot);
+    height: var(--vp-badge-dot);
+    padding: 0;
+  }
+
+  &--hidden {
+    display: none;
+  }
+
+  &--disabled {
+    opacity: 0.45;
+    filter: grayscale(0.35);
+  }
+
+  &--pulse {
+    animation: vp-badge-pulse var(--transition-slow) ease-in-out infinite alternate;
+  }
+
+  &--pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    opacity: 0;
+    pointer-events: none;
+    animation: vp-badge-pulse-ring var(--transition-slow) ease-out infinite;
+  }
+
+  &--primary {
+    --vp-badge-bg: var(--primary-500);
+  }
+
+  &--secondary {
+    --vp-badge-bg: var(--surface-4);
+    --vp-badge-fg: var(--text-primary);
+  }
+
+  &--success {
+    --vp-badge-bg: var(--success-500);
+  }
+
+  &--warning {
+    --vp-badge-bg: var(--warning-500);
+  }
+
+  &--danger {
+    --vp-badge-bg: var(--danger-500);
+  }
+
+  &--info {
+    --vp-badge-bg: var(--info-500);
+  }
+
+  &__content {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform-origin: center;
+  }
+
+  /* Host for shared vp-motion — keep corner `transform` on `.vp-badge` intact */
+  &__motion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    transform-origin: center center;
+  }
+
+  &--scale .vp-badge__content {
+    transform: scale(0.85);
+  }
+}
+
+@keyframes vp-badge-pulse {
+  from {
+    opacity: 1;
+    filter: brightness(1);
+  }
+
+  to {
+    opacity: 0.65;
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes vp-badge-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: scale(1.65);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-badge--pulse,
+  .vp-badge--pulse::after {
+    animation: none;
+  }
+}

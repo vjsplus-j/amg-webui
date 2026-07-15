@@ -1,0 +1,23 @@
+.vp-notice-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--ds-border, var(--border-color));
+  overflow: hidden;
+
+  &__track { flex: 1; min-width: 0; overflow: hidden; }
+  &__text { display: inline-block; white-space: nowrap; font-size: var(--font-size-sm); }
+  &--scroll .vp-notice-bar__text { animation: vp-notice-bar-marquee 18s linear infinite; }
+  &__close { appearance: none; border: none; background: transparent; cursor: pointer; color: var(--text-secondary); }
+
+  &--success { color: var(--success-600, var(--success-500)); }
+  &--warning { color: var(--warning-600, var(--warning-500)); }
+  &--danger { color: var(--danger-600, var(--danger-500)); }
+}
+
+@keyframes vp-notice-bar-marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}

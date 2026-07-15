@@ -1,0 +1,32 @@
+.vp-input-captcha {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  min-width: 0;
+
+  &__input {
+    flex: 1;
+    min-width: 8rem;
+  }
+
+  &__canvas-wrap {
+    appearance: none;
+    padding: 0;
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--theme-input-radius, var(--border-radius-md));
+    background: var(--surface-1);
+    cursor: pointer;
+    line-height: 0;
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+
+  &__canvas {
+    display: block;
+    border-radius: inherit;
+  }
+}

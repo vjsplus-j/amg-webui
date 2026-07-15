@@ -1,0 +1,64 @@
+{
+  "name": "amg-webui",
+  "version": "1.0.0",
+  "description": "对标并超越 Element Plus —— 最强国产 Vue3 WebUI（amg-webui）",
+  "type": "module",
+  "main": "./dist/amg-webui.umd.cjs",
+  "module": "./dist/amg-webui.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/amg-webui.js",
+      "require": "./dist/amg-webui.umd.cjs"
+    },
+    "./dist/style.css": "./dist/style.css",
+    "./theme": "./packages/theme/index.ts",
+    "./telemetry": "./packages/telemetry/index.ts",
+    "./icons": "./packages/icons/index.ts",
+    "./components/base": "./packages/components/base/index.ts",
+    "./components/business": "./packages/components/business/index.ts"
+  },
+  "scripts": {
+    "dev": "vite --config vite.example.config.ts",
+    "build": "vue-tsc --noEmit && vite build",
+    "build:lib": "node build/index.mjs full",
+    "build:example": "vue-tsc --noEmit && vite build --config vite.example.config.ts",
+    "preview": "vite preview --config vite.example.config.ts",
+    "create:component": "node scripts/create-component.mjs",
+    "generate:entry": "node scripts/generate-entry.mjs",
+    "generate:icons": "node scripts/generate-icon-catalog.mjs",
+    "sync:example-zones": "node scripts/sync-example-zones.mjs",
+    "score:maturity": "node scripts/score-component-maturity.mjs",
+    "validate:catalog": "node scripts/validate-component-catalog.mjs",
+    "extract:i18n": "node scripts/extract-i18n.mjs",
+    "test": "vitest run",
+    "docs:dev": "vitepress dev docs --config vitepress.config.ts",
+    "docs:build": "vitepress build docs --config vitepress.config.ts",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "@lucide/vue": "^1.0.0",
+    "vue": "^3.4.0",
+    "vue-router": "^4.6.4"
+  },
+  "peerDependencies": {
+    "@lucide/vue": "^1.0.0",
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/eslint-config-typescript": "^12.0.0",
+    "@vue/test-utils": "^2.4.11",
+    "eslint": "^8.56.0",
+    "eslint-plugin-vue": "^9.21.0",
+    "happy-dom": "^20.10.6",
+    "playwright": "^1.61.1",
+    "sass": "^1.70.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.4.0",
+    "vitepress": "^1.0.0",
+    "vitest": "^2.0.0",
+    "vue-tsc": "^2.2.0"
+  }
+}

@@ -1,0 +1,21 @@
+export default {
+  'nav.overview': '總覽',
+  'nav.base': '基礎元件',
+  'nav.biz': '業務複合',
+  'nav.theme': '多主題',
+  'nav.i18n': '國際化',
+  'nav.perf': '效能邊界',
+  'nav.lab': '公共能力',
+  'nav.dev': '開發輔助',
+  'nav.demo': '示範',
+  'nav.system': '系統',
+  'nav.base.category.general': '通用',
+  'nav.base.category.layout': '佈局',
+  'nav.base.category.navigation': '導航',
+  'nav.base.category.dataEntry': '資料輸入',
+  'nav.base.category.dataDisplay': '資料展示',
+  'nav.base.category.feedback': '反饋',
+  'nav.base.category.other': '其他',
+  'nav.base.category.industry': '行業',
+  'nav.primary': '主導覽'
+} as Record<string, string>

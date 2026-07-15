@@ -1,0 +1,21 @@
+export default {
+  'nav.overview': 'Обзор',
+  'nav.base': 'Базовые',
+  'nav.biz': 'Бизнес',
+  'nav.theme': 'Темы',
+  'nav.i18n': 'Локализация',
+  'nav.perf': 'Производительность',
+  'nav.lab': 'Общие модули',
+  'nav.dev': 'Инструменты',
+  'nav.demo': 'Демо',
+  'nav.system': 'Система',
+  'nav.base.category.general': 'Общие',
+  'nav.base.category.layout': 'Макет',
+  'nav.base.category.navigation': 'Навигация',
+  'nav.base.category.dataEntry': 'Ввод данных',
+  'nav.base.category.dataDisplay': 'Отображение',
+  'nav.base.category.feedback': 'Обратная связь',
+  'nav.base.category.other': 'Прочее',
+  'nav.base.category.industry': 'Отрасль',
+  'nav.primary': 'Основная навигация'
+} as Record<string, string>

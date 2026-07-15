@@ -1,0 +1,129 @@
+@import './contract';
+
+/**
+ * Apple — reductive cinematic retail
+ * @see https://designmd.santiagoalonso.com/apple
+ * Soft gray #f5f5f7 · link blue #0071e3 · Albert Sans (SF Pro) · Material · radius 11px
+ */
+
+[data-design='apple'] {
+  color-scheme: light;
+  --theme-name: apple;
+  --theme-icon-set: material;
+  --theme-font: albert-sans;
+
+  --ap-bg: #f5f5f7;
+  --ap-bg-dark: #000000;
+  --ap-surface: #ffffff;
+  --ap-btn-light: #fafafc;
+  --ap-btn-active: #ededf2;
+  --ap-ink: #1d1d1f;
+  --ap-text-secondary: #333333;
+  --ap-text-tertiary: #858586;
+  --ap-primary: #0071e3;
+  --ap-link: #0066cc;
+  --ap-link-dark: #2997ff;
+  --ap-border-soft: #f5f5f5;
+  --ap-overlay: #d2d2d7;
+  --ap-shadow: #c7c7c7;
+
+  --primary-500: var(--ap-primary);
+  --primary-400: #2997ff;
+  --primary-600: var(--ap-link);
+  --primary-300: #5ac8fa;
+  --success-500: #34c759;
+  --warning-500: #ff9f0a;
+  --danger-500: #ff3b30;
+  --info-500: var(--ap-primary);
+
+  --surface-0: var(--ap-bg);
+  --surface-1: var(--ap-surface);
+  --surface-2: var(--ap-btn-light);
+  --surface-3: var(--ap-btn-active);
+  --surface-4: var(--ap-overlay);
+  --surface-5: var(--ap-text-tertiary);
+
+  --text-primary: var(--ap-ink);
+  --text-secondary: var(--ap-text-secondary);
+  --text-muted: var(--ap-text-tertiary);
+  --text-on-primary: #ffffff;
+
+  --border-color: #d2d2d7;
+  --border-color-hover: #aeaeb2;
+
+  --shadow-sm: 0 1px 2px color-mix(in srgb, var(--ap-shadow) 35%, transparent);
+  --shadow-md: 0 4px 24px color-mix(in srgb, var(--ap-shadow) 40%, transparent);
+  --shadow-lg: 0 12px 40px color-mix(in srgb, var(--ap-shadow) 45%, transparent);
+
+  --ds-glow: transparent;
+  --ds-motion-lift: 0px;
+  --transition-normal: 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  --icon-stroke-width: 1.75;
+
+  @include theme-type-scale(
+    $display-xl: 3.5rem,
+    $display-lg: 2.5rem,
+    $display: 1.75rem,
+    $h1: 1.75rem,
+    $h2: 1.3125rem,
+    $h3: 1.125rem,
+    $body-lg: 1.0625rem,
+    $body: 1rem,
+    $body-sm: 0.875rem,
+    $caption: 0.75rem,
+    $weight-display: 600,
+    $weight-heading: 600,
+    $weight-body: 400,
+    $tracking-display: -0.005em,
+    $tracking-body: 0.011em,
+    $leading: 1.47
+  );
+
+  @include theme-spacing($page: 1.5rem, $control-h-sm: 32px, $control-h-md: 36px, $control-h-lg: 44px);
+  @include theme-shape(8px, 11px, 14px, 18px, 980px);
+  @include bridge-ds;
+
+  --theme-btn-solid-bg: var(--ap-primary);
+  --theme-btn-solid-fg: #fff;
+  --theme-btn-solid-hover: #0077ed;
+  --theme-btn-ghost-hover: var(--ap-btn-active);
+  --theme-alert-info-bg: #e8f4ff;
+  --theme-alert-success-bg: #e8f8ed;
+  --theme-alert-warn-bg: #fff6e5;
+  --theme-alert-danger-bg: #ffebeb;
+  --theme-nav-bg: color-mix(in srgb, #000 82%, transparent);
+  --theme-nav-border: transparent;
+  --theme-tab-active-bg: var(--ap-ink);
+  --theme-tab-active-fg: #fff;
+  --theme-stat-value-size: 1.75rem;
+  --theme-avatar-bg: var(--ap-btn-active);
+  --theme-slider-track: var(--ap-overlay);
+  --theme-slider-fill: var(--ap-primary);
+  --theme-table-header-bg: var(--ap-btn-light);
+  --theme-menu-hover: var(--ap-btn-active);
+  --theme-badge-bg: var(--ap-btn-active);
+  --theme-badge-fg: var(--ap-ink);
+
+  color: var(--text-primary);
+  background-color: var(--surface-0);
+}
+
+[data-design='apple'][data-scheme='dark'] {
+  color-scheme: dark;
+  --ap-bg: #000000;
+  --ap-surface: #1d1d1f;
+  --ap-btn-light: #272729;
+  --ap-btn-active: #2a2a2d;
+  --ap-ink: #f5f5f7;
+  --ap-text-secondary: #a1a1a6;
+  --ap-text-tertiary: #6e6e73;
+  --ap-primary: #2997ff;
+  --surface-0: var(--ap-bg);
+  --surface-1: var(--ap-surface);
+  --surface-2: var(--ap-btn-light);
+  --surface-3: var(--ap-btn-active);
+  --text-primary: var(--ap-ink);
+  --text-secondary: var(--ap-text-secondary);
+  --text-muted: var(--ap-text-tertiary);
+  --border-color: #424245;
+}

@@ -1,0 +1,10 @@
+.vp-progress-tip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--surface-1);
+  border: 1px solid var(--ds-border, var(--border-color));
+  border-radius: var(--theme-card-radius, var(--border-radius-md));
+  &__message { margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary); }
+}

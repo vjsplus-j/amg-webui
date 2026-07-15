@@ -1,0 +1,57 @@
+.vp-image-crop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+
+  &__file {
+    font-size: var(--font-size-sm);
+  }
+
+  &__stage {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--theme-card-radius, var(--border-radius-md));
+    overflow: hidden;
+  }
+
+  &__img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: move;
+    touch-action: none;
+  }
+
+  &__btn {
+    appearance: none;
+    align-self: flex-start;
+    border: 1px solid transparent;
+    background: var(--primary-500);
+    color: var(--surface-0, var(--surface-1));
+    border-radius: var(--theme-btn-radius, var(--border-radius-md));
+    height: var(--height-md);
+    padding: 0 var(--spacing-lg);
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+
+  &--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}

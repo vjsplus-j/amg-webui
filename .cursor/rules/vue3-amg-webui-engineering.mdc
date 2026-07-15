@@ -1,0 +1,35 @@
+---
+description: Engineering automation — create component, generate entry, extract i18n; list virtual scroll + tree-shake
+alwaysApply: true
+---
+
+# Engineering & performance bar (locked)
+
+Docs: `docs/ENGINEERING.md` · plan: `docs/LIBRARY_PLAN.md` · telemetry: `docs/TELEMETRY.md`
+
+## Scripts (required)
+| npm | purpose |
+|-----|---------|
+| `create:component` | scaffold base/business (`vp-` class, types, style, stubs) |
+| `generate:entry` | scan & rewrite component barrel `index.ts` — no manual mega-exports |
+| `extract:i18n` | scan copy → LocaleKeys + **all** locale packs; missing key = bug/CI |
+| `validate:catalog` | catalog ↔ base coverage |
+| `score:maturity` | component depth score |
+| `generate:icons` | refresh icon catalog |
+
+Files: `scripts/create-component.mjs` · `generate-entry.mjs` · `extract-i18n.mjs` · …
+
+Alias: `@amg-webui/telemetry` → `packages/telemetry/index.ts` (file path, avoid dual Vite instances).
+
+## Performance (non-negotiable defaults)
+- **All list-like components** (DataTable, Tree, Select dropdown, infinite lists, virtualized menus): **virtual scroll ON by default** (opt-out only with explicit prop + docs warning).
+- **Deep Tree-Shaking**: ESM side-effect free packages; per-component style entry; no fat re-export that pulls unused components; on-demand icons.
+- Smaller bundles: runtime / component / style split; unplugin-vue-components (or equiv) resolver for consumers.
+- Unmount cleans listeners/timers; shallow reactive for large row arrays.
+- Telemetry **off by default**; when disabled, hot path early-return.
+
+## When adding a list component
+Wire shared virtualizer hook first; never ship a full-DOM dump of unbounded data as default.
+
+## When adding an interactive component
+Call `trackEmit` beside business `emit`; default `telemetry: undefined` in `withDefaults` (Vue Boolean omit → `false` would skip all tracks).

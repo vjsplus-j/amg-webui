@@ -1,0 +1,30 @@
+.vp-drag-select {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  min-width: 0;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--theme-input-radius, var(--border-radius-md));
+    background: var(--surface-1);
+    cursor: grab;
+  }
+
+  &__handle {
+    color: var(--text-muted);
+    user-select: none;
+  }
+
+  &--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}

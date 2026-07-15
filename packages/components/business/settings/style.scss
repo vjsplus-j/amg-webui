@@ -1,0 +1,42 @@
+.biz-settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-section-gap, 1.25rem);
+}
+
+.biz-settings__tabs {
+  align-self: flex-start;
+}
+
+.biz-settings__panel {
+  /* Card host — column stack + gap via .p-card-body */
+}
+
+.biz-settings__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md, 0.75rem);
+  max-width: 420px;
+}
+
+.biz-settings__form label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 0.5rem);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.biz-settings__check {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.biz-settings__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm, 0.5rem);
+}

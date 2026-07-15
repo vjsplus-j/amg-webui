@@ -1,0 +1,51 @@
+.vp-avatar-group {
+  --vp-avatar-group-overlap: var(--theme-avatar-group-overlap);
+
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row;
+
+  &__item {
+    margin-inline-start: var(--vp-avatar-group-overlap);
+    /* Isolation ring — theme surface, prevents blend */
+    box-shadow: 0 0 0 1px var(--surface-0);
+    position: relative;
+
+    &:first-child {
+      margin-inline-start: 0;
+    }
+  }
+
+  &__overflow {
+    margin-inline-start: var(--vp-avatar-group-overlap);
+    position: relative;
+    z-index: 0;
+    box-shadow: 0 0 0 1px var(--surface-0);
+    background: var(--surface-2);
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    filter: grayscale(0.35);
+    pointer-events: none;
+  }
+
+  /* Neon stack — drop isolation ring so lightboard glow shows */
+  &--neon {
+    overflow: visible;
+
+    .vp-avatar-group__item,
+    .vp-avatar-group__overflow {
+      box-shadow: none;
+    }
+  }
+}
+
+/* Small screens: tighter default overlap (custom overlap via inline var still wins) */
+@media (max-width: 768px) {
+  .vp-avatar-group {
+    --vp-avatar-group-overlap: var(--theme-avatar-group-overlap-sm);
+  }
+}

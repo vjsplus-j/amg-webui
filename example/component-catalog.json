@@ -1,0 +1,1667 @@
+{
+  "version": 1,
+  "generatedAt": "2026-07-15T12:47:16.682Z",
+  "total": 272,
+  "categories": [
+    "general",
+    "layout",
+    "navigation",
+    "data-entry",
+    "data-display",
+    "feedback",
+    "other",
+    "industry"
+  ],
+  "byCategory": {
+    "general": [
+      "Avatar",
+      "AvatarGroup",
+      "Badge",
+      "Button",
+      "ButtonGroup",
+      "Card",
+      "CardWidgets",
+      "Collapse",
+      "CopyText",
+      "Divider",
+      "Ellipsis",
+      "Empty",
+      "FloatButton",
+      "Highlight",
+      "Icon",
+      "Link",
+      "Progress",
+      "Skeleton",
+      "Space",
+      "Spin",
+      "Statistic",
+      "Tag",
+      "Typography"
+    ],
+    "layout": [
+      "Block",
+      "CardGrid",
+      "Center",
+      "Col",
+      "ColumnLayout",
+      "Container",
+      "EmbedLayout",
+      "FixedLayout",
+      "FlowLayout",
+      "Footer",
+      "FormLayout",
+      "Header",
+      "Layout",
+      "Main",
+      "ResizeBox",
+      "Row",
+      "ScaleLayout",
+      "Sider",
+      "Spacer",
+      "Split",
+      "StackLayout"
+    ],
+    "navigation": [
+      "Anchor",
+      "BackTop",
+      "Breadcrumb",
+      "BreadcrumbItem",
+      "CardNav",
+      "CategoryNav",
+      "ContextMenu",
+      "Dropdown",
+      "FloatNav",
+      "FooterNav",
+      "GroupNav",
+      "IndexNav",
+      "Menu",
+      "MenuBar",
+      "MiniNav",
+      "PagerNav",
+      "Pagination",
+      "QuickNav",
+      "RouterNav",
+      "ScrollNav",
+      "SelectNav",
+      "StepItem",
+      "StepNav",
+      "Steps",
+      "TabPane",
+      "Tabs",
+      "TabsNav",
+      "TopNav",
+      "VerticalStepNav"
+    ],
+    "data-entry": [
+      "AdvancedSearch",
+      "AutoComplete",
+      "BatchPanel",
+      "BatchUpload",
+      "Cascader",
+      "Checkbox",
+      "CheckboxGroup",
+      "ChunkUpload",
+      "CodeEditor",
+      "ColorInput",
+      "ColorPicker",
+      "Dashboard",
+      "DatePicker",
+      "DateTimePicker",
+      "DetailPanel",
+      "DragSelect",
+      "DynamicForm",
+      "FilterBar",
+      "FlowPanel",
+      "Form",
+      "FormGroup",
+      "FormItem",
+      "FormTabs",
+      "ImageUpload",
+      "InputCaptcha",
+      "InputNumber",
+      "InputText",
+      "LoginPanel",
+      "MdEditor",
+      "MonthPicker",
+      "Password",
+      "PermissionPanel",
+      "QuarterPicker",
+      "Radio",
+      "RadioGroup",
+      "RangeInput",
+      "Rate",
+      "RichText",
+      "Search",
+      "SearchFilterPanel",
+      "Select",
+      "SettingPanel",
+      "Slider",
+      "SmsCode",
+      "StepForm",
+      "Switch",
+      "TagInput",
+      "TemplateSelect",
+      "Textarea",
+      "TimePicker",
+      "TimeRangeInput",
+      "Transfer",
+      "Upload",
+      "UserInfoCard",
+      "WeekPicker",
+      "YearPicker"
+    ],
+    "data-display": [
+      "BarChart",
+      "Calendar",
+      "CardList",
+      "Carousel",
+      "Countdown",
+      "DataCard",
+      "DataTable",
+      "Descriptions",
+      "DescriptionsItem",
+      "DrillTable",
+      "EditTable",
+      "EditTree",
+      "FolderTree",
+      "GaugeChart",
+      "GraphChart",
+      "HeatMap",
+      "ImageGroup",
+      "LazyTree",
+      "LineChart",
+      "MergeTable",
+      "PieChart",
+      "PivotTable",
+      "ProTable",
+      "RadarChart",
+      "Ranking",
+      "Scrollbar",
+      "ScrollNotice",
+      "StickyTable",
+      "TableAction",
+      "TableDrag",
+      "TableExport",
+      "Thumbnail",
+      "Timeline",
+      "TimelineItem",
+      "TimelineList",
+      "Tooltip",
+      "TransferTree",
+      "Tree",
+      "TreeChart",
+      "TreeForm",
+      "TreeSelect",
+      "TreeTable",
+      "TreeTransfer",
+      "VirtualTable",
+      "VirtualTree",
+      "Waterfall",
+      "Watermark",
+      "WordCloud"
+    ],
+    "feedback": [
+      "Alert",
+      "Confirm",
+      "ConfirmDialog",
+      "Dialog",
+      "Drawer",
+      "ErrorModal",
+      "Exception",
+      "InfoModal",
+      "Loading",
+      "LoadingTip",
+      "Mask",
+      "Message",
+      "NoticeBar",
+      "Notification",
+      "Popconfirm",
+      "Popover",
+      "ProgressTip",
+      "Result",
+      "StatusTip",
+      "SuccessModal",
+      "Toast",
+      "WarnModal"
+    ],
+    "other": [
+      "AudioPlay",
+      "Barcode",
+      "BrowserDetect",
+      "CanvasIo",
+      "CanvasLayer",
+      "CanvasNode",
+      "CanvasPreview",
+      "CanvasShortcut",
+      "Clipboard",
+      "CryptoBox",
+      "DragCanvas",
+      "DragMaterial",
+      "DragRuler",
+      "DragSortNode",
+      "DragVerify",
+      "DragWrapper",
+      "ExcelIo",
+      "FilePreview",
+      "FreeLayoutDrag",
+      "GridLayoutDrag",
+      "ImageCrop",
+      "OcrScan",
+      "PdfPreview",
+      "Preview",
+      "Print",
+      "PropPanel",
+      "Qrcode",
+      "TablePrint",
+      "TelemetryProvider",
+      "TemplateDrag"
+    ],
+    "industry": [
+      "AudioTalk",
+      "Business404",
+      "Cartoon404",
+      "Doodle404",
+      "GbsAlarmModal",
+      "GbsCascadePanel",
+      "GbsDeviceTree",
+      "GbsGatewayForm",
+      "GbsRegisterForm",
+      "GbsSignMonitor",
+      "GbsStatusCard",
+      "GbsTimeSync",
+      "Ink404",
+      "Machine404",
+      "OnvifAlarmPanel",
+      "OnvifChannelManage",
+      "OnvifDeviceList",
+      "OnvifGroupTree",
+      "OnvifRecordPlan",
+      "OnvifSearch",
+      "OnvifSettingPanel",
+      "OnvifUrlForm",
+      "Pixel404",
+      "Plant404",
+      "PTZControl",
+      "Simple404",
+      "Space404",
+      "SplitVideoWall",
+      "Tech404",
+      "VcrBackupTask",
+      "VcrClipCut",
+      "VcrDownloadPanel",
+      "VcrMarkPoint",
+      "VcrSearchPanel",
+      "VcrSpeedControl",
+      "VcrStorageDashboard",
+      "VcrTimelinePlayer",
+      "VideoAdjust",
+      "VideoPlayer",
+      "VideoPreview",
+      "VideoSnapshot",
+      "VideoVolume",
+      "VideoWatermark"
+    ]
+  },
+  "components": {
+    "AdvancedSearch": {
+      "category": "data-entry",
+      "titleKey": "component.advanced-search.title",
+      "leadKey": "component.advanced-search.lead"
+    },
+    "Alert": {
+      "category": "feedback",
+      "titleKey": "component.alert.title",
+      "leadKey": "component.alert.lead"
+    },
+    "Anchor": {
+      "category": "navigation",
+      "titleKey": "component.anchor.title",
+      "leadKey": "component.anchor.lead"
+    },
+    "AudioPlay": {
+      "category": "other",
+      "titleKey": "component.audio-play.title",
+      "leadKey": "component.audio-play.lead"
+    },
+    "AudioTalk": {
+      "category": "industry",
+      "titleKey": "component.audio-talk.title",
+      "leadKey": "component.audio-talk.lead"
+    },
+    "AutoComplete": {
+      "category": "data-entry",
+      "titleKey": "component.auto-complete.title",
+      "leadKey": "component.auto-complete.lead"
+    },
+    "Avatar": {
+      "category": "general",
+      "titleKey": "component.avatar.title",
+      "leadKey": "component.avatar.lead"
+    },
+    "AvatarGroup": {
+      "category": "general",
+      "titleKey": "component.avatar-group.title",
+      "leadKey": "component.avatar-group.lead"
+    },
+    "BackTop": {
+      "category": "navigation",
+      "titleKey": "component.back-top.title",
+      "leadKey": "component.back-top.lead"
+    },
+    "Badge": {
+      "category": "general",
+      "titleKey": "component.badge.title",
+      "leadKey": "component.badge.lead"
+    },
+    "BarChart": {
+      "category": "data-display",
+      "titleKey": "component.bar-chart.title",
+      "leadKey": "component.bar-chart.lead"
+    },
+    "Barcode": {
+      "category": "other",
+      "titleKey": "component.barcode.title",
+      "leadKey": "component.barcode.lead"
+    },
+    "BatchPanel": {
+      "category": "data-entry",
+      "titleKey": "component.batch-panel.title",
+      "leadKey": "component.batch-panel.lead"
+    },
+    "BatchUpload": {
+      "category": "data-entry",
+      "titleKey": "component.batch-upload.title",
+      "leadKey": "component.batch-upload.lead"
+    },
+    "Block": {
+      "category": "layout",
+      "titleKey": "component.block.title",
+      "leadKey": "component.block.lead"
+    },
+    "Breadcrumb": {
+      "category": "navigation",
+      "titleKey": "component.breadcrumb.title",
+      "leadKey": "component.breadcrumb.lead"
+    },
+    "BreadcrumbItem": {
+      "category": "navigation",
+      "titleKey": "component.breadcrumb-item.title",
+      "leadKey": "component.breadcrumb-item.lead"
+    },
+    "BrowserDetect": {
+      "category": "other",
+      "titleKey": "component.browser-detect.title",
+      "leadKey": "component.browser-detect.lead"
+    },
+    "Business404": {
+      "category": "industry",
+      "titleKey": "component.business404.title",
+      "leadKey": "component.business404.lead"
+    },
+    "Button": {
+      "category": "general",
+      "titleKey": "component.button.title",
+      "leadKey": "component.button.lead"
+    },
+    "ButtonGroup": {
+      "category": "general",
+      "titleKey": "component.button-group.title",
+      "leadKey": "component.button-group.lead"
+    },
+    "Calendar": {
+      "category": "data-display",
+      "titleKey": "component.calendar.title",
+      "leadKey": "component.calendar.lead"
+    },
+    "CanvasIo": {
+      "category": "other",
+      "titleKey": "component.canvas-io.title",
+      "leadKey": "component.canvas-io.lead"
+    },
+    "CanvasLayer": {
+      "category": "other",
+      "titleKey": "component.canvas-layer.title",
+      "leadKey": "component.canvas-layer.lead"
+    },
+    "CanvasNode": {
+      "category": "other",
+      "titleKey": "component.canvas-node.title",
+      "leadKey": "component.canvas-node.lead"
+    },
+    "CanvasPreview": {
+      "category": "other",
+      "titleKey": "component.canvas-preview.title",
+      "leadKey": "component.canvas-preview.lead"
+    },
+    "CanvasShortcut": {
+      "category": "other",
+      "titleKey": "component.canvas-shortcut.title",
+      "leadKey": "component.canvas-shortcut.lead"
+    },
+    "Card": {
+      "category": "general",
+      "titleKey": "component.card.title",
+      "leadKey": "component.card.lead"
+    },
+    "CardGrid": {
+      "category": "layout",
+      "titleKey": "component.card-grid.title",
+      "leadKey": "component.card-grid.lead"
+    },
+    "CardList": {
+      "category": "data-display",
+      "titleKey": "component.card-list.title",
+      "leadKey": "component.card-list.lead"
+    },
+    "CardNav": {
+      "category": "navigation",
+      "titleKey": "component.card-nav.title",
+      "leadKey": "component.card-nav.lead"
+    },
+    "CardWidgets": {
+      "category": "general",
+      "titleKey": "component.card-widgets.title",
+      "leadKey": "component.card-widgets.lead"
+    },
+    "Carousel": {
+      "category": "data-display",
+      "titleKey": "component.carousel.title",
+      "leadKey": "component.carousel.lead"
+    },
+    "Cartoon404": {
+      "category": "industry",
+      "titleKey": "component.cartoon404.title",
+      "leadKey": "component.cartoon404.lead"
+    },
+    "Cascader": {
+      "category": "data-entry",
+      "titleKey": "component.cascader.title",
+      "leadKey": "component.cascader.lead"
+    },
+    "CategoryNav": {
+      "category": "navigation",
+      "titleKey": "component.category-nav.title",
+      "leadKey": "component.category-nav.lead"
+    },
+    "Center": {
+      "category": "layout",
+      "titleKey": "component.center.title",
+      "leadKey": "component.center.lead"
+    },
+    "Checkbox": {
+      "category": "data-entry",
+      "titleKey": "component.checkbox.title",
+      "leadKey": "component.checkbox.lead"
+    },
+    "CheckboxGroup": {
+      "category": "data-entry",
+      "titleKey": "component.checkbox-group.title",
+      "leadKey": "component.checkbox-group.lead"
+    },
+    "ChunkUpload": {
+      "category": "data-entry",
+      "titleKey": "component.chunk-upload.title",
+      "leadKey": "component.chunk-upload.lead"
+    },
+    "Clipboard": {
+      "category": "other",
+      "titleKey": "component.clipboard.title",
+      "leadKey": "component.clipboard.lead"
+    },
+    "CodeEditor": {
+      "category": "data-entry",
+      "titleKey": "component.code-editor.title",
+      "leadKey": "component.code-editor.lead"
+    },
+    "Col": {
+      "category": "layout",
+      "titleKey": "component.col.title",
+      "leadKey": "component.col.lead"
+    },
+    "Collapse": {
+      "category": "general",
+      "titleKey": "component.collapse.title",
+      "leadKey": "component.collapse.lead"
+    },
+    "ColorInput": {
+      "category": "data-entry",
+      "titleKey": "component.color-input.title",
+      "leadKey": "component.color-input.lead"
+    },
+    "ColorPicker": {
+      "category": "data-entry",
+      "titleKey": "component.color-picker.title",
+      "leadKey": "component.color-picker.lead"
+    },
+    "ColumnLayout": {
+      "category": "layout",
+      "titleKey": "component.column-layout.title",
+      "leadKey": "component.column-layout.lead"
+    },
+    "Confirm": {
+      "category": "feedback",
+      "titleKey": "component.confirm.title",
+      "leadKey": "component.confirm.lead"
+    },
+    "ConfirmDialog": {
+      "category": "feedback",
+      "titleKey": "component.confirm-dialog.title",
+      "leadKey": "component.confirm-dialog.lead"
+    },
+    "Container": {
+      "category": "layout",
+      "titleKey": "component.container.title",
+      "leadKey": "component.container.lead"
+    },
+    "ContextMenu": {
+      "category": "navigation",
+      "titleKey": "component.context-menu.title",
+      "leadKey": "component.context-menu.lead"
+    },
+    "CopyText": {
+      "category": "general",
+      "titleKey": "component.copy-text.title",
+      "leadKey": "component.copy-text.lead"
+    },
+    "Countdown": {
+      "category": "data-display",
+      "titleKey": "component.countdown.title",
+      "leadKey": "component.countdown.lead"
+    },
+    "CryptoBox": {
+      "category": "other",
+      "titleKey": "component.crypto-box.title",
+      "leadKey": "component.crypto-box.lead"
+    },
+    "Dashboard": {
+      "category": "data-entry",
+      "titleKey": "component.dashboard.title",
+      "leadKey": "component.dashboard.lead"
+    },
+    "DataCard": {
+      "category": "data-display",
+      "titleKey": "component.data-card.title",
+      "leadKey": "component.data-card.lead"
+    },
+    "DataTable": {
+      "category": "data-display",
+      "titleKey": "component.data-table.title",
+      "leadKey": "component.data-table.lead"
+    },
+    "DatePicker": {
+      "category": "data-entry",
+      "titleKey": "component.date-picker.title",
+      "leadKey": "component.date-picker.lead"
+    },
+    "DateTimePicker": {
+      "category": "data-entry",
+      "titleKey": "component.date-time-picker.title",
+      "leadKey": "component.date-time-picker.lead"
+    },
+    "Descriptions": {
+      "category": "data-display",
+      "titleKey": "component.descriptions.title",
+      "leadKey": "component.descriptions.lead"
+    },
+    "DescriptionsItem": {
+      "category": "data-display",
+      "titleKey": "component.descriptions-item.title",
+      "leadKey": "component.descriptions-item.lead"
+    },
+    "DetailPanel": {
+      "category": "data-entry",
+      "titleKey": "component.detail-panel.title",
+      "leadKey": "component.detail-panel.lead"
+    },
+    "Dialog": {
+      "category": "feedback",
+      "titleKey": "component.dialog.title",
+      "leadKey": "component.dialog.lead"
+    },
+    "Divider": {
+      "category": "general",
+      "titleKey": "component.divider.title",
+      "leadKey": "component.divider.lead"
+    },
+    "Doodle404": {
+      "category": "industry",
+      "titleKey": "component.doodle404.title",
+      "leadKey": "component.doodle404.lead"
+    },
+    "DragCanvas": {
+      "category": "other",
+      "titleKey": "component.drag-canvas.title",
+      "leadKey": "component.drag-canvas.lead"
+    },
+    "DragMaterial": {
+      "category": "other",
+      "titleKey": "component.drag-material.title",
+      "leadKey": "component.drag-material.lead"
+    },
+    "DragRuler": {
+      "category": "other",
+      "titleKey": "component.drag-ruler.title",
+      "leadKey": "component.drag-ruler.lead"
+    },
+    "DragSelect": {
+      "category": "data-entry",
+      "titleKey": "component.drag-select.title",
+      "leadKey": "component.drag-select.lead"
+    },
+    "DragSortNode": {
+      "category": "other",
+      "titleKey": "component.drag-sort-node.title",
+      "leadKey": "component.drag-sort-node.lead"
+    },
+    "DragVerify": {
+      "category": "other",
+      "titleKey": "component.drag-verify.title",
+      "leadKey": "component.drag-verify.lead"
+    },
+    "DragWrapper": {
+      "category": "other",
+      "titleKey": "component.drag-wrapper.title",
+      "leadKey": "component.drag-wrapper.lead"
+    },
+    "Drawer": {
+      "category": "feedback",
+      "titleKey": "component.drawer.title",
+      "leadKey": "component.drawer.lead"
+    },
+    "DrillTable": {
+      "category": "data-display",
+      "titleKey": "component.drill-table.title",
+      "leadKey": "component.drill-table.lead"
+    },
+    "Dropdown": {
+      "category": "navigation",
+      "titleKey": "component.dropdown.title",
+      "leadKey": "component.dropdown.lead"
+    },
+    "DynamicForm": {
+      "category": "data-entry",
+      "titleKey": "component.dynamic-form.title",
+      "leadKey": "component.dynamic-form.lead"
+    },
+    "EditTable": {
+      "category": "data-display",
+      "titleKey": "component.edit-table.title",
+      "leadKey": "component.edit-table.lead"
+    },
+    "EditTree": {
+      "category": "data-display",
+      "titleKey": "component.edit-tree.title",
+      "leadKey": "component.edit-tree.lead"
+    },
+    "Ellipsis": {
+      "category": "general",
+      "titleKey": "component.ellipsis.title",
+      "leadKey": "component.ellipsis.lead"
+    },
+    "EmbedLayout": {
+      "category": "layout",
+      "titleKey": "component.embed-layout.title",
+      "leadKey": "component.embed-layout.lead"
+    },
+    "Empty": {
+      "category": "general",
+      "titleKey": "component.empty.title",
+      "leadKey": "component.empty.lead"
+    },
+    "ErrorModal": {
+      "category": "feedback",
+      "titleKey": "component.error-modal.title",
+      "leadKey": "component.error-modal.lead"
+    },
+    "ExcelIo": {
+      "category": "other",
+      "titleKey": "component.excel-io.title",
+      "leadKey": "component.excel-io.lead"
+    },
+    "Exception": {
+      "category": "feedback",
+      "titleKey": "component.exception.title",
+      "leadKey": "component.exception.lead"
+    },
+    "FilePreview": {
+      "category": "other",
+      "titleKey": "component.file-preview.title",
+      "leadKey": "component.file-preview.lead"
+    },
+    "FilterBar": {
+      "category": "data-entry",
+      "titleKey": "component.filter-bar.title",
+      "leadKey": "component.filter-bar.lead"
+    },
+    "FixedLayout": {
+      "category": "layout",
+      "titleKey": "component.fixed-layout.title",
+      "leadKey": "component.fixed-layout.lead"
+    },
+    "FloatButton": {
+      "category": "general",
+      "titleKey": "component.float-button.title",
+      "leadKey": "component.float-button.lead"
+    },
+    "FloatNav": {
+      "category": "navigation",
+      "titleKey": "component.float-nav.title",
+      "leadKey": "component.float-nav.lead"
+    },
+    "FlowLayout": {
+      "category": "layout",
+      "titleKey": "component.flow-layout.title",
+      "leadKey": "component.flow-layout.lead"
+    },
+    "FlowPanel": {
+      "category": "data-entry",
+      "titleKey": "component.flow-panel.title",
+      "leadKey": "component.flow-panel.lead"
+    },
+    "FolderTree": {
+      "category": "data-display",
+      "titleKey": "component.folder-tree.title",
+      "leadKey": "component.folder-tree.lead"
+    },
+    "Footer": {
+      "category": "layout",
+      "titleKey": "component.footer.title",
+      "leadKey": "component.footer.lead"
+    },
+    "FooterNav": {
+      "category": "navigation",
+      "titleKey": "component.footer-nav.title",
+      "leadKey": "component.footer-nav.lead"
+    },
+    "Form": {
+      "category": "data-entry",
+      "titleKey": "component.form.title",
+      "leadKey": "component.form.lead"
+    },
+    "FormGroup": {
+      "category": "data-entry",
+      "titleKey": "component.form-group.title",
+      "leadKey": "component.form-group.lead"
+    },
+    "FormItem": {
+      "category": "data-entry",
+      "titleKey": "component.form-item.title",
+      "leadKey": "component.form-item.lead"
+    },
+    "FormLayout": {
+      "category": "layout",
+      "titleKey": "component.form-layout.title",
+      "leadKey": "component.form-layout.lead"
+    },
+    "FormTabs": {
+      "category": "data-entry",
+      "titleKey": "component.form-tabs.title",
+      "leadKey": "component.form-tabs.lead"
+    },
+    "FreeLayoutDrag": {
+      "category": "other",
+      "titleKey": "component.free-layout-drag.title",
+      "leadKey": "component.free-layout-drag.lead"
+    },
+    "GaugeChart": {
+      "category": "data-display",
+      "titleKey": "component.gauge-chart.title",
+      "leadKey": "component.gauge-chart.lead"
+    },
+    "GbsAlarmModal": {
+      "category": "industry",
+      "titleKey": "component.gbs-alarm-modal.title",
+      "leadKey": "component.gbs-alarm-modal.lead"
+    },
+    "GbsCascadePanel": {
+      "category": "industry",
+      "titleKey": "component.gbs-cascade-panel.title",
+      "leadKey": "component.gbs-cascade-panel.lead"
+    },
+    "GbsDeviceTree": {
+      "category": "industry",
+      "titleKey": "component.gbs-device-tree.title",
+      "leadKey": "component.gbs-device-tree.lead"
+    },
+    "GbsGatewayForm": {
+      "category": "industry",
+      "titleKey": "component.gbs-gateway-form.title",
+      "leadKey": "component.gbs-gateway-form.lead"
+    },
+    "GbsRegisterForm": {
+      "category": "industry",
+      "titleKey": "component.gbs-register-form.title",
+      "leadKey": "component.gbs-register-form.lead"
+    },
+    "GbsSignMonitor": {
+      "category": "industry",
+      "titleKey": "component.gbs-sign-monitor.title",
+      "leadKey": "component.gbs-sign-monitor.lead"
+    },
+    "GbsStatusCard": {
+      "category": "industry",
+      "titleKey": "component.gbs-status-card.title",
+      "leadKey": "component.gbs-status-card.lead"
+    },
+    "GbsTimeSync": {
+      "category": "industry",
+      "titleKey": "component.gbs-time-sync.title",
+      "leadKey": "component.gbs-time-sync.lead"
+    },
+    "GraphChart": {
+      "category": "data-display",
+      "titleKey": "component.graph-chart.title",
+      "leadKey": "component.graph-chart.lead"
+    },
+    "GridLayoutDrag": {
+      "category": "other",
+      "titleKey": "component.grid-layout-drag.title",
+      "leadKey": "component.grid-layout-drag.lead"
+    },
+    "GroupNav": {
+      "category": "navigation",
+      "titleKey": "component.group-nav.title",
+      "leadKey": "component.group-nav.lead"
+    },
+    "Header": {
+      "category": "layout",
+      "titleKey": "component.header.title",
+      "leadKey": "component.header.lead"
+    },
+    "HeatMap": {
+      "category": "data-display",
+      "titleKey": "component.heat-map.title",
+      "leadKey": "component.heat-map.lead"
+    },
+    "Highlight": {
+      "category": "general",
+      "titleKey": "component.highlight.title",
+      "leadKey": "component.highlight.lead"
+    },
+    "Icon": {
+      "category": "general",
+      "titleKey": "component.icon.title",
+      "leadKey": "component.icon.lead"
+    },
+    "ImageCrop": {
+      "category": "other",
+      "titleKey": "component.image-crop.title",
+      "leadKey": "component.image-crop.lead"
+    },
+    "ImageGroup": {
+      "category": "data-display",
+      "titleKey": "component.image-group.title",
+      "leadKey": "component.image-group.lead"
+    },
+    "ImageUpload": {
+      "category": "data-entry",
+      "titleKey": "component.image-upload.title",
+      "leadKey": "component.image-upload.lead"
+    },
+    "IndexNav": {
+      "category": "navigation",
+      "titleKey": "component.index-nav.title",
+      "leadKey": "component.index-nav.lead"
+    },
+    "InfoModal": {
+      "category": "feedback",
+      "titleKey": "component.info-modal.title",
+      "leadKey": "component.info-modal.lead"
+    },
+    "Ink404": {
+      "category": "industry",
+      "titleKey": "component.ink404.title",
+      "leadKey": "component.ink404.lead"
+    },
+    "InputCaptcha": {
+      "category": "data-entry",
+      "titleKey": "component.input-captcha.title",
+      "leadKey": "component.input-captcha.lead"
+    },
+    "InputNumber": {
+      "category": "data-entry",
+      "titleKey": "component.input-number.title",
+      "leadKey": "component.input-number.lead"
+    },
+    "InputText": {
+      "category": "data-entry",
+      "titleKey": "component.input-text.title",
+      "leadKey": "component.input-text.lead"
+    },
+    "Layout": {
+      "category": "layout",
+      "titleKey": "component.layout.title",
+      "leadKey": "component.layout.lead"
+    },
+    "LazyTree": {
+      "category": "data-display",
+      "titleKey": "component.lazy-tree.title",
+      "leadKey": "component.lazy-tree.lead"
+    },
+    "LineChart": {
+      "category": "data-display",
+      "titleKey": "component.line-chart.title",
+      "leadKey": "component.line-chart.lead"
+    },
+    "Link": {
+      "category": "general",
+      "titleKey": "component.link.title",
+      "leadKey": "component.link.lead"
+    },
+    "Loading": {
+      "category": "feedback",
+      "titleKey": "component.loading.title",
+      "leadKey": "component.loading.lead"
+    },
+    "LoadingTip": {
+      "category": "feedback",
+      "titleKey": "component.loading-tip.title",
+      "leadKey": "component.loading-tip.lead"
+    },
+    "LoginPanel": {
+      "category": "data-entry",
+      "titleKey": "component.login-panel.title",
+      "leadKey": "component.login-panel.lead"
+    },
+    "Machine404": {
+      "category": "industry",
+      "titleKey": "component.machine404.title",
+      "leadKey": "component.machine404.lead"
+    },
+    "Main": {
+      "category": "layout",
+      "titleKey": "component.main.title",
+      "leadKey": "component.main.lead"
+    },
+    "Mask": {
+      "category": "feedback",
+      "titleKey": "component.mask.title",
+      "leadKey": "component.mask.lead"
+    },
+    "MdEditor": {
+      "category": "data-entry",
+      "titleKey": "component.md-editor.title",
+      "leadKey": "component.md-editor.lead"
+    },
+    "Menu": {
+      "category": "navigation",
+      "titleKey": "component.menu.title",
+      "leadKey": "component.menu.lead"
+    },
+    "MenuBar": {
+      "category": "navigation",
+      "titleKey": "component.menu-bar.title",
+      "leadKey": "component.menu-bar.lead"
+    },
+    "MergeTable": {
+      "category": "data-display",
+      "titleKey": "component.merge-table.title",
+      "leadKey": "component.merge-table.lead"
+    },
+    "Message": {
+      "category": "feedback",
+      "titleKey": "component.message.title",
+      "leadKey": "component.message.lead"
+    },
+    "MiniNav": {
+      "category": "navigation",
+      "titleKey": "component.mini-nav.title",
+      "leadKey": "component.mini-nav.lead"
+    },
+    "MonthPicker": {
+      "category": "data-entry",
+      "titleKey": "component.month-picker.title",
+      "leadKey": "component.month-picker.lead"
+    },
+    "NoticeBar": {
+      "category": "feedback",
+      "titleKey": "component.notice-bar.title",
+      "leadKey": "component.notice-bar.lead"
+    },
+    "Notification": {
+      "category": "feedback",
+      "titleKey": "component.notification.title",
+      "leadKey": "component.notification.lead"
+    },
+    "OcrScan": {
+      "category": "other",
+      "titleKey": "component.ocr-scan.title",
+      "leadKey": "component.ocr-scan.lead"
+    },
+    "OnvifAlarmPanel": {
+      "category": "industry",
+      "titleKey": "component.onvif-alarm-panel.title",
+      "leadKey": "component.onvif-alarm-panel.lead"
+    },
+    "OnvifChannelManage": {
+      "category": "industry",
+      "titleKey": "component.onvif-channel-manage.title",
+      "leadKey": "component.onvif-channel-manage.lead"
+    },
+    "OnvifDeviceList": {
+      "category": "industry",
+      "titleKey": "component.onvif-device-list.title",
+      "leadKey": "component.onvif-device-list.lead"
+    },
+    "OnvifGroupTree": {
+      "category": "industry",
+      "titleKey": "component.onvif-group-tree.title",
+      "leadKey": "component.onvif-group-tree.lead"
+    },
+    "OnvifRecordPlan": {
+      "category": "industry",
+      "titleKey": "component.onvif-record-plan.title",
+      "leadKey": "component.onvif-record-plan.lead"
+    },
+    "OnvifSearch": {
+      "category": "industry",
+      "titleKey": "component.onvif-search.title",
+      "leadKey": "component.onvif-search.lead"
+    },
+    "OnvifSettingPanel": {
+      "category": "industry",
+      "titleKey": "component.onvif-setting-panel.title",
+      "leadKey": "component.onvif-setting-panel.lead"
+    },
+    "OnvifUrlForm": {
+      "category": "industry",
+      "titleKey": "component.onvif-url-form.title",
+      "leadKey": "component.onvif-url-form.lead"
+    },
+    "PTZControl": {
+      "category": "industry",
+      "titleKey": "component.ptz-control.title",
+      "leadKey": "component.ptz-control.lead"
+    },
+    "PagerNav": {
+      "category": "navigation",
+      "titleKey": "component.pager-nav.title",
+      "leadKey": "component.pager-nav.lead"
+    },
+    "Pagination": {
+      "category": "navigation",
+      "titleKey": "component.pagination.title",
+      "leadKey": "component.pagination.lead"
+    },
+    "Password": {
+      "category": "data-entry",
+      "titleKey": "component.password.title",
+      "leadKey": "component.password.lead"
+    },
+    "PdfPreview": {
+      "category": "other",
+      "titleKey": "component.pdf-preview.title",
+      "leadKey": "component.pdf-preview.lead"
+    },
+    "PermissionPanel": {
+      "category": "data-entry",
+      "titleKey": "component.permission-panel.title",
+      "leadKey": "component.permission-panel.lead"
+    },
+    "PieChart": {
+      "category": "data-display",
+      "titleKey": "component.pie-chart.title",
+      "leadKey": "component.pie-chart.lead"
+    },
+    "PivotTable": {
+      "category": "data-display",
+      "titleKey": "component.pivot-table.title",
+      "leadKey": "component.pivot-table.lead"
+    },
+    "Pixel404": {
+      "category": "industry",
+      "titleKey": "component.pixel404.title",
+      "leadKey": "component.pixel404.lead"
+    },
+    "Plant404": {
+      "category": "industry",
+      "titleKey": "component.plant404.title",
+      "leadKey": "component.plant404.lead"
+    },
+    "Popconfirm": {
+      "category": "feedback",
+      "titleKey": "component.popconfirm.title",
+      "leadKey": "component.popconfirm.lead"
+    },
+    "Popover": {
+      "category": "feedback",
+      "titleKey": "component.popover.title",
+      "leadKey": "component.popover.lead"
+    },
+    "Preview": {
+      "category": "other",
+      "titleKey": "component.preview.title",
+      "leadKey": "component.preview.lead"
+    },
+    "Print": {
+      "category": "other",
+      "titleKey": "component.print.title",
+      "leadKey": "component.print.lead"
+    },
+    "ProTable": {
+      "category": "data-display",
+      "titleKey": "component.pro-table.title",
+      "leadKey": "component.pro-table.lead"
+    },
+    "Progress": {
+      "category": "general",
+      "titleKey": "component.progress.title",
+      "leadKey": "component.progress.lead"
+    },
+    "ProgressTip": {
+      "category": "feedback",
+      "titleKey": "component.progress-tip.title",
+      "leadKey": "component.progress-tip.lead"
+    },
+    "PropPanel": {
+      "category": "other",
+      "titleKey": "component.prop-panel.title",
+      "leadKey": "component.prop-panel.lead"
+    },
+    "Qrcode": {
+      "category": "other",
+      "titleKey": "component.qrcode.title",
+      "leadKey": "component.qrcode.lead"
+    },
+    "QuarterPicker": {
+      "category": "data-entry",
+      "titleKey": "component.quarter-picker.title",
+      "leadKey": "component.quarter-picker.lead"
+    },
+    "QuickNav": {
+      "category": "navigation",
+      "titleKey": "component.quick-nav.title",
+      "leadKey": "component.quick-nav.lead"
+    },
+    "RadarChart": {
+      "category": "data-display",
+      "titleKey": "component.radar-chart.title",
+      "leadKey": "component.radar-chart.lead"
+    },
+    "Radio": {
+      "category": "data-entry",
+      "titleKey": "component.radio.title",
+      "leadKey": "component.radio.lead"
+    },
+    "RadioGroup": {
+      "category": "data-entry",
+      "titleKey": "component.radio-group.title",
+      "leadKey": "component.radio-group.lead"
+    },
+    "RangeInput": {
+      "category": "data-entry",
+      "titleKey": "component.range-input.title",
+      "leadKey": "component.range-input.lead"
+    },
+    "Ranking": {
+      "category": "data-display",
+      "titleKey": "component.ranking.title",
+      "leadKey": "component.ranking.lead"
+    },
+    "Rate": {
+      "category": "data-entry",
+      "titleKey": "component.rate.title",
+      "leadKey": "component.rate.lead"
+    },
+    "ResizeBox": {
+      "category": "layout",
+      "titleKey": "component.resize-box.title",
+      "leadKey": "component.resize-box.lead"
+    },
+    "Result": {
+      "category": "feedback",
+      "titleKey": "component.result.title",
+      "leadKey": "component.result.lead"
+    },
+    "RichText": {
+      "category": "data-entry",
+      "titleKey": "component.rich-text.title",
+      "leadKey": "component.rich-text.lead"
+    },
+    "RouterNav": {
+      "category": "navigation",
+      "titleKey": "component.router-nav.title",
+      "leadKey": "component.router-nav.lead"
+    },
+    "Row": {
+      "category": "layout",
+      "titleKey": "component.row.title",
+      "leadKey": "component.row.lead"
+    },
+    "ScaleLayout": {
+      "category": "layout",
+      "titleKey": "component.scale-layout.title",
+      "leadKey": "component.scale-layout.lead"
+    },
+    "ScrollNav": {
+      "category": "navigation",
+      "titleKey": "component.scroll-nav.title",
+      "leadKey": "component.scroll-nav.lead"
+    },
+    "ScrollNotice": {
+      "category": "data-display",
+      "titleKey": "component.scroll-notice.title",
+      "leadKey": "component.scroll-notice.lead"
+    },
+    "Scrollbar": {
+      "category": "data-display",
+      "titleKey": "component.scrollbar.title",
+      "leadKey": "component.scrollbar.lead"
+    },
+    "Search": {
+      "category": "data-entry",
+      "titleKey": "component.search.title",
+      "leadKey": "component.search.lead"
+    },
+    "SearchFilterPanel": {
+      "category": "data-entry",
+      "titleKey": "component.search-filter-panel.title",
+      "leadKey": "component.search-filter-panel.lead"
+    },
+    "Select": {
+      "category": "data-entry",
+      "titleKey": "component.select.title",
+      "leadKey": "component.select.lead"
+    },
+    "SelectNav": {
+      "category": "navigation",
+      "titleKey": "component.select-nav.title",
+      "leadKey": "component.select-nav.lead"
+    },
+    "SettingPanel": {
+      "category": "data-entry",
+      "titleKey": "component.setting-panel.title",
+      "leadKey": "component.setting-panel.lead"
+    },
+    "Sider": {
+      "category": "layout",
+      "titleKey": "component.sider.title",
+      "leadKey": "component.sider.lead"
+    },
+    "Simple404": {
+      "category": "industry",
+      "titleKey": "component.simple404.title",
+      "leadKey": "component.simple404.lead"
+    },
+    "Skeleton": {
+      "category": "general",
+      "titleKey": "component.skeleton.title",
+      "leadKey": "component.skeleton.lead"
+    },
+    "Slider": {
+      "category": "data-entry",
+      "titleKey": "component.slider.title",
+      "leadKey": "component.slider.lead"
+    },
+    "SmsCode": {
+      "category": "data-entry",
+      "titleKey": "component.sms-code.title",
+      "leadKey": "component.sms-code.lead"
+    },
+    "Space": {
+      "category": "general",
+      "titleKey": "component.space.title",
+      "leadKey": "component.space.lead"
+    },
+    "Space404": {
+      "category": "industry",
+      "titleKey": "component.space404.title",
+      "leadKey": "component.space404.lead"
+    },
+    "Spacer": {
+      "category": "layout",
+      "titleKey": "component.spacer.title",
+      "leadKey": "component.spacer.lead"
+    },
+    "Spin": {
+      "category": "general",
+      "titleKey": "component.spin.title",
+      "leadKey": "component.spin.lead"
+    },
+    "Split": {
+      "category": "layout",
+      "titleKey": "component.split.title",
+      "leadKey": "component.split.lead"
+    },
+    "SplitVideoWall": {
+      "category": "industry",
+      "titleKey": "component.split-video-wall.title",
+      "leadKey": "component.split-video-wall.lead"
+    },
+    "StackLayout": {
+      "category": "layout",
+      "titleKey": "component.stack-layout.title",
+      "leadKey": "component.stack-layout.lead"
+    },
+    "Statistic": {
+      "category": "general",
+      "titleKey": "component.statistic.title",
+      "leadKey": "component.statistic.lead"
+    },
+    "StatusTip": {
+      "category": "feedback",
+      "titleKey": "component.status-tip.title",
+      "leadKey": "component.status-tip.lead"
+    },
+    "StepForm": {
+      "category": "data-entry",
+      "titleKey": "component.step-form.title",
+      "leadKey": "component.step-form.lead"
+    },
+    "StepItem": {
+      "category": "navigation",
+      "titleKey": "component.step-item.title",
+      "leadKey": "component.step-item.lead"
+    },
+    "StepNav": {
+      "category": "navigation",
+      "titleKey": "component.step-nav.title",
+      "leadKey": "component.step-nav.lead"
+    },
+    "Steps": {
+      "category": "navigation",
+      "titleKey": "component.steps.title",
+      "leadKey": "component.steps.lead"
+    },
+    "StickyTable": {
+      "category": "data-display",
+      "titleKey": "component.sticky-table.title",
+      "leadKey": "component.sticky-table.lead"
+    },
+    "SuccessModal": {
+      "category": "feedback",
+      "titleKey": "component.success-modal.title",
+      "leadKey": "component.success-modal.lead"
+    },
+    "Switch": {
+      "category": "data-entry",
+      "titleKey": "component.switch.title",
+      "leadKey": "component.switch.lead"
+    },
+    "TabPane": {
+      "category": "navigation",
+      "titleKey": "component.tab-pane.title",
+      "leadKey": "component.tab-pane.lead"
+    },
+    "TableAction": {
+      "category": "data-display",
+      "titleKey": "component.table-action.title",
+      "leadKey": "component.table-action.lead"
+    },
+    "TableDrag": {
+      "category": "data-display",
+      "titleKey": "component.table-drag.title",
+      "leadKey": "component.table-drag.lead"
+    },
+    "TableExport": {
+      "category": "data-display",
+      "titleKey": "component.table-export.title",
+      "leadKey": "component.table-export.lead"
+    },
+    "TablePrint": {
+      "category": "other",
+      "titleKey": "component.table-print.title",
+      "leadKey": "component.table-print.lead"
+    },
+    "Tabs": {
+      "category": "navigation",
+      "titleKey": "component.tabs.title",
+      "leadKey": "component.tabs.lead"
+    },
+    "TabsNav": {
+      "category": "navigation",
+      "titleKey": "component.tabs-nav.title",
+      "leadKey": "component.tabs-nav.lead"
+    },
+    "Tag": {
+      "category": "general",
+      "titleKey": "component.tag.title",
+      "leadKey": "component.tag.lead"
+    },
+    "TagInput": {
+      "category": "data-entry",
+      "titleKey": "component.tag-input.title",
+      "leadKey": "component.tag-input.lead"
+    },
+    "Tech404": {
+      "category": "industry",
+      "titleKey": "component.tech404.title",
+      "leadKey": "component.tech404.lead"
+    },
+    "TelemetryProvider": {
+      "category": "other",
+      "titleKey": "component.telemetry-provider.title",
+      "leadKey": "component.telemetry-provider.lead"
+    },
+    "TemplateDrag": {
+      "category": "other",
+      "titleKey": "component.template-drag.title",
+      "leadKey": "component.template-drag.lead"
+    },
+    "TemplateSelect": {
+      "category": "data-entry",
+      "titleKey": "component.template-select.title",
+      "leadKey": "component.template-select.lead"
+    },
+    "Textarea": {
+      "category": "data-entry",
+      "titleKey": "component.textarea.title",
+      "leadKey": "component.textarea.lead"
+    },
+    "Thumbnail": {
+      "category": "data-display",
+      "titleKey": "component.thumbnail.title",
+      "leadKey": "component.thumbnail.lead"
+    },
+    "TimePicker": {
+      "category": "data-entry",
+      "titleKey": "component.time-picker.title",
+      "leadKey": "component.time-picker.lead"
+    },
+    "TimeRangeInput": {
+      "category": "data-entry",
+      "titleKey": "component.time-range-input.title",
+      "leadKey": "component.time-range-input.lead"
+    },
+    "Timeline": {
+      "category": "data-display",
+      "titleKey": "component.timeline.title",
+      "leadKey": "component.timeline.lead"
+    },
+    "TimelineItem": {
+      "category": "data-display",
+      "titleKey": "component.timeline-item.title",
+      "leadKey": "component.timeline-item.lead"
+    },
+    "TimelineList": {
+      "category": "data-display",
+      "titleKey": "component.timeline-list.title",
+      "leadKey": "component.timeline-list.lead"
+    },
+    "Toast": {
+      "category": "feedback",
+      "titleKey": "component.toast.title",
+      "leadKey": "component.toast.lead"
+    },
+    "Tooltip": {
+      "category": "data-display",
+      "titleKey": "component.tooltip.title",
+      "leadKey": "component.tooltip.lead"
+    },
+    "TopNav": {
+      "category": "navigation",
+      "titleKey": "component.top-nav.title",
+      "leadKey": "component.top-nav.lead"
+    },
+    "Transfer": {
+      "category": "data-entry",
+      "titleKey": "component.transfer.title",
+      "leadKey": "component.transfer.lead"
+    },
+    "TransferTree": {
+      "category": "data-display",
+      "titleKey": "component.transfer-tree.title",
+      "leadKey": "component.transfer-tree.lead"
+    },
+    "Tree": {
+      "category": "data-display",
+      "titleKey": "component.tree.title",
+      "leadKey": "component.tree.lead"
+    },
+    "TreeChart": {
+      "category": "data-display",
+      "titleKey": "component.tree-chart.title",
+      "leadKey": "component.tree-chart.lead"
+    },
+    "TreeForm": {
+      "category": "data-display",
+      "titleKey": "component.tree-form.title",
+      "leadKey": "component.tree-form.lead"
+    },
+    "TreeSelect": {
+      "category": "data-display",
+      "titleKey": "component.tree-select.title",
+      "leadKey": "component.tree-select.lead"
+    },
+    "TreeTable": {
+      "category": "data-display",
+      "titleKey": "component.tree-table.title",
+      "leadKey": "component.tree-table.lead"
+    },
+    "TreeTransfer": {
+      "category": "data-display",
+      "titleKey": "component.tree-transfer.title",
+      "leadKey": "component.tree-transfer.lead"
+    },
+    "Typography": {
+      "category": "general",
+      "titleKey": "component.typography.title",
+      "leadKey": "component.typography.lead"
+    },
+    "Upload": {
+      "category": "data-entry",
+      "titleKey": "component.upload.title",
+      "leadKey": "component.upload.lead"
+    },
+    "UserInfoCard": {
+      "category": "data-entry",
+      "titleKey": "component.user-info-card.title",
+      "leadKey": "component.user-info-card.lead"
+    },
+    "VcrBackupTask": {
+      "category": "industry",
+      "titleKey": "component.vcr-backup-task.title",
+      "leadKey": "component.vcr-backup-task.lead"
+    },
+    "VcrClipCut": {
+      "category": "industry",
+      "titleKey": "component.vcr-clip-cut.title",
+      "leadKey": "component.vcr-clip-cut.lead"
+    },
+    "VcrDownloadPanel": {
+      "category": "industry",
+      "titleKey": "component.vcr-download-panel.title",
+      "leadKey": "component.vcr-download-panel.lead"
+    },
+    "VcrMarkPoint": {
+      "category": "industry",
+      "titleKey": "component.vcr-mark-point.title",
+      "leadKey": "component.vcr-mark-point.lead"
+    },
+    "VcrSearchPanel": {
+      "category": "industry",
+      "titleKey": "component.vcr-search-panel.title",
+      "leadKey": "component.vcr-search-panel.lead"
+    },
+    "VcrSpeedControl": {
+      "category": "industry",
+      "titleKey": "component.vcr-speed-control.title",
+      "leadKey": "component.vcr-speed-control.lead"
+    },
+    "VcrStorageDashboard": {
+      "category": "industry",
+      "titleKey": "component.vcr-storage-dashboard.title",
+      "leadKey": "component.vcr-storage-dashboard.lead"
+    },
+    "VcrTimelinePlayer": {
+      "category": "industry",
+      "titleKey": "component.vcr-timeline-player.title",
+      "leadKey": "component.vcr-timeline-player.lead"
+    },
+    "VerticalStepNav": {
+      "category": "navigation",
+      "titleKey": "component.vertical-step-nav.title",
+      "leadKey": "component.vertical-step-nav.lead"
+    },
+    "VideoAdjust": {
+      "category": "industry",
+      "titleKey": "component.video-adjust.title",
+      "leadKey": "component.video-adjust.lead"
+    },
+    "VideoPlayer": {
+      "category": "industry",
+      "titleKey": "component.video-player.title",
+      "leadKey": "component.video-player.lead"
+    },
+    "VideoPreview": {
+      "category": "industry",
+      "titleKey": "component.video-preview.title",
+      "leadKey": "component.video-preview.lead"
+    },
+    "VideoSnapshot": {
+      "category": "industry",
+      "titleKey": "component.video-snapshot.title",
+      "leadKey": "component.video-snapshot.lead"
+    },
+    "VideoVolume": {
+      "category": "industry",
+      "titleKey": "component.video-volume.title",
+      "leadKey": "component.video-volume.lead"
+    },
+    "VideoWatermark": {
+      "category": "industry",
+      "titleKey": "component.video-watermark.title",
+      "leadKey": "component.video-watermark.lead"
+    },
+    "VirtualTable": {
+      "category": "data-display",
+      "titleKey": "component.virtual-table.title",
+      "leadKey": "component.virtual-table.lead"
+    },
+    "VirtualTree": {
+      "category": "data-display",
+      "titleKey": "component.virtual-tree.title",
+      "leadKey": "component.virtual-tree.lead"
+    },
+    "WarnModal": {
+      "category": "feedback",
+      "titleKey": "component.warn-modal.title",
+      "leadKey": "component.warn-modal.lead"
+    },
+    "Waterfall": {
+      "category": "data-display",
+      "titleKey": "component.waterfall.title",
+      "leadKey": "component.waterfall.lead"
+    },
+    "Watermark": {
+      "category": "data-display",
+      "titleKey": "component.watermark.title",
+      "leadKey": "component.watermark.lead"
+    },
+    "WeekPicker": {
+      "category": "data-entry",
+      "titleKey": "component.week-picker.title",
+      "leadKey": "component.week-picker.lead"
+    },
+    "WordCloud": {
+      "category": "data-display",
+      "titleKey": "component.word-cloud.title",
+      "leadKey": "component.word-cloud.lead"
+    },
+    "YearPicker": {
+      "category": "data-entry",
+      "titleKey": "component.year-picker.title",
+      "leadKey": "component.year-picker.lead"
+    }
+  }
+}

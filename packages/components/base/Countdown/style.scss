@@ -1,0 +1,9 @@
+.vp-countdown {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-md);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  line-height: var(--line-height-body);
+}

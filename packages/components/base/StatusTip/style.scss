@@ -1,0 +1,17 @@
+.vp-status-tip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--ds-border, var(--border-color));
+
+  &--success { border-color: var(--success-500); color: var(--success-600, var(--success-500)); }
+  &--warning { border-color: var(--warning-500); color: var(--warning-600, var(--warning-500)); }
+  &--danger { border-color: var(--danger-500); color: var(--danger-600, var(--danger-500)); }
+  &--info { border-color: var(--info-500); color: var(--info-600, var(--info-500)); }
+
+  &__close { appearance: none; border: none; background: transparent; cursor: pointer; }
+}

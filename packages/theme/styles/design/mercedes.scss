@@ -1,0 +1,112 @@
+@import './contract';
+
+/**
+ * Mercedes-Benz — luxury restraint
+ * @see https://designmd.santiagoalonso.com/mercedes-benz
+ * Near-black ink on bright white · Mercedes silver · zero-radius precision · Lucide · Inter
+ */
+
+[data-design='mercedes'] {
+  color-scheme: light;
+  --theme-name: mercedes;
+  --theme-icon-set: lucide;
+  --theme-font: inter;
+
+  --mb-bg: #ffffff;
+  --mb-surface: #ffffff;
+  --mb-surface-alt: #f4f4f4;
+  --mb-bg-dark: #0a0a0a;
+  --mb-surface-dark: #1a1a1a;
+  --mb-ink: #171717;
+  --mb-ink-secondary: #5c5c5c;
+  --mb-ink-muted: #969696;
+  --mb-silver: #b0b0b0;
+  --mb-primary: #171717;
+  --mb-primary-hover: #000000;
+  --mb-hover-tint: #ebebeb;
+  --mb-border: #d4d4d4;
+  --mb-border-strong: #171717;
+  --mb-shadow: #171717;
+
+  --primary-500: var(--mb-primary);
+  --primary-400: #3a3a3a;
+  --primary-600: var(--mb-primary-hover);
+  --primary-300: var(--mb-silver);
+  --success-500: #03904a;
+  --warning-500: #f59e0b;
+  --danger-500: #dc2626;
+  --info-500: #3860be;
+
+  --surface-0: var(--mb-bg);
+  --surface-1: var(--mb-surface);
+  --surface-2: var(--mb-surface-alt);
+  --surface-3: var(--mb-hover-tint);
+  --surface-4: #e0e0e0;
+  --surface-5: var(--mb-ink-muted);
+
+  --text-primary: var(--mb-ink);
+  --text-secondary: var(--mb-ink-secondary);
+  --text-muted: var(--mb-ink-muted);
+  --text-on-primary: #ffffff;
+
+  --border-color: var(--mb-border);
+  --border-color-hover: var(--mb-border-strong);
+
+  --shadow-sm: 0 1px 2px color-mix(in srgb, var(--mb-shadow) 8%, transparent);
+  --shadow-md: 0 4px 16px color-mix(in srgb, var(--mb-shadow) 10%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, var(--mb-shadow) 12%, transparent);
+
+  --ds-glow: transparent;
+  --ds-motion-lift: 0px;
+  --transition-normal: 160ms ease;
+  --icon-stroke-width: 1.5;
+
+  @include theme-type-scale(
+    $display-xl: 4.5rem,
+    $display-lg: 3rem,
+    $display: 2rem,
+    $h1: 2rem,
+    $h2: 1.5rem,
+    $h3: 1.25rem,
+    $body-lg: 1.25rem,
+    $body: 1rem,
+    $body-sm: 0.875rem,
+    $caption: 0.75rem,
+    $weight-display: 400,
+    $weight-heading: 500,
+    $weight-body: 400,
+    $tracking-display: -0.5px,
+    $tracking-body: 0,
+    $leading: 1.5
+  );
+
+  @include theme-spacing($control-h-sm: 32px, $control-h-md: 40px, $control-h-lg: 48px);
+  /* designmd: precision machining / near zero radius — keep sharp */
+  @include theme-shape(0, 0, 0, 0, 9999px);
+  @include bridge-ds;
+
+  --theme-btn-solid-bg: var(--mb-primary);
+  --theme-btn-solid-fg: #fff;
+  --theme-btn-solid-hover: var(--mb-primary-hover);
+  --theme-btn-ghost-hover: var(--mb-hover-tint);
+  --theme-alert-info-bg: #f4f4f4;
+  --theme-alert-success-bg: #ecfdf5;
+  --theme-alert-warn-bg: #fffbeb;
+  --theme-alert-danger-bg: #fef2f2;
+  --theme-nav-bg: var(--mb-bg);
+  --theme-nav-border: var(--mb-border);
+  --theme-tab-active-bg: var(--mb-ink);
+  --theme-tab-active-fg: #fff;
+  --theme-stat-value-size: 1.75rem;
+  --theme-avatar-bg: var(--mb-surface-alt);
+  --theme-slider-track: var(--mb-hover-tint);
+  --theme-slider-fill: var(--mb-primary);
+  --theme-table-header-bg: var(--mb-surface-alt);
+  --theme-menu-hover: var(--mb-hover-tint);
+  --theme-badge-bg: var(--mb-surface-alt);
+  --theme-badge-fg: var(--mb-ink);
+  --theme-silver: var(--mb-silver);
+
+  color: var(--text-primary);
+  background-color: var(--surface-0);
+}

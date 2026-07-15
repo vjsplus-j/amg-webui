@@ -1,0 +1,137 @@
+/*
+ * Font stacks via html[data-font]
+ * Brand fonts loaded in demo/index.html (Google Fonts proxies for proprietary faces)
+ */
+
+[data-font='inter'] {
+  --font-family-sans:
+    'Inter',
+    'Inter Variable',
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Segoe UI',
+    'Microsoft YaHei',
+    system-ui,
+    sans-serif;
+  --font-family-display:
+    'Inter Display',
+    'Inter',
+    'Inter Variable',
+    'PingFang SC',
+    'Hiragino Sans GB',
+    system-ui,
+    sans-serif;
+  --font-family-mono: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
+}
+
+[data-font='barlow'] {
+  --font-family-sans:
+    'Barlow',
+    'Inter',
+    'PingFang SC',
+    'Microsoft YaHei',
+    system-ui,
+    sans-serif;
+  --font-family-display:
+    'Barlow',
+    'Inter',
+    'PingFang SC',
+    system-ui,
+    sans-serif;
+  --font-family-mono: 'ui-monospace', 'Menlo', 'Consolas', monospace;
+}
+
+[data-font='anton'] {
+  --font-family-sans:
+    'Anton',
+    'Arial Black',
+    'Impact',
+    'PingFang SC',
+    'Microsoft YaHei',
+    sans-serif;
+  --font-family-display:
+    'Anton',
+    'Arial Black',
+    'Impact',
+    sans-serif;
+  --font-family-mono: 'ui-monospace', 'Consolas', monospace;
+}
+
+[data-font='archivo'] {
+  --font-family-sans:
+    'Archivo',
+    'Inter',
+    'PingFang SC',
+    'Microsoft YaHei',
+    system-ui,
+    sans-serif;
+  --font-family-display:
+    'Archivo',
+    'Inter',
+    system-ui,
+    sans-serif;
+  --font-family-mono: 'ui-monospace', 'Menlo', 'Consolas', monospace;
+}
+
+[data-font='albert-sans'] {
+  --font-family-sans:
+    'Albert Sans',
+    -apple-system,
+    BlinkMacSystemFont,
+    'SF Pro Text',
+    'PingFang SC',
+    'Segoe UI',
+    sans-serif;
+  --font-family-display:
+    'Albert Sans',
+    -apple-system,
+    BlinkMacSystemFont,
+    'SF Pro Display',
+    'PingFang SC',
+    sans-serif;
+  --font-family-mono: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+}
+
+[data-font='yahei'] {
+  --font-family-sans: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  --font-family-display: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  --font-family-mono: 'Cascadia Code', 'Consolas', 'Microsoft YaHei', monospace;
+}
+
+[data-font='song'] {
+  --font-family-sans: 'SimSun', '宋体', 'Songti SC', 'Noto Serif SC', serif;
+  --font-family-display: 'SimSun', '宋体', 'Songti SC', 'STSong', serif;
+  --font-family-mono: 'Courier New', 'SimSun', '宋体', monospace;
+}
+
+[data-font='heiti'] {
+  --font-family-sans: 'SimHei', '黑体', 'Heiti SC', 'STHeiti', 'Noto Sans SC', sans-serif;
+  --font-family-display: 'SimHei', '黑体', 'Heiti SC', 'STHeiti', sans-serif;
+  --font-family-mono: 'Consolas', 'SimHei', '黑体', monospace;
+}
+
+[data-font='apple'] {
+  --font-family-sans:
+    'PingFang SC',
+    'Hiragino Sans GB',
+    -apple-system,
+    BlinkMacSystemFont,
+    'SF Pro Text',
+    'Helvetica Neue',
+    'Segoe UI',
+    'Microsoft YaHei',
+    sans-serif;
+  --font-family-display:
+    'PingFang SC',
+    'Hiragino Sans GB',
+    -apple-system,
+    BlinkMacSystemFont,
+    'SF Pro Display',
+    'Helvetica Neue',
+    sans-serif;
+  --font-family-mono: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+}
+
+html {
+  font-family: var(--font-family-sans);
+}

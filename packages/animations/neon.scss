@@ -1,0 +1,173 @@
+/**
+ * Shared neon / lightboard marquee (dashed track + chasing beads).
+ * Host sets `--vp-neon` (color). Optional severity helpers: `.vp-neon--primary` …
+ */
+
+@property --vp-neon-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes vp-neon-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 var(--spacing-sm)
+      color-mix(in srgb, var(--vp-neon) 45%, transparent);
+  }
+
+  50% {
+    box-shadow: 0 0 var(--spacing-lg)
+      color-mix(in srgb, var(--vp-neon) 60%, transparent);
+  }
+}
+
+@keyframes vp-neon-marquee {
+  to {
+    --vp-neon-angle: 360deg;
+  }
+}
+
+@mixin vp-neon-surface {
+  --vp-neon: var(--ds-border, var(--border-color));
+  --vp-neon-angle: 0deg;
+
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  background: color-mix(in srgb, var(--vp-neon) 8%, transparent);
+  border-style: dashed;
+  border-width: 1px;
+  border-color: color-mix(in srgb, var(--vp-neon) 40%, transparent);
+  color: var(--vp-neon);
+  text-shadow: 0 0 var(--spacing-xs)
+    color-mix(in srgb, var(--vp-neon) 35%, transparent);
+  box-shadow: 0 0 var(--spacing-sm)
+    color-mix(in srgb, var(--vp-neon) 45%, transparent);
+  /* Plain times — --transition-slow includes easing and breaks calc() */
+  animation: vp-neon-breathe 1.8s ease-in-out infinite;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    z-index: 0;
+    border-radius: inherit;
+    padding: 1px;
+    box-sizing: border-box;
+    pointer-events: none;
+    background: repeating-conic-gradient(
+      from var(--vp-neon-angle),
+      var(--vp-neon) 0deg 8deg,
+      color-mix(in srgb, var(--vp-neon) 35%, transparent) 8deg 12deg,
+      transparent 12deg 28deg
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    filter: drop-shadow(
+      0 0 var(--spacing-xs) color-mix(in srgb, var(--vp-neon) 70%, transparent)
+    );
+    animation: vp-neon-marquee 2.4s linear infinite;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:hover {
+    background: color-mix(in srgb, var(--vp-neon) 14%, transparent);
+    border-color: color-mix(in srgb, var(--vp-neon) 55%, transparent);
+    box-shadow: 0 0 var(--spacing-lg)
+      color-mix(in srgb, var(--vp-neon) 58%, transparent);
+
+    &::before {
+      animation-duration: 1.5s;
+      filter: drop-shadow(
+        0 0 var(--spacing-sm) color-mix(in srgb, var(--vp-neon) 85%, transparent)
+      );
+    }
+  }
+
+  &:active {
+    background: color-mix(in srgb, var(--vp-neon) 20%, transparent);
+    animation: none;
+
+    &::before {
+      animation-play-state: paused;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+
+    &::before {
+      animation: none;
+      --vp-neon-angle: 0deg;
+    }
+  }
+}
+
+/* Standalone utility — also imported by Button / Tag / Avatar */
+.vp-neon {
+  @include vp-neon-surface;
+}
+
+.vp-neon--primary {
+  --vp-neon: var(--primary-500);
+
+  &:hover {
+    --vp-neon: var(--primary-400);
+  }
+}
+
+.vp-neon--secondary {
+  --vp-neon: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+.vp-neon--success {
+  --vp-neon: var(--success-500);
+
+  &:hover {
+    --vp-neon: var(--success-400, var(--success-500));
+  }
+}
+
+.vp-neon--warning {
+  --vp-neon: var(--warning-500);
+
+  &:hover {
+    --vp-neon: var(--warning-400, var(--warning-500));
+  }
+}
+
+.vp-neon--danger {
+  --vp-neon: var(--danger-500);
+
+  &:hover {
+    --vp-neon: var(--danger-400, var(--danger-500));
+  }
+}
+
+.vp-neon--info {
+  --vp-neon: var(--info-500);
+
+  &:hover {
+    --vp-neon: var(--info-400, var(--info-500));
+  }
+}
+
+.vp-neon--help {
+  --vp-neon: var(--secondary-500);
+}
+
+.vp-neon--contrast {
+  --vp-neon: var(--text-primary);
+}

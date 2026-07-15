@@ -1,0 +1,11 @@
+.vp-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

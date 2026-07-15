@@ -1,0 +1,13 @@
+.vp-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: var(--font-family-sans);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vp-timeline--pending {
+  opacity: 1;
+}

@@ -1,0 +1,70 @@
+/**
+ * i18n length resilience — CJK short / Latin long
+ * @see packages/locale/I18N.md § Typographic expansion
+ */
+
+:root {
+  /* Reserve breathing room for English UI chrome */
+  --i18n-label-min-ch: 4ch;
+  --i18n-btn-pad-extra: 0px;
+  --i18n-tab-max-width: 11rem;
+  --i18n-sidebar-pad-extra: 0px;
+}
+
+/* Latin / Cyrillic often need more horizontal room than CJK */
+html[data-locale='en-US'],
+html[data-locale='en'],
+html[data-locale='ru-RU'],
+html:lang(en),
+html:lang(ru) {
+  --ln-sidebar-width: 280px;
+  --ln-tabs-height: 44px;
+  --i18n-btn-pad-extra: 0.35rem;
+  --i18n-tab-max-width: 18rem;
+  --i18n-sidebar-pad-extra: 0.125rem;
+  --i18n-label-min-ch: 8ch;
+}
+
+/* JP / KR labels tend longer than Simplified Chinese */
+html[data-locale='ja-JP'],
+html[data-locale='ko-KR'],
+html[data-locale='ko-KP'] {
+  --ln-sidebar-width: 264px;
+  --i18n-btn-pad-extra: 0.2rem;
+  --i18n-tab-max-width: 14rem;
+  --i18n-label-min-ch: 6ch;
+}
+
+/**
+ * Interactive copy: never forced single-line ellipsis.
+ * Prefer grow / wrap over "…".
+ */
+.i18n-label,
+.i18n-btn-label {
+  min-width: var(--i18n-label-min-ch);
+  max-width: none;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  line-height: 1.25;
+}
+
+/** Only when truncation is intentional — always pair with :title tooltip */
+.i18n-truncate {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.i18n-clamp-2 {
+  min-width: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}

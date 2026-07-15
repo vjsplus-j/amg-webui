@@ -1,0 +1,98 @@
+/**
+ * Shared theme contract — every [data-design] must define these.
+ * Components consume --ds-* / --surface-* / --theme-* only.
+ */
+
+@mixin theme-type-scale(
+  $display-xl: 3rem,
+  $display-lg: 2.5rem,
+  $display: 2rem,
+  $h1: 1.5rem,
+  $h2: 1.25rem,
+  $h3: 1.125rem,
+  $body-lg: 1.125rem,
+  $body: 0.875rem,
+  $body-sm: 0.8125rem,
+  $caption: 0.75rem,
+  $weight-display: 510,
+  $weight-heading: 500,
+  $weight-body: 400,
+  $tracking-display: -0.03em,
+  $tracking-body: -0.011em,
+  $leading: 1.5
+) {
+  --font-size-display-xl: #{$display-xl};
+  --font-size-display-lg: #{$display-lg};
+  --font-size-display: #{$display};
+  --font-size-2xl: #{$h1};
+  --font-size-xl: #{$h2};
+  --font-size-lg: #{$h3};
+  --font-size-md: #{$body};
+  --font-size-sm: #{$body-sm};
+  --font-size-xs: #{$caption};
+  --theme-body-lg: #{$body-lg};
+  --font-weight-display: #{$weight-display};
+  --font-weight-heading: #{$weight-heading};
+  --font-weight-body: #{$weight-body};
+  --letter-spacing-display: #{$tracking-display};
+  --letter-spacing: #{$tracking-body};
+  --line-height-body: #{$leading};
+}
+
+@mixin theme-spacing(
+  $xs: 0.25rem,
+  $sm: 0.5rem,
+  $md: 0.75rem,
+  $lg: 1rem,
+  $xl: 1.5rem,
+  $xxl: 2rem,
+  $page: 1.5rem,
+  $section: 1.25rem,
+  $card: 1rem,
+  $control-h-sm: 28px,
+  $control-h-md: 32px,
+  $control-h-lg: 40px
+) {
+  --spacing-xs: #{$xs};
+  --spacing-sm: #{$sm};
+  --spacing-md: #{$md};
+  --spacing-lg: #{$lg};
+  --spacing-xl: #{$xl};
+  --spacing-2xl: #{$xxl};
+  --theme-page-pad: #{$page};
+  --theme-section-gap: #{$section};
+  --theme-card-pad: #{$card};
+  --height-sm: #{$control-h-sm};
+  --height-md: #{$control-h-md};
+  --height-lg: #{$control-h-lg};
+}
+
+@mixin theme-shape($radius-sm, $radius-md, $radius-lg, $radius-xl, $radius-pill: 9999px) {
+  --border-radius-sm: #{$radius-sm};
+  --border-radius-md: #{$radius-md};
+  --border-radius-lg: #{$radius-lg};
+  --border-radius-xl: #{$radius-xl};
+  --border-radius-full: #{$radius-pill};
+  --theme-card-radius: #{$radius-lg};
+  --theme-btn-radius: #{$radius-md};
+  --theme-input-radius: #{$radius-md};
+  --theme-badge-radius: #{$radius-sm};
+  --theme-avatar-radius: #{$radius-pill};
+  --theme-avatar-group-overlap: calc(var(--spacing-sm) * -1);
+  --theme-avatar-group-overlap-sm: calc(var(--spacing-xs) * -1);
+  --theme-tab-radius: #{$radius-md};
+}
+
+@mixin bridge-ds {
+  --ds-bg: var(--surface-0);
+  --ds-surface: var(--surface-1);
+  --ds-surface-raised: var(--surface-2);
+  --ds-text: var(--text-primary);
+  --ds-text-muted: var(--text-secondary);
+  --ds-border: var(--border-color);
+  --ds-accent: var(--primary-500);
+  --ds-accent-hover: var(--primary-600);
+  --ds-accent-muted: color-mix(in srgb, var(--primary-500) 14%, transparent);
+  --ds-focus-ring: color-mix(in srgb, var(--primary-500) 28%, transparent);
+  --ds-panel-border: var(--border-color);
+}

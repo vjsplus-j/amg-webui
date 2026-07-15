@@ -1,0 +1,27 @@
+---
+description: Global visual tokens — color, type, spacing, radius, shadow, border, design vars
+alwaysApply: true
+---
+
+# Design tokens & variables (locked)
+
+Docs: `packages/theme/TOKENS.md` · `SPEC.md` · `specs.ts` · `tokens.scss` / `_contract.scss`
+
+## Layers
+Primitive → Semantic (`--ds-*`) → Component (`--theme-*`). Components/pages consume semantic + theme only — **no raw hex/px**.
+
+## Token families
+- **Color**: `--primary-*` · `--surface-*` · `--text-*` · status · `--ds-bg/accent/border/focus-ring`
+- **Type**: `--font-size-*` · weights · `--line-height-body` (1.5) · `--font-family-*`
+- **Spacing**: `--spacing-xs…2xl` · `--theme-page-pad/section-gap/card-pad`
+- **Radius**: `--border-radius-*` · `--theme-card/btn/input-radius`
+- **Shadow**: `--shadow-sm|md|lg|xl` (prefer sm/md; no glow stacks)
+- **Border**: `1px solid var(--ds-border)` · `--border-color(-hover)` · focus via `--ds-focus-ring`
+
+## Design variables
+Written by `[data-design|scheme|font|icon-style|locale]` and *Service classes. Naming: `--{category}-{role}`. TS mirrors via `COLOR_SEMANTIC` `SPACING` `RADIUS` `SHADOW` `BORDER` `DESIGN_ATTRS` from `@amg-webui/theme`.
+
+## Don’t
+Hardcode colors/sizes in base/business/**example**; invent `--myBlue`; skip updating TOKENS.md + specs.ts when changing scales.
+Hairline `1px`, `0`, `%`/`auto` OK — everything else via `--spacing-*` / `--font-size-*` / `--theme-*` / `--ds-*`.
+See **`vue3-amg-webui-no-hardcode.mdc`**.

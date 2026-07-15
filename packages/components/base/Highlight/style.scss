@@ -1,0 +1,14 @@
+.vp-highlight {
+  font-family: var(--font-family-sans);
+  font-size: inherit;
+  color: inherit;
+  line-height: var(--line-height-body);
+}
+
+.vp-highlight__mark {
+  background: var(--vp-highlight-bg, var(--ds-accent-muted));
+  color: var(--vp-highlight-fg, var(--text-primary));
+  border-radius: var(--border-radius-sm);
+  padding: 0 var(--spacing-xs);
+  font-style: inherit;
+}

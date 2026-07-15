@@ -1,0 +1,43 @@
+---
+description: AMG-WebUI large library goals — architecture, features, perf, tooling, theme studio, compliance
+alwaysApply: true
+---
+
+# Library plan (locked) — powerful + high performance
+
+Full: `docs/LIBRARY_PLAN.md` · Vision: `docs/VISION.md` · Theme Studio: `docs/THEME_STUDIO.md` · Engineering: `docs/ENGINEERING.md`
+
+## Slogan (locked)
+**对标 Element Plus，超越 Element Plus —— 成为最强的国产 WebUI 库。**  
+Overtake playbook (6 dimensions, no EP-style patching): `docs/OVERTAKE_ELEMENT_PLUS.md` · `vue3-amg-webui-overtake.mdc`.
+
+Target: Vue 3 UI lib — **200+ components**, multi-theme, i18n, **5 biz modules**, **designmd-like Theme Studio**.
+
+## Priority
+1. Architecture: TS, layering, Tokens, **`vp-`**
+2. Performance: **default virtual scroll**, deep tree-shake, smaller bundles, leak cleanup
+3. Product: base + biz + themes + **Theme Studio** + i18n
+4. Tooling: `create:component` · `generate:entry` · `extract:i18n`
+5. Visual: modern product feel — **not** generic ERP admin
+6. Compatibility / compliance
+
+## Architecture
+- Full `.d.ts`; generics; **base pure / business → base only**
+- Pluggable ESM/CJS/CDN; Tokens only — see `TOKENS.md`
+
+## Theme Studio & visuals
+- Parity with [designmd Build](https://designmd.santiagoalonso.com/build?cat=Dev+Tools%2CSaaS&sort=popular): live token edit + preview + export
+- Official six themes read-only; custom via CSS-var overlay
+- Anti–traditional admin: surface hierarchy, purposeful type, no dead-gray stack / purple cliché / first-viewport dash clutter
+
+## Performance defaults
+- List components: virtual scroll **ON by default**
+- Deep tree-shaking + per-component styles + on-demand icons
+- See `vue3-amg-webui-engineering.mdc`
+
+## Tooling
+- Scripts in `docs/ENGINEERING.md`; never hand-maintain mega barrels
+- New component: types + **all** locales + test/docs stub + `vp-` class
+
+## When implementing
+Follow P0 → P5 (+ P0.5 Studio, P1.5 scripts) in `LIBRARY_PLAN.md`. Do not break isolation, Tokens, `vp-`, virtual-scroll defaults, or Studio export contract.

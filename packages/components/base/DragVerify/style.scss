@@ -1,0 +1,50 @@
+.vp-drag-verify {
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+
+  &__track {
+    position: relative;
+    height: var(--height-md);
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--theme-input-radius, var(--border-radius-md));
+    background: var(--surface-2, var(--surface-1));
+    overflow: hidden;
+    user-select: none;
+  }
+
+  &__hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    pointer-events: none;
+  }
+
+  &__thumb {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--height-md);
+    height: 100%;
+    border: 0;
+    border-radius: var(--theme-btn-radius, var(--border-radius-md));
+    background: var(--primary-500);
+    color: var(--surface-0, var(--surface-1));
+    cursor: grab;
+    touch-action: none;
+    z-index: 1;
+  }
+
+  &--passed &__track {
+    border-color: var(--success-500, var(--primary-500));
+    background: color-mix(in srgb, var(--success-500, var(--primary-500)) 12%, var(--surface-1));
+  }
+
+  &--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}

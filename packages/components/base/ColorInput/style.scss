@@ -1,0 +1,27 @@
+.vp-color-input {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  min-width: 0;
+
+  &__swatch {
+    width: var(--height-md);
+    height: var(--height-md);
+    border-radius: var(--theme-input-radius, var(--border-radius-md));
+    border: 1px solid var(--ds-border, var(--border-color));
+    flex-shrink: 0;
+  }
+
+  &__text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__picker {
+    flex-shrink: 0;
+  }
+
+  &--invalid .vp-color-input__text :deep(input) {
+    border-color: var(--danger-500);
+  }
+}

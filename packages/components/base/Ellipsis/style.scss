@@ -1,0 +1,41 @@
+.vp-ellipsis-wrap {
+  display: block;
+  max-width: 100%;
+  min-width: 0;
+
+  .vp-tooltip-trigger {
+    display: block;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+.vp-ellipsis {
+  display: block;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  word-break: break-word;
+  font-family: var(--font-family-sans);
+  font-size: inherit;
+  line-height: var(--line-height-body);
+  color: inherit;
+
+  &--single {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &--multiline {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--vp-ellipsis-lines, 1);
+    line-clamp: var(--vp-ellipsis-lines, 1);
+  }
+
+  &--focusable:focus-visible {
+    outline: 2px solid var(--ds-focus-ring);
+    outline-offset: 2px;
+    border-radius: var(--border-radius-sm);
+  }
+}

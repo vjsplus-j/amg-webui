@@ -1,0 +1,114 @@
+.vp-button-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  vertical-align: middle;
+
+  /*
+   * Beat theme-kit `[data-design] .vp-button… { border-radius }` (0,4,0)
+   * with `[data-design] .vp-button-group … .vp-button--in-group` (0,5,0).
+   * Use 4-value shorthand so opposing corners stay square.
+   */
+  > .vp-button.vp-button--in-group,
+  > .vp-button-host > .vp-button.vp-button--in-group {
+    border-radius: 0;
+  }
+
+  > .vp-button.vp-button--in-group:first-child,
+  > .vp-button-host:first-child > .vp-button.vp-button--in-group {
+    border-radius: var(--theme-btn-radius, var(--border-radius-md)) 0 0
+      var(--theme-btn-radius, var(--border-radius-md));
+  }
+
+  > .vp-button.vp-button--in-group:last-child,
+  > .vp-button-host:last-child > .vp-button.vp-button--in-group {
+    border-radius: 0 var(--theme-btn-radius, var(--border-radius-md))
+      var(--theme-btn-radius, var(--border-radius-md)) 0;
+  }
+
+  > .vp-button.vp-button--in-group:only-child,
+  > .vp-button-host:only-child > .vp-button.vp-button--in-group {
+    border-radius: var(--theme-btn-radius, var(--border-radius-md));
+  }
+
+  > .vp-button + .vp-button,
+  > .vp-button-host + .vp-button-host,
+  > .vp-button + .vp-button-host,
+  > .vp-button-host + .vp-button {
+    margin-inline-start: -1px;
+  }
+
+  &--block {
+    display: flex;
+    width: 100%;
+
+    > .vp-button,
+    > .vp-button-host {
+      flex: 1 1 0;
+    }
+
+    > .vp-button-host > .vp-button {
+      width: 100%;
+    }
+  }
+
+  /*
+   * Neon children: leave room for marquee rings; keep per-button radius
+   * instead of flattened group joins (glow would collide).
+   */
+  &:has(.vp-button--neon) {
+    overflow: visible;
+    flex-wrap: nowrap;
+    gap: var(--spacing-xs);
+
+    > .vp-button + .vp-button,
+    > .vp-button-host + .vp-button-host,
+    > .vp-button + .vp-button-host,
+    > .vp-button-host + .vp-button {
+      margin-inline-start: 0;
+    }
+
+    > .vp-button.vp-button--in-group,
+    > .vp-button-host > .vp-button.vp-button--in-group {
+      border-radius: var(--theme-btn-radius, var(--border-radius-md));
+    }
+  }
+}
+
+/* Same radius contract under [data-design] (theme kit otherwise wins). */
+[data-design] .vp-button-group {
+  > .vp-button.vp-button--in-group,
+  > .vp-button-host > .vp-button.vp-button--in-group {
+    border-radius: 0;
+  }
+
+  > .vp-button.vp-button--in-group:first-child,
+  > .vp-button-host:first-child > .vp-button.vp-button--in-group {
+    border-radius: var(--theme-btn-radius, var(--border-radius-md)) 0 0
+      var(--theme-btn-radius, var(--border-radius-md));
+  }
+
+  > .vp-button.vp-button--in-group:last-child,
+  > .vp-button-host:last-child > .vp-button.vp-button--in-group {
+    border-radius: 0 var(--theme-btn-radius, var(--border-radius-md))
+      var(--theme-btn-radius, var(--border-radius-md)) 0;
+  }
+
+  > .vp-button.vp-button--in-group:only-child,
+  > .vp-button-host:only-child > .vp-button.vp-button--in-group {
+    border-radius: var(--theme-btn-radius, var(--border-radius-md));
+  }
+
+  &:has(.vp-button--neon) {
+    > .vp-button.vp-button--in-group,
+    > .vp-button-host > .vp-button.vp-button--in-group,
+    > .vp-button.vp-button--in-group:first-child,
+    > .vp-button-host:first-child > .vp-button.vp-button--in-group,
+    > .vp-button.vp-button--in-group:last-child,
+    > .vp-button-host:last-child > .vp-button.vp-button--in-group,
+    > .vp-button.vp-button--in-group:only-child,
+    > .vp-button-host:only-child > .vp-button.vp-button--in-group {
+      border-radius: var(--theme-btn-radius, var(--border-radius-md));
+    }
+  }
+}

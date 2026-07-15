@@ -1,0 +1,17 @@
+export default {
+  'button.save': '保存',
+  'button.cancel': '取消',
+  'button.delete': '删除',
+  'button.confirm': '确认',
+  'button.continue': '继续',
+  'button.refresh': '刷新',
+  'button.create': '新建',
+  'button.edit': '编辑',
+  'button.submit': '提交',
+  'button.reset': '重置',
+  'button.signIn': '登录',
+  'button.signOut': '登出',
+  'button.getStarted': '开始使用',
+  'button.learnMore': '了解更多',
+  'button.enter': '进入',
+} as Record<string, string>

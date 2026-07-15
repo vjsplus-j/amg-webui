@@ -1,0 +1,110 @@
+
+.p-contextmenu {
+  position: fixed;
+  background: var(--surface-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-xl);
+  min-width: 180px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transition: all var(--transition-fast);
+
+  &.p-contextmenu-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+}
+
+.p-contextmenu-items {
+  list-style: none;
+  margin: 0;
+  padding: var(--spacing-xs);
+}
+
+.p-contextmenu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  border-radius: var(--border-radius-sm);
+  transition: background var(--transition-fast);
+  position: relative;
+
+  &:hover {
+    background: var(--surface-2);
+  }
+
+  &.p-contextmenu-item-disabled {
+    cursor: not-allowed;
+    color: var(--text-muted);
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  &.p-contextmenu-item-divider {
+    height: 1px;
+    padding: 0;
+    margin: var(--spacing-xs) 0;
+    background: var(--border-color);
+    cursor: default;
+
+    &:hover {
+      background: var(--border-color);
+    }
+  }
+}
+
+.p-contextmenu-item-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.p-contextmenu-item-icon {
+  margin-right: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+}
+
+.p-contextmenu-item-label {
+  flex: 1;
+}
+
+.p-contextmenu-item-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.p-contextmenu-submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: var(--spacing-xs);
+  background: var(--surface-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-xl);
+  min-width: 180px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-8px);
+  transition: all var(--transition-fast);
+  z-index: 1001;
+
+  &.p-contextmenu-submenu-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+}

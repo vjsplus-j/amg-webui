@@ -1,0 +1,11 @@
+@import '../DatePicker/style.scss';
+
+.vp-calendar {
+  display: flex;
+  flex-direction: column;
+  padding: var(--theme-card-pad);
+  background: var(--surface-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--theme-card-radius, var(--border-radius-md));
+  box-shadow: var(--shadow-sm);
+}

@@ -1,0 +1,29 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useLocale } from '@amg-webui/hooks'
+import type { Doodle404Props, Doodle404Emits } from './types'
+import './style.scss'
+
+const props = defineProps<Doodle404Props>()
+const emit = defineEmits<Doodle404Emits>()
+const { t } = useLocale()
+const titleText = computed(() => props.title ?? t('error.notFound'))
+const leadText = computed(() => props.description ?? t('component.doodle404.lead'))
+</script>
+
+<template>
+  <div :class="['vp-doodle404', 'vp-doodle404__panel', props.class]" :style="style" data-variant="doodle404">
+    <div class="vp-doodle404__body" style="align-items:center;text-align:center;padding:var(--theme-page-pad)">
+      <p class="vp-doodle404__code" aria-hidden="true">404</p>
+      <h1 class="vp-doodle404__title">{{ titleText }}</h1>
+      <p class="vp-doodle404__muted">{{ leadText }}</p>
+      <div class="vp-doodle404__toolbar">
+        <slot>
+          <button type="button" class="vp-doodle404__action" @click="emit('click', $event)">
+            {{ t('button.continue') }}
+          </button>
+        </slot>
+      </div>
+    </div>
+  </div>
+</template>

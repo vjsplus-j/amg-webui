@@ -1,0 +1,33 @@
+.biz-users {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-section-gap, 1.25rem);
+}
+
+/* Host is Card — flex rhythm is on .p-card-body via Card style */
+.biz-users__toolbar {
+  /* marker class for [class*='__toolbar'] row layout */
+}
+
+.biz-users__search {
+  min-width: 200px;
+  flex: 1 1 200px;
+}
+
+.biz-users__role {
+  min-width: 140px;
+  flex: 0 1 160px;
+}
+
+.biz-users__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm, 0.5rem);
+}
+
+.biz-users__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md, 0.75rem);
+  min-width: min(360px, 100%);
+}

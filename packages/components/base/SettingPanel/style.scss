@@ -1,0 +1,27 @@
+.vp-setting-panel {
+  background: var(--surface-1);
+  border: 1px solid var(--ds-border, var(--border-color));
+  border-radius: var(--theme-card-radius, var(--border-radius-md));
+  padding: var(--theme-card-pad, var(--spacing-md));
+  min-width: 0;
+
+  &__header {
+    margin-bottom: var(--theme-section-gap, var(--spacing-lg));
+  }
+
+  &__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  &--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}

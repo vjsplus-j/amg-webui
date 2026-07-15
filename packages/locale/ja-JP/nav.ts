@@ -1,0 +1,21 @@
+export default {
+  'nav.overview': '概要',
+  'nav.base': '基本コンポーネント',
+  'nav.biz': '業務コンポジット',
+  'nav.theme': 'テーマ',
+  'nav.i18n': '多言語',
+  'nav.perf': 'パフォーマンス',
+  'nav.lab': '共通能力',
+  'nav.dev': '開発補助',
+  'nav.demo': 'デモ',
+  'nav.system': 'システム',
+  'nav.base.category.general': '一般',
+  'nav.base.category.layout': 'レイアウト',
+  'nav.base.category.navigation': 'ナビゲーション',
+  'nav.base.category.dataEntry': 'データ入力',
+  'nav.base.category.dataDisplay': 'データ表示',
+  'nav.base.category.feedback': 'フィードバック',
+  'nav.base.category.other': 'その他',
+  'nav.base.category.industry': '業種',
+  'nav.primary': 'メインナビ'
+} as Record<string, string>

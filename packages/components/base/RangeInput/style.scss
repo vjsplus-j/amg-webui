@@ -1,0 +1,16 @@
+.vp-range-input {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  min-width: 0;
+
+  &__field {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__sep {
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+}

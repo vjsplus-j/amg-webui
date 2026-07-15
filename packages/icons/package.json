@@ -1,0 +1,17 @@
+{
+  "name": "@amg-webui/icons",
+  "version": "1.0.0",
+  "description": "AMG-WebUI full Lucide icon library — named exports, catalog, and name resolver for Icon / Button",
+  "type": "module",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "types": "./index.ts",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "sideEffects": false,
+  "peerDependencies": {
+    "@lucide/vue": "^1.0.0",
+    "vue": "^3.4.0"
+  }
+}

@@ -1,0 +1,21 @@
+export default {
+  'nav.overview': '개요',
+  'nav.base': '기본 컴포넌트',
+  'nav.biz': '비즈니스',
+  'nav.theme': '테마',
+  'nav.i18n': '다국어',
+  'nav.perf': '성능',
+  'nav.lab': '공용 기능',
+  'nav.dev': '개발 도구',
+  'nav.demo': '데모',
+  'nav.system': '시스템',
+  'nav.base.category.general': '일반',
+  'nav.base.category.layout': '레이아웃',
+  'nav.base.category.navigation': '탐색',
+  'nav.base.category.dataEntry': '데이터 입력',
+  'nav.base.category.dataDisplay': '데이터 표시',
+  'nav.base.category.feedback': '피드백',
+  'nav.base.category.other': '기타',
+  'nav.base.category.industry': '산업',
+  'nav.primary': '주 탐색'
+} as Record<string, string>

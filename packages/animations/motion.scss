@@ -1,0 +1,371 @@
+/**
+ * Shared host motion utilities (Icon / Avatar / Badge / Button / Tag / Typography / …).
+ * Duration override: --vp-motion-duration on the host.
+ * Reduced motion: animations disabled.
+ *
+ * Marquee / scroll travel can be tuned via --vp-motion-travel (length / %).
+ */
+
+.vp-motion--spin {
+  animation: vp-motion-spin var(--vp-motion-duration, 1s) linear infinite;
+}
+
+.vp-motion--pulse {
+  animation: vp-motion-pulse var(--vp-motion-duration, 1.2s) ease-in-out infinite;
+}
+
+.vp-motion--heartbeat {
+  animation: vp-motion-heartbeat var(--vp-motion-duration, 1s) ease-in-out infinite;
+}
+
+.vp-motion--bounce {
+  animation: vp-motion-bounce var(--vp-motion-duration, 0.7s) ease-in-out infinite;
+}
+
+/** Sharp strobe / flash — stronger than soft `pulse` */
+.vp-motion--blink {
+  animation: vp-motion-blink var(--vp-motion-duration, 0.9s) linear infinite;
+}
+
+/** Breathing light — opacity + soft currentColor glow */
+.vp-motion--breathe {
+  animation: vp-motion-breathe var(--vp-motion-duration, 2s) ease-in-out infinite;
+}
+
+/** Fluorescent / neon glow via text-shadow (works on text + glyph hosts) */
+.vp-motion--glow {
+  animation: vp-motion-glow var(--vp-motion-duration, 1.6s) ease-in-out infinite;
+}
+
+/** Left / right marquee ticker */
+.vp-motion--marquee-left,
+.vp-motion--marquee-right {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.vp-motion--marquee-left {
+  animation: vp-motion-marquee-left var(--vp-motion-duration, 8s) linear infinite;
+}
+
+.vp-motion--marquee-right {
+  animation: vp-motion-marquee-right var(--vp-motion-duration, 8s) linear infinite;
+}
+
+/** Vertical scroll ticker */
+.vp-motion--scroll-up,
+.vp-motion--scroll-down {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.vp-motion--scroll-up {
+  animation: vp-motion-scroll-up var(--vp-motion-duration, 4s) linear infinite;
+}
+
+.vp-motion--scroll-down {
+  animation: vp-motion-scroll-down var(--vp-motion-duration, 4s) linear infinite;
+}
+
+/**
+ * Damped amplify → settle → shrink & fade (one-shot, stays gone via forwards).
+ * Overshoot easing approximates spring damping without JS.
+ */
+.vp-motion--damp-out {
+  display: inline-block;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  animation: vp-motion-damp-out var(--vp-motion-duration, 1.45s)
+    cubic-bezier(0.22, 1.35, 0.36, 1) forwards;
+}
+
+/* Icon legacy aliases (pre-shared motion) */
+.vp-icon--spin,
+.p-icon-spin {
+  animation: vp-motion-spin var(--vp-motion-duration, var(--vp-icon-anim-duration, 1s)) linear
+    infinite;
+}
+
+.vp-icon--pulse,
+.p-icon-pulse {
+  animation: vp-motion-pulse var(--vp-motion-duration, var(--vp-icon-anim-duration, 1.2s))
+    ease-in-out infinite;
+}
+
+.vp-icon--heartbeat {
+  animation: vp-motion-heartbeat var(--vp-motion-duration, var(--vp-icon-anim-duration, 1s))
+    ease-in-out infinite;
+}
+
+.vp-icon--bounce {
+  animation: vp-motion-bounce var(--vp-motion-duration, var(--vp-icon-anim-duration, 0.7s))
+    ease-in-out infinite;
+}
+
+.vp-icon--blink {
+  animation: vp-motion-blink var(--vp-motion-duration, var(--vp-icon-anim-duration, 0.9s)) linear
+    infinite;
+}
+
+.vp-icon--breathe {
+  animation: vp-motion-breathe var(--vp-motion-duration, var(--vp-icon-anim-duration, 2s))
+    ease-in-out infinite;
+}
+
+.vp-icon--glow {
+  animation: vp-motion-glow var(--vp-motion-duration, var(--vp-icon-anim-duration, 1.6s))
+    ease-in-out infinite;
+}
+
+.vp-icon--marqueeLeft,
+.vp-icon--marquee-left {
+  animation: vp-motion-marquee-left var(--vp-motion-duration, var(--vp-icon-anim-duration, 8s))
+    linear infinite;
+}
+
+.vp-icon--marqueeRight,
+.vp-icon--marquee-right {
+  animation: vp-motion-marquee-right var(--vp-motion-duration, var(--vp-icon-anim-duration, 8s))
+    linear infinite;
+}
+
+.vp-icon--scrollUp,
+.vp-icon--scroll-up {
+  animation: vp-motion-scroll-up var(--vp-motion-duration, var(--vp-icon-anim-duration, 4s))
+    linear infinite;
+}
+
+.vp-icon--scrollDown,
+.vp-icon--scroll-down {
+  animation: vp-motion-scroll-down var(--vp-motion-duration, var(--vp-icon-anim-duration, 4s))
+    linear infinite;
+}
+
+.vp-icon--dampOut,
+.vp-icon--damp-out {
+  animation: vp-motion-damp-out var(--vp-motion-duration, var(--vp-icon-anim-duration, 1.45s))
+    cubic-bezier(0.22, 1.35, 0.36, 1) forwards;
+}
+
+@keyframes vp-motion-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes vp-motion-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes vp-motion-heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.22);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.14);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+@keyframes vp-motion-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(calc(var(--spacing-sm) * -1));
+  }
+  60% {
+    transform: translateY(calc(var(--spacing-xs) * -0.5));
+  }
+}
+
+@keyframes vp-motion-blink {
+  0%,
+  42%,
+  100% {
+    opacity: 1;
+  }
+  46%,
+  54% {
+    opacity: 0.08;
+  }
+  50% {
+    opacity: 1;
+  }
+  58%,
+  66% {
+    opacity: 0.08;
+  }
+  70% {
+    opacity: 1;
+  }
+}
+
+@keyframes vp-motion-breathe {
+  0%,
+  100% {
+    opacity: 0.42;
+    text-shadow: 0 0 0 transparent;
+    filter: brightness(0.92);
+  }
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 var(--spacing-xs) color-mix(in srgb, currentColor 55%, transparent),
+      0 0 var(--spacing-sm) color-mix(in srgb, currentColor 28%, transparent);
+    filter: brightness(1.08);
+  }
+}
+
+@keyframes vp-motion-glow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 var(--spacing-xs) color-mix(in srgb, currentColor 40%, transparent),
+      0 0 var(--spacing-sm) color-mix(in srgb, currentColor 18%, transparent);
+    filter: brightness(1);
+  }
+  50% {
+    text-shadow:
+      0 0 var(--spacing-sm) color-mix(in srgb, currentColor 78%, transparent),
+      0 0 var(--spacing-md) color-mix(in srgb, currentColor 42%, transparent),
+      0 0 var(--spacing-lg) color-mix(in srgb, currentColor 22%, transparent);
+    filter: brightness(1.18);
+  }
+}
+
+@keyframes vp-motion-marquee-left {
+  0% {
+    transform: translateX(var(--vp-motion-travel, 100%));
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--vp-motion-travel, 100%)));
+  }
+}
+
+@keyframes vp-motion-marquee-right {
+  0% {
+    transform: translateX(calc(-1 * var(--vp-motion-travel, 100%)));
+  }
+  100% {
+    transform: translateX(var(--vp-motion-travel, 100%));
+  }
+}
+
+@keyframes vp-motion-scroll-up {
+  0% {
+    transform: translateY(var(--vp-motion-travel, 120%));
+    opacity: 0;
+  }
+  12%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(-1 * var(--vp-motion-travel, 120%)));
+    opacity: 0;
+  }
+}
+
+@keyframes vp-motion-scroll-down {
+  0% {
+    transform: translateY(calc(-1 * var(--vp-motion-travel, 120%)));
+    opacity: 0;
+  }
+  12%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(var(--vp-motion-travel, 120%));
+    opacity: 0;
+  }
+}
+
+@keyframes vp-motion-damp-out {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  16% {
+    transform: scale(1.38);
+    opacity: 1;
+  }
+  28% {
+    transform: scale(0.86);
+  }
+  40% {
+    transform: scale(1.14);
+  }
+  52% {
+    transform: scale(0.94);
+  }
+  62% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+  72% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.45);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-motion--spin,
+  .vp-motion--pulse,
+  .vp-motion--heartbeat,
+  .vp-motion--bounce,
+  .vp-motion--blink,
+  .vp-motion--breathe,
+  .vp-motion--glow,
+  .vp-motion--marquee-left,
+  .vp-motion--marquee-right,
+  .vp-motion--scroll-up,
+  .vp-motion--scroll-down,
+  .vp-motion--damp-out,
+  .vp-icon--spin,
+  .p-icon-spin,
+  .vp-icon--pulse,
+  .p-icon-pulse,
+  .vp-icon--heartbeat,
+  .vp-icon--bounce,
+  .vp-icon--blink,
+  .vp-icon--breathe,
+  .vp-icon--glow,
+  .vp-icon--marqueeLeft,
+  .vp-icon--marquee-left,
+  .vp-icon--marqueeRight,
+  .vp-icon--marquee-right,
+  .vp-icon--scrollUp,
+  .vp-icon--scroll-up,
+  .vp-icon--scrollDown,
+  .vp-icon--scroll-down,
+  .vp-icon--dampOut,
+  .vp-icon--damp-out {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,5 @@
+# 视觉规范
+
+权威文档见仓库内：[`packages/theme/SPEC.md`](../packages/theme/SPEC.md)。
+
+涵盖：字体、字号与行高、间距、圆角、卡片、按钮、倒 L 布局、信息密度。

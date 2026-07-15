@@ -1,0 +1,26 @@
+.vp-space {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  max-width: 100%;
+  box-sizing: border-box;
+  vertical-align: middle;
+
+  &--horizontal {
+    flex-direction: row;
+  }
+
+  &--vertical {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &--wrap {
+    flex-wrap: wrap;
+  }
+
+  &--block {
+    display: flex;
+    width: 100%;
+  }
+}

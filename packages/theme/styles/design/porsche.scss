@@ -1,0 +1,107 @@
+@import './contract';
+
+/**
+ * Porsche — cinematic black stage
+ * @see https://designmd.santiagoalonso.com/porsche
+ * Pure black · white ink · zero accent · Barlow (Porsche Next) · Lucide · radius 8px
+ */
+
+[data-design='porsche'] {
+  color-scheme: dark;
+  --theme-name: porsche;
+  --theme-icon-set: lucide;
+  --theme-font: barlow;
+
+  --ps-bg: #000000;
+  --ps-surface: #000000;
+  --ps-surface-light: #1a1a1a;
+  --ps-surface-card: #111111;
+  --ps-surface-overlay: #0d0d0d;
+  --ps-ink: #ffffff;
+  --ps-ink-secondary: #a0a0a0;
+  --ps-ink-muted: #666666;
+  --ps-primary: #ffffff;
+  --ps-primary-hover: #e0e0e0;
+  --ps-border: #333333;
+  --ps-border-subtle: #1f1f1f;
+
+  --primary-500: var(--ps-primary);
+  --primary-400: #f5f5f5;
+  --primary-600: var(--ps-primary-hover);
+  --primary-300: #cccccc;
+  --success-500: #27a644;
+  --warning-500: #f59e0b;
+  --danger-500: #ef4444;
+  --info-500: #a0a0a0;
+
+  --surface-0: var(--ps-bg);
+  --surface-1: var(--ps-surface-card);
+  --surface-2: var(--ps-surface-light);
+  --surface-3: #222222;
+  --surface-4: #2a2a2a;
+  --surface-5: var(--ps-ink-muted);
+
+  --text-primary: var(--ps-ink);
+  --text-secondary: var(--ps-ink-secondary);
+  --text-muted: var(--ps-ink-muted);
+  --text-on-primary: #000000;
+
+  --border-color: var(--ps-border);
+  --border-color-hover: #555555;
+
+  --shadow-sm: none;
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.75);
+
+  --ds-glow: transparent;
+  --ds-motion-lift: 0px;
+  --transition-normal: 200ms ease;
+  --icon-stroke-width: 1.5;
+
+  @include theme-type-scale(
+    $display-xl: 7.5rem,
+    $display-lg: 5.625rem,
+    $display: 3rem,
+    $h1: 2rem,
+    $h2: 1.5rem,
+    $h3: 1.25rem,
+    $body-lg: 1.25rem,
+    $body: 1rem,
+    $body-sm: 0.875rem,
+    $caption: 0.75rem,
+    $weight-display: 400,
+    $weight-heading: 400,
+    $weight-body: 400,
+    $tracking-display: -1px,
+    $tracking-body: 0,
+    $leading: 1.45
+  );
+
+  @include theme-spacing($page: 2rem, $control-h-sm: 32px, $control-h-md: 40px, $control-h-lg: 48px);
+  @include theme-shape(0, 8px, 8px, 9999px, 9999px);
+  @include bridge-ds;
+
+  --theme-btn-solid-bg: var(--ps-primary);
+  --theme-btn-solid-fg: #000;
+  --theme-btn-solid-hover: var(--ps-primary-hover);
+  --theme-btn-ghost-hover: var(--ps-surface-light);
+  --theme-alert-info-bg: var(--ps-surface-card);
+  --theme-alert-success-bg: color-mix(in srgb, #27a644 12%, #111);
+  --theme-alert-warn-bg: color-mix(in srgb, #f59e0b 12%, #111);
+  --theme-alert-danger-bg: color-mix(in srgb, #ef4444 12%, #111);
+  --theme-nav-bg: var(--ps-bg);
+  --theme-nav-border: var(--ps-border-subtle);
+  --theme-tab-active-bg: var(--ps-primary);
+  --theme-tab-active-fg: #000;
+  --theme-stat-value-size: 2rem;
+  --theme-avatar-bg: var(--ps-surface-light);
+  --theme-slider-track: var(--ps-border);
+  --theme-slider-fill: var(--ps-primary);
+  --theme-table-header-bg: var(--ps-surface-overlay);
+  --theme-menu-hover: var(--ps-surface-light);
+  --theme-badge-bg: var(--ps-surface-light);
+  --theme-badge-fg: var(--ps-ink);
+
+  color: var(--text-primary);
+  background-color: var(--surface-0);
+}

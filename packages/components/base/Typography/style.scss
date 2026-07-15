@@ -1,0 +1,272 @@
+@use '../../../animations/text-shimmer' as *;
+
+.vp-typography {
+  display: inline;
+  max-width: 100%;
+  margin: 0;
+  font-family: var(--vp-typography-font, var(--font-family-sans));
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-body);
+  line-height: var(--vp-typography-lh, var(--line-height-body));
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing);
+
+  &--block {
+    display: block;
+  }
+
+  &--h1 {
+    display: block;
+    font-family: var(--vp-typography-font, var(--font-family-display));
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-heading);
+    line-height: var(--vp-typography-lh, 1.25);
+    letter-spacing: var(--letter-spacing-display, var(--letter-spacing));
+    margin-bottom: var(--spacing-md);
+  }
+
+  &--h2 {
+    display: block;
+    font-family: var(--vp-typography-font, var(--font-family-display));
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-heading);
+    line-height: var(--vp-typography-lh, 1.3);
+    letter-spacing: var(--letter-spacing-display, var(--letter-spacing));
+    margin-bottom: var(--spacing-md);
+  }
+
+  &--h3 {
+    display: block;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-heading);
+    line-height: var(--vp-typography-lh, 1.35);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  &--h4 {
+    display: block;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-heading);
+    line-height: var(--vp-typography-lh, 1.4);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  &--h5 {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-heading);
+    line-height: var(--vp-typography-lh, 1.45);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  &--h6 {
+    display: block;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-heading);
+    line-height: var(--vp-typography-lh, 1.5);
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-secondary);
+  }
+
+  &--body,
+  &--body-lg,
+  &--body-sm {
+    display: block;
+  }
+
+  &--body {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-body);
+  }
+
+  &--body-lg {
+    font-size: var(--theme-body-lg);
+    font-weight: var(--font-weight-body);
+  }
+
+  &--body-sm {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-body);
+  }
+
+  &--caption {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+  }
+
+  &--secondary {
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
+  }
+
+  &--strong {
+    font-weight: var(--font-weight-bold);
+  }
+
+  &--italic {
+    font-style: italic;
+  }
+
+  &--underline {
+    text-decoration: underline;
+    text-underline-offset: var(--spacing-xs);
+  }
+
+  &--delete {
+    text-decoration: line-through;
+  }
+
+  &--mark {
+    background-color: var(--warning-100);
+    color: inherit;
+    padding-inline: var(--spacing-xs);
+    border-radius: var(--border-radius-sm);
+  }
+
+  &--code {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+    padding-inline: var(--spacing-xs);
+    border-radius: var(--border-radius-sm);
+    background: var(--surface-2);
+    border: 1px solid var(--ds-border);
+  }
+
+  &--font-sans {
+    --vp-typography-font: var(--font-family-sans);
+  }
+
+  &--font-display {
+    --vp-typography-font: var(--font-family-display);
+  }
+
+  &--font-mono {
+    --vp-typography-font: var(--font-family-mono);
+  }
+
+  &--ellipsis-single .vp-typography__content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: bottom;
+  }
+
+  &--ellipsis-multi .vp-typography__content {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--vp-typography-rows, 2);
+    line-clamp: var(--vp-typography-rows, 2);
+    overflow: hidden;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  &--copyable {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    max-width: 100%;
+  }
+
+  &--copyable#{&}--block {
+    display: flex;
+  }
+
+  &--disabled {
+    color: var(--text-secondary);
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  &--loading {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Light beam walking across live text (wait / thinking) */
+  &--shimmer .vp-typography__content,
+  &--loading .vp-typography__content {
+    @include vp-text-shimmer;
+  }
+
+  &--clickable:not(&--disabled):not(&--loading) {
+    cursor: pointer;
+    transition: color var(--transition-fast);
+
+    &:hover {
+      color: var(--primary-500);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--ds-focus-ring);
+      border-radius: var(--border-radius-sm);
+    }
+  }
+
+  /** Transform host motions need a non-inline box on inline typography */
+  &--transform-motion:not(&--block):not(&--copyable) {
+    display: inline-block;
+  }
+
+  @each $sev in primary, secondary, success, warning, danger, info {
+    &--#{$sev} {
+      color: var(--#{$sev}-500);
+    }
+  }
+
+  &__content {
+    min-width: 0;
+  }
+
+  &__copy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xs);
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    flex-shrink: 0;
+    width: var(--height-xs);
+    height: var(--height-xs);
+
+    svg {
+      width: var(--font-size-sm);
+      height: var(--font-size-sm);
+    }
+
+    &:hover {
+      color: var(--primary-500);
+      background: var(--surface-2);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--ds-focus-ring);
+    }
+
+    &--done {
+      color: var(--success-500);
+    }
+  }
+
+  &__status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}

@@ -1,0 +1,21 @@
+export default {
+  'nav.overview': 'Overview',
+  'nav.base': 'Base',
+  'nav.biz': 'Business',
+  'nav.theme': 'Themes',
+  'nav.i18n': 'i18n',
+  'nav.perf': 'Performance',
+  'nav.lab': 'Lab',
+  'nav.dev': 'Dev tools',
+  'nav.demo': 'Demo',
+  'nav.system': 'System',
+  'nav.base.category.general': 'General',
+  'nav.base.category.layout': 'Layout',
+  'nav.base.category.navigation': 'Navigation',
+  'nav.base.category.dataEntry': 'Data Entry',
+  'nav.base.category.dataDisplay': 'Data Display',
+  'nav.base.category.feedback': 'Feedback',
+  'nav.base.category.other': 'Other',
+  'nav.base.category.industry': 'Industry',
+  'nav.primary': 'Main navigation'
+} as Record<string, string>

@@ -1,0 +1,9 @@
+.vp-free-layout-drag {
+  position: relative;
+  min-height: 100%;
+
+  &--active {
+    outline: 1px dashed var(--primary-300, var(--primary-500));
+    outline-offset: calc(-1 * var(--spacing-xs));
+  }
+}

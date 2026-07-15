@@ -1,0 +1,27 @@
+.vp-descriptions-item {
+  display: contents;
+}
+
+.vp-descriptions-item__label,
+.vp-descriptions-item__content {
+  padding: var(--vp-desc-pad-y) var(--vp-desc-pad-x);
+  font-size: var(--vp-desc-font);
+  line-height: var(--line-height-body);
+  min-width: 0;
+}
+
+.vp-descriptions-item__label {
+  color: var(--text-secondary);
+  font-weight: 500;
+  background: var(--surface-2, var(--surface-1));
+}
+
+.vp-descriptions-item__content {
+  color: var(--text-primary);
+  background: var(--surface-1);
+}
+
+.vp-descriptions--bordered .vp-descriptions-item__label,
+.vp-descriptions--bordered .vp-descriptions-item__content {
+  border: 1px solid var(--ds-border);
+}

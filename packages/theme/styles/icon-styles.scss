@@ -1,0 +1,19 @@
+/*
+ * Lucide icon styles (Linear / Iconify Lucide)
+ * @see https://icon-sets.iconify.design/lucide/
+ */
+
+[data-icon-style='outline'] {
+  --icon-stroke-width: 1.75;
+  --icon-opacity: 1;
+}
+
+[data-icon-style='solid'] {
+  --icon-stroke-width: 2.25;
+  --icon-opacity: 1;
+}
+
+.p-icon[data-icon-set='lucide'] svg,
+.p-icon--lucide svg {
+  opacity: var(--icon-opacity, 1);
+}

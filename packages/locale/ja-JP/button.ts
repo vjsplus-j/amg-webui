@@ -1,0 +1,17 @@
+export default {
+  'button.save': '保存',
+  'button.cancel': 'キャンセル',
+  'button.delete': '削除',
+  'button.confirm': '確認',
+  'button.continue': '続行',
+  'button.refresh': '更新',
+  'button.create': '新規作成',
+  'button.edit': '編集',
+  'button.submit': '送信',
+  'button.reset': 'リセット',
+  'button.signIn': 'ログイン',
+  'button.signOut': 'ログアウト',
+  'button.getStarted': 'はじめる',
+  'button.learnMore': '詳しく見る',
+  'button.enter': '入る',
+} as Record<string, string>

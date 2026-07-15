@@ -1,0 +1,190 @@
+/* Shared design tokens — styles override these via [data-design]
+ * SSR / flash-of-unstyled default matches Linear dark. */
+
+:root {
+  /* Color scales (bridged by each design style) */
+  --primary-50: #eef0fb;
+  --primary-100: #d5d9f5;
+  --primary-200: #b0b6eb;
+  --primary-300: #8a93e0;
+  --primary-400: #7170ff;
+  --primary-500: #5e6ad2;
+  --primary-600: #4f5ab8;
+  --primary-700: #3f4894;
+  --primary-800: #303670;
+  --primary-900: #20244c;
+
+  --secondary-50: #f8fafc;
+  --secondary-100: #f1f5f9;
+  --secondary-200: #e2e8f0;
+  --secondary-300: #cbd5e1;
+  --secondary-400: #94a3b8;
+  --secondary-500: #64748b;
+  --secondary-600: #475569;
+  --secondary-700: #334155;
+  --secondary-800: #1e293b;
+  --secondary-900: #0f172a;
+
+  --success-50: #ecfdf5;
+  --success-100: #d1fae5;
+  --success-200: #a7f3d0;
+  --success-300: #6ee7b7;
+  --success-400: #34d399;
+  --success-500: #10b981;
+  --success-600: #059669;
+  --success-700: #047857;
+  --success-800: #065f46;
+  --success-900: #064e3b;
+
+  --warning-50: #fffbeb;
+  --warning-100: #fef3c7;
+  --warning-200: #fde68a;
+  --warning-300: #fcd34d;
+  --warning-400: #fbbf24;
+  --warning-500: #f59e0b;
+  --warning-600: #d97706;
+  --warning-700: #b45309;
+  --warning-800: #92400e;
+  --warning-900: #78350f;
+
+  --danger-50: #fef2f2;
+  --danger-100: #fee2e2;
+  --danger-200: #fecaca;
+  --danger-300: #fca5a5;
+  --danger-400: #f87171;
+  --danger-500: #ef4444;
+  --danger-600: #dc2626;
+  --danger-700: #b91c1c;
+  --danger-800: #991b1b;
+  --danger-900: #7f1d1d;
+
+  --info-50: #eff6ff;
+  --info-100: #dbeafe;
+  --info-200: #bfdbfe;
+  --info-300: #93c5fd;
+  --info-400: #60a5fa;
+  --info-500: #3b82f6;
+  --info-600: #2563eb;
+  --info-700: #1d4ed8;
+  --info-800: #1e40af;
+  --info-900: #1e3a8a;
+
+  /* Surfaces & text — Linear dark as base; overridden per design */
+  --surface-0: #08090a;
+  --surface-1: #0f1011;
+  --surface-2: #141516;
+  --surface-3: #18191a;
+  --surface-4: #191a1b;
+  --surface-5: #28282c;
+
+  --text-primary: #f7f8f8;
+  --text-secondary: #8a8f98;
+  --text-muted: #62666d;
+  --text-on-primary: #ffffff;
+
+  --border-color: #23252a;
+  --border-color-hover: #34343a;
+
+  /* Semantic aliases (components should prefer these going forward) */
+  --ds-bg: var(--surface-0);
+  --ds-surface: var(--surface-1);
+  --ds-surface-raised: var(--surface-2);
+  --ds-text: var(--text-primary);
+  --ds-text-muted: var(--text-secondary);
+  --ds-border: var(--border-color);
+  --ds-accent: var(--primary-500);
+  --ds-accent-hover: var(--primary-600);
+  --ds-accent-muted: color-mix(in srgb, var(--primary-500) 14%, transparent);
+  --ds-focus-ring: color-mix(in srgb, var(--primary-500) 28%, transparent);
+  --ds-glow: transparent;
+  --ds-panel-border: var(--border-color);
+
+  /* Shape & elevation */
+  --border-radius-none: 0;
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+  --border-radius-xl: 12px;
+  --border-radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.06);
+  --shadow-md: 0 4px 12px rgb(15 23 42 / 0.08);
+  --shadow-lg: 0 12px 28px rgb(15 23 42 / 0.1);
+  --shadow-xl: 0 20px 40px rgb(15 23 42 / 0.12);
+
+  /* Motion */
+  --transition-fast: 120ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 320ms ease;
+  --ds-motion-lift: 0px;
+
+  /* Typography — base sizes; family controlled by FontService / [data-font] */
+  --font-family-sans:
+    'Inter',
+    'Inter Variable',
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Segoe UI',
+    'Microsoft YaHei',
+    system-ui,
+    sans-serif;
+  --font-family-display:
+    'Inter Display',
+    'Inter',
+    'PingFang SC',
+    'Hiragino Sans GB',
+    system-ui,
+    sans-serif;
+  --font-family-mono: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --letter-spacing: 0;
+
+  /* Spacing & control sizes — locked to SPEC / theme-spacing contract */
+  --spacing-xs: 0.25rem;   /* 4 */
+  --spacing-sm: 0.5rem;    /* 8 */
+  --spacing-md: 0.75rem;   /* 12 — control / toolbar gap */
+  --spacing-lg: 1rem;      /* 16 */
+  --spacing-xl: 1.5rem;    /* 24 */
+  --spacing-2xl: 2rem;     /* 32 */
+
+  --theme-page-pad: 1.5rem;
+  --theme-section-gap: 1.25rem;
+  --theme-card-pad: 1rem;
+
+  --height-xs: 24px;
+  --height-sm: 28px;
+  --height-md: 32px;
+  --height-lg: 40px;
+  --height-xl: 48px;
+
+  --width-xs: 24px;
+  --width-sm: 32px;
+  --width-md: 40px;
+  --width-lg: 48px;
+  --width-xl: 56px;
+
+  /* Icon style tokens */
+  --icon-stroke-width: 1.75;
+  --icon-opacity: 1;
+}
+
+/* Icon style — global hooks used by Icon / SVG icons */
+[data-icon-style='outline'] {
+  --icon-stroke-width: 1.75;
+  --icon-opacity: 1;
+}
+
+[data-icon-style='solid'] {
+  --icon-stroke-width: 2.25;
+  --icon-opacity: 1;
+}

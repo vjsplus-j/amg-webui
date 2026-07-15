@@ -1,0 +1,17 @@
+export default {
+  'button.save': '보관',
+  'button.cancel': '취소',
+  'button.delete': '삭제',
+  'button.confirm': '확인',
+  'button.continue': '계속',
+  'button.refresh': '갱신',
+  'button.create': '새로 만들기',
+  'button.edit': '편집',
+  'button.submit': '제출',
+  'button.reset': '초기화',
+  'button.signIn': '들어가기',
+  'button.signOut': '나가기',
+  'button.getStarted': '시작하기',
+  'button.learnMore': '더 보기',
+  'button.enter': '입장',
+} as Record<string, string>

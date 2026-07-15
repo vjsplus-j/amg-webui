@@ -1,0 +1,111 @@
+.vp-cascader {
+  position: relative;
+  display: inline-flex;
+  min-width: 180px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.vp-cascader__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: var(--height-md);
+  padding: 0 var(--spacing-md);
+  background: var(--surface-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--theme-input-radius, var(--border-radius-md));
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-sans);
+  cursor: pointer;
+  transition: border-color var(--transition-normal);
+
+  &:hover:not(:disabled) {
+    border-color: var(--border-color-hover);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.vp-cascader__label {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &--placeholder {
+    color: var(--text-muted);
+  }
+}
+
+.vp-cascader__icon {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.vp-cascader__panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: var(--spacing-xs);
+  display: flex;
+  background: var(--surface-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.vp-cascader__menu {
+  min-width: 140px;
+  max-height: 200px;
+  overflow-y: auto;
+  border-right: 1px solid var(--border-color);
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.vp-cascader__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+
+  &:hover {
+    background: var(--surface-3);
+  }
+
+  &--active {
+    background: var(--surface-2);
+    color: var(--primary-500);
+  }
+
+  &--selected {
+    color: var(--primary-500);
+    font-weight: var(--font-weight-medium, 500);
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.vp-cascader__arrow {
+  color: var(--text-muted);
+  margin-left: var(--spacing-sm);
+}

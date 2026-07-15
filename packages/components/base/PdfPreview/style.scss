@@ -1,0 +1,18 @@
+.vp-pdf-preview {
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+
+  &__obj,
+  &__frame {
+    width: 100%;
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--theme-card-radius, var(--border-radius-md));
+    background: var(--surface-1);
+  }
+
+  &__muted {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+  }
+}

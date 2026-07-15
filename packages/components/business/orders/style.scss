@@ -1,0 +1,23 @@
+.biz-orders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-section-gap, 1.25rem);
+}
+
+.biz-orders__stats {
+  margin-bottom: 0;
+}
+
+.biz-orders__toolbar {
+  /* Card host — row gap via .p-card-body */
+}
+
+.biz-orders__search {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.biz-orders__actions {
+  display: flex;
+  gap: var(--spacing-sm, 0.5rem);
+}

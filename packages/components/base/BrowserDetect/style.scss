@@ -1,0 +1,29 @@
+.vp-browser-detect {
+  display: grid;
+  gap: var(--spacing-md);
+  margin: 0;
+  padding: var(--theme-card-pad, var(--spacing-md));
+  background: var(--surface-1);
+  border: 1px solid var(--ds-border, var(--border-color));
+  border-radius: var(--theme-card-radius, var(--border-radius-md));
+  font-size: var(--font-size-md);
+  color: var(--text-primary);
+
+  &__item {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: var(--spacing-md);
+    align-items: baseline;
+  }
+
+  dt {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 500;
+  }
+}

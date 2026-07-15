@@ -1,0 +1,106 @@
+.vp-tooltip-trigger {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.vp-tooltip {
+  position: absolute;
+  z-index: 1000;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-body);
+  color: var(--text-primary);
+  background: var(--surface-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+  max-width: 100%;
+  pointer-events: none;
+
+  &--top {
+    bottom: calc(100% + var(--spacing-sm));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &--bottom {
+    top: calc(100% + var(--spacing-sm));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &--left {
+    right: calc(100% + var(--spacing-sm));
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &--right {
+    left: calc(100% + var(--spacing-sm));
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__arrow {
+    position: absolute;
+    width: var(--spacing-sm);
+    height: var(--spacing-sm);
+    background: var(--surface-1);
+    border: 1px solid var(--border-color);
+    transform: rotate(45deg);
+  }
+
+  &--top .vp-tooltip__arrow {
+    bottom: calc(var(--spacing-xs) * -1);
+    left: 50%;
+    margin-left: calc(var(--spacing-xs) * -1);
+    border-top: none;
+    border-left: none;
+  }
+
+  &--bottom .vp-tooltip__arrow {
+    top: calc(var(--spacing-xs) * -1);
+    left: 50%;
+    margin-left: calc(var(--spacing-xs) * -1);
+    border-bottom: none;
+    border-right: none;
+  }
+
+  &--left .vp-tooltip__arrow {
+    right: calc(var(--spacing-xs) * -1);
+    top: 50%;
+    margin-top: calc(var(--spacing-xs) * -1);
+    border-left: none;
+    border-bottom: none;
+  }
+
+  &--right .vp-tooltip__arrow {
+    left: calc(var(--spacing-xs) * -1);
+    top: 50%;
+    margin-top: calc(var(--spacing-xs) * -1);
+    border-right: none;
+    border-top: none;
+  }
+}
+
+.vp-tooltip-fade-enter-active,
+.vp-tooltip-fade-leave-active {
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+.vp-tooltip-fade-enter-from,
+.vp-tooltip-fade-leave-to {
+  opacity: 0;
+}
+
+.vp-tooltip--top.vp-tooltip-fade-enter-from,
+.vp-tooltip--top.vp-tooltip-fade-leave-to {
+  transform: translateX(-50%) translateY(var(--spacing-xs));
+}
+
+.vp-tooltip--bottom.vp-tooltip-fade-enter-from,
+.vp-tooltip--bottom.vp-tooltip-fade-leave-to {
+  transform: translateX(-50%) translateY(calc(var(--spacing-xs) * -1));
+}

@@ -1,0 +1,17 @@
+export default {
+  'button.save': 'Save',
+  'button.cancel': 'Cancel',
+  'button.delete': 'Delete',
+  'button.confirm': 'Confirm',
+  'button.continue': 'Continue',
+  'button.refresh': 'Refresh',
+  'button.create': 'Create',
+  'button.edit': 'Edit',
+  'button.submit': 'Submit',
+  'button.reset': 'Reset',
+  'button.signIn': 'Sign in',
+  'button.signOut': 'Sign out',
+  'button.getStarted': 'Get started',
+  'button.learnMore': 'Learn more',
+  'button.enter': 'Enter',
+} as Record<string, string>
