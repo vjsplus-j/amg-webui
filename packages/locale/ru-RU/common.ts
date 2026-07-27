@@ -41,7 +41,7 @@ export default {
   'common.play': 'Воспроизведение',
   'common.rows': 'Строки',
   'common.columns': 'Столбцы',
-  'avatar.group.overflow': 'ещё {count}',
+  'avatar.group.overflow': 'ещё {count, plural, one {# человек} few {# человека} many {# человек} other {# человека}}',
   'avatar.group.membersTooltip': '{names}',
   'avatar.group.listSep': ', ',
   'badge.aria.count': '{count}',

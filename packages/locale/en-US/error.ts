@@ -5,7 +5,7 @@ export default {
   'error.notFound': 'Not found',
   'error.validation': 'Please check the form',
   'error.required': 'This field is required',
-  'error.minLength': 'At least {min} characters',
+  'error.minLength': 'At least {min, plural, one {# character} other {# characters}}',
   'error.passwordMismatch': 'Passwords do not match',
   'error.invalidEmail': 'Enter a valid email address'
 } as Record<string, string>

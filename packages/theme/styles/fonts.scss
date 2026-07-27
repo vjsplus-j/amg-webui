@@ -1,24 +1,56 @@
 /*
  * Font stacks via html[data-font]
  * Brand fonts loaded in demo/index.html (Google Fonts proxies for proprietary faces)
+ *
+ * Locale-aware CJK fallback:
+ * --font-cjk-fallback is resolved per html[data-locale] (written by LocaleService).
+ * Brand font always wins; locale fallback only affects characters the brand
+ * font does not cover (kana, hangul, TC glyphs …).
  */
+
+:root {
+  /* Default CJK fallback (zh-CN) — also the SSR / pre-init state */
+  --font-cjk-fallback: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC';
+}
+
+[data-locale='zh-TW'] {
+  --font-cjk-fallback: 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', 'PingFang SC';
+}
+
+[data-locale='ja-JP'] {
+  --font-cjk-fallback:
+    'Hiragino Sans',
+    'Hiragino Kaku Gothic ProN',
+    'Yu Gothic',
+    'YuGothic',
+    'Meiryo',
+    'Noto Sans JP',
+    'MS Gothic';
+}
+
+[data-locale^='ko'] {
+  /* ko-KR / ko-KP share the same hangul stack */
+  --font-cjk-fallback:
+    'Pretendard',
+    'Apple SD Gothic Neo',
+    'Malgun Gothic',
+    'Noto Sans KR',
+    'Dotum';
+}
 
 [data-font='inter'] {
   --font-family-sans:
     'Inter',
     'Inter Variable',
-    'PingFang SC',
-    'Hiragino Sans GB',
+    var(--font-cjk-fallback),
     'Segoe UI',
-    'Microsoft YaHei',
     system-ui,
     sans-serif;
   --font-family-display:
     'Inter Display',
     'Inter',
     'Inter Variable',
-    'PingFang SC',
-    'Hiragino Sans GB',
+    var(--font-cjk-fallback),
     system-ui,
     sans-serif;
   --font-family-mono: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
@@ -28,14 +60,13 @@
   --font-family-sans:
     'Barlow',
     'Inter',
-    'PingFang SC',
-    'Microsoft YaHei',
+    var(--font-cjk-fallback),
     system-ui,
     sans-serif;
   --font-family-display:
     'Barlow',
     'Inter',
-    'PingFang SC',
+    var(--font-cjk-fallback),
     system-ui,
     sans-serif;
   --font-family-mono: 'ui-monospace', 'Menlo', 'Consolas', monospace;
@@ -46,13 +77,13 @@
     'Anton',
     'Arial Black',
     'Impact',
-    'PingFang SC',
-    'Microsoft YaHei',
+    var(--font-cjk-fallback),
     sans-serif;
   --font-family-display:
     'Anton',
     'Arial Black',
     'Impact',
+    var(--font-cjk-fallback),
     sans-serif;
   --font-family-mono: 'ui-monospace', 'Consolas', monospace;
 }
@@ -61,13 +92,13 @@
   --font-family-sans:
     'Archivo',
     'Inter',
-    'PingFang SC',
-    'Microsoft YaHei',
+    var(--font-cjk-fallback),
     system-ui,
     sans-serif;
   --font-family-display:
     'Archivo',
     'Inter',
+    var(--font-cjk-fallback),
     system-ui,
     sans-serif;
   --font-family-mono: 'ui-monospace', 'Menlo', 'Consolas', monospace;
@@ -79,7 +110,7 @@
     -apple-system,
     BlinkMacSystemFont,
     'SF Pro Text',
-    'PingFang SC',
+    var(--font-cjk-fallback),
     'Segoe UI',
     sans-serif;
   --font-family-display:
@@ -87,26 +118,26 @@
     -apple-system,
     BlinkMacSystemFont,
     'SF Pro Display',
-    'PingFang SC',
+    var(--font-cjk-fallback),
     sans-serif;
   --font-family-mono: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
 }
 
 [data-font='yahei'] {
-  --font-family-sans: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Noto Sans SC', sans-serif;
-  --font-family-display: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  --font-family-sans: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Noto Sans SC', var(--font-cjk-fallback), sans-serif;
+  --font-family-display: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Noto Sans SC', var(--font-cjk-fallback), sans-serif;
   --font-family-mono: 'Cascadia Code', 'Consolas', 'Microsoft YaHei', monospace;
 }
 
 [data-font='song'] {
-  --font-family-sans: 'SimSun', '宋体', 'Songti SC', 'Noto Serif SC', serif;
-  --font-family-display: 'SimSun', '宋体', 'Songti SC', 'STSong', serif;
+  --font-family-sans: 'SimSun', '宋体', 'Songti SC', 'Noto Serif SC', var(--font-cjk-fallback), serif;
+  --font-family-display: 'SimSun', '宋体', 'Songti SC', 'STSong', var(--font-cjk-fallback), serif;
   --font-family-mono: 'Courier New', 'SimSun', '宋体', monospace;
 }
 
 [data-font='heiti'] {
-  --font-family-sans: 'SimHei', '黑体', 'Heiti SC', 'STHeiti', 'Noto Sans SC', sans-serif;
-  --font-family-display: 'SimHei', '黑体', 'Heiti SC', 'STHeiti', sans-serif;
+  --font-family-sans: 'SimHei', '黑体', 'Heiti SC', 'STHeiti', 'Noto Sans SC', var(--font-cjk-fallback), sans-serif;
+  --font-family-display: 'SimHei', '黑体', 'Heiti SC', 'STHeiti', var(--font-cjk-fallback), sans-serif;
   --font-family-mono: 'Consolas', 'SimHei', '黑体', monospace;
 }
 
@@ -118,8 +149,8 @@
     BlinkMacSystemFont,
     'SF Pro Text',
     'Helvetica Neue',
+    var(--font-cjk-fallback),
     'Segoe UI',
-    'Microsoft YaHei',
     sans-serif;
   --font-family-display:
     'PingFang SC',
@@ -128,6 +159,7 @@
     BlinkMacSystemFont,
     'SF Pro Display',
     'Helvetica Neue',
+    var(--font-cjk-fallback),
     sans-serif;
   --font-family-mono: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
 }

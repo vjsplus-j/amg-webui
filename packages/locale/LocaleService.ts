@@ -1,4 +1,5 @@
 import { LOCALE_CODES, LOCALE_META, locales, type LocaleCode, type LocaleMessages } from './messages'
+import { resolvePlurals } from './plural'
 
 const STORAGE_KEY = 'amg-webui-locale-v1'
 const ATTR = 'data-locale'
@@ -29,7 +30,8 @@ export class LocaleService {
 
   static t(key: string, params?: Record<string, string | number>, fallback?: string): string {
     const raw = locales[current][key] ?? fallback ?? key
-    return interpolate(raw, params)
+    // Plural segments first ({count, plural, …}), then plain {param} interpolation
+    return interpolate(resolvePlurals(raw, params, current), params)
   }
 
   static setLocale(code: LocaleCode): void {

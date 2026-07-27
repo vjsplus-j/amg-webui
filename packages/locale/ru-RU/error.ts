@@ -5,7 +5,7 @@ export default {
   'error.notFound': 'Не найдено',
   'error.validation': 'Проверьте заполнение формы',
   'error.required': 'Обязательное поле',
-  'error.minLength': 'Не менее {min} символов',
+  'error.minLength': 'Не менее {min, plural, one {# символ} few {# символа} many {# символов} other {# символа}}',
   'error.passwordMismatch': 'Пароли не совпадают',
   'error.invalidEmail': 'Введите корректный адрес электронной почты'
 } as Record<string, string>
