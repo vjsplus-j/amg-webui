@@ -8,6 +8,7 @@ import { getCatalogEntry } from '../../component-catalog'
 import { componentMaturity, type MaturityLevel } from '../../component-zones'
 import { getCuratedDemo } from '../../demos/registry'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
+import ExamplePageHero from '../../components/ExamplePageHero.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
 import type { PropRow } from '../../components/demo/types'
 
@@ -132,18 +133,16 @@ watch(
 
 <template>
   <div v-if="entry" class="vp-doc-page">
-    <header class="ln-page-hero">
-      <div class="vp-doc-page__title-row">
-        <h1 class="ln-page-title">{{ displayTitle }}</h1>
+    <ExamplePageHero :title="displayTitle" :lead="whenToUse">
+      <template #title-extra>
         <Tag
           size="sm"
           :severity="levelSeverity(maturity.level)"
           :label="levelLabel(maturity.level)"
           :title="t(LocaleKeys.page.gallery.maturity.score, { score: maturity.score })"
         />
-      </div>
-      <p class="ln-page-lead">{{ whenToUse }}</p>
-    </header>
+      </template>
+    </ExamplePageHero>
 
     <section v-if="curated" class="vp-doc-page__section">
       <h2 class="vp-doc-page__h2">{{ t(LocaleKeys.exampleDoc.demos) }}</h2>
@@ -189,19 +188,18 @@ watch(
 
 <style scoped>
 .vp-doc-page {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
 
-.vp-doc-page__title-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--spacing-md);
-}
-
 .vp-doc-page__section {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
@@ -214,12 +212,15 @@ watch(
   color: var(--text-primary);
 }
 
+/* Prose only — never apply max-width to DemoBlock / curated demos / PropsTable */
 .vp-doc-page__body,
 .vp-doc-page__hint {
   margin: 0;
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
   line-height: var(--line-height-body);
-  max-width: 48rem;
 }
 </style>
+
+<!-- Full-bleed curated contract — see vue3-amg-webui-example-demo-layout.mdc -->
+<style src="../../components/demo/curatedDemo.scss"></style>

@@ -6,14 +6,14 @@ import './style.scss'
 
 defineOptions({ inheritAttrs: false })
 
-/** Inline â€?imported `ProgressProps` is not expanded into runtime props. */
+/** Inline ï¿½ imported `ProgressProps` is not expanded into runtime props. */
 const props = withDefaults(
   defineProps<{
     percentage: number
     type?: ProgressType
     status?: ProgressStatus
     showText?: boolean
-    /** Stroke thickness â€?Size token CSS var or CSS length */
+    /** Stroke thickness ï¿½ Size token CSS var or CSS length */
     strokeWidth?: number | string
     trackId?: string
     telemetry?: boolean
@@ -88,7 +88,7 @@ const progressClass = computed(() => [
 function resolveStroke(raw: number | string | undefined): string | undefined {
   if (raw == null || raw === '') return undefined
   if (typeof raw === 'number') {
-    /* Map 1â€? â†?spacing steps (avoid raw px in CSS) */
+    /* Map 1ï¿½4 ? spacing steps (avoid raw px in CSS) */
     const steps = [
       'var(--spacing-xs)',
       'var(--spacing-sm)',
@@ -112,8 +112,18 @@ const barStyle = computed(() => ({
   width: `${clampedPercentage.value}%`
 }))
 
+/**
+ * Circle geometry uses abstract SVG user units (not CSS px).
+ * Display size is tokenized via `--height-xl`; stroke uses `--vp-progress-stroke`.
+ */
+const CIRCLE_STROKE_PAD = 4
+const CIRCLE_RADIUS = 18
+const CIRCLE_VIEW = (CIRCLE_RADIUS + CIRCLE_STROKE_PAD) * 2
+const CIRCLE_CENTER = CIRCLE_VIEW / 2
+
 const circleSize = computed(() => 'var(--height-xl)')
-const circleRadius = computed(() => 18)
+const circleRadius = computed(() => CIRCLE_RADIUS)
+const circleViewBox = computed(() => `0 0 ${CIRCLE_VIEW} ${CIRCLE_VIEW}`)
 const circumference = computed(() => 2 * Math.PI * circleRadius.value)
 const strokeDashoffset = computed(
   () => circumference.value * (1 - clampedPercentage.value / 100)
@@ -140,20 +150,20 @@ const strokeDashoffset = computed(
         class="vp-progress__circle"
         :width="circleSize"
         :height="circleSize"
-        viewBox="0 0 44 44"
+        :viewBox="circleViewBox"
         aria-hidden="true"
       >
         <circle
           class="vp-progress__track"
-          cx="22"
-          cy="22"
+          :cx="CIRCLE_CENTER"
+          :cy="CIRCLE_CENTER"
           :r="circleRadius"
           fill="none"
         />
         <circle
           class="vp-progress__arc"
-          cx="22"
-          cy="22"
+          :cx="CIRCLE_CENTER"
+          :cy="CIRCLE_CENTER"
           :r="circleRadius"
           fill="none"
           :stroke-dasharray="circumference"

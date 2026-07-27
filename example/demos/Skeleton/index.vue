@@ -1,15 +1,105 @@
 <script setup lang="ts">
+/**
+ * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
+ */
 import { computed, ref } from 'vue'
 import { Button, Card, Skeleton } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
-import type { PropRow } from '../../components/demo/types'
+import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
 const contentReady = ref(false)
+const homeLoading = ref(true)
+
+function replayHomeLoad() {
+  homeLoading.value = true
+  window.setTimeout(() => {
+    homeLoading.value = false
+  }, 1400)
+}
+
+replayHomeLoad()
+
+function toggleContent() {
+  contentReady.value = !contentReady.value
+}
+
+/* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
+
+const codeBasic = demoSfc({
+  imports: [`import { Skeleton } from '@amg-webui/components/base'`],
+  template: [
+    `  <Skeleton`,
+    `    :rows="1"`,
+    `    width="40%"`,
+    `    :aria-label="t('example.doc.skeleton.sample.title')"`,
+    `  />`,
+    `  <Skeleton`,
+    `    :rows="1"`,
+    `    :aria-label="t('example.doc.skeleton.sample.line')"`,
+    `  />`
+  ]
+})
+
+const codePage = demoCode(
+  `<Skeleton`,
+  `  variant="page"`,
+  `  :rows="5"`,
+  `  :loading="homeLoading"`,
+  `  :aria-label="t('example.doc.skeleton.sample.page')"`,
+  `>`,
+  `  <p>{{ t('example.doc.skeleton.sample.homeReady') }}</p>`,
+  `</Skeleton>`
+)
+
+const codeParagraph = demoCode(
+  `<Skeleton variant="paragraph" :rows="4" />`,
+  `<Skeleton :rows="3" :width="['100%', '90%', '72%']" />`
+)
+
+const codeImage = demoCode(
+  `<Skeleton variant="circle" size="lg" />`,
+  `<Skeleton variant="circle" size="md" />`,
+  `<Skeleton variant="image" height="calc(var(--height-xl) * 2)" />`,
+  `<Skeleton variant="rect" round width="100%" height="var(--height-xl)" />`
+)
+
+const codeList = demoCode(
+  `<Skeleton variant="list-item" :rows="2" size="md" />`,
+  `<Skeleton variant="list-item" :rows="2" size="md" />`,
+  `<Skeleton variant="list-item" :rows="2" size="md" />`
+)
+
+const codeCard = demoCode(
+  `<Skeleton variant="card" :rows="3" />`,
+  `<Skeleton variant="card" :rows="2" />`
+)
+
+const codeAnim = demoCode(
+  `<Skeleton animated animation="shimmer" :rows="2" />`,
+  `<Skeleton animation="pulse" :rows="2" />`,
+  `<Skeleton :animated="false" :rows="2" />`
+)
+
+const codeSwitch = demoCode(
+  `<Skeleton :loading="!ready">`,
+  `  <p>{{ t('example.doc.skeleton.sample.contentBody') }}</p>`,
+  `</Skeleton>`
+)
+
+const codeSlots = demoCode(
+  `<!-- default slot = real content when loading=false -->`,
+  `<Skeleton :loading="false">`,
+  `  <p>{{ t('example.doc.skeleton.sample.contentBody') }}</p>`,
+  `</Skeleton>`
+)
+
+/* ─── API tables ─── */
 
 const propRows = computed<PropRow[]>(() => [
   {
@@ -53,53 +143,43 @@ const propRows = computed<PropRow[]>(() => [
     description: t('example.doc.skeleton.prop.round'),
     type: 'boolean',
     defaultValue: 'false'
+  },
+  {
+    name: 'ariaLabel',
+    description: t('example.doc.skeleton.prop.ariaLabel'),
+    type: 'string',
+    defaultValue: '-'
   }
 ])
 
-const codePage = `<Skeleton variant="page" :loading="homeLoading" :rows="5">
-  <HomeDashboard />
-</Skeleton>`
+const eventRows = computed<ApiRow[]>(() => [])
 
-const homeLoading = ref(true)
-
-function replayHomeLoad() {
-  homeLoading.value = true
-  window.setTimeout(() => {
-    homeLoading.value = false
-  }, 1400)
-}
-
-replayHomeLoad()
-
-const codeText = `<Skeleton :rows="1" width="40%" />
-<Skeleton :rows="1" />`
-
-const codeParagraph = `<Skeleton variant="paragraph" :rows="4" />
-<Skeleton :rows="3" :width="['100%', '90%', '72%']" />`
-
-const codeImage = `<Skeleton variant="circle" size="lg" />
-<Skeleton variant="image" height="var(--height-xl)" />
-<Skeleton variant="rect" round width="40%" height="var(--height-xl)" />`
-
-const codeCard = `<Skeleton variant="card" :rows="3" />`
-
-const codeList = `<Skeleton variant="list-item" :rows="2" size="md" />`
-
-const codeAnim = `<Skeleton animated animation="shimmer" :rows="2" />
-<Skeleton animation="pulse" :rows="2" />
-<Skeleton :animated="false" :rows="2" />`
-
-const codeSwitch = `<Skeleton :loading="!ready">
-  <p>{{ content }}</p>
-</Skeleton>`
-
-function toggleContent() {
-  contentReady.value = !contentReady.value
-}
+const slotRows = computed<ApiRow[]>(() => [
+  {
+    name: 'default',
+    description: t('example.doc.skeleton.slot.default'),
+    type: 'VNode',
+    defaultValue: '-'
+  }
+])
 </script>
 
 <template>
   <div class="vp-curated">
+    <!-- 1. Basic — pasteable SFC, default-open -->
+    <DemoBlock
+      :title="t('example.doc.skeleton.demo.basic')"
+      :description="t('example.doc.skeleton.demo.basicDesc')"
+      :code="codeBasic"
+      default-open
+    >
+      <div class="vp-skel-stack">
+        <Skeleton :rows="1" width="40%" :aria-label="t('example.doc.skeleton.sample.title')" />
+        <Skeleton :rows="1" :aria-label="t('example.doc.skeleton.sample.line')" />
+      </div>
+    </DemoBlock>
+
+    <!-- 2. Feature blocks -->
     <DemoBlock
       :title="t('example.doc.skeleton.demo.page')"
       :description="t('example.doc.skeleton.demo.pageDesc')"
@@ -121,17 +201,6 @@ function toggleContent() {
             <p class="vp-skel-content">{{ t('example.doc.skeleton.sample.homeReady') }}</p>
           </div>
         </Skeleton>
-      </div>
-    </DemoBlock>
-
-    <DemoBlock
-      :title="t('example.doc.skeleton.demo.text')"
-      :description="t('example.doc.skeleton.demo.textDesc')"
-      :code="codeText"
-    >
-      <div class="vp-skel-stack">
-        <Skeleton :rows="1" width="40%" :aria-label="t('example.doc.skeleton.sample.title')" />
-        <Skeleton :rows="1" :aria-label="t('example.doc.skeleton.sample.line')" />
       </div>
     </DemoBlock>
 
@@ -219,9 +288,29 @@ function toggleContent() {
       </div>
     </DemoBlock>
 
+    <!-- 3. Slots -->
+    <DemoBlock
+      :title="t('example.doc.skeleton.demo.slots')"
+      :description="t('example.doc.skeleton.demo.slotsDesc')"
+      :code="codeSlots"
+    >
+      <Skeleton :loading="false">
+        <p class="vp-skel-content">{{ t('example.doc.skeleton.sample.contentBody') }}</p>
+      </Skeleton>
+    </DemoBlock>
+
+    <!-- 4. API: Props → Events → Slots -->
     <section class="vp-curated__api">
       <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
       <PropsTable :rows="propRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
+      <PropsTable :rows="eventRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
+      <PropsTable :rows="slotRows" />
     </section>
   </div>
 </template>
@@ -241,16 +330,23 @@ function toggleContent() {
   line-height: var(--line-height-body);
 }
 
+.vp-curated__api-sub {
+  margin: var(--spacing-xl) 0 var(--spacing-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-heading, 600);
+  color: var(--text-primary);
+}
+
+.vp-curated__api-sub:first-of-type {
+  margin-top: 0;
+}
+
 .vp-skel-stack {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
   width: 100%;
   max-width: 28rem;
-}
-
-.vp-skel-page {
-  width: 100%;
 }
 
 .vp-skel-home {

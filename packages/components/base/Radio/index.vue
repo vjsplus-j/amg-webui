@@ -1,27 +1,31 @@
 <script setup lang="ts">
 import { computed, inject } from 'vue'
+import { trackEmit } from '@amg-webui/telemetry'
 import type { RadioProps, RadioEmits } from './types'
 import { RADIO_GROUP_INJECTION_KEY } from './types'
+import { useRadio } from './useRadio'
 import './style.scss'
 
-const props = defineProps<RadioProps>()
-const emit = defineEmits<RadioEmits>()
-
-const group = inject(RADIO_GROUP_INJECTION_KEY, null)
-
-const isChecked = computed(() => {
-  const current = group ? group.modelValue : props.modelValue
-  return current === props.value
+const props = withDefaults(defineProps<RadioProps>(), {
+  telemetry: undefined,
+  size: undefined
 })
 
-const isDisabled = computed(() => props.disabled || group?.disabled || false)
-const inputName = computed(() => group?.name ?? props.name)
+const emit = defineEmits<RadioEmits>()
+const group = inject(RADIO_GROUP_INJECTION_KEY, null)
 
-const rootClass = computed(() => [
-  'vp-radio',
-  { 'vp-radio--disabled': isDisabled.value },
-  props.class
-])
+const radioSource = computed(() => ({
+  modelValue: props.modelValue,
+  value: props.value,
+  disabled: props.disabled,
+  size: props.size,
+  name: props.name,
+  label: props.label,
+  class: props.class,
+  group
+}))
+
+const { isChecked, isDisabled, inputName, rootClass } = useRadio(radioSource)
 
 const handleChange = () => {
   if (isDisabled.value) return
@@ -31,6 +35,13 @@ const handleChange = () => {
     emit('update:modelValue', props.value)
     emit('change', props.value)
   }
+  trackEmit({
+    component: 'Radio',
+    type: 'change',
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { value: props.value }
+  })
 }
 </script>
 
@@ -43,6 +54,7 @@ const handleChange = () => {
       :value="String(value)"
       :checked="isChecked"
       :disabled="isDisabled"
+      :aria-checked="isChecked"
       @change="handleChange"
     />
     <span class="vp-radio__mark" aria-hidden="true" />

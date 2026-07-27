@@ -24,9 +24,13 @@ const menuOpen = computed(() =>
 
 const resolvedSeverity = computed(() => props.type ?? props.severity ?? 'primary')
 
+/** Map numeric offsets to spacing-token multiples (avoid raw px). */
 function toPos(val?: string | number): string | undefined {
   if (val == null) return undefined
-  return typeof val === 'number' ? `${val}px` : val
+  if (typeof val === 'number') {
+    return `calc(var(--spacing-xs) * ${Math.max(0, val)})`
+  }
+  return val
 }
 
 const posStyle = computed(() => ({
@@ -76,6 +80,9 @@ watch(
 )
 
 const expandLabel = computed(() => t('common.more', undefined, 'More'))
+const triggerAriaLabel = computed(
+  () => props.ariaLabel || (hasMenu.value ? expandLabel.value : expandLabel.value)
+)
 </script>
 
 <template>
@@ -89,7 +96,7 @@ const expandLabel = computed(() => t('common.more', undefined, 'More'))
       :class="triggerClass"
       :href="href"
       type="button"
-      :aria-label="menuOpen ? expandLabel : undefined"
+      :aria-label="triggerAriaLabel"
       :aria-expanded="hasMenu ? menuOpen : undefined"
       @click="handleClick"
     >

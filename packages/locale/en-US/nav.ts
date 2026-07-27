@@ -1,5 +1,6 @@
 export default {
   'nav.overview': 'Overview',
+  'nav.intro': 'Getting started',
   'nav.base': 'Base',
   'nav.biz': 'Business',
   'nav.theme': 'Themes',

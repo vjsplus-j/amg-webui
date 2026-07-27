@@ -1,4 +1,7 @@
 <script setup lang="ts">
+/**
+ * Curated demo — aligned with Avatar gold standard (demoCode / demoSfc / API thirds).
+ */
 import { computed, ref } from 'vue'
 import { Avatar, Badge, Button, Icon } from '@amg-webui/components/base'
 import type { Size } from '@amg-webui/types'
@@ -8,30 +11,32 @@ import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
 import MotionLivePanel from '../../components/demo/MotionLivePanel.vue'
 import { createMotionLiveState } from '../../components/demo/motionLive'
-import type { PropRow } from '../../components/demo/types'
+import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
 const sizes: Size[] = ['xs', 'sm', 'md', 'lg', 'xl']
 const severities = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'] as const
 
+const lastEvent = ref('')
 const motion = createMotionLiveState()
 /** Badge ring pulse — separate from shared opacity pulse */
 const badgePulse = ref(false)
 
 const codeMotionLive = computed(() => {
   const s = motion.value
-  return [
+  return demoCode(
     '<Badge',
     '  :value="3"',
-    ...(s.spin ? ['  spin'] : []),
-    ...(badgePulse.value ? ['  pulse'] : []),
-    ...(s.heartbeat ? ['  heartbeat'] : []),
-    ...(s.bounce ? ['  bounce'] : []),
+    s.spin && '  spin',
+    badgePulse.value && '  pulse',
+    s.heartbeat && '  heartbeat',
+    s.bounce && '  bounce',
     '>',
-    '  <Icon name="Bell" />',
+    '  <Icon name="Bell" size="lg" />',
     '</Badge>'
-  ].join('\n')
+  )
 })
 
 /** Host motion props without shared `pulse` (Badge.pulse is ring). */
@@ -40,6 +45,157 @@ const badgeMotionBind = computed(() => ({
   heartbeat: motion.value.heartbeat,
   bounce: motion.value.bounce
 }))
+
+function noteEvent(kind: string) {
+  lastEvent.value = kind
+}
+
+const codeBasic = demoSfc({
+  imports: [
+    `import { Badge, Icon } from '@amg-webui/components/base'`
+  ],
+  template: [
+    `  <Badge :value="5">`,
+    `    <Icon name="Bell" />`,
+    `  </Badge>`,
+    `  <Badge :value="0">`,
+    `    <Icon name="MessageCircle" />`,
+    `  </Badge>`,
+    `  <Badge :value="3" severity="primary">`,
+    `    <Icon name="Archive" />`,
+    `  </Badge>`
+  ]
+})
+
+const codeDot = demoCode(
+  `<Badge dot>`,
+  `  <Icon name="MessageCircle" />`,
+  `</Badge>`,
+  `<Badge dot severity="success">`,
+  `  <Icon name="User" />`,
+  `</Badge>`,
+  `<Badge dot severity="warning">`,
+  `  <Icon name="Settings" />`,
+  `</Badge>`
+)
+
+const codeText = demoCode(
+  `<Badge :value="t('example.doc.badge.sample.new')">`,
+  `  <Button size="sm" variant="outlined">{{ t('example.doc.badge.sample.hostBtn') }}</Button>`,
+  `</Badge>`,
+  `<Badge :value="t('example.doc.badge.sample.hot')" severity="warning">`,
+  `  <Button size="sm" variant="outlined">{{ t('example.doc.badge.sample.hostBtn') }}</Button>`,
+  `</Badge>`,
+  `<Badge :value="t('example.doc.badge.sample.urgent')" severity="danger">`,
+  `  <Icon name="TriangleAlert" />`,
+  `</Badge>`
+)
+
+const codeMax = demoCode(
+  `<Badge :value="100" :max="99">`,
+  `  <Icon name="Archive" />`,
+  `</Badge>`,
+  `<Badge :value="1000" :max="999">`,
+  `  <Icon name="Bell" />`,
+  `</Badge>`,
+  `<Badge :value="42" :max="99" severity="info">`,
+  `  <Icon name="MessageCircle" />`,
+  `</Badge>`
+)
+
+const codeSize = demoCode(
+  `<Badge :value="8" size="xs"><Icon name="Bell" size="xs" /></Badge>`,
+  `<Badge :value="8" size="sm"><Icon name="Bell" size="sm" /></Badge>`,
+  `<Badge :value="8" size="md"><Icon name="Bell" size="md" /></Badge>`,
+  `<Badge :value="8" size="lg"><Icon name="Bell" size="lg" /></Badge>`,
+  `<Badge :value="8" size="xl"><Icon name="Bell" size="xl" /></Badge>`
+)
+
+const codeSeverity = demoCode(
+  `<Badge :value="3" severity="primary"><Icon name="Bell" /></Badge>`,
+  `<Badge :value="3" severity="secondary"><Icon name="Bell" /></Badge>`,
+  `<Badge :value="3" severity="success"><Icon name="Bell" /></Badge>`,
+  `<Badge :value="3" severity="warning"><Icon name="Bell" /></Badge>`,
+  `<Badge :value="3" severity="danger"><Icon name="Bell" /></Badge>`,
+  `<Badge :value="3" severity="info"><Icon name="Bell" /></Badge>`
+)
+
+const codeCustom = demoCode(
+  `<Badge`,
+  `  :value="9"`,
+  `  color="var(--primary-500)"`,
+  `  color-text="var(--text-on-primary, var(--surface-0))"`,
+  `>`,
+  `  <Icon name="Star" />`,
+  `</Badge>`,
+  `<Badge`,
+  `  :value="7"`,
+  `  color-bg="var(--success-500)"`,
+  `  color-text="var(--text-on-primary, var(--surface-0))"`,
+  `>`,
+  `  <Icon name="Pin" />`,
+  `</Badge>`,
+  `<Badge dot color="var(--warning-500)">`,
+  `  <Icon name="Zap" />`,
+  `</Badge>`
+)
+
+const codeTooltip = demoCode(
+  `<Badge`,
+  `  :value="12"`,
+  `  :tooltip="t('example.doc.badge.sample.tooltipUnread')"`,
+  `  :tooltip-delay="200"`,
+  `>`,
+  `  <Icon name="Bell" />`,
+  `</Badge>`,
+  `<Badge`,
+  `  dot`,
+  `  pulse`,
+  `  :tooltip="t('example.doc.badge.sample.tooltipUrgent')"`,
+  `>`,
+  `  <Icon name="CircleAlert" />`,
+  `</Badge>`
+)
+
+const codeState = demoCode(
+  `<Badge :value="3"><Icon name="Bell" /></Badge>`,
+  `<Badge :value="3" disabled><Icon name="Bell" /></Badge>`,
+  `<Badge dot pulse><Icon name="CircleAlert" /></Badge>`,
+  `<Badge :value="5" hidden><Icon name="MessageCircle" /></Badge>`
+)
+
+const codeSlots = demoCode(
+  `<Badge :value="2">`,
+  `  <Avatar text="VP" size="sm" />`,
+  `</Badge>`,
+  `<Badge :value="1" severity="success">`,
+  `  <Button size="sm" variant="outlined">{{ t('example.doc.badge.sample.hostBtn') }}</Button>`,
+  `</Badge>`,
+  `<Badge value="HOT" severity="warning" position="top-left">`,
+  `  <Icon name="Funnel" size="lg" />`,
+  `</Badge>`
+)
+
+const codeEvents = demoCode(
+  `<Badge :value="5" @click="onClick">`,
+  `  <Icon name="Bell" />`,
+  `</Badge>`,
+  `<Badge :value="3" disabled @click="onClick">`,
+  `  <Icon name="Bell" />`,
+  `</Badge>`
+)
+
+const codeHost = demoCode(
+  `<Badge :value="2">`,
+  `  <Avatar text="VP" size="sm" />`,
+  `</Badge>`,
+  `<Badge :value="1" severity="success">`,
+  `  <Button size="sm" variant="outlined">{{ t('example.doc.badge.sample.hostBtn') }}</Button>`,
+  `</Badge>`,
+  `<Badge value="HOT" severity="warning" position="top-left">`,
+  `  <Icon name="Funnel" size="lg" />`,
+  `</Badge>`
+)
 
 const propRows = computed<PropRow[]>(() => [
   {
@@ -113,71 +269,35 @@ const propRows = computed<PropRow[]>(() => [
     description: t('example.doc.motion.prop.animationDuration'),
     type: 'number | string',
     defaultValue: '-'
-  },
+  }
+])
+
+const eventRows = computed<ApiRow[]>(() => [
   {
-    name: '@click',
+    name: 'click',
     description: t('example.doc.badge.emit.click'),
     type: '(event: MouseEvent) => void',
     defaultValue: '-'
   }
 ])
 
-const codeCount = `<Badge :value="5">
-  <Icon name="Bell" />
-</Badge>
-<Badge :value="0"><Icon name="MessageCircle" /></Badge>`
-
-const codeDot = `<Badge dot>
-  <Icon name="MessageCircle" />
-</Badge>`
-
-const codeText = `<Badge value="NEW">
-  <Button size="sm">…</Button>
-</Badge>`
-
-const codeMax = `<Badge :value="100" :max="99">
-  <Icon name="Archive" />
-</Badge>
-<Badge :value="1000" :max="999">
-  <Icon name="Bell" />
-</Badge>`
-
-const codeSize = `<Badge :value="8" size="xs"><Icon name="Bell" /></Badge>
-<!-- sm md lg xl -->`
-
-const codeSeverity = `<Badge :value="3" severity="primary"><Icon name="Bell" /></Badge>
-<!-- success / warning / danger / info -->`
-
-const codeCustom = `<Badge
-  :value="9"
-  color="var(--primary-500)"
-  color-text="var(--text-on-primary, var(--surface-0))"
->
-  <Icon name="Star" />
-</Badge>`
-
-const codeTooltip = `<Badge
-  :value="12"
-  :tooltip="…"
-  :tooltip-delay="200"
->
-  <Icon name="Bell" />
-</Badge>`
-
-const codeState = `<Badge :value="3" disabled><Icon name="Bell" /></Badge>
-<Badge dot pulse><Icon name="CircleAlert" /></Badge>
-<Badge :value="5" hidden><Icon name="MessageCircle" /></Badge>`
-
-const codeHost = `<Badge :value="2"><Avatar text="VP" size="sm" /></Badge>
-<Badge :value="1"><Button size="sm">…</Button></Badge>`
+const slotRows = computed<ApiRow[]>(() => [
+  {
+    name: 'default',
+    description: t('example.doc.badge.slot.default'),
+    type: 'VNode',
+    defaultValue: '-'
+  }
+])
 </script>
 
 <template>
   <div class="vp-curated">
     <DemoBlock
-      :title="t('example.doc.badge.demo.count')"
-      :description="t('example.doc.badge.demo.countDesc')"
-      :code="codeCount"
+      :title="t('example.doc.badge.demo.basic')"
+      :description="t('example.doc.badge.demo.basicDesc')"
+      :code="codeBasic"
+      default-open
     >
       <div class="vp-badge-row">
         <Badge :value="5">
@@ -344,6 +464,48 @@ const codeHost = `<Badge :value="2"><Avatar text="VP" size="sm" /></Badge>
     </DemoBlock>
 
     <DemoBlock
+      :title="t('example.doc.badge.demo.slots')"
+      :description="t('example.doc.badge.demo.slotsDesc')"
+      :code="codeSlots"
+    >
+      <div class="vp-badge-row">
+        <Badge :value="2">
+          <Avatar text="VP" size="sm" />
+        </Badge>
+        <Badge :value="1" severity="success">
+          <Button size="sm" variant="outlined">{{ t('example.doc.badge.sample.hostBtn') }}</Button>
+        </Badge>
+        <Badge value="HOT" severity="warning" position="top-left">
+          <Icon name="Funnel" size="lg" />
+        </Badge>
+      </div>
+    </DemoBlock>
+
+    <DemoBlock
+      :title="t('example.doc.badge.demo.events')"
+      :description="t('example.doc.badge.demo.eventsDesc')"
+      :code="codeEvents"
+    >
+      <div class="vp-badge-events">
+        <div class="vp-badge-row">
+          <Badge :value="5" @click="noteEvent('click')">
+            <Icon name="Bell" />
+          </Badge>
+          <Badge :value="3" disabled @click="noteEvent('click')">
+            <Icon name="Bell" />
+          </Badge>
+        </div>
+        <p class="vp-badge-events__log">
+          {{
+            t('example.doc.badge.sample.eventLog', {
+              event: lastEvent || t('example.doc.badge.sample.eventIdle')
+            })
+          }}
+        </p>
+      </div>
+    </DemoBlock>
+
+    <DemoBlock
       :title="t('example.doc.icon.demo.motion')"
       :description="t('example.doc.motion.demo.desc')"
       :code="codeMotionLive"
@@ -388,7 +550,15 @@ const codeHost = `<Badge :value="2"><Avatar text="VP" size="sm" /></Badge>
 
     <section class="vp-curated__api">
       <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
       <PropsTable :rows="propRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
+      <PropsTable :rows="eventRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
+      <PropsTable :rows="slotRows" />
     </section>
   </div>
 </template>
@@ -406,11 +576,36 @@ const codeHost = `<Badge :value="2"><Avatar text="VP" size="sm" /></Badge>
   color: var(--text-primary);
 }
 
+.vp-curated__api-sub {
+  margin: var(--spacing-xl) 0 var(--spacing-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-heading, 600);
+  color: var(--text-primary);
+}
+
+.vp-curated__api-sub:first-of-type {
+  margin-top: 0;
+}
+
 .vp-badge-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--spacing-xl);
   padding: var(--spacing-sm) 0;
+}
+
+.vp-badge-events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.vp-badge-events__log {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: var(--line-height-body);
 }
 </style>

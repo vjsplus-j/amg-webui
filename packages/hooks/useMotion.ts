@@ -1,9 +1,10 @@
-import { computed, type MaybeRefOrGetter, toValue } from 'vue'
+import { computed, ref, type MaybeRefOrGetter, toValue } from 'vue'
 import {
   MOTION_CLASS,
   formatMotionDuration,
   resolveMotionKind
 } from '@amg-webui/animations/motion'
+import { AnimationService } from '@amg-webui/animations'
 import type { MotionKind, MotionProps } from '@amg-webui/types'
 
 export type { MotionKind, MotionProps }
@@ -21,12 +22,29 @@ export interface UseMotionSource extends MotionProps {
   legacyIconClasses?: boolean
 }
 
+/** Shared tick so AnimationService enable/disable invalidates motion computeds. */
+const motionGateTick = ref(0)
+let motionGateHooked = false
+
+function ensureMotionGate(): void {
+  if (motionGateHooked) return
+  motionGateHooked = true
+  AnimationService.subscribe(() => {
+    motionGateTick.value += 1
+  })
+}
+
 /**
  * Library-wide host motion (shared `vp-motion--*` kinds).
  * Put `motionClass` + `motionStyle` on the component root (or mark host).
+ * Honors AnimationService master switch + prefers-reduced-motion.
  */
 export function useMotion(source: MaybeRefOrGetter<UseMotionSource>) {
+  ensureMotionGate()
+
   const motionKind = computed<MotionKind | null>(() => {
+    void motionGateTick.value
+    if (!AnimationService.isMotionAllowed()) return null
     const s = toValue(source)
     return resolveMotionKind({
       spin: s.spin,

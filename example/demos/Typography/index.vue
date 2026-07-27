@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+/**
+ * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
+ */
+import { computed, ref } from 'vue'
 import { Typography } from '@amg-webui/components/base'
 import type { Severity } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
@@ -7,7 +10,8 @@ import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import MotionLivePanel from '../../components/demo/MotionLivePanel.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
-import type { PropRow } from '../../components/demo/types'
+import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import type { ApiRow, PropRow } from '../../components/demo/types'
 import {
   createMotionLiveState,
   formatMotionLiveCode,
@@ -17,8 +21,13 @@ import {
 const { t } = useLocale()
 
 const headingTypes = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
-
 const colors: Severity[] = ['primary', 'secondary', 'success', 'warning', 'danger', 'info']
+
+const lastEvent = ref('')
+
+function noteEvent(kind: string) {
+  lastEvent.value = kind
+}
 
 const motion = createMotionLiveState({ glow: true })
 const motionBind = useMotionLiveBind(motion)
@@ -26,15 +35,168 @@ const codeMotionLive = computed(() =>
   formatMotionLiveCode('Typography', motion.value, [
     '  type="h3"',
     '  type-color="primary"',
-    `  content="${t('example.doc.typography.sample.motion')}"`
+    `  :content="t('example.doc.typography.sample.motion')"`
   ])
 )
+
+/* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
+
+const codeBasic = demoSfc({
+  imports: [`import { Typography } from '@amg-webui/components/base'`],
+  template: [
+    `  <Typography type="h2">{{ t('example.doc.typography.sample.heading', { level: 'h2' }) }}</Typography>`,
+    `  <Typography type="body">{{ t('example.doc.typography.sample.body') }}</Typography>`,
+    `  <Typography type-color="primary" strong>{{ t('example.doc.typography.sample.strong') }}</Typography>`,
+    `  <Typography code>{{ t('example.doc.typography.sample.code') }}</Typography>`
+  ]
+})
+
+const codeHeading = demoCode(
+  ...headingTypes.map(
+    (lv) =>
+      `<Typography type="${lv}">{{ t('example.doc.typography.sample.heading', { level: '${lv}' }) }}</Typography>`
+  )
+)
+
+const codeParagraph = demoCode(
+  `<Typography type="body-lg">{{ t('example.doc.typography.sample.bodyLg') }}</Typography>`,
+  `<Typography type="body">{{ t('example.doc.typography.sample.body') }}</Typography>`,
+  `<Typography type="body-sm">{{ t('example.doc.typography.sample.bodySm') }}</Typography>`,
+  `<Typography type="caption">{{ t('example.doc.typography.sample.caption') }}</Typography>`,
+  `<Typography type="secondary">{{ t('example.doc.typography.sample.secondary') }}</Typography>`
+)
+
+const codeColor = demoCode(
+  ...colors.map(
+    (c) =>
+      `<Typography type-color="${c}">{{ t('example.doc.typography.sample.color', { color: '${c}' }) }}</Typography>`
+  )
+)
+
+const codeStyle = demoCode(
+  `<Typography strong>{{ t('example.doc.typography.sample.strong') }}</Typography>`,
+  `<Typography italic>{{ t('example.doc.typography.sample.italic') }}</Typography>`,
+  `<Typography strong italic>{{ t('example.doc.typography.sample.strongItalic') }}</Typography>`,
+  `<Typography underline>{{ t('example.doc.typography.sample.underline') }}</Typography>`,
+  `<Typography mark>{{ t('example.doc.typography.sample.mark') }}</Typography>`,
+  `<Typography delete>{{ t('example.doc.typography.sample.delete') }}</Typography>`,
+  `<Typography code>{{ t('example.doc.typography.sample.code') }}</Typography>`
+)
+
+const codeEllipsis = demoCode(
+  `<Typography ellipsis class="vp-typo-clamp">`,
+  `  {{ t('example.doc.typography.sample.ellipsisLong') }}`,
+  `</Typography>`,
+  `<Typography :ellipsis="{ rows: 2, tooltip: true }" class="vp-typo-clamp">`,
+  `  {{ t('example.doc.typography.sample.ellipsisLong') }}`,
+  `</Typography>`,
+  `<Typography :ellipsis="{ rows: 3 }" class="vp-typo-clamp">`,
+  `  {{ t('example.doc.typography.sample.ellipsisLong') }}`,
+  `</Typography>`
+)
+
+const codeCopy = demoCode(
+  `<Typography copyable>{{ t('example.doc.typography.sample.copyId') }}</Typography>`,
+  `<Typography :copyable="{ text: 'sk-live-xxxxxx' }">`,
+  `  {{ t('example.doc.typography.sample.copySecret') }}`,
+  `</Typography>`,
+  `<Typography :copyable="{ icon: false }" clickable>`,
+  `  {{ t('example.doc.typography.sample.copyHidden') }}`,
+  `</Typography>`
+)
+
+const codeState = demoCode(
+  `<Typography>{{ t('example.doc.typography.sample.normal') }}</Typography>`,
+  `<Typography disabled>{{ t('example.doc.typography.sample.disabled') }}</Typography>`,
+  `<Typography loading>{{ t('example.doc.typography.sample.loading') }}</Typography>`,
+  `<Typography clickable type-color="primary">`,
+  `  {{ t('example.doc.typography.sample.clickable') }}`,
+  `</Typography>`
+)
+
+const codeLoading = demoCode(
+  `<Typography loading type="h3">`,
+  `  {{ t('example.doc.typography.sample.loadingLong') }}`,
+  `</Typography>`,
+  `<Typography loading type="body">`,
+  `  {{ t('example.doc.typography.sample.loadingHint') }}`,
+  `</Typography>`,
+  `<Typography shimmer type-color="primary" strong>`,
+  `  {{ t('example.doc.typography.sample.shimmer') }}`,
+  `</Typography>`
+)
+
+const codeFont = demoCode(
+  `<Typography font-family="sans">{{ t('example.doc.typography.sample.fontSans') }}</Typography>`,
+  `<Typography font-family="display" type="h3">`,
+  `  {{ t('example.doc.typography.sample.fontDisplay') }}`,
+  `</Typography>`,
+  `<Typography font-family="mono">{{ t('example.doc.typography.sample.fontMono') }}</Typography>`,
+  `<Typography :line-height="'var(--line-height-body)'" type="body">`,
+  `  {{ t('example.doc.typography.sample.lineHeight') }}`,
+  `</Typography>`
+)
+
+const codeMotionFx = demoCode(
+  `<Typography blink type-color="warning" strong>`,
+  `  {{ t('example.doc.typography.sample.blink') }}`,
+  `</Typography>`,
+  `<Typography breathe type-color="success" strong>`,
+  `  {{ t('example.doc.typography.sample.breathe') }}`,
+  `</Typography>`,
+  `<Typography glow type-color="primary" type="h3">`,
+  `  {{ t('example.doc.typography.sample.glow') }}`,
+  `</Typography>`,
+  `<Typography marquee-left type-color="info" strong>`,
+  `  {{ t('example.doc.typography.sample.marqueeLeft') }}`,
+  `</Typography>`,
+  `<Typography marquee-right type-color="info" strong>`,
+  `  {{ t('example.doc.typography.sample.marqueeRight') }}`,
+  `</Typography>`,
+  `<Typography scroll-up type-color="secondary" strong>`,
+  `  {{ t('example.doc.typography.sample.scrollUp') }}`,
+  `</Typography>`,
+  `<Typography scroll-down type-color="secondary" strong>`,
+  `  {{ t('example.doc.typography.sample.scrollDown') }}`,
+  `</Typography>`,
+  `<Typography damp-out type-color="danger" strong>`,
+  `  {{ t('example.doc.typography.sample.dampOut') }}`,
+  `</Typography>`
+)
+
+const codeSlots = demoCode(
+  `<Typography type="h3">`,
+  `  {{ t('example.doc.typography.sample.slotDefault') }}`,
+  `</Typography>`,
+  `<Typography type="body" type-color="secondary">`,
+  `  <span>{{ t('example.doc.typography.sample.body') }}</span>`,
+  `</Typography>`
+)
+
+const codeEvents = demoCode(
+  `<Typography`,
+  `  copyable`,
+  `  @copy="onCopy"`,
+  `  @copy-error="onCopyError"`,
+  `>`,
+  `  {{ t('example.doc.typography.sample.copyId') }}`,
+  `</Typography>`,
+  `<Typography`,
+  `  clickable`,
+  `  type-color="primary"`,
+  `  @click="onClick"`,
+  `>`,
+  `  {{ t('example.doc.typography.sample.clickable') }}`,
+  `</Typography>`
+)
+
+/* ─── API tables ─── */
 
 const propRows = computed<PropRow[]>(() => [
   {
     name: 'type',
     description: t('example.doc.typography.prop.type'),
-    type: "'h1'…'h6' | 'body' | 'body-lg' | 'body-sm' | 'caption' | 'secondary'",
+    type: "'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body' | 'body-lg' | 'body-sm' | 'caption' | 'secondary'",
     defaultValue: "'body'"
   },
   {
@@ -86,44 +248,14 @@ const propRows = computed<PropRow[]>(() => [
     defaultValue: '-'
   },
   {
-    name: 'blink',
-    description: t('example.doc.motion.prop.blink'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'breathe',
-    description: t('example.doc.motion.prop.breathe'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'glow',
-    description: t('example.doc.motion.prop.glow'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'marqueeLeft / marqueeRight',
-    description: t('example.doc.motion.prop.marquee'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'scrollUp / scrollDown',
-    description: t('example.doc.motion.prop.scroll'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'dampOut',
-    description: t('example.doc.motion.prop.dampOut'),
+    name: 'blink / breathe / glow / marqueeLeft|Right / scrollUp|Down / dampOut',
+    description: t('example.doc.typography.prop.motion'),
     type: 'boolean',
     defaultValue: 'false'
   },
   {
     name: 'pulse / heartbeat / bounce / spin',
-    description: t('example.doc.typography.prop.motion'),
+    description: t('example.doc.motion.prop.heartbeat'),
     type: 'boolean',
     defaultValue: 'false'
   },
@@ -132,64 +264,68 @@ const propRows = computed<PropRow[]>(() => [
     description: t('example.doc.motion.prop.animationDuration'),
     type: 'number | string',
     defaultValue: '-'
+  },
+  {
+    name: 'trackId / telemetry',
+    description: t('example.doc.avatar.prop.telemetry'),
+    type: 'string / boolean',
+    defaultValue: '- / undefined'
   }
 ])
 
-const codeHeading = `<Typography type="h1">…</Typography>
-<Typography type="h2">…</Typography>
-<!-- h3–h6 -->`
+const eventRows = computed<ApiRow[]>(() => [
+  {
+    name: 'copy',
+    description: t('example.doc.typography.emit.copy'),
+    type: '(text: string) => void',
+    defaultValue: '-'
+  },
+  {
+    name: 'copyError',
+    description: t('example.doc.typography.emit.copyError'),
+    type: '(error: Error) => void',
+    defaultValue: '-'
+  },
+  {
+    name: 'click',
+    description: t('example.doc.typography.emit.click'),
+    type: '(event: MouseEvent) => void',
+    defaultValue: '-'
+  }
+])
 
-const codeParagraph = `<Typography type="body-lg">…</Typography>
-<Typography type="body">…</Typography>
-<Typography type="body-sm">…</Typography>
-<Typography type="caption">…</Typography>`
-
-const codeColor = `<Typography type-color="success">…</Typography>
-<Typography color="danger">…</Typography>`
-
-const codeStyle = `<Typography strong>…</Typography>
-<Typography italic>…</Typography>
-<Typography strong italic>…</Typography>
-<Typography underline mark>…</Typography>
-<Typography delete>…</Typography>
-<Typography code>API_KEY</Typography>`
-
-const codeEllipsis = `<Typography ellipsis style="max-width: …">…</Typography>
-<Typography :ellipsis="{ rows: 2, tooltip: true }">…</Typography>
-<Typography :ellipsis="{ rows: 3 }">…</Typography>`
-
-const codeCopy = `<Typography copyable>…</Typography>
-<Typography :copyable="{ text: 'secret-id' }">…</Typography>
-<Typography :copyable="{ icon: false }" clickable>…</Typography>`
-
-const codeState = `<Typography disabled>…</Typography>
-<Typography loading>{{ t('…') }}</Typography>
-<Typography shimmer>{{ t('…') }}</Typography>
-<Typography clickable @click="…">…</Typography>`
-
-const codeLoading = `<Typography loading type="h3">
-  Planning next moves
-</Typography>
-<Typography loading>
-  {{ t('example.doc.typography.sample.loadingLong') }}
-</Typography>`
-
-const codeFont = `<Typography font-family="display" type="h3">…</Typography>
-<Typography font-family="mono" code>…</Typography>
-<Typography :line-height="1.8">…</Typography>`
-
-const codeMotionFx = `<Typography blink type-color="warning">…</Typography>
-<Typography breathe type-color="success">…</Typography>
-<Typography glow type-color="primary" type="h3">…</Typography>
-<Typography marquee-left type-color="info">…</Typography>
-<Typography marquee-right type-color="info">…</Typography>
-<Typography scroll-up type-color="secondary">…</Typography>
-<Typography scroll-down type-color="secondary">…</Typography>
-<Typography damp-out type-color="danger" strong>…</Typography>`
+const slotRows = computed<ApiRow[]>(() => [
+  {
+    name: 'default',
+    description: t('example.doc.typography.slot.default'),
+    type: 'VNode',
+    defaultValue: '-'
+  }
+])
 </script>
 
 <template>
   <div class="vp-curated">
+    <!-- 1. Basic — pasteable SFC, default-open -->
+    <DemoBlock
+      :title="t('example.doc.typography.demo.basic')"
+      :description="t('example.doc.typography.demo.basicDesc')"
+      :code="codeBasic"
+      default-open
+    >
+      <div class="vp-typo-stack">
+        <Typography type="h2">
+          {{ t('example.doc.typography.sample.heading', { level: 'h2' }) }}
+        </Typography>
+        <Typography type="body">{{ t('example.doc.typography.sample.body') }}</Typography>
+        <Typography type-color="primary" strong>
+          {{ t('example.doc.typography.sample.strong') }}
+        </Typography>
+        <Typography code>{{ t('example.doc.typography.sample.code') }}</Typography>
+      </div>
+    </DemoBlock>
+
+    <!-- 2. Feature blocks -->
     <DemoBlock
       :title="t('example.doc.typography.demo.heading')"
       :description="t('example.doc.typography.demo.headingDesc')"
@@ -373,6 +509,56 @@ const codeMotionFx = `<Typography blink type-color="warning">…</Typography>
       </div>
     </DemoBlock>
 
+    <!-- 3. Slots -->
+    <DemoBlock
+      :title="t('example.doc.typography.demo.slots')"
+      :description="t('example.doc.typography.demo.slotsDesc')"
+      :code="codeSlots"
+    >
+      <div class="vp-typo-stack">
+        <Typography type="h3">
+          {{ t('example.doc.typography.sample.slotDefault') }}
+        </Typography>
+        <Typography type="body" type-color="secondary">
+          <span>{{ t('example.doc.typography.sample.body') }}</span>
+        </Typography>
+      </div>
+    </DemoBlock>
+
+    <!-- 4. Events -->
+    <DemoBlock
+      :title="t('example.doc.typography.demo.events')"
+      :description="t('example.doc.typography.demo.eventsDesc')"
+      :code="codeEvents"
+    >
+      <div class="vp-typo-events">
+        <div class="vp-typo-stack">
+          <Typography
+            copyable
+            @copy="noteEvent('copy')"
+            @copy-error="noteEvent('copyError')"
+          >
+            {{ t('example.doc.typography.sample.copyId') }}
+          </Typography>
+          <Typography
+            clickable
+            type-color="primary"
+            @click="noteEvent('click')"
+          >
+            {{ t('example.doc.typography.sample.clickable') }}
+          </Typography>
+        </div>
+        <p class="vp-typo-events__log">
+          {{
+            t('example.doc.typography.sample.eventLog', {
+              event: lastEvent || t('example.doc.typography.sample.eventIdle')
+            })
+          }}
+        </p>
+      </div>
+    </DemoBlock>
+
+    <!-- 5. Motion -->
     <DemoBlock
       :title="t('example.doc.motion.demo.title')"
       :description="t('example.doc.motion.demo.desc')"
@@ -387,9 +573,18 @@ const codeMotionFx = `<Typography blink type-color="warning">…</Typography>
       </MotionLivePanel>
     </DemoBlock>
 
+    <!-- 7. API: Props → Events → Slots -->
     <section class="vp-curated__api">
       <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
       <PropsTable :rows="propRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
+      <PropsTable :rows="eventRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
+      <PropsTable :rows="slotRows" />
     </section>
   </div>
 </template>
@@ -405,6 +600,17 @@ const codeMotionFx = `<Typography blink type-color="warning">…</Typography>
   margin: 0 0 var(--spacing-md);
   font-size: var(--font-size-lg);
   color: var(--text-primary);
+}
+
+.vp-curated__api-sub {
+  margin: var(--spacing-xl) 0 var(--spacing-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-heading, 600);
+  color: var(--text-primary);
+}
+
+.vp-curated__api-sub:first-of-type {
+  margin-top: 0;
 }
 
 .vp-typo-stack {
@@ -448,5 +654,19 @@ const codeMotionFx = `<Typography blink type-color="warning">…</Typography>
   display: block;
   max-width: 100%;
   width: 70%;
+}
+
+.vp-typo-events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.vp-typo-events__log {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: var(--line-height-body);
 }
 </style>

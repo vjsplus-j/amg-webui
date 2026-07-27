@@ -91,15 +91,24 @@ export function useButton(props: ButtonProps, options: UseButtonOptions = {}) {
 
   const isBlock = computed(() => Boolean(props.block || props.fluid))
 
+  const isGroupLoading = computed(() => Boolean(group?.loading))
+
+  const isLoading = computed(() => Boolean(props.loading || isGroupLoading.value))
+
   const isDisabled = computed(
     () =>
-      Boolean(props.disabled || props.loading || disableByPermission.value)
+      Boolean(
+        props.disabled ||
+          group?.disabled ||
+          isLoading.value ||
+          disableByPermission.value
+      )
   )
 
   const isReadonly = computed(() => Boolean(props.readonly) && !isDisabled.value)
 
   const isInteractiveLocked = computed(
-    () => isDisabled.value || isReadonly.value || props.loading
+    () => isDisabled.value || isReadonly.value || isLoading.value
   )
 
   const showStar = computed(() => Boolean(props.star || props.rated))
@@ -211,7 +220,7 @@ export function useButton(props: ButtonProps, options: UseButtonOptions = {}) {
       classes.push('vp-button--block', 'p-button-block')
     }
 
-    if (props.loading) {
+    if (isLoading.value) {
       classes.push('vp-button--loading', 'p-button-loading')
     }
 
@@ -263,6 +272,7 @@ export function useButton(props: ButtonProps, options: UseButtonOptions = {}) {
     isDisabled,
     isReadonly,
     isInteractiveLocked,
+    isLoading,
     hideByPermission,
     disableByPermission,
     permissionDenied,

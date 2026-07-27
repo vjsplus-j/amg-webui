@@ -59,9 +59,20 @@
 
   &.vp-icon--disabled,
   &.p-icon-disabled {
-    opacity: 0.5;
+    opacity: var(--icon-opacity-disabled, 0.5);
     pointer-events: none;
     cursor: not-allowed;
+  }
+
+  &.vp-icon--interactive,
+  &.p-icon-interactive {
+    cursor: pointer;
+    border-radius: var(--theme-btn-radius);
+
+    &:focus-visible {
+      outline: 2px solid var(--ds-focus-ring);
+      outline-offset: 2px;
+    }
   }
 
   &.vp-icon--selected,

@@ -8,9 +8,10 @@ import {
   type CatalogCategoryId
 } from '../component-catalog'
 
-/** Side-nav groups — seven debug zones + overview hub */
+/** Side-nav groups — intro + seven debug zones + overview hub */
 export type NavGroupId =
   | 'overview'
+  | 'intro'
   | 'base'
   | 'biz'
   | 'theme'
@@ -75,6 +76,57 @@ export const routes: RouteRecordRaw[] = [
           titleKey: 'page.dashboard.title',
           group: 'overview',
           icon: 'Activity'
+        }
+      },
+
+      {
+        path: 'intro/quick-start',
+        name: 'intro-quick-start',
+        component: () => import('../pages/intro/QuickStartPage.vue'),
+        meta: {
+          titleKey: 'page.intro.quickStart.title',
+          group: 'intro',
+          icon: 'Rocket'
+        }
+      },
+      {
+        path: 'intro/design',
+        name: 'intro-design',
+        component: () => import('../pages/intro/DesignStylePage.vue'),
+        meta: {
+          titleKey: 'page.intro.design.title',
+          group: 'intro',
+          icon: 'Palette'
+        }
+      },
+      {
+        path: 'intro/theme',
+        name: 'intro-theme',
+        component: () => import('../pages/intro/ThemeGuidePage.vue'),
+        meta: {
+          titleKey: 'page.intro.theme.title',
+          group: 'intro',
+          icon: 'SunMoon'
+        }
+      },
+      {
+        path: 'intro/font',
+        name: 'intro-font',
+        component: () => import('../pages/intro/FontGuidePage.vue'),
+        meta: {
+          titleKey: 'page.intro.font.title',
+          group: 'intro',
+          icon: 'Type'
+        }
+      },
+      {
+        path: 'intro/icon',
+        name: 'intro-icon',
+        component: () => import('../pages/intro/IconStylePage.vue'),
+        meta: {
+          titleKey: 'page.intro.icon.title',
+          group: 'intro',
+          icon: 'Shapes'
         }
       },
 
@@ -317,6 +369,7 @@ export const routes: RouteRecordRaw[] = [
 
 export const NAV_GROUP_TITLE_KEYS: Record<NavGroupId, string> = {
   overview: 'nav.overview',
+  intro: 'nav.intro',
   base: 'nav.base',
   biz: 'nav.biz',
   theme: 'nav.theme',
@@ -329,6 +382,7 @@ export const NAV_GROUP_TITLE_KEYS: Record<NavGroupId, string> = {
 /** @deprecated use NAV_GROUP_TITLE_KEYS + t() */
 export const NAV_GROUP_LABELS: Record<NavGroupId, string> = {
   overview: 'nav.overview',
+  intro: 'nav.intro',
   base: 'nav.base',
   biz: 'nav.biz',
   theme: 'nav.theme',
@@ -406,7 +460,17 @@ function buildBaseNavItems(): ShellNavItem[] {
 export function getShellNavItems(): ShellNavGroup[] {
   const shell = routes.find((r) => r.path === '/')
   const children = (shell?.children ?? []).filter((c) => c.name && c.meta?.group)
-  const groups: NavGroupId[] = ['overview', 'base', 'biz', 'theme', 'i18n', 'perf', 'lab', 'dev']
+  const groups: NavGroupId[] = [
+    'overview',
+    'intro',
+    'base',
+    'biz',
+    'theme',
+    'i18n',
+    'perf',
+    'lab',
+    'dev'
+  ]
   return groups.map((group) => {
     if (group === 'base') {
       return {

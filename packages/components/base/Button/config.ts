@@ -22,4 +22,6 @@ export const BUTTON_GROUP_KEY: InjectionKey<{
   size?: Size
   severity?: ButtonSeverity
   variant?: string
+  disabled?: boolean
+  loading?: boolean
 }> = Symbol('vpButtonGroup')

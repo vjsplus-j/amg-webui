@@ -568,7 +568,7 @@ html:has(.ln-shell) .app {
 .ln-content {
   flex: 1;
   min-height: 0;
-  padding: 1.25rem 1.5rem;
+  padding: var(--theme-page-pad);
   overflow: auto;
   overscroll-behavior: contain;
 }

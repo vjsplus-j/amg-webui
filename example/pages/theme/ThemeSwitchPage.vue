@@ -15,6 +15,7 @@ import {
 } from '@amg-webui/theme'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
+import ExamplePageHero from '../../components/ExamplePageHero.vue'
 
 const { t } = useLocale()
 
@@ -184,13 +185,11 @@ const typeSamples = [
 
 <template>
   <div class="theme-page theme-kit-stack">
-    <div class="ln-page-hero">
-      <p class="ln-page-eyebrow">Designmd · Locked Themes</p>
-      <h1 class="ln-page-title">{{ t('page.theme.title') }}</h1>
-      <p class="ln-page-lead">
-        {{ t('page.theme.switch.lead') }}
-      </p>
-    </div>
+    <ExamplePageHero
+      title-key="page.theme.title"
+      lead-key="page.theme.switch.lead"
+      eyebrow-key="page.theme.eyebrow"
+    />
 
     <section class="section">
       <div class="section-head">

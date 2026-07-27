@@ -21,7 +21,7 @@
 | 场景 | 目录 | 职责 |
 |------|------|------|
 | **组件库** | `packages/` | 可复用 base / business / theme / hooks / utils，**无页面路由** |
-| **开发调试** | `example/` | 七大调试专区 · 路由 · mock · **不上线** |
+| **开发调试** | `example/` | 入门指南 + 七大调试专区 · 路由 · mock · **不上线** |
 | **官方文档** | `docs/`（VitePress） | API / 教程 / 标准示例 · **可上线** |
 
 ---
@@ -63,12 +63,18 @@ VUE3-AMG-WEBUI/
 └── …
 ```
 
-### 2.1 `example/pages/` 七大专区
+### 2.1 `example/pages/` 专区目录
 
 ```
 example/pages/
 ├── auth/                     # 壳层登录门闸（mock，非产品）
 ├── overview/                 # 调试总览入口
+├── intro/                    # 入门指南（总览与基础组件之间）
+│   ├── QuickStartPage.vue
+│   ├── DesignStylePage.vue
+│   ├── ThemeGuidePage.vue
+│   ├── FontGuidePage.vue
+│   └── IconStylePage.vue
 ├── base/                     # 一、通用基础组件（Ant 式一组件一页）
 │   ├── CatalogPage.vue       # 组件总览 → 点名称进文档页
 │   ├── ComponentDocPage.vue  # 动态 /base/:name（curated 或 fallback）
@@ -95,16 +101,32 @@ example/pages/
 
 ---
 
-## 3. 七大调试专区说明
+## 3. 专区说明
+
+### 〇、入门指南（`group: 'intro'`）
+
+侧栏位于总览与基础组件之间，帮助库作者快速理解调试壳与视觉轴：
+
+| 页面 / 路由 | 覆盖 |
+|------|------|
+| `/intro/quick-start` · `intro-quick-start` | 启动、顶栏切换、URL 深链、建议路径 |
+| `/intro/design` · `intro-design` | 六套 designmd 风格介绍 + 即时切换 + 宿主用法 |
+| `/intro/theme` · `intro-theme` | 明暗 scheme、语义 Token、ThemeService |
+| `/intro/font` · `intro-font` | 品牌字体与系统栈、FontService |
+| `/intro/icon` · `intro-icon` | Lucide 描边风格、IconStyleService |
+
+完整控件预览仍在 `theme` 专区；本区偏「介绍与用法」。
 
 ### 一、通用基础组件（`group: 'base'`）
 
 | 页面 / 路由 | 覆盖 |
 |------|------|
 | `/base/overview` · `base-overview` | 全量目录检索；点击进入组件文档 |
-| `/base/:name` · `base-component` | Ant 式：何时使用 + DemoBlock + Props；Button / FloatButton / Icon 为 curated 标杆；其余 fallback |
+| `/base/:name` · `base-component` | Ant 式：何时使用 + DemoBlock + Props；**Avatar** 为代码示例结构模板标杆（Basic SFC ↔ 预览 1:1 · Slots · Events · API 三段）；Button / FloatButton / Icon 为能力标杆；其余 fallback |
 | 侧栏分类 | 通用 · 布局 · 导航 · 数据录入 · 数据展示 · 反馈 · 其他 · 行业（`component-catalog`） |
 | 旧 zone 路径 | `/base/atoms\|forms\|…` → redirect `base-overview` |
+
+**Demo 铺满（锁定）：** `DemoBlock` / `DemoCode` / `PropsTable` / `.vp-curated` 必须横向铺满 `.ln-content` 内容列（仅壳层 `--theme-page-pad` 内边距）。禁止给代码示例外壳套阅读栏 `max-width`，禁止给 `DemoCode` 加嵌套 `max-height` 小滚动盒。详见 `.cursor/rules/vue3-amg-webui-example-demo-layout.mdc` · `example/components/demo/curatedDemo.scss`。
 
 ### 二、通用业务复合（`group: 'biz'`）
 

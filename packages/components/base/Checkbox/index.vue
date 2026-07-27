@@ -1,43 +1,43 @@
 <script setup lang="ts">
 import { computed, inject, ref, watch, onMounted } from 'vue'
+import { trackEmit } from '@amg-webui/telemetry'
 import type { CheckboxProps, CheckboxEmits } from './types'
 import { CHECKBOX_GROUP_INJECTION_KEY } from './types'
+import { useCheckbox } from './useCheckbox'
 import './style.scss'
 
 const props = withDefaults(defineProps<CheckboxProps>(), {
   modelValue: false,
-  indeterminate: false
+  indeterminate: false,
+  telemetry: undefined,
+  size: undefined
 })
 
 const emit = defineEmits<CheckboxEmits>()
 const group = inject(CHECKBOX_GROUP_INJECTION_KEY, null)
 const inputRef = ref<HTMLInputElement | null>(null)
 
-const isGroupMode = computed(() => group != null && props.value !== undefined)
+const checkboxSource = computed(() => ({
+  modelValue: props.modelValue,
+  value: props.value,
+  disabled: props.disabled,
+  size: props.size,
+  indeterminate: props.indeterminate,
+  class: props.class,
+  group
+}))
 
-const isChecked = computed(() => {
-  if (isGroupMode.value && group) {
-    return group.modelValue.includes(props.value)
-  }
-  return props.modelValue
-})
-
-const isDisabled = computed(() => props.disabled || group?.disabled || false)
-
-const rootClass = computed(() => [
-  'vp-checkbox',
-  { 'vp-checkbox--disabled': isDisabled.value },
-  props.class
-])
+const { isGroupMode, isChecked, isDisabled, showIndeterminate, rootClass } =
+  useCheckbox(checkboxSource)
 
 const syncIndeterminate = () => {
   if (inputRef.value) {
-    inputRef.value.indeterminate = props.indeterminate && !isChecked.value
+    inputRef.value.indeterminate = showIndeterminate.value
   }
 }
 
 onMounted(syncIndeterminate)
-watch([() => props.indeterminate, isChecked], syncIndeterminate)
+watch([showIndeterminate, isChecked], syncIndeterminate)
 
 const handleChange = (event: Event) => {
   if (isDisabled.value) return
@@ -48,6 +48,13 @@ const handleChange = (event: Event) => {
     emit('update:modelValue', target.checked)
     emit('change', target.checked)
   }
+  trackEmit({
+    component: 'Checkbox',
+    type: 'change',
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { value: isGroupMode.value ? props.value : target.checked, checked: target.checked }
+  })
 }
 </script>
 
@@ -59,11 +66,12 @@ const handleChange = (event: Event) => {
       type="checkbox"
       :checked="isChecked"
       :disabled="isDisabled"
+      :aria-checked="showIndeterminate ? 'mixed' : isChecked"
       @change="handleChange"
     />
     <span class="vp-checkbox__mark" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-        <path v-if="indeterminate && !isChecked" d="M5 12h14" />
+        <path v-if="showIndeterminate" d="M5 12h14" />
         <path v-else d="M5 12l5 5L19 7" />
       </svg>
     </span>

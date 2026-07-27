@@ -369,3 +369,40 @@
     animation: none !important;
   }
 }
+
+/* AnimationService master switch — html[data-vp-motion="off"] */
+html[data-vp-motion='off'] {
+  .vp-motion--spin,
+  .vp-motion--pulse,
+  .vp-motion--heartbeat,
+  .vp-motion--bounce,
+  .vp-motion--blink,
+  .vp-motion--breathe,
+  .vp-motion--glow,
+  .vp-motion--marquee-left,
+  .vp-motion--marquee-right,
+  .vp-motion--scroll-up,
+  .vp-motion--scroll-down,
+  .vp-motion--damp-out,
+  .vp-icon--spin,
+  .p-icon-spin,
+  .vp-icon--pulse,
+  .p-icon-pulse,
+  .vp-icon--heartbeat,
+  .vp-icon--bounce,
+  .vp-icon--blink,
+  .vp-icon--breathe,
+  .vp-icon--glow,
+  .vp-icon--marqueeLeft,
+  .vp-icon--marquee-left,
+  .vp-icon--marqueeRight,
+  .vp-icon--marquee-right,
+  .vp-icon--scrollUp,
+  .vp-icon--scroll-up,
+  .vp-icon--scrollDown,
+  .vp-icon--scroll-down,
+  .vp-icon--dampOut,
+  .vp-icon--damp-out {
+    animation: none !important;
+  }
+}

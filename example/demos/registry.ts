@@ -39,7 +39,12 @@ export const DEMO_REGISTRY: Record<string, CuratedDemoDoc> = {
   Divider: { whenKey: 'example.doc.divider.when', Demo: loadDemo('Divider') },
   Progress: { whenKey: 'example.doc.progress.when', Demo: loadDemo('Progress') },
   Card: { whenKey: 'example.doc.card.when', Demo: loadDemo('Card') },
-  CardWidgets: { whenKey: 'example.doc.card-widgets.when', Demo: loadDemo('CardWidgets') }
+  CardWidgets: { whenKey: 'example.doc.card-widgets.when', Demo: loadDemo('CardWidgets') },
+  Empty: { whenKey: 'example.doc.empty.when', Demo: loadDemo('Empty') },
+  Tabs: { whenKey: 'example.doc.tabs.when', Demo: loadDemo('Tabs') },
+  Switch: { whenKey: 'example.doc.switch.when', Demo: loadDemo('Switch') },
+  Radio: { whenKey: 'example.doc.radio.when', Demo: loadDemo('Radio') },
+  Checkbox: { whenKey: 'example.doc.checkbox.when', Demo: loadDemo('Checkbox') }
 }
 
 export function getCuratedDemo(name: string): CuratedDemoDoc | undefined {

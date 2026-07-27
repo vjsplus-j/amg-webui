@@ -10,6 +10,8 @@ export interface EllipsisProps extends BaseProps {
   tooltipPlacement?: TooltipPlacement
   /** Plain text fallback when slot is empty; also used as tooltip source when set */
   content?: string
+  /** Accessible name when truncated text is focusable */
+  ariaLabel?: string
 }
 
 export interface EllipsisEmits {

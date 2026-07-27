@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-15T12:54:09.051Z",
+  "generatedAt": "2026-07-17T11:53:42.917Z",
   "total": 272,
   "summary": {
     "stub": 0,
-    "shell": 60,
-    "beta": 136,
-    "ready": 76
+    "shell": 56,
+    "beta": 128,
+    "ready": 88
   },
   "levels": [
     "stub",
@@ -102,7 +102,7 @@
         "a11y",
         "tokens"
       ],
-      "vueLines": 337,
+      "vueLines": 338,
       "styleLines": 185,
       "propCount": 35
     },
@@ -116,7 +116,7 @@
         "a11y",
         "tokens"
       ],
-      "vueLines": 188,
+      "vueLines": 189,
       "styleLines": 52,
       "propCount": 7
     },
@@ -144,7 +144,7 @@
         "a11y",
         "tokens"
       ],
-      "vueLines": 208,
+      "vueLines": 209,
       "styleLines": 217,
       "propCount": 30
     },
@@ -276,16 +276,16 @@
       "propCount": 56
     },
     "ButtonGroup": {
-      "level": "beta",
-      "score": 55,
+      "level": "ready",
+      "score": 71,
       "signals": [
         "provide-inject",
         "a11y",
         "tokens"
       ],
-      "vueLines": 58,
-      "styleLines": 115,
-      "propCount": 4
+      "vueLines": 92,
+      "styleLines": 149,
+      "propCount": 8
     },
     "Calendar": {
       "level": "beta",
@@ -360,13 +360,14 @@
     },
     "Card": {
       "level": "ready",
-      "score": 80,
+      "score": 87,
       "signals": [
         "emits",
-        "handlers:1",
+        "handlers:2",
+        "a11y",
         "tokens"
       ],
-      "vueLines": 136,
+      "vueLines": 153,
       "styleLines": 136,
       "propCount": 11
     },
@@ -416,7 +417,7 @@
         "a11y",
         "tokens"
       ],
-      "vueLines": 220,
+      "vueLines": 221,
       "styleLines": 98,
       "propCount": 5
     },
@@ -488,33 +489,34 @@
     },
     "Checkbox": {
       "level": "ready",
-      "score": 72,
+      "score": 89,
       "signals": [
         "emits",
+        "composable",
         "provide-inject",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens"
       ],
-      "vueLines": 75,
-      "styleLines": 62,
-      "propCount": 4
+      "vueLines": 83,
+      "styleLines": 95,
+      "propCount": 5
     },
     "CheckboxGroup": {
-      "level": "shell",
-      "score": 35,
+      "level": "ready",
+      "score": 86,
       "signals": [
         "emits",
+        "composable",
         "provide-inject",
         "v-model",
         "a11y",
-        "tokens",
-        "sub-primitive"
+        "tokens"
       ],
-      "vueLines": 47,
-      "styleLines": 17,
-      "propCount": 0
+      "vueLines": 85,
+      "styleLines": 45,
+      "propCount": 7
     },
     "ChunkUpload": {
       "level": "ready",
@@ -578,7 +580,7 @@
         "a11y",
         "tokens"
       ],
-      "vueLines": 150,
+      "vueLines": 151,
       "styleLines": 164,
       "propCount": 7
     },
@@ -818,15 +820,16 @@
       "propCount": 9
     },
     "Divider": {
-      "level": "beta",
-      "score": 52,
+      "level": "ready",
+      "score": 74,
       "signals": [
+        "composable",
         "a11y",
         "tokens"
       ],
-      "vueLines": 70,
-      "styleLines": 81,
-      "propCount": 5
+      "vueLines": 96,
+      "styleLines": 129,
+      "propCount": 9
     },
     "Doodle404": {
       "level": "beta",
@@ -1001,15 +1004,16 @@
       "propCount": 6
     },
     "Ellipsis": {
-      "level": "beta",
-      "score": 65,
+      "level": "ready",
+      "score": 71,
       "signals": [
         "emits",
+        "a11y",
         "tokens"
       ],
-      "vueLines": 144,
+      "vueLines": 148,
       "styleLines": 42,
-      "propCount": 4
+      "propCount": 5
     },
     "EmbedLayout": {
       "level": "beta",
@@ -1023,16 +1027,16 @@
       "propCount": 6
     },
     "Empty": {
-      "level": "shell",
-      "score": 31,
+      "level": "ready",
+      "score": 80,
       "signals": [
+        "emits",
         "a11y",
-        "tokens",
-        "thin"
+        "tokens"
       ],
-      "vueLines": 43,
-      "styleLines": 35,
-      "propCount": 2
+      "vueLines": 153,
+      "styleLines": 79,
+      "propCount": 6
     },
     "ErrorModal": {
       "level": "ready",
@@ -1110,16 +1114,16 @@
     },
     "FloatButton": {
       "level": "ready",
-      "score": 77,
+      "score": 79,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens"
       ],
-      "vueLines": 108,
+      "vueLines": 116,
       "styleLines": 115,
-      "propCount": 10
+      "propCount": 11
     },
     "FloatNav": {
       "level": "beta",
@@ -1445,25 +1449,30 @@
       "propCount": 6
     },
     "Highlight": {
-      "level": "shell",
-      "score": 32,
-      "signals": [
-        "tokens"
-      ],
-      "vueLines": 54,
-      "styleLines": 15,
-      "propCount": 5
-    },
-    "Icon": {
       "level": "ready",
-      "score": 75,
+      "score": 71,
       "signals": [
+        "emits",
         "a11y",
         "tokens"
       ],
-      "vueLines": 196,
-      "styleLines": 87,
-      "propCount": 29
+      "vueLines": 104,
+      "styleLines": 60,
+      "propCount": 9
+    },
+    "Icon": {
+      "level": "ready",
+      "score": 100,
+      "signals": [
+        "emits",
+        "composable",
+        "handlers:4",
+        "a11y",
+        "tokens"
+      ],
+      "vueLines": 223,
+      "styleLines": 98,
+      "propCount": 30
     },
     "ImageCrop": {
       "level": "beta",
@@ -1631,7 +1640,7 @@
         "a11y",
         "tokens"
       ],
-      "vueLines": 282,
+      "vueLines": 283,
       "styleLines": 151,
       "propCount": 23
     },
@@ -2147,7 +2156,7 @@
         "a11y",
         "tokens"
       ],
-      "vueLines": 155,
+      "vueLines": 177,
       "styleLines": 98,
       "propCount": 5
     },
@@ -2230,34 +2239,35 @@
       "propCount": 6
     },
     "Radio": {
-      "level": "beta",
-      "score": 67,
+      "level": "ready",
+      "score": 85,
       "signals": [
         "emits",
+        "composable",
         "provide-inject",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens"
       ],
-      "vueLines": 54,
-      "styleLines": 62,
-      "propCount": 4
+      "vueLines": 66,
+      "styleLines": 95,
+      "propCount": 5
     },
     "RadioGroup": {
-      "level": "shell",
-      "score": 35,
+      "level": "ready",
+      "score": 81,
       "signals": [
         "emits",
+        "composable",
         "provide-inject",
         "v-model",
         "a11y",
-        "tokens",
-        "sub-primitive"
+        "tokens"
       ],
-      "vueLines": 44,
-      "styleLines": 17,
-      "propCount": 0
+      "vueLines": 73,
+      "styleLines": 45,
+      "propCount": 6
     },
     "RangeInput": {
       "level": "beta",
@@ -2539,14 +2549,15 @@
       "propCount": 3
     },
     "Space": {
-      "level": "beta",
-      "score": 52,
+      "level": "ready",
+      "score": 75,
       "signals": [
+        "a11y",
         "tokens"
       ],
-      "vueLines": 106,
-      "styleLines": 27,
-      "propCount": 8
+      "vueLines": 148,
+      "styleLines": 84,
+      "propCount": 9
     },
     "Space404": {
       "level": "beta",
@@ -2573,15 +2584,17 @@
       "propCount": 6
     },
     "Spin": {
-      "level": "beta",
-      "score": 61,
+      "level": "ready",
+      "score": 78,
       "signals": [
+        "emits",
+        "composable",
         "a11y",
         "tokens"
       ],
-      "vueLines": 107,
-      "styleLines": 99,
-      "propCount": 5
+      "vueLines": 92,
+      "styleLines": 110,
+      "propCount": 6
     },
     "Split": {
       "level": "beta",
@@ -2627,7 +2640,7 @@
         "a11y",
         "tokens"
       ],
-      "vueLines": 136,
+      "vueLines": 137,
       "styleLines": 56,
       "propCount": 10
     },
@@ -2723,18 +2736,19 @@
       "propCount": 8
     },
     "Switch": {
-      "level": "beta",
-      "score": 69,
+      "level": "ready",
+      "score": 85,
       "signals": [
         "emits",
+        "composable",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens"
       ],
-      "vueLines": 82,
-      "styleLines": 78,
-      "propCount": 4
+      "vueLines": 89,
+      "styleLines": 118,
+      "propCount": 6
     },
     "TabPane": {
       "level": "shell",
@@ -2795,19 +2809,19 @@
       "propCount": 4
     },
     "Tabs": {
-      "level": "beta",
-      "score": 63,
+      "level": "ready",
+      "score": 87,
       "signals": [
         "emits",
         "provide-inject",
         "v-model",
-        "handlers:1",
+        "handlers:2",
         "a11y",
         "tokens"
       ],
-      "vueLines": 72,
-      "styleLines": 45,
-      "propCount": 1
+      "vueLines": 177,
+      "styleLines": 64,
+      "propCount": 2
     },
     "TabsNav": {
       "level": "beta",
@@ -2833,7 +2847,7 @@
         "a11y",
         "tokens"
       ],
-      "vueLines": 252,
+      "vueLines": 253,
       "styleLines": 249,
       "propCount": 32
     },
@@ -2866,11 +2880,11 @@
     },
     "TelemetryProvider": {
       "level": "shell",
-      "score": 23,
+      "score": 22,
       "signals": [
         "provide-inject"
       ],
-      "vueLines": 52,
+      "vueLines": 49,
       "styleLines": 0,
       "propCount": 0
     },
@@ -3145,7 +3159,7 @@
         "a11y",
         "tokens"
       ],
-      "vueLines": 406,
+      "vueLines": 407,
       "styleLines": 273,
       "propCount": 31
     },

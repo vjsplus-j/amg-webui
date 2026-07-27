@@ -1,6 +1,10 @@
 <script setup lang="ts">
+/**
+ * Divider — a11y via role=separator / aria-orientation (or decorative aria-hidden).
+ */
 import { computed, useSlots } from 'vue'
-import type { DividerContentPosition, DividerDirection } from './types'
+import type { DividerContentPosition, DividerDirection, DividerMargin } from './types'
+import { useDivider } from './useDivider'
 import './style.scss'
 
 defineOptions({ inheritAttrs: false })
@@ -17,28 +21,52 @@ const props = withDefaults(
     contentPosition?: DividerContentPosition
     dashed?: boolean
     borderStyle?: string
+    plain?: boolean
+    margin?: DividerMargin
+    /** Purely visual — hide from accessibility tree */
+    decorative?: boolean
+    ariaLabel?: string
     class?: string
     style?: Record<string, string>
   }>(),
   {
     contentPosition: 'center',
-    dashed: false
+    dashed: false,
+    plain: false,
+    margin: 'md',
+    decorative: false
   }
 )
 
 const slots = useSlots()
 
-const axis = computed<DividerDirection>(
-  () => props.direction ?? props.type ?? 'horizontal'
+const hasText = computed(
+  () => Boolean(slots.default) && (props.direction ?? props.type ?? 'horizontal') === 'horizontal'
+)
+
+const { axis, a11yAttrs } = useDivider(
+  computed(() => ({
+    direction: props.direction,
+    type: props.type,
+    margin: props.margin,
+    dashed: props.dashed,
+    plain: props.plain,
+    decorative: props.decorative,
+    ariaLabel: props.ariaLabel,
+    hasText: hasText.value
+  }))
 )
 
 const dividerClass = computed(() => [
   'vp-divider',
   `vp-divider--${axis.value}`,
   `vp-divider--${props.contentPosition}`,
+  `vp-divider--margin-${props.margin}`,
   {
     'vp-divider--dashed': props.dashed,
-    'vp-divider--with-text': Boolean(slots.default) && axis.value === 'horizontal'
+    'vp-divider--plain': props.plain,
+    'vp-divider--with-text': hasText.value,
+    'vp-divider--decorative': props.decorative
   },
   props.class
 ])
@@ -51,11 +79,10 @@ const dividerStyle = computed(() => ({
 
 <template>
   <div
-    v-if="axis === 'horizontal' && $slots.default"
+    v-if="hasText"
     :class="dividerClass"
     :style="dividerStyle"
-    role="separator"
-    aria-orientation="horizontal"
+    v-bind="a11yAttrs"
   >
     <span class="vp-divider__text"><slot /></span>
   </div>
@@ -63,7 +90,6 @@ const dividerStyle = computed(() => ({
     v-else
     :class="dividerClass"
     :style="dividerStyle"
-    role="separator"
-    :aria-orientation="axis"
+    v-bind="a11yAttrs"
   />
 </template>

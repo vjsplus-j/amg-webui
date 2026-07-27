@@ -1,0 +1,100 @@
+/**
+ * Editor-named highlight palettes for DemoCode (hex allowed here only).
+ * In-house tokenizer; colors inspired by well-known editor defaults.
+ */
+
+/* IntelliJ IDEA — Darcula */
+.vp-demo-code[data-vp-code-style='idea'] {
+  --vp-code-bg: #2b2b2b;
+  --vp-code-fg: #a9b7c6;
+  --vp-code-comment: #808080;
+  --vp-code-keyword: #cc7832;
+  --vp-code-string: #6a8759;
+  --vp-code-tag: #e8bf6a;
+  --vp-code-attr: #bababa;
+  --vp-code-directive: #9876aa;
+  --vp-code-punctuation: #a9b7c6;
+  --vp-code-number: #6897bb;
+  --vp-code-boolean: #cc7832;
+  --vp-code-gutter: #606366;
+}
+
+/* GitHub — Dark default */
+.vp-demo-code[data-vp-code-style='github'] {
+  --vp-code-bg: #0d1117;
+  --vp-code-fg: #e6edf3;
+  --vp-code-comment: #8b949e;
+  --vp-code-keyword: #ff7b72;
+  --vp-code-string: #a5d6ff;
+  --vp-code-tag: #7ee787;
+  --vp-code-attr: #79c0ff;
+  --vp-code-directive: #d2a8ff;
+  --vp-code-punctuation: #e6edf3;
+  --vp-code-number: #79c0ff;
+  --vp-code-boolean: #ff7b72;
+  --vp-code-gutter: #6e7681;
+}
+
+/* Visual Studio Code — Dark+ */
+.vp-demo-code[data-vp-code-style='vscode'] {
+  --vp-code-bg: #1e1e1e;
+  --vp-code-fg: #d4d4d4;
+  --vp-code-comment: #6a9955;
+  --vp-code-keyword: #569cd6;
+  --vp-code-string: #ce9178;
+  --vp-code-tag: #569cd6;
+  --vp-code-attr: #9cdcfe;
+  --vp-code-directive: #c586c0;
+  --vp-code-punctuation: #d4d4d4;
+  --vp-code-number: #b5cea8;
+  --vp-code-boolean: #569cd6;
+  --vp-code-gutter: #858585;
+}
+
+/* Atom — One Dark */
+.vp-demo-code[data-vp-code-style='atom'] {
+  --vp-code-bg: #282c34;
+  --vp-code-fg: #abb2bf;
+  --vp-code-comment: #5c6370;
+  --vp-code-keyword: #c678dd;
+  --vp-code-string: #98c379;
+  --vp-code-tag: #e06c75;
+  --vp-code-attr: #d19a66;
+  --vp-code-directive: #56b6c2;
+  --vp-code-punctuation: #abb2bf;
+  --vp-code-number: #d19a66;
+  --vp-code-boolean: #56b6c2;
+  --vp-code-gutter: #4b5263;
+}
+
+/* Vi — classic terminal phosphor */
+.vp-demo-code[data-vp-code-style='vi'] {
+  --vp-code-bg: #000000;
+  --vp-code-fg: #00ff00;
+  --vp-code-comment: #008000;
+  --vp-code-keyword: #00ff00;
+  --vp-code-string: #00ff00;
+  --vp-code-tag: #00ff00;
+  --vp-code-attr: #00cc00;
+  --vp-code-directive: #00ff00;
+  --vp-code-punctuation: #00aa00;
+  --vp-code-number: #00ff00;
+  --vp-code-boolean: #00ff00;
+  --vp-code-gutter: #006600;
+}
+
+/* Vim — desert-like default dark */
+.vp-demo-code[data-vp-code-style='vim'] {
+  --vp-code-bg: #111111;
+  --vp-code-fg: #ffffff;
+  --vp-code-comment: #87ceeb;
+  --vp-code-keyword: #cdcd00;
+  --vp-code-string: #ffa0a0;
+  --vp-code-tag: #00ffff;
+  --vp-code-attr: #87ceeb;
+  --vp-code-directive: #ffa0a0;
+  --vp-code-punctuation: #ffffff;
+  --vp-code-number: #ff0000;
+  --vp-code-boolean: #cdcd00;
+  --vp-code-gutter: #808080;
+}

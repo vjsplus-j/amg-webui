@@ -17,6 +17,7 @@ import {
   type VpTelemetryCategory,
   type VpTelemetryEvent
 } from '@amg-webui/telemetry'
+import ExamplePageHero from '../../components/ExamplePageHero.vue'
 
 const { t } = useLocale()
 
@@ -105,10 +106,10 @@ const categories: (VpTelemetryCategory | 'all')[] = [
 <template>
   <TelemetryProvider :enabled="enabled" :config="{ includePayload, appId: 'example-lab' }">
     <div class="vp-telemetry-lab">
-      <div class="ln-page-hero">
-        <h1>{{ t('page.lab.telemetry.title') }}</h1>
-        <p>{{ t('page.lab.telemetry.lead') }}</p>
-      </div>
+      <ExamplePageHero
+        title-key="page.lab.telemetry.title"
+        lead-key="page.lab.telemetry.lead"
+      />
 
       <Card :header="t('page.lab.telemetry.controls')">
         <div class="vp-toolbar">

@@ -23,7 +23,7 @@ Full doc: `docs/APP_WORKFLOW.md` · route table: `example/router/routes.ts`
 - Pages only in `example/pages/**/**Page.vue`. Business UI in `packages/components/business/<domain>`; pages stay thin.
 
 ## Seven debug zones (`meta.group`) — example only
-`overview` · `base` · `biz` · `theme` · `i18n` · `perf` · `lab` · `dev`  
+`overview` · `intro` · `base` · `biz` · `theme` · `i18n` · `perf` · `lab` · `dev`
 (`perf` / `dev/bug-repro` stay in example — never promote to docs.)
 
 ## Routes
@@ -40,7 +40,12 @@ npm run build:example # optional local smoke → example-dist/ (DO NOT deploy)
 ```
 Node ≥ 18. Boot: Font → IconStyle → Theme → URL → app + router.
 
+## Demo layout (locked)
+`DemoBlock` · `DemoCode` · curated demos span the full `.ln-content` column.
+See `vue3-amg-webui-example-demo-layout.mdc` — no prose `max-width` on demo chrome; no nested `max-height` on code panels.
+
 ## Don’t
 - Deploy example / `example-dist` as the public demo or docs substitute.
 - String `currentPage` navigation; `*Page.vue` under `packages/`.
 - Put stress tests or bug-repro flows into the VitePress docs site.
+- Shrink-wrap component docs / code samples with reading-column `max-width` or capped code panels.

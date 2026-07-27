@@ -16,3 +16,9 @@ export {
   type MotionProps,
   type MotionFlagKey
 } from './motion'
+
+export {
+  AnimationService,
+  initAnimationDom,
+  type AnimationConfig
+} from './AnimationService'

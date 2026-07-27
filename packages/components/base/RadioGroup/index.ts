@@ -1,6 +1,6 @@
 import Comp from './index.vue'
-import type { RadioGroupProps } from './types'
+import type { RadioGroupProps, RadioGroupEmits, RadioOption } from './types'
 
 export { Comp as RadioGroup }
-export type { RadioGroupProps }
+export type { RadioGroupProps, RadioGroupEmits, RadioOption }
 export default Comp

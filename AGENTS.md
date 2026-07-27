@@ -55,7 +55,7 @@ Cursor：`vue3-amg-webui-design-specs.mdc` · `vue3-amg-webui-tokens.mdc`。
 | 定位 | 开发调试工具（半成品 / 压测 / bug 复现） | 对外官方文档（标准示例 / API / 教程） |
 | 部署 | **仅本地，不上线** | **可打包部署** |
 
-七大专区仅存在于 example：`base` · `biz` · `theme` · `i18n` · `perf` · `lab` · `dev`（+ `overview`）。
+专区仅存在于 example：`intro`（入门）· `base` · `biz` · `theme` · `i18n` · `perf` · `lab` · `dev`（+ `overview`）。
 
 路由表：`example/router/routes.ts` · 页面：`example/pages/` · 文档站：`docs/`（VitePress）。
 
@@ -75,3 +75,4 @@ Cursor：`vue3-amg-webui-design-specs.mdc` · `vue3-amg-webui-tokens.mdc`。
 11. **压测 / bug 复现只进 example**；docs 只保留简洁标准示例与 API。
 12. **完成必验**：改完 `packages/` / `example/` 必须先跑通检查再宣称完成（至少 `npx vue-tsc --noEmit`）；见 `.cursor/rules/vue3-amg-webui-verify-before-done.mdc`。
 13. **Telemetry**：交互组件旁路 `trackEmit`；`telemetry` prop 默认 `undefined`（勿依赖 Vue Boolean 省略）；纯展示件不伪造事件。
+14. **example Demo 铺满**：`DemoBlock` / `DemoCode` / curated 演示铺满 `.ln-content` 内容列；禁止阅读栏 `max-width` 套在代码示例上、禁止 `DemoCode` 嵌套 `max-height`。见 `.cursor/rules/vue3-amg-webui-example-demo-layout.mdc`。

@@ -74,4 +74,17 @@ export interface IconProps extends BaseProps, MotionProps {
   alt?: string
   /** Native title tooltip */
   title?: string
+  /**
+   * Treat as a control: role=button, focusable, Enter/Space activate.
+   * Also auto-enabled when the parent listens for `@click`.
+   * Presentational by default — no Telemetry (see TELEMETRY.md).
+   */
+  interactive?: boolean
+}
+
+export interface IconEmits {
+  (e: 'click', event: MouseEvent): void
+  (e: 'focus', event: FocusEvent): void
+  (e: 'blur', event: FocusEvent): void
+  (e: 'keydown', event: KeyboardEvent): void
 }

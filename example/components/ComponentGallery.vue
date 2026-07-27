@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { Card, InputText, Tag } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
+import ExamplePageHero from './ExamplePageHero.vue'
 import {
   zoneNames,
   zoneMaturitySummary,
@@ -126,11 +127,9 @@ function openDoc(name: string) {
 
 <template>
   <div class="gallery">
-    <header v-if="titleKey" class="ln-page-hero">
-      <h1 class="ln-page-title">{{ t(titleKey) }}</h1>
-      <p v-if="leadKey" class="ln-page-lead">{{ t(leadKey) }}</p>
+    <ExamplePageHero v-if="titleKey" :title-key="titleKey" :lead-key="leadKey">
       <p class="gallery__maturity-lead">{{ t(LocaleKeys.page.gallery.maturity.lead) }}</p>
-    </header>
+    </ExamplePageHero>
 
     <slot name="featured" />
 

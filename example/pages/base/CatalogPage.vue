@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { Card, Icon, InputText, Tag } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
+import ExamplePageHero from '../../components/ExamplePageHero.vue'
 import {
   CATALOG_CATEGORY_ICONS,
   CATALOG_CATEGORY_ORDER,
@@ -59,13 +60,11 @@ function openDoc(name: string) {
 
 <template>
   <div class="vp-catalog">
-    <header class="ln-page-hero">
-      <h1 class="ln-page-title">{{ t('page.base.catalog.title') }}</h1>
-      <p class="ln-page-lead">{{ t('page.base.catalog.lead') }}</p>
+    <ExamplePageHero title-key="page.base.catalog.title" lead-key="page.base.catalog.lead">
       <p class="vp-catalog__count">
         {{ t('example.doc.catalog.visibleCount', { count: totalVisible }) }}
       </p>
-    </header>
+    </ExamplePageHero>
 
     <Card class="vp-toolbar vp-catalog__toolbar">
       <InputText

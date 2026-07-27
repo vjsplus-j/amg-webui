@@ -1,15 +1,94 @@
 <script setup lang="ts">
+/**
+ * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
+ */
 import { computed, ref } from 'vue'
 import { Highlight } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
-import type { PropRow } from '../../components/demo/types'
+import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
 const searchKeyword = ref('Vue')
+
+/* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
+
+const codeBasic = demoSfc({
+  imports: [`import { Highlight } from '@amg-webui/components/base'`],
+  template: [
+    `  <Highlight`,
+    `    :text="t('example.doc.highlight.sample.sentence')"`,
+    `    keyword="Vue"`,
+    `  />`
+  ]
+})
+
+const codeMulti = demoCode(
+  `<Highlight`,
+  `  :text="t('example.doc.highlight.sample.paragraph')"`,
+  `  :keyword="['API', 'Token', 'i18n']"`,
+  `/>`
+)
+
+const codeCase = demoCode(
+  `<Highlight`,
+  `  :text="t('example.doc.highlight.sample.cased')"`,
+  `  keyword="vue"`,
+  `  :ignore-case="true"`,
+  `/>`,
+  `<Highlight`,
+  `  :text="t('example.doc.highlight.sample.cased')"`,
+  `  keyword="vue"`,
+  `  :ignore-case="false"`,
+  `/>`
+)
+
+const codeColor = demoCode(
+  `<Highlight`,
+  `  :text="t('example.doc.highlight.sample.paragraph')"`,
+  `  keyword="Token"`,
+  `  color="var(--warning-100)"`,
+  `  color-text="var(--warning-700)"`,
+  `/>`,
+  `<Highlight`,
+  `  :text="t('example.doc.highlight.sample.paragraph')"`,
+  `  keyword="API"`,
+  `  color="var(--success-100)"`,
+  `  color-text="var(--success-700)"`,
+  `/>`
+)
+
+const codeSearch = demoCode(
+  `<input v-model="searchKeyword" type="search" />`,
+  `<Highlight`,
+  `  :text="t('example.doc.highlight.sample.paragraph')"`,
+  `  :keyword="searchKeyword"`,
+  `/>`
+)
+
+const codeVariant = demoCode(
+  `<Highlight`,
+  `  :text="t('example.doc.highlight.sample.sentence')"`,
+  `  keyword="Vue"`,
+  `  variant="mark"`,
+  `/>`,
+  `<Highlight`,
+  `  :text="t('example.doc.highlight.sample.sentence')"`,
+  `  keyword="Vue"`,
+  `  variant="underline"`,
+  `/>`,
+  `<Highlight`,
+  `  :text="t('example.doc.highlight.sample.sentence')"`,
+  `  keyword="Vue"`,
+  `  variant="background"`,
+  `/>`
+)
+
+/* ─── API tables ─── */
 
 const propRows = computed<PropRow[]>(() => [
   {
@@ -31,6 +110,18 @@ const propRows = computed<PropRow[]>(() => [
     defaultValue: 'true'
   },
   {
+    name: 'matchWholeWord',
+    description: t('example.doc.highlight.prop.matchWholeWord'),
+    type: 'boolean',
+    defaultValue: 'false'
+  },
+  {
+    name: 'variant',
+    description: t('example.doc.highlight.prop.variant'),
+    type: "'mark' | 'underline' | 'background'",
+    defaultValue: "'mark'"
+  },
+  {
     name: 'color',
     description: t('example.doc.highlight.prop.color'),
     type: 'string',
@@ -41,38 +132,35 @@ const propRows = computed<PropRow[]>(() => [
     description: t('example.doc.highlight.prop.colorText'),
     type: 'string',
     defaultValue: 'var(--text-primary)'
+  },
+  {
+    name: 'ariaLabel',
+    description: t('example.doc.highlight.prop.ariaLabel'),
+    type: 'string',
+    defaultValue: '-'
   }
 ])
 
-const codeBasic = `<Highlight
-  text="Vue 3 composition API"
-  keyword="Vue"
-/>`
+const eventRows = computed<ApiRow[]>(() => [
+  {
+    name: 'matchChange',
+    description: t('example.doc.highlight.emit.matchChange'),
+    type: '(count: number) => void',
+    defaultValue: '-'
+  }
+])
 
-const codeMulti = `<Highlight
-  :text="paragraph"
-  :keyword="['API', 'Token', 'i18n']"
-/>`
-
-const codeCase = `<Highlight text="Vue / vue / VUE" keyword="vue" />
-<Highlight text="Vue / vue / VUE" keyword="vue" :ignore-case="false" />`
-
-const codeColor = `<Highlight
-  text="…"
-  keyword="Token"
-  color="var(--warning-100)"
-  color-text="var(--warning-700)"
-/>`
-
-const codeSearch = `<Highlight :text="result" :keyword="query" />`
+const slotRows = computed<ApiRow[]>(() => [])
 </script>
 
 <template>
   <div class="vp-curated">
+    <!-- 1. Basic -->
     <DemoBlock
       :title="t('example.doc.highlight.demo.basic')"
       :description="t('example.doc.highlight.demo.basicDesc')"
       :code="codeBasic"
+      default-open
     >
       <Highlight
         :text="t('example.doc.highlight.sample.sentence')"
@@ -80,6 +168,7 @@ const codeSearch = `<Highlight :text="result" :keyword="query" />`
       />
     </DemoBlock>
 
+    <!-- 2. Features -->
     <DemoBlock
       :title="t('example.doc.highlight.demo.multi')"
       :description="t('example.doc.highlight.demo.multiDesc')"
@@ -157,15 +246,51 @@ const codeSearch = `<Highlight :text="result" :keyword="query" />`
       </div>
     </DemoBlock>
 
+    <DemoBlock
+      :title="t('example.doc.highlight.demo.variant')"
+      :description="t('example.doc.highlight.demo.variantDesc')"
+      :code="codeVariant"
+    >
+      <div class="vp-highlight-demo__stack">
+        <Highlight
+          :text="t('example.doc.highlight.sample.sentence')"
+          keyword="Vue"
+          variant="mark"
+        />
+        <Highlight
+          :text="t('example.doc.highlight.sample.sentence')"
+          keyword="Vue"
+          variant="underline"
+        />
+        <Highlight
+          :text="t('example.doc.highlight.sample.sentence')"
+          keyword="Vue"
+          variant="background"
+        />
+      </div>
+    </DemoBlock>
+
+    <!-- 7. API: Props → Events → Slots -->
     <section class="vp-curated__api">
       <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
       <PropsTable :rows="propRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
+      <PropsTable :rows="eventRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
+      <PropsTable :rows="slotRows" />
     </section>
   </div>
 </template>
 
 <style scoped>
 .vp-curated {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: var(--theme-section-gap);
@@ -175,6 +300,17 @@ const codeSearch = `<Highlight :text="result" :keyword="query" />`
   margin: 0 0 var(--spacing-md);
   font-size: var(--font-size-lg);
   color: var(--text-primary);
+}
+
+.vp-curated__api-sub {
+  margin: var(--spacing-xl) 0 var(--spacing-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-heading, 600);
+  color: var(--text-primary);
+}
+
+.vp-curated__api-sub:first-of-type {
+  margin-top: 0;
 }
 
 .vp-highlight-demo__stack {

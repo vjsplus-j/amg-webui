@@ -1,5 +1,6 @@
 export default {
   'nav.overview': '总览',
+  'nav.intro': '入门指南',
   'nav.base': '基础组件',
   'nav.biz': '业务复合',
   'nav.theme': '多主题',

@@ -2,12 +2,15 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .vp-tabs__nav {
   display: flex;
   gap: var(--spacing-xs);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--ds-border, var(--border-color));
   overflow-x: auto;
 }
 
@@ -28,9 +31,15 @@
     color: var(--text-primary);
   }
 
+  &:focus-visible {
+    outline: 2px solid var(--ds-focus-ring, var(--primary-500));
+    outline-offset: 2px;
+  }
+
   &--active {
     color: var(--primary-500);
     border-bottom-color: var(--primary-500);
+    font-weight: var(--font-weight-heading, 600);
   }
 
   &:disabled {
@@ -41,4 +50,14 @@
 
 .vp-tabs__content {
   padding: var(--spacing-sm) 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-tabs__tab {
+    transition: none;
+  }
 }

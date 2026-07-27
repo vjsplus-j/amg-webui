@@ -6,25 +6,184 @@ import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
-import type { PropRow } from '../../components/demo/types'
+import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
 const sizes: Size[] = ['xs', 'sm', 'md', 'lg', 'xl']
 const overflowClicks = ref(0)
+const lastEvent = ref('')
 
 const imgA = 'https://api.dicebear.com/9.x/avataaars/svg?seed=amg-ga'
 const imgB = 'https://api.dicebear.com/9.x/avataaars/svg?seed=amg-gb'
 const imgC = 'https://api.dicebear.com/9.x/avataaars/svg?seed=amg-gc'
 
-const members = computed(() => [
-  { key: 'a', text: t('example.doc.avatarGroup.sample.userA'), src: imgA },
-  { key: 'b', text: t('example.doc.avatarGroup.sample.userB'), src: imgB },
-  { key: 'c', text: t('example.doc.avatarGroup.sample.userC'), src: imgC },
-  { key: 'd', text: t('example.doc.avatarGroup.sample.userD') },
-  { key: 'e', text: t('example.doc.avatarGroup.sample.userE') },
-  { key: 'f', text: t('example.doc.avatarGroup.sample.userF'), icon: 'User' }
-])
+function onOverflowClick() {
+  overflowClicks.value += 1
+  lastEvent.value = 'overflowClick'
+}
+
+/* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
+
+const codeBasic = demoSfc({
+  imports: [`import { Avatar, AvatarGroup } from '@amg-webui/components/base'`],
+  template: [
+    `  <AvatarGroup>`,
+    `    <Avatar`,
+    `      src="${imgA}"`,
+    `      :tooltip="t('example.doc.avatarGroup.sample.userA')"`,
+    `    />`,
+    `    <Avatar`,
+    `      src="${imgB}"`,
+    `      :tooltip="t('example.doc.avatarGroup.sample.userB')"`,
+    `    />`,
+    `    <Avatar`,
+    `      src="${imgC}"`,
+    `      :tooltip="t('example.doc.avatarGroup.sample.userC')"`,
+    `    />`,
+    `  </AvatarGroup>`
+  ]
+})
+
+const codeMax = demoCode(
+  `<AvatarGroup :max="3" @overflow-click="onOverflowClick">`,
+  `  <Avatar src="${imgA}" :tooltip="t('example.doc.avatarGroup.sample.userA')" />`,
+  `  <Avatar src="${imgB}" :tooltip="t('example.doc.avatarGroup.sample.userB')" />`,
+  `  <Avatar src="${imgC}" :tooltip="t('example.doc.avatarGroup.sample.userC')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userD')" :tooltip="t('example.doc.avatarGroup.sample.userD')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userE')" :tooltip="t('example.doc.avatarGroup.sample.userE')" />`,
+  `  <Avatar icon="User" :tooltip="t('example.doc.avatarGroup.sample.userF')" />`,
+  `</AvatarGroup>`
+)
+
+const codeSize = demoCode(
+  `<AvatarGroup size="xs" :max="4">`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userA')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userB')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userC')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userD')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userE')" />`,
+  `</AvatarGroup>`,
+  `<AvatarGroup size="sm" :max="4">`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userA')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userB')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userC')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userD')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userE')" />`,
+  `</AvatarGroup>`,
+  `<AvatarGroup size="md" :max="4">`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userA')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userB')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userC')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userD')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userE')" />`,
+  `</AvatarGroup>`,
+  `<AvatarGroup size="lg" :max="4">`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userA')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userB')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userC')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userD')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userE')" />`,
+  `</AvatarGroup>`,
+  `<AvatarGroup size="xl" :max="4">`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userA')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userB')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userC')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userD')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userE')" />`,
+  `</AvatarGroup>`
+)
+
+const codeMix = demoCode(
+  `<AvatarGroup :max="5" shape="circle">`,
+  `  <Avatar src="${imgA}" :tooltip="t('example.doc.avatarGroup.sample.userA')" />`,
+  `  <Avatar`,
+  `    :text="t('example.doc.avatarGroup.sample.nameZh')"`,
+  `    :tooltip="t('example.doc.avatarGroup.sample.nameZh')"`,
+  `  />`,
+  `  <Avatar icon="User" :tooltip="t('example.doc.avatarGroup.sample.userC')" />`,
+  `  <Avatar src="${imgB}" :tooltip="t('example.doc.avatarGroup.sample.userD')" />`,
+  `  <Avatar`,
+  `    :text="t('example.doc.avatarGroup.sample.userE')"`,
+  `    :tooltip="t('example.doc.avatarGroup.sample.userE')"`,
+  `  />`,
+  `  <Avatar`,
+  `    :text="t('example.doc.avatarGroup.sample.userF')"`,
+  `    :tooltip="t('example.doc.avatarGroup.sample.userF')"`,
+  `  />`,
+  `</AvatarGroup>`
+)
+
+const codeTooltip = demoCode(
+  `<AvatarGroup`,
+  `  :max="2"`,
+  `  :max-tooltip="t('example.doc.avatarGroup.sample.maxTooltip')"`,
+  `>`,
+  `  <Avatar src="${imgA}" :tooltip="t('example.doc.avatarGroup.sample.userA')" />`,
+  `  <Avatar src="${imgB}" :tooltip="t('example.doc.avatarGroup.sample.userB')" />`,
+  `  <Avatar src="${imgC}" :tooltip="t('example.doc.avatarGroup.sample.userC')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userD')" :tooltip="t('example.doc.avatarGroup.sample.userD')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userE')" :tooltip="t('example.doc.avatarGroup.sample.userE')" />`,
+  `  <Avatar icon="User" :tooltip="t('example.doc.avatarGroup.sample.userF')" />`,
+  `</AvatarGroup>`
+)
+
+const codeDisabled = demoCode(
+  `<AvatarGroup :max="3">`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userA')" :tooltip="t('example.doc.avatarGroup.sample.userA')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userB')" :tooltip="t('example.doc.avatarGroup.sample.userB')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userC')" :tooltip="t('example.doc.avatarGroup.sample.userC')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userD')" :tooltip="t('example.doc.avatarGroup.sample.userD')" />`,
+  `</AvatarGroup>`,
+  ``,
+  `<AvatarGroup disabled :max="3">`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userA')" :tooltip="t('example.doc.avatarGroup.sample.userA')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userB')" :tooltip="t('example.doc.avatarGroup.sample.userB')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userC')" :tooltip="t('example.doc.avatarGroup.sample.userC')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userD')" :tooltip="t('example.doc.avatarGroup.sample.userD')" />`,
+  `</AvatarGroup>`
+)
+
+const codeNeon = demoCode(
+  `<AvatarGroup variant="neon" :max="4">`,
+  `  <Avatar text="A" border-color="var(--primary-500)" :tooltip="t('example.doc.avatar.sample.neonPrimary')" />`,
+  `  <Avatar text="B" border-color="var(--success-500)" :tooltip="t('example.doc.avatar.sample.neonSuccess')" />`,
+  `  <Avatar text="C" border-color="var(--warning-500)" :tooltip="t('example.doc.avatar.sample.neonWarning')" />`,
+  `  <Avatar text="D" border-color="var(--danger-500)" :tooltip="t('example.doc.avatar.sample.neonDanger')" />`,
+  `  <Avatar text="E" border-color="var(--info-500)" />`,
+  `</AvatarGroup>`
+)
+
+const codeSlots = demoCode(
+  `<!-- #overflowTooltip customizes +N bubble -->`,
+  `<AvatarGroup :max="2">`,
+  `  <Avatar src="${imgA}" :tooltip="t('example.doc.avatarGroup.sample.userA')" />`,
+  `  <Avatar src="${imgB}" :tooltip="t('example.doc.avatarGroup.sample.userB')" />`,
+  `  <Avatar src="${imgC}" :tooltip="t('example.doc.avatarGroup.sample.userC')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userD')" :tooltip="t('example.doc.avatarGroup.sample.userD')" />`,
+  `  <template #overflowTooltip="{ overflowCount, labels }">`,
+  `    <span>`,
+  `      {{ t('example.doc.avatarGroup.sample.overflowCustom', {`,
+  `        count: overflowCount,`,
+  `        names: labels.join(', ')`,
+  `      }) }}`,
+  `    </span>`,
+  `  </template>`,
+  `</AvatarGroup>`
+)
+
+const codeEvents = demoCode(
+  `<AvatarGroup :max="3" @overflow-click="onOverflowClick">`,
+  `  <Avatar src="${imgA}" :tooltip="t('example.doc.avatarGroup.sample.userA')" />`,
+  `  <Avatar src="${imgB}" :tooltip="t('example.doc.avatarGroup.sample.userB')" />`,
+  `  <Avatar src="${imgC}" :tooltip="t('example.doc.avatarGroup.sample.userC')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userD')" :tooltip="t('example.doc.avatarGroup.sample.userD')" />`,
+  `  <Avatar :text="t('example.doc.avatarGroup.sample.userE')" :tooltip="t('example.doc.avatarGroup.sample.userE')" />`,
+  `</AvatarGroup>`
+)
+
+/* ─── API tables ─── */
 
 const propRows = computed<PropRow[]>(() => [
   {
@@ -68,68 +227,57 @@ const propRows = computed<PropRow[]>(() => [
     description: t('example.doc.avatarGroup.prop.disabled'),
     type: 'boolean',
     defaultValue: 'false'
+  },
+  {
+    name: 'trackId / telemetry',
+    description: t('example.doc.avatarGroup.prop.telemetry'),
+    type: 'string / boolean',
+    defaultValue: '- / undefined'
   }
 ])
 
-const codeBasic = `<AvatarGroup>
-  <Avatar text="A" :tooltip="…" />
-  <Avatar text="B" :tooltip="…" />
-  <Avatar :src="…" :tooltip="…" />
-</AvatarGroup>`
+const eventRows = computed<ApiRow[]>(() => [
+  {
+    name: 'overflowClick',
+    description: t('example.doc.avatarGroup.emit.overflowClick'),
+    type: '(event: MouseEvent) => void',
+    defaultValue: '-'
+  }
+])
 
-const codeMax = `<AvatarGroup :max="3">
-  <!-- 6 members → shows 3 + "+3" -->
-  <Avatar … />
-</AvatarGroup>`
-
-const codeSize = `<AvatarGroup size="lg" :max="4">
-  <Avatar … />
-</AvatarGroup>`
-
-const codeMix = `<AvatarGroup :max="4">
-  <Avatar :src="…" />
-  <Avatar text="张" />
-  <Avatar icon="User" />
-</AvatarGroup>`
-
-const codeTooltip = `<AvatarGroup :max="2">
-  <Avatar text="A" :tooltip="t('…userA')" />
-  <!-- overflow tooltip lists hidden names -->
-</AvatarGroup>`
-
-const codeDisabled = `<AvatarGroup disabled :max="3">
-  <Avatar … />
-</AvatarGroup>`
-
-const codeNeon = `<AvatarGroup variant="neon" :max="4">
-  <Avatar text="A" border-color="var(--primary-500)" />
-  <Avatar text="B" border-color="var(--success-500)" />
-  <Avatar text="C" border-color="var(--warning-500)" />
-</AvatarGroup>`
-
-function onOverflowClick() {
-  overflowClicks.value += 1
-}
+const slotRows = computed<ApiRow[]>(() => [
+  {
+    name: 'default',
+    description: t('example.doc.avatarGroup.slot.default'),
+    type: 'VNode (Avatar children)',
+    defaultValue: '-'
+  },
+  {
+    name: 'overflowTooltip',
+    description: t('example.doc.avatarGroup.slot.overflowTooltip'),
+    type: '{ overflowCount: number; labels: string[] }',
+    defaultValue: '-'
+  }
+])
 </script>
 
 <template>
   <div class="vp-curated">
+    <!-- 1. Basic — pasteable SFC, default-open -->
     <DemoBlock
       :title="t('example.doc.avatarGroup.demo.basic')"
       :description="t('example.doc.avatarGroup.demo.basicDesc')"
       :code="codeBasic"
+      default-open
     >
       <AvatarGroup>
-        <Avatar
-          v-for="m in members.slice(0, 3)"
-          :key="m.key"
-          :src="m.src"
-          :text="m.text"
-          :tooltip="m.text"
-        />
+        <Avatar :src="imgA" :tooltip="t('example.doc.avatarGroup.sample.userA')" />
+        <Avatar :src="imgB" :tooltip="t('example.doc.avatarGroup.sample.userB')" />
+        <Avatar :src="imgC" :tooltip="t('example.doc.avatarGroup.sample.userC')" />
       </AvatarGroup>
     </DemoBlock>
 
+    <!-- 2. Feature blocks -->
     <DemoBlock
       :title="t('example.doc.avatarGroup.demo.max')"
       :description="t('example.doc.avatarGroup.demo.maxDesc')"
@@ -137,14 +285,18 @@ function onOverflowClick() {
     >
       <div class="vp-ag-stack">
         <AvatarGroup :max="3" @overflow-click="onOverflowClick">
+          <Avatar :src="imgA" :tooltip="t('example.doc.avatarGroup.sample.userA')" />
+          <Avatar :src="imgB" :tooltip="t('example.doc.avatarGroup.sample.userB')" />
+          <Avatar :src="imgC" :tooltip="t('example.doc.avatarGroup.sample.userC')" />
           <Avatar
-            v-for="m in members"
-            :key="m.key"
-            :src="m.src"
-            :text="m.text"
-            :icon="m.icon"
-            :tooltip="m.text"
+            :text="t('example.doc.avatarGroup.sample.userD')"
+            :tooltip="t('example.doc.avatarGroup.sample.userD')"
           />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userE')"
+            :tooltip="t('example.doc.avatarGroup.sample.userE')"
+          />
+          <Avatar icon="User" :tooltip="t('example.doc.avatarGroup.sample.userF')" />
         </AvatarGroup>
         <p class="vp-ag-hint">
           {{ t('example.doc.avatarGroup.sample.overflowClicked', { count: overflowClicks }) }}
@@ -160,10 +312,24 @@ function onOverflowClick() {
       <div class="vp-ag-stack">
         <AvatarGroup v-for="sz in sizes" :key="sz" :size="sz" :max="4">
           <Avatar
-            v-for="m in members.slice(0, 5)"
-            :key="`${sz}-${m.key}`"
-            :text="m.text"
-            :tooltip="m.text"
+            :text="t('example.doc.avatarGroup.sample.userA')"
+            :tooltip="t('example.doc.avatarGroup.sample.userA')"
+          />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userB')"
+            :tooltip="t('example.doc.avatarGroup.sample.userB')"
+          />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userC')"
+            :tooltip="t('example.doc.avatarGroup.sample.userC')"
+          />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userD')"
+            :tooltip="t('example.doc.avatarGroup.sample.userD')"
+          />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userE')"
+            :tooltip="t('example.doc.avatarGroup.sample.userE')"
           />
         </AvatarGroup>
       </div>
@@ -198,15 +364,19 @@ function onOverflowClick() {
       :description="t('example.doc.avatarGroup.demo.tooltipDesc')"
       :code="codeTooltip"
     >
-      <AvatarGroup :max="2">
+      <AvatarGroup :max="2" :max-tooltip="t('example.doc.avatarGroup.sample.maxTooltip')">
+        <Avatar :src="imgA" :tooltip="t('example.doc.avatarGroup.sample.userA')" />
+        <Avatar :src="imgB" :tooltip="t('example.doc.avatarGroup.sample.userB')" />
+        <Avatar :src="imgC" :tooltip="t('example.doc.avatarGroup.sample.userC')" />
         <Avatar
-          v-for="m in members"
-          :key="`tip-${m.key}`"
-          :src="m.src"
-          :text="m.text"
-          :icon="m.icon"
-          :tooltip="m.text"
+          :text="t('example.doc.avatarGroup.sample.userD')"
+          :tooltip="t('example.doc.avatarGroup.sample.userD')"
         />
+        <Avatar
+          :text="t('example.doc.avatarGroup.sample.userE')"
+          :tooltip="t('example.doc.avatarGroup.sample.userE')"
+        />
+        <Avatar icon="User" :tooltip="t('example.doc.avatarGroup.sample.userF')" />
       </AvatarGroup>
     </DemoBlock>
 
@@ -218,18 +388,38 @@ function onOverflowClick() {
       <div class="vp-ag-row">
         <AvatarGroup :max="3">
           <Avatar
-            v-for="m in members.slice(0, 4)"
-            :key="`n-${m.key}`"
-            :text="m.text"
-            :tooltip="m.text"
+            :text="t('example.doc.avatarGroup.sample.userA')"
+            :tooltip="t('example.doc.avatarGroup.sample.userA')"
+          />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userB')"
+            :tooltip="t('example.doc.avatarGroup.sample.userB')"
+          />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userC')"
+            :tooltip="t('example.doc.avatarGroup.sample.userC')"
+          />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userD')"
+            :tooltip="t('example.doc.avatarGroup.sample.userD')"
           />
         </AvatarGroup>
         <AvatarGroup disabled :max="3">
           <Avatar
-            v-for="m in members.slice(0, 4)"
-            :key="`d-${m.key}`"
-            :text="m.text"
-            :tooltip="m.text"
+            :text="t('example.doc.avatarGroup.sample.userA')"
+            :tooltip="t('example.doc.avatarGroup.sample.userA')"
+          />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userB')"
+            :tooltip="t('example.doc.avatarGroup.sample.userB')"
+          />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userC')"
+            :tooltip="t('example.doc.avatarGroup.sample.userC')"
+          />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userD')"
+            :tooltip="t('example.doc.avatarGroup.sample.userD')"
           />
         </AvatarGroup>
       </div>
@@ -265,9 +455,75 @@ function onOverflowClick() {
       </AvatarGroup>
     </DemoBlock>
 
+    <!-- 3. Slots -->
+    <DemoBlock
+      :title="t('example.doc.avatarGroup.demo.slots')"
+      :description="t('example.doc.avatarGroup.demo.slotsDesc')"
+      :code="codeSlots"
+    >
+      <AvatarGroup :max="2">
+        <Avatar :src="imgA" :tooltip="t('example.doc.avatarGroup.sample.userA')" />
+        <Avatar :src="imgB" :tooltip="t('example.doc.avatarGroup.sample.userB')" />
+        <Avatar :src="imgC" :tooltip="t('example.doc.avatarGroup.sample.userC')" />
+        <Avatar
+          :text="t('example.doc.avatarGroup.sample.userD')"
+          :tooltip="t('example.doc.avatarGroup.sample.userD')"
+        />
+        <template #overflowTooltip="{ overflowCount, labels }">
+          <span>
+            {{
+              t('example.doc.avatarGroup.sample.overflowCustom', {
+                count: overflowCount,
+                names: labels.join(', ')
+              })
+            }}
+          </span>
+        </template>
+      </AvatarGroup>
+    </DemoBlock>
+
+    <!-- 4. Events -->
+    <DemoBlock
+      :title="t('example.doc.avatarGroup.demo.events')"
+      :description="t('example.doc.avatarGroup.demo.eventsDesc')"
+      :code="codeEvents"
+    >
+      <div class="vp-ag-stack">
+        <AvatarGroup :max="3" @overflow-click="onOverflowClick">
+          <Avatar :src="imgA" :tooltip="t('example.doc.avatarGroup.sample.userA')" />
+          <Avatar :src="imgB" :tooltip="t('example.doc.avatarGroup.sample.userB')" />
+          <Avatar :src="imgC" :tooltip="t('example.doc.avatarGroup.sample.userC')" />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userD')"
+            :tooltip="t('example.doc.avatarGroup.sample.userD')"
+          />
+          <Avatar
+            :text="t('example.doc.avatarGroup.sample.userE')"
+            :tooltip="t('example.doc.avatarGroup.sample.userE')"
+          />
+        </AvatarGroup>
+        <p class="vp-ag-hint">
+          {{
+            t('example.doc.avatar.sample.eventLog', {
+              event: lastEvent || t('example.doc.avatar.sample.eventIdle')
+            })
+          }}
+        </p>
+      </div>
+    </DemoBlock>
+
+    <!-- 5. API: Props → Events → Slots -->
     <section class="vp-curated__api">
       <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
       <PropsTable :rows="propRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
+      <PropsTable :rows="eventRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
+      <PropsTable :rows="slotRows" />
     </section>
   </div>
 </template>
@@ -283,6 +539,17 @@ function onOverflowClick() {
   margin: 0 0 var(--spacing-md);
   font-size: var(--font-size-lg);
   color: var(--text-primary);
+}
+
+.vp-curated__api-sub {
+  margin: var(--spacing-xl) 0 var(--spacing-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-heading, 600);
+  color: var(--text-primary);
+}
+
+.vp-curated__api-sub:first-of-type {
+  margin-top: 0;
 }
 
 .vp-ag-stack {
@@ -303,5 +570,6 @@ function onOverflowClick() {
   margin: 0;
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
+  line-height: var(--line-height-body);
 }
 </style>

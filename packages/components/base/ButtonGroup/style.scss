@@ -52,6 +52,40 @@
     }
   }
 
+  &--vertical {
+    flex-direction: column;
+    align-items: stretch;
+
+    > .vp-button + .vp-button,
+    > .vp-button-host + .vp-button-host,
+    > .vp-button + .vp-button-host,
+    > .vp-button-host + .vp-button {
+      margin-inline-start: 0;
+      margin-block-start: -1px;
+    }
+
+    > .vp-button.vp-button--in-group:first-child,
+    > .vp-button-host:first-child > .vp-button.vp-button--in-group {
+      border-radius: var(--theme-btn-radius, var(--border-radius-md))
+        var(--theme-btn-radius, var(--border-radius-md)) 0 0;
+    }
+
+    > .vp-button.vp-button--in-group:last-child,
+    > .vp-button-host:last-child > .vp-button.vp-button--in-group {
+      border-radius: 0 0 var(--theme-btn-radius, var(--border-radius-md))
+        var(--theme-btn-radius, var(--border-radius-md));
+    }
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &--loading {
+    cursor: wait;
+  }
+
   /*
    * Neon children: leave room for marquee rings; keep per-button radius
    * instead of flattened group joins (glow would collide).

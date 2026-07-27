@@ -1,18 +1,24 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, getCurrentInstance, onMounted, onUnmounted, ref, useAttrs } from 'vue'
 import type { IconProps } from './types'
 import { resolveLucideIcon } from '@amg-webui/icons'
 import { useMotion } from '@amg-webui/hooks'
 import { IconStyleService, type IconStyleName } from '@amg-webui/theme'
+import { useIcon } from './useIcon'
 import './style.scss'
 
 /**
  * Lucide ships plain SVG paths — no animation package / extra deps.
  * Host keyframe motion is the shared library feature (`useMotion` + `vp-motion--*`).
  * rotate / flip → `style.transform` on the <svg> (Lucide preserves `style`).
+ * Interactive mode: `interactive` or parent `@click` → role=button + keyboard.
+ * Presentational Telemetry skip — click is business emit only (see TELEMETRY.md).
  * @see https://lucide.dev
  */
+defineOptions({ inheritAttrs: false })
+
 const props = withDefaults(defineProps<IconProps>(), {
+  telemetry: undefined,
   size: 'md',
   absoluteStrokeWidth: false,
   spin: false,
@@ -31,8 +37,19 @@ const props = withDefaults(defineProps<IconProps>(), {
   loading: false,
   selected: false,
   flipH: false,
-  flipV: false
+  flipV: false,
+  interactive: false
 })
+
+/** Inline — imported `IconEmits` is not expanded into runtime emits. */
+const emit = defineEmits<{
+  click: [event: MouseEvent]
+  focus: [event: FocusEvent]
+  blur: [event: FocusEvent]
+  keydown: [event: KeyboardEvent]
+}>()
+const attrs = useAttrs()
+const instance = getCurrentInstance()
 
 const iconStyle = ref<IconStyleName>(IconStyleService.getCurrentStyle())
 let unsub: (() => void) | undefined
@@ -48,62 +65,40 @@ onUnmounted(() => {
   unsub?.()
 })
 
-const TOKEN_SIZES = new Set(['xs', 'sm', 'md', 'lg', 'xl'])
-
-const sizeClassList = computed(() => {
-  if (typeof props.size === 'string' && TOKEN_SIZES.has(props.size)) {
-    return [`vp-icon--${props.size}`, `p-icon-${props.size}`]
-  }
-  return []
-})
-
-const lucideSize = computed(() => {
-  if (typeof props.size === 'number') return props.size
-  if (typeof props.size === 'string' && /^\d+(\.\d+)?$/.test(props.size)) return Number(props.size)
-  return undefined
-})
-
-const customSizeStyle = computed(() => {
-  const out: Record<string, string> = {}
-  if (typeof props.size === 'number') {
-    out.width = `${props.size}px`
-    out.height = `${props.size}px`
-    return out
-  }
-  if (typeof props.size === 'string' && /^\d+(\.\d+)?$/.test(props.size)) {
-    out.width = `${props.size}px`
-    out.height = `${props.size}px`
-    return out
-  }
-  if (typeof props.size === 'string' && !TOKEN_SIZES.has(props.size)) {
-    out.width = props.size
-    out.height = props.size
-  }
-  return out
-})
-
-const strokeWidth = computed(() => {
-  if (props.strokeWidth != null) return props.strokeWidth
-  return iconStyle.value === 'solid' ? 2.25 : 1.75
-})
-
-const a11yLabel = computed(() => props.label || props.alt || undefined)
-
-const resolvedFlipH = computed(
-  () => props.flipH || props.flip === 'horizontal' || props.flip === 'both'
-)
-const resolvedFlipV = computed(
-  () => props.flipV || props.flip === 'vertical' || props.flip === 'both'
+const hasClickListener = computed(
+  () => typeof instance?.vnode.props?.onClick === 'function'
 )
 
-const transformValue = computed(() => {
-  const parts: string[] = []
-  const deg = Number(props.rotate)
-  if (Number.isFinite(deg) && deg !== 0) parts.push(`rotate(${deg}deg)`)
-  if (resolvedFlipH.value) parts.push('scaleX(-1)')
-  if (resolvedFlipV.value) parts.push('scaleY(-1)')
-  return parts.length ? parts.join(' ') : undefined
-})
+const {
+  sizeClassList,
+  lucideSize,
+  customSizeStyle,
+  strokeWidth,
+  a11yLabel,
+  transformValue,
+  resolvedName,
+  isInteractive,
+  isActionLocked,
+  a11yAttrs
+} = useIcon(
+  computed(() => ({
+    size: props.size,
+    name: props.name,
+    loading: props.loading,
+    disabled: props.disabled,
+    interactive: props.interactive,
+    label: props.label,
+    alt: props.alt,
+    title: props.title,
+    rotate: props.rotate,
+    flip: props.flip,
+    flipH: props.flipH,
+    flipV: props.flipV,
+    strokeWidth: props.strokeWidth,
+    iconStyle: iconStyle.value,
+    hasClickListener: hasClickListener.value
+  }))
+)
 
 const { motionClass, motionStyle } = useMotion(() => ({
   spin: props.spin,
@@ -123,11 +118,6 @@ const { motionClass, motionStyle } = useMotion(() => ({
   legacyIconClasses: true
 }))
 
-const resolvedName = computed(() => {
-  if (props.loading) return 'Loader2'
-  return props.name
-})
-
 const LucideComponent = computed(() =>
   resolvedName.value ? resolveLucideIcon(resolvedName.value) : undefined
 )
@@ -141,6 +131,7 @@ const rootClass = computed(() => [
   ...motionClass.value,
   props.disabled && 'vp-icon--disabled p-icon-disabled',
   props.selected && 'vp-icon--selected p-icon-selected',
+  isInteractive.value && 'vp-icon--interactive p-icon-interactive',
   props.class
 ])
 
@@ -168,17 +159,53 @@ const lucideSvgStyle = computed(() => {
     transformBox: 'fill-box'
   } as Record<string, string>
 })
+
+function onClick(event: MouseEvent) {
+  if (isActionLocked.value) {
+    event.preventDefault()
+    event.stopPropagation()
+    return
+  }
+  if (!isInteractive.value) return
+  emit('click', event)
+}
+
+function onKeydown(event: KeyboardEvent) {
+  emit('keydown', event)
+  if (!isInteractive.value || isActionLocked.value) return
+  if (event.key !== 'Enter' && event.key !== ' ') return
+  event.preventDefault()
+  emit('click', event as unknown as MouseEvent)
+}
+
+function onFocus(event: FocusEvent) {
+  if (!isInteractive.value) return
+  emit('focus', event)
+}
+
+function onBlur(event: FocusEvent) {
+  if (!isInteractive.value) return
+  emit('blur', event)
+}
 </script>
 
 <template>
   <span
+    v-bind="attrs"
     :class="rootClass"
     :style="rootStyle"
     data-icon-set="lucide"
-    :role="a11yLabel ? 'img' : undefined"
-    :aria-label="a11yLabel"
-    :aria-hidden="a11yLabel ? undefined : true"
+    :role="a11yAttrs.role"
+    :tabindex="a11yAttrs.tabindex"
+    :aria-label="a11yAttrs['aria-label']"
+    :aria-hidden="a11yAttrs['aria-hidden']"
+    :aria-disabled="a11yAttrs['aria-disabled']"
+    :aria-busy="a11yAttrs['aria-busy']"
     :title="title || a11yLabel"
+    @click="onClick"
+    @keydown="onKeydown"
+    @focus="onFocus"
+    @blur="onBlur"
   >
     <component
       v-if="LucideComponent"

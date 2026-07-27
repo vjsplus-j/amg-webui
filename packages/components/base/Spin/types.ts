@@ -12,4 +12,11 @@ export interface SpinProps extends BaseProps {
   delay?: number
   /** Full-bleed overlay when wrapping slotted content */
   fullscreen?: boolean
+  /** Accessible name for the status region (falls back to tip) */
+  ariaLabel?: string
+}
+
+export interface SpinEmits {
+  /** Fired when the delayed visible spinning state changes */
+  visibleChange: [visible: boolean]
 }

@@ -83,12 +83,23 @@
     user-select: none;
   }
 
+  &--motion-off &__indicator {
+    animation: none;
+    opacity: 0.85;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     &__indicator {
       animation: none;
       opacity: 0.85;
     }
   }
+}
+
+/* Global AnimationService master switch (html[data-vp-motion=off]) */
+html[data-vp-motion='off'] .vp-spin__indicator {
+  animation: none;
+  opacity: 0.85;
 }
 
 @keyframes vp-spin-rotate {

@@ -1,5 +1,6 @@
 export default {
   'nav.overview': '總覽',
+  'nav.intro': '入門指南',
   'nav.base': '基礎元件',
   'nav.biz': '業務複合',
   'nav.theme': '多主題',

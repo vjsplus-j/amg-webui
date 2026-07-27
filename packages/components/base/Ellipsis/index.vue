@@ -136,6 +136,9 @@ watch(
         :class="ellipsisClass"
         :style="ellipsisStyle"
         :tabindex="showTooltip ? 0 : undefined"
+        :role="showTooltip ? 'button' : undefined"
+        :aria-label="showTooltip ? props.ariaLabel || tooltipContent : props.ariaLabel"
+        :aria-expanded="showTooltip ? false : undefined"
       >
         <slot>{{ content }}</slot>
       </span>

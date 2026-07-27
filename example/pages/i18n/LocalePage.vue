@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { Card } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys, LOCALE_META } from '@amg-webui/locale'
+import ExamplePageHero from '../../components/ExamplePageHero.vue'
 
 const { t, locale } = useLocale()
 
@@ -19,16 +20,16 @@ const samples = computed(() => {
 })
 
 const meta = computed(() => LOCALE_META[locale.value])
+
+const localeLead = computed(() => {
+  void locale.value
+  return `${locale.value} · ${meta.value.label} · ${meta.value.lang} / ${meta.value.dir}`
+})
 </script>
 
 <template>
   <div class="i18n-lab">
-    <header class="i18n-lab__head">
-      <h2 class="i18n-lab__title">{{ t(LocaleKeys.page.i18nTitle) }}</h2>
-      <p class="i18n-lab__sub">
-        {{ locale }} · {{ meta.label }} · {{ meta.lang }} / {{ meta.dir }}
-      </p>
-    </header>
+    <ExamplePageHero title-key="page.i18n.title" :lead="localeLead" />
 
     <Card class="i18n-lab__card">
       <p class="i18n-lab__hint">
@@ -48,53 +49,36 @@ const meta = computed(() => LOCALE_META[locale.value])
 .i18n-lab {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md, 0.75rem);
-  padding: var(--spacing-md, 0.75rem);
-}
-
-.i18n-lab__title {
-  margin: 0;
-  font-size: var(--font-size-xl, 1.25rem);
-  color: var(--text-primary);
-}
-
-.i18n-lab__sub {
-  margin: var(--spacing-sm, 0.5rem) 0 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
+  gap: var(--theme-section-gap);
 }
 
 .i18n-lab__hint {
-  margin: 0 0 var(--spacing-md, 0.75rem);
-  color: var(--text-muted);
-  font-size: var(--font-size-sm);
+  margin: 0 0 var(--spacing-md);
+  color: var(--text-secondary);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
 }
 
 .i18n-lab__list {
-  list-style: none;
   margin: 0;
   padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm, 0.5rem);
+  gap: var(--spacing-sm);
 }
 
 .i18n-lab__list li {
   display: flex;
-  justify-content: space-between;
-  gap: var(--spacing-md, 0.75rem);
-  padding: var(--spacing-sm, 0.5rem) 0;
-  border-bottom: 1px solid var(--border-color);
-  font-size: var(--font-size-sm);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  align-items: baseline;
+  font-size: var(--font-size-md);
+  color: var(--text-primary);
 }
 
 .i18n-lab__list code {
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-}
-
-.i18n-lab__list span {
-  color: var(--text-primary);
-  font-weight: 500;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
 }
 </style>

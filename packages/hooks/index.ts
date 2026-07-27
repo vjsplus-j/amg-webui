@@ -5,6 +5,7 @@ export { useSharedMount } from './useSharedMount'
 export { useVModel } from './useVModel'
 export { useLocale } from './useLocale'
 export { useTrackedEmit } from './useTrackedEmit'
+export { useEventBus } from './useEventBus'
 export { usePopover } from './usePopover'
 export { useObjectUrl } from './useObjectUrl'
 export {

@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { Button, Card, Message, Skeleton } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
+import ExamplePageHero from '../../components/ExamplePageHero.vue'
 import { NAV_GROUP_TITLE_KEYS, type NavGroupId } from '../../router/routes'
 
 const router = useRouter()
@@ -26,6 +27,7 @@ onUnmounted(() => {
 const zones = computed(() => {
   void locale.value
   const list: { group: NavGroupId; route: string; blurbKey: string }[] = [
+    { group: 'intro', route: 'intro-quick-start', blurbKey: 'page.dashboard.blurb.intro' },
     { group: 'base', route: 'base-overview', blurbKey: 'page.dashboard.blurb.base' },
     { group: 'biz', route: 'biz-login', blurbKey: 'page.dashboard.blurb.biz' },
     { group: 'theme', route: 'theme', blurbKey: 'page.dashboard.blurb.theme' },
@@ -60,13 +62,11 @@ const shellNotes = computed(() => {
     :aria-label="t('example.doc.skeleton.sample.page')"
   >
     <div class="dashboard">
-      <div class="ln-page-hero">
-        <p class="ln-page-eyebrow">Play Debug Shell</p>
-        <h1 class="ln-page-title">{{ t('page.dashboard.hero') }}</h1>
-        <p class="ln-page-lead">
-          {{ t('page.dashboard.lead') }}
-        </p>
-      </div>
+      <ExamplePageHero
+        title-key="page.dashboard.title"
+        lead-key="page.dashboard.lead"
+        eyebrow-key="page.dashboard.eyebrow"
+      />
 
       <Message severity="info" :closable="false">
         {{ t('page.dashboard.msg') }}

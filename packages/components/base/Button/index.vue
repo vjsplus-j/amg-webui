@@ -76,6 +76,7 @@ const {
   isDisabled,
   isReadonly,
   isInteractiveLocked,
+  isLoading,
   hideByPermission,
   disableByPermission,
   permissionDenied,
@@ -124,15 +125,12 @@ let rippleId = 0
 const guardTimer = ref<ReturnType<typeof setTimeout> | null>(null)
 const throttleLocked = ref(false)
 
-watch(
-  () => props.loading,
-  (v) => {
-    if (!v && guardTimer.value) {
-      clearTimeout(guardTimer.value)
-      guardTimer.value = null
-    }
+watch(isLoading, (v) => {
+  if (!v && guardTimer.value) {
+    clearTimeout(guardTimer.value)
+    guardTimer.value = null
   }
-)
+})
 
 function spawnRipple(event: MouseEvent, el: HTMLElement) {
   if (!resolvedRipple.value) return
@@ -330,7 +328,7 @@ function handleKeydown(event: KeyboardEvent) {
             :type="isAnchor ? undefined : type"
             :disabled="isAnchor ? undefined : isDisabled"
             :aria-disabled="isDisabled || isReadonly ? true : undefined"
-            :aria-busy="loading ? true : undefined"
+            :aria-busy="isLoading ? true : undefined"
             :aria-label="resolvedAriaLabel"
             :aria-readonly="isReadonly ? true : undefined"
             :title="titleAttr"
@@ -364,12 +362,12 @@ function handleKeydown(event: KeyboardEvent) {
             </span>
 
             <span
-              v-if="(iconPos === 'left' || iconPos === 'top') && (loading || showIconSlot)"
+              v-if="(iconPos === 'left' || iconPos === 'top') && (isLoading || showIconSlot)"
               class="vp-button__icon p-button-icon"
             >
-              <slot v-if="loading && $slots.loading" name="loading" />
+              <slot v-if="isLoading && $slots.loading" name="loading" />
               <svg
-                v-else-if="loading"
+                v-else-if="isLoading"
                 class="vp-button__loader p-button-loader"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -383,19 +381,19 @@ function handleKeydown(event: KeyboardEvent) {
               </slot>
             </span>
 
-            <span v-if="loading && loadingText" class="vp-button__label p-button-label">{{ loadingText }}</span>
+            <span v-if="isLoading && loadingText" class="vp-button__label p-button-label">{{ loadingText }}</span>
             <span v-else-if="label" class="vp-button__label p-button-label">{{ label }}</span>
             <span v-else-if="$slots.default" class="vp-button__label p-button-label">
               <slot />
             </span>
 
             <span
-              v-if="iconPos === 'right' && (loading || showIconSlot)"
+              v-if="iconPos === 'right' && (isLoading || showIconSlot)"
               class="vp-button__icon p-button-icon"
             >
-              <slot v-if="loading && $slots.loading" name="loading" />
+              <slot v-if="isLoading && $slots.loading" name="loading" />
               <svg
-                v-else-if="loading"
+                v-else-if="isLoading"
                 class="vp-button__loader p-button-loader"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -433,7 +431,7 @@ function handleKeydown(event: KeyboardEvent) {
         :type="isAnchor ? undefined : type"
         :disabled="isAnchor ? undefined : isDisabled"
         :aria-disabled="isDisabled || isReadonly ? true : undefined"
-        :aria-busy="loading ? true : undefined"
+        :aria-busy="isLoading ? true : undefined"
         :aria-label="resolvedAriaLabel"
         :aria-readonly="isReadonly ? true : undefined"
         :title="titleAttr"
@@ -467,12 +465,12 @@ function handleKeydown(event: KeyboardEvent) {
         </span>
 
         <span
-          v-if="(iconPos === 'left' || iconPos === 'top') && (loading || showIconSlot)"
+          v-if="(iconPos === 'left' || iconPos === 'top') && (isLoading || showIconSlot)"
           class="vp-button__icon p-button-icon"
         >
-          <slot v-if="loading && $slots.loading" name="loading" />
+          <slot v-if="isLoading && $slots.loading" name="loading" />
           <svg
-            v-else-if="loading"
+            v-else-if="isLoading"
             class="vp-button__loader p-button-loader"
             viewBox="0 0 24 24"
             fill="none"
@@ -486,19 +484,19 @@ function handleKeydown(event: KeyboardEvent) {
           </slot>
         </span>
 
-        <span v-if="loading && loadingText" class="vp-button__label p-button-label">{{ loadingText }}</span>
+        <span v-if="isLoading && loadingText" class="vp-button__label p-button-label">{{ loadingText }}</span>
         <span v-else-if="label" class="vp-button__label p-button-label">{{ label }}</span>
         <span v-else-if="$slots.default" class="vp-button__label p-button-label">
           <slot />
         </span>
 
         <span
-          v-if="iconPos === 'right' && (loading || showIconSlot)"
+          v-if="iconPos === 'right' && (isLoading || showIconSlot)"
           class="vp-button__icon p-button-icon"
         >
-          <slot v-if="loading && $slots.loading" name="loading" />
+          <slot v-if="isLoading && $slots.loading" name="loading" />
           <svg
-            v-else-if="loading"
+            v-else-if="isLoading"
             class="vp-button__loader p-button-loader"
             viewBox="0 0 24 24"
             fill="none"

@@ -12,6 +12,8 @@ export interface FloatButtonProps extends BaseProps {
   left?: string | number
   /** Controlled menu open state (when `#menu` slot is used) */
   open?: boolean
+  /** Accessible name for the trigger (defaults to `common.more` when menu is present) */
+  ariaLabel?: string
 }
 
 export interface FloatButtonEmits {

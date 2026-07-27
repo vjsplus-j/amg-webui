@@ -6,6 +6,7 @@
   font-family: var(--font-family-sans);
   font-size: var(--font-size-sm);
   color: var(--text-primary);
+  position: relative;
 
   &--disabled {
     opacity: 0.5;
@@ -17,12 +18,12 @@
     opacity: 0;
     width: 0;
     height: 0;
-    pointer-events: none;
+    margin: 0;
   }
 
   &__mark {
-    width: var(--spacing-lg);
-    height: var(--spacing-lg);
+    width: var(--vp-radio-mark);
+    height: var(--vp-radio-mark);
     border: 1px solid var(--border-color);
     border-radius: 50%;
     background: var(--surface-1);
@@ -30,12 +31,14 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: border-color var(--transition-normal), background var(--transition-normal);
+    transition:
+      border-color var(--transition-normal),
+      background var(--transition-normal);
 
     &::after {
       content: '';
-      width: var(--spacing-sm);
-      height: var(--spacing-sm);
+      width: calc(var(--vp-radio-mark) * 0.4);
+      height: calc(var(--vp-radio-mark) * 0.4);
       border-radius: 50%;
       background: var(--primary-500);
       transform: scale(0);
@@ -57,5 +60,35 @@
 
   &__label {
     line-height: var(--line-height-body);
+  }
+
+  &--xs {
+    --vp-radio-mark: var(--spacing-md);
+    font-size: var(--font-size-xs);
+  }
+
+  &--sm {
+    --vp-radio-mark: calc(var(--spacing-md) + var(--spacing-xs));
+  }
+
+  &--md {
+    --vp-radio-mark: var(--spacing-lg);
+  }
+
+  &--lg {
+    --vp-radio-mark: var(--spacing-xl);
+    font-size: var(--font-size-md);
+  }
+
+  &--xl {
+    --vp-radio-mark: calc(var(--spacing-xl) + var(--spacing-xs));
+    font-size: var(--font-size-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-radio__mark,
+  .vp-radio__mark::after {
+    transition: none;
   }
 }

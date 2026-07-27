@@ -12,7 +12,8 @@ import { LocaleKeys } from '@amg-webui/locale'
 import { ToastService } from '@amg-webui/theme'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
-import type { PropRow } from '../../components/demo/types'
+import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -274,35 +275,33 @@ const motionIconKey = computed(
     ].join('|')
 )
 
-const codeStyle = computed(() => {
-  const lines = [
+const codeStyle = computed(() =>
+  demoCode(
     '<Icon',
     '  name="Smile"',
     `  :size="${styleSize.value}"`,
-    ...(styleColor.value ? [`  color="${styleColor.value}"`] : []),
+    styleColor.value ? `  color="${styleColor.value}"` : null,
     `  :stroke-width="${styleStrokeWidth.value}"`,
     `  :absolute-stroke-width="${styleAbsoluteStroke.value}"`,
     '/>'
-  ]
-  return lines.join('\n')
-})
+  )
+)
 
-const codeMotion = computed(() => {
-  const lines = [
+const codeMotion = computed(() =>
+  demoCode(
     '<Icon',
     '  name="RefreshCw"',
     `  :size="${styleSize.value}"`,
-    ...(motionRotate.value ? [`  :rotate="${motionRotate.value}"`] : []),
-    ...(motionSpin.value ? ['  spin'] : []),
-    ...(motionPulse.value ? ['  pulse'] : []),
-    ...(motionHeartbeat.value ? ['  heartbeat'] : []),
-    ...(motionBounce.value ? ['  bounce'] : []),
-    ...(motionFlipH.value ? ['  flip-h'] : []),
-    ...(motionFlipV.value ? ['  flip-v'] : []),
+    motionRotate.value ? `  :rotate="${motionRotate.value}"` : null,
+    motionSpin.value && '  spin',
+    motionPulse.value && '  pulse',
+    motionHeartbeat.value && '  heartbeat',
+    motionBounce.value && '  bounce',
+    motionFlipH.value && '  flip-h',
+    motionFlipV.value && '  flip-v',
     '/>'
-  ]
-  return lines.join('\n')
-})
+  )
+)
 
 const browserCategories = computed(() => [
   { id: 'all' as const, label: t(LocaleKeys.common.all) },
@@ -356,7 +355,7 @@ const propRows = computed<PropRow[]>(() => [
   {
     name: 'size',
     description: t('example.doc.icon.prop.size'),
-    type: "Size | number | string",
+    type: 'Size | number | string',
     defaultValue: "'md'"
   },
   {
@@ -450,6 +449,12 @@ const propRows = computed<PropRow[]>(() => [
     defaultValue: '-'
   },
   {
+    name: 'interactive',
+    description: t('example.doc.icon.prop.interactive'),
+    type: 'boolean',
+    defaultValue: 'false'
+  },
+  {
     name: 'opacity',
     description: t('example.doc.icon.prop.opacity'),
     type: 'number',
@@ -457,48 +462,162 @@ const propRows = computed<PropRow[]>(() => [
   }
 ])
 
-const codeGrid = `<Icon name="Settings" />
-<Icon name="Search" size="lg" />`
+const slotRows = computed<ApiRow[]>(() => [
+  {
+    name: 'default',
+    description: t('example.doc.icon.slot.default'),
+    type: 'VNode',
+    defaultValue: '-'
+  }
+])
 
-const codeLibrary = `import { Search, ICON_CATALOG, listIcons } from '@amg-webui/icons'
-import { Icon } from '@amg-webui/components/base'
+const eventRows = computed<ApiRow[]>(() => [
+  {
+    name: 'click',
+    description: t('example.doc.icon.event.click'),
+    type: '(event: MouseEvent) => void',
+    defaultValue: '-'
+  },
+  {
+    name: 'focus',
+    description: t('example.doc.icon.event.focus'),
+    type: '(event: FocusEvent) => void',
+    defaultValue: '-'
+  },
+  {
+    name: 'blur',
+    description: t('example.doc.icon.event.blur'),
+    type: '(event: FocusEvent) => void',
+    defaultValue: '-'
+  },
+  {
+    name: 'keydown',
+    description: t('example.doc.icon.event.keydown'),
+    type: '(event: KeyboardEvent) => void',
+    defaultValue: '-'
+  }
+])
 
-<Icon name="Search" />
-listIcons({ query: 'user', category: 'access' })`
+const interactiveClicks = ref(0)
 
-const codeSize = `<Icon name="Star" size="xs" />
-<!-- … sm md lg xl -->
-<Icon name="Star" :size="32" />`
+function onInteractiveClick() {
+  interactiveClicks.value += 1
+  ToastService.success({
+    summary: t('example.doc.icon.demo.interactiveToast'),
+    detail: t('example.doc.icon.demo.interactiveCount', { count: interactiveClicks.value })
+  })
+}
 
-const codeColor = `<Icon name="Star" color="var(--primary-500)" />
-<Icon name="CircleCheck" color="var(--ds-success)" />`
+const codeBasic = demoSfc({
+  imports: [`import { Icon } from '@amg-webui/components/base'`],
+  template: [
+    '  <Icon name="Settings" />',
+    '  <Icon name="Search" size="lg" />',
+    '  <Icon name="Star" color="var(--primary-500)" />'
+  ]
+})
 
-const codeAnim = `<Icon name="RefreshCw" spin />
-<Icon name="Bell" pulse />
-<Icon name="Heart" heartbeat />
-<Icon name="ArrowUp" bounce />
-<Icon name="Search" loading />`
+const codeGrid = demoCode(
+  `<Icon name="Settings" />`,
+  `<Icon name="Search" />`,
+  `<Icon name="Star" />`,
+  `<Icon name="User" />`,
+  `<Icon name="Bell" />`,
+  `<Icon name="Home" />`
+)
 
-const codeTransform = `<Icon name="ChevronRight" :rotate="90" />
-<Icon name="ChevronRight" flip="horizontal" />
-<Icon name="ChevronUp" flip-h />
-<Icon name="ChevronUp" flip-v />`
+const codeLibrary = demoCode(
+  `import { listIcons } from '@amg-webui/icons'`,
+  `import { Icon } from '@amg-webui/components/base'`,
+  ``,
+  `<Icon name="Search" />`,
+  `listIcons({ query: 'user', category: 'account' })`
+)
 
-const codeState = `<Icon name="Settings" disabled />
-<Icon name="Star" selected />
-<Icon name="Search" loading />`
+const codeSize = demoCode(
+  `<Icon name="Star" size="xs" />`,
+  `<Icon name="Star" size="sm" />`,
+  `<Icon name="Star" size="md" />`,
+  `<Icon name="Star" size="lg" />`,
+  `<Icon name="Star" size="xl" />`,
+  `<Icon name="Star" :size="32" />`
+)
 
-const codeA11y = `<Icon name="Settings" :label="t('…')" />
-<Icon name="Bell" alt="Notifications" title="Notifications" />`
+const codeColor = demoCode(
+  `<Icon name="Star" size="lg" />`,
+  `<Icon name="Star" size="lg" color="var(--primary-500)" />`,
+  `<Icon name="Star" size="lg" color="var(--success-500)" />`,
+  `<Icon name="Star" size="lg" color="var(--warning-500)" />`,
+  `<Icon name="Star" size="lg" color="var(--danger-500)" />`
+)
 
-const codeSlot = `<Icon size="lg">
-  <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em">
-    <circle cx="12" cy="12" r="8" />
-  </svg>
-</Icon>`
+const codeAnim = demoCode(
+  `<Icon name="RefreshCw" size="lg" spin />`,
+  `<Icon name="Bell" size="lg" pulse />`,
+  `<Icon name="Heart" size="lg" heartbeat />`,
+  `<Icon name="ArrowUp" size="lg" bounce />`,
+  `<Icon name="Search" size="lg" loading />`
+)
+
+const codeTransform = demoCode(
+  `<Icon name="ChevronRight" size="lg" />`,
+  `<Icon name="ChevronRight" size="lg" :rotate="90" />`,
+  `<Icon name="ChevronRight" size="lg" flip="horizontal" />`,
+  `<Icon name="ChevronUp" size="lg" flip-h />`,
+  `<Icon name="ChevronUp" size="lg" flip-v />`
+)
+
+const codeState = demoCode(
+  `<Icon name="Settings" size="lg" />`,
+  `<Icon name="Settings" size="lg" disabled />`,
+  `<Icon name="Star" size="lg" selected />`,
+  `<Icon name="Search" size="lg" loading />`
+)
+
+const codeA11y = demoCode(
+  `<Icon name="Settings" size="lg" :label="t('example.doc.icon.demo.a11yLabel')" />`,
+  `<Icon`,
+  `  name="Bell"`,
+  `  size="lg"`,
+  `  :alt="t('example.doc.icon.demo.a11yAlt')"`,
+  `  :title="t('example.doc.icon.demo.a11yAlt')"`,
+  `/>`
+)
+
+const codeInteractive = demoCode(
+  `<Icon`,
+  `  name="Settings"`,
+  `  size="lg"`,
+  `  interactive`,
+  `  :label="t('example.doc.icon.demo.a11yLabel')"`,
+  `  @click="onInteractiveClick"`,
+  `/>`,
+  `<Icon name="Bell" size="lg" interactive disabled :label="t('example.doc.icon.demo.a11yAlt')" />`
+)
+
+const codeSlot = demoCode(
+  `<Icon size="lg" :label="t('example.doc.icon.demo.slotLabel')">`,
+  `  <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" aria-hidden="true">`,
+  `    <circle cx="12" cy="12" r="8" />`,
+  `  </svg>`,
+  `</Icon>`
+)
 </script>
 <template>
   <div class="vp-curated">
+    <DemoBlock
+      :title="t('example.doc.icon.demo.basic')"
+      :description="t('example.doc.icon.demo.basicDesc')"
+      :code="codeBasic"
+      default-open
+    >
+      <div class="vp-icon-row">
+        <Icon name="Settings" />
+        <Icon name="Search" size="lg" />
+        <Icon name="Star" color="var(--primary-500)" />
+      </div>
+    </DemoBlock>
+
     <DemoBlock
       :title="t('example.doc.icon.demo.style')"
       :description="t('example.doc.icon.demo.styleDesc')"
@@ -933,6 +1052,38 @@ const codeSlot = `<Icon size="lg">
     </DemoBlock>
 
     <DemoBlock
+      :title="t('example.doc.icon.demo.interactive')"
+      :description="t('example.doc.icon.demo.interactiveDesc')"
+      :code="codeInteractive"
+    >
+      <div class="vp-icon-row">
+        <div class="vp-icon-sample">
+          <Icon
+            name="Settings"
+            size="lg"
+            interactive
+            :label="t('example.doc.icon.demo.a11yLabel')"
+            @click="onInteractiveClick"
+          />
+          <code class="vp-icon-sample__cap">interactive</code>
+        </div>
+        <div class="vp-icon-sample">
+          <Icon
+            name="Bell"
+            size="lg"
+            interactive
+            disabled
+            :label="t('example.doc.icon.demo.a11yAlt')"
+          />
+          <code class="vp-icon-sample__cap">disabled</code>
+        </div>
+        <p class="vp-icon-interactive-hint">
+          {{ t('example.doc.icon.demo.interactiveCount', { count: interactiveClicks }) }}
+        </p>
+      </div>
+    </DemoBlock>
+
+    <DemoBlock
       :title="t('example.doc.icon.demo.slot')"
       :description="t('example.doc.icon.demo.slotDesc')"
       :code="codeSlot"
@@ -951,7 +1102,15 @@ const codeSlot = `<Icon size="lg">
 
     <section class="vp-curated__api">
       <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
       <PropsTable :rows="propRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
+      <PropsTable :rows="eventRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
+      <PropsTable :rows="slotRows" />
     </section>
   </div>
 </template>
@@ -967,6 +1126,17 @@ const codeSlot = `<Icon size="lg">
   margin: 0 0 var(--spacing-md);
   font-size: var(--font-size-lg);
   color: var(--text-primary);
+}
+
+.vp-curated__api-sub {
+  margin: var(--spacing-xl) 0 var(--spacing-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-heading, 600);
+  color: var(--text-primary);
+}
+
+.vp-curated__api-sub:first-of-type {
+  margin-top: 0;
 }
 
 .vp-icon-browser {
@@ -1116,6 +1286,14 @@ const codeSlot = `<Icon size="lg">
   color: var(--text-secondary);
   line-height: var(--line-height-body);
   white-space: nowrap;
+}
+
+.vp-icon-interactive-hint {
+  margin: 0;
+  align-self: center;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: var(--line-height-body);
 }
 
 .vp-icon-style {

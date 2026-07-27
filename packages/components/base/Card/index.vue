@@ -93,10 +93,26 @@ function onClick(event: MouseEvent) {
   })
   emit('click', event)
 }
+
+function onKeydown(event: KeyboardEvent) {
+  if (!isHoverable.value) return
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault()
+    onClick(event as unknown as MouseEvent)
+  }
+}
 </script>
 
 <template>
-  <div :class="rootClass" :style="style" @click="onClick">
+  <div
+    :class="rootClass"
+    :style="style"
+    :role="isHoverable ? 'button' : undefined"
+    :tabindex="isHoverable ? 0 : undefined"
+    :aria-disabled="loading || undefined"
+    @click="onClick"
+    @keydown="onKeydown"
+  >
     <div v-if="header || $slots.header || $slots.extra" class="vp-card__header p-card-header">
       <div class="vp-card__header-main">
         <slot name="header">

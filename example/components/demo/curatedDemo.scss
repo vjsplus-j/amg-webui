@@ -1,0 +1,32 @@
+/**
+ * Shared full-bleed layout for curated component demos.
+ * Import once from each `example/demos/<Name>/index.vue` (or rely on DemoBlock stretch).
+ * Rule: demos / DemoBlock / DemoCode / PropsTable span the full `.ln-content` column —
+ * never wrap them in `max-width` reading columns.
+ */
+.vp-curated {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-section-gap);
+}
+
+.vp-curated__api-title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-heading, 600);
+  color: var(--text-primary);
+}
+
+.vp-curated__api-sub {
+  margin: var(--spacing-md) 0 0;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-heading, 600);
+  color: var(--text-primary);
+}
+
+.vp-curated__api-sub:first-of-type {
+  margin-top: 0;
+}

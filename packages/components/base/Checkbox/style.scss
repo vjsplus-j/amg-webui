@@ -6,6 +6,7 @@
   font-family: var(--font-family-sans);
   font-size: var(--font-size-sm);
   color: var(--text-primary);
+  position: relative;
 
   &--disabled {
     opacity: 0.5;
@@ -17,12 +18,12 @@
     opacity: 0;
     width: 0;
     height: 0;
-    pointer-events: none;
+    margin: 0;
   }
 
   &__mark {
-    width: var(--spacing-lg);
-    height: var(--spacing-lg);
+    width: var(--vp-checkbox-mark);
+    height: var(--vp-checkbox-mark);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-sm);
     background: var(--surface-1);
@@ -30,11 +31,13 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: border-color var(--transition-normal), background var(--transition-normal);
+    transition:
+      border-color var(--transition-normal),
+      background var(--transition-normal);
 
     svg {
-      width: var(--spacing-md);
-      height: var(--spacing-md);
+      width: calc(var(--vp-checkbox-mark) * 0.7);
+      height: calc(var(--vp-checkbox-mark) * 0.7);
       color: var(--surface-1);
       opacity: 0;
       transition: opacity var(--transition-normal);
@@ -57,5 +60,35 @@
 
   &__label {
     line-height: var(--line-height-body);
+  }
+
+  &--xs {
+    --vp-checkbox-mark: var(--spacing-md);
+    font-size: var(--font-size-xs);
+  }
+
+  &--sm {
+    --vp-checkbox-mark: calc(var(--spacing-md) + var(--spacing-xs));
+  }
+
+  &--md {
+    --vp-checkbox-mark: var(--spacing-lg);
+  }
+
+  &--lg {
+    --vp-checkbox-mark: var(--spacing-xl);
+    font-size: var(--font-size-md);
+  }
+
+  &--xl {
+    --vp-checkbox-mark: calc(var(--spacing-xl) + var(--spacing-xs));
+    font-size: var(--font-size-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-checkbox__mark,
+  .vp-checkbox__mark svg {
+    transition: none;
   }
 }

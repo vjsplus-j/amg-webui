@@ -1,6 +1,9 @@
 <script setup lang="ts">
+/**
+ * Curated demo — aligned with Avatar gold standard (demoCode / demoSfc / API thirds).
+ */
 import { computed, ref } from 'vue'
-import { Button, ButtonGroup } from '@amg-webui/components/base'
+import { Button, ButtonGroup, Icon } from '@amg-webui/components/base'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -12,11 +15,13 @@ import {
   formatMotionLiveCode,
   useMotionLiveBind
 } from '../../components/demo/motionLive'
-import type { PropRow } from '../../components/demo/types'
+import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 const loading = ref(false)
 const clickCount = ref(0)
+const lastEvent = ref('')
 const motion = createMotionLiveState()
 const motionBind = useMotionLiveBind(motion)
 const codeMotionLive = computed(() =>
@@ -58,6 +63,191 @@ function onGuardedClick() {
   clickCount.value += 1
 }
 
+function noteEvent(kind: string) {
+  lastEvent.value = kind
+}
+
+/* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
+
+const codeBasic = demoSfc({
+  imports: [`import { Button } from '@amg-webui/components/base'`],
+  template: [
+    `  <Button severity="primary">{{ t('button.confirm') }}</Button>`,
+    `  <Button severity="success">{{ t('common.success') }}</Button>`,
+    `  <Button severity="warning">{{ t('button.edit') }}</Button>`,
+    `  <Button severity="danger">{{ t('button.delete') }}</Button>`,
+    `  <Button variant="outlined">{{ t('button.cancel') }}</Button>`,
+    `  <Button variant="text">{{ t('button.edit') }}</Button>`,
+    `  <Button link>{{ t('button.learnMore') }}</Button>`
+  ]
+})
+
+const codeDashed = demoCode(
+  `<Button variant="dashed" severity="primary">{{ t('button.confirm') }}</Button>`,
+  `<Button variant="dashed" severity="success">{{ t('common.success') }}</Button>`,
+  `<Button variant="dashed" severity="warning">{{ t('button.edit') }}</Button>`,
+  `<Button variant="dashed" severity="danger">{{ t('button.delete') }}</Button>`,
+  `<Button variant="dashed">{{ t('button.create') }}</Button>`
+)
+
+const codeNeon = demoCode(
+  `<Button variant="neon" severity="primary">{{ t('button.confirm') }}</Button>`,
+  `<Button variant="neon" severity="success">{{ t('common.success') }}</Button>`,
+  `<Button variant="neon" severity="warning">{{ t('button.edit') }}</Button>`,
+  `<Button variant="neon" severity="danger">{{ t('button.delete') }}</Button>`
+)
+
+const codeSize = demoCode(
+  `<Button size="xs" severity="primary">{{ t('page.base.atoms.button.size.xs') }}</Button>`,
+  `<Button size="sm" severity="primary">{{ t('page.base.atoms.button.size.sm') }}</Button>`,
+  `<Button size="md" severity="primary">{{ t('page.base.atoms.button.size.md') }}</Button>`,
+  `<Button size="lg" severity="primary">{{ t('page.base.atoms.button.size.lg') }}</Button>`,
+  `<Button size="xl" severity="primary">{{ t('page.base.atoms.button.size.xl') }}</Button>`
+)
+
+const codeIcon = demoCode(
+  `<Button icon="Star" :label="t('button.save')" severity="primary" />`,
+  `<Button`,
+  `  icon="ChevronRight"`,
+  `  icon-pos="right"`,
+  `  :label="t('button.continue')"`,
+  `  variant="outlined"`,
+  `/>`,
+  `<Button`,
+  `  icon="Upload"`,
+  `  icon-pos="top"`,
+  `  :label="t('button.submit')"`,
+  `  variant="dashed"`,
+  `/>`,
+  `<Button shape="circle" icon="Settings" :aria-label="t('page.base.atoms.button.ariaIcon')" />`,
+  `<Button`,
+  `  shape="square"`,
+  `  variant="outlined"`,
+  `  icon="Search"`,
+  `  :aria-label="t('page.base.atoms.button.ariaIcon')"`,
+  `/>`,
+  `<Button`,
+  `  shape="circle"`,
+  `  :img="demoImg"`,
+  `  :aria-label="t('page.base.atoms.button.ariaImg')"`,
+  `  badge="1"`,
+  `/>`
+)
+
+const codeStates = demoCode(
+  `<Button`,
+  `  :loading="loading"`,
+  `  :loading-text="t('common.loading')"`,
+  `  severity="primary"`,
+  `>`,
+  `  {{ t('common.loading') }}`,
+  `</Button>`,
+  `<Button disabled :disabled-title="t('example.doc.button.tip.disabled')">`,
+  `  {{ t('button.confirm') }}`,
+  `</Button>`,
+  `<Button readonly>{{ t('example.doc.button.demo.readonlyLabel') }}</Button>`,
+  `<Button`,
+  `  click-guard="debounce"`,
+  `  :wait="500"`,
+  `  severity="primary"`,
+  `  @click="onGuardedClick"`,
+  `>`,
+  `  {{ t('example.doc.button.demo.debounceLabel') }} ({{ clickCount }})`,
+  `</Button>`,
+  `<Button :badge="3">{{ t('button.refresh') }}</Button>`,
+  `<Button star variant="outlined">{{ t('button.save') }}</Button>`,
+  `<Button ripple severity="primary">{{ t('example.doc.button.demo.rippleLabel') }}</Button>`
+)
+
+const codeBiz = demoCode(
+  `<Button`,
+  `  :permission="false"`,
+  `  permission-mode="disable"`,
+  `  :permission-tip="t('example.doc.button.tip.noPermission')"`,
+  `>`,
+  `  {{ t('example.doc.button.demo.permissionLabel') }}`,
+  `</Button>`,
+  `<Button :permission="false" permission-mode="hide">`,
+  `  {{ t('example.doc.button.demo.permissionHidden') }}`,
+  `</Button>`,
+  `<Button severity="danger" :confirm="t('example.doc.button.tip.confirmDelete')">`,
+  `  {{ t('button.delete') }}`,
+  `</Button>`,
+  `<Button href="https://example.com" target="_blank" link>`,
+  `  {{ t('example.doc.button.demo.hrefLabel') }}`,
+  `</Button>`,
+  `<Button block severity="primary" type="submit">`,
+  `  {{ t('button.submit') }}`,
+  `</Button>`
+)
+
+const codeSlots = demoCode(
+  `<Button severity="primary">`,
+  `  <template #prefix>`,
+  `    <Icon name="Star" size="sm" />`,
+  `  </template>`,
+  `  {{ t('button.save') }}`,
+  `  <template #suffix>`,
+  `    <Icon name="ChevronRight" size="sm" />`,
+  `  </template>`,
+  `</Button>`,
+  `<Button severity="primary">`,
+  `  <template #icon>`,
+  `    <Icon name="Heart" />`,
+  `  </template>`,
+  `  {{ t('button.save') }}`,
+  `</Button>`,
+  `<Button loading severity="primary">`,
+  `  <template #loading>`,
+  `    <Icon name="Loader2" spin />`,
+  `  </template>`,
+  `  {{ t('common.loading') }}`,
+  `</Button>`,
+  `<Button severity="primary">`,
+  `  {{ t('common.more') }}`,
+  `  <template #dropdown>`,
+  `    <Button variant="text" block>{{ t('button.edit') }}</Button>`,
+  `    <Button variant="text" block>{{ t('button.delete') }}</Button>`,
+  `  </template>`,
+  `</Button>`
+)
+
+const codeEvents = demoCode(
+  `<Button`,
+  `  severity="primary"`,
+  `  @click="onClick"`,
+  `  @focus="onFocus"`,
+  `  @blur="onBlur"`,
+  `>`,
+  `  {{ t('button.confirm') }}`,
+  `</Button>`,
+  `<Button`,
+  `  severity="danger"`,
+  `  :confirm="t('example.doc.button.tip.confirmDelete')"`,
+  `  @confirm="onConfirm"`,
+  `  @cancel-confirm="onCancelConfirm"`,
+  `>`,
+  `  {{ t('button.delete') }}`,
+  `</Button>`
+)
+
+const codeGroup = demoCode(
+  `<ButtonGroup>`,
+  `  <Button severity="primary">{{ t('button.create') }}</Button>`,
+  `  <Button variant="outlined">{{ t('button.edit') }}</Button>`,
+  `  <Button variant="outlined">{{ t('button.delete') }}</Button>`,
+  `</ButtonGroup>`,
+  `<Button severity="primary">`,
+  `  {{ t('common.more') }}`,
+  `  <template #dropdown>`,
+  `    <Button variant="text" block>{{ t('button.edit') }}</Button>`,
+  `    <Button variant="text" block>{{ t('button.delete') }}</Button>`,
+  `  </template>`,
+  `</Button>`
+)
+
+/* ─── API tables ─── */
+
 const propRows = computed<PropRow[]>(() => [
   {
     name: 'label',
@@ -80,7 +270,7 @@ const propRows = computed<PropRow[]>(() => [
   {
     name: 'severity',
     description: t('example.doc.button.prop.severity'),
-    type: "'default' | 'primary' | 'success' | 'warning' | 'danger' | 'link' | …",
+    type: "'default' | 'primary' | 'success' | 'warning' | 'danger' | 'link'",
     defaultValue: "'default'"
   },
   {
@@ -174,13 +364,19 @@ const propRows = computed<PropRow[]>(() => [
     defaultValue: 'false'
   },
   {
+    name: 'badge / star',
+    description: t('example.doc.button.prop.badge'),
+    type: 'string | number / boolean',
+    defaultValue: '-'
+  },
+  {
     name: 'type',
     description: t('example.doc.button.prop.type'),
     type: "'button' | 'submit' | 'reset'",
     defaultValue: "'button'"
   },
   {
-    name: 'spin / pulse / heartbeat / bounce',
+    name: 'spin / pulse / heartbeat / bounce / …',
     description: t('example.doc.motion.prop.heartbeat'),
     type: 'boolean',
     defaultValue: 'false'
@@ -190,66 +386,105 @@ const propRows = computed<PropRow[]>(() => [
     description: t('example.doc.motion.prop.animationDuration'),
     type: 'number | string',
     defaultValue: '-'
+  },
+  {
+    name: 'trackId / telemetry',
+    description: t('example.doc.button.prop.telemetry'),
+    type: 'string / boolean',
+    defaultValue: '- / undefined'
   }
 ])
 
-const codeVariant = `<Button severity="primary">{{ t('button.confirm') }}</Button>
-<Button variant="outlined">{{ t('button.cancel') }}</Button>
-<Button variant="text">{{ t('button.edit') }}</Button>
-<Button link>{{ t('button.learnMore') }}</Button>`
+const eventRows = computed<ApiRow[]>(() => [
+  {
+    name: 'click',
+    description: t('example.doc.button.emit.click'),
+    type: '(event: MouseEvent) => void',
+    defaultValue: '-'
+  },
+  {
+    name: 'focus',
+    description: t('example.doc.button.emit.focus'),
+    type: '(event: FocusEvent) => void',
+    defaultValue: '-'
+  },
+  {
+    name: 'blur',
+    description: t('example.doc.button.emit.blur'),
+    type: '(event: FocusEvent) => void',
+    defaultValue: '-'
+  },
+  {
+    name: 'confirm',
+    description: t('example.doc.button.emit.confirm'),
+    type: '(event: Event) => void',
+    defaultValue: '-'
+  },
+  {
+    name: 'cancelConfirm',
+    description: t('example.doc.button.emit.cancelConfirm'),
+    type: '(event: Event) => void',
+    defaultValue: '-'
+  }
+])
 
-const codeDashed = `<Button variant="dashed" severity="primary">{{ t('button.confirm') }}</Button>
-<Button variant="dashed" severity="success">{{ t('common.success') }}</Button>
-<Button variant="dashed" severity="warning">{{ t('button.edit') }}</Button>
-<Button variant="dashed" severity="danger">{{ t('button.delete') }}</Button>
-<Button variant="dashed">{{ t('button.create') }}</Button>`
-
-const codeNeon = `<Button variant="neon" severity="primary">{{ t('button.confirm') }}</Button>
-<Button variant="neon" severity="success">{{ t('common.success') }}</Button>
-<Button variant="neon" severity="warning">{{ t('button.edit') }}</Button>
-<Button variant="neon" severity="danger">{{ t('button.delete') }}</Button>`
-
-const codeSize = `<Button size="sm">sm</Button>
-<Button size="md">md</Button>
-<Button size="lg">lg</Button>`
-
-const codeIcon = `<Button icon="Star" :label="t('button.save')" />
-<Button icon="Upload" icon-pos="top" :label="..." />
-<Button shape="circle" icon="Settings" />`
-
-const codeStates = `<Button loading loading-text="...">...</Button>
-<Button disabled disabled-title="...">...</Button>
-<Button readonly>...</Button>
-<Button click-guard="debounce" :wait="400" />`
-
-const codeBiz = `<Button :permission="false" permission-mode="disable" :permission-tip="..." />
-<Button :confirm="t('...')" severity="danger">...</Button>
-<Button block severity="primary" type="submit">...</Button>`
-
-const codeGroup = `<ButtonGroup>
-  <Button severity="primary">...</Button>
-  <Button variant="outlined">...</Button>
-</ButtonGroup>
-<Button>
-  ...
-  <template #dropdown>...</template>
-</Button>`
+const slotRows = computed<ApiRow[]>(() => [
+  {
+    name: 'default',
+    description: t('example.doc.button.slot.default'),
+    type: 'VNode',
+    defaultValue: '-'
+  },
+  {
+    name: 'icon',
+    description: t('example.doc.button.slot.icon'),
+    type: 'VNode',
+    defaultValue: '-'
+  },
+  {
+    name: 'prefix',
+    description: t('example.doc.button.slot.prefix'),
+    type: 'VNode',
+    defaultValue: '-'
+  },
+  {
+    name: 'suffix',
+    description: t('example.doc.button.slot.suffix'),
+    type: 'VNode',
+    defaultValue: '-'
+  },
+  {
+    name: 'loading',
+    description: t('example.doc.button.slot.loading'),
+    type: 'VNode',
+    defaultValue: '-'
+  },
+  {
+    name: 'dropdown',
+    description: t('example.doc.button.slot.dropdown'),
+    type: 'VNode',
+    defaultValue: '-'
+  }
+])
 </script>
 
 <template>
   <div class="vp-curated">
     <DemoBlock
-      :title="t('example.doc.button.demo.variant')"
-      :description="t('example.doc.button.demo.variantDesc')"
-      :code="codeVariant"
+      :title="t('example.doc.button.demo.basic')"
+      :description="t('example.doc.button.demo.basicDesc')"
+      :code="codeBasic"
+      default-open
     >
-      <Button severity="primary" @click="flash">{{ t(LocaleKeys.button.confirm) }}</Button>
-      <Button severity="success" @click="flash">{{ t(LocaleKeys.common.success) }}</Button>
-      <Button severity="warning" @click="flash">{{ t(LocaleKeys.button.edit) }}</Button>
-      <Button severity="danger" @click="flash">{{ t(LocaleKeys.button.delete) }}</Button>
-      <Button variant="outlined" @click="flash">{{ t(LocaleKeys.button.cancel) }}</Button>
-      <Button variant="text" @click="flash">{{ t(LocaleKeys.button.edit) }}</Button>
-      <Button link @click="flash">{{ t(LocaleKeys.button.learnMore) }}</Button>
+      <div class="vp-button-row">
+        <Button severity="primary" @click="flash">{{ t(LocaleKeys.button.confirm) }}</Button>
+        <Button severity="success" @click="flash">{{ t(LocaleKeys.common.success) }}</Button>
+        <Button severity="warning" @click="flash">{{ t(LocaleKeys.button.edit) }}</Button>
+        <Button severity="danger" @click="flash">{{ t(LocaleKeys.button.delete) }}</Button>
+        <Button variant="outlined" @click="flash">{{ t(LocaleKeys.button.cancel) }}</Button>
+        <Button variant="text" @click="flash">{{ t(LocaleKeys.button.edit) }}</Button>
+        <Button link @click="flash">{{ t(LocaleKeys.button.learnMore) }}</Button>
+      </div>
     </DemoBlock>
 
     <DemoBlock
@@ -302,15 +537,17 @@ const codeGroup = `<ButtonGroup>
       :description="t('example.doc.button.demo.sizeDesc')"
       :code="codeSize"
     >
-      <Button
-        v-for="sz in sizes"
-        :key="sz"
-        :size="sz"
-        severity="primary"
-        @click="flash"
-      >
-        {{ t(sizeLabelKey[sz]) }}
-      </Button>
+      <div class="vp-button-row">
+        <Button
+          v-for="sz in sizes"
+          :key="sz"
+          :size="sz"
+          severity="primary"
+          @click="flash"
+        >
+          {{ t(sizeLabelKey[sz]) }}
+        </Button>
+      </div>
     </DemoBlock>
 
     <DemoBlock
@@ -318,41 +555,43 @@ const codeGroup = `<ButtonGroup>
       :description="t('example.doc.button.demo.iconDesc')"
       :code="codeIcon"
     >
-      <Button icon="Star" :label="t(LocaleKeys.button.save)" severity="primary" @click="flash" />
-      <Button
-        icon="ChevronRight"
-        icon-pos="right"
-        :label="t(LocaleKeys.button.continue)"
-        variant="outlined"
-        @click="flash"
-      />
-      <Button
-        icon="Upload"
-        icon-pos="top"
-        :label="t(LocaleKeys.button.submit)"
-        variant="dashed"
-        @click="flash"
-      />
-      <Button
-        shape="circle"
-        icon="Settings"
-        :aria-label="t(LocaleKeys.page.baseAtomsButton.ariaIcon)"
-        @click="flash"
-      />
-      <Button
-        shape="square"
-        variant="outlined"
-        icon="Search"
-        :aria-label="t(LocaleKeys.page.baseAtomsButton.ariaIcon)"
-        @click="flash"
-      />
-      <Button
-        shape="circle"
-        :img="demoImg"
-        :aria-label="t(LocaleKeys.page.baseAtomsButton.ariaImg)"
-        badge="1"
-        @click="flash"
-      />
+      <div class="vp-button-row">
+        <Button icon="Star" :label="t(LocaleKeys.button.save)" severity="primary" @click="flash" />
+        <Button
+          icon="ChevronRight"
+          icon-pos="right"
+          :label="t(LocaleKeys.button.continue)"
+          variant="outlined"
+          @click="flash"
+        />
+        <Button
+          icon="Upload"
+          icon-pos="top"
+          :label="t(LocaleKeys.button.submit)"
+          variant="dashed"
+          @click="flash"
+        />
+        <Button
+          shape="circle"
+          icon="Settings"
+          :aria-label="t(LocaleKeys.page.baseAtomsButton.ariaIcon)"
+          @click="flash"
+        />
+        <Button
+          shape="square"
+          variant="outlined"
+          icon="Search"
+          :aria-label="t(LocaleKeys.page.baseAtomsButton.ariaIcon)"
+          @click="flash"
+        />
+        <Button
+          shape="circle"
+          :img="demoImg"
+          :aria-label="t(LocaleKeys.page.baseAtomsButton.ariaImg)"
+          badge="1"
+          @click="flash"
+        />
+      </div>
     </DemoBlock>
 
     <DemoBlock
@@ -360,32 +599,36 @@ const codeGroup = `<ButtonGroup>
       :description="t('example.doc.button.demo.statesDesc')"
       :code="codeStates"
     >
-      <Button
-        :loading="loading"
-        :loading-text="t(LocaleKeys.common.loading)"
-        severity="primary"
-        @click="flash"
-      >
-        {{ t(LocaleKeys.common.loading) }}
-      </Button>
-      <Button
-        disabled
-        :disabled-title="t('example.doc.button.tip.disabled')"
-      >
-        {{ t(LocaleKeys.button.confirm) }}
-      </Button>
-      <Button readonly>{{ t('example.doc.button.demo.readonlyLabel') }}</Button>
-      <Button
-        click-guard="debounce"
-        :wait="500"
-        severity="primary"
-        @click="onGuardedClick"
-      >
-        {{ t('example.doc.button.demo.debounceLabel') }} ({{ clickCount }})
-      </Button>
-      <Button :badge="3" @click="flash">{{ t(LocaleKeys.button.refresh) }}</Button>
-      <Button star variant="outlined" @click="flash">{{ t(LocaleKeys.button.save) }}</Button>
-      <Button ripple severity="primary" @click="flash">{{ t('example.doc.button.demo.rippleLabel') }}</Button>
+      <div class="vp-button-row">
+        <Button
+          :loading="loading"
+          :loading-text="t(LocaleKeys.common.loading)"
+          severity="primary"
+          @click="flash"
+        >
+          {{ t(LocaleKeys.common.loading) }}
+        </Button>
+        <Button
+          disabled
+          :disabled-title="t('example.doc.button.tip.disabled')"
+        >
+          {{ t(LocaleKeys.button.confirm) }}
+        </Button>
+        <Button readonly>{{ t('example.doc.button.demo.readonlyLabel') }}</Button>
+        <Button
+          click-guard="debounce"
+          :wait="500"
+          severity="primary"
+          @click="onGuardedClick"
+        >
+          {{ t('example.doc.button.demo.debounceLabel') }} ({{ clickCount }})
+        </Button>
+        <Button :badge="3" @click="flash">{{ t(LocaleKeys.button.refresh) }}</Button>
+        <Button star variant="outlined" @click="flash">{{ t(LocaleKeys.button.save) }}</Button>
+        <Button ripple severity="primary" @click="flash">
+          {{ t('example.doc.button.demo.rippleLabel') }}
+        </Button>
+      </div>
     </DemoBlock>
 
     <DemoBlock
@@ -393,35 +636,98 @@ const codeGroup = `<ButtonGroup>
       :description="t('example.doc.button.demo.bizDesc')"
       :code="codeBiz"
     >
-      <Button
-        :permission="false"
-        permission-mode="disable"
-        :permission-tip="t('example.doc.button.tip.noPermission')"
-      >
-        {{ t('example.doc.button.demo.permissionLabel') }}
-      </Button>
-      <Button
-        :permission="false"
-        permission-mode="hide"
-      >
-        {{ t('example.doc.button.demo.permissionHidden') }}
-      </Button>
-      <Button
-        severity="danger"
-        :confirm="t('example.doc.button.tip.confirmDelete')"
-      >
-        {{ t(LocaleKeys.button.delete) }}
-      </Button>
-      <Button
-        href="https://example.com"
-        target="_blank"
-        link
-      >
-        {{ t('example.doc.button.demo.hrefLabel') }}
-      </Button>
-      <Button block severity="primary" type="submit" @click="flash">
-        {{ t(LocaleKeys.button.submit) }}
-      </Button>
+      <div class="vp-button-row">
+        <Button
+          :permission="false"
+          permission-mode="disable"
+          :permission-tip="t('example.doc.button.tip.noPermission')"
+        >
+          {{ t('example.doc.button.demo.permissionLabel') }}
+        </Button>
+        <Button :permission="false" permission-mode="hide">
+          {{ t('example.doc.button.demo.permissionHidden') }}
+        </Button>
+        <Button severity="danger" :confirm="t('example.doc.button.tip.confirmDelete')">
+          {{ t(LocaleKeys.button.delete) }}
+        </Button>
+        <Button href="https://example.com" target="_blank" link>
+          {{ t('example.doc.button.demo.hrefLabel') }}
+        </Button>
+        <Button block severity="primary" type="submit" @click="flash">
+          {{ t(LocaleKeys.button.submit) }}
+        </Button>
+      </div>
+    </DemoBlock>
+
+    <DemoBlock
+      :title="t('example.doc.button.demo.slots')"
+      :description="t('example.doc.button.demo.slotsDesc')"
+      :code="codeSlots"
+    >
+      <div class="vp-button-row">
+        <Button severity="primary" @click="flash">
+          <template #prefix>
+            <Icon name="Star" size="sm" />
+          </template>
+          {{ t(LocaleKeys.button.save) }}
+          <template #suffix>
+            <Icon name="ChevronRight" size="sm" />
+          </template>
+        </Button>
+        <Button severity="primary" @click="flash">
+          <template #icon>
+            <Icon name="Heart" />
+          </template>
+          {{ t(LocaleKeys.button.save) }}
+        </Button>
+        <Button loading severity="primary">
+          <template #loading>
+            <Icon name="Loader2" spin />
+          </template>
+          {{ t(LocaleKeys.common.loading) }}
+        </Button>
+        <Button severity="primary" @click="flash">
+          {{ t(LocaleKeys.common.more) }}
+          <template #dropdown>
+            <Button variant="text" block @click="flash">{{ t(LocaleKeys.button.edit) }}</Button>
+            <Button variant="text" block @click="flash">{{ t(LocaleKeys.button.delete) }}</Button>
+          </template>
+        </Button>
+      </div>
+    </DemoBlock>
+
+    <DemoBlock
+      :title="t('example.doc.button.demo.events')"
+      :description="t('example.doc.button.demo.eventsDesc')"
+      :code="codeEvents"
+    >
+      <div class="vp-button-events">
+        <div class="vp-button-row">
+          <Button
+            severity="primary"
+            @click="noteEvent('click')"
+            @focus="noteEvent('focus')"
+            @blur="noteEvent('blur')"
+          >
+            {{ t(LocaleKeys.button.confirm) }}
+          </Button>
+          <Button
+            severity="danger"
+            :confirm="t('example.doc.button.tip.confirmDelete')"
+            @confirm="noteEvent('confirm')"
+            @cancel-confirm="noteEvent('cancelConfirm')"
+          >
+            {{ t(LocaleKeys.button.delete) }}
+          </Button>
+        </div>
+        <p class="vp-button-events__log">
+          {{
+            t('example.doc.button.sample.eventLog', {
+              event: lastEvent || t('example.doc.button.sample.eventIdle')
+            })
+          }}
+        </p>
+      </div>
     </DemoBlock>
 
     <DemoBlock
@@ -458,23 +764,33 @@ const codeGroup = `<ButtonGroup>
       :description="t('example.doc.button.demo.groupDesc')"
       :code="codeGroup"
     >
-      <ButtonGroup>
-        <Button severity="primary" @click="flash">{{ t(LocaleKeys.button.create) }}</Button>
-        <Button variant="outlined" @click="flash">{{ t(LocaleKeys.button.edit) }}</Button>
-        <Button variant="outlined" @click="flash">{{ t(LocaleKeys.button.delete) }}</Button>
-      </ButtonGroup>
-      <Button severity="primary" @click="flash">
-        {{ t(LocaleKeys.common.more) }}
-        <template #dropdown>
-          <Button variant="text" block @click="flash">{{ t(LocaleKeys.button.edit) }}</Button>
-          <Button variant="text" block @click="flash">{{ t(LocaleKeys.button.delete) }}</Button>
-        </template>
-      </Button>
+      <div class="vp-button-row">
+        <ButtonGroup>
+          <Button severity="primary" @click="flash">{{ t(LocaleKeys.button.create) }}</Button>
+          <Button variant="outlined" @click="flash">{{ t(LocaleKeys.button.edit) }}</Button>
+          <Button variant="outlined" @click="flash">{{ t(LocaleKeys.button.delete) }}</Button>
+        </ButtonGroup>
+        <Button severity="primary" @click="flash">
+          {{ t(LocaleKeys.common.more) }}
+          <template #dropdown>
+            <Button variant="text" block @click="flash">{{ t(LocaleKeys.button.edit) }}</Button>
+            <Button variant="text" block @click="flash">{{ t(LocaleKeys.button.delete) }}</Button>
+          </template>
+        </Button>
+      </div>
     </DemoBlock>
 
     <section class="vp-curated__api">
       <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
       <PropsTable :rows="propRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
+      <PropsTable :rows="eventRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
+      <PropsTable :rows="slotRows" />
     </section>
   </div>
 </template>
@@ -493,10 +809,35 @@ const codeGroup = `<ButtonGroup>
   line-height: var(--line-height-body);
 }
 
+.vp-curated__api-sub {
+  margin: var(--spacing-xl) 0 var(--spacing-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-heading, 600);
+  color: var(--text-primary);
+}
+
+.vp-curated__api-sub:first-of-type {
+  margin-top: 0;
+}
+
 .vp-button-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--spacing-md);
+}
+
+.vp-button-events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.vp-button-events__log {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: var(--line-height-body);
 }
 </style>

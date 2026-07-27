@@ -2,6 +2,9 @@
   display: flex;
   gap: var(--spacing-md);
   font-family: var(--font-family-sans);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 
   &--vertical {
     flex-direction: column;
@@ -12,5 +15,30 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &--size-xs {
+    gap: var(--spacing-sm);
+  }
+
+  &--size-sm {
+    gap: var(--spacing-sm);
+  }
+
+  &--size-md {
+    gap: var(--spacing-md);
+  }
+
+  &--size-lg {
+    gap: var(--spacing-lg);
+  }
+
+  &--size-xl {
+    gap: var(--spacing-xl);
   }
 }

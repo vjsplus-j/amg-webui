@@ -26,4 +26,6 @@ export interface SpaceProps extends BaseProps {
   wrap?: boolean
   /** Stretch to 100% parent width */
   block?: boolean
+  /** Accessible name for the spacing group */
+  ariaLabel?: string
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { Comment, Fragment, Text, computed, useSlots, type VNode } from 'vue'
 import type { Size } from '@amg-webui/types'
 import { SPACE_SIZES } from './types'
 import './style.scss'
@@ -17,6 +17,7 @@ const props = withDefaults(
     justify?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly'
     wrap?: boolean
     block?: boolean
+    ariaLabel?: string
     class?: string
     style?: Record<string, string>
   }>(),
@@ -27,6 +28,8 @@ const props = withDefaults(
     block: false
   }
 )
+
+const slots = useSlots()
 
 const SIZE_GAP: Record<Size, string> = {
   xs: 'var(--spacing-xs)',
@@ -47,6 +50,20 @@ function resolveGap(raw: unknown): string {
   return s
 }
 
+function flattenChildren(nodes: VNode[] | undefined): VNode[] {
+  const out: VNode[] = []
+  for (const node of nodes ?? []) {
+    if (node.type === Comment) continue
+    if (node.type === Fragment && Array.isArray(node.children)) {
+      out.push(...flattenChildren(node.children as VNode[]))
+      continue
+    }
+    if (node.type === Text && !String(node.children ?? '').trim()) continue
+    out.push(node)
+  }
+  return out
+}
+
 const sizeKey = computed(() => {
   const raw = props.gap ?? props.size ?? props.gutter ?? 'md'
   const s = String(raw)
@@ -57,13 +74,18 @@ const resolvedGap = computed(() =>
   resolveGap(props.gap ?? props.size ?? props.gutter ?? 'md')
 )
 
+const childNodes = computed(() => flattenChildren(slots.default?.()))
+
+const hasSeparator = computed(() => Boolean(slots.separator))
+
 const rootClass = computed(() => [
   'vp-space',
   `vp-space--${props.direction}`,
   sizeKey.value ? `vp-space--${sizeKey.value}` : '',
   {
     'vp-space--wrap': props.wrap !== false && props.direction === 'horizontal',
-    'vp-space--block': props.block
+    'vp-space--block': props.block,
+    'vp-space--split': hasSeparator.value
   },
   props.class
 ])
@@ -99,7 +121,27 @@ const rootStyle = computed(() => {
 </script>
 
 <template>
-  <div :class="rootClass" :style="rootStyle">
-    <slot />
+  <div
+    :class="rootClass"
+    :style="rootStyle"
+    role="group"
+    :aria-label="ariaLabel"
+    :aria-orientation="direction === 'vertical' ? 'vertical' : 'horizontal'"
+  >
+    <template v-if="hasSeparator">
+      <template v-for="(child, i) in childNodes" :key="i">
+        <div class="vp-space__item">
+          <component :is="child" />
+        </div>
+        <span
+          v-if="i < childNodes.length - 1"
+          class="vp-space__separator"
+          aria-hidden="true"
+        >
+          <slot name="separator" />
+        </span>
+      </template>
+    </template>
+    <slot v-else />
   </div>
 </template>

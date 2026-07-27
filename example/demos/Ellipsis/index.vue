@@ -1,13 +1,77 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+/**
+ * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
+ */
+import { computed, ref } from 'vue'
 import { Ellipsis } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
-import type { PropRow } from '../../components/demo/types'
+import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
+
+const lastOverflow = ref<boolean | null>(null)
+
+function onOverflowChange(overflowing: boolean) {
+  lastOverflow.value = overflowing
+}
+
+/* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
+
+const codeBasic = demoSfc({
+  imports: [`import { Ellipsis } from '@amg-webui/components/base'`],
+  template: [
+    `  <div class="vp-ellipsis-demo__box">`,
+    `    <Ellipsis>{{ t('example.doc.ellipsis.sample.long') }}</Ellipsis>`,
+    `  </div>`
+  ]
+})
+
+const codeMulti = demoCode(
+  `<div class="vp-ellipsis-demo__box">`,
+  `  <Ellipsis :lines="2">{{ t('example.doc.ellipsis.sample.long') }}</Ellipsis>`,
+  `</div>`,
+  `<div class="vp-ellipsis-demo__box">`,
+  `  <Ellipsis :lines="3">{{ t('example.doc.ellipsis.sample.long') }}</Ellipsis>`,
+  `</div>`
+)
+
+const codeTooltip = demoCode(
+  `<div class="vp-ellipsis-demo__box">`,
+  `  <Ellipsis :tooltip="true" tooltip-placement="bottom">`,
+  `    {{ t('example.doc.ellipsis.sample.long') }}`,
+  `  </Ellipsis>`,
+  `</div>`,
+  `<div class="vp-ellipsis-demo__box">`,
+  `  <Ellipsis :tooltip="false">{{ t('example.doc.ellipsis.sample.long') }}</Ellipsis>`,
+  `</div>`
+)
+
+const codeWidth = demoCode(
+  `<div class="vp-ellipsis-demo__narrow">`,
+  `  <Ellipsis>{{ t('example.doc.ellipsis.sample.long') }}</Ellipsis>`,
+  `</div>`,
+  `<div class="vp-ellipsis-demo__wide">`,
+  `  <Ellipsis>{{ t('example.doc.ellipsis.sample.long') }}</Ellipsis>`,
+  `</div>`
+)
+
+const codeSlots = demoCode(
+  `<Ellipsis>{{ t('example.doc.ellipsis.sample.long') }}</Ellipsis>`,
+  ``,
+  `<Ellipsis :content="t('example.doc.ellipsis.sample.long')" />`
+)
+
+const codeEvents = demoCode(
+  `<Ellipsis @overflow-change="onOverflowChange">`,
+  `  {{ t('example.doc.ellipsis.sample.long') }}`,
+  `</Ellipsis>`
+)
+
+/* ─── API tables ─── */
 
 const propRows = computed<PropRow[]>(() => [
   {
@@ -35,45 +99,47 @@ const propRows = computed<PropRow[]>(() => [
     defaultValue: '-'
   },
   {
-    name: '@overflow-change',
+    name: 'trackId / telemetry',
+    description: t('example.doc.avatar.prop.telemetry'),
+    type: 'string / boolean',
+    defaultValue: '- / undefined'
+  }
+])
+
+const eventRows = computed<ApiRow[]>(() => [
+  {
+    name: 'overflowChange',
     description: t('example.doc.ellipsis.emit.overflowChange'),
     type: '(overflowing: boolean) => void',
     defaultValue: '-'
   }
 ])
 
-const codeSingle = `<Ellipsis style="max-width: …">
-  {{ longText }}
-</Ellipsis>`
-
-const codeMulti = `<Ellipsis :lines="2" style="max-width: …">
-  {{ longText }}
-</Ellipsis>
-<Ellipsis :lines="3" style="max-width: …">
-  {{ longText }}
-</Ellipsis>`
-
-const codeTooltip = `<Ellipsis :tooltip="true">…</Ellipsis>
-<Ellipsis :tooltip="false">…</Ellipsis>
-<Ellipsis tooltip-placement="bottom">…</Ellipsis>`
-
-const codeWidth = `<div style="width: …">
-  <Ellipsis>{{ longText }}</Ellipsis>
-</div>`
+const slotRows = computed<ApiRow[]>(() => [
+  {
+    name: 'default',
+    description: t('example.doc.ellipsis.slot.default'),
+    type: 'VNode',
+    defaultValue: '-'
+  }
+])
 </script>
 
 <template>
   <div class="vp-curated">
+    <!-- 1. Basic -->
     <DemoBlock
-      :title="t('example.doc.ellipsis.demo.single')"
-      :description="t('example.doc.ellipsis.demo.singleDesc')"
-      :code="codeSingle"
+      :title="t('example.doc.ellipsis.demo.basic')"
+      :description="t('example.doc.ellipsis.demo.basicDesc')"
+      :code="codeBasic"
+      default-open
     >
       <div class="vp-ellipsis-demo__box">
         <Ellipsis>{{ t('example.doc.ellipsis.sample.long') }}</Ellipsis>
       </div>
     </DemoBlock>
 
+    <!-- 2. Features -->
     <DemoBlock
       :title="t('example.doc.ellipsis.demo.multi')"
       :description="t('example.doc.ellipsis.demo.multiDesc')"
@@ -121,9 +187,60 @@ const codeWidth = `<div style="width: …">
       </div>
     </DemoBlock>
 
+    <!-- 3. Slots -->
+    <DemoBlock
+      :title="t('example.doc.ellipsis.demo.slots')"
+      :description="t('example.doc.ellipsis.demo.slotsDesc')"
+      :code="codeSlots"
+    >
+      <div class="vp-ellipsis-demo__stack">
+        <div class="vp-ellipsis-demo__box">
+          <Ellipsis>{{ t('example.doc.ellipsis.sample.long') }}</Ellipsis>
+        </div>
+        <div class="vp-ellipsis-demo__box">
+          <Ellipsis :content="t('example.doc.ellipsis.sample.long')" />
+        </div>
+      </div>
+    </DemoBlock>
+
+    <!-- 4. Events -->
+    <DemoBlock
+      :title="t('example.doc.ellipsis.demo.events')"
+      :description="t('example.doc.ellipsis.demo.eventsDesc')"
+      :code="codeEvents"
+    >
+      <div class="vp-ellipsis-demo__events">
+        <div class="vp-ellipsis-demo__box">
+          <Ellipsis @overflow-change="onOverflowChange">
+            {{ t('example.doc.ellipsis.sample.long') }}
+          </Ellipsis>
+        </div>
+        <p class="vp-ellipsis-demo__log">
+          {{
+            lastOverflow === null
+              ? t('example.doc.ellipsis.sample.eventIdle')
+              : t('example.doc.ellipsis.sample.eventLog', {
+                  event: lastOverflow
+                    ? t('example.doc.ellipsis.sample.overflowOn')
+                    : t('example.doc.ellipsis.sample.overflowOff')
+                })
+          }}
+        </p>
+      </div>
+    </DemoBlock>
+
+    <!-- 7. API -->
     <section class="vp-curated__api">
       <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
       <PropsTable :rows="propRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
+      <PropsTable :rows="eventRows" />
+
+      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
+      <PropsTable :rows="slotRows" />
     </section>
   </div>
 </template>
@@ -139,6 +256,17 @@ const codeWidth = `<div style="width: …">
   margin: 0 0 var(--spacing-md);
   font-size: var(--font-size-lg);
   color: var(--text-primary);
+}
+
+.vp-curated__api-sub {
+  margin: var(--spacing-xl) 0 var(--spacing-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-heading, 600);
+  color: var(--text-primary);
+}
+
+.vp-curated__api-sub:first-of-type {
+  margin-top: 0;
 }
 
 .vp-ellipsis-demo__stack {
@@ -178,5 +306,19 @@ const codeWidth = `<div style="width: …">
   background: var(--surface-1);
   border: 1px solid var(--ds-border);
   border-radius: var(--theme-card-radius);
+}
+
+.vp-ellipsis-demo__events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.vp-ellipsis-demo__log {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: var(--line-height-body);
 }
 </style>

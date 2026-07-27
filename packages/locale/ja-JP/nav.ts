@@ -1,5 +1,6 @@
 export default {
   'nav.overview': '概要',
+  'nav.intro': '入門ガイド',
   'nav.base': '基本コンポーネント',
   'nav.biz': '業務コンポジット',
   'nav.theme': 'テーマ',

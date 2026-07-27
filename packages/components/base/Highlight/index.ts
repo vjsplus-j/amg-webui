@@ -1,4 +1,16 @@
 import Comp from './index.vue'
+import type {
+  HighlightEmits,
+  HighlightProps,
+  HighlightSegment,
+  HighlightVariant
+} from './types'
+
 export { Comp as Highlight }
-export type { HighlightProps, HighlightSegment } from './types'
+export type {
+  HighlightEmits,
+  HighlightProps,
+  HighlightSegment,
+  HighlightVariant
+}
 export default Comp

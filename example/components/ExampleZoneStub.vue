@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import { useLocale } from '@amg-webui/hooks'
+import ExamplePageHero from './ExamplePageHero.vue'
 
 const props = defineProps<{
   title?: string
@@ -12,22 +12,7 @@ const props = defineProps<{
   checklistKeys?: string[]
 }>()
 
-const route = useRoute()
 const { t, locale } = useLocale()
-
-const displayTitle = computed(() => {
-  void locale.value
-  if (props.titleKey) return t(props.titleKey)
-  const metaKey = route.meta.titleKey as string | undefined
-  if (metaKey) return t(metaKey)
-  return props.title ?? ''
-})
-
-const displaySubtitle = computed(() => {
-  void locale.value
-  if (props.subtitleKey) return t(props.subtitleKey)
-  return props.subtitle ?? ''
-})
 
 const displayChecklist = computed(() => {
   void locale.value
@@ -38,10 +23,12 @@ const displayChecklist = computed(() => {
 
 <template>
   <div class="page play-zone-stub">
-    <header class="ln-page-hero">
-      <h1 class="ln-page-hero__title">{{ displayTitle }}</h1>
-      <p v-if="displaySubtitle" class="ln-page-hero__desc">{{ displaySubtitle }}</p>
-    </header>
+    <ExamplePageHero
+      :title="title"
+      :title-key="titleKey"
+      :lead="subtitle"
+      :lead-key="subtitleKey"
+    />
     <section class="play-zone-stub__body">
       <p class="play-zone-stub__hint">{{ t('page.stub.checklistHint') }}</p>
       <ul class="play-zone-stub__list">
@@ -54,7 +41,6 @@ const displayChecklist = computed(() => {
 
 <style scoped lang="scss">
 .play-zone-stub__body {
-  margin-top: var(--theme-section-gap);
   padding: var(--theme-card-pad);
   background: var(--surface-1);
   border: 1px solid var(--ds-border);

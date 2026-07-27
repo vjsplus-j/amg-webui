@@ -1,5 +1,6 @@
 export default {
   'nav.overview': 'Обзор',
+  'nav.intro': 'Введение',
   'nav.base': 'Базовые',
   'nav.biz': 'Бизнес',
   'nav.theme': 'Темы',
