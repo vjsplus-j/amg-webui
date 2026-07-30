@@ -18,5 +18,8 @@ export default {
   'nav.base.category.feedback': 'Feedback',
   'nav.base.category.other': 'Other',
   'nav.base.category.industry': 'Industry',
-  'nav.primary': 'Main navigation'
+  'nav.primary': 'Main navigation',
+  'nav.badge.goldDod': 'DoD',
+  'nav.badge.epParity': 'EP',
+  'nav.badge.exclusiveNew': 'New'
 } as Record<string, string>

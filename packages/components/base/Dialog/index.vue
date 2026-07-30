@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { computed, ref, watch, onMounted, onUnmounted } from 'vue'
+import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
+import { isClient } from '@amg-webui/utils/env'
+import Icon from '../Icon/index.vue'
 import type { DialogProps, DialogEmits } from './types'
 import './style.scss'
 
@@ -9,130 +13,203 @@ const props = withDefaults(defineProps<DialogProps>(), {
   dismissible: true,
   closable: true,
   maximizable: false,
-  minimizable: false
+  minimizable: false,
+  size: 'md',
+  width: ''
 })
 
 const emit = defineEmits<DialogEmits>()
+const { t } = useLocale()
 
 const isMaximized = ref(false)
+const isMinimized = ref(false)
 
-const closeDialog = (event: Event) => {
-  emit('update:visible', false)
-  emit('close', event)
+const closeLabel = computed(() => t(LocaleKeys.common.close))
+const maximizeLabel = computed(() =>
+  isMaximized.value ? t(LocaleKeys.common.collapse) : t(LocaleKeys.common.expand)
+)
+const minimizeLabel = computed(() =>
+  isMinimized.value ? t(LocaleKeys.common.expand) : t(LocaleKeys.common.collapse)
+)
+
+const SIZE_MAP: Record<string, string> = {
+  sm: '24rem',
+  md: '32rem',
+  lg: '40rem',
+  xl: '48rem',
+  full: 'min(96vw, 72rem)'
 }
 
-const handleOverlayClick = (event: MouseEvent) => {
+const panelStyle = computed(() => {
+  const style: Record<string, string> = { ...(props.style ?? {}) }
+  if (!isMaximized.value) {
+    style.width = props.width || SIZE_MAP[props.size] || SIZE_MAP.md
+  }
+  return style
+})
+
+const showHeader = computed(
+  () =>
+    !!(
+      props.header ||
+      props.title ||
+      props.closable ||
+      props.maximizable ||
+      props.minimizable
+    )
+)
+
+function closeDialog(event: Event) {
+  emit('update:visible', false)
+  emit('close', event)
+  isMaximized.value = false
+  isMinimized.value = false
+}
+
+function handleOverlayClick(event: MouseEvent) {
   if (props.dismissible && event.target === event.currentTarget) {
     closeDialog(event)
   }
 }
 
-const handleKeydown = (event: KeyboardEvent) => {
+function handleKeydown(event: KeyboardEvent) {
   if (props.visible && props.dismissible && event.key === 'Escape') {
     closeDialog(event)
   }
 }
 
-const toggleMaximize = () => {
+function toggleMaximize() {
   isMaximized.value = !isMaximized.value
+  if (isMaximized.value) isMinimized.value = false
+  emit('maximize', isMaximized.value)
 }
 
-watch(() => props.visible, (val) => {
-  if (val) {
-    emit('show', new Event('show'))
-  } else {
-    emit('hide', new Event('hide'))
-  }
-})
+function toggleMinimize() {
+  isMinimized.value = !isMinimized.value
+  if (isMinimized.value) isMaximized.value = false
+}
+
+function lockScroll(lock: boolean) {
+  if (!isClient || !props.modal) return
+  document.documentElement.style.overflow = lock ? 'hidden' : ''
+}
+
+watch(
+  () => props.visible,
+  (val) => {
+    lockScroll(val)
+    if (val) {
+      emit('show', new Event('show'))
+    } else {
+      emit('hide', new Event('hide'))
+      isMaximized.value = false
+      isMinimized.value = false
+    }
+  },
+  { immediate: true }
+)
 
 onMounted(() => {
+  if (!isClient) return
   document.addEventListener('keydown', handleKeydown)
 })
-
 onUnmounted(() => {
+  if (!isClient) return
   document.removeEventListener('keydown', handleKeydown)
+  lockScroll(false)
 })
 </script>
 
 <template>
   <Teleport to="body">
-    <div
-      v-if="visible"
-      :class="[
-        'p-dialog-overlay',
-        {
-          'p-dialog-overlay-visible': visible
-        }
-      ]"
-      @click="handleOverlayClick"
-    >
+    <Transition name="vp-dialog">
       <div
+        v-if="visible"
         :class="[
-          'p-dialog',
+          'vp-dialog-overlay',
           {
-            'p-dialog-visible': visible,
-            'p-dialog-maximized': isMaximized
-          },
-          props.class
+            'vp-dialog-overlay--modal': modal,
+            'vp-dialog-overlay--minimized': isMinimized
+          }
         ]"
-        :style="style"
+        role="presentation"
+        @click="handleOverlayClick"
       >
-        <div v-if="header || $slots.header || title" class="p-dialog-header">
-          <template v-if="$slots.header">
-            <slot name="header" />
-          </template>
-          <template v-else>
-            <span v-if="title" class="p-dialog-title">{{ title }}</span>
-            <span v-else class="p-dialog-header-title">{{ header }}</span>
-          </template>
-          
-          <div class="p-dialog-header-actions">
-            <button
-              v-if="minimizable"
-              class="p-dialog-close-btn"
-              @click.stop
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M6 19h12v-2H6v2zm0-5h12v-2H6v2zm0-7v2h12V7H6z"/>
-              </svg>
-            </button>
-            <button
-              v-if="maximizable"
-              class="p-dialog-close-btn"
-              @click.stop="toggleMaximize"
-            >
-              <svg v-if="!isMaximized" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 3h18v18H3V3zm2 2v14h14V5H5z"/>
-              </svg>
-              <svg v-else width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 3h18v18H3V3zm8 2v8H5V5h6zm0 10v2H5v-2h6zm8 0v2h-6v-2h6zm0-10v8h-6V5h6z"/>
-              </svg>
-            </button>
-            <button
-              v-if="closable"
-              class="p-dialog-close-btn"
-              @click.stop="closeDialog"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-              </svg>
-            </button>
+        <div
+          :class="[
+            'vp-dialog',
+            `vp-dialog--${size}`,
+            {
+              'vp-dialog--maximized': isMaximized,
+              'vp-dialog--minimized': isMinimized
+            },
+            props.class
+          ]"
+          :style="panelStyle"
+          role="dialog"
+          aria-modal="true"
+          :aria-labelledby="title || header ? 'vp-dialog-title' : undefined"
+          @click.stop
+        >
+          <header v-if="showHeader || $slots.header" class="vp-dialog__header">
+            <div class="vp-dialog__title-wrap">
+              <template v-if="$slots.header">
+                <slot name="header" />
+              </template>
+              <h2
+                v-else-if="title || header"
+                id="vp-dialog-title"
+                class="vp-dialog__title"
+              >
+                {{ title || header }}
+              </h2>
+            </div>
+
+            <div class="vp-dialog__actions">
+              <button
+                v-if="minimizable"
+                type="button"
+                class="vp-dialog__icon-btn"
+                :aria-label="minimizeLabel"
+                @click.stop="toggleMinimize"
+              >
+                <Icon :name="isMinimized ? 'Expand' : 'Minus'" size="sm" />
+              </button>
+              <button
+                v-if="maximizable"
+                type="button"
+                class="vp-dialog__icon-btn"
+                :aria-label="maximizeLabel"
+                @click.stop="toggleMaximize"
+              >
+                <Icon :name="isMaximized ? 'Minimize' : 'Maximize'" size="sm" />
+              </button>
+              <button
+                v-if="closable"
+                type="button"
+                class="vp-dialog__icon-btn"
+                :aria-label="closeLabel"
+                @click.stop="closeDialog"
+              >
+                <Icon name="X" size="sm" />
+              </button>
+            </div>
+          </header>
+
+          <div v-show="!isMinimized" class="vp-dialog__body">
+            <slot />
           </div>
-        </div>
-        
-        <div class="p-dialog-content">
-          <slot />
-        </div>
-        
-        <div v-if="footer || $slots.footer" class="p-dialog-footer">
-          <template v-if="$slots.footer">
-            <slot name="footer" />
-          </template>
-          <template v-else>
-            <span>{{ footer }}</span>
-          </template>
+
+          <footer v-if="!isMinimized && (footer || $slots.footer)" class="vp-dialog__footer">
+            <template v-if="$slots.footer">
+              <slot name="footer" />
+            </template>
+            <template v-else>
+              <span class="vp-dialog__footer-text">{{ footer }}</span>
+            </template>
+          </footer>
         </div>
       </div>
-    </div>
+    </Transition>
   </Teleport>
 </template>

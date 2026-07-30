@@ -1,25 +1,19 @@
 import type { BaseProps } from '@amg-webui/types'
 
-export interface NavItem {
-  label: string
-  value?: string | number
-  icon?: string
-  disabled?: boolean
-  href?: string
-  to?: string
-  children?: NavItem[]
-}
-
-
 export interface PagerNavProps extends BaseProps {
-  items?: NavItem[]
-  modelValue?: string | number
+  /** Current page (1-based) */
+  modelValue?: number
+  /** Total page count */
+  totalPages?: number
   disabled?: boolean
   direction?: 'horizontal' | 'vertical'
+  /** Accessible name for the nav landmark */
+  ariaLabel?: string
+  trackId?: string
+  telemetry?: boolean
 }
 
 export interface PagerNavEmits {
-  (e: 'update:modelValue', value: string | number): void
-  (e: 'change', value: string | number): void
-  (e: 'select', item: NavItem, event: MouseEvent): void
+  (e: 'update:modelValue', value: number): void
+  (e: 'change', value: number): void
 }

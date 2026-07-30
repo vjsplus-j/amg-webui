@@ -259,5 +259,6 @@ export default {
   'page.intro.icon.usageTitle': '宿主用法',
   'page.intro.icon.usageLead': '切换图标风格并在模板中使用 Icon：',
   'page.intro.icon.usageCode': 'import { IconStyleService } from \'@amg-webui/theme\'\nimport { Icon } from \'@amg-webui/components/base\'\n\nIconStyleService.init()\nIconStyleService.setStyle(\'outline\')\n// <Icon name="Search" size="md" />',
-  'page.intro.icon.usageNote': '具名字形从 @amg-webui/icons 引入，避免与根 barrel 组件名冲突。'
+  'page.intro.icon.usageNote': '具名字形从 @amg-webui/icons 引入，避免与根 barrel 组件名冲突。',
+  'page.gallery.openDoc': "打开文档",
 } as Record<string, string>

@@ -21,7 +21,7 @@ const modelRef = toRef(props, 'modelValue')
 const { searchQuery, flatRows, toggleExpand, expandAll, collapseAll } = useTreeState(
   roots,
   modelRef,
-  emit as (e: 'update:modelValue' | 'change', v: unknown) => void,
+  emit as never,
   { checkable: false }
 )
 

@@ -1,16 +1,18 @@
 import type { BaseProps } from '@amg-webui/types'
 
 export interface ColProps extends BaseProps {
-  title?: string
-  description?: string
-  data?: unknown
-  modelValue?: unknown
-  disabled?: boolean
-  loading?: boolean
+  /** 1–24 column span */
+  span?: number
+  /** Offset before this col (0–23) */
+  offset?: number
+  push?: number
+  pull?: number
+  /** Grow to fill remaining row space */
+  flex?: boolean
+  /** Order within the row */
+  order?: number
 }
 
 export interface ColEmits {
-  (e: 'update:modelValue', value: unknown): void
-  (e: 'change', value: unknown): void
   (e: 'click', event: MouseEvent): void
 }

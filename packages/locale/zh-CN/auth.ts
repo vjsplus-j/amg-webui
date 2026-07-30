@@ -12,6 +12,7 @@ export default {
   'auth.forgotPassword': '忘记密码',
   'auth.sendCode': '发送验证码',
   'auth.resendIn': '{n}s 后重发',
+  'auth.resendCode': '重新发送',
   'auth.verifyCode': '验证码',
   'auth.captcha': '人机验证',
   'auth.captchaPass': '验证通过',

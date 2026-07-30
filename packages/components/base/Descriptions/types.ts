@@ -3,19 +3,11 @@ import type { BaseProps } from '@amg-webui/types'
 
 export type DescriptionsSize = 'sm' | 'md' | 'lg'
 
-export interface DescriptionsItemRegistration {
-  id: symbol
-  span: number
-}
-
 export interface DescriptionsContext {
-  column: number
-  bordered: boolean
-  size: DescriptionsSize
-  labelWidth?: string | number
-  items: Ref<DescriptionsItemRegistration[]>
-  register: (item: DescriptionsItemRegistration) => void
-  unregister: (id: symbol) => void
+  column: Ref<number>
+  bordered: Ref<boolean>
+  size: Ref<DescriptionsSize>
+  labelWidth: Ref<string | number | undefined>
 }
 
 export const DESCRIPTIONS_INJECTION_KEY: InjectionKey<DescriptionsContext> =
@@ -32,4 +24,7 @@ export interface DescriptionsProps extends BaseProps {
 export interface DescriptionsItemProps extends BaseProps {
   label?: string
   span?: number
+  colon?: boolean
+  labelAlign?: 'start' | 'end'
+  labelWidth?: string | number
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { provide, ref, watch, computed, useSlots, type VNode } from 'vue'
+import { provide, ref, watch, computed, useSlots } from 'vue'
+import { trackEmit } from '@amg-webui/telemetry'
 import { TABS_INJECTION_KEY } from './types'
 import './style.scss'
 
@@ -7,10 +8,14 @@ const props = withDefaults(
   defineProps<{
     modelValue?: string | number
     ariaLabel?: string
+    trackId?: string
+    telemetry?: boolean
     class?: string
     style?: Record<string, string>
   }>(),
-  {}
+  {
+    telemetry: undefined
+  }
 )
 
 const emit = defineEmits<{
@@ -36,10 +41,11 @@ interface TabMeta {
   disabled?: boolean
 }
 
+const paneNodes = computed(() => slots.default?.() ?? [])
+
 const tabItems = computed(() => {
-  const nodes = slots.default?.() ?? []
   const items: TabMeta[] = []
-  for (const node of nodes) {
+  for (const node of paneNodes.value) {
     const p = (node.props ?? {}) as TabMeta
     if (p.name !== undefined) {
       items.push({
@@ -66,18 +72,18 @@ const setActive = (name: string | number) => {
   const tab = tabItems.value.find((t) => t.name === name)
   if (!tab || tab.disabled) return
   activeName.value = name
+  trackEmit({
+    component: 'Tabs',
+    type: 'change',
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { value: name }
+  })
   emit('update:modelValue', name)
   emit('change', name)
 }
 
 provide(TABS_INJECTION_KEY, { activeName, setActive })
-
-const activeVNode = computed(() => {
-  const nodes = slots.default?.() ?? []
-  return nodes.find(
-    (node: VNode) => (node.props as TabMeta | undefined)?.name === activeName.value
-  )
-})
 
 function focusableIndices(): number[] {
   return tabItems.value
@@ -143,7 +149,7 @@ function panelId(name: string | number) {
       class="vp-tabs__nav"
       role="tablist"
       :aria-label="ariaLabel"
-      :aria-orientation="'horizontal'"
+      aria-orientation="horizontal"
     >
       <button
         v-for="(tab, index) in tabItems"
@@ -163,14 +169,12 @@ function panelId(name: string | number) {
         {{ tab.label ?? tab.name }}
       </button>
     </div>
-    <div
-      :id="activeName != null ? panelId(activeName) : undefined"
-      class="vp-tabs__content"
-      role="tabpanel"
-      :aria-labelledby="activeName != null ? tabId(activeName) : undefined"
-      :tabindex="0"
-    >
-      <component :is="activeVNode" v-if="activeVNode" />
+    <div class="vp-tabs__content">
+      <component
+        :is="node"
+        v-for="(node, i) in paneNodes"
+        :key="String((node.props as TabMeta | undefined)?.name ?? i)"
+      />
     </div>
   </div>
 </template>

@@ -1,4 +1,4 @@
-import type { BaseProps } from '@amg-webui/types'
+import type { BaseProps, LoadingProps } from '@amg-webui/types'
 
 export interface DashboardStat {
   id: string
@@ -7,8 +7,19 @@ export interface DashboardStat {
   trend?: 'up' | 'down' | 'flat'
 }
 
-export interface DashboardProps extends BaseProps {
+export interface DashboardWidget {
+  id: string
+  label?: string
+  /** Grid column span (1–column count) */
+  span?: number
+}
+
+export interface DashboardProps extends BaseProps, LoadingProps {
   stats?: DashboardStat[]
+  /** Named widget slots: #widget-{id} */
+  widgets?: DashboardWidget[]
+  /** Responsive grid column count */
+  columns?: number
   loading?: boolean
 }
 

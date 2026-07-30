@@ -1,12 +1,47 @@
 .vp-mask {
   position: fixed;
   inset: 0;
+  z-index: 900;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: color-mix(in srgb, var(--surface-0, #000) 45%, transparent);
+  padding: var(--theme-page-pad);
+  box-sizing: border-box;
+  /* Always darken the page (keyword black, not surface-0 which fails on light themes). */
+  background: color-mix(in srgb, black 48%, transparent);
+  backdrop-filter: blur(var(--spacing-xs));
 
-  &__content { position: relative; }
+  &__content {
+    position: relative;
+    outline: none;
+    width: min(100%, calc(var(--spacing-2xl) * 14));
+    max-height: min(90vh, 100%);
+    overflow: auto;
+    padding: var(--theme-card-pad);
+    background: var(--surface-1);
+    border: 1px solid var(--ds-border);
+    border-radius: var(--theme-card-radius);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-primary);
+  }
 }
-.vp-mask-fade-enter-active, .vp-mask-fade-leave-active { transition: opacity var(--transition-normal); }
-.vp-mask-fade-enter-from, .vp-mask-fade-leave-to { opacity: 0; }
+
+.vp-mask-fade-enter-active,
+.vp-mask-fade-leave-active {
+  transition: opacity var(--transition-normal);
+}
+
+.vp-mask-fade-enter-from,
+.vp-mask-fade-leave-to {
+  opacity: 0;
+}
+
+.vp-mask-fade-enter-active .vp-mask__content,
+.vp-mask-fade-leave-active .vp-mask__content {
+  transition: transform var(--transition-normal);
+}
+
+.vp-mask-fade-enter-from .vp-mask__content,
+.vp-mask-fade-leave-to .vp-mask__content {
+  transform: translateY(var(--spacing-sm)) scale(0.98);
+}

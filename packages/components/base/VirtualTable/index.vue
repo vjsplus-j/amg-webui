@@ -1,25 +1,25 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import { useTableState, type TableColumn } from '@amg-webui/utils/data-display/useTableState'
 import { useVirtualList } from '@amg-webui/utils/data-display/useVirtualList'
 import type { VirtualTableProps, VirtualTableEmits } from './types'
 import './style.scss'
 
-const props = withDefaults(
-  defineProps<VirtualTableProps & { columns?: TableColumn[]; rows?: Record<string, unknown>[]; virtual?: boolean }>(),
-  {
-    columns: () => [],
-    rows: () => [],
-    virtual: true,
-    disabled: false
-  }
-)
+const props = withDefaults(defineProps<VirtualTableProps>(), {
+  columns: () => [],
+  rows: () => [],
+  virtual: true,
+  disabled: false,
+  loading: false,
+  telemetry: undefined
+})
 const emit = defineEmits<VirtualTableEmits>()
 const { t } = useLocale()
 
 const rawRows = computed(() =>
-  props.rows?.length ? props.rows : Array.isArray(props.data) ? (props.data as Record<string, unknown>[]) : []
+  props.rows?.length ? props.rows : Array.isArray(props.data) ? props.data : []
 )
 
 const rawCols = computed<TableColumn[]>(() => {
@@ -49,7 +49,16 @@ const titleText = computed(() => props.title ?? t('component.virtual-table.title
 </script>
 
 <template>
-  <div :class="['vp-virtual-table', 'vp-virtual-table__panel', { 'vp-virtual-table--disabled': disabled }, props.class]" :style="style">
+  <div
+    :class="['vp-virtual-table', 'vp-virtual-table__panel', { 'vp-virtual-table--disabled': disabled }, props.class]"
+    :style="style"
+  >
+    <div v-if="loading" class="vp-virtual-table__loading" :aria-label="t(LocaleKeys.common.loading)">
+      <slot name="loading">
+        <span class="vp-virtual-table__spinner" aria-hidden="true" />
+      </slot>
+    </div>
+
     <div class="vp-virtual-table__toolbar">
       <strong class="vp-virtual-table__heading">{{ titleText }}</strong>
       <input v-model="keyword" class="vp-virtual-table__filter" type="search" :placeholder="t('common.search')" />
@@ -96,7 +105,9 @@ const titleText = computed(() => props.title ?? t('component.virtual-table.title
                 </tr>
               </template>
               <tr v-if="!filteredRows.length">
-                <td :colspan="Math.max(visibleColumns.length, 1)" class="vp-virtual-table__empty">{{ t('common.noData') }}</td>
+                <td :colspan="Math.max(visibleColumns.length, 1)" class="vp-virtual-table__empty">
+                  <slot name="empty">{{ t('common.noData') }}</slot>
+                </td>
               </tr>
             </tbody>
           </table>

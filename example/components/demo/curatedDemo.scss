@@ -13,6 +13,30 @@
   gap: var(--theme-section-gap);
 }
 
+.vp-curated__lead {
+  margin: 0;
+  max-width: 48rem;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
+  color: var(--text-secondary);
+}
+
+.vp-curated__hint {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+.vp-curated__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
 .vp-curated__api-title {
   margin: 0;
   font-size: var(--font-size-lg);

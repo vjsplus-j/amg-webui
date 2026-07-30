@@ -45,4 +45,10 @@
     opacity: 0.55;
     pointer-events: none;
   }
+
+  &--loading {
+    .vp-tree__viewport {
+      min-height: 8rem;
+    }
+  }
 }

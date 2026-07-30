@@ -1,268 +1,482 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import type { DataTableProps, DataTableEmits, Column, SortOrder } from './types'
+import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
+import { useVirtualList } from '@amg-webui/utils/data-display/useVirtualList'
+import { trackEmit } from '@amg-webui/telemetry'
+import type { Column, RowKey, SortOrder } from './types'
 import './style.scss'
 
-const props = withDefaults(defineProps<DataTableProps>(), {
-  rows: 10,
-  first: 0,
-  totalRecords: 0,
-  selectionMode: 'single',
-  striped: false,
-  fixedHeader: false,
-  filterGlobal: false
-})
+/**
+ * Inline props — SFC does not expand imported generics reliably for runtime.
+ */
+const props = withDefaults(
+  defineProps<{
+    value?: any[]
+    columns?: Column[]
+    rowKey?: string
+    selection?: RowKey[]
+    selectionMode?: 'single' | 'multiple'
+    paginator?: boolean
+    rows?: number
+    first?: number
+    totalRecords?: number
+    sortField?: string
+    sortOrder?: SortOrder
+    striped?: boolean
+    fixedHeader?: boolean
+    filterGlobal?: boolean
+    loading?: boolean
+    /** Default ON — set false only when full DOM is required */
+    virtual?: boolean
+    /** Viewport height as spacing-xs multiples */
+    virtualHeight?: number
+    trackId?: string
+    telemetry?: boolean
+    class?: string
+    style?: Record<string, string>
+  }>(),
+  {
+    value: () => [],
+    columns: () => [],
+    rowKey: 'id',
+    selection: () => [],
+    rows: 10,
+    first: 0,
+    totalRecords: 0,
+    striped: false,
+    fixedHeader: true,
+    filterGlobal: false,
+    virtual: true,
+    virtualHeight: 80,
+    telemetry: undefined
+  }
+)
 
-const emit = defineEmits<DataTableEmits>()
+const emit = defineEmits<{
+  'update:value': [value: any[]]
+  'update:selection': [keys: RowKey[]]
+  'update:sortField': [field: string]
+  'update:sortOrder': [order: SortOrder]
+  'update:first': [first: number]
+  'update:rows': [rows: number]
+  sort: [event: { field: string; order: SortOrder }]
+  'row-select': [event: { originalEvent: MouseEvent; data: any; checked: boolean }]
+  'row-click': [event: { originalEvent: MouseEvent; data: any }]
+  page: [event: { first: number; rows: number; page: number; pageCount: number }]
+}>()
+
+const { t } = useLocale()
 
 const localValue = ref<any[]>([])
-const selectedKeys = ref<Set<string | number>>(new Set())
+const selectedKeys = ref<Set<RowKey>>(new Set())
 const globalFilter = ref('')
+const columnFilters = ref<Record<string, string>>({})
+const innerSortField = ref<string | undefined>()
+const innerSortOrder = ref<SortOrder>(null)
 
-watch(() => props.value, (val) => {
-  localValue.value = val ? [...val] : []
-}, { immediate: true })
+watch(
+  () => props.value,
+  (val) => {
+    localValue.value = Array.isArray(val) ? [...val] : []
+  },
+  { immediate: true, deep: true }
+)
 
-watch(() => props.value, (val) => {
-  if (!val) return
-  selectedKeys.value = new Set(
-    val.filter((row: any) => row.selected).map((row: any) => row.id)
-  )
-}, { immediate: true })
+watch(
+  () => props.selection,
+  (val) => {
+    selectedKeys.value = new Set(Array.isArray(val) ? val : [])
+  },
+  { immediate: true, deep: true }
+)
+
+function resolveRowKey(row: any, index?: number): RowKey {
+  const key = row?.[props.rowKey]
+  if (key !== undefined && key !== null) return key as RowKey
+  return index ?? 0
+}
+
+function emitSelection() {
+  emit('update:selection', Array.from(selectedKeys.value))
+}
+
+watch(
+  () => [props.sortField, props.sortOrder] as const,
+  ([field, order]) => {
+    if (field !== undefined) innerSortField.value = field
+    if (order !== undefined) innerSortOrder.value = order
+  },
+  { immediate: true }
+)
+
+const cols = computed(() => props.columns ?? [])
+
+const hasColumnFilters = computed(() => cols.value.some((column) => column.filter))
 
 const filteredData = computed(() => {
-  if (!localValue.value || !globalFilter.value) {
-    return localValue.value
-  }
-  
-  const filter = globalFilter.value.toLowerCase()
-  return localValue.value.filter((row) => {
-    return Object.values(row).some((val) =>
-      String(val).toLowerCase().includes(filter)
+  let list = localValue.value ?? []
+  if (globalFilter.value) {
+    const filter = globalFilter.value.toLowerCase()
+    list = list.filter((row) =>
+      Object.values(row ?? {}).some((val) => String(val).toLowerCase().includes(filter))
     )
-  })
+  }
+  for (const column of cols.value) {
+    if (!column.filter) continue
+    const filterText = (columnFilters.value[column.field] ?? '').trim().toLowerCase()
+    if (!filterText) continue
+    list = list.filter((row) =>
+      String(row?.[column.field] ?? '')
+        .toLowerCase()
+        .includes(filterText)
+    )
+  }
+  const field = innerSortField.value
+  const order = innerSortOrder.value
+  if (field && order) {
+    const dir = order === 'asc' ? 1 : -1
+    list = [...list].sort((a, b) => {
+      const av = a?.[field]
+      const bv = b?.[field]
+      if (av == null && bv == null) return 0
+      if (av == null) return -1 * dir
+      if (bv == null) return 1 * dir
+      if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * dir
+      return String(av).localeCompare(String(bv), undefined, { numeric: true }) * dir
+    })
+  }
+  return list
 })
 
-const paginatedData = computed(() => {
-  if (!filteredData.value) return []
-  return filteredData.value.slice(props.first, props.first + props.rows)
+/** Virtual applies to the current display set (full list or current page). */
+const useVirtual = computed(() => props.virtual !== false)
+
+const displaySource = computed(() => {
+  const list = filteredData.value
+  if (props.paginator) {
+    return list.slice(props.first, props.first + props.rows)
+  }
+  return list
 })
 
-const pageCount = computed(() => {
-  return Math.ceil((props.totalRecords || filteredData.value.length) / props.rows)
+const rowRef = computed(() => displaySource.value)
+const { visibleItems, totalHeight, offsetY, itemHeight, onScroll } = useVirtualList(rowRef, {
+  containerHeight: 320,
+  itemHeight: 44
 })
 
-const currentPage = computed(() => {
-  return Math.floor(props.first / props.rows) + 1
+const displayRows = computed(() => {
+  if (useVirtual.value) {
+    return visibleItems.value.map(({ item, index }) => ({ row: item, index }))
+  }
+  return displaySource.value.map((row, index) => ({ row, index }))
 })
 
-const handleSort = (column: Column) => {
+const pageCount = computed(() =>
+  Math.max(1, Math.ceil((props.totalRecords || filteredData.value.length || 1) / props.rows))
+)
+
+const currentPage = computed(() => Math.floor(props.first / props.rows) + 1)
+
+const metaText = computed(() => {
+  const total = filteredData.value.length
+  if (!total) return t(LocaleKeys.common.noData)
+  if (props.paginator) {
+    const from = total === 0 ? 0 : props.first + 1
+    const to = Math.min(props.first + props.rows, total)
+    return t('component.datatable.showing', { from, to, total })
+  }
+  return t('component.datatable.rowCount', { total })
+})
+
+/** Fixed viewport so both virtual and paginated tables can scroll inside. */
+const bodyStyle = computed(() => ({
+  height: `calc(var(--spacing-xs) * ${props.virtualHeight})`,
+  maxHeight: `calc(var(--spacing-xs) * ${props.virtualHeight})`
+}))
+
+const colCount = computed(() => cols.value.length + (props.selectionMode ? 1 : 0))
+
+function handleSort(column: Column) {
   if (!column.sortable) return
-  
-  let newSortOrder: SortOrder = 'asc'
-  if (props.sortField === column.field) {
-    newSortOrder = props.sortOrder === 'asc' ? 'desc' : 'asc'
+  let next: SortOrder = 'asc'
+  if (innerSortField.value === column.field) {
+    next = innerSortOrder.value === 'asc' ? 'desc' : 'asc'
   }
-  
+  innerSortField.value = column.field
+  innerSortOrder.value = next
+  trackEmit({
+    component: 'DataTable',
+    type: 'sort',
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { field: column.field, order: next }
+  })
   emit('update:sortField', column.field)
-  emit('update:sortOrder', newSortOrder)
-  emit('sort', { field: column.field, order: newSortOrder })
+  emit('update:sortOrder', next)
+  emit('sort', { field: column.field, order: next })
 }
 
-const handleRowClick = (row: any, event: MouseEvent) => {
+function handleRowClick(row: any, event: MouseEvent) {
   emit('row-click', { originalEvent: event, data: row })
-  
-  if (props.selectionMode === 'single') {
-    toggleRowSelection(row, event)
-  }
+  if (props.selectionMode) toggleRowSelection(row, event)
 }
 
-const toggleRowSelection = (row: any, event: MouseEvent) => {
-  const key = row.id
+function toggleRowSelection(row: any, event: MouseEvent) {
+  if (!props.selectionMode) return
+  const key = resolveRowKey(row)
   const checked = !selectedKeys.value.has(key)
-  
   if (checked) {
-    if (props.selectionMode === 'single') {
-      selectedKeys.value.clear()
-    }
+    if (props.selectionMode === 'single') selectedKeys.value.clear()
     selectedKeys.value.add(key)
   } else {
     selectedKeys.value.delete(key)
   }
-  
-  row.selected = checked
-  emit('update:value', [...localValue.value])
+  trackEmit({
+    component: 'DataTable',
+    type: 'row-select',
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { id: key, checked }
+  })
+  emitSelection()
   emit('row-select', { originalEvent: event, data: row, checked })
 }
 
-const toggleSelectAll = (event: Event) => {
-  const checkbox = event.target as HTMLInputElement
-  const checked = checkbox.checked
-  
-  localValue.value.forEach((row) => {
-    row.selected = checked
-  })
-  
+function toggleSelectAll(event: Event) {
+  const checked = (event.target as HTMLInputElement).checked
   if (checked) {
-    selectedKeys.value = new Set(localValue.value.map((row: any) => row.id))
+    for (const row of filteredData.value) {
+      selectedKeys.value.add(resolveRowKey(row))
+    }
   } else {
-    selectedKeys.value.clear()
+    for (const row of filteredData.value) {
+      selectedKeys.value.delete(resolveRowKey(row))
+    }
   }
-  
-  emit('update:value', [...localValue.value])
+  emitSelection()
 }
 
-const isAllSelected = computed(() => {
-  return (
+const isAllSelected = computed(
+  () =>
     filteredData.value.length > 0 &&
-    filteredData.value.every((row: any) => selectedKeys.value.has(row.id))
-  )
-})
+    filteredData.value.every((row) => selectedKeys.value.has(resolveRowKey(row)))
+)
 
-const handlePageChange = (page: number) => {
+function handlePageChange(page: number) {
   const first = (page - 1) * props.rows
   emit('update:first', first)
   emit('page', { first, rows: props.rows, page, pageCount: pageCount.value })
 }
 
-const handleRowsChange = (event: Event) => {
-  const target = event.target as HTMLSelectElement
-  const rows = Number(target.value)
+function handleRowsChange(event: Event) {
+  const rows = Number((event.target as HTMLSelectElement).value)
   emit('update:rows', rows)
   emit('update:first', 0)
-  emit('page', { first: 0, rows, page: 1, pageCount: Math.ceil((props.totalRecords || filteredData.value.length) / rows) })
+  emit('page', {
+    first: 0,
+    rows,
+    page: 1,
+    pageCount: Math.ceil((props.totalRecords || filteredData.value.length) / rows)
+  })
 }
 
-const prevPage = () => {
-  if (currentPage.value > 1) {
-    handlePageChange(currentPage.value - 1)
-  }
-}
-
-const nextPage = () => {
-  if (currentPage.value < pageCount.value) {
-    handlePageChange(currentPage.value + 1)
-  }
-}
-
-const firstPage = () => {
-  handlePageChange(1)
-}
-
-const lastPage = () => {
-  handlePageChange(pageCount.value)
-}
-
-const renderCell = (column: Column, row: any) => {
-  if (column.render) {
-    return column.render(row[column.field], row)
-  }
+function renderCell(column: Column, row: any) {
+  if (column.render) return column.render(row[column.field], row)
   return row[column.field]
 }
 
-const getSortIcon = (column: Column) => {
-  if (!column.sortable) return null
-  
-  if (props.sortField === column.field) {
-    return props.sortOrder === 'asc' ? 'asc' : 'desc'
-  }
-  
-  return null
+function sortState(column: Column) {
+  if (!column.sortable || innerSortField.value !== column.field) return null
+  return innerSortOrder.value
 }
 </script>
 
 <template>
-  <div :class="['p-datatable', props.class]" :style="style">
-    <div v-if="loading" class="p-datatable-loading">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 6v6l4 2" />
-      </svg>
+  <div :class="['vp-datatable', props.class]" :style="style">
+    <div v-if="loading" class="vp-datatable__loading" :aria-label="t(LocaleKeys.common.loading)">
+      <slot name="loading">
+        <span class="vp-datatable__spinner" aria-hidden="true" />
+      </slot>
     </div>
-    
-    <div v-if="$slots.header || filterGlobal" class="p-datatable-header">
-      <div class="p-datatable-header-left">
+
+    <div v-if="$slots.header || filterGlobal" class="vp-datatable__header">
+      <div class="vp-datatable__header-left">
         <slot name="header" />
       </div>
-      <div v-if="filterGlobal" class="p-datatable-header-right">
-        <div class="p-datatable-filter">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
+      <div v-if="filterGlobal" class="vp-datatable__header-right">
+        <label class="vp-datatable__filter">
+          <span class="vp-datatable__sr">{{ t(LocaleKeys.common.search) }}</span>
           <input
-            type="text"
             v-model="globalFilter"
-            placeholder="Search..."
+            type="search"
+            :placeholder="t(LocaleKeys.common.search)"
           />
-        </div>
+        </label>
       </div>
     </div>
-    
-    <div class="p-datatable-wrapper">
-      <div :class="['p-datatable-body', { 'p-datatable-fixed-header': fixedHeader }]">
-        <table class="p-datatable-table">
-          <thead>
-            <tr>
-              <th v-if="selectionMode" class="p-datatable-th-center" width="50">
-                <div class="p-datatable-checkbox">
+
+    <div class="vp-datatable__scroll">
+      <!-- Sticky header table (outside scroll body) -->
+      <table class="vp-datatable__table vp-datatable__table--head" role="presentation">
+        <colgroup>
+          <col v-if="selectionMode" class="vp-datatable__col--check" />
+          <col
+            v-for="column in cols"
+            :key="column.field"
+            :style="column.width ? { width: column.width } : undefined"
+          />
+        </colgroup>
+        <thead>
+          <tr>
+            <th v-if="selectionMode" class="vp-datatable__th vp-datatable__th--center">
+              <input
+                type="checkbox"
+                :checked="isAllSelected"
+                :aria-label="t(LocaleKeys.common.selectAll)"
+                @change="toggleSelectAll"
+              />
+            </th>
+            <th
+              v-for="column in cols"
+              :key="column.field"
+              :class="[
+                'vp-datatable__th',
+                `vp-datatable__th--${column.align || 'left'}`,
+                { 'vp-datatable__th--sortable': column.sortable }
+              ]"
+              scope="col"
+              @click="handleSort(column)"
+            >
+              <span class="vp-datatable__th-label">
+                {{ column.header }}
+                <span
+                  v-if="sortState(column)"
+                  class="vp-datatable__sort"
+                  :class="`vp-datatable__sort--${sortState(column)}`"
+                  aria-hidden="true"
+                />
+              </span>
+            </th>
+          </tr>
+          <tr v-if="hasColumnFilters" class="vp-datatable__filter-row">
+            <th v-if="selectionMode" class="vp-datatable__th vp-datatable__th--filter" />
+            <th
+              v-for="column in cols"
+              :key="`${column.field}-filter`"
+              class="vp-datatable__th vp-datatable__th--filter"
+            >
+              <label v-if="column.filter" class="vp-datatable__col-filter">
+                <span class="vp-datatable__sr">
+                  {{ t('component.datatable.columnFilter', { column: column.header }) }}
+                </span>
+                <input
+                  v-model="columnFilters[column.field]"
+                  type="search"
+                  :placeholder="t(LocaleKeys.common.search)"
+                />
+              </label>
+            </th>
+          </tr>
+        </thead>
+      </table>
+
+      <div
+        class="vp-datatable__body"
+        :style="bodyStyle"
+        @scroll="useVirtual ? onScroll($event) : undefined"
+      >
+        <div
+          v-if="useVirtual"
+          class="vp-datatable__virtual"
+          :style="{ height: `${totalHeight}px` }"
+        >
+          <table
+            class="vp-datatable__table"
+            :style="{ transform: `translateY(${offsetY}px)` }"
+          >
+            <colgroup>
+              <col v-if="selectionMode" class="vp-datatable__col--check" />
+              <col
+                v-for="column in cols"
+                :key="column.field"
+                :style="column.width ? { width: column.width } : undefined"
+              />
+            </colgroup>
+            <tbody>
+              <tr v-if="!displaySource.length">
+                <td :colspan="Math.max(colCount, 1)" class="vp-datatable__empty">
+                  <slot name="empty">{{ t(LocaleKeys.common.noData) }}</slot>
+                </td>
+              </tr>
+              <tr
+                v-for="{ row, index } in displayRows"
+                :key="resolveRowKey(row, index)"
+                :class="{
+                  'vp-datatable__row--selected': selectedKeys.has(resolveRowKey(row, index)),
+                  'vp-datatable__row--striped': striped && index % 2 === 1
+                }"
+                :style="{ height: `${itemHeight}px` }"
+                @click="handleRowClick(row, $event)"
+              >
+                <td v-if="selectionMode" class="vp-datatable__td vp-datatable__td--center">
                   <input
                     type="checkbox"
-                    :checked="isAllSelected"
-                    @change="toggleSelectAll"
+                    :checked="selectedKeys.has(resolveRowKey(row, index))"
+                    @click.stop="toggleRowSelection(row, $event)"
                   />
-                </div>
-              </th>
-              <th
-                v-for="column in columns"
-                :key="column.field"
-                :class="[
-                  `p-datatable-th-${column.align || 'left'}`,
-                  { 'p-datatable-th-sortable': column.sortable }
-                ]"
-                :style="{ width: column.width }"
-                @click="handleSort(column)"
-              >
-                {{ column.header }}
-                <span v-if="getSortIcon(column)" class="p-datatable-sort-icon" :class="`p-datatable-sort-${getSortIcon(column)}`">
-                  <svg v-if="getSortIcon(column) === 'asc'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 15l-6-6-6 6" />
-                  </svg>
-                  <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M6 9l6 6 6-6" />
-                  </svg>
-                </span>
-              </th>
-            </tr>
-          </thead>
+                </td>
+                <td
+                  v-for="column in cols"
+                  :key="column.field"
+                  :class="['vp-datatable__td', `vp-datatable__td--${column.align || 'left'}`]"
+                  :style="column.style"
+                >
+                  <slot :name="`body-${column.field}`" :value="row[column.field]" :row="row">
+                    {{ renderCell(column, row) }}
+                  </slot>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <table v-else class="vp-datatable__table">
+          <colgroup>
+            <col v-if="selectionMode" class="vp-datatable__col--check" />
+            <col
+              v-for="column in cols"
+              :key="column.field"
+              :style="column.width ? { width: column.width } : undefined"
+            />
+          </colgroup>
           <tbody>
-            <tr v-if="!paginatedData.length" class="p-datatable-empty-message">
-              <td :colspan="columns.length + (selectionMode ? 1 : 0)">
-                No data found.
+            <tr v-if="!displaySource.length">
+              <td :colspan="Math.max(colCount, 1)" class="vp-datatable__empty">
+                <slot name="empty">{{ t(LocaleKeys.common.noData) }}</slot>
               </td>
             </tr>
             <tr
-              v-for="row in paginatedData"
-              :key="row.id"
-              :class="[
-                { 'p-datatable-row-selected': row.selected },
-                { 'p-datatable-row-striped': striped && paginatedData.indexOf(row) % 2 === 1 }
-              ]"
+              v-for="{ row, index } in displayRows"
+              :key="resolveRowKey(row, index)"
+              :class="{
+                'vp-datatable__row--selected': selectedKeys.has(resolveRowKey(row, index)),
+                'vp-datatable__row--striped': striped && index % 2 === 1
+              }"
               @click="handleRowClick(row, $event)"
             >
-              <td v-if="selectionMode" class="p-datatable-td-center">
-                <div class="p-datatable-checkbox">
-                  <input
-                    type="checkbox"
-                    :checked="row.selected"
-                    @click.stop="toggleRowSelection(row, $event)"
-                  />
-                </div>
+              <td v-if="selectionMode" class="vp-datatable__td vp-datatable__td--center">
+                <input
+                  type="checkbox"
+                  :checked="selectedKeys.has(resolveRowKey(row, index))"
+                  @click.stop="toggleRowSelection(row, $event)"
+                />
               </td>
               <td
-                v-for="column in columns"
+                v-for="column in cols"
                 :key="column.field"
-                :class="`p-datatable-td-${column.align || 'left'}`"
+                :class="['vp-datatable__td', `vp-datatable__td--${column.align || 'left'}`]"
                 :style="column.style"
               >
                 <slot :name="`body-${column.field}`" :value="row[column.field]" :row="row">
@@ -274,14 +488,12 @@ const getSortIcon = (column: Column) => {
         </table>
       </div>
     </div>
-    
-    <div v-if="paginator && (totalRecords || filteredData.length)" class="p-datatable-footer">
-      <div class="p-datatable-summary">
-        Showing {{ first + 1 }} to {{ Math.min(first + rows, totalRecords || filteredData.length) }} of {{ totalRecords || filteredData.length }} entries
-      </div>
-      <div class="p-datatable-paginator">
-        <div class="p-datatable-row-count">
-          <span>Rows per page:</span>
+
+    <div class="vp-datatable__footer">
+      <div class="vp-datatable__summary">{{ metaText }}</div>
+      <div v-if="paginator" class="vp-datatable__paginator">
+        <label class="vp-datatable__row-count">
+          <span>{{ t('component.datatable.rowsPerPage') }}</span>
           <select :value="rows" @change="handleRowsChange">
             <option :value="5">5</option>
             <option :value="10">10</option>
@@ -289,59 +501,45 @@ const getSortIcon = (column: Column) => {
             <option :value="50">50</option>
             <option :value="100">100</option>
           </select>
-        </div>
-        
+        </label>
         <button
           type="button"
+          class="vp-datatable__page-btn"
           :disabled="currentPage === 1"
-          @click="firstPage"
-          class="p-datatable-paginator-btn"
+          :aria-label="t('component.datatable.firstPage')"
+          @click="handlePageChange(1)"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M19 12H5" />
-            <path d="M12 19l-7-7 7-7" />
-          </svg>
+          «
         </button>
-        
         <button
           type="button"
+          class="vp-datatable__page-btn"
           :disabled="currentPage === 1"
-          @click="prevPage"
-          class="p-datatable-paginator-btn"
+          :aria-label="t(LocaleKeys.common.previous)"
+          @click="handlePageChange(currentPage - 1)"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M15 19l-7-7 7-7" />
-          </svg>
+          ‹
         </button>
-        
-        <span class="p-datatable-page-info">{{ currentPage }} / {{ pageCount }}</span>
-        
+        <span class="vp-datatable__page-info">{{ currentPage }} / {{ pageCount }}</span>
         <button
           type="button"
-          :disabled="currentPage === pageCount"
-          @click="nextPage"
-          class="p-datatable-paginator-btn"
+          class="vp-datatable__page-btn"
+          :disabled="currentPage >= pageCount"
+          :aria-label="t(LocaleKeys.common.next)"
+          @click="handlePageChange(currentPage + 1)"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 5l7 7-7 7" />
-          </svg>
+          ›
         </button>
-        
         <button
           type="button"
-          :disabled="currentPage === pageCount"
-          @click="lastPage"
-          class="p-datatable-paginator-btn"
+          class="vp-datatable__page-btn"
+          :disabled="currentPage >= pageCount"
+          :aria-label="t('component.datatable.lastPage')"
+          @click="handlePageChange(pageCount)"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14" />
-            <path d="M12 5l7 7-7 7" />
-          </svg>
+          »
         </button>
       </div>
-    </div>
-    
-    <div v-if="$slots.footer" class="p-datatable-footer">
       <slot name="footer" />
     </div>
   </div>

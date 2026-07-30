@@ -1,4 +1,4 @@
-﻿import { BaseProps } from '@amg-webui/types'
+﻿import type { BaseProps } from '@amg-webui/types'
 
 export interface ContextMenuItem {
   label: string
@@ -12,6 +12,7 @@ export interface ContextMenuItem {
 export interface ContextMenuProps extends BaseProps {
   modelValue?: boolean
   items?: ContextMenuItem[]
+  /** External element that opens the menu on contextmenu. When omitted, the default slot host listens. */
   target?: HTMLElement | null
 }
 

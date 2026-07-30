@@ -24,8 +24,8 @@
 
 ### W0 — 盘点（本步）
 - [x] 文档 257 名全覆盖目录
-- [ ] 产出 MVP 清单与波次 JSON
-- [ ] 固化本计划文件
+- [x] 产出 MVP 清单与波次 JSON
+- [x] 固化本计划文件
 
 ### W1 — 表单深化
 组件域：`QuarterPicker` `WeekPicker` `DynamicForm` `FormGroup` `ImageUpload` `ChunkUpload` `DragSelect` `FilterBar` `AdvancedSearch` `InputCaptcha` `SmsCode` `RichText` `MdEditor` `CodeEditor` `ColorInput` `RangeInput` `TimeRangeInput` `TreeForm` `FormTabs` `StepForm` `ImageCrop` `BatchUpload` `TemplateSelect` …
@@ -79,8 +79,23 @@
 
 - 目录覆盖：257/257（base 文件夹 267，含配套 Item/Group）
 - W1–W5 深化波次已全部跑完；`vue-tsc` + `npm run build` 绿
-- Play：`/base/catalog` 全量检索 · `/base/industry` 行业套件
+- **A1.1 壳层质量波（2026-07-30）**：Breadcrumb / Steps / Scrollbar / Result / Mask / Exception / TabPane(lazy) 升 beta+；DataTable **默认虚拟滚动** + `vp-datatable` + i18n；curated demos 入 registry
+- **A1.2 表单/描述/提示波（2026-07-30）**：Form 校验 i18n（`error.maxLength`/`pattern`）+ clearValidate；FormItem/FormGroup/FormTabs 接线；Descriptions(+Item)；LoadingTip（size/delay）/ StatusTip / ProgressTip；curated：`/base/Form` `/base/Descriptions` `/base/LoadingTip`
+- **L0 布局导航地基（2026-07-30）**：库 Layout 套件 + Menu/TabsNav；example `AppShell` 改为组合库组件；curated：`/base/Layout` `/base/TabsNav`
+- **L1 导航深化（2026-07-30）**：`packages/utils/nav`（NavItem / useNavSelection）；Breadcrumb `items`+`maxCount`+`#separator`；*Nav/Dropdown 收敛共享选择契约 + lean SCSS；Dropdown 外点/Esc；curated：TopNav/Dropdown；LayoutNavPage 导航 live 条
+- **L2 导航成品能力（2026-07-30）**：TabsNav 溢出箭头+更多菜单；Dropdown Teleport+键盘；Anchor 滚动高亮/平滑跳转；RouterNav 软依赖 `$router` 路径高亮；curated Anchor/RouterNav
+- **L3 导航打磨（2026-07-30）**：TabsNav `draggable` 排序（AppShell 接线）；`useFocusTrap` + Dropdown Tab 陷阱；Anchor `affix` sticky
+- **L4 导航收口（2026-07-30）**：Menu 水平/popup 浮层；MenuBar→Menu 薄封装；ContextMenu Teleport+vp；Dropdown 分割线/图标/嵌套；ScrollNav 真滚动；*Nav 克隆薄封装；Pagination i18n
+- **L5 布局导航扫尾（2026-07-30）**：TabPane lazy/forceRender；SelectNav/FloatNav/StepNav/PagerNav/BackTop；布局原语 Block/Center/Container/Spacer/Stack/Flow/Column/Embed + Header/Footer/Main/Row/Col/Sider 升维；**布局+导航轨闭环**；可恢复 A1 表单轨
+- **A1.3 + 全库收口波（2026-07-30）**：表单/反馈 curated；行业+预览+拖拽壳层升 beta/ready；数据展示/图表/低代码 demos；**curated demos ≈ 全量目录**；shell **8**（仅故意薄封装）；`vue-tsc` / `validate:catalog` 绿
+- **质量止血波（2026-07-30）**：exampleDoc FFFD→0；薄 demo + `DemoSafeHost`/`getSampleMountProps`；低分 beta≥50；SFC Emits 内联修复 Loading/Result 等页面编译；页面模块 transform 冒烟绿
+- **v0.1 子集锁定（2026-07-30）**：`docs/V0_1_SUBSET.md` · `example/v0.1-subset.ts`（66）；精选 Demo 金标；Gallery `v0.1` 筛选 + 文档徽章
+- **v0.1.1 扩大分批（2026-07-30）**：Core∪B1∪B2 ≈105；B1/B2 精选加厚；B3 立项未解锁；integrity 金标门禁
+- **v0.1.2 B3 解锁（2026-07-30）**：Core∪B1∪B2∪B3 ≈128；B3 布局/日期/树表精选加厚；金标脚手架 0
+- **Gap Batch B4（2026-07-30）**：P0→P2 常用面缺口 12 件落地；子集 **0.1.3** = Core∪B1∪B2∪B3∪B4；catalog **284**
+- Play：`/base/catalog` 全量检索 · `/base/industry` 行业套件 · curated：几乎全部 `/base/:name` · **v0.1 筛选项（含 B4）**
 - 计划文件：`docs/COMPONENT_DEEPEN_PLAN.md` · 波次 JSON：`scripts/.component-waves.json`
+- **未纳入本波（LIBRARY_PLAN P4–P5）**：完整 Vitest/E2E、VitePress API 全表、SSR、公开 npm/商标决策 —— 仍属上架就绪轨，非组件深化轨
 
 ### 执行日志
 
@@ -93,3 +108,17 @@
 | 并行 | W4 | 30 第三方+低代码画布深化 |
 | 并行 | W5 | 43 行业套件（404/Video/ONVIF/GB/VCR）深化 + industry i18n |
 | 收口 | W6 | example：`/base/catalog` · `/base/industry`；`vue-tsc`/`build` 绿；覆盖 257/257 |
+| 2026-07-30 | A1.1 | 导航/反馈壳层 + DataTable 虚拟默认；maturity shell 56→48；`vue-tsc` 绿 |
+| 2026-07-30 | A1.2 | Form/FormItem/FormGroup/FormTabs + Descriptions(+Item) + Loading/Status/ProgressTip；校验 i18n；curated demos；shell 48→42 / ready 88→95；`vue-tsc` 绿 |
+| 2026-07-30 | **L0** | **布局+导航地基**：Layout/Sider/Header/Main/Footer + Menu + TabsNav + Row/Col；**AppShell 迁库组件**；A1.x 表单轨暂停 |
+| 2026-07-30 | **L1** | **导航深化**：utils/nav；Breadcrumb items/maxCount/separator slot；*Nav+Dropdown 共享契约；curated TopNav/Dropdown；`vue-tsc` |
+| 2026-07-30 | **L2** | **导航成品**：TabsNav 溢出；Dropdown Teleport+键盘；Anchor scroll-spy；RouterNav `$router`；`vue-tsc` |
+| 2026-07-30 | **L3** | **导航打磨**：TabsNav 拖拽；useFocusTrap；Anchor affix；`vue-tsc` |
+| 2026-07-30 | **L4** | **导航收口**：Menu popup；MenuBar/ContextMenu；Dropdown 嵌套；ScrollNav；Pagination i18n；克隆薄封装；`vue-tsc` |
+| 2026-07-30 | **L5** | **布局导航扫尾**：TabPane/SelectNav/FloatNav/StepNav/PagerNav/BackTop；布局原语升维；shell 55→48；布局+导航闭环；`vue-tsc` |
+| 2026-07-30 | **A1.3/收口** | 行业/预览/拖拽出壳；表单反馈+数据展示 curated；demos≈267；shell **8**；catalog OK；`vue-tsc` |
+| 2026-07-30 | **质量止血** | FFFD=0；DemoSafeHost；低 beta≥50；Emits SFC 修复；模块 transform 冒烟；`vue-tsc` |
+| 2026-07-30 | **v0.1** | 锁定 66 组件精选 Demo；Gallery 筛选 + 徽章；integrity 单测；`vue-tsc` |
+| 2026-07-30 | **v0.1.2** | 解锁 B3；子集 ≈128；B3 精选加厚；金标脚手架 0；`vue-tsc` |
+| 2026-07-30 | **发版步1+2** | `0.1.0` 试用合同；peerDeps；`build:lib`→dist；`RELEASE_0.1.md` |
+| 2026-07-30 | **Gap B4** | P0→P2：ConfigProvider/MessageBox/Affix/PageHeader/Segmented/InputOTP/TimeSelect/Mention/Image/ImageViewer/Tour/InfiniteScroll；子集 0.1.3；catalog 284；`vue-tsc` + integrity 绿 |

@@ -1,9 +1,10 @@
-﻿import { BaseProps } from '@amg-webui/types'
+﻿import type { BaseProps } from '@amg-webui/types'
 
 export interface MenuBarItem {
   label: string
   icon?: string
   disabled?: boolean
+  /** Visual separator — filtered out when mapping to Menu */
   divider?: boolean
   children?: MenuBarItem[]
   command?: string

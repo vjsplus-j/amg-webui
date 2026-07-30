@@ -12,6 +12,11 @@
     &:hover {
       color: var(--primary-600, var(--primary-500));
     }
+
+    &:focus-visible {
+      outline: var(--ds-focus-ring);
+      outline-offset: 1px;
+    }
   }
 
   &__text {
@@ -21,6 +26,23 @@
   &__separator {
     color: var(--text-muted);
     user-select: none;
+  }
+
+  &--disabled {
+    .vp-breadcrumb-item__link,
+    .vp-breadcrumb-item__text {
+      color: var(--text-muted);
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+
+  &--current {
+    .vp-breadcrumb-item__link,
+    .vp-breadcrumb-item__text {
+      color: var(--text-primary);
+      font-weight: var(--font-weight-medium, 500);
+    }
   }
 
   &:last-child {

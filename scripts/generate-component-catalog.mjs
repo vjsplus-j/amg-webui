@@ -48,7 +48,9 @@ const cats = {
     'Collapse',
     'Statistic',
     'Card',
-    'CardWidgets'
+    'CardWidgets',
+    'ConfigProvider',
+    'Segmented'
   ]),
   layout: new Set([
     'Row',
@@ -71,7 +73,9 @@ const cats = {
     'StackLayout',
     'ResizeBox',
     'CardGrid',
-    'FormLayout'
+    'FormLayout',
+    'Affix',
+    'PageHeader'
   ]),
   navigation: new Set([
     'Anchor',
@@ -102,7 +106,8 @@ const cats = {
     'TopNav',
     'VerticalStepNav',
     'CardNav',
-    'CategoryNav'
+    'CategoryNav',
+    'Tour'
   ]),
   'data-entry': new Set([
     'AdvancedSearch',
@@ -131,9 +136,11 @@ const cats = {
     'ImageUpload',
     'InputCaptcha',
     'InputNumber',
+    'InputOTP',
     'InputText',
     'LoginPanel',
     'MdEditor',
+    'Mention',
     'MonthPicker',
     'Password',
     'PermissionPanel',
@@ -156,6 +163,7 @@ const cats = {
     'Textarea',
     'TimePicker',
     'TimeRangeInput',
+    'TimeSelect',
     'Transfer',
     'Upload',
     'UserInfoCard',
@@ -176,7 +184,10 @@ const cats = {
     'GaugeChart',
     'GraphChart',
     'HeatMap',
+    'Image',
     'ImageGroup',
+    'ImageViewer',
+    'InfiniteScroll',
     'LazyTree',
     'LineChart',
     'MergeTable',
@@ -217,6 +228,7 @@ const cats = {
     'Confirm',
     'ConfirmDialog',
     'Dialog',
+    'MessageBox',
     'Drawer',
     'ErrorModal',
     'Exception',

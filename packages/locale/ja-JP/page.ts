@@ -259,5 +259,6 @@ export default {
   'page.intro.icon.usageTitle': 'ホスト側の使い方',
   'page.intro.icon.usageLead': 'アイコンスタイルを切替、テンプレートで Icon を使う：',
   'page.intro.icon.usageCode': 'import { IconStyleService } from \'@amg-webui/theme\'\nimport { Icon } from \'@amg-webui/components/base\'\n\nIconStyleService.init()\nIconStyleService.setStyle(\'outline\')\n// <Icon name="Search" size="md" />',
-  'page.intro.icon.usageNote': '名前付き字形は @amg-webui/icons から。ルート barrel のコンポーネント名衝突を避ける。'
+  'page.intro.icon.usageNote': '名前付き字形は @amg-webui/icons から。ルート barrel のコンポーネント名衝突を避ける。',
+  'page.gallery.openDoc': "ドキュメントを開く",
 } as Record<string, string>

@@ -1,3 +1,19 @@
 .vp-tab-pane {
   display: block;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
+
+  &[hidden] {
+    display: none !important;
+  }
+
+  &:focus-visible {
+    outline: var(--ds-focus-ring);
+    outline-offset: 1px;
+  }
 }

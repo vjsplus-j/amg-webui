@@ -1,5 +1,8 @@
 import type { BaseProps, Severity } from '@amg-webui/types'
 
+/** Confirm tones — includes Button-aligned `contrast` (black / high-ink). */
+export type ConfirmSeverity = Severity | 'contrast'
+
 export interface ConfirmProps extends BaseProps {
   visible?: boolean
   title?: string
@@ -8,7 +11,7 @@ export interface ConfirmProps extends BaseProps {
   dismissible?: boolean
   confirmLabel?: string
   cancelLabel?: string
-  severity?: Severity
+  severity?: ConfirmSeverity
 }
 
 export interface ConfirmEmits {

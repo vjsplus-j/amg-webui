@@ -12,6 +12,7 @@ export default {
   'auth.forgotPassword': '비밀번호 찾기',
   'auth.sendCode': '인증코드 발송',
   'auth.resendIn': '{n}초 후 재발송',
+  'auth.resendCode': '재전송',
   'auth.verifyCode': '인증코드',
   'auth.captcha': '사람 인증',
   'auth.captchaPass': '인증 완료',

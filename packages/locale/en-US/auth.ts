@@ -12,6 +12,7 @@ export default {
   'auth.forgotPassword': 'Forgot password',
   'auth.sendCode': 'Send code',
   'auth.resendIn': 'Resend in {n}s',
+  'auth.resendCode': 'Resend code',
   'auth.verifyCode': 'Verification code',
   'auth.captcha': 'Human verification',
   'auth.captchaPass': 'Verified',

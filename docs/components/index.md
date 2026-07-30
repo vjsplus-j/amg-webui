@@ -1,6 +1,31 @@
-# 组件文档（本阶段）
+# 组件文档（v0.1 核心）
 
 本阶段对外 VitePress 文档以**薄 API stub**为主；完整交互、边界与代码高亮预览在本地 **example curated demos**（不上线）。
+
+## v0.1 核心 API（Release Step 4）
+
+| 组件 | Docs | Example |
+| --- | --- | --- |
+| Button | [button](./button) | `example/demos/Button/` |
+| Select | [select](./select) | `example/demos/Select/` |
+| DataTable | [data-table](./data-table) | `example/demos/DataTable/` |
+| Tree | [tree](./tree) | `example/demos/Tree/` |
+| Form | [form](./form) | `example/demos/Form/` |
+| Dialog | [dialog](./dialog) | `example/demos/Dialog/` |
+| InputText | [input-text](./input-text) | `example/demos/InputText/` |
+| Pagination | [pagination](./pagination) | `example/demos/Pagination/` |
+| Layout | [layout](./layout) | `example/demos/Layout/` |
+| Menu | [menu](./menu) | `example/demos/Menu/` |
+| Tabs | [tabs](./tabs) | `example/demos/Tabs/` |
+| Alert | [alert](./alert) | `example/demos/Alert/` |
+| MessageBox | [message-box](./message-box) | `example/demos/MessageBox/` |
+| ConfigProvider | [config-provider](./config-provider) | `example/demos/ConfigProvider/` |
+| Segmented | [segmented](./segmented) | `example/demos/Segmented/` |
+| Affix | [affix](./affix) | `example/demos/Affix/` |
+| Image | [image](./image) | `example/demos/Image/` |
+| Tour | [tour](./tour) | `example/demos/Tour/` |
+
+生成脚本：`npm run generate:vitepress-api`（读 `types.ts` 写 stub + 更新 sidebar）。
 
 ## 本阶段已闭环子集（均 ready）
 

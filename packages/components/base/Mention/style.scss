@@ -1,0 +1,113 @@
+.vp-mention {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--font-family-sans);
+  box-sizing: border-box;
+
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.vp-mention__input {
+  width: 100%;
+  min-width: 0;
+  padding: var(--spacing-md);
+  background: var(--surface-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--theme-input-radius, var(--border-radius-md));
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-body);
+  resize: vertical;
+  outline: none;
+  transition:
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal);
+  box-sizing: border-box;
+
+  &:hover:not(:disabled) {
+    border-color: var(--border-color-hover);
+  }
+
+  &:focus {
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 2px var(--ds-focus-ring);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--surface-2);
+  }
+
+  &::placeholder {
+    color: var(--text-tertiary);
+  }
+}
+
+.vp-mention__popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: var(--spacing-xs) 0 0;
+  padding: var(--spacing-xs);
+  list-style: none;
+  background: var(--surface-1);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  max-height: calc(var(--height-md) * 6);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.vp-mention__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  transition: background var(--transition-normal);
+
+  &:hover,
+  &--active {
+    background: var(--surface-2);
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &--loading,
+  &--empty {
+    color: var(--text-tertiary);
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+.vp-mention__option-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vp-mention__option-value {
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
+}

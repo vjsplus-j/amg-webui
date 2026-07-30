@@ -12,6 +12,7 @@ export default {
   'auth.forgotPassword': 'パスワードをお忘れですか',
   'auth.sendCode': '認証コードを送信',
   'auth.resendIn': '{n}秒後に再送',
+  'auth.resendCode': '再送信',
   'auth.verifyCode': '認証コード',
   'auth.captcha': '本人確認',
   'auth.captchaPass': '確認済み',

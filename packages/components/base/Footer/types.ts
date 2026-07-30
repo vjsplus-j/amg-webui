@@ -1,16 +1,16 @@
 import type { BaseProps } from '@amg-webui/types'
 
+export type FooterPadding = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'page'
+
 export interface FooterProps extends BaseProps {
-  title?: string
-  description?: string
-  data?: unknown
-  modelValue?: unknown
-  disabled?: boolean
-  loading?: boolean
+  bordered?: boolean
+  align?: 'start' | 'center' | 'end'
+  size?: 'sm' | 'md' | 'lg'
+  sticky?: boolean
+  fixed?: boolean
+  padding?: FooterPadding
 }
 
 export interface FooterEmits {
-  (e: 'update:modelValue', value: unknown): void
-  (e: 'change', value: unknown): void
   (e: 'click', event: MouseEvent): void
 }

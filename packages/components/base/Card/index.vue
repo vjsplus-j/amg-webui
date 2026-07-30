@@ -19,6 +19,10 @@ const props = withDefaults(
     hover?: boolean
     hoverable?: boolean
     bordered?: boolean
+    /** Visual selected state (accent border / muted fill) */
+    selected?: boolean
+    /** Clickable selection affordance; toggles via update:selected when used with v-model:selected */
+    selectable?: boolean
     loading?: boolean
     skeleton?: CardSkeleton
     trackId?: string
@@ -32,6 +36,8 @@ const props = withDefaults(
     hover: false,
     hoverable: false,
     bordered: true,
+    selected: false,
+    selectable: false,
     loading: false,
     skeleton: 'basic'
   }
@@ -39,9 +45,11 @@ const props = withDefaults(
 
 const emit = defineEmits<{
   click: [event: MouseEvent]
+  'update:selected': [value: boolean]
 }>()
 
 const isHoverable = computed(() => props.hover || props.hoverable)
+const isInteractive = computed(() => isHoverable.value || props.selectable)
 const resolvedSubtitle = computed(() => props.subTitle ?? props.subtitle)
 
 const SKELETON_MAP: Record<CardSkeleton, SkeletonVariant> = {
@@ -72,30 +80,36 @@ const rootClass = computed(() => [
   'vp-card',
   'p-card',
   {
-    'vp-card--hover': isHoverable.value,
-    'p-card-hover': isHoverable.value,
+    'vp-card--hover': isInteractive.value,
+    'p-card-hover': isInteractive.value,
     'vp-card--raised': props.raised,
     'p-card-raised': props.raised,
     'vp-card--bordered': props.bordered,
+    'vp-card--selected': props.selected,
+    'vp-card--selectable': props.selectable,
     'vp-card--loading': props.loading
   },
   props.class
 ])
 
 function onClick(event: MouseEvent) {
-  if (!isHoverable.value) return
+  if (!isInteractive.value || props.loading) return
+  if (props.selectable) {
+    emit('update:selected', !props.selected)
+  }
   trackEmit({
     component: 'Card',
     type: 'click',
     trackId: props.trackId,
     telemetry: props.telemetry,
-    name: props.header || props.title
+    name: props.header || props.title,
+    payload: { selected: props.selectable ? !props.selected : undefined }
   })
   emit('click', event)
 }
 
 function onKeydown(event: KeyboardEvent) {
-  if (!isHoverable.value) return
+  if (!isInteractive.value || props.loading) return
   if (event.key === 'Enter' || event.key === ' ') {
     event.preventDefault()
     onClick(event as unknown as MouseEvent)
@@ -107,8 +121,9 @@ function onKeydown(event: KeyboardEvent) {
   <div
     :class="rootClass"
     :style="style"
-    :role="isHoverable ? 'button' : undefined"
-    :tabindex="isHoverable ? 0 : undefined"
+    :role="isInteractive ? 'button' : undefined"
+    :tabindex="isInteractive ? 0 : undefined"
+    :aria-pressed="props.selectable ? props.selected : undefined"
     :aria-disabled="loading || undefined"
     @click="onClick"
     @keydown="onKeydown"

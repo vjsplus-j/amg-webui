@@ -1,16 +1,20 @@
 import type { BaseProps } from '@amg-webui/types'
-import type { CanvasSchema } from '@amg-webui/utils'
 
-export interface CanvasTemplate {
+export interface TemplateDragItem {
   id: string
   name: string
-  schema: CanvasSchema
 }
 
 export interface TemplateDragProps extends BaseProps {
-  templates?: CanvasTemplate[]
+  templates?: TemplateDragItem[]
+  loading?: boolean
+  disabled?: boolean
+  title?: string
+  telemetry?: boolean
+  trackId?: string
 }
 
 export interface TemplateDragEmits {
-  (e: 'apply', template: CanvasTemplate): void
+  (e: 'apply', tpl: TemplateDragItem): void
+  (e: 'refresh'): void
 }

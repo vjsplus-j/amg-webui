@@ -1,0 +1,224 @@
+<script setup lang="ts">
+import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { useLocale } from '@amg-webui/hooks'
+import { trackEmit } from '@amg-webui/telemetry'
+import { LocaleKeys } from '@amg-webui/locale'
+import type { MentionProps, MentionEmits, MentionOption } from './types'
+import './style.scss'
+
+const props = withDefaults(defineProps<MentionProps>(), {
+  modelValue: '',
+  options: () => [],
+  prefix: '@',
+  rows: 3,
+  disabled: false,
+  loading: false,
+  telemetry: undefined
+})
+
+const emit = defineEmits<MentionEmits>()
+const { t } = useLocale()
+
+const textareaRef = ref<HTMLTextAreaElement | null>(null)
+const popupRef = ref<HTMLElement | null>(null)
+const isOpen = ref(false)
+const activeIndex = ref(0)
+const mentionStart = ref(-1)
+const mentionQuery = ref('')
+
+const filteredOptions = computed(() => {
+  const q = mentionQuery.value.toLowerCase()
+  return (props.options ?? []).filter((opt) => {
+    if (opt.disabled) return false
+    if (!q) return true
+    return (
+      opt.label.toLowerCase().includes(q) ||
+      opt.value.toLowerCase().includes(q)
+    )
+  })
+})
+
+const showPopup = computed(
+  () => isOpen.value && (filteredOptions.value.length > 0 || props.loading)
+)
+
+const rootClass = computed(() => [
+  'vp-mention',
+  {
+    'vp-mention--disabled': props.disabled,
+    'vp-mention--open': showPopup.value
+  },
+  props.class
+])
+
+const closePopup = () => {
+  isOpen.value = false
+  mentionStart.value = -1
+  mentionQuery.value = ''
+  activeIndex.value = 0
+}
+
+const detectMention = (value: string, cursor: number) => {
+  const before = value.slice(0, cursor)
+  const prefixIdx = before.lastIndexOf(props.prefix)
+
+  if (prefixIdx < 0) {
+    closePopup()
+    return
+  }
+
+  const afterPrefix = before.slice(prefixIdx + props.prefix.length)
+  if (/\s/.test(afterPrefix)) {
+    closePopup()
+    return
+  }
+
+  mentionStart.value = prefixIdx
+  mentionQuery.value = afterPrefix
+  isOpen.value = true
+  activeIndex.value = 0
+  emit('search', afterPrefix)
+}
+
+const emitValue = (value: string) => {
+  emit('update:modelValue', value)
+  emit('change', value)
+}
+
+const onInput = (event: Event) => {
+  if (props.disabled) return
+  const target = event.target as HTMLTextAreaElement
+  emitValue(target.value)
+  detectMention(target.value, target.selectionStart ?? target.value.length)
+}
+
+const insertMention = (opt: MentionOption) => {
+  const el = textareaRef.value
+  if (!el || mentionStart.value < 0) return
+
+  const cursor = el.selectionStart ?? el.value.length
+  const before = el.value.slice(0, mentionStart.value)
+  const after = el.value.slice(cursor)
+  const insert = `${props.prefix}${opt.value} `
+  const next = before + insert + after
+
+  emitValue(next)
+  emit('select', opt)
+  trackEmit({
+    component: 'Mention',
+    type: 'select',
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { value: opt.value }
+  })
+  closePopup()
+
+  nextTick(() => {
+    const pos = before.length + insert.length
+    el.focus()
+    el.setSelectionRange(pos, pos)
+  })
+}
+
+const onKeydown = (event: KeyboardEvent) => {
+  if (!showPopup.value) return
+
+  const len = filteredOptions.value.length
+  if (!len && !props.loading) return
+
+  switch (event.key) {
+    case 'ArrowDown':
+      event.preventDefault()
+      if (len) activeIndex.value = (activeIndex.value + 1) % len
+      break
+    case 'ArrowUp':
+      event.preventDefault()
+      if (len) activeIndex.value = (activeIndex.value - 1 + len) % len
+      break
+    case 'Enter':
+      if (len) {
+        event.preventDefault()
+        insertMention(filteredOptions.value[activeIndex.value])
+      }
+      break
+    case 'Escape':
+      event.preventDefault()
+      closePopup()
+      break
+    case 'Tab':
+      closePopup()
+      break
+  }
+}
+
+const handleOutsideClick = (event: MouseEvent) => {
+  if (!showPopup.value) return
+  const target = event.target as HTMLElement
+  if (
+    !textareaRef.value?.contains(target) &&
+    !popupRef.value?.contains(target)
+  ) {
+    closePopup()
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleOutsideClick)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleOutsideClick)
+})
+</script>
+
+<template>
+  <div :class="rootClass" :style="style" data-component="Mention">
+    <textarea
+      ref="textareaRef"
+      class="vp-mention__input"
+      :value="modelValue"
+      :placeholder="placeholder ?? t(LocaleKeys.component.mention.placeholder)"
+      :disabled="disabled"
+      :rows="rows"
+      :maxlength="maxLength"
+      @input="onInput"
+      @keydown="onKeydown"
+    />
+
+    <ul
+      v-if="showPopup"
+      ref="popupRef"
+      class="vp-mention__popup"
+      role="listbox"
+      :aria-label="t(LocaleKeys.component.mention.listAria)"
+    >
+      <li v-if="loading" class="vp-mention__option vp-mention__option--loading">
+        {{ t(LocaleKeys.component.mention.loading) }}
+      </li>
+      <li
+        v-else-if="!filteredOptions.length"
+        class="vp-mention__option vp-mention__option--empty"
+      >
+        {{ t(LocaleKeys.component.mention.empty) }}
+      </li>
+      <template v-else>
+        <li
+          v-for="(opt, idx) in filteredOptions"
+          :key="opt.value"
+          role="option"
+          class="vp-mention__option"
+          :class="{
+            'vp-mention__option--active': activeIndex === idx,
+            'vp-mention__option--disabled': opt.disabled
+          }"
+          :aria-selected="activeIndex === idx"
+          @click="!opt.disabled && insertMention(opt)"
+          @mouseenter="activeIndex = idx"
+        >
+          <span class="vp-mention__option-label">{{ opt.label }}</span>
+          <span class="vp-mention__option-value">{{ prefix }}{{ opt.value }}</span>
+        </li>
+      </template>
+    </ul>
+  </div>
+</template>

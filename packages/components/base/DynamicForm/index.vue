@@ -82,7 +82,7 @@ const onSubmit = () => {
       />
       <Select
         v-else-if="field.type === 'select'"
-        :model-value="formModel[field.key]"
+        :model-value="formModel[field.key] as string | number | boolean | undefined"
         :options="field.options ?? []"
         :disabled="disabled || loading"
         @update:model-value="(v) => updateField(field.key, v)"

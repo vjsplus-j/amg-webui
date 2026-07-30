@@ -1,4 +1,11 @@
 export default {
+  'industry.common.noData': '데이터 없음',
+  'industry.common.noLogs': '로그 없음',
+  'industry.common.noAlarms': '알람 없음',
+  'industry.common.noChannels': '채널 없음',
+  'industry.common.noTasks': '작업 없음',
+  'industry.common.noMarks': '마크 없음',
+  'industry.common.noQueue': '대기열 없음',
   'industry.video.play': '재생',
   'industry.video.pause': '일시정지',
   'industry.video.mute': '음소거',

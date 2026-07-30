@@ -3,8 +3,33 @@
   flex-direction: column;
   gap: var(--spacing-sm);
   padding: var(--spacing-md);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   background: var(--surface-1);
-  border: 1px solid var(--ds-border, var(--border-color));
-  border-radius: var(--theme-card-radius, var(--border-radius-md));
-  &__message { margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary); }
+  border: 1px solid var(--ds-border);
+  border-radius: var(--theme-card-radius);
+
+  &__message {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: var(--line-height-body);
+  }
+
+  &--success {
+    border-color: color-mix(in srgb, var(--success-500) 45%, var(--ds-border));
+  }
+
+  &--warning {
+    border-color: color-mix(in srgb, var(--warning-500) 45%, var(--ds-border));
+  }
+
+  &--danger {
+    border-color: color-mix(in srgb, var(--danger-500) 45%, var(--ds-border));
+  }
+
+  &--info {
+    border-color: color-mix(in srgb, var(--info-500) 45%, var(--ds-border));
+  }
 }

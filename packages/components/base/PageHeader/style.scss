@@ -1,0 +1,106 @@
+.vp-page-header {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-section-gap, var(--spacing-lg));
+  padding-block-end: var(--spacing-lg);
+  border-bottom: 1px solid var(--ds-border, var(--border-color));
+
+  &__breadcrumb {
+    width: 100%;
+    min-width: 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+  }
+
+  &__main {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+    width: 100%;
+    min-width: 0;
+  }
+
+  &__heading {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__back {
+    appearance: none;
+    flex-shrink: 0;
+    width: var(--height-md, 2.25rem);
+    height: var(--height-md, 2.25rem);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--theme-btn-radius, var(--border-radius-md));
+    background: var(--surface-1);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition:
+      background var(--transition-fast, 0.15s ease),
+      color var(--transition-fast, 0.15s ease),
+      border-color var(--transition-fast, 0.15s ease);
+
+    &:hover {
+      background: var(--surface-2);
+      color: var(--text-primary);
+      border-color: var(--border-color-hover, var(--ds-border));
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ds-focus-ring, var(--primary-500));
+      outline-offset: 2px;
+    }
+  }
+
+  &__titles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold, 600);
+    line-height: var(--line-height-body, 1.5);
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-body, 1.5);
+    color: var(--text-secondary);
+  }
+
+  &__extra {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    min-width: 0;
+  }
+
+  &__content {
+    width: 100%;
+    min-width: 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-body, 1.5);
+    color: var(--text-secondary);
+  }
+}

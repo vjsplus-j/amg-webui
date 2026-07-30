@@ -18,5 +18,8 @@ export default {
   'nav.base.category.feedback': 'フィードバック',
   'nav.base.category.other': 'その他',
   'nav.base.category.industry': '業種',
-  'nav.primary': 'メインナビ'
+  'nav.primary': 'メインナビ',
+  'nav.badge.goldDod': '金標',
+  'nav.badge.epParity': 'EP',
+  'nav.badge.exclusiveNew': 'New'
 } as Record<string, string>

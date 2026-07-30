@@ -12,6 +12,7 @@ export default {
   'auth.forgotPassword': 'Забыли пароль',
   'auth.sendCode': 'Отправить код',
   'auth.resendIn': 'Повтор через {n} с',
+  'auth.resendCode': 'Отправить снова',
   'auth.verifyCode': 'Код подтверждения',
   'auth.captcha': 'Проверка человека',
   'auth.captchaPass': 'Проверено',

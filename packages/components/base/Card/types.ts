@@ -61,6 +61,10 @@ export interface CardProps extends BaseProps {
   hover?: boolean
   /** Alias of hover */
   hoverable?: boolean
+  /** Selected visual state */
+  selected?: boolean
+  /** Selection interaction; emits update:selected on click */
+  selectable?: boolean
   /** Show 1px border (default true) */
   bordered?: boolean
   /** Replace body with a compact skeleton */
@@ -71,4 +75,5 @@ export interface CardProps extends BaseProps {
 
 export interface CardEmits {
   (e: 'click', event: MouseEvent): void
+  (e: 'update:selected', value: boolean): void
 }

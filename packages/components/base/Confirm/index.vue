@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted, watch } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
-import type { ConfirmProps, ConfirmEmits } from './types'
+import Icon from '../Icon/index.vue'
+import Button from '../Button/index.vue'
+import type { ConfirmProps, ConfirmEmits, ConfirmSeverity } from './types'
 import './style.scss'
 
 const props = withDefaults(defineProps<ConfirmProps>(), {
@@ -19,6 +21,37 @@ const { t } = useLocale()
 const confirmText = computed(() => props.confirmLabel || t(LocaleKeys.button.confirm))
 const cancelText = computed(() => props.cancelLabel || t(LocaleKeys.button.cancel))
 const closeLabel = computed(() => t(LocaleKeys.common.close))
+
+const ICON_MAP: Record<ConfirmSeverity, string> = {
+  primary: 'Info',
+  secondary: 'CircleQuestionMark',
+  success: 'CircleCheck',
+  warning: 'TriangleAlert',
+  danger: 'CircleAlert',
+  info: 'Info',
+  contrast: 'Shield'
+}
+
+const iconName = computed(() => ICON_MAP[props.severity] ?? 'TriangleAlert')
+
+const confirmSeverity = computed(() => {
+  switch (props.severity) {
+    case 'danger':
+      return 'danger'
+    case 'success':
+      return 'success'
+    case 'warning':
+      return 'warning'
+    case 'info':
+      return 'info'
+    case 'secondary':
+      return 'secondary'
+    case 'contrast':
+      return 'contrast'
+    default:
+      return 'primary'
+  }
+})
 
 const rootClass = computed(() => [
   'vp-confirm',
@@ -44,38 +77,94 @@ function onKey(e: KeyboardEvent) {
   if (props.visible && props.dismissible && e.key === 'Escape') close(e)
 }
 
+function lockScroll(lock: boolean) {
+  document.documentElement.style.overflow = lock ? 'hidden' : ''
+}
+
+watch(
+  () => props.visible,
+  (v) => lockScroll(v),
+  { immediate: true }
+)
+
 onMounted(() => document.addEventListener('keydown', onKey))
-onUnmounted(() => document.removeEventListener('keydown', onKey))
+onUnmounted(() => {
+  document.removeEventListener('keydown', onKey)
+  lockScroll(false)
+})
 </script>
 
 <template>
   <Teleport to="body">
-    <Transition name="vp-confirm-fade">
-      <div v-if="visible" class="vp-confirm-overlay" @click="onOverlay">
-        <div :class="rootClass" :style="style" role="alertdialog" @click.stop>
+    <Transition name="vp-confirm">
+      <div
+        v-if="visible"
+        class="vp-confirm-overlay"
+        role="presentation"
+        @click="onOverlay"
+      >
+        <div
+          :class="rootClass"
+          :style="style"
+          role="alertdialog"
+          aria-modal="true"
+          :aria-labelledby="title ? 'vp-confirm-title' : undefined"
+          :aria-describedby="message || $slots.default ? 'vp-confirm-desc' : undefined"
+          @click.stop
+        >
+          <div class="vp-confirm__accent" aria-hidden="true" />
+
           <header class="vp-confirm__header">
-            <h3 class="vp-confirm__title">
-              <slot name="title">{{ title }}</slot>
-            </h3>
+            <div class="vp-confirm__lead">
+              <span class="vp-confirm__icon" aria-hidden="true">
+                <slot name="icon">
+                  <Icon :name="iconName" size="md" />
+                </slot>
+              </span>
+              <div class="vp-confirm__titles">
+                <h3
+                  v-if="title || $slots.title"
+                  id="vp-confirm-title"
+                  class="vp-confirm__title"
+                >
+                  <slot name="title">{{ title }}</slot>
+                </h3>
+              </div>
+            </div>
             <button
               v-if="closable"
               type="button"
               class="vp-confirm__close"
               :aria-label="closeLabel"
               @click="close"
-            >×</button>
+            >
+              <Icon name="X" size="sm" />
+            </button>
           </header>
-          <div class="vp-confirm__body">
+
+          <div
+            v-if="message || $slots.default"
+            id="vp-confirm-desc"
+            class="vp-confirm__body"
+          >
             <slot>{{ message }}</slot>
           </div>
+
           <footer class="vp-confirm__footer">
             <slot name="footer">
-              <button type="button" class="vp-confirm__btn vp-confirm__btn--ghost" @click="close">
-                {{ cancelText }}
-              </button>
-              <button type="button" class="vp-confirm__btn vp-confirm__btn--primary" @click="confirm">
-                {{ confirmText }}
-              </button>
+              <Button
+                variant="outlined"
+                size="md"
+                :label="cancelText"
+                @click="close"
+              />
+              <Button
+                variant="solid"
+                size="md"
+                :severity="confirmSeverity"
+                :label="confirmText"
+                @click="confirm"
+              />
             </slot>
           </footer>
         </div>

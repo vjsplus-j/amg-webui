@@ -1,114 +1,89 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import type { MenuBarProps, MenuBarEmits, MenuBarItem } from './types'
-import MenuBarSubItem from './MenuBarSubItem.vue'
+import { computed } from 'vue'
+import Menu from '../Menu/index.vue'
+import type { MenuItem } from '../Menu/types'
+import { trackEmit } from '@amg-webui/telemetry'
+import type { MenuBarItem, MenuBarProps } from './types'
 import './style.scss'
 
+/**
+ * Thin horizontal Menu wrapper (popup flyouts via Menu mode=auto).
+ */
 const props = withDefaults(defineProps<MenuBarProps>(), {
-  items: () => []
+  items: () => [],
+  telemetry: undefined
 })
 
-const emit = defineEmits<MenuBarEmits>()
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+  (e: 'command', command: string, item: MenuBarItem): void
+}>()
 
-const activeMenu = ref<string | null>(null)
-const activeSubmenu = ref<string | null>(null)
-
-const handleMenuClick = (item: MenuBarItem) => {
-  if (item.disabled || item.divider) return
-  
-  if (item.children) {
-    activeMenu.value = activeMenu.value === item.label ? null : item.label
-    return
-  }
-  
-  if (item.command) {
-    emit('command', item.command, item)
-  }
-  emit('update:modelValue', item.command || item.label)
+function mapItems(list: MenuBarItem[]): MenuItem[] {
+  return list
+    .filter((item) => !item.divider)
+    .map((item) => ({
+      key: item.command || item.label,
+      label: item.label,
+      icon: item.icon,
+      disabled: item.disabled,
+      children: item.children?.length ? mapItems(item.children) : undefined
+    }))
 }
 
-const handleSubmenuItemClick = (item: MenuBarItem) => {
-  if (item.disabled || item.divider) return
-  
-  if (item.children) {
-    activeSubmenu.value = activeSubmenu.value === item.label ? null : item.label
-    return
+function findBarItem(list: MenuBarItem[], key: string): MenuBarItem | undefined {
+  for (const item of list) {
+    if (item.divider) continue
+    if ((item.command || item.label) === key) return item
+    if (item.children?.length) {
+      const hit = findBarItem(item.children, key)
+      if (hit) return hit
+    }
   }
-  
-  if (item.command) {
-    emit('command', item.command, item)
-  }
-  emit('update:modelValue', item.command || item.label)
-  closeAllMenus()
+  return undefined
 }
 
-const closeAllMenus = () => {
-  activeMenu.value = null
-  activeSubmenu.value = null
+const menuItems = computed(() => mapItems(props.items ?? []))
+
+const rootClass = computed(() => ['vp-menubar', props.class])
+
+function onModel(value: string) {
+  emit('update:modelValue', value)
 }
 
-const handleClickOutside = (event: MouseEvent) => {
-  const target = event.target as HTMLElement
-  if (!target.closest('.p-menubar')) {
-    closeAllMenus()
+function onSelect(item: MenuItem) {
+  const barItem = findBarItem(props.items ?? [], item.key)
+  const command = barItem?.command || item.key
+  trackEmit({
+    component: 'MenuBar',
+    type: 'command',
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { command, key: item.key }
+  })
+  if (barItem) {
+    emit('command', command, barItem)
   }
 }
-
-onMounted(() => {
-  document.addEventListener('click', handleClickOutside)
-})
-
-onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside)
-})
 </script>
 
 <template>
-  <div :class="['p-menubar', props.class]" :style="style">
-    <ul class="p-menubar-items">
-      <template v-for="(item, index) in items" :key="`${item.label}-${index}`">
-        <li v-if="item.divider" class="p-menubar-item-divider" />
-        <li v-else :class="['p-menubar-item']">
-          <button
-            :class="[
-              'p-menubar-item-button',
-              {
-                'p-menubar-item-button-disabled': item.disabled,
-                'p-menubar-item-button-selected': modelValue === (item.command || item.label)
-              }
-            ]"
-            @click="handleMenuClick(item)"
-            @mouseenter="item.children && (activeMenu = item.label)"
-            @mouseleave="activeMenu = null"
-          >
-            <span v-if="item.icon" class="p-menubar-item-icon">{{ item.icon }}</span>
-            {{ item.label }}
-            <span v-if="item.children" class="p-menubar-item-arrow">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M7 10l5 5 5-5z"/>
-              </svg>
-            </span>
-          </button>
-
-          <div
-            v-if="item.children && activeMenu === item.label"
-            class="p-menubar-submenu p-menubar-submenu-visible"
-          >
-            <ul class="p-menubar-submenu-items">
-              <MenuBarSubItem
-                v-for="(child, childIndex) in item.children"
-                :key="`${child.label}-${childIndex}`"
-                :item="child"
-                :model-value="modelValue"
-                :active-submenu="activeSubmenu"
-                @click="handleSubmenuItemClick"
-                @mouseenter="(label) => { activeSubmenu = label }"
-                @mouseleave="() => { activeSubmenu = null }"
-              />
-            </ul>
-          </div>
-        </li>
-      </template>
-    </ul>
+  <div
+    :class="rootClass"
+    :style="style"
+    data-component="MenuBar"
+    role="menubar"
+    :aria-orientation="'horizontal'"
+  >
+    <Menu
+      direction="horizontal"
+      mode="popup"
+      :items="menuItems"
+      :model-value="modelValue"
+      :track-id="trackId"
+      :telemetry="telemetry"
+      @update:model-value="onModel"
+      @select="onSelect"
+    />
   </div>
 </template>

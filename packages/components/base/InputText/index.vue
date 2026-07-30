@@ -6,7 +6,8 @@ import './style.scss'
 const props = withDefaults(defineProps<InputTextProps>(), {
   modelValue: '',
   size: 'md',
-  type: 'text'
+  type: 'text',
+  telemetry: undefined
 })
 
 const emit = defineEmits<InputTextEmits>()

@@ -10,4 +10,5 @@ export interface CanvasIoProps extends BaseProps {
 export interface CanvasIoEmits {
   (e: 'import', schema: CanvasSchema): void
   (e: 'export', schema: CanvasSchema): void
+  (e: 'error', error: Error): void
 }

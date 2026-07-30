@@ -1,48 +1,47 @@
 .vp-spacer {
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-body);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  display: block;
 
-  &__title {
-    margin: 0 0 var(--spacing-sm);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-  }
-
-  &__body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+  &--flex {
+    flex: 1 1 auto;
     min-width: 0;
+    min-height: 0;
+    align-self: stretch;
   }
 
-  &__panel {
-    background: var(--surface-1);
-    border: 1px solid var(--ds-border, var(--border-color));
-    border-radius: var(--theme-card-radius, var(--border-radius-md));
-    padding: var(--theme-card-pad, var(--spacing-md));
-  }
-
-  &__muted {
-    color: var(--text-secondary);
-    font-size: var(--font-size-sm);
-  }
-
-  &__chart {
-    width: 100%;
+  &--horizontal {
+    width: 0;
     height: auto;
-    display: block;
   }
 
-  &__toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-    align-items: center;
+  &--vertical {
+    height: 0;
+    width: auto;
   }
 
-  &--disabled {
-    opacity: 0.55;
-    pointer-events: none;
+  &--both {
+    width: 0;
+    height: 0;
+  }
+
+  &--flex.vp-spacer--horizontal,
+  &--flex.vp-spacer--both {
+    width: auto;
+  }
+
+  &--flex.vp-spacer--vertical,
+  &--flex.vp-spacer--both {
+    height: auto;
+  }
+
+  &--size-xs,
+  &--size-sm,
+  &--size-md,
+  &--size-lg,
+  &--size-xl,
+  &--size-2xl,
+  &--size-section {
+    /* size applied via inline CSS vars from script */
   }
 }

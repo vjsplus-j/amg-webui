@@ -1,4 +1,11 @@
 export default {
+  'industry.common.noData': 'Нет данных',
+  'industry.common.noLogs': 'Нет журналов',
+  'industry.common.noAlarms': 'Нет тревог',
+  'industry.common.noChannels': 'Нет каналов',
+  'industry.common.noTasks': 'Нет задач',
+  'industry.common.noMarks': 'Нет меток',
+  'industry.common.noQueue': 'Очередь пуста',
   'industry.video.play': 'Воспроизвести',
   'industry.video.pause': 'Пауза',
   'industry.video.mute': 'Без звука',

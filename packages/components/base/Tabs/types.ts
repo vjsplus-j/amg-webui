@@ -24,4 +24,6 @@ export interface TabPaneProps extends BaseProps {
   disabled?: boolean
   /** Lazy-render pane until first activation */
   lazy?: boolean
+  /** Always keep content mounted (overrides lazy after first paint) */
+  forceRender?: boolean
 }

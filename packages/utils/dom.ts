@@ -1,8 +1,11 @@
+import { getDocument, getWindow } from './env'
+
 export function getElementOffset(element: HTMLElement): { top: number; left: number } {
   const rect = element.getBoundingClientRect()
+  const win = getWindow()
   return {
-    top: rect.top + window.scrollY,
-    left: rect.left + window.scrollX
+    top: rect.top + (win?.scrollY ?? 0),
+    left: rect.left + (win?.scrollX ?? 0)
   }
 }
 
@@ -16,10 +19,12 @@ export function getElementSize(element: HTMLElement): { width: number; height: n
 
 export function isElementVisible(element: HTMLElement): boolean {
   const rect = element.getBoundingClientRect()
+  const win = getWindow()
+  if (!win) return false
   return (
-    rect.top < window.innerHeight &&
+    rect.top < win.innerHeight &&
     rect.bottom > 0 &&
-    rect.left < window.innerWidth &&
+    rect.left < win.innerWidth &&
     rect.right > 0
   )
 }
@@ -55,8 +60,10 @@ export function removeAttribute(element: HTMLElement, name: string): void {
 export function createElement<K extends keyof HTMLElementTagNameMap>(
   tagName: K,
   className?: string
-): HTMLElementTagNameMap[K] {
-  const element = document.createElement(tagName)
+): HTMLElementTagNameMap[K] | null {
+  const doc = getDocument()
+  if (!doc) return null
+  const element = doc.createElement(tagName)
   if (className) {
     element.className = className
   }

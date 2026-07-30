@@ -259,5 +259,6 @@ export default {
   'page.intro.icon.usageTitle': 'Host usage',
   'page.intro.icon.usageLead': 'Switch icon style and use Icon in templates:',
   'page.intro.icon.usageCode': 'import { IconStyleService } from \'@amg-webui/theme\'\nimport { Icon } from \'@amg-webui/components/base\'\n\nIconStyleService.init()\nIconStyleService.setStyle(\'outline\')\n// <Icon name="Search" size="md" />',
-  'page.intro.icon.usageNote': 'Named glyphs import from @amg-webui/icons to avoid clashing with root barrel component names.'
+  'page.intro.icon.usageNote': 'Named glyphs import from @amg-webui/icons to avoid clashing with root barrel component names.',
+  'page.gallery.openDoc': "Open docs",
 } as Record<string, string>

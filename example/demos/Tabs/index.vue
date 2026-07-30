@@ -81,6 +81,20 @@ const codeSlots = demoCode(
   `</Tabs>`
 )
 
+const codeLazy = demoCode(
+  `<Tabs v-model="active">`,
+  `  <TabPane name="a" :label="t('example.doc.tabs.sample.tabA')">`,
+  `    {{ t('example.doc.tabs.sample.panelA') }}`,
+  `  </TabPane>`,
+  `  <TabPane name="b" :label="t('example.doc.tabs.sample.tabB')" lazy>`,
+  `    {{ t('example.doc.tabs.sample.panelB') }}`,
+  `  </TabPane>`,
+  `  <TabPane name="c" :label="t('example.doc.tabs.sample.tabC')" force-render>`,
+  `    {{ t('example.doc.tabs.sample.panelC') }}`,
+  `  </TabPane>`,
+  `</Tabs>`
+)
+
 /* ─── API tables ─── */
 
 const propRows = computed<PropRow[]>(() => [
@@ -114,6 +128,18 @@ const panePropRows = computed<PropRow[]>(() => [
   {
     name: 'disabled',
     description: t('example.doc.tabs.prop.disabled'),
+    type: 'boolean',
+    defaultValue: 'false'
+  },
+  {
+    name: 'lazy',
+    description: t('example.doc.tabs.prop.lazy'),
+    type: 'boolean',
+    defaultValue: 'false'
+  },
+  {
+    name: 'forceRender',
+    description: t('example.doc.tabs.prop.forceRender'),
     type: 'boolean',
     defaultValue: 'false'
   }
@@ -240,6 +266,24 @@ const paneSlotRows = computed<ApiRow[]>(() => [
         </TabPane>
         <TabPane name="b" :label="t('example.doc.tabs.sample.tabB')">
           {{ t('example.doc.tabs.sample.panelB') }}
+        </TabPane>
+      </Tabs>
+    </DemoBlock>
+
+    <DemoBlock
+      :title="t('example.doc.tabs.demo.lazy')"
+      :description="t('example.doc.tabs.demo.lazyDesc')"
+      :code="codeLazy"
+    >
+      <Tabs v-model="active" :aria-label="t('example.doc.tabs.sample.group')">
+        <TabPane name="a" :label="t('example.doc.tabs.sample.tabA')">
+          {{ t('example.doc.tabs.sample.panelA') }}
+        </TabPane>
+        <TabPane name="b" :label="t('example.doc.tabs.sample.tabB')" lazy>
+          {{ t('example.doc.tabs.sample.panelB') }}
+        </TabPane>
+        <TabPane name="c" :label="t('example.doc.tabs.sample.tabC')" force-render>
+          {{ t('example.doc.tabs.sample.panelC') }}
         </TabPane>
       </Tabs>
     </DemoBlock>

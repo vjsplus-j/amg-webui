@@ -18,6 +18,10 @@
 | 交互 emit 契约 | ✅ Badge / FloatButton / Progress / Collapse / Statistic / Ellipsis / CopyText 等补齐 |
 | 工程护栏 | ✅ `validate:catalog` · `score:maturity` · `generate:icons` · `vue-tsc` 完成必验 |
 | base 目录规模 | ✅ catalog **272** 组件目录（含行业扩展；成熟度不齐，持续 deepen） |
+| 组件深化收口（2026-07-30） | ✅ stub0 · shell**8**（薄封装）· beta135 · ready129；curated demos≈全量；`vue-tsc`/`validate:catalog` 绿 |
+| 质量止血（2026-07-30） | ✅ exampleDoc FFFD=0；DemoSafeHost；低 beta≥50；Loading/Result 等 SFC Emits 修复；模块 transform 冒烟 |
+| **v0.1 子集**（2026-07-30） | ✅ **0.1.2** · Core∪B1∪B2∪B3 ≈**128** · 精选加厚 · Gallery 筛选 · `docs/V0_1_SUBSET.md` |
+| P4–P5 上架 | ⏳ 步 3–6 未完成 · **步 1+2 已合并完成**：`0.1.0` 试用合同 + `build:lib` 产物（见 `docs/RELEASE_0.1.md`） |
 
 权威遥测文档：`docs/TELEMETRY.md`。
 

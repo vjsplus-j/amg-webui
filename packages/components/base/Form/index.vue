@@ -1,16 +1,33 @@
 <script setup lang="ts">
-import { provide, ref, computed } from 'vue'
-import type { FormProps, FormEmits } from './types'
+import { provide, ref, computed, toRef } from 'vue'
+import { trackEmit } from '@amg-webui/telemetry'
 import { FORM_INJECTION_KEY } from './types'
 import { validateRules } from './useFormValidate'
 import './style.scss'
 
-const props = withDefaults(defineProps<FormProps>(), {
-  model: () => ({}),
-  labelPosition: 'left'
-})
+const props = withDefaults(
+  defineProps<{
+    model?: Record<string, unknown>
+    rules?: Record<string, import('./types').FormRule | import('./types').FormRule[]>
+    disabled?: boolean
+    labelWidth?: string
+    labelPosition?: 'left' | 'top'
+    trackId?: string
+    telemetry?: boolean
+    class?: string
+    style?: Record<string, string>
+  }>(),
+  {
+    model: () => ({}),
+    labelPosition: 'left',
+    telemetry: undefined
+  }
+)
 
-const emit = defineEmits<FormEmits>()
+const emit = defineEmits<{
+  validate: [valid: boolean, errors: Record<string, string>]
+  submit: []
+}>()
 
 const errors = ref<Record<string, string>>({})
 
@@ -42,14 +59,29 @@ function getError(prop: string) {
   return errors.value[prop] ?? null
 }
 
+function clearValidate(prop?: string) {
+  if (prop) {
+    const next = { ...errors.value }
+    delete next[prop]
+    errors.value = next
+    return
+  }
+  errors.value = {}
+}
+
 async function validate(): Promise<boolean> {
   const propsToValidate = Object.keys(props.rules ?? {})
-  const result: Record<string, string> = {}
   for (const prop of propsToValidate) {
-    const err = await validateField(prop)
-    if (err) result[prop] = err
+    await validateField(prop)
   }
-  const valid = Object.keys(result).length === 0
+  const valid = Object.keys(errors.value).length === 0
+  trackEmit({
+    component: 'Form',
+    type: 'validate',
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { valid }
+  })
   emit('validate', valid, { ...errors.value })
   return valid
 }
@@ -61,26 +93,37 @@ provide(FORM_INJECTION_KEY, {
   get rules() {
     return props.rules
   },
-  disabled: props.disabled,
-  labelWidth: props.labelWidth,
+  disabled: toRef(props, 'disabled'),
+  labelWidth: toRef(props, 'labelWidth'),
+  labelPosition: toRef(props, 'labelPosition'),
   validateField,
   registerError,
-  getError
+  getError,
+  clearValidate
 })
 
 const rootClass = computed(() => [
   'vp-form',
   `vp-form--label-${props.labelPosition === 'top' ? 'top' : 'left'}`,
+  { 'vp-form--disabled': props.disabled },
   props.class
 ])
 
 const handleSubmit = async (event: Event) => {
   event.preventDefault()
   const valid = await validate()
-  if (valid) emit('submit')
+  if (valid) {
+    trackEmit({
+      component: 'Form',
+      type: 'submit',
+      trackId: props.trackId,
+      telemetry: props.telemetry
+    })
+    emit('submit')
+  }
 }
 
-defineExpose({ validate, validateField })
+defineExpose({ validate, validateField, clearValidate })
 </script>
 
 <template>

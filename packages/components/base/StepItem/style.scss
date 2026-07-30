@@ -3,6 +3,42 @@
   flex: 1;
   gap: var(--spacing-sm);
   position: relative;
+  min-width: 0;
+
+  &__trigger {
+    display: flex;
+    flex: 1;
+    gap: var(--spacing-sm);
+    align-items: flex-start;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    text-align: start;
+    cursor: default;
+    font: inherit;
+
+    &:focus-visible {
+      outline: var(--ds-focus-ring);
+      outline-offset: 1px;
+      border-radius: var(--theme-btn-radius);
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  &--clickable .vp-step-item__trigger:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
 
   &__indicator {
     display: flex;
@@ -16,17 +52,26 @@
     color: var(--text-muted);
     font-size: var(--font-size-xs);
     flex-shrink: 0;
-    transition: all var(--transition-normal);
+    transition:
+      border-color var(--transition-normal),
+      background var(--transition-normal),
+      color var(--transition-normal);
 
-    &--active {
+    &--process {
       border-color: var(--primary-500);
       background: var(--primary-500);
       color: var(--surface-1);
     }
 
-    &--done {
+    &--finish {
       border-color: var(--primary-500);
       color: var(--primary-500);
+    }
+
+    &--error {
+      border-color: var(--danger-500);
+      background: var(--danger-500);
+      color: var(--surface-1);
     }
   }
 

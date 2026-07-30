@@ -8,9 +8,11 @@ export interface TimeRangeValue {
 export interface TimeRangeInputProps extends BaseProps, DisabledProps {
   modelValue?: TimeRangeValue
   showSeconds?: boolean
+  clearable?: boolean
 }
 
 export interface TimeRangeInputEmits {
   (e: 'update:modelValue', value: TimeRangeValue): void
   (e: 'change', value: TimeRangeValue): void
+  (e: 'clear'): void
 }

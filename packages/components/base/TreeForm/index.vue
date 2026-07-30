@@ -15,7 +15,7 @@ const { t } = useLocale()
 
 const roots = computed(() => normalizeTreeNodes(props.data, props.options))
 const modelRef = toRef(props, 'modelValue')
-const { flatRows, activeId, toggleExpand, selectNode } = useTreeState(roots, modelRef, emit as (e: 'update:modelValue' | 'change', v: unknown) => void, { checkable: false })
+const { flatRows, activeId, toggleExpand, selectNode } = useTreeState(roots, modelRef, emit as never, { checkable: false })
 
 const formValues = ref<Record<string, string>>({})
 const activeNode = computed(() => flatRows.value.find((r) => r.id === activeId.value)?.node ?? null)

@@ -3,13 +3,17 @@
   position: relative;
   box-sizing: border-box;
 
+  &__view {
+    min-width: 100%;
+  }
+
   &::-webkit-scrollbar {
     width: var(--spacing-sm);
     height: var(--spacing-sm);
   }
 
   &::-webkit-scrollbar-track {
-    background: var(--surface-2, transparent);
+    background: var(--surface-2);
     border-radius: var(--border-radius-full);
   }
 
@@ -27,9 +31,17 @@
   }
 
   scrollbar-width: thin;
-  scrollbar-color: var(--ds-border) var(--surface-2, transparent);
+  scrollbar-color: var(--ds-border) var(--surface-2);
 }
 
 .vp-scrollbar--native {
   overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: initial;
+    height: initial;
+  }
+
+  scrollbar-width: auto;
+  scrollbar-color: auto;
 }

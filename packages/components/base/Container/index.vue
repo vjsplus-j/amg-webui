@@ -1,27 +1,56 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { ContainerProps } from './types'
+import type { ContainerProps, ContainerSize } from './types'
 import './style.scss'
 
-const props = defineProps<ContainerProps & { gutter?: number | string; span?: number; wrap?: boolean; direction?: 'horizontal' | 'vertical'; align?: string; justify?: string }>()
+const props = withDefaults(defineProps<ContainerProps>(), {
+  size: 'lg',
+  fluid: false,
+  padded: true,
+  align: 'center',
+  gap: 'none',
+  tag: 'div'
+})
+
+const gapMap: Record<string, string> = {
+  none: '0',
+  xs: 'var(--spacing-xs)',
+  sm: 'var(--spacing-sm)',
+  md: 'var(--spacing-md)',
+  lg: 'var(--spacing-lg)',
+  xl: 'var(--spacing-xl)',
+  section: 'var(--theme-section-gap)'
+}
+
+const effectiveSize = computed<ContainerSize>(() =>
+  props.fluid || props.size === 'fluid' || props.size === 'full' ? 'fluid' : props.size
+)
 
 const rootClass = computed(() => [
   'vp-container',
-  props.class,
-  { 'vp-container--wrap': props.wrap !== false }
+  `vp-container--${effectiveSize.value}`,
+  `vp-container--align-${props.align}`,
+  {
+    'vp-container--padded': props.padded,
+    'vp-container--fluid': effectiveSize.value === 'fluid',
+    'vp-container--stack': props.gap !== 'none'
+  },
+  props.class
 ])
 
 const rootStyle = computed(() => {
-  const s: Record<string, string> = { ...(props.style || {}) }
-  
-  
-  s.display = 'block'
-  return s
+  const base: Record<string, string> = { ...(props.style ?? {}) }
+  if (props.gap !== 'none') {
+    base.gap = gapMap[props.gap] ?? '0'
+    base.display = 'flex'
+    base.flexDirection = 'column'
+  }
+  return base
 })
 </script>
 
 <template>
-  <div :class="rootClass" :style="rootStyle">
+  <component :is="tag" :class="rootClass" :style="rootStyle" data-component="Container">
     <slot />
-  </div>
+  </component>
 </template>

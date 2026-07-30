@@ -1,4 +1,11 @@
 export default {
+  'industry.common.noData': '暫無資料',
+  'industry.common.noLogs': '暫無日誌',
+  'industry.common.noAlarms': '暫無告警',
+  'industry.common.noChannels': '暫無通道',
+  'industry.common.noTasks': '暫無任務',
+  'industry.common.noMarks': '暫無標記',
+  'industry.common.noQueue': '暫無佇列',
   'industry.video.play': '播放',
   'industry.video.pause': '暫停',
   'industry.video.mute': '靜音',

@@ -1,48 +1,134 @@
 .vp-center {
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-body);
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
 
-  &__title {
-    margin: 0 0 var(--spacing-sm);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
+  &--fill {
+    height: 100%;
+    align-self: stretch;
   }
 
-  &__body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+  &--min-viewport {
+    min-height: 100dvh;
+
+    @supports not (min-height: 100dvh) {
+      min-height: 100vh;
+    }
+  }
+
+  &--min-fill {
+    min-height: 100%;
+  }
+
+  &__content {
+    max-width: 100%;
     min-width: 0;
+    box-sizing: border-box;
+    color: var(--text-primary);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-body);
+    font-family: var(--font-family-sans);
+
+    &--both,
+    &--horizontal,
+    &--vertical,
+    &--top,
+    &--bottom {
+      text-align: center;
+    }
+
+    &--left {
+      text-align: start;
+    }
+
+    &--right {
+      text-align: end;
+    }
+
+    &--text-start {
+      text-align: start;
+    }
+
+    &--text-center {
+      text-align: center;
+    }
+
+    &--text-end {
+      text-align: end;
+    }
   }
 
-  &__panel {
-    background: var(--surface-1);
-    border: 1px solid var(--ds-border, var(--border-color));
-    border-radius: var(--theme-card-radius, var(--border-radius-md));
-    padding: var(--theme-card-pad, var(--spacing-md));
+  &--both {
+    align-items: center;
+    justify-content: center;
   }
 
-  &__muted {
-    color: var(--text-secondary);
-    font-size: var(--font-size-sm);
+  &--horizontal {
+    justify-content: center;
+    align-items: stretch;
+
+    > .vp-center__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+    }
   }
 
-  &__chart {
-    width: 100%;
-    height: auto;
-    display: block;
+  &--vertical {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  &__toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
+  /* 上居中：水平居中 + 贴顶 */
+  &--top {
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  /* 下居中：水平居中 + 贴底 */
+  &--bottom {
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  /* 左居中：垂直居中 + 贴左 */
+  &--left {
+    justify-content: flex-start;
     align-items: center;
   }
 
-  &--disabled {
-    opacity: 0.55;
-    pointer-events: none;
+  /* 右居中：垂直居中 + 贴右 */
+  &--right {
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  /* flush=false：在贴边方向留出适合间距 */
+  &--inset {
+    &.vp-center--top {
+      padding-top: var(--spacing-lg);
+    }
+
+    &.vp-center--bottom {
+      padding-bottom: var(--spacing-lg);
+    }
+
+    &.vp-center--left {
+      padding-left: var(--spacing-lg);
+    }
+
+    &.vp-center--right {
+      padding-right: var(--spacing-lg);
+    }
+
+    &.vp-center--both,
+    &.vp-center--horizontal,
+    &.vp-center--vertical {
+      padding: var(--spacing-lg);
+    }
   }
 }

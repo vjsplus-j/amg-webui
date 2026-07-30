@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent, type Component, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Card, InputText, Tag } from '@amg-webui/components/base'
+import { Card, InputText, Tag, Button } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import ExamplePageHero from './ExamplePageHero.vue'
@@ -12,6 +12,7 @@ import {
   type MaturityLevel,
   type ExampleZoneId
 } from '../component-zones'
+import { isV01Component, V01_COMPONENTS } from '../v0.1-subset'
 
 const props = withDefaults(
   defineProps<{
@@ -22,17 +23,24 @@ const props = withDefaults(
     showSearch?: boolean
     /** Click tile name → /base/:name doc page */
     linkToDoc?: boolean
+    /**
+     * `mount` — try live component with sample props (default).
+     * `link` — skip empty mounts; show open-doc CTA (layout / shell comps).
+     */
+    previewMode?: 'mount' | 'link'
   }>(),
   {
     showSearch: true,
-    linkToDoc: false
+    linkToDoc: false,
+    previewMode: 'mount'
   }
 )
 
 const router = useRouter()
 const { t, locale } = useLocale()
 const keyword = ref('')
-const maturityFilter = ref<MaturityLevel | 'all'>('all')
+const maturityFilter = ref<MaturityLevel | 'all' | 'v01'>('all')
+const v01Count = computed(() => names.value.filter((n) => isV01Component(n)).length)
 
 const modules = import.meta.glob('../../../packages/components/base/*/index.vue') as Record<
   string,
@@ -54,6 +62,7 @@ const filtered = computed(() => {
   return names.value.filter((n) => {
     if (kw && !n.toLowerCase().includes(kw)) return false
     if (maturityFilter.value === 'all') return true
+    if (maturityFilter.value === 'v01') return isV01Component(n)
     return componentMaturity(n).level === maturityFilter.value
   })
 })
@@ -75,6 +84,51 @@ const sampleRows = [
   { id: 2, name: 'demo-02', status: 'offline', value: 28 },
   { id: 3, name: 'demo-03', status: 'online', value: 18 }
 ]
+
+/** Flat NavItem[] for *Nav / Dropdown gallery mounts */
+const sampleNavItems = [
+  { label: 'A', value: 'a' },
+  { label: 'B', value: 'b' },
+  { label: 'C', value: 'c' }
+]
+
+/** Extra items so ScrollNav can demonstrate overflow-x */
+const sampleScrollNavItems = [
+  { label: 'A', value: 'a' },
+  { label: 'B', value: 'b' },
+  { label: 'C', value: 'c' },
+  { label: 'D', value: 'd' },
+  { label: 'E', value: 'e' },
+  { label: 'F', value: 'f' },
+  { label: 'G', value: 'g' },
+  { label: 'H', value: 'h' }
+]
+
+const sampleMenuItems = [
+  { key: 'a', label: 'A' },
+  { key: 'b', label: 'B', children: [{ key: 'b1', label: 'B1' }] },
+  { key: 'c', label: 'C' }
+]
+
+function galleryItems(name: string) {
+  if (name === 'Menu' || name === 'MenuBar') return sampleMenuItems
+  if (name === 'ScrollNav') return sampleScrollNavItems
+  if (
+    name.endsWith('Nav') ||
+    name === 'Dropdown' ||
+    name === 'Anchor' ||
+    name === 'Breadcrumb'
+  ) {
+    return sampleNavItems
+  }
+  return sampleRows
+}
+
+function galleryModel(name: string) {
+  if (name.endsWith('Nav') || name === 'Dropdown' || name === 'Anchor') return 'a'
+  if (name === 'Menu' || name === 'MenuBar') return 'a'
+  return undefined
+}
 
 function load(name: string) {
   const key = Object.keys(modules).find((p) => p.includes(`/base/${name}/`))
@@ -150,6 +204,16 @@ function openDoc(name: string) {
           <span class="gallery__chip-count">{{ names.length }}</span>
         </button>
         <button
+          type="button"
+          class="gallery__chip"
+          :class="{ 'gallery__chip--active': maturityFilter === 'v01' }"
+          :title="t(LocaleKeys.page.gallery.v01.hint, { count: V01_COMPONENTS.length })"
+          @click="maturityFilter = 'v01'"
+        >
+          {{ t(LocaleKeys.page.gallery.v01.filter) }}
+          <span class="gallery__chip-count">{{ v01Count }}</span>
+        </button>
+        <button
           v-for="level in levelOrder"
           :key="level"
           type="button"
@@ -177,27 +241,43 @@ function openDoc(name: string) {
               @click="openDoc(name)"
               @keydown.enter="openDoc(name)"
             >{{ name }}</span>
-            <Tag
-              size="sm"
-              :severity="levelSeverity(tileMeta(name).level)"
-              :label="levelLabel(tileMeta(name).level)"
-              :title="t(LocaleKeys.page.gallery.maturity.score, { score: tileMeta(name).score })"
-            />
+            <div class="gallery__tile-tags">
+              <Tag
+                v-if="isV01Component(name)"
+                size="sm"
+                severity="success"
+                :label="t(LocaleKeys.page.gallery.v01.badge)"
+              />
+              <Tag
+                size="sm"
+                :severity="levelSeverity(tileMeta(name).level)"
+                :label="levelLabel(tileMeta(name).level)"
+                :title="t(LocaleKeys.page.gallery.maturity.score, { score: tileMeta(name).score })"
+              />
+            </div>
           </div>
         </template>
         <p v-if="showEmptyHint(tileMeta(name).level)" class="gallery__hint">
           {{ t(LocaleKeys.page.gallery.maturity.previewHint) }}
         </p>
+        <div v-if="previewMode === 'link'" class="gallery__link-preview">
+          <Button size="sm" variant="outlined" @click="openDoc(name)">
+            {{ t(LocaleKeys.page.gallery.openDoc) }}
+          </Button>
+        </div>
         <component
+          v-else
           :is="load(name)"
           :options="sampleTree"
           :data="sampleTree"
           :slides="sampleRows"
-          :items="sampleRows"
+          :items="galleryItems(name)"
           :columns="columns"
           :rows="sampleRows"
           :value="sampleRows"
-          :model-value="undefined"
+          :model-value="galleryModel(name)"
+          :style="name === 'ScrollNav' ? { maxWidth: '100%' } : undefined"
+          :class="name === 'ScrollNav' ? 'gallery__scroll-nav' : undefined"
         />
       </Card>
     </div>
@@ -297,6 +377,14 @@ function openDoc(name: string) {
   min-width: 0;
 }
 
+.gallery__tile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-shrink: 0;
+}
+
 .gallery__tile-name {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -318,5 +406,18 @@ function openDoc(name: string) {
   color: var(--text-muted);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-body);
+}
+
+.gallery__scroll-nav {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.gallery__link-preview {
+  display: flex;
+  align-items: center;
+  min-height: calc(var(--spacing-2xl) * 2);
 }
 </style>

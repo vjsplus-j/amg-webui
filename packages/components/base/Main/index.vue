@@ -1,27 +1,78 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { MainProps } from './types'
+import type { MainPadding } from './types'
 import './style.scss'
 
-const props = defineProps<MainProps & { gutter?: number | string; span?: number; wrap?: boolean; direction?: 'horizontal' | 'vertical'; align?: string; justify?: string }>()
+const props = withDefaults(
+  defineProps<{
+    padded?: boolean
+    padding?: MainPadding
+    label?: string
+    overflow?: 'auto' | 'hidden' | 'visible'
+    fill?: boolean
+    class?: string
+    style?: Record<string, string>
+  }>(),
+  {
+    padded: true,
+    overflow: 'auto',
+    fill: true
+  }
+)
+
+const emit = defineEmits<{
+  scroll: [event: Event]
+}>()
+
+const padMap: Record<MainPadding, string> = {
+  none: '0',
+  xs: 'var(--spacing-xs)',
+  sm: 'var(--spacing-sm)',
+  md: 'var(--spacing-md)',
+  lg: 'var(--spacing-lg)',
+  xl: 'var(--spacing-xl)',
+  page: 'var(--theme-page-pad)',
+  card: 'var(--theme-card-pad)'
+}
+
+function resolvePad(): string {
+  if (props.padding != null) return padMap[props.padding] ?? padMap.page
+  return props.padded ? padMap.page : padMap.none
+}
+
+const resolvedPad = computed(() => resolvePad())
 
 const rootClass = computed(() => [
   'vp-main',
-  props.class,
-  { 'vp-main--wrap': props.wrap !== false }
+  {
+    'vp-main--padded': resolvedPad.value !== '0',
+    'vp-main--flush': resolvedPad.value === '0',
+    'vp-main--fill': props.fill,
+    [`vp-main--overflow-${props.overflow}`]: true
+  },
+  props.class
 ])
 
-const rootStyle = computed(() => {
-  const s: Record<string, string> = { ...(props.style || {}) }
-  
-  
-  s.display = 'block'
-  return s
-})
+const rootStyle = computed(() => ({
+  ...(props.style ?? {}),
+  '--vp-main-pad': resolvedPad.value
+}))
+
+function onScroll(event: Event) {
+  emit('scroll', event)
+}
 </script>
 
 <template>
-  <div :class="rootClass" :style="rootStyle">
-    <slot />
-  </div>
+  <main
+    :class="rootClass"
+    :style="rootStyle"
+    :aria-label="label"
+    data-component="Main"
+    @scroll="onScroll"
+  >
+    <div class="vp-main__body">
+      <slot></slot>
+    </div>
+  </main>
 </template>

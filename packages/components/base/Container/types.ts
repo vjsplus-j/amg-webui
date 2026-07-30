@@ -1,16 +1,17 @@
-import type { BaseProps } from '@amg-webui/types'
+export type ContainerSize = 'sm' | 'md' | 'lg' | 'xl' | 'fluid' | 'full'
 
-export interface ContainerProps extends BaseProps {
-  title?: string
-  description?: string
-  data?: unknown
-  modelValue?: unknown
-  disabled?: boolean
-  loading?: boolean
+export interface ContainerProps {
+  size?: ContainerSize
+  fluid?: boolean
+  padded?: boolean
+  align?: 'start' | 'center' | 'end'
+  gap?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'section'
+  /** Landmark role when used as page shell segment */
+  tag?: 'div' | 'main' | 'section' | 'article'
+  class?: string
+  style?: Record<string, string>
 }
 
 export interface ContainerEmits {
-  (e: 'update:modelValue', value: unknown): void
-  (e: 'change', value: unknown): void
-  (e: 'click', event: MouseEvent): void
+  // Presentational shell — no emits
 }

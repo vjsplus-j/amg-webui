@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
 
 const root = __dirname
@@ -23,7 +24,19 @@ const alias = {
 
 /** Library build — packages/index.ts → dist/ */
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    dts({
+      include: ['packages/**/*.ts', 'packages/**/*.vue'],
+      exclude: ['packages/**/*.spec.ts', 'example/**'],
+      outDir: resolve(root, 'dist'),
+      entryRoot: resolve(root, 'packages'),
+      insertTypesEntry: true,
+      rollupTypes: false,
+      copyDtsFiles: true,
+      logLevel: 'error'
+    })
+  ],
   resolve: { alias },
   build: {
     lib: {
@@ -35,16 +48,18 @@ export default defineConfig({
     outDir: resolve(root, 'dist'),
     emptyOutDir: true,
     rollupOptions: {
-      external: ['vue', '@lucide/vue'],
+      external: ['vue', '@lucide/vue', 'vue-router'],
       output: {
         globals: {
           vue: 'Vue',
-          '@lucide/vue': 'LucideVue'
+          '@lucide/vue': 'LucideVue',
+          'vue-router': 'VueRouter'
         },
         assetFileNames: (assetInfo) =>
           assetInfo.name?.endsWith('.css') ? 'style.css' : 'assets/[name][extname]'
       }
     },
-    sourcemap: true
+    sourcemap: true,
+    cssCodeSplit: false
   }
 })

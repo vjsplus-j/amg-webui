@@ -8,6 +8,7 @@ export interface PropField {
 
 export interface PropPanelProps extends BaseProps {
   fields?: PropField[]
+  readonly?: boolean
 }
 
 export interface PropPanelEmits {

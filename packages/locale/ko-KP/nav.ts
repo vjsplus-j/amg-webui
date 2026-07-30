@@ -18,5 +18,8 @@ export default {
   'nav.base.category.feedback': '반영',
   'nav.base.category.other': '기타',
   'nav.base.category.industry': '산업',
-  'nav.primary': '기본항행'
+  'nav.primary': '기본항행',
+  'nav.badge.goldDod': '금표',
+  'nav.badge.epParity': 'EP',
+  'nav.badge.exclusiveNew': 'New'
 } as Record<string, string>

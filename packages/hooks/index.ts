@@ -7,6 +7,7 @@ export { useLocale } from './useLocale'
 export { useTrackedEmit } from './useTrackedEmit'
 export { useEventBus } from './useEventBus'
 export { usePopover } from './usePopover'
+export { useFocusTrap } from './useFocusTrap'
 export { useObjectUrl } from './useObjectUrl'
 export {
   provideCanvasEditor,

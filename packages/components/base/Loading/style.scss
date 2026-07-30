@@ -17,6 +17,25 @@
     background: var(--ds-bg-overlay, color-mix(in srgb, var(--surface-0) 60%, transparent));
   }
 
+  &--lock {
+    overflow: hidden;
+  }
+
+  &--size-sm &__spinner svg {
+    width: var(--spacing-lg);
+    height: var(--spacing-lg);
+  }
+
+  &--size-md &__spinner svg {
+    width: var(--spacing-xl);
+    height: var(--spacing-xl);
+  }
+
+  &--size-lg &__spinner svg {
+    width: calc(var(--spacing-2xl) + var(--spacing-sm));
+    height: calc(var(--spacing-2xl) + var(--spacing-sm));
+  }
+
   &__overlay {
     display: flex;
     flex-direction: column;

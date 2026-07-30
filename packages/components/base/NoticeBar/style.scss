@@ -9,8 +9,11 @@
 
   &__track { flex: 1; min-width: 0; overflow: hidden; }
   &__text { display: inline-block; white-space: nowrap; font-size: var(--font-size-sm); }
-  &--scroll .vp-notice-bar__text { animation: vp-notice-bar-marquee 18s linear infinite; }
-  &__close { appearance: none; border: none; background: transparent; cursor: pointer; color: var(--text-secondary); }
+  &--scroll .vp-notice-bar__text { animation: vp-notice-bar-marquee var(--vp-notice-speed, 18s) linear infinite; }
+  &__track--pause:hover .vp-notice-bar__text { animation-play-state: paused; }
+  &__close { appearance: none; border: none; background: transparent; cursor: pointer; color: var(--text-secondary); font-size: var(--font-size-lg); line-height: 1; padding: 0 var(--spacing-xs); }
+
+  &--info { color: var(--primary-600, var(--primary-500)); background: color-mix(in srgb, var(--primary-500) 8%, var(--surface-2)); }
 
   &--success { color: var(--success-600, var(--success-500)); }
   &--warning { color: var(--warning-600, var(--warning-500)); }

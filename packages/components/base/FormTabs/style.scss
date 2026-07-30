@@ -1,8 +1,13 @@
 .vp-form-tabs {
+  width: 100%;
   min-width: 0;
 
   &--disabled {
-    opacity: 0.55;
+    opacity: 0.65;
     pointer-events: none;
+  }
+
+  .vp-tabs__content {
+    padding-top: var(--spacing-md);
   }
 }

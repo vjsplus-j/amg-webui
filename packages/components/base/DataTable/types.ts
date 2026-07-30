@@ -2,10 +2,13 @@
 
 export type SortOrder = 'asc' | 'desc' | null
 
+export type RowKey = string | number
+
 export interface Column<T = any> {
   field: string
   header: string
   sortable?: boolean
+  /** Per-column text filter input in header */
   filter?: boolean
   style?: Record<string, string>
   width?: string
@@ -16,6 +19,10 @@ export interface Column<T = any> {
 export interface DataTableProps<T = any> extends BaseProps {
   value?: T[]
   columns: Column<T>[]
+  /** Field name used as stable row identity (default `id`) */
+  rowKey?: string
+  /** Selected row keys — use with v-model:selection */
+  selection?: RowKey[]
   selectionMode?: 'single' | 'multiple'
   paginator?: boolean
   rows?: number
@@ -27,10 +34,20 @@ export interface DataTableProps<T = any> extends BaseProps {
   fixedHeader?: boolean
   filterGlobal?: boolean
   loading?: boolean
+  /**
+   * Virtual scroll for the current display set. Default ON.
+   * Works with paginator (virtualizes the current page). Set false to render full DOM for the page/list.
+   */
+  virtual?: boolean
+  /** Viewport height as spacing-xs multiples */
+  virtualHeight?: number
+  trackId?: string
+  telemetry?: boolean
 }
 
 export interface DataTableEmits<T = any> {
   (e: 'update:value', value: T[]): void
+  (e: 'update:selection', keys: RowKey[]): void
   (e: 'update:sortField', field: string): void
   (e: 'update:sortOrder', order: SortOrder): void
   (e: 'update:first', first: number): void
@@ -39,4 +56,12 @@ export interface DataTableEmits<T = any> {
   (e: 'row-select', event: { originalEvent: MouseEvent; data: T; checked: boolean }): void
   (e: 'row-click', event: { originalEvent: MouseEvent; data: T }): void
   (e: 'page', event: { first: number; rows: number; page: number; pageCount: number }): void
+}
+
+export interface DataTableSlots<T = any> {
+  header?: () => unknown
+  footer?: () => unknown
+  empty?: () => unknown
+  loading?: () => unknown
+  [key: `body-${string}`]: (props: { value: unknown; row: T }) => unknown
 }

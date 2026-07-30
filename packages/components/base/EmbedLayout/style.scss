@@ -1,48 +1,62 @@
 .vp-embed-layout {
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-body);
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--surface-2);
+  box-sizing: border-box;
 
-  &__title {
-    margin: 0 0 var(--spacing-sm);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
+  &--rounded {
+    border-radius: var(--theme-card-radius);
   }
 
-  &__body {
+  &--bordered {
+    border: 1px solid var(--ds-border);
+  }
+
+  &--fill {
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+
+  &__frame {
+    position: absolute;
+    inset: 0;
     display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    min-width: 0;
-  }
-
-  &__panel {
-    background: var(--surface-1);
-    border: 1px solid var(--ds-border, var(--border-color));
-    border-radius: var(--theme-card-radius, var(--border-radius-md));
-    padding: var(--theme-card-pad, var(--spacing-md));
-  }
-
-  &__muted {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
+    line-height: var(--line-height-body);
+
+    > :deep(iframe),
+    > :deep(img),
+    > :deep(video) {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      object-fit: var(--vp-embed-fit, cover);
+    }
   }
 
-  &__chart {
-    width: 100%;
-    height: auto;
-    display: block;
+  &--fit-contain > .vp-embed-layout__frame > :deep(iframe),
+  &--fit-contain > .vp-embed-layout__frame > :deep(img),
+  &--fit-contain > .vp-embed-layout__frame > :deep(video) {
+    object-fit: contain;
   }
 
-  &__toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-    align-items: center;
+  &--fit-fill > .vp-embed-layout__frame > :deep(iframe),
+  &--fit-fill > .vp-embed-layout__frame > :deep(img),
+  &--fit-fill > .vp-embed-layout__frame > :deep(video) {
+    object-fit: fill;
   }
 
-  &--disabled {
-    opacity: 0.55;
-    pointer-events: none;
+  &--fit-none > .vp-embed-layout__frame > :deep(iframe),
+  &--fit-none > .vp-embed-layout__frame > :deep(img),
+  &--fit-none > .vp-embed-layout__frame > :deep(video) {
+    object-fit: none;
   }
 }

@@ -5,7 +5,17 @@ import { useAuth } from '../stores/auth'
 import { ToastService } from '@amg-webui/theme'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
-import { Icon } from '@amg-webui/components/base'
+import {
+  Layout,
+  Sider,
+  Header,
+  Main,
+  Footer,
+  Menu,
+  TabsNav,
+  Icon
+} from '@amg-webui/components/base'
+import type { MenuBadge, MenuItem } from '@amg-webui/components/base/Menu'
 import AppHeaderActions from '../components/AppHeaderActions.vue'
 import {
   getShellNavItems,
@@ -15,6 +25,7 @@ import {
   type ShellNavItem
 } from '../router/routes'
 import { getCatalogEntry } from '../component-catalog'
+import { resolveComponentBadges } from '../nav-component-badges'
 
 const route = useRoute()
 const router = useRouter()
@@ -25,12 +36,27 @@ const collapsed = ref(localStorage.getItem('ln-sidebar-collapsed') === '1')
 const tabs = ref<{ name: string; titleKey?: string; fallback: string }[]>([])
 const navFilter = ref('')
 
-/** Category keys expanded in base nav */
 const openCategories = ref<Record<string, boolean>>(
   JSON.parse(localStorage.getItem('ln-nav-open-cats-v2') || '{}')
 )
 
 const componentParam = computed(() => String(route.params.name ?? ''))
+
+function localizeNavItem(item: ShellNavItem) {
+  const localizedChildren = item.children?.map((child) => ({
+    ...child,
+    label: childLabel(child)
+  }))
+  return {
+    ...item,
+    label: item.titleKey ? t(item.titleKey, undefined, item.label) : item.label,
+    children: localizedChildren
+  }
+}
+
+function childLabel(child: ShellNavChild): string {
+  return child.label
+}
 
 const navGroups = computed(() => {
   void locale.value
@@ -71,24 +97,92 @@ const navGroups = computed(() => {
   })
 })
 
-function localizeNavItem(item: ShellNavItem) {
-  const localizedChildren = item.children?.map((child) => ({
-    ...child,
-    label: childLabel(child)
-  }))
+function toMenuLeaf(item: {
+  key: string
+  label: string
+  icon?: string
+  routeName?: string
+  params?: Record<string, string>
+}): MenuItem {
+  const componentName = item.params?.name
   return {
-    ...item,
-    label: item.titleKey ? t(item.titleKey, undefined, item.label) : item.label,
-    children: localizedChildren
+    key: item.key,
+    label: item.label,
+    icon: item.icon,
+    badges: resolveComponentBadges(componentName, t),
+    meta: {
+      routeName: item.routeName,
+      params: item.params
+    }
   }
 }
 
-/** Base component leaves: ordinal + English name (`1. Button`), not「按钮 Button」. */
-function childLabel(child: ShellNavChild): string {
-  return child.label
-}
+const menuItems = computed<MenuItem[]>(() => {
+  void locale.value
+  return navGroups.value.map((group) => ({
+    key: `nav-group-${group.group}`,
+    type: 'group' as const,
+    label: group.title,
+    children: group.items.map((item) => {
+      if (item.children?.length) {
+        return {
+          key: item.key,
+          label: item.label,
+          icon: item.icon || 'Box',
+          children: item.children.map((c) => toMenuLeaf(c))
+        }
+      }
+      return toMenuLeaf({
+        key: item.key,
+        label: item.label,
+        icon: item.icon || 'Activity',
+        routeName: item.routeName,
+        params: item.params
+      })
+    })
+  }))
+})
 
-const activeTabId = computed(() => routeTabId(route))
+const openKeys = computed({
+  get() {
+    const keys: string[] = []
+    for (const group of navGroups.value) {
+      for (const item of group.items) {
+        if (!item.children?.length) continue
+        if (navFilter.value.trim()) {
+          keys.push(item.key)
+          continue
+        }
+        if (openCategories.value[item.key] != null) {
+          if (openCategories.value[item.key]) keys.push(item.key)
+        } else if (activeCategoryKey() === item.key || item.key.startsWith('base-cat-')) {
+          keys.push(item.key)
+        }
+      }
+    }
+    return keys
+  },
+  set(keys: string[]) {
+    const next: Record<string, boolean> = { ...openCategories.value }
+    for (const group of navGroups.value) {
+      for (const item of group.items) {
+        if (!item.children?.length) continue
+        next[item.key] = keys.includes(item.key)
+      }
+    }
+    openCategories.value = next
+    persistOpenCategories()
+  }
+})
+
+const activeTabId = computed(() => routeTabId(route) || '')
+
+const menuModel = computed({
+  get: () => activeTabId.value,
+  set: () => {
+    /* selection handled in onMenuSelect */
+  }
+})
 
 const pageTitle = computed(() => {
   void locale.value
@@ -105,11 +199,11 @@ const userInitial = computed(() =>
 const tabViews = computed(() =>
   tabs.value.map((tab) => ({
     name: tab.name,
-    title: tab.titleKey ? t(tab.titleKey, undefined, tab.fallback) : tab.fallback
+    label: tab.titleKey ? t(tab.titleKey, undefined, tab.fallback) : tab.fallback,
+    closable: true
   }))
 )
 
-/** Category key for the component currently shown in content / active tab */
 function activeCategoryKey(): string | null {
   if (route.name !== 'base-component' || !componentParam.value) return null
   const entry = getCatalogEntry(componentParam.value)
@@ -120,7 +214,6 @@ function persistOpenCategories() {
   localStorage.setItem('ln-nav-open-cats-v2', JSON.stringify(openCategories.value))
 }
 
-/** When a content page / tab opens, expand the matching sidebar category. */
 function ensureMenuOpenForActivePage() {
   const key = activeCategoryKey()
   if (!key) return
@@ -131,7 +224,7 @@ function ensureMenuOpenForActivePage() {
 
 function scrollActiveNavIntoView() {
   if (collapsed.value) return
-  const el = document.querySelector('.ln-nav .ln-nav__link--active')
+  const el = document.querySelector('.vp-menu__item--active')
   el?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
 }
 
@@ -148,7 +241,6 @@ watch(
     let fallback = String(route.meta.title ?? id)
 
     if (route.name === 'base-component' && componentParam.value) {
-      // English component name only — do not i18n tab to「按钮」
       titleKey = undefined
       fallback = resolveRouteTitle(route.meta, t, componentParam.value)
     }
@@ -167,29 +259,9 @@ watch(locale, () => {
   document.title = title ? `${title} · AMG-WebUI` : 'AMG-WebUI'
 })
 
-function toggleSidebar() {
-  collapsed.value = !collapsed.value
-  localStorage.setItem('ln-sidebar-collapsed', collapsed.value ? '1' : '0')
-}
-
-function isCategoryOpen(key: string) {
-  if (navFilter.value.trim()) {
-    return true
-  }
-  if (openCategories.value[key] != null) return openCategories.value[key]
-  // Fallback before any persist: open category that owns the active page
-  if (activeCategoryKey() === key) return true
-  // Default: expand all base catalogs so every component is visible in the shell
-  return key.startsWith('base-cat-')
-}
-
-function toggleCategory(key: string) {
-  openCategories.value = {
-    ...openCategories.value,
-    [key]: !isCategoryOpen(key)
-  }
-  persistOpenCategories()
-}
+watch(collapsed, (val) => {
+  localStorage.setItem('ln-sidebar-collapsed', val ? '1' : '0')
+})
 
 function openNavItem(item: { routeName?: string; params?: Record<string, string>; key: string }) {
   if (!item.routeName) return
@@ -200,18 +272,18 @@ function openNavItem(item: { routeName?: string; params?: Record<string, string>
   router.push({ name: item.routeName })
 }
 
+function onMenuSelect(item: MenuItem) {
+  const routeName = item.meta?.routeName as string | undefined
+  const params = item.meta?.params as Record<string, string> | undefined
+  openNavItem({ key: item.key, routeName, params })
+}
+
 function openTab(name: string) {
   if (name.startsWith('base:')) {
     router.push({ name: 'base-component', params: { name: name.slice(5) } })
     return
   }
   router.push({ name })
-}
-
-function isLeafActive(item: { key: string; routeName?: string; params?: Record<string, string> }) {
-  if (item.key === activeTabId.value) return true
-  if (item.routeName === 'base-overview' && route.name === 'base-overview') return true
-  return false
 }
 
 function closeTab(name: string) {
@@ -226,6 +298,11 @@ function closeTab(name: string) {
   }
 }
 
+function onTabsReorder(next: { name: string; label: string; closable?: boolean }[]) {
+  const byName = new Map(tabs.value.map((tab) => [tab.name, tab]))
+  tabs.value = next.map((item) => byName.get(item.name)).filter(Boolean) as typeof tabs.value
+}
+
 function handleLogout() {
   logout()
   tabs.value = []
@@ -236,177 +313,262 @@ function handleLogout() {
   })
 }
 
+function goDashboard() {
+  openTab('dashboard')
+}
+
 void isAdmin
 </script>
 
 <template>
-  <div class="ln-shell" :class="{ 'ln-shell--collapsed': collapsed }">
-    <div class="ln-shell__workspace">
-      <aside class="ln-sidebar">
-        <div class="ln-sidebar__header">
-          <a class="ln-sidebar__brand" href="#" @click.prevent="openTab('dashboard')">
-            <span class="ln-sidebar__brand-mark">VP</span>
-            <span v-if="!collapsed" class="ln-sidebar__brand-text">AMG-WebUI</span>
-          </a>
+  <Layout shell has-sider class="vp-app-shell">
+    <Sider v-model:collapsed="collapsed" collapsible>
+      <template #header>
+        <a class="vp-app-shell__brand" href="#" @click.prevent="goDashboard">
+          <span class="vp-app-shell__brand-mark">VP</span>
+          <span v-if="!collapsed" class="vp-app-shell__brand-text">AMG-WebUI</span>
+        </a>
+      </template>
+
+      <div v-if="!collapsed" class="vp-app-shell__filter">
+        <label class="vp-app-shell__filter-label" for="vp-nav-base-filter">{{
+          t('example.doc.catalog.navFilter')
+        }}</label>
+        <input
+          id="vp-nav-base-filter"
+          v-model="navFilter"
+          type="search"
+          class="vp-app-shell__filter-input"
+          :placeholder="t(LocaleKeys.common.search)"
+        />
+      </div>
+
+      <Menu
+        :model-value="menuModel"
+        :items="menuItems"
+        v-model:open-keys="openKeys"
+        :collapsed="collapsed"
+        @select="onMenuSelect"
+      />
+
+      <template #footer>
+        <div class="vp-app-shell__user" :title="collapsed ? currentUser?.username : undefined">
+          <span class="vp-app-shell__avatar">{{ userInitial }}</span>
+          <div v-if="!collapsed" class="vp-app-shell__meta">
+            <div class="vp-app-shell__account-row">
+              <span class="vp-app-shell__name" :title="currentUser?.username">{{
+                currentUser?.username
+              }}</span>
+              <span class="vp-app-shell__logout-cluster">
+                <span class="vp-app-shell__sep" aria-hidden="true">|</span>
+                <button type="button" class="vp-app-shell__logout" @click="handleLogout">
+                  {{ t(LocaleKeys.auth.signOut) }}
+                </button>
+              </span>
+            </div>
+            <span class="vp-app-shell__role">{{
+              isAdmin ? t(LocaleKeys.common.admin) : t(LocaleKeys.common.user)
+            }}</span>
+          </div>
           <button
+            v-else
             type="button"
-            class="ln-sidebar__toggle"
-            :title="collapsed ? t(LocaleKeys.common.expandMenu) : t(LocaleKeys.common.collapseMenu)"
-            :aria-label="collapsed ? t(LocaleKeys.common.expandMenu) : t(LocaleKeys.common.collapseMenu)"
-            @click="toggleSidebar"
+            class="vp-app-shell__logout vp-app-shell__logout--icon"
+            :title="t(LocaleKeys.auth.signOut)"
+            :aria-label="t(LocaleKeys.auth.signOut)"
+            @click="handleLogout"
           >
-            <Icon :name="collapsed ? 'ChevronRight' : 'ChevronLeft'" size="sm" />
+            <Icon name="X" size="sm" />
           </button>
         </div>
+      </template>
+    </Sider>
 
-        <nav class="ln-nav" :aria-label="t(LocaleKeys.nav.primary)">
-          <div v-if="!collapsed" class="ln-nav__filter">
-            <label class="ln-nav__filter-label" for="ln-nav-base-filter">{{
-              t('example.doc.catalog.navFilter')
-            }}</label>
-            <input
-              id="ln-nav-base-filter"
-              v-model="navFilter"
-              type="search"
-              class="ln-nav__filter-input"
-              :placeholder="t(LocaleKeys.common.search)"
-            />
-          </div>
+    <Layout>
+      <Header>
+        <template #title>
+          <h1 :title="pageTitle">{{ pageTitle }}</h1>
+        </template>
+        <template #actions>
+          <AppHeaderActions />
+        </template>
+      </Header>
 
-          <section v-for="group in navGroups" :key="group.group" class="ln-nav__group">
-            <h2 v-if="!collapsed" class="ln-nav__group-title">{{ group.title }}</h2>
+      <TabsNav
+        v-if="tabViews.length"
+        :model-value="activeTabId"
+        :items="tabViews"
+        closable
+        draggable
+        @update:model-value="openTab"
+        @update:items="onTabsReorder"
+        @close="closeTab"
+      />
 
-            <template v-for="item in group.items" :key="item.key">
-              <!-- Collapsible category -->
-              <div v-if="item.children?.length" class="ln-nav__subtree">
-                <button
-                  type="button"
-                  class="ln-nav__link ln-nav__link--folder"
-                  :aria-expanded="isCategoryOpen(item.key)"
-                  :title="collapsed ? item.label : undefined"
-                  @click="toggleCategory(item.key)"
-                >
-                  <span class="ln-nav__icon">
-                    <Icon :name="item.icon || 'Box'" size="sm" />
-                  </span>
-                  <span class="ln-nav__label">{{ item.label }}</span>
-                  <span v-if="!collapsed" class="ln-nav__chevron">
-                    <Icon :name="isCategoryOpen(item.key) ? 'ChevronDown' : 'ChevronRight'" size="sm" />
-                  </span>
-                </button>
-                <div v-if="!collapsed && isCategoryOpen(item.key)" class="ln-nav__children">
-                  <button
-                    v-for="child in item.children"
-                    :key="child.key"
-                    type="button"
-                    class="ln-nav__link ln-nav__link--child"
-                    :class="{ 'ln-nav__link--active': isLeafActive(child) }"
-                    :title="child.label"
-                    @click="openNavItem(child)"
-                  >
-                    <span class="ln-nav__label">{{ child.label }}</span>
-                  </button>
-                </div>
-              </div>
+      <Main>
+        <RouterView />
+      </Main>
 
-              <!-- Leaf link -->
-              <button
-                v-else
-                type="button"
-                class="ln-nav__link"
-                :class="{ 'ln-nav__link--active': isLeafActive(item) }"
-                :title="collapsed ? item.label : undefined"
-                @click="openNavItem(item)"
-              >
-                <span class="ln-nav__icon">
-                  <Icon :name="item.icon || 'Activity'" size="sm" />
-                </span>
-                <span class="ln-nav__label">{{ item.label }}</span>
-              </button>
-            </template>
-          </section>
-        </nav>
-
-        <div class="ln-sidebar__user">
-          <div class="ln-sidebar__profile" :title="collapsed ? currentUser?.username : undefined">
-            <span class="ln-sidebar__avatar">{{ userInitial }}</span>
-            <div v-if="!collapsed" class="ln-sidebar__meta">
-              <div class="ln-sidebar__account-row">
-                <span class="ln-sidebar__name" :title="currentUser?.username">{{ currentUser?.username }}</span>
-                <span class="ln-sidebar__logout-cluster">
-                  <span class="ln-sidebar__sep" aria-hidden="true">|</span>
-                  <button
-                    type="button"
-                    class="ln-sidebar__logout"
-                    @click="handleLogout"
-                  >
-                    {{ t(LocaleKeys.auth.signOut) }}
-                  </button>
-                </span>
-              </div>
-              <span class="ln-sidebar__role">{{ isAdmin ? t(LocaleKeys.common.admin) : t(LocaleKeys.common.user) }}</span>
-            </div>
-            <button
-              v-else
-              type="button"
-              class="ln-sidebar__logout ln-sidebar__logout--icon"
-              :title="t(LocaleKeys.auth.signOut)"
-              :aria-label="t(LocaleKeys.auth.signOut)"
-              @click="handleLogout"
-            >
-              <Icon name="X" size="sm" />
-            </button>
-          </div>
-        </div>
-      </aside>
-
-      <div class="ln-main">
-        <header class="ln-header">
-          <h1 class="ln-header__title" :title="pageTitle">{{ pageTitle }}</h1>
-          <div class="ln-header__actions">
-            <AppHeaderActions />
-          </div>
-        </header>
-
-        <div v-if="tabViews.length" class="ln-tabs" role="tablist" :aria-label="t(LocaleKeys.common.openTabs)">
-          <div
-            v-for="tab in tabViews"
-            :key="tab.name"
-            class="ln-tabs__item"
-            :class="{ 'ln-tabs__item--active': activeTabId === tab.name }"
-            role="presentation"
-          >
-            <button
-              type="button"
-              class="ln-tabs__label"
-              role="tab"
-              :aria-selected="activeTabId === tab.name"
-              :title="tab.title"
-              @click="openTab(tab.name)"
-            >
-              {{ tab.title }}
-            </button>
-            <button
-              type="button"
-              class="ln-tabs__close"
-              :title="t(LocaleKeys.common.close)"
-              :aria-label="t(LocaleKeys.common.closeTab)"
-              @click.stop="closeTab(tab.name)"
-            >
-              <Icon name="X" size="sm" />
-            </button>
-          </div>
-        </div>
-
-        <main class="ln-content">
-          <RouterView />
-        </main>
-      </div>
-    </div>
-
-    <footer class="ln-footer">
-      <span>{{ t(LocaleKeys.chrome.brandFoot) }}</span>
-      <span>base · business · theme · hooks</span>
-    </footer>
-  </div>
+      <Footer>
+        <span>{{ t(LocaleKeys.chrome.brandFoot) }}</span>
+        <span>{{ t(LocaleKeys.chrome.stackLayers) }}</span>
+      </Footer>
+    </Layout>
+  </Layout>
 </template>
+
+<style scoped>
+.vp-app-shell__filter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: 0 var(--spacing-sm);
+}
+
+.vp-app-shell__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.vp-app-shell__brand-mark {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: var(--height-md);
+  height: var(--height-md);
+  border-radius: var(--border-radius-md);
+  background: var(--primary-500);
+  color: var(--text-on-primary, var(--surface-0));
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold, 700);
+}
+
+.vp-app-shell__brand-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary);
+}
+
+.vp-app-shell__filter-label {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.vp-app-shell__filter-input {
+  width: 100%;
+  min-height: var(--height-sm);
+  padding: 0 var(--spacing-md);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--theme-input-radius);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  box-sizing: border-box;
+}
+
+.vp-app-shell__filter-input:focus {
+  outline: none;
+  border-color: var(--ds-accent);
+  box-shadow: 0 0 0 1px var(--ds-focus-ring, var(--ds-accent));
+}
+
+.vp-app-shell__user {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-width: 0;
+  padding: var(--spacing-xs);
+}
+
+.vp-app-shell__avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: var(--height-md);
+  height: var(--height-md);
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.vp-app-shell__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  min-width: 0;
+  flex: 1;
+}
+
+.vp-app-shell__account-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-width: 0;
+}
+
+.vp-app-shell__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+.vp-app-shell__logout-cluster {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-shrink: 0;
+}
+
+.vp-app-shell__sep {
+  color: var(--text-muted);
+}
+
+.vp-app-shell__logout {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+}
+
+.vp-app-shell__logout:hover {
+  color: var(--text-primary);
+}
+
+.vp-app-shell__logout--icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--height-md);
+  height: var(--height-md);
+  border-radius: var(--border-radius-md);
+  color: var(--text-muted);
+}
+
+.vp-app-shell__logout--icon:hover {
+  color: var(--text-primary);
+  background: var(--surface-5);
+}
+
+.vp-app-shell__role {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+</style>

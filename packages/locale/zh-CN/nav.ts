@@ -18,5 +18,8 @@ export default {
   'nav.base.category.feedback': '反馈',
   'nav.base.category.other': '其他',
   'nav.base.category.industry': '行业',
-  'nav.primary': '主导航'
+  'nav.primary': '主导航',
+  'nav.badge.goldDod': '金标',
+  'nav.badge.epParity': 'EP',
+  'nav.badge.exclusiveNew': 'New'
 } as Record<string, string>

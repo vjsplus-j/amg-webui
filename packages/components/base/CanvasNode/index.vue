@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useCanvasEditor } from '@amg-webui/hooks'
-import type { CanvasNodeProps, CanvasNodeEmits } from './types'
+import type { CanvasNodeProps } from './types'
 import './style.scss'
 
-const props = defineProps<CanvasNodeProps>()
-const emit = defineEmits<CanvasNodeEmits>()
+const props = withDefaults(defineProps<CanvasNodeProps>(), {
+  selectable: true,
+  draggable: true
+})
+
+const emit = defineEmits<{
+  (e: 'select', id: string): void
+  (e: 'move', payload: { id: string; x: number; y: number }): void
+}>()
 const editor = useCanvasEditor()
 
 const dragging = ref(false)
@@ -21,14 +28,24 @@ const style = computed(() => ({
   zIndex: String(props.node.zIndex ?? 1)
 }))
 
+const rootClass = computed(() => [
+  'vp-canvas-node',
+  {
+    'vp-canvas-node--selected': selected.value,
+    'vp-canvas-node--locked': props.node.locked,
+    'vp-canvas-node--hidden': props.node.hidden
+  }
+])
+
 function onClick(e: MouseEvent) {
+  if (!props.selectable) return
   e.stopPropagation()
   editor?.selectNode(props.node.id, e.shiftKey)
   emit('select', props.node.id)
 }
 
 function onPointerDown(e: PointerEvent) {
-  if (!editor || editor.readonly.value || props.node.locked) return
+  if (!props.draggable || !editor || editor.readonly.value || props.node.locked) return
   dragging.value = true
   start.value = { x: e.clientX, y: e.clientY, nx: props.node.x, ny: props.node.y }
   ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
@@ -40,20 +57,35 @@ function onPointerMove(e: PointerEvent) {
     x: start.value.nx + (e.clientX - start.value.x),
     y: start.value.ny + (e.clientY - start.value.y)
   })
+  emit('move', { id: props.node.id, x: props.node.x, y: props.node.y })
 }
 
 function onPointerUp(e: PointerEvent) {
   dragging.value = false
   ;(e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId)
 }
+
+function onKeydown(e: KeyboardEvent) {
+  if (!props.selectable) return
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault()
+    editor?.selectNode(props.node.id, e.shiftKey)
+    emit('select', props.node.id)
+  }
+}
 </script>
 
 <template>
   <div
-    :class="['vp-canvas-node', { 'vp-canvas-node--selected': selected, 'vp-canvas-node--locked': node.locked }]"
+    :class="rootClass"
     :style="style"
     data-component="CanvasNode"
+    role="button"
+    :tabindex="selectable ? 0 : -1"
+    :aria-selected="selected"
+    :aria-label="node.label"
     @click="onClick"
+    @keydown="onKeydown"
     @pointerdown="onPointerDown"
     @pointermove="onPointerMove"
     @pointerup="onPointerUp"

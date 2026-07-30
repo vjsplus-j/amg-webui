@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onUnmounted } from 'vue'
+import { ref, computed, watch, onUnmounted } from 'vue'
 import type { SplitProps, SplitEmits } from './types'
 import './style.scss'
 
@@ -14,6 +14,13 @@ const emit = defineEmits<SplitEmits>()
 const rootRef = ref<HTMLElement | null>(null)
 const currentSize = ref(props.size)
 const dragging = ref(false)
+
+watch(
+  () => props.size,
+  (v) => {
+    if (!dragging.value) currentSize.value = v
+  }
+)
 
 const isHorizontal = computed(() => props.direction === 'horizontal')
 

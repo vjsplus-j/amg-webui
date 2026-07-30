@@ -1,0 +1,25 @@
+.vp-affix {
+  --vp-affix-z-index: 100;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.vp-affix__placeholder {
+  pointer-events: none;
+}
+
+.vp-affix__content {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.vp-affix__content--fixed {
+  z-index: var(--vp-affix-z-index);
+}
+
+.vp-affix--fixed {
+  width: 100%;
+  min-width: 0;
+}

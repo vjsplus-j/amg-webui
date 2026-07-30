@@ -1,89 +1,153 @@
-﻿import { ref, computed, watch, nextTick } from 'vue'
-import type { SelectProps } from './types'
+﻿import { ref, computed, watch, nextTick, useId } from 'vue'
+import { useVirtualList } from '@amg-webui/utils/data-display/useVirtualList'
+import type { SelectProps, SelectModelValue } from './types'
 import type { SelectOption } from '@amg-webui/types'
+
+const DEFAULT_VIRTUAL_THRESHOLD = 60
+const PANEL_HEIGHT = 200
+const ITEM_HEIGHT = 36
 
 export function useSelect(props: SelectProps) {
   const isOpen = ref(false)
   const filterText = ref('')
-  const selectedOption = ref<SelectOption | null>(null)
   const triggerRef = ref<HTMLElement | null>(null)
   const panelRef = ref<HTMLElement | null>(null)
   const filterRef = ref<HTMLInputElement | null>(null)
+  const listboxId = useId()
+
+  const selectedValues = computed((): (string | number)[] => {
+    if (!props.multiple) return []
+    const v = props.modelValue
+    if (Array.isArray(v)) return v as (string | number)[]
+    if (v != null && v !== '') return [v as string | number]
+    return []
+  })
+
+  const hasValue = computed(() => {
+    if (props.multiple) return selectedValues.value.length > 0
+    return props.modelValue != null && props.modelValue !== ''
+  })
 
   const filteredOptions = computed(() => {
-    if (!props.options || !filterText.value) {
-      return props.options || []
-    }
-    
+    const opts = props.options || []
+    if (props.remote) return opts
+    if (!props.filterable || !filterText.value) return opts
     const searchText = filterText.value.toLowerCase()
-    return props.options.filter(option =>
+    return opts.filter((option) =>
       option.label.toLowerCase().includes(searchText)
     )
   })
 
+  const useVirtualScroll = computed(() => {
+    if (props.virtual === false) return false
+    if (props.virtual === true) return true
+    const threshold = props.virtualThreshold ?? DEFAULT_VIRTUAL_THRESHOLD
+    return filteredOptions.value.length > threshold
+  })
+
+  const virtualSource = computed(() => filteredOptions.value)
+  const virtual = useVirtualList(virtualSource, {
+    itemHeight: ITEM_HEIGHT,
+    containerHeight: PANEL_HEIGHT
+  })
+
+  const selectedTags = computed(() =>
+    selectedValues.value.map((value) => {
+      const opt = props.options?.find((o) => o.value === value)
+      return { value, label: opt?.label ?? String(value) }
+    })
+  )
+
+  const maxTags = computed(() => props.maxCollapseTags ?? 1)
+
+  const visibleTags = computed(() => {
+    if (!props.multiple) return []
+    if (!props.collapseTags) return selectedTags.value
+    return selectedTags.value.slice(0, maxTags.value)
+  })
+
+  const collapsedCount = computed(() => {
+    if (!props.multiple || !props.collapseTags) return 0
+    return Math.max(0, selectedTags.value.length - maxTags.value)
+  })
+
   const displayLabel = computed(() => {
-    if (!props.modelValue) {
+    if (props.multiple) return ''
+    if (props.modelValue == null || props.modelValue === '') {
       return props.placeholder || ''
     }
-    
-    const option = props.options?.find(o => o.value === props.modelValue)
+    const option = props.options?.find((o) => o.value === props.modelValue)
     return option?.label || String(props.modelValue)
   })
 
   const isPlaceholder = computed(() => {
-    return !props.modelValue && props.placeholder
+    if (props.multiple) return !hasValue.value && !!props.placeholder
+    return !hasValue.value && !!props.placeholder
   })
 
+  const showFilter = computed(
+    () => props.filterable || props.remote
+  )
+
   const triggerClass = computed(() => {
-    const classes = ['p-select-trigger']
-    
+    const classes = ['vp-select__trigger']
+
     const sizeClass: Record<string, string> = {
-      xs: 'p-select-xs',
-      sm: 'p-select-sm',
-      md: 'p-select-md',
-      lg: 'p-select-lg',
-      xl: 'p-select-xl'
+      xs: 'vp-select__trigger--xs',
+      sm: 'vp-select__trigger--sm',
+      md: 'vp-select__trigger--md',
+      lg: 'vp-select__trigger--lg',
+      xl: 'vp-select__trigger--xl'
     }
     classes.push(sizeClass[props.size || 'md'])
 
-    if (props.invalid) {
-      classes.push('p-select-invalid')
-    }
-
-    if (props.readonly) {
-      classes.push('p-select-readonly')
-    }
+    if (props.invalid) classes.push('vp-select__trigger--invalid')
+    if (props.readonly) classes.push('vp-select__trigger--readonly')
+    if (props.multiple) classes.push('vp-select__trigger--multiple')
 
     return classes.join(' ')
   })
 
   const selectClass = computed(() => {
-    const classes = ['p-select']
-    
-    if (props.fluid) {
-      classes.push('p-select-fluid')
-    }
+    const classes = ['vp-select']
 
-    if (isOpen.value) {
-      classes.push('p-select-open')
-    }
-
-    if (props.class) {
-      classes.push(props.class)
-    }
+    if (props.fluid) classes.push('vp-select--fluid')
+    if (isOpen.value) classes.push('vp-select--open')
+    if (props.class) classes.push(props.class)
 
     return classes.join(' ')
   })
 
   const selectStyle = computed(() => {
     const style: Record<string, string> = {}
-    
-    if (props.width) {
-      style.width = props.width
-    }
-
+    if (props.width) style.width = props.width
     return style
   })
+
+  const isOptionSelected = (option: SelectOption): boolean => {
+    if (props.multiple) {
+      return selectedValues.value.includes(option.value as string | number)
+    }
+    return option.value === props.modelValue
+  }
+
+  const resolveSelectValue = (option: SelectOption): SelectModelValue => {
+    if (props.multiple) {
+      const val = option.value as string | number
+      const current = selectedValues.value
+      if (current.includes(val)) {
+        return current.filter((v) => v !== val)
+      }
+      return [...current, val]
+    }
+    return option.value as SelectModelValue
+  }
+
+  const resolveClearValue = (): SelectModelValue =>
+    props.multiple ? [] : undefined
+
+  const resolveRemoveTagValue = (value: string | number): SelectModelValue =>
+    selectedValues.value.filter((v) => v !== value)
 
   const toggle = () => {
     if (props.disabled || props.readonly) return
@@ -94,7 +158,7 @@ export function useSelect(props: SelectProps) {
     if (props.disabled || props.readonly) return
     isOpen.value = true
     nextTick(() => {
-      if (props.filterable && filterRef.value) {
+      if (showFilter.value && filterRef.value) {
         filterRef.value.focus()
       }
     })
@@ -105,66 +169,47 @@ export function useSelect(props: SelectProps) {
     filterText.value = ''
   }
 
-  const selectOption = (option: SelectOption) => {
-    if (option.disabled || props.disabled || props.readonly) return
-    
-    props.modelValue = option.value
-    close()
-  }
+  const shouldCloseAfterSelect = () => !props.multiple
 
-  const clear = () => {
-    if (props.disabled || props.readonly) return
-    props.modelValue = undefined
-  }
-
-  watch(isOpen, (newVal) => {
-    if (newVal) {
-      document.addEventListener('click', handleOutsideClick)
-      document.addEventListener('keydown', handleKeydown)
-    } else {
-      document.removeEventListener('click', handleOutsideClick)
-      document.removeEventListener('keydown', handleKeydown)
+  watch(filterText, (query) => {
+    if (props.remote && props.remoteMethod) {
+      props.remoteMethod(query)
     }
   })
 
-  const handleOutsideClick = (event: MouseEvent) => {
-    if (triggerRef.value && !triggerRef.value.contains(event.target as Node)) {
-      if (panelRef.value && !panelRef.value.contains(event.target as Node)) {
-        close()
-      }
+  watch(isOpen, (openNow) => {
+    if (openNow && props.remote && props.remoteMethod) {
+      props.remoteMethod(filterText.value)
     }
-  }
-
-  const handleKeydown = (event: KeyboardEvent) => {
-    if (!isOpen.value) return
-    
-    switch (event.key) {
-      case 'Escape':
-        close()
-        break
-      case 'Enter':
-        event.preventDefault()
-        break
-    }
-  }
+  })
 
   return {
     isOpen,
     filterText,
-    selectedOption,
     triggerRef,
     panelRef,
     filterRef,
+    listboxId,
     filteredOptions,
     displayLabel,
     isPlaceholder,
+    hasValue,
+    selectedTags,
+    visibleTags,
+    collapsedCount,
     triggerClass,
     selectClass,
     selectStyle,
+    useVirtualScroll,
+    virtual,
+    showFilter,
     toggle,
     open,
     close,
-    selectOption,
-    clear
+    shouldCloseAfterSelect,
+    isOptionSelected,
+    resolveSelectValue,
+    resolveClearValue,
+    resolveRemoveTagValue
   }
 }

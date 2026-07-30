@@ -36,13 +36,17 @@
   &__title {
     margin: 0;
     font-size: var(--font-size-md);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold, 600);
   }
 
   &__chevron {
     color: var(--text-secondary);
-    transform: rotate(90deg);
-    display: inline-block;
+    transition: transform var(--transition-fast);
+    flex-shrink: 0;
+
+    &--collapsed {
+      transform: rotate(-90deg);
+    }
   }
 
   &__body {

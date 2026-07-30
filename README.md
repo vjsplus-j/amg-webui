@@ -5,6 +5,28 @@
 Vue 3 组件库 — packages 单体架构；六套 designmd 锁定主题；base / business 分层隔离；可选 **Vp Telemetry** 交互观测内核。  
 愿景：[`docs/VISION.md`](./docs/VISION.md) · 深度超车：[`docs/OVERTAKE_ELEMENT_PLUS.md`](./docs/OVERTAKE_ELEMENT_PLUS.md)
 
+## 当前版本：0.1.0（试用）
+
+| 项 | 说明 |
+|----|------|
+| npm SemVer | **`0.1.0`** — **不是**正式 1.0 |
+| 承诺范围 | **v0.1 精选子集**（约 128 组件）· [`docs/V0_1_SUBSET.md`](./docs/V0_1_SUBSET.md) |
+| API | **可变**；破坏性变更记 CHANGELOG |
+| 子集外 | experimental，不作稳定承诺 |
+| 发包说明 | [`docs/RELEASE_0.1.md`](./docs/RELEASE_0.1.md) |
+
+```bash
+npm install amg-webui@0.1.0
+npm install vue@^3.4.0 @lucide/vue@^1.0.0   # peers
+```
+
+```ts
+import 'amg-webui/style.css'
+import { Button, ThemeService } from 'amg-webui'
+```
+
+本地打库：`npm run build:lib` → `dist/`。
+
 ## 根目录
 
 ```
@@ -34,20 +56,22 @@ VUE3-AMG-WEBUI/
 npm install
 npm run dev          # example · 本地调试（不上线）
 npm run docs:dev     # 官方文档本地编写
-npm run build        # 库 → dist/
+npm run build:lib    # 库发包产物 → dist/（0.1 试用）
+npm run build        # vue-tsc + vite build（与库配置一致时）
 npm run build:example   # 本地冒烟 → example-dist/（禁止部署线上）
 ```
 
 深链示例：`/base/button` · `/lab/telemetry` · `/biz/users` · `/?design=porsche` · `?lang=ja-JP`
 
-## 使用库
+## 使用库（0.1）
+
+详见 [`docs/RELEASE_0.1.md`](./docs/RELEASE_0.1.md)。摘要：
 
 ```ts
-import 'amg-webui/dist/style.css'
+import 'amg-webui/style.css'
 import { Button, BizUsers, ThemeService } from 'amg-webui'
 import { TelemetryService, consoleSink } from 'amg-webui/telemetry'
 
-// 可选：显式开启交互观测（默认关闭）
 TelemetryService.configure({
   enabled: true,
   appId: 'my-app',
@@ -55,7 +79,7 @@ TelemetryService.configure({
 })
 ```
 
-子路径导出见 `package.json` → `exports`：`.` · `./telemetry` · `./theme` · `./icons` · `./components/base` · `./components/business`。
+子路径导出见 `package.json` → `exports`：`.` · `./style.css` · `./telemetry` · `./theme` · `./icons` · `./components/base` · `./components/business`。
 
 ## 近期能力（摘要）
 

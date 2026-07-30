@@ -1,48 +1,35 @@
 .vp-card-grid {
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-body);
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  align-items: start;
 
-  &__title {
-    margin: 0 0 var(--spacing-sm);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-  }
-
-  &__body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+  /* Cards / blocks as direct children — avoid overflow blowout */
+  > * {
     min-width: 0;
+    max-width: 100%;
   }
 
-  &__panel {
-    background: var(--surface-1);
-    border: 1px solid var(--ds-border, var(--border-color));
-    border-radius: var(--theme-card-radius, var(--border-radius-md));
-    padding: var(--theme-card-pad, var(--spacing-md));
-  }
+  &--equal {
+    align-items: stretch;
 
-  &__muted {
-    color: var(--text-secondary);
-    font-size: var(--font-size-sm);
-  }
+    > * {
+      height: 100%;
+    }
 
-  &__chart {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
+    /* Card root fills the cell so unequal copy still shares row height */
+    > :deep(.vp-card),
+    > :deep(.p-card) {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
 
-  &__toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-    align-items: center;
-  }
-
-  &--disabled {
-    opacity: 0.55;
-    pointer-events: none;
+    > :deep(.vp-card__body),
+    > :deep(.p-card-body) {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
   }
 }

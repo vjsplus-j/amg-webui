@@ -27,8 +27,57 @@
     gap: var(--spacing-md);
   }
 
+  &__password {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__password-input {
+    width: 100%;
+  }
+
+  &__password-toggle {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    margin-inline-start: calc(-1 * var(--height-md));
+    z-index: 1;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    margin-inline-start: auto;
+  }
+
   &__submit {
     width: 100%;
     margin-top: var(--spacing-md);
+  }
+
+  &__footer {
+    margin-top: var(--theme-section-gap, var(--spacing-lg));
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
   }
 }

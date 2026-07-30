@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, watch, onUnmounted } from 'vue'
-import type { CountdownProps, CountdownEmits } from './types'
+import type { CountdownProps } from './types'
 import './style.scss'
 
 const props = withDefaults(defineProps<CountdownProps>(), {
@@ -8,7 +8,10 @@ const props = withDefaults(defineProps<CountdownProps>(), {
   millisecond: false
 })
 
-const emit = defineEmits<CountdownEmits>()
+const emit = defineEmits<{
+  (e: 'finish'): void
+  (e: 'tick', remainingMs: number): void
+}>()
 
 const remaining = ref(0)
 let timer: ReturnType<typeof setInterval> | null = null
@@ -23,13 +26,15 @@ function pad(n: number, len = 2): string {
 }
 
 function formatTime(ms: number): string {
-  if (ms <= 0) return props.format.replace(/HH|mm|ss|SSS/g, (token) => {
-    if (token === 'HH') return '00'
-    if (token === 'mm') return '00'
-    if (token === 'ss') return '00'
-    if (token === 'SSS') return '000'
-    return token
-  })
+  if (ms <= 0) {
+    return props.format.replace(/HH|mm|ss|SSS/g, (token) => {
+      if (token === 'HH') return '00'
+      if (token === 'mm') return '00'
+      if (token === 'ss') return '00'
+      if (token === 'SSS') return '000'
+      return token
+    })
+  }
 
   const totalSec = Math.floor(ms / 1000)
   const hours = Math.floor(totalSec / 3600)
@@ -45,6 +50,7 @@ function formatTime(ms: number): string {
 }
 
 const displayText = computed(() => formatTime(remaining.value))
+const finished = computed(() => remaining.value <= 0)
 
 function clearTimer() {
   if (timer) {
@@ -57,6 +63,7 @@ function tick() {
   const target = toTimestamp(props.value)
   const diff = target - Date.now()
   remaining.value = Math.max(0, diff)
+  emit('tick', remaining.value)
 
   if (diff <= 0) {
     clearTimer()
@@ -80,7 +87,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <span :class="['vp-countdown', props.class]" :style="style">
+  <span
+    :class="['vp-countdown', { 'vp-countdown--finished': finished }, props.class]"
+    :style="style"
+    role="timer"
+    aria-live="polite"
+    :aria-label="displayText"
+  >
     <slot :formatted="displayText">{{ displayText }}</slot>
   </span>
 </template>

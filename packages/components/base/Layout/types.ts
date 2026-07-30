@@ -1,16 +1,22 @@
+import type { InjectionKey, Ref } from 'vue'
 import type { BaseProps } from '@amg-webui/types'
 
-export interface LayoutProps extends BaseProps {
-  title?: string
-  description?: string
-  data?: unknown
-  modelValue?: unknown
-  disabled?: boolean
-  loading?: boolean
+export const LAYOUT_INJECTION_KEY: InjectionKey<LayoutContext> = Symbol('vp-layout')
+
+export interface LayoutContext {
+  direction: Ref<'horizontal' | 'vertical'>
+  siderCount: Ref<number>
+  registerSider: () => void
+  unregisterSider: () => void
 }
 
-export interface LayoutEmits {
-  (e: 'update:modelValue', value: unknown): void
-  (e: 'change', value: unknown): void
-  (e: 'click', event: MouseEvent): void
+export interface LayoutProps extends BaseProps {
+  /** Force has-sider layout (also auto when a Sider child registers) */
+  hasSider?: boolean
+  /** vertical = stack regions; horizontal = sider + content row */
+  direction?: 'horizontal' | 'vertical'
+  /** Full-viewport app chrome (locks document scroll) */
+  shell?: boolean
+  /** Fill parent height (nested panels) */
+  fill?: boolean
 }

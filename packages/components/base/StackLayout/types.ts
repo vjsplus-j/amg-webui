@@ -1,16 +1,26 @@
 import type { BaseProps } from '@amg-webui/types'
 
+export type StackGap = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'section'
+export type StackAlign = 'start' | 'center' | 'end' | 'stretch' | 'baseline'
+export type StackJustify =
+  | 'start'
+  | 'center'
+  | 'end'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly'
+
 export interface StackLayoutProps extends BaseProps {
-  title?: string
-  description?: string
-  data?: unknown
-  modelValue?: unknown
-  disabled?: boolean
-  loading?: boolean
+  direction?: 'vertical' | 'horizontal'
+  gap?: StackGap
+  align?: StackAlign
+  justify?: StackJustify
+  /** Allow wrap (useful for horizontal stacks) */
+  wrap?: boolean
+  /** inline-flex instead of flex + full width */
+  inline?: boolean
+  /** Stretch to 100% parent width (default true unless inline) */
+  block?: boolean
 }
 
-export interface StackLayoutEmits {
-  (e: 'update:modelValue', value: unknown): void
-  (e: 'change', value: unknown): void
-  (e: 'click', event: MouseEvent): void
-}
+export type StackLayoutEmits = Record<string, never>

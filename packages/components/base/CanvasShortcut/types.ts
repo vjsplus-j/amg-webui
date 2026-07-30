@@ -2,6 +2,10 @@ import type { BaseProps } from '@amg-webui/types'
 
 export interface CanvasShortcutProps extends BaseProps {
   enabled?: boolean
+  loading?: boolean
+  title?: string
+  telemetry?: boolean
+  trackId?: string
 }
 
 export interface CanvasShortcutEmits {

@@ -1,19 +1,23 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { BackTopProps, BackTopEmits } from './types'
 import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
+import Icon from '../Icon/index.vue'
+import type { BackTopProps, BackTopEmits } from './types'
 import { useBackTop } from './useBackTop'
 import './style.scss'
 
 const props = withDefaults(defineProps<BackTopProps>(), {
-  visibilityHeight: 200
+  visibilityHeight: 200,
+  teleport: true,
+  icon: 'ChevronUp'
 })
 
 const emit = defineEmits<BackTopEmits>()
 const { t } = useLocale()
 const { visible, scrollToTop } = useBackTop(props)
 
-const backTopLabel = computed(() => t('common.backTop'))
+const backTopLabel = computed(() => t(LocaleKeys.common.backTop))
 
 const backTopStyle = computed(() => ({
   ...props.style,
@@ -28,20 +32,22 @@ const handleClick = (event: MouseEvent) => {
 </script>
 
 <template>
-  <Transition name="vp-backtop-fade">
-    <button
-      v-if="visible"
-      type="button"
-      class="vp-backtop"
-      :class="props.class"
-      :style="backTopStyle"
-      :aria-label="backTopLabel"
-      @click="handleClick"
-    >
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <path d="M12 19V5" />
-        <path d="M5 12l7-7 7 7" />
-      </svg>
-    </button>
-  </Transition>
+  <Teleport to="body" :disabled="!teleport">
+    <Transition name="vp-backtop-fade">
+      <button
+        v-if="visible"
+        type="button"
+        class="vp-backtop"
+        :class="props.class"
+        :style="backTopStyle"
+        :aria-label="backTopLabel"
+        data-component="BackTop"
+        @click="handleClick"
+      >
+        <slot>
+          <Icon :name="icon" size="md" aria-hidden="true" />
+        </slot>
+      </button>
+    </Transition>
+  </Teleport>
 </template>

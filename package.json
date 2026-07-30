@@ -1,22 +1,71 @@
 {
   "name": "amg-webui",
-  "version": "1.0.0",
-  "description": "对标并超越 Element Plus —— 最强国产 Vue3 WebUI（amg-webui）",
+  "version": "0.1.0",
+  "description": "对标并超越 Element Plus —— 最强国产 Vue3 WebUI（amg-webui）。0.1 试用版：承诺精选子集，API 可变。",
   "type": "module",
+  "license": "MIT",
+  "private": false,
   "main": "./dist/amg-webui.umd.cjs",
   "module": "./dist/amg-webui.js",
   "types": "./dist/index.d.ts",
+  "unpkg": "./dist/amg-webui.umd.cjs",
+  "jsdelivr": "./dist/amg-webui.umd.cjs",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "files": [
+    "dist",
+    "packages/theme",
+    "packages/telemetry",
+    "packages/icons",
+    "packages/locale",
+    "packages/hooks",
+    "packages/utils",
+    "packages/types",
+    "packages/constants",
+    "packages/animations",
+    "packages/components",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "docs/V0_1_SUBSET.md",
+    "docs/RELEASE_0.1.md"
+  ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/amg-webui.js",
       "require": "./dist/amg-webui.umd.cjs"
     },
+    "./style.css": "./dist/style.css",
     "./dist/style.css": "./dist/style.css",
-    "./theme": "./packages/theme/index.ts",
-    "./telemetry": "./packages/telemetry/index.ts",
-    "./icons": "./packages/icons/index.ts",
-    "./components/base": "./packages/components/base/index.ts",
-    "./components/business": "./packages/components/business/index.ts"
+    "./theme": {
+      "types": "./packages/theme/index.ts",
+      "import": "./packages/theme/index.ts",
+      "default": "./packages/theme/index.ts"
+    },
+    "./telemetry": {
+      "types": "./packages/telemetry/index.ts",
+      "import": "./packages/telemetry/index.ts",
+      "default": "./packages/telemetry/index.ts"
+    },
+    "./icons": {
+      "types": "./packages/icons/index.ts",
+      "import": "./packages/icons/index.ts",
+      "default": "./packages/icons/index.ts"
+    },
+    "./components/base": {
+      "types": "./packages/components/base/index.ts",
+      "import": "./packages/components/base/index.ts",
+      "default": "./packages/components/base/index.ts"
+    },
+    "./components/business": {
+      "types": "./packages/components/business/index.ts",
+      "import": "./packages/components/business/index.ts",
+      "default": "./packages/components/business/index.ts"
+    },
+    "./package.json": "./package.json"
   },
   "scripts": {
     "dev": "vite --config vite.example.config.ts",
@@ -32,20 +81,27 @@
     "validate:catalog": "node scripts/validate-component-catalog.mjs",
     "extract:i18n": "node scripts/extract-i18n.mjs",
     "test": "vitest run",
+    "test:ssr": "vitest run tests/unit/ssr-env.spec.ts tests/unit/ssr-import.spec.ts",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "ci": "vue-tsc --noEmit && npm run validate:catalog && npm run test && npm run build:lib",
+    "generate:vitepress-api": "node scripts/generate-vitepress-api.mjs",
     "docs:dev": "vitepress dev docs --config vitepress.config.ts",
     "docs:build": "vitepress build docs --config vitepress.config.ts",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
-  },
-  "dependencies": {
-    "@lucide/vue": "^1.0.0",
-    "vue": "^3.4.0",
-    "vue-router": "^4.6.4"
   },
   "peerDependencies": {
     "@lucide/vue": "^1.0.0",
     "vue": "^3.4.0"
   },
+  "peerDependenciesMeta": {
+    "@lucide/vue": {
+      "optional": false
+    }
+  },
   "devDependencies": {
+    "@lucide/vue": "^1.0.0",
+    "@playwright/test": "^1.62.0",
     "@types/node": "^20.11.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/eslint-config-typescript": "^12.0.0",
@@ -57,8 +113,25 @@
     "sass": "^1.70.0",
     "typescript": "^5.3.3",
     "vite": "^5.4.0",
+    "vite-plugin-dts": "^4.5.4",
     "vitepress": "^1.0.0",
     "vitest": "^2.0.0",
+    "vue": "^3.4.0",
+    "vue-router": "^4.6.4",
     "vue-tsc": "^2.2.0"
-  }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "ui",
+    "components",
+    "amg-webui",
+    "design-system"
+  ]
 }

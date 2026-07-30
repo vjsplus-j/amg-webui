@@ -2,16 +2,61 @@
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: var(--border-radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--theme-btn-radius);
   font-size: var(--font-size-sm);
+  line-height: var(--line-height-body);
+  border: 1px solid var(--ds-border);
   background: var(--surface-2);
-  border: 1px solid var(--ds-border, var(--border-color));
+  color: var(--text-primary);
+  max-width: 100%;
 
-  &--success { border-color: var(--success-500); color: var(--success-600, var(--success-500)); }
-  &--warning { border-color: var(--warning-500); color: var(--warning-600, var(--warning-500)); }
-  &--danger { border-color: var(--danger-500); color: var(--danger-600, var(--danger-500)); }
-  &--info { border-color: var(--info-500); color: var(--info-600, var(--info-500)); }
+  &__icon {
+    flex-shrink: 0;
+  }
 
-  &__close { appearance: none; border: none; background: transparent; cursor: pointer; }
+  &__text {
+    min-width: 0;
+  }
+
+  &--success {
+    border-color: var(--success-500);
+    color: var(--success-500);
+    background: color-mix(in srgb, var(--success-500) 10%, var(--surface-1));
+  }
+
+  &--warning {
+    border-color: var(--warning-500);
+    color: var(--warning-500);
+    background: color-mix(in srgb, var(--warning-500) 10%, var(--surface-1));
+  }
+
+  &--danger {
+    border-color: var(--danger-500);
+    color: var(--danger-500);
+    background: color-mix(in srgb, var(--danger-500) 10%, var(--surface-1));
+  }
+
+  &--info {
+    border-color: var(--info-500);
+    color: var(--info-500);
+    background: color-mix(in srgb, var(--info-500) 10%, var(--surface-1));
+  }
+
+  &__close {
+    appearance: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: inherit;
+    flex-shrink: 0;
+
+    &:focus-visible {
+      outline: var(--ds-focus-ring);
+    }
+  }
 }

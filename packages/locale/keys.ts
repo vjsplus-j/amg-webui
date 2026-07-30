@@ -44,6 +44,112 @@ export const LocaleKeys = {
     rows: 'common.rows',
     columns: 'common.columns'
   },
+  component: {
+    pagination: {
+      /** Pagination nav landmark label */
+      aria: 'component.pagination.aria'
+    },
+    timeline: {
+      /** Default pending node label when `pending` is true */
+      pending: 'component.timeline.pending'
+    },
+    colorInput: {
+      aria: 'component.color-input.aria',
+      pickColor: 'component.color-input.pickColor',
+      placeholder: 'component.color-input.placeholder',
+      invalidHex: 'component.color-input.invalidHex'
+    },
+    timeRangeInput: {
+      start: 'component.time-range-input.start',
+      end: 'component.time-range-input.end',
+      clear: 'component.time-range-input.clear',
+      invalidRange: 'component.time-range-input.invalidRange'
+    },
+    smsCode: {
+      inputAria: 'component.sms-code.inputAria'
+    },
+    dragSelect: {
+      listAria: 'component.drag-select.listAria',
+      handleAria: 'component.drag-select.handleAria',
+      clear: 'component.drag-select.clear',
+      selected: 'component.drag-select.selected'
+    },
+    batchPanel: {
+      selected: 'component.batch-panel.selected',
+      empty: 'component.batch-panel.empty'
+    },
+    messageBox: {
+      inputError: 'component.message-box.inputError'
+    },
+    pageHeader: {
+      back: 'component.page-header.back'
+    },
+    segmented: {
+      aria: 'component.segmented.aria'
+    },
+    inputOtp: {
+      aria: 'component.input-otp.aria',
+      /** Digit cell label — `{n}` */
+      digit: 'component.input-otp.digit'
+    },
+    timeSelect: {
+      placeholder: 'component.time-select.placeholder',
+      aria: 'component.time-select.aria',
+      clear: 'component.time-select.clear'
+    },
+    select: {
+      search: 'component.select.search',
+      empty: 'component.select.empty',
+      listboxAria: 'component.select.listboxAria',
+      aria: 'component.select.aria',
+      removeTag: 'component.select.removeTag',
+      /** `{count}` remaining tags */
+      collapsedTags: 'component.select.collapsedTags',
+      loading: 'component.select.loading',
+      clear: 'component.select.clear'
+    },
+    mention: {
+      placeholder: 'component.mention.placeholder',
+      listAria: 'component.mention.listAria',
+      empty: 'component.mention.empty',
+      loading: 'component.mention.loading'
+    },
+    image: {
+      title: 'component.image.title',
+      lead: 'component.image.lead',
+      altFallback: 'component.image.altFallback',
+      loadError: 'component.image.loadError'
+    },
+    imageViewer: {
+      title: 'component.image-viewer.title',
+      lead: 'component.image-viewer.lead',
+      aria: 'component.image-viewer.aria',
+      zoomIn: 'component.image-viewer.zoomIn',
+      zoomOut: 'component.image-viewer.zoomOut',
+      rotate: 'component.image-viewer.rotate',
+      /** `{current}` `{total}` */
+      counter: 'component.image-viewer.counter',
+      /** `{index}` */
+      imageAlt: 'component.image-viewer.imageAlt'
+    },
+    tour: {
+      title: 'component.tour.title',
+      lead: 'component.tour.lead',
+      aria: 'component.tour.aria',
+      skip: 'component.tour.skip',
+      finish: 'component.tour.finish',
+      targetMissing: 'component.tour.targetMissing'
+    },
+    infiniteScroll: {
+      title: 'component.infinite-scroll.title',
+      lead: 'component.infinite-scroll.lead',
+      loading: 'component.infinite-scroll.loading',
+      finished: 'component.infinite-scroll.finished'
+    },
+    treeSelect: {
+      placeholder: 'component.tree-select.placeholder'
+    }
+  },
   avatar: {
     /** AvatarGroup +N overflow accessible label — `{count}` */
     overflow: 'avatar.group.overflow',
@@ -106,6 +212,7 @@ export const LocaleKeys = {
       ariaImg: 'page.base.atoms.button.ariaImg'
     },
     gallery: {
+      openDoc: 'page.gallery.openDoc',
       maturity: {
         lead: 'page.gallery.maturity.lead',
         filter: 'page.gallery.maturity.filter',
@@ -115,6 +222,11 @@ export const LocaleKeys = {
         ready: 'page.gallery.maturity.ready',
         score: 'page.gallery.maturity.score',
         previewHint: 'page.gallery.maturity.previewHint'
+      },
+      v01: {
+        filter: 'page.gallery.v01.filter',
+        badge: 'page.gallery.v01.badge',
+        hint: 'page.gallery.v01.hint'
       }
     }
   },
@@ -146,6 +258,8 @@ export const LocaleKeys = {
     validation: 'error.validation',
     required: 'error.required',
     minLength: 'error.minLength',
+    maxLength: 'error.maxLength',
+    pattern: 'error.pattern',
     passwordMismatch: 'error.passwordMismatch',
     invalidEmail: 'error.invalidEmail'
   },
@@ -163,6 +277,7 @@ export const LocaleKeys = {
     forgotPassword: 'auth.forgotPassword',
     sendCode: 'auth.sendCode',
     resendIn: 'auth.resendIn',
+    resendCode: 'auth.resendCode',
     verifyCode: 'auth.verifyCode',
     captcha: 'auth.captcha',
     captchaPass: 'auth.captchaPass',
@@ -217,7 +332,8 @@ export const LocaleKeys = {
     sampleInput: 'chrome.sampleInput',
     toggle: 'chrome.toggle',
     current: 'chrome.current',
-    brandFoot: 'chrome.brandFoot'
+    brandFoot: 'chrome.brandFoot',
+    stackLayers: 'chrome.stackLayers'
   },
   biz: {
     loginTitle: 'biz.login.title',
@@ -239,6 +355,11 @@ export const LocaleKeys = {
     demo: 'nav.demo',
     system: 'nav.system',
     primary: 'nav.primary',
+    badge: {
+      goldDod: 'nav.badge.goldDod',
+      epParity: 'nav.badge.epParity',
+      exclusiveNew: 'nav.badge.exclusiveNew'
+    },
     baseCategory: {
       general: 'nav.base.category.general',
       layout: 'nav.base.category.layout',
@@ -276,9 +397,25 @@ export const LocaleKeys = {
     apiDraft: 'example.doc.apiDraft',
     overview: 'example.doc.overview',
     fallbackLead: 'example.doc.fallbackLead',
-    demoPending: 'example.doc.demoPending'
+    demoPending: 'example.doc.demoPending',
+    fallbackSampleTitle: 'example.doc.fallback.sampleTitle',
+    fallbackSampleBody: 'example.doc.fallback.sampleBody',
+    safeMountErrorTitle: 'example.doc.safeMount.errorTitle',
+    safeMountErrorBody: 'example.doc.safeMount.errorBody',
+    inputText: { when: 'example.doc.inputText.when' },
+    alert: { when: 'example.doc.alert.when' },
+    dialog: { when: 'example.doc.dialog.when' }
   },
   industry: {
+    common: {
+      noData: 'industry.common.noData',
+      noLogs: 'industry.common.noLogs',
+      noAlarms: 'industry.common.noAlarms',
+      noChannels: 'industry.common.noChannels',
+      noTasks: 'industry.common.noTasks',
+      noMarks: 'industry.common.noMarks',
+      noQueue: 'industry.common.noQueue'
+    },
     video: {
       play: 'industry.video.play',
       pause: 'industry.video.pause',

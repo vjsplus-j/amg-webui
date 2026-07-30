@@ -1,16 +1,15 @@
 import type { BaseProps } from '@amg-webui/types'
 
-export interface HeaderProps extends BaseProps {
-  title?: string
-  description?: string
-  data?: unknown
-  modelValue?: unknown
-  disabled?: boolean
-  loading?: boolean
-}
+export type HeaderPadding = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'page'
 
-export interface HeaderEmits {
-  (e: 'update:modelValue', value: unknown): void
-  (e: 'change', value: unknown): void
-  (e: 'click', event: MouseEvent): void
+export interface HeaderProps extends BaseProps {
+  sticky?: boolean
+  /** Viewport-fixed bar (implies sticky stacking) */
+  fixed?: boolean
+  bordered?: boolean
+  size?: 'sm' | 'md' | 'lg'
+  /** Horizontal padding token; default follows size / page pad */
+  padding?: HeaderPadding
+  /** Soft glass surface (default true) */
+  translucent?: boolean
 }

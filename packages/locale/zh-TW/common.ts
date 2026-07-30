@@ -58,4 +58,5 @@ export default {
   'chrome.toggle': '切换',
   'chrome.current': '当前：{label}',
   'chrome.brandFoot': 'AMG-WebUI · packages 架构',
+  'chrome.stackLayers': 'base · business · theme · hooks',
 } as Record<string, string>

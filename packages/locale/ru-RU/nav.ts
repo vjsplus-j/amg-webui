@@ -18,5 +18,8 @@ export default {
   'nav.base.category.feedback': 'Обратная связь',
   'nav.base.category.other': 'Прочее',
   'nav.base.category.industry': 'Отрасль',
-  'nav.primary': 'Основная навигация'
+  'nav.primary': 'Основная навигация',
+  'nav.badge.goldDod': 'DoD',
+  'nav.badge.epParity': 'EP',
+  'nav.badge.exclusiveNew': 'New'
 } as Record<string, string>

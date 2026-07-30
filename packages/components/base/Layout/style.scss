@@ -1,48 +1,79 @@
 .vp-layout {
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-body);
+  --vp-layout-chrome-pad-x: var(--theme-page-pad);
+  --vp-layout-chrome-gap: var(--spacing-md);
 
-  &__title {
-    margin: 0 0 var(--spacing-sm);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+  background: var(--ds-bg, var(--surface-0));
+  color: var(--ds-text, var(--text-primary));
+
+  &--horizontal,
+  &--has-sider {
+    flex-direction: row;
+    align-items: stretch;
   }
 
-  &__body {
-    display: flex;
+  &--vertical:not(.vp-layout--has-sider) {
     flex-direction: column;
-    gap: var(--spacing-md);
+  }
+
+  &--shell {
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+  }
+
+  &--fill {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  @supports (height: 100dvh) {
+    &--shell {
+      height: 100dvh;
+      max-height: 100dvh;
+    }
+  }
+
+  /* Nested layout = main column beside sider */
+  &--has-sider > .vp-layout {
+    flex: 1;
     min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        ellipse 90% 45% at 50% -18%,
+        color-mix(in srgb, var(--ds-accent) 7%, transparent),
+        transparent 55%
+      ),
+      var(--ds-bg, var(--surface-0));
   }
+}
 
-  &__panel {
-    background: var(--surface-1);
-    border: 1px solid var(--ds-border, var(--border-color));
-    border-radius: var(--theme-card-radius, var(--border-radius-md));
-    padding: var(--theme-card-pad, var(--spacing-md));
-  }
+html:has(.vp-layout--shell),
+html:has(.vp-layout--shell) body {
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
 
-  &__muted {
-    color: var(--text-secondary);
-    font-size: var(--font-size-sm);
-  }
+html:has(.vp-layout--shell) #app,
+html:has(.vp-layout--shell) .app {
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
 
-  &__chart {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  &__toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-    align-items: center;
-  }
-
-  &--disabled {
-    opacity: 0.55;
-    pointer-events: none;
+/* Align with legacy shell breakpoint */
+@media (max-width: 768px) {
+  .vp-layout--shell.vp-layout--has-sider {
+    flex-direction: column;
   }
 }

@@ -1,25 +1,34 @@
 import type { BaseProps } from '@amg-webui/types'
 
-export interface NavItem {
+export interface TabsNavItem {
+  name: string
   label: string
-  value?: string | number
-  icon?: string
+  closable?: boolean
   disabled?: boolean
-  href?: string
-  to?: string
-  children?: NavItem[]
 }
 
-
 export interface TabsNavProps extends BaseProps {
-  items?: NavItem[]
-  modelValue?: string | number
+  items?: TabsNavItem[]
+  modelValue?: string
+  closable?: boolean
   disabled?: boolean
-  direction?: 'horizontal' | 'vertical'
+  /**
+   * When true (default), show scroll arrows + more menu if tabs overflow.
+   */
+  overflow?: boolean
+  /** Enable HTML5 drag-and-drop reorder; emits update:items + reorder */
+  draggable?: boolean
+  trackId?: string
+  telemetry?: boolean
 }
 
 export interface TabsNavEmits {
-  (e: 'update:modelValue', value: string | number): void
-  (e: 'change', value: string | number): void
-  (e: 'select', item: NavItem, event: MouseEvent): void
+  (e: 'update:modelValue', value: string): void
+  (e: 'change', value: string): void
+  (e: 'close', name: string): void
+  (e: 'update:items', items: TabsNavItem[]): void
+  (e: 'reorder', payload: { from: number; to: number; items: TabsNavItem[] }): void
 }
+
+/** @deprecated */
+export type NavItem = TabsNavItem

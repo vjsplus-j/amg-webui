@@ -6,6 +6,8 @@ export default {
   'error.validation': 'Проверьте заполнение формы',
   'error.required': 'Обязательное поле',
   'error.minLength': 'Не менее {min, plural, one {# символ} few {# символа} many {# символов} other {# символа}}',
+  'error.maxLength': 'Не более {max} символов',
+  'error.pattern': 'Неверный формат',
   'error.passwordMismatch': 'Пароли не совпадают',
   'error.invalidEmail': 'Введите корректный адрес электронной почты'
 } as Record<string, string>

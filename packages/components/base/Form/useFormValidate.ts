@@ -1,26 +1,32 @@
 import type { FormRule } from './types'
+import { LocaleService } from '@amg-webui/locale'
+import { LocaleKeys } from '@amg-webui/locale'
+
+function t(key: string, params?: Record<string, string | number>) {
+  return LocaleService.t(key, params)
+}
 
 export async function runRule(
   value: unknown,
   rule: FormRule
 ): Promise<string | null> {
   if (rule.required && (value == null || value === '' || (Array.isArray(value) && !value.length))) {
-    return rule.message ?? 'required'
+    return rule.message ?? t(LocaleKeys.error.required)
   }
   if (rule.min != null && typeof value === 'string' && value.length < rule.min) {
-    return rule.message ?? 'min'
+    return rule.message ?? t(LocaleKeys.error.minLength, { min: rule.min })
   }
   if (rule.max != null && typeof value === 'string' && value.length > rule.max) {
-    return rule.message ?? 'max'
+    return rule.message ?? t(LocaleKeys.error.maxLength, { max: rule.max })
   }
   if (rule.pattern && typeof value === 'string' && !rule.pattern.test(value)) {
-    return rule.message ?? 'pattern'
+    return rule.message ?? t(LocaleKeys.error.pattern)
   }
   if (rule.validator) {
     const result = await rule.validator(value)
     if (result === true) return null
     if (typeof result === 'string') return result
-    return rule.message ?? 'invalid'
+    return rule.message ?? t(LocaleKeys.error.validation)
   }
   return null
 }

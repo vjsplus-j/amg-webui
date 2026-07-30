@@ -8,4 +8,5 @@ export interface CountdownProps extends BaseProps {
 
 export interface CountdownEmits {
   (e: 'finish'): void
+  (e: 'tick', remainingMs: number): void
 }

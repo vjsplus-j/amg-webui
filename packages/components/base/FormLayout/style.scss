@@ -1,48 +1,147 @@
 .vp-form-layout {
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-body);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  gap: var(--spacing-md);
+  font-family: var(--font-family-sans);
 
-  &__title {
-    margin: 0 0 var(--spacing-sm);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-  }
-
-  &__body {
-    display: flex;
-    flex-direction: column;
+  // Shared row / form-item grid for horizontal + vertical single-column
+  :deep(.vp-form-layout__row),
+  :deep(.vp-form-item) {
+    display: grid;
     gap: var(--spacing-md);
+    align-items: start;
     min-width: 0;
   }
 
-  &__panel {
-    background: var(--surface-1);
-    border: 1px solid var(--ds-border, var(--border-color));
-    border-radius: var(--theme-card-radius, var(--border-radius-md));
-    padding: var(--theme-card-pad, var(--spacing-md));
-  }
-
-  &__muted {
-    color: var(--text-secondary);
+  :deep(.vp-form-layout__label),
+  :deep(.vp-form-item__label) {
     font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: var(--line-height-body);
   }
 
-  &__chart {
-    width: 100%;
-    height: auto;
-    display: block;
+  :deep(.vp-form-layout__control),
+  :deep(.vp-form-item__content) {
+    min-width: 0;
   }
 
-  &__toolbar {
-    display: flex;
+  &--colon {
+    :deep(.vp-form-layout__label)::after,
+    :deep(.vp-form-item__label)::after {
+      content: var(--vp-form-layout-colon, ':');
+      margin-inline-start: var(--spacing-xs);
+      color: var(--text-secondary);
+    }
+  }
+
+  // Horizontal — label column + control column
+  &--layout-horizontal {
+    :deep(.vp-form-layout__row),
+    :deep(.vp-form-item) {
+      grid-template-columns: var(--vp-form-layout-label, calc(var(--spacing-2xl) * 3.5)) minmax(0, 1fr);
+    }
+
+    :deep(.vp-form-layout__label),
+    :deep(.vp-form-item__label) {
+      padding-top: var(--spacing-sm);
+    }
+
+    &.vp-form-layout--cols-2,
+    &.vp-form-layout--cols-3 {
+      display: grid;
+      grid-template-columns: repeat(var(--vp-form-layout-columns, 1), minmax(0, 1fr));
+      gap: var(--spacing-md);
+
+      :deep(.vp-form-layout__row),
+      :deep(.vp-form-item) {
+        grid-template-columns: var(--vp-form-layout-label, calc(var(--spacing-2xl) * 3.5)) minmax(0, 1fr);
+      }
+    }
+
+    &.vp-form-layout--cols-2 {
+      --vp-form-layout-columns: 2;
+    }
+
+    &.vp-form-layout--cols-3 {
+      --vp-form-layout-columns: 3;
+    }
+  }
+
+  // Vertical — label stacked above control
+  &--layout-vertical {
+    :deep(.vp-form-layout__row),
+    :deep(.vp-form-item) {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto auto;
+    }
+
+    :deep(.vp-form-layout__label),
+    :deep(.vp-form-item__label) {
+      padding-top: 0;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    &.vp-form-layout--cols-2,
+    &.vp-form-layout--cols-3 {
+      display: grid;
+      gap: var(--spacing-md);
+
+      :deep(.vp-form-layout__row),
+      :deep(.vp-form-item) {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    &.vp-form-layout--cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &.vp-form-layout--cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  // Inline — label + control on one line, wrap as a row
+  &--layout-inline {
+    flex-direction: row;
     flex-wrap: wrap;
-    gap: var(--spacing-md);
-    align-items: center;
-  }
+    align-items: flex-start;
 
-  &--disabled {
-    opacity: 0.55;
-    pointer-events: none;
+    :deep(.vp-form-layout__row),
+    :deep(.vp-form-item) {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--spacing-sm);
+      width: auto;
+      max-width: 100%;
+      margin-inline-end: var(--spacing-lg);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    :deep(.vp-form-layout__label),
+    :deep(.vp-form-item__label) {
+      width: auto;
+      padding-top: 0;
+      flex-shrink: 0;
+    }
+
+    :deep(.vp-form-layout__control),
+    :deep(.vp-form-item__content) {
+      flex: 1 1 auto;
+      min-width: calc(var(--spacing-2xl) * 4);
+    }
+
+    &.vp-form-layout--label-sm,
+    &.vp-form-layout--label-md,
+    &.vp-form-layout--label-lg {
+      :deep(.vp-form-layout__label),
+      :deep(.vp-form-item__label) {
+        min-width: var(--vp-form-layout-label);
+      }
+    }
   }
 }

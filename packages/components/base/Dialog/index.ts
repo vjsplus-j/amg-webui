@@ -1,6 +1,6 @@
 import Dialog from './index.vue'
-import type { DialogProps } from './types'
+import type { DialogProps, DialogEmits, DialogSize } from './types'
 
 export { Dialog }
-export type { DialogProps }
+export type { DialogProps, DialogEmits, DialogSize }
 export default Dialog

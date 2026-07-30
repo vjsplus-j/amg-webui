@@ -3,6 +3,15 @@
 **docs = 给业务开发者查阅的官方站点**：标准示例、API 参数、使用教程。  
 可打包部署线上。与 **example（仅本地调试）** 严格区分，见 [APP_WORKFLOW.md §0](./APP_WORKFLOW.md)。
 
+## 0.1 试用（Release Step 4）
+
+| 文档 | 说明 |
+|------|------|
+| [安装](./guide/installation) | npm 安装与子路径 |
+| [快速开始](./guide/quick-start) | 最小接入 |
+| [RELEASE_0.1.md](./RELEASE_0.1.md) | 0.1.0 试用发包合同 |
+| [V0_1_SUBSET.md](./V0_1_SUBSET.md) | 承诺组件子集（Core ∪ B1–B4） |
+
 | | example | docs |
 |--|------|------|
 | 受众 | 库作者 | 业务开发者 |
@@ -28,4 +37,4 @@ npm run docs:dev          # 本地编写
 | [CHANGELOG.md](./CHANGELOG.md) | 近期变更札记 |
 | [workflow.md](./workflow.md) · [i18n.md](./i18n.md) · [tokens.md](./tokens.md) · [design-specs.md](./design-specs.md) | 捷径 |
 
-源码：[`packages/README.md`](../packages/README.md)。调试壳：[`example/README.md`](../example/README.md)（不上线）。
+源码：`packages/README.md`。调试壳：`example/README.md`（不上线，勿部署）。

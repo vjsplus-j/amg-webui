@@ -146,7 +146,16 @@ export const routes: RouteRecordRaw[] = [
       { path: 'base/forms', redirect: { name: 'base-overview' } },
       { path: 'base/data', redirect: { name: 'base-overview' } },
       { path: 'base/feedback', redirect: { name: 'base-overview' } },
-      { path: 'base/layout', redirect: { name: 'base-overview' } },
+      {
+        path: 'base/layout',
+        name: 'base-layout',
+        component: () => import('../pages/base/LayoutNavPage.vue'),
+        meta: {
+          titleKey: 'page.base.layout.title',
+          group: 'base',
+          icon: 'Layout'
+        }
+      },
       { path: 'base/third-party', redirect: { name: 'base-overview' } },
       { path: 'base/catalog', redirect: { name: 'base-overview' } },
       { path: 'base/industry', redirect: { name: 'base-overview' } },

@@ -6,6 +6,8 @@ export default {
   'error.validation': '请检查表单填写',
   'error.required': '此项为必填',
   'error.minLength': '最少 {min} 个字符',
+  'error.maxLength': '最多 {max} 个字符',
+  'error.pattern': '格式不正确',
   'error.passwordMismatch': '两次输入的密码不一致',
   'error.invalidEmail': '请输入有效的邮箱地址'
 } as Record<string, string>

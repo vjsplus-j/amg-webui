@@ -1,16 +1,17 @@
-import type { BaseProps } from '@amg-webui/types'
+export type ColumnGap = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'section'
+export type ColumnAlign = 'start' | 'center' | 'end' | 'stretch'
 
-export interface ColumnLayoutProps extends BaseProps {
-  title?: string
-  description?: string
-  data?: unknown
-  modelValue?: unknown
-  disabled?: boolean
-  loading?: boolean
+export interface ColumnLayoutProps {
+  columns?: number
+  gap?: ColumnGap
+  align?: ColumnAlign
+  dense?: boolean
+  /** Accessible label for the column group */
+  label?: string
+  class?: string
+  style?: Record<string, string>
 }
 
 export interface ColumnLayoutEmits {
-  (e: 'update:modelValue', value: unknown): void
-  (e: 'change', value: unknown): void
-  (e: 'click', event: MouseEvent): void
+  (e: 'columns-change', count: number): void
 }

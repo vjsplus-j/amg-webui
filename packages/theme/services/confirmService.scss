@@ -1,0 +1,164 @@
+/* Imperative ConfirmService host — keep visual parity with Confirm */
+
+#amg-webui-confirm-container {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--theme-page-pad, var(--spacing-xl));
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+#amg-webui-confirm-container.is-open {
+  display: flex;
+  pointer-events: auto;
+}
+
+.vp-confirm-service-mask {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--surface-0, #000) 48%, transparent);
+  backdrop-filter: blur(2px);
+}
+
+.vp-confirm-service {
+  --vp-confirm-service-tone: var(--info-500, var(--primary-500));
+  --vp-confirm-service-tone-soft: color-mix(
+    in srgb,
+    var(--vp-confirm-service-tone) 14%,
+    var(--surface-1)
+  );
+
+  position: relative;
+  z-index: 1;
+  width: min(100%, 26rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+  box-sizing: border-box;
+  background: var(--surface-1);
+  border: 1px solid var(--ds-border, var(--border-color));
+  border-radius: var(--theme-card-radius, var(--border-radius-lg));
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: vp-confirm-service-in var(--transition-normal, 0.2s ease);
+
+  &--success {
+    --vp-confirm-service-tone: var(--success-500);
+  }
+
+  &--info {
+    --vp-confirm-service-tone: var(--info-500, var(--primary-500));
+  }
+
+  &--warn {
+    --vp-confirm-service-tone: var(--warning-500);
+  }
+
+  &--error {
+    --vp-confirm-service-tone: var(--danger-500);
+  }
+
+  &__accent {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: 3px;
+    background: var(--vp-confirm-service-tone);
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: var(--height-lg, 2.5rem);
+    height: var(--height-lg, 2.5rem);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-full, 999px);
+    background: var(--vp-confirm-service-tone-soft);
+    color: var(--vp-confirm-service-tone);
+    border: 1px solid color-mix(in srgb, var(--vp-confirm-service-tone) 28%, transparent);
+  }
+
+  &__title {
+    margin: 0;
+    padding-block: var(--spacing-xs);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold, 600);
+    line-height: var(--line-height-body, 1.5);
+    color: var(--text-primary);
+  }
+
+  &__message {
+    margin: 0;
+    padding-inline-start: calc(var(--height-lg, 2.5rem) + var(--spacing-md));
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-body, 1.5);
+    color: var(--text-secondary);
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--spacing-md);
+    padding-block-start: var(--spacing-sm);
+  }
+
+  &__btn {
+    appearance: none;
+    height: var(--height-md, 2.25rem);
+    padding: 0 var(--spacing-lg);
+    border-radius: var(--theme-btn-radius, var(--border-radius-md));
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium, 500);
+    cursor: pointer;
+    transition:
+      background var(--transition-fast, 0.15s ease),
+      border-color var(--transition-fast, 0.15s ease),
+      color var(--transition-fast, 0.15s ease);
+
+    &--ghost {
+      border: 1px solid var(--ds-border, var(--border-color));
+      background: var(--surface-1);
+      color: var(--text-primary);
+
+      &:hover {
+        background: var(--surface-2);
+        border-color: var(--border-color-hover, var(--ds-border));
+      }
+    }
+
+    &--primary {
+      border: 1px solid transparent;
+      background: var(--vp-confirm-service-tone);
+      color: var(--surface-0, var(--surface-1));
+
+      &:hover {
+        filter: brightness(0.94);
+      }
+    }
+  }
+}
+
+@keyframes vp-confirm-service-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--spacing-sm)) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

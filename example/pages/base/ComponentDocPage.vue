@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineAsyncComponent, watch, type Component } from 'vue'
+import { computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Tag } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
@@ -7,7 +7,9 @@ import { LocaleKeys } from '@amg-webui/locale'
 import { getCatalogEntry } from '../../component-catalog'
 import { componentMaturity, type MaturityLevel } from '../../component-zones'
 import { getCuratedDemo } from '../../demos/registry'
+import { isV01Component, V01_COMPONENTS } from '../../v0.1-subset'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
+import DemoSafeHost from '../../components/demo/DemoSafeHost.vue'
 import ExamplePageHero from '../../components/ExamplePageHero.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
 import type { PropRow } from '../../components/demo/types'
@@ -15,29 +17,6 @@ import type { PropRow } from '../../components/demo/types'
 const route = useRoute()
 const router = useRouter()
 const { t, locale } = useLocale()
-
-const modules = import.meta.glob('../../../packages/components/base/*/index.vue') as Record<
-  string,
-  () => Promise<Component>
->
-
-const sampleTree = [
-  {
-    label: 'A',
-    value: 'a',
-    children: [
-      { label: 'A1', value: 'a1' },
-      { label: 'A2', value: 'a2' }
-    ]
-  },
-  { label: 'B', value: 'b', children: [{ label: 'B1', value: 'b1' }] }
-]
-
-const sampleRows = [
-  { id: 1, name: 'demo-01', status: 'online', value: 12 },
-  { id: 2, name: 'demo-02', status: 'offline', value: 28 },
-  { id: 3, name: 'demo-03', status: 'online', value: 18 }
-]
 
 const componentName = computed(() => String(route.params.name ?? ''))
 
@@ -63,27 +42,7 @@ const whenToUse = computed(() => {
   return t(LocaleKeys.exampleDoc.whenFallback, { name: componentName.value })
 })
 
-function loadMount(name: string) {
-  const key = Object.keys(modules).find((p) => p.includes(`/base/${name}/`))
-  if (!key) return null
-  return defineAsyncComponent(modules[key])
-}
-
-const MountComp = computed(() => {
-  if (curated.value) return null
-  return loadMount(componentName.value)
-})
-
 const maturity = computed(() => componentMaturity(componentName.value))
-
-const columns = computed(() => {
-  void locale.value
-  return [
-    { field: 'id', header: 'ID' },
-    { field: 'name', header: t('biz.name') },
-    { field: 'status', header: t('biz.status') }
-  ]
-})
 
 const draftProps = computed((): PropRow[] => {
   void locale.value
@@ -136,6 +95,13 @@ watch(
     <ExamplePageHero :title="displayTitle" :lead="whenToUse">
       <template #title-extra>
         <Tag
+          v-if="isV01Component(componentName)"
+          size="sm"
+          severity="success"
+          :label="t(LocaleKeys.page.gallery.v01.badge)"
+          :title="t(LocaleKeys.page.gallery.v01.hint, { count: V01_COMPONENTS.length })"
+        />
+        <Tag
           size="sm"
           :severity="levelSeverity(maturity.level)"
           :label="levelLabel(maturity.level)"
@@ -146,7 +112,9 @@ watch(
 
     <section v-if="curated" class="vp-doc-page__section">
       <h2 class="vp-doc-page__h2">{{ t(LocaleKeys.exampleDoc.demos) }}</h2>
-      <component :is="curated.Demo" />
+      <DemoSafeHost :name="componentName">
+        <component :is="curated.Demo" />
+      </DemoSafeHost>
     </section>
 
     <template v-else>
@@ -163,17 +131,7 @@ watch(
           :description="t(LocaleKeys.exampleDoc.basicMountDesc)"
           :code="`<${componentName} />`"
         >
-          <component
-            :is="MountComp"
-            :options="sampleTree"
-            :data="sampleTree"
-            :slides="sampleRows"
-            :items="sampleRows"
-            :columns="columns"
-            :rows="sampleRows"
-            :value="sampleRows"
-            :model-value="undefined"
-          />
+          <DemoSafeHost :name="componentName" />
         </DemoBlock>
       </section>
 

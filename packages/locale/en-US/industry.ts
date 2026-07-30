@@ -1,4 +1,11 @@
 export default {
+  'industry.common.noData': 'No data',
+  'industry.common.noLogs': 'No logs',
+  'industry.common.noAlarms': 'No alarms',
+  'industry.common.noChannels': 'No channels',
+  'industry.common.noTasks': 'No tasks',
+  'industry.common.noMarks': 'No marks',
+  'industry.common.noQueue': 'No queue items',
   'industry.video.play': 'Play',
   'industry.video.pause': 'Pause',
   'industry.video.mute': 'Mute',

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onUnmounted } from 'vue'
+import { ref, computed, watch, onUnmounted } from 'vue'
 import type { ResizeBoxProps, ResizeBoxEmits, ResizeDirection } from './types'
 import './style.scss'
 
@@ -17,6 +17,19 @@ const boxRef = ref<HTMLElement | null>(null)
 const boxWidth = ref<number | string>(props.width)
 const boxHeight = ref<number | string>(props.height)
 const activeHandle = ref<ResizeDirection | null>(null)
+
+watch(
+  () => props.width,
+  (v) => {
+    if (!activeHandle.value) boxWidth.value = v
+  }
+)
+watch(
+  () => props.height,
+  (v) => {
+    if (!activeHandle.value) boxHeight.value = v
+  }
+)
 
 function toCss(val: number | string): string {
   return typeof val === 'number' ? `${val}px` : val

@@ -6,6 +6,8 @@ export default {
   'error.validation': '양식 입력을 확인해 주세요',
   'error.required': '필수 항목입니다',
   'error.minLength': '최소 {min}자 이상이어야 합니다',
+  'error.maxLength': '최대 {max}자',
+  'error.pattern': '형식이 올바르지 않습니다',
   'error.passwordMismatch': '비밀번호가 일치하지 않습니다',
   'error.invalidEmail': '유효한 이메일 주소를 입력하세요'
 } as Record<string, string>

@@ -259,5 +259,6 @@ export default {
   'page.intro.icon.usageTitle': 'Использование в хосте',
   'page.intro.icon.usageLead': 'Переключите стиль иконок и используйте Icon в шаблоне:',
   'page.intro.icon.usageCode': 'import { IconStyleService } from \'@amg-webui/theme\'\nimport { Icon } from \'@amg-webui/components/base\'\n\nIconStyleService.init()\nIconStyleService.setStyle(\'outline\')\n// <Icon name="Search" size="md" />',
-  'page.intro.icon.usageNote': 'Именованные глифы — из @amg-webui/icons, чтобы не конфликтовать с именами компонентов корневого barrel.'
+  'page.intro.icon.usageNote': 'Именованные глифы — из @amg-webui/icons, чтобы не конфликтовать с именами компонентов корневого barrel.',
+  'page.gallery.openDoc': "Открыть документацию",
 } as Record<string, string>

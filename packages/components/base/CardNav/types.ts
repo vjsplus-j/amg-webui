@@ -1,21 +1,15 @@
 import type { BaseProps } from '@amg-webui/types'
+import type { NavItem } from '@amg-webui/utils/nav'
 
-export interface NavItem {
-  label: string
-  value?: string | number
-  icon?: string
-  disabled?: boolean
-  href?: string
-  to?: string
-  children?: NavItem[]
-}
-
+export type { NavItem }
 
 export interface CardNavProps extends BaseProps {
   items?: NavItem[]
   modelValue?: string | number
   disabled?: boolean
   direction?: 'horizontal' | 'vertical'
+  trackId?: string
+  telemetry?: boolean
 }
 
 export interface CardNavEmits {

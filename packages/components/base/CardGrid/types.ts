@@ -1,16 +1,21 @@
-import type { BaseProps } from '@amg-webui/types'
+export type CardGridMinTrack = 'sm' | 'md' | 'lg'
+export type CardGridGap = 'sm' | 'md' | 'lg' | 'xl' | 'section'
+export type CardGridFit = 'fill' | 'fit'
 
-export interface CardGridProps extends BaseProps {
-  title?: string
-  description?: string
-  data?: unknown
-  modelValue?: unknown
-  disabled?: boolean
-  loading?: boolean
+export interface CardGridProps {
+  /** Fixed column count (1–6). When set, ignores minTrack auto grid. */
+  columns?: number
+  /** Min track width for auto-fill / auto-fit mode */
+  minTrack?: CardGridMinTrack
+  /** `fill` keeps empty tracks; `fit` collapses empty tracks */
+  fit?: CardGridFit
+  gap?: CardGridGap
+  /** Stretch cards to equal row height (default true) */
+  equalHeight?: boolean
+  class?: string
+  style?: Record<string, string>
 }
 
 export interface CardGridEmits {
-  (e: 'update:modelValue', value: unknown): void
-  (e: 'change', value: unknown): void
-  (e: 'click', event: MouseEvent): void
+  (e: 'layout-change', columns: number | null): void
 }

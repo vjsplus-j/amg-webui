@@ -1,19 +1,66 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
+import type { Severity } from '@amg-webui/types'
+import Icon from '../Icon/index.vue'
+import Button from '../Button/index.vue'
 import type { ConfirmDialogProps, ConfirmDialogEmits } from './types'
 import './style.scss'
 
 const props = withDefaults(defineProps<ConfirmDialogProps>(), {
   visible: false,
   message: '',
+  title: '',
   icon: 'warning',
-  confirmLabel: 'Confirm',
-  cancelLabel: 'Cancel',
+  confirmLabel: '',
+  cancelLabel: '',
   modal: true,
-  draggable: true
+  draggable: false,
+  closable: true,
+  dismissible: true,
+  telemetry: undefined
 })
 
 const emit = defineEmits<ConfirmDialogEmits>()
+const { t } = useLocale()
+
+const confirmText = computed(() => props.confirmLabel || t(LocaleKeys.button.confirm))
+const cancelText = computed(() => props.cancelLabel || t(LocaleKeys.button.cancel))
+const closeLabel = computed(() => t(LocaleKeys.common.close))
+
+const ICON_MAP: Record<Severity, string> = {
+  primary: 'Info',
+  secondary: 'Info',
+  success: 'CircleCheck',
+  warning: 'TriangleAlert',
+  danger: 'CircleAlert',
+  info: 'Info'
+}
+
+const iconName = computed(() => ICON_MAP[props.icon] ?? 'TriangleAlert')
+
+const titleText = computed(() => {
+  if (props.title) return props.title
+  switch (props.icon) {
+    case 'success':
+      return t(LocaleKeys.common.success)
+    case 'danger':
+      return t(LocaleKeys.button.delete)
+    case 'info':
+      return t(LocaleKeys.button.confirm)
+    default:
+      return t(LocaleKeys.button.confirm)
+  }
+})
+
+const confirmSeverity = computed(() => {
+  if (props.icon === 'danger') return 'danger'
+  if (props.icon === 'success') return 'success'
+  if (props.icon === 'warning') return 'warning'
+  if (props.icon === 'info') return 'info'
+  return 'primary'
+})
 
 const isDragging = ref(false)
 const dialogRef = ref<HTMLElement | null>(null)
@@ -22,34 +69,35 @@ const startY = ref(0)
 const initialLeft = ref(0)
 const initialTop = ref(0)
 
-const closeDialog = () => {
+const closeDialog = (event?: Event) => {
   emit('update:visible', false)
+  if (event) emit('cancel', event)
 }
 
 const handleConfirm = (event: Event) => {
   emit('confirm', event)
-  closeDialog()
+  emit('update:visible', false)
 }
 
 const handleCancel = (event: Event) => {
-  emit('cancel', event)
-  closeDialog()
+  closeDialog(event)
 }
 
 const handleOverlayClick = (event: MouseEvent) => {
-  if (event.target === event.currentTarget) {
-    handleCancel(event)
-  }
+  if (!props.dismissible) return
+  if (event.target === event.currentTarget) handleCancel(event)
 }
 
 const handleKeydown = (event: KeyboardEvent) => {
-  if (props.visible && event.key === 'Escape') {
+  if (props.visible && props.dismissible && event.key === 'Escape') {
     handleCancel(event)
   }
 }
 
 const handleMouseDown = (event: MouseEvent) => {
   if (!props.draggable || !dialogRef.value) return
+  const target = event.target as HTMLElement
+  if (target.closest('button, a, input, textarea')) return
   isDragging.value = true
   startX.value = event.clientX
   startY.value = event.clientY
@@ -69,12 +117,22 @@ const handleMouseUp = () => {
   isDragging.value = false
 }
 
-watch(() => props.visible, (val) => {
-  if (val && dialogRef.value) {
-    dialogRef.value.style.left = ''
-    dialogRef.value.style.top = ''
-  }
-})
+function lockScroll(lock: boolean) {
+  if (!props.modal) return
+  document.documentElement.style.overflow = lock ? 'hidden' : ''
+}
+
+watch(
+  () => props.visible,
+  (val) => {
+    lockScroll(val)
+    if (val && dialogRef.value) {
+      dialogRef.value.style.left = ''
+      dialogRef.value.style.top = ''
+    }
+  },
+  { immediate: true }
+)
 
 onMounted(() => {
   document.addEventListener('keydown', handleKeydown)
@@ -86,80 +144,88 @@ onUnmounted(() => {
   document.removeEventListener('keydown', handleKeydown)
   document.removeEventListener('mousemove', handleMouseMove)
   document.removeEventListener('mouseup', handleMouseUp)
+  lockScroll(false)
 })
 </script>
 
 <template>
   <Teleport to="body">
-    <div
-      v-if="visible"
-      :class="[
-        'p-confirm-dialog-overlay',
-        {
-          'p-confirm-dialog-overlay-visible': visible
-        }
-      ]"
-      @click="handleOverlayClick"
-    >
+    <Transition name="vp-confirm-dialog">
       <div
-        ref="dialogRef"
+        v-if="visible"
         :class="[
-          'p-confirm-dialog',
-          {
-            'p-confirm-dialog-visible': visible,
-            'p-confirm-dialog-draggable': draggable,
-            'p-confirm-dialog-dragging': isDragging
-          },
-          props.class
+          'vp-confirm-dialog-overlay',
+          { 'vp-confirm-dialog-overlay--modal': modal }
         ]"
-        :style="style"
-        @mousedown="handleMouseDown"
+        role="presentation"
+        @click="handleOverlayClick"
       >
-        <div class="p-confirm-dialog-header">
-          <div :class="['p-confirm-dialog-icon', `p-confirm-dialog-icon-${icon}`]">
-            <svg v-if="icon === 'success'" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-            </svg>
-            <svg v-else-if="icon === 'warning'" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-            </svg>
-            <svg v-else-if="icon === 'danger'" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-            </svg>
-            <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-            </svg>
-          </div>
-          <div>
-            <div class="p-confirm-dialog-title">
-              <slot name="title">
-                {{ icon === 'success' ? 'Success' : icon === 'danger' ? 'Delete' : icon === 'info' ? 'Information' : 'Confirm' }}
-              </slot>
-            </div>
-          </div>
-        </div>
+        <div
+          ref="dialogRef"
+          :class="[
+            'vp-confirm-dialog',
+            `vp-confirm-dialog--${icon}`,
+            {
+              'vp-confirm-dialog--draggable': draggable,
+              'vp-confirm-dialog--dragging': isDragging
+            },
+            props.class
+          ]"
+          :style="style"
+          role="alertdialog"
+          aria-modal="true"
+          @mousedown="handleMouseDown"
+          @click.stop
+        >
+          <div class="vp-confirm-dialog__accent" aria-hidden="true" />
 
-        <div class="p-confirm-dialog-content">
-          <div class="p-confirm-dialog-message">
+          <header class="vp-confirm-dialog__header">
+            <div class="vp-confirm-dialog__lead">
+              <span class="vp-confirm-dialog__icon" aria-hidden="true">
+                <slot name="icon">
+                  <Icon :name="iconName" size="md" />
+                </slot>
+              </span>
+              <div class="vp-confirm-dialog__titles">
+                <div class="vp-confirm-dialog__title">
+                  <slot name="title">{{ titleText }}</slot>
+                </div>
+              </div>
+            </div>
+            <button
+              v-if="closable"
+              type="button"
+              class="vp-confirm-dialog__close"
+              :aria-label="closeLabel"
+              @click.stop="handleCancel"
+            >
+              <Icon name="X" size="sm" />
+            </button>
+          </header>
+
+          <div class="vp-confirm-dialog__body">
             <slot>{{ message }}</slot>
           </div>
-        </div>
 
-        <div class="p-confirm-dialog-footer">
-          <button
-            class="p-confirm-dialog-btn p-confirm-dialog-btn-cancel"
-            @click="handleCancel"
-          >
-            {{ cancelLabel }}
-          </button>
-          <button
-            class="p-confirm-dialog-btn p-confirm-dialog-btn-confirm"
-            @click="handleConfirm"
-          >
-            {{ confirmLabel }}
-          </button>
+          <footer class="vp-confirm-dialog__footer">
+            <slot name="footer">
+              <Button
+                variant="outlined"
+                size="md"
+                :label="cancelText"
+                @click="handleCancel"
+              />
+              <Button
+                variant="solid"
+                size="md"
+                :severity="confirmSeverity"
+                :label="confirmText"
+                @click="handleConfirm"
+              />
+            </slot>
+          </footer>
         </div>
       </div>
-    </div>
+    </Transition>
   </Teleport>
 </template>

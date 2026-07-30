@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import type { PaginationProps, PaginationEmits } from './types'
+import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
+import Icon from '../Icon/index.vue'
 import { usePagination } from './usePagination'
 import './style.scss'
 
@@ -11,6 +14,7 @@ const props = withDefaults(defineProps<PaginationProps>(), {
 })
 
 const emit = defineEmits<PaginationEmits>()
+const { t } = useLocale()
 
 const {
   total,
@@ -40,7 +44,7 @@ const handleSizeChange = (event: Event) => {
 </script>
 
 <template>
-  <nav :class="rootClass" :style="style" aria-label="pagination">
+  <nav :class="rootClass" :style="style" :aria-label="t(LocaleKeys.component.pagination.aria)">
     <span v-if="$slots.total" class="vp-pagination__total">
       <slot name="total" :total="total" :page="page" :page-size="pageSize" />
     </span>
@@ -49,10 +53,10 @@ const handleSizeChange = (event: Event) => {
       type="button"
       class="vp-pagination__btn"
       :disabled="!canPrev"
-      aria-label="previous"
+      :aria-label="t(LocaleKeys.common.previous)"
       @click="go(page - 1)"
     >
-      &lt;
+      <Icon name="ChevronLeft" size="sm" />
     </button>
 
     <template v-for="(item, idx) in pageItems" :key="`${item}-${idx}`">
@@ -73,10 +77,10 @@ const handleSizeChange = (event: Event) => {
       type="button"
       class="vp-pagination__btn"
       :disabled="!canNext"
-      aria-label="next"
+      :aria-label="t(LocaleKeys.common.next)"
       @click="go(page + 1)"
     >
-      &gt;
+      <Icon name="ChevronRight" size="sm" />
     </button>
 
     <select

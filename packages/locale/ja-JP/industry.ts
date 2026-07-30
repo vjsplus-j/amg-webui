@@ -1,4 +1,11 @@
 export default {
+  'industry.common.noData': 'データがありません',
+  'industry.common.noLogs': 'ログがありません',
+  'industry.common.noAlarms': 'アラームがありません',
+  'industry.common.noChannels': 'チャンネルがありません',
+  'industry.common.noTasks': 'タスクがありません',
+  'industry.common.noMarks': 'マークがありません',
+  'industry.common.noQueue': 'キューがありません',
   'industry.video.play': '再生',
   'industry.video.pause': '一時停止',
   'industry.video.mute': 'ミュート',

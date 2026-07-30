@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-15T12:47:16.682Z",
-  "total": 272,
+  "generatedAt": "2026-07-30T12:12:20.369Z",
+  "total": 284,
   "categories": [
     "general",
     "layout",
@@ -22,6 +22,7 @@
       "Card",
       "CardWidgets",
       "Collapse",
+      "ConfigProvider",
       "CopyText",
       "Divider",
       "Ellipsis",
@@ -31,6 +32,7 @@
       "Icon",
       "Link",
       "Progress",
+      "Segmented",
       "Skeleton",
       "Space",
       "Spin",
@@ -39,6 +41,7 @@
       "Typography"
     ],
     "layout": [
+      "Affix",
       "Block",
       "CardGrid",
       "Center",
@@ -53,6 +56,7 @@
       "Header",
       "Layout",
       "Main",
+      "PageHeader",
       "ResizeBox",
       "Row",
       "ScaleLayout",
@@ -90,6 +94,7 @@
       "Tabs",
       "TabsNav",
       "TopNav",
+      "Tour",
       "VerticalStepNav"
     ],
     "data-entry": [
@@ -119,9 +124,11 @@
       "ImageUpload",
       "InputCaptcha",
       "InputNumber",
+      "InputOTP",
       "InputText",
       "LoginPanel",
       "MdEditor",
+      "Mention",
       "MonthPicker",
       "Password",
       "PermissionPanel",
@@ -144,6 +151,7 @@
       "Textarea",
       "TimePicker",
       "TimeRangeInput",
+      "TimeSelect",
       "Transfer",
       "Upload",
       "UserInfoCard",
@@ -167,7 +175,10 @@
       "GaugeChart",
       "GraphChart",
       "HeatMap",
+      "Image",
       "ImageGroup",
+      "ImageViewer",
+      "InfiniteScroll",
       "LazyTree",
       "LineChart",
       "MergeTable",
@@ -213,6 +224,7 @@
       "LoadingTip",
       "Mask",
       "Message",
+      "MessageBox",
       "NoticeBar",
       "Notification",
       "Popconfirm",
@@ -307,6 +319,11 @@
       "category": "data-entry",
       "titleKey": "component.advanced-search.title",
       "leadKey": "component.advanced-search.lead"
+    },
+    "Affix": {
+      "category": "layout",
+      "titleKey": "component.affix.title",
+      "leadKey": "component.affix.lead"
     },
     "Alert": {
       "category": "feedback",
@@ -537,6 +554,11 @@
       "category": "layout",
       "titleKey": "component.column-layout.title",
       "leadKey": "component.column-layout.lead"
+    },
+    "ConfigProvider": {
+      "category": "general",
+      "titleKey": "component.config-provider.title",
+      "leadKey": "component.config-provider.lead"
     },
     "Confirm": {
       "category": "feedback",
@@ -883,6 +905,11 @@
       "titleKey": "component.icon.title",
       "leadKey": "component.icon.lead"
     },
+    "Image": {
+      "category": "data-display",
+      "titleKey": "component.image.title",
+      "leadKey": "component.image.lead"
+    },
     "ImageCrop": {
       "category": "other",
       "titleKey": "component.image-crop.title",
@@ -898,10 +925,20 @@
       "titleKey": "component.image-upload.title",
       "leadKey": "component.image-upload.lead"
     },
+    "ImageViewer": {
+      "category": "data-display",
+      "titleKey": "component.image-viewer.title",
+      "leadKey": "component.image-viewer.lead"
+    },
     "IndexNav": {
       "category": "navigation",
       "titleKey": "component.index-nav.title",
       "leadKey": "component.index-nav.lead"
+    },
+    "InfiniteScroll": {
+      "category": "data-display",
+      "titleKey": "component.infinite-scroll.title",
+      "leadKey": "component.infinite-scroll.lead"
     },
     "InfoModal": {
       "category": "feedback",
@@ -922,6 +959,11 @@
       "category": "data-entry",
       "titleKey": "component.input-number.title",
       "leadKey": "component.input-number.lead"
+    },
+    "InputOTP": {
+      "category": "data-entry",
+      "titleKey": "component.input-otp.title",
+      "leadKey": "component.input-otp.lead"
     },
     "InputText": {
       "category": "data-entry",
@@ -983,6 +1025,11 @@
       "titleKey": "component.md-editor.title",
       "leadKey": "component.md-editor.lead"
     },
+    "Mention": {
+      "category": "data-entry",
+      "titleKey": "component.mention.title",
+      "leadKey": "component.mention.lead"
+    },
     "Menu": {
       "category": "navigation",
       "titleKey": "component.menu.title",
@@ -1002,6 +1049,11 @@
       "category": "feedback",
       "titleKey": "component.message.title",
       "leadKey": "component.message.lead"
+    },
+    "MessageBox": {
+      "category": "feedback",
+      "titleKey": "component.message-box.title",
+      "leadKey": "component.message-box.lead"
     },
     "MiniNav": {
       "category": "navigation",
@@ -1072,6 +1124,11 @@
       "category": "industry",
       "titleKey": "component.ptz-control.title",
       "leadKey": "component.ptz-control.lead"
+    },
+    "PageHeader": {
+      "category": "layout",
+      "titleKey": "component.page-header.title",
+      "leadKey": "component.page-header.lead"
     },
     "PagerNav": {
       "category": "navigation",
@@ -1257,6 +1314,11 @@
       "category": "data-entry",
       "titleKey": "component.search-filter-panel.title",
       "leadKey": "component.search-filter-panel.lead"
+    },
+    "Segmented": {
+      "category": "general",
+      "titleKey": "component.segmented.title",
+      "leadKey": "component.segmented.lead"
     },
     "Select": {
       "category": "data-entry",
@@ -1463,6 +1525,11 @@
       "titleKey": "component.time-range-input.title",
       "leadKey": "component.time-range-input.lead"
     },
+    "TimeSelect": {
+      "category": "data-entry",
+      "titleKey": "component.time-select.title",
+      "leadKey": "component.time-select.lead"
+    },
     "Timeline": {
       "category": "data-display",
       "titleKey": "component.timeline.title",
@@ -1492,6 +1559,11 @@
       "category": "navigation",
       "titleKey": "component.top-nav.title",
       "leadKey": "component.top-nav.lead"
+    },
+    "Tour": {
+      "category": "navigation",
+      "titleKey": "component.tour.title",
+      "leadKey": "component.tour.lead"
     },
     "Transfer": {
       "category": "data-entry",

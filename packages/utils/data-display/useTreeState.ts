@@ -1,5 +1,11 @@
 import { computed, ref, watch, type Ref } from 'vue'
-import { type FlatTreeRow, type TreeNode, nodeKey } from './tree-types'
+import {
+  type FlatTreeRow,
+  type TreeCheckState,
+  type TreeNode,
+  nodeKey,
+  nodeValue
+} from './tree-types'
 
 export function flattenVisibleTree(
   nodes: TreeNode[],
@@ -23,7 +29,7 @@ export function flattenVisibleTree(
 export function collectDescendantValues(node: TreeNode): (string | number)[] {
   const vals: (string | number)[] = []
   const walk = (n: TreeNode) => {
-    vals.push(n.value ?? n.label)
+    vals.push(nodeValue(n))
     n.children?.forEach(walk)
   }
   walk(node)
@@ -45,30 +51,65 @@ export function filterTreeNodes(nodes: TreeNode[], query: string): TreeNode[] {
   return walk(nodes)
 }
 
-type TreeEmit = (event: 'update:modelValue' | 'change', value: unknown) => void
+export function getNodeCheckState(
+  node: TreeNode,
+  checkedSet: Set<string | number>,
+  checkStrictly: boolean
+): TreeCheckState {
+  const val = nodeValue(node)
+  if (checkStrictly) {
+    return checkedSet.has(val) ? 'checked' : 'unchecked'
+  }
+  const desc = collectDescendantValues(node)
+  const checkedCount = desc.filter((v) => checkedSet.has(v)).length
+  if (checkedCount === 0) return 'unchecked'
+  if (checkedCount === desc.length) return 'checked'
+  return 'indeterminate'
+}
+
+export type TreeStateEmit = {
+  (e: 'update:modelValue', value: unknown): void
+  (e: 'change', value: unknown): void
+  (e: 'node-click', node: TreeNode): void
+  (e: 'check-change', node: TreeNode, checked: boolean, indeterminate: boolean): void
+  (e: 'node-expand', node: TreeNode): void
+  (e: 'node-collapse', node: TreeNode): void
+}
+
+export interface UseTreeStateOptions {
+  checkable?: boolean
+  defaultExpandAll?: boolean
+  checkStrictly?: boolean
+}
 
 export function useTreeState(
   roots: Ref<TreeNode[]>,
   modelValue: Ref<unknown>,
-  emit: TreeEmit,
-  opts?: { checkable?: boolean; defaultExpandAll?: boolean }
+  emit: TreeStateEmit,
+  opts?: UseTreeStateOptions
 ) {
+  const checkStrictly = opts?.checkStrictly ?? false
   const expandedSet = ref<Set<string>>(new Set())
   const searchQuery = ref('')
   const activeId = ref<string | null>(null)
 
-  if (opts?.defaultExpandAll) {
+  function collectAllExpandableIds(nodes: TreeNode[], parentId = 'root'): Set<string> {
     const all = new Set<string>()
-    const walk = (nodes: TreeNode[], parentId = 'root') => {
-      for (const n of nodes) {
-        const id = nodeKey(n, parentId)
-        if (n.children?.length) {
+    const walk = (list: TreeNode[], pid = 'root') => {
+      for (const n of list) {
+        const id = nodeKey(n, pid)
+        if (n.children?.length && !n.isLeaf) {
           all.add(id)
           walk(n.children, id)
         }
       }
     }
-    watch(roots, (r) => { walk(r); expandedSet.value = all }, { immediate: true })
+    walk(nodes, parentId)
+    return all
+  }
+
+  if (opts?.defaultExpandAll) {
+    watch(roots, (r) => { expandedSet.value = collectAllExpandableIds(r) }, { immediate: true })
   }
 
   const checkedSet = ref<Set<string | number>>(
@@ -83,14 +124,24 @@ export function useTreeState(
   )
 
   const filteredRoots = computed(() => filterTreeNodes(roots.value, searchQuery.value))
-
   const flatRows = computed(() => flattenVisibleTree(filteredRoots.value, expandedSet.value))
 
-  function toggleExpand(id: string) {
+  function emitChecked(next: Set<string | number>) {
+    const arr = [...next]
+    emit('update:modelValue', arr)
+    emit('change', arr)
+  }
+
+  function toggleExpand(id: string, node?: TreeNode) {
+    const wasExpanded = expandedSet.value.has(id)
     const next = new Set(expandedSet.value)
-    if (next.has(id)) next.delete(id)
+    if (wasExpanded) next.delete(id)
     else next.add(id)
     expandedSet.value = next
+    if (node) {
+      if (wasExpanded) emit('node-collapse', node)
+      else emit('node-expand', node)
+    }
   }
 
   function setChecked(val: string | number, on: boolean) {
@@ -98,36 +149,51 @@ export function useTreeState(
     if (on) next.add(val)
     else next.delete(val)
     checkedSet.value = next
-    const arr = [...next]
-    emit('update:modelValue', arr)
-    emit('change', arr)
+    emitChecked(next)
   }
 
   function toggleCheck(node: TreeNode) {
-    const val = node.value ?? node.label
-    setChecked(val, !checkedSet.value.has(val))
+    const state = getNodeCheckState(node, checkedSet.value, checkStrictly)
+    const nextChecked = state !== 'checked'
+    const next = new Set(checkedSet.value)
+
+    if (checkStrictly) {
+      const val = nodeValue(node)
+      if (nextChecked) next.add(val)
+      else next.delete(val)
+    } else {
+      const vals = collectDescendantValues(node)
+      vals.forEach((v) => (nextChecked ? next.add(v) : next.delete(v)))
+    }
+
+    checkedSet.value = next
+    emitChecked(next)
+
+    const afterState = getNodeCheckState(node, next, checkStrictly)
+    emit(
+      'check-change',
+      node,
+      afterState === 'checked',
+      afterState === 'indeterminate'
+    )
+  }
+
+  function getCheckState(node: TreeNode): TreeCheckState {
+    return getNodeCheckState(node, checkedSet.value, checkStrictly)
   }
 
   function selectNode(id: string, node: TreeNode) {
     activeId.value = id
-    const val = node.value ?? node.label
-    emit('update:modelValue', val)
-    emit('change', val)
+    if (!opts?.checkable) {
+      const val = nodeValue(node)
+      emit('update:modelValue', val)
+      emit('change', val)
+    }
+    emit('node-click', node)
   }
 
   function expandAll() {
-    const all = new Set<string>()
-    const walk = (nodes: TreeNode[], parentId = 'root') => {
-      for (const n of nodes) {
-        const id = nodeKey(n, parentId)
-        if (n.children?.length) {
-          all.add(id)
-          walk(n.children, id)
-        }
-      }
-    }
-    walk(roots.value)
-    expandedSet.value = all
+    expandedSet.value = collectAllExpandableIds(roots.value)
   }
 
   function collapseAll() {
@@ -144,6 +210,7 @@ export function useTreeState(
     toggleExpand,
     setChecked,
     toggleCheck,
+    getCheckState,
     selectNode,
     expandAll,
     collapseAll

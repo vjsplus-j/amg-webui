@@ -259,5 +259,6 @@ export default {
   'page.intro.icon.usageTitle': '호스트사용법',
   'page.intro.icon.usageLead': '아이콘풍격을 바꾸고 형판에서 Icon 사용:',
   'page.intro.icon.usageCode': 'import { IconStyleService } from \'@amg-webui/theme\'\nimport { Icon } from \'@amg-webui/components/base\'\n\nIconStyleService.init()\nIconStyleService.setStyle(\'outline\')\n// <Icon name="Search" size="md" />',
-  'page.intro.icon.usageNote': '이름있는글씨는 @amg-webui/icons에서. 뿌리 barrel성분명충돌을 피한다.'
+  'page.intro.icon.usageNote': '이름있는글씨는 @amg-webui/icons에서. 뿌리 barrel성분명충돌을 피한다.',
+  'page.gallery.openDoc': "문서 열기",
 } as Record<string, string>

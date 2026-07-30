@@ -1,48 +1,39 @@
 .vp-scale-layout {
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-body);
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
 
-  &__title {
-    margin: 0 0 var(--spacing-sm);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
+  &--fill {
+    height: 100%;
+    min-height: 100%;
   }
 
-  &__body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    min-width: 0;
+  &__inner {
+    transform: scale(var(--vp-scale, 1));
+    transform-origin: top left;
+    box-sizing: border-box;
   }
 
-  &__panel {
-    background: var(--surface-1);
-    border: 1px solid var(--ds-border, var(--border-color));
-    border-radius: var(--theme-card-radius, var(--border-radius-md));
-    padding: var(--theme-card-pad, var(--spacing-md));
+  &--center:not(.vp-scale-layout--design) &__inner {
+    transform-origin: center center;
   }
 
-  &__muted {
-    color: var(--text-secondary);
-    font-size: var(--font-size-sm);
+  /* Fixed design board: absolute center so layout box does not inflate the host */
+  &--design &__inner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(var(--vp-scale, 1));
+    transform-origin: center center;
   }
 
-  &__chart {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  &__toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-    align-items: center;
-  }
-
-  &--disabled {
-    opacity: 0.55;
-    pointer-events: none;
+  &--design.vp-scale-layout--top-left &__inner {
+    left: 0;
+    top: 0;
+    transform: scale(var(--vp-scale, 1));
+    transform-origin: top left;
   }
 }

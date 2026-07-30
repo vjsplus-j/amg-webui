@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Icon from '../Icon/index.vue'
 import type { ContextMenuItem } from './types'
 
 defineProps<{
@@ -16,33 +17,34 @@ const emit = defineEmits<{
 <template>
   <li
     :class="[
-      'p-contextmenu-item',
+      'vp-contextmenu__item',
       {
-        'p-contextmenu-item-disabled': item.disabled,
-        'p-contextmenu-item-divider': item.divider
+        'vp-contextmenu__item--disabled': item.disabled,
+        'vp-contextmenu__item--divider': item.divider
       }
     ]"
+    role="menuitem"
+    :aria-disabled="item.disabled || undefined"
     @click="emit('click', item, $event)"
     @mouseenter="item.children && emit('mouseenter', item.label)"
     @mouseleave="emit('mouseleave')"
   >
     <template v-if="item.divider" />
     <template v-else>
-      <div class="p-contextmenu-item-content">
-        <span v-if="item.icon" class="p-contextmenu-item-icon">{{ item.icon }}</span>
-        <span class="p-contextmenu-item-label">{{ item.label }}</span>
+      <div class="vp-contextmenu__item-content">
+        <span v-if="item.icon" class="vp-contextmenu__item-icon">{{ item.icon }}</span>
+        <span class="vp-contextmenu__item-label">{{ item.label }}</span>
       </div>
-      <span v-if="item.children" class="p-contextmenu-item-arrow">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M9 6l6 6-6 6"/>
-        </svg>
+      <span v-if="item.children" class="vp-contextmenu__item-arrow" aria-hidden="true">
+        <Icon name="ChevronRight" size="sm" />
       </span>
 
       <div
         v-if="item.children && activeSubmenu === item.label"
-        class="p-contextmenu-submenu p-contextmenu-submenu-visible"
+        class="vp-contextmenu__submenu"
+        role="menu"
       >
-        <ul class="p-contextmenu-items">
+        <ul class="vp-contextmenu__items">
           <ContextMenuItem
             v-for="(child, childIndex) in item.children"
             :key="`${child.label}-${childIndex}`"

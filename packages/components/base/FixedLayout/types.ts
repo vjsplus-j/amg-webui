@@ -1,16 +1,15 @@
 import type { BaseProps } from '@amg-webui/types'
 
 export interface FixedLayoutProps extends BaseProps {
-  title?: string
-  description?: string
-  data?: unknown
-  modelValue?: unknown
-  disabled?: boolean
-  loading?: boolean
+  mode?: 'fixed' | 'absolute'
+  position?: 'top' | 'bottom' | 'left' | 'right'
+  offset?: 'none' | 'sm' | 'md' | 'lg'
+  zIndex?: number
+  /**
+   * Reserve in-flow space matching the bar so content is not covered.
+   * Place the component before main content (top/left) or after (bottom/right).
+   */
+  placeholder?: boolean
 }
 
-export interface FixedLayoutEmits {
-  (e: 'update:modelValue', value: unknown): void
-  (e: 'change', value: unknown): void
-  (e: 'click', event: MouseEvent): void
-}
+export type FixedLayoutEmits = Record<string, never>

@@ -5,8 +5,11 @@ export interface TablePrintProps extends BaseProps {
   data?: Record<string, unknown>[]
   title?: string
   disabled?: boolean
+  bordered?: boolean
 }
 
 export interface TablePrintEmits {
   (e: 'print'): void
+  (e: 'before-print'): void
+  (e: 'after-print'): void
 }

@@ -58,4 +58,5 @@ export default {
   'chrome.toggle': 'Toggle',
   'chrome.current': 'Current: {label}',
   'chrome.brandFoot': 'AMG-WebUI · packages architecture',
+  'chrome.stackLayers': 'base · business · theme · hooks',
 } as Record<string, string>

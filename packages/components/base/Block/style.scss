@@ -1,48 +1,100 @@
 .vp-block {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   color: var(--text-primary);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-body);
+  margin: 0;
+  border: 1px solid transparent;
 
-  &__title {
-    margin: 0 0 var(--spacing-sm);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
+  &--display-block {
+    display: block;
+  }
+
+  &--display-flex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--display-inline-flex {
+    display: inline-flex;
+    flex-direction: column;
+    width: auto;
+  }
+
+  &--display-grid {
+    display: grid;
+  }
+
+  &--display-inline-block {
+    display: inline-block;
+    width: auto;
+  }
+
+  &--bg-transparent {
+    background: transparent;
+  }
+
+  &--bg-surface-0 {
+    background: var(--surface-0);
+  }
+
+  &--bg-surface-1 {
+    background: var(--surface-1);
+  }
+
+  &--bg-surface-2 {
+    background: var(--surface-2);
+  }
+
+  &--bg-elevated {
+    background: var(--surface-1);
+  }
+
+  &--radius-none {
+    border-radius: 0;
+  }
+
+  &--radius-sm {
+    border-radius: var(--border-radius-sm);
+  }
+
+  &--radius-md {
+    border-radius: var(--border-radius-md);
+  }
+
+  &--radius-card {
+    border-radius: var(--theme-card-radius);
+  }
+
+  &--bordered {
+    border-color: var(--ds-border);
+  }
+
+  &--raised {
+    box-shadow: var(--shadow-sm);
+  }
+
+  &--full-bleed {
+    width: calc(100% + var(--theme-page-pad) * 2);
+    max-width: none;
+    margin-inline: calc(var(--theme-page-pad) * -1);
+    border-radius: 0;
   }
 
   &__body {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
-    min-width: 0;
-  }
-
-  &__panel {
-    background: var(--surface-1);
-    border: 1px solid var(--ds-border, var(--border-color));
-    border-radius: var(--theme-card-radius, var(--border-radius-md));
-    padding: var(--theme-card-pad, var(--spacing-md));
-  }
-
-  &__muted {
-    color: var(--text-secondary);
-    font-size: var(--font-size-sm);
-  }
-
-  &__chart {
     width: 100%;
-    height: auto;
-    display: block;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 0;
   }
 
-  &__toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-    align-items: center;
+  &.vp-block--padded > .vp-block__body {
+    padding: var(--vp-block-pad, var(--theme-card-pad));
   }
 
-  &--disabled {
-    opacity: 0.55;
-    pointer-events: none;
+  &.vp-block--gap > .vp-block__body {
+    gap: var(--vp-block-gap, var(--spacing-md));
   }
 }

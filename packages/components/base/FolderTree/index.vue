@@ -34,7 +34,7 @@ const {
   selectNode,
   expandAll,
   collapseAll
-} = useTreeState(roots, modelRef, emit as (e: 'update:modelValue' | 'change', v: unknown) => void, { checkable: false })
+} = useTreeState(roots, modelRef, emit as never, { checkable: false })
 
 const titleText = computed(() => props.title ?? t('component.folder-tree.title'))
 </script>
