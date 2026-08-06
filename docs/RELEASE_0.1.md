@@ -101,7 +101,4 @@ npm run test:consumers # → npm pack 后在 vite / webpack / nuxt fixture 中�
 
 - [x] `packages/utils/zIndexManager.ts` · `useZIndex` · `useOverlay`
 - [x] `ConfigProvider.zIndex` → `setZIndexBase`
-- [x] `Dialog` / `Confirm` / `MessageBox` / `Drawer` 接入（引用计数 scroll lock + focus trap + Escape）
-- [x] `tests/unit/overlay-core.spec.ts`
-- [ ] Select / Cascader / DatePicker 等下拉 Teleport + floating 统一
-- [ ] Mask / Popover / Tooltip / Dropdown 全面迁到 `useOverlay`
+- [x] 接入：`Dialog` / `Confirm` / `MessageBox` / `Drawer` / `Mask`（引用计数 scroll lock + focus trap + Escape）
