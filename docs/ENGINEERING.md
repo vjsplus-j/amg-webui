@@ -19,6 +19,9 @@
 | `npm run validate:catalog` | 校验 `example/component-catalog.json` ↔ base 目录覆盖 |
 | `npm run score:maturity` | 组件成熟度评分（脚手架 vs 实现深度） |
 | `npm run sync:example-zones` | 同步 example 专区侧栏 / 区域元数据 |
+| `npm run generate:vitepress-api` | 根据 `types.ts` 生成 / 刷新 docs 组件 API stub |
+| `node scripts/classify-mvp.mjs` | 深化波次清单 → `scripts/.component-waves.json` |
+| `node scripts/check-coverage.mjs` | catalog / base 目录覆盖核对 |
 | `npm run build` / `build:lib` | 库发包构建 → `dist/` |
 | `npm run build:skill` | 仅构建独立 Skill Runtime → `dist/skill/`（ESM + CJS + `.d.ts`） |
 | `npm run build:example` | example 本地冒烟 → `example-dist/`（**不上线**） |
@@ -79,19 +82,23 @@ Skill 两个 subpath 指向 `dist/skill/` 独立产物；根入口 `packages/ind
 
 ---
 
-## 脚本目录
+## 脚本目录（仅保留长期工具）
 
 ```
 scripts/
-├── create-component.mjs          # 骨架
-├── generate-entry.mjs            # 自动入口
-├── extract-i18n.mjs              # 多语言批量提取 / 模板补齐
-├── generate-icon-catalog.mjs     # 图标目录
+├── create-component.mjs           # 骨架
+├── generate-entry.mjs             # 自动入口
+├── extract-i18n.mjs               # 多语言批量提取 / 模板补齐
+├── generate-icon-catalog.mjs      # 图标目录（读 lucide-meta/）
 ├── generate-component-catalog.mjs
 ├── validate-component-catalog.mjs
 ├── score-component-maturity.mjs
 ├── sync-example-zones.mjs
-└── …                             # 迁移 / 深度补强 / 编码修复（一次性 patch_* 可归档）
+├── generate-vitepress-api.mjs     # docs 组件 API stub
+├── classify-mvp.mjs               # 深化波次清单 → .component-waves.json
+├── check-coverage.mjs             # catalog / 目录覆盖核对
+├── lucide-meta/                   # 图标元数据
+└── .component-waves.json          # classify-mvp 产物
 ```
 
-临时诊断脚本勿入库长期保留；修复完成后删除。
+一次性 `patch-*` / `upgrade-*` / `fix-*` / `inject-*` / demo 生成脚本**不得长期入库**；用完即删。新自动化优先挂到上表 npm 脚本。

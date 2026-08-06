@@ -52,11 +52,13 @@ VUE3-AMG-WEBUI/
 │   ├── pages/                  # 七大专区：base / biz / theme / i18n / perf / lab / dev
 │   ├── demos/                  # curated 组件演示
 │   ├── layouts/ · router/ · stores/ · mock/
-├── scripts/                    # create / entry / i18n / catalog / maturity …
+├── scripts/                    # 长期工程脚本（见 ENGINEERING；一次性 patch 勿入库）
 ├── dist/                       # npm run build → 库发包（不入库）
 ├── example-dist/                  # build:example 本地冒烟（不入库、不上线）
 └── …
 ```
+
+根目录只保留产品入口文档（`README` · `AGENTS` · `CHANGELOG` · `LICENSE`）。组件规范 / 验收草稿不放仓库根；权威文档在 `docs/` 与 `packages/*/README.md`。
 
 > **example ≠ docs**：example 给库作者排障（压测 / 复现 OK）；docs 给业务方查阅（仅标准示例 + API）。见 [`docs/APP_WORKFLOW.md`](./docs/APP_WORKFLOW.md) §0。
 
@@ -99,7 +101,7 @@ TelemetryService.configure({
 | **Skill Runtime（experimental）** | 独立子路径、实例隔离、Scope 与 Pipeline JSON v1；SR3 built-ins / example 尚未实现 | [`docs/SKILL_RUNTIME.md`](./docs/SKILL_RUNTIME.md) |
 | **通用区组件** | Button / Link / Tag / Avatar… + Space / Spin / CopyText / Collapse / Statistic / CardWidgets（ABCD 拖拽互换）等 | example `base` 目录 · catalog |
 | **事件契约** | 交互组件旁路 `trackEmit`；业务 `emit` 保留（Badge click、FloatButton openChange、Progress finish…） | TELEMETRY · 各组件 types |
-| **工程脚本** | `create:component` · `generate:entry` · `extract:i18n` · `validate:catalog` · `score:maturity` … | [`docs/ENGINEERING.md`](./docs/ENGINEERING.md) |
+| **工程脚本** | `create:component` · `generate:entry` · `extract:i18n` · `validate:catalog` · `score:maturity` · `generate:vitepress-api` · `build:skill` | [`docs/ENGINEERING.md`](./docs/ENGINEERING.md) |
 
 ## 规范文档
 

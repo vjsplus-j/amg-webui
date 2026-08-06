@@ -4,6 +4,12 @@
 
 试用发包（pre-1.0）。**API 可变**；正式 1.0 见 `docs/LIBRARY_PLAN.md` P4–P5。
 
+### 仓库卫生
+
+- 移除根目录组件规范草稿、阶段验收报告与杂项产物（`exampleDoc.ts` / `missing-components.txt` / `test-results`）。
+- 精简 `scripts/`：仅保留长期工程工具（create / entry / i18n / catalog / maturity / vitepress-api / classify-mvp / check-coverage）；一次性 patch/upgrade/fix 脚本已删除。
+- 同步更新 `README` · `docs/ENGINEERING.md` · `docs/components/index.md` · `packages/*/README.md`。
+
 ### 合同
 
 - 承诺组件：v0.1 子集（Core∪B1∪B2∪B3∪**B4**），见 `docs/V0_1_SUBSET.md` · `example/v0.1-subset.ts`

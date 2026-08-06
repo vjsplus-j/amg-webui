@@ -48,6 +48,8 @@ Avatar · AvatarGroup · Badge · Button · ButtonGroup · Card · **CardWidgets
 npm run create:component -- base Foo
 npm run generate:entry
 npm run extract:i18n
+npm run validate:catalog   # 若登记了 catalog
 ```
 
-详见 [`docs/ENGINEERING.md`](../docs/ENGINEERING.md)。
+组件对外文档：[`docs/components/`](../docs/components/)（薄 API stub）· example curated demos（深度演示，不上线）。  
+工程脚本清单与「一次性脚本勿入库」约定：[`docs/ENGINEERING.md`](../docs/ENGINEERING.md)。

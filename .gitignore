@@ -8,6 +8,8 @@ example/dist
 !.vscode/extensions.json
 !.vscode/settings.json
 coverage
+test-results
+playwright-report
 *.log
 .vite
 *.tsbuildinfo

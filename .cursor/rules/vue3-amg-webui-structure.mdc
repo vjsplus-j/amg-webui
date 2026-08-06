@@ -23,7 +23,7 @@ VUE3-AMG-WEBUI/
 │   ├── types/
 │   └── index.ts           # 库统一入口
 ├── example/                  # 本地开发调试工具（不上线；非对外 demo）
-├── scripts/               # 自动化（新建组件、入口生成、多语言提取、catalog …）
+├── scripts/               # 长期工程脚本（create / entry / i18n / catalog …；一次性 patch 勿入库）
 ├── tests/unit/ · tests/e2e/
 ├── dist/                  # 库发包产物
 └── 根配置：vite / vitest / vitepress / tsconfig / package.json …

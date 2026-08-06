@@ -34,5 +34,7 @@ components/
 ## 相关
 
 - Catalog：`example/component-catalog.json`（`npm run validate:catalog`）
-- 成熟度：`npm run score:maturity`
+- 成熟度：`npm run score:maturity` · 覆盖：`node scripts/check-coverage.mjs`
+- 对外 stub：[`docs/components/`](../../docs/components/) · 深化计划：[`docs/COMPONENT_DEEPEN_PLAN.md`](../../docs/COMPONENT_DEEPEN_PLAN.md)
 - Telemetry：[`../telemetry/README.md`](../telemetry/README.md)
+- Skill Runtime（独立包，非本目录）：[`../skill/README.md`](../skill/README.md)

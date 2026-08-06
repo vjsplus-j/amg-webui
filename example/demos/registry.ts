@@ -16,7 +16,7 @@ function loadDemo(folder: string): Component {
   return modules[key].default
 }
 
-/** Curated docs — synced by scripts/repair-exampledoc-and-registry.mjs */
+/** Curated demo registry — keep in sync with `example/demos/*/index.vue` folders. */
 export const DEMO_REGISTRY: Record<string, CuratedDemoDoc> = {
   AdvancedSearch: { whenKey: 'example.doc.advancedSearch.when', Demo: loadDemo('AdvancedSearch') },
   Affix: { whenKey: 'example.doc.affix.when', Demo: loadDemo('Affix') },

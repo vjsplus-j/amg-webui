@@ -49,5 +49,6 @@ example/
 - 文案 / 色值 / 尺寸禁止硬编码（同库规则）
 - 组件实现在 `packages/`；本目录只写薄页面与演示
 - **Demo 铺满：** `DemoBlock` / `DemoCode` / curated 演示横向铺满内容区，勿套 `max-width` 阅读栏或给代码区加 `max-height` 嵌套滚动（见 `.cursor/rules/vue3-amg-webui-example-demo-layout.mdc`）
+- curated 注册表：`demos/registry.ts`（与 `demos/*/index.vue` 目录对齐）
 
-详见 [`docs/APP_WORKFLOW.md`](../docs/APP_WORKFLOW.md)。
+详见 [`docs/APP_WORKFLOW.md`](../docs/APP_WORKFLOW.md) · 工程脚本 [`docs/ENGINEERING.md`](../docs/ENGINEERING.md)。

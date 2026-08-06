@@ -18,9 +18,12 @@ Skill Runtime: `docs/SKILL_RUNTIME.md` · locked rule: `vue3-amg-webui-skill-run
 | `validate:catalog` | catalog ↔ base coverage |
 | `score:maturity` | component depth score |
 | `generate:icons` | refresh icon catalog |
+| `generate:vitepress-api` | regenerate docs component API stubs |
+| `sync:example-zones` | sync example zone metadata |
 | `build:skill` | build optional `amg-webui/skill` + `amg-webui/skill/core` entries |
 
-Files: `scripts/create-component.mjs` · `generate-entry.mjs` · `extract-i18n.mjs` · …
+Long-lived files under `scripts/`: `create-component` · `generate-entry` · `extract-i18n` · `generate-icon-catalog` · `generate-component-catalog` · `validate-component-catalog` · `score-component-maturity` · `sync-example-zones` · `generate-vitepress-api` · `classify-mvp` · `check-coverage` · `lucide-meta/`.  
+**Do not** keep one-off `patch-*` / `upgrade-*` / `fix-*` / `inject-*` / demo-gen scripts in the repo after use — see `docs/ENGINEERING.md`.
 
 Aliases:
 - `@amg-webui/telemetry` → `packages/telemetry/index.ts` (file path, avoid dual Vite instances).
