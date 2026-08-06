@@ -1,3 +1,7 @@
+/**
+ * Built entry for `amg-webui/theme` — JS without forcing consumers to load SCSS source.
+ * Precompiled CSS is emitted beside this entry as `style.css` (also `amg-webui/theme/style.css`).
+ */
 import './styles/index.scss'
 
 export {
@@ -62,7 +66,6 @@ export {
   type ButtonForm
 } from './specs'
 
-/** Core re-exports for monorepo convenience (prefer `amg-webui/theme/core` in apps). */
 export {
   createThemeRuntime,
   createNullHost,

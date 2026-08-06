@@ -14,7 +14,9 @@ console.log(`[build] mode=${mode}`)
 const configs =
   mode === 'skill'
     ? ['vite.skill.config.ts']
-    : ['vite.config.ts', 'vite.skill.config.ts']
+    : mode === 'theme'
+      ? ['vite.theme.config.ts']
+      : ['vite.config.ts', 'vite.skill.config.ts', 'vite.theme.config.ts']
 const viteCli = resolve(root, 'node_modules', 'vite', 'bin', 'vite.js')
 
 for (const config of configs) {

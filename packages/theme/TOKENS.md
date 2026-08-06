@@ -157,19 +157,20 @@ border: 1px solid var(--ds-border);
 - `ln-*`：Chrome 壳专用  
 - 禁止 `--blue` / `--myColor` 等未分类名  
 
-### 3.3 运行时写入
+### 3.4 运行时写入
 
 | Attribute / Service | 变量影响 |
 |---------------------|----------|
-| `html[data-design]` | 全套色板 / 圆角 / 字阶 / 控件高 |
-| `html[data-scheme]` | Linear / Apple 亮暗 |
-| `html[data-font]` | 字族 |
-| `html[data-icon-style]` | 图标描边 |
-| `html[data-locale]` | 文案语言（见 i18n 规范） |
+| `html[data-design]`（或微前端 root） | 全套色板 / 圆角 / 字阶 / 控件高 |
+| `[data-scheme]` | Linear / Apple 亮暗 |
+| `[data-font]` | 字族 |
+| `[data-icon-style]` | 图标描边 |
+| `[data-locale]` | 文案语言（见 i18n 规范） |
 
-切换：`ThemeService` · `FontService` · `IconStyleService` · `LocaleService`。
+切换：`ThemeService` · `FontService` · `IconStyleService` · `LocaleService`。  
+内核：`createThemeRuntime`（`amg-webui/theme/core`）— Host / Storage 可注入，SSR 用 `createNullHost` + `createMemoryStorage`；无闪屏用 `themeBootScriptTag()`。
 
-### 3.4 TS 常量镜像
+### 3.5 TS 常量镜像
 
 ```ts
 import { SPACING, RADIUS, SHADOW, BORDER, COLOR_SEMANTIC } from '@amg-webui/theme'
@@ -186,11 +187,13 @@ import { SPACING, RADIUS, SHADOW, BORDER, COLOR_SEMANTIC } from '@amg-webui/them
 - [ ] 阴影不超过 sm/md/lg 三档常用  
 - [ ] 边框统一 1px + `--ds-border`  
 - [ ] 改 token 同步 `TOKENS.md` + `specs.ts` + Cursor rule  
+- [ ] Core 入口不引入 `document` / `localStorage`；浏览器副作用只在 Host 适配器  
 
 ---
 
 ## 5. 相关文档
 
 - 布局 / 密度 / 按钮卡片：`SPEC.md`  
+- 主题 API / SSR / 微前端：`docs/theme/index.md`  
 - 多语言文案：`packages/locale/I18N.md`  
 - 应用路由：`docs/APP_WORKFLOW.md`

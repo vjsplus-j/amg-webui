@@ -1,60 +1,28 @@
-export type IconStyleName = 'outline' | 'solid'
+import {
+  iconStyles,
+  getDefaultThemeRuntime,
+  resolveThemeFromStorage,
+  createAutoStorage,
+  type IconStyleName,
+  type IconStyleConfig
+} from '../core'
 
-export interface IconStyleConfig {
-  name: IconStyleName
-  label: string
-  description: string
-}
-
-/**
- * Lucide is stroke-based (Linear / Iconify Lucide).
- * Styles map to stroke weights, not fill vs stroke.
- * @see https://icon-sets.iconify.design/lucide/
- */
-export const iconStyles: IconStyleConfig[] = [
-  {
-    name: 'outline',
-    label: 'Linear 线框',
-    description: 'Lucide 默认描边（stroke ≈ 1.75），对齐 Linear UI'
-  },
-  {
-    name: 'solid',
-    label: '加粗描边',
-    description: 'Lucide 加粗描边（stroke ≈ 2.25），强调操作态'
-  }
-]
-
-const STORAGE_KEY = 'amg-webui-icon-style-v2'
-const ATTR = 'data-icon-style'
-const DEFAULT_STYLE: IconStyleName = 'outline'
-
-let currentStyle: IconStyleName = DEFAULT_STYLE
-const listeners = new Set<(style: IconStyleName) => void>()
-
-function notify() {
-  listeners.forEach((fn) => fn(currentStyle))
-}
+export type { IconStyleName, IconStyleConfig }
+export { iconStyles }
 
 export class IconStyleService {
   static getCurrentStyle(): IconStyleName {
-    return currentStyle
+    return getDefaultThemeRuntime().getState().iconStyle
   }
 
   static setStyle(style: IconStyleName): void {
-    if (!iconStyles.some((s) => s.name === style)) return
-
-    document.documentElement.setAttribute(ATTR, style)
-    const stroke = style === 'solid' ? '2.25' : '1.75'
-    document.documentElement.style.setProperty('--icon-stroke-width', stroke)
-    currentStyle = style
-    localStorage.setItem(STORAGE_KEY, style)
-    notify()
+    getDefaultThemeRuntime().setIconStyle(style)
   }
 
+  /** Restore icon style from storage only — does not change design / font. */
   static init(): void {
-    const stored = localStorage.getItem(STORAGE_KEY) as IconStyleName | null
-    const next = stored && iconStyles.some((s) => s.name === stored) ? stored : DEFAULT_STYLE
-    IconStyleService.setStyle(next)
+    const resolved = resolveThemeFromStorage({ storage: createAutoStorage() })
+    IconStyleService.setStyle(resolved.iconStyle)
   }
 
   static getStyles(): IconStyleConfig[] {
@@ -62,15 +30,21 @@ export class IconStyleService {
   }
 
   static toggleStyle(): IconStyleName {
-    const idx = iconStyles.findIndex((s) => s.name === currentStyle)
+    const current = IconStyleService.getCurrentStyle()
+    const idx = iconStyles.findIndex((s) => s.name === current)
     const next = iconStyles[(idx + 1) % iconStyles.length].name
     IconStyleService.setStyle(next)
     return next
   }
 
   static subscribe(fn: (style: IconStyleName) => void): () => void {
-    listeners.add(fn)
-    return () => listeners.delete(fn)
+    let last = IconStyleService.getCurrentStyle()
+    return getDefaultThemeRuntime().subscribe((state) => {
+      if (state.iconStyle !== last) {
+        last = state.iconStyle
+        fn(state.iconStyle)
+      }
+    })
   }
 }
 

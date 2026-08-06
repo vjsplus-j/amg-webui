@@ -41,10 +41,18 @@
     "./style.css": "./dist/style.css",
     "./dist/style.css": "./dist/style.css",
     "./theme": {
-      "types": "./packages/theme/index.ts",
-      "import": "./packages/theme/index.ts",
-      "default": "./packages/theme/index.ts"
+      "types": "./dist/theme/index.d.ts",
+      "import": "./dist/theme/index.js",
+      "require": "./dist/theme/index.cjs",
+      "default": "./dist/theme/index.js"
     },
+    "./theme/core": {
+      "types": "./dist/theme/core.d.ts",
+      "import": "./dist/theme/core.js",
+      "require": "./dist/theme/core.cjs",
+      "default": "./dist/theme/core.js"
+    },
+    "./theme/style.css": "./dist/theme/style.css",
     "./telemetry": {
       "types": "./packages/telemetry/index.ts",
       "import": "./packages/telemetry/index.ts",
@@ -84,6 +92,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "build:lib": "node build/index.mjs full",
     "build:skill": "node build/index.mjs skill",
+    "build:theme": "node build/index.mjs theme",
     "build:example": "vue-tsc --noEmit && vite build --config vite.example.config.ts",
     "preview": "vite preview --config vite.example.config.ts",
     "create:component": "node scripts/create-component.mjs",
@@ -94,7 +103,7 @@
     "validate:catalog": "node scripts/validate-component-catalog.mjs",
     "extract:i18n": "node scripts/extract-i18n.mjs",
     "test": "vitest run",
-    "test:ssr": "vitest run tests/unit/ssr-env.spec.ts tests/unit/ssr-import.spec.ts",
+    "test:ssr": "vitest run tests/unit/ssr-env.spec.ts tests/unit/ssr-import.spec.ts tests/unit/theme-core.spec.ts",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "ci": "vue-tsc --noEmit && npm run validate:catalog && npm run test && npm run build:lib",

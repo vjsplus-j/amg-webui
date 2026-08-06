@@ -22,7 +22,14 @@
 - `version` 修正为 `0.1.0`（原占位 `1.0.0` 撤销）
 - `peerDependencies`: `vue@^3.4` · `@lucide/vue@^1.0`
 - 主入口：`dist` ESM + UMD + `style.css` + types
-- 子路径：`theme` · `telemetry` · `icons` · `components/base` · `components/business` · experimental `skill` / `skill/core`
+- 子路径：`theme` · `theme/core` · `theme/style.css` · `telemetry` · `icons` · `components/base` · `components/business` · experimental `skill` / `skill/core`
+
+### Theme Core
+
+- 主题运行时拆为 **Core（无 DOM）+ Host / Storage 适配器**：`createThemeRuntime`、`createNullHost` / `createDocumentHost`、`createMemoryStorage` / `createWebStorage`
+- `ThemeService` / `FontService` / `IconStyleService` 改为默认单例门面；支持 `configure({ root, storageNamespace })` 微前端隔离、`applyCustom` CSS 变量热更新
+- 发包：`npm run build:theme` → `dist/theme/`（对齐 skill）；`amg-webui/theme` 不再指向源码 `.ts`
+- 无闪屏：`createThemeBootScript` / `themeBootScriptTag`；example `index.html` 内联 boot 脚本
 
 ### Skill Runtime（experimental）
 

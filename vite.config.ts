@@ -13,6 +13,7 @@ const alias = {
   '@amg-webui/telemetry': resolve(root, 'packages/telemetry/index.ts'),
   '@amg-webui/skill/core': resolve(root, 'packages/skill/core.ts'),
   '@amg-webui/skill': resolve(root, 'packages/skill/index.ts'),
+  '@amg-webui/theme/core': resolve(root, 'packages/theme/core.ts'),
   '@amg-webui/theme': resolve(root, 'packages/theme'),
   '@amg-webui/icons': resolve(root, 'packages/icons'),
   '@amg-webui/utils': resolve(root, 'packages/utils'),

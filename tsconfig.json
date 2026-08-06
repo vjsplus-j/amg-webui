@@ -26,6 +26,7 @@
       "@amg-webui/telemetry": ["packages/telemetry/index.ts"],
       "@amg-webui/skill/core": ["packages/skill/core.ts"],
       "@amg-webui/skill": ["packages/skill/index.ts"],
+      "@amg-webui/theme/core": ["packages/theme/core.ts"],
       "@amg-webui/theme": ["packages/theme/index.ts"],
       "@amg-webui/icons": ["packages/icons/index.ts"],
       "@amg-webui/utils": ["packages/utils/index.ts"],

@@ -24,6 +24,7 @@
 | `node scripts/check-coverage.mjs` | catalog / base 目录覆盖核对 |
 | `npm run build` / `build:lib` | 库发包构建 → `dist/` |
 | `npm run build:skill` | 仅构建独立 Skill Runtime → `dist/skill/`（ESM + CJS + `.d.ts`） |
+| `npm run build:theme` | 仅构建主题包 → `dist/theme/`（`index` / `core` + `style.css`） |
 | `npm run build:example` | example 本地冒烟 → `example-dist/`（**不上线**） |
 | `npm run docs:dev` / `docs:build` | 官方文档站本地编写 / **可部署**构建 |
 | `npm run test` | Vitest |
@@ -42,11 +43,13 @@
 | `@amg-webui/telemetry` | `packages/telemetry/index.ts`（**写死到文件**，避免目录解析双实例） |
 | `@amg-webui/skill` | `packages/skill/index.ts`（Core + Vue 集成） |
 | `@amg-webui/skill/core` | `packages/skill/core.ts`（框架无关） |
-| `@amg-webui/theme` · `hooks` · `locale` · `icons` · … | 对应 `packages/*` |
+| `@amg-webui/theme` | `packages/theme/index.ts`（本地）；发包 → `dist/theme` |
+| `@amg-webui/theme/core` | `packages/theme/core.ts`（无 DOM Core） |
+| `@amg-webui/hooks` · `locale` · `icons` · … | 对应 `packages/*` |
 
-`package.json` `exports` 同步暴露：`.` · `./telemetry` · `./skill` · `./skill/core` · `./theme` · `./icons` · `./components/base` · `./components/business`。
+`package.json` `exports` 同步暴露：`.` · `./telemetry` · `./skill` · `./skill/core` · `./theme` · `./theme/core` · `./theme/style.css` · `./icons` · `./components/base` · `./components/business`。
 
-Skill 两个 subpath 指向 `dist/skill/` 独立产物；根入口 `packages/index.ts` **禁止** re-export Skill，避免主包产生隐式运行时依赖。
+Skill / Theme 的 subpath 指向 `dist/skill/` · `dist/theme/` 独立产物；根入口 `packages/index.ts` **禁止** re-export Skill。Theme 根入口可再导出服务，但 SSR / 微前端应优先 `theme/core`。
 
 ---
 

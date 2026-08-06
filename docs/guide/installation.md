@@ -31,7 +31,9 @@ import 'amg-webui/dist/style.css'
 | --- | --- |
 | `amg-webui` | 主入口（ESM / UMD + types） |
 | `amg-webui/style.css` | 全量样式 |
-| `amg-webui/theme` | `ThemeService` 等（源码，需 Vite/TS 解析） |
+| `amg-webui/theme` | `ThemeService` 等（`dist/theme` 预编译） |
+| `amg-webui/theme/core` | Theme Core（SSR 安全，无 DOM） |
+| `amg-webui/theme/style.css` | 预编译主题 CSS |
 | `amg-webui/telemetry` | 交互观测（**默认关闭**） |
 | `amg-webui/icons` | 图标 catalog / resolver |
 | `amg-webui/components/base` | 按需深路径（利于 tree-shake） |

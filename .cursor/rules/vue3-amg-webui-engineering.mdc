@@ -21,6 +21,7 @@ Skill Runtime: `docs/SKILL_RUNTIME.md` · locked rule: `vue3-amg-webui-skill-run
 | `generate:vitepress-api` | regenerate docs component API stubs |
 | `sync:example-zones` | sync example zone metadata |
 | `build:skill` | build optional `amg-webui/skill` + `amg-webui/skill/core` entries |
+| `build:theme` | build `amg-webui/theme` + `amg-webui/theme/core` + `theme/style.css` |
 
 Long-lived files under `scripts/`: `create-component` · `generate-entry` · `extract-i18n` · `generate-icon-catalog` · `generate-component-catalog` · `validate-component-catalog` · `score-component-maturity` · `sync-example-zones` · `generate-vitepress-api` · `classify-mvp` · `check-coverage` · `lucide-meta/`.  
 **Do not** keep one-off `patch-*` / `upgrade-*` / `fix-*` / `inject-*` / demo-gen scripts in the repo after use — see `docs/ENGINEERING.md`.
@@ -28,8 +29,11 @@ Long-lived files under `scripts/`: `create-component` · `generate-entry` · `ex
 Aliases:
 - `@amg-webui/telemetry` → `packages/telemetry/index.ts` (file path, avoid dual Vite instances).
 - `@amg-webui/skill` → `packages/skill/index.ts`; Core resolves to `packages/skill/core.ts`.
+- `@amg-webui/theme/core` → `packages/theme/core.ts`; published `amg-webui/theme*` → `dist/theme/`.
 
 Public Skill exports are `amg-webui/skill` and `amg-webui/skill/core`. The root `packages/index.ts` must not export Skill symbols; `build:skill` owns their independent JS and declaration output.
+
+Public Theme exports are `amg-webui/theme`, `amg-webui/theme/core`, and `amg-webui/theme/style.css`. Theme Core must not touch `document` / `localStorage` directly — use Host / Storage adapters.
 
 ## Performance (non-negotiable defaults)
 - **All list-like components** (DataTable, Tree, Select dropdown, infinite lists, virtualized menus): **virtual scroll ON by default** (opt-out only with explicit prop + docs warning).
