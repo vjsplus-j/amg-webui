@@ -31,18 +31,22 @@ import 'amg-webui/dist/style.css'
 | --- | --- |
 | `amg-webui` | 主入口（ESM / UMD + types） |
 | `amg-webui/style.css` | 全量样式 |
+| `amg-webui/button` · `amg-webui/data-table` · … | 按需组件（kebab → `dist/es`） |
 | `amg-webui/theme` | `ThemeService` 等（`dist/theme` 预编译） |
 | `amg-webui/theme/core` | Theme Core（SSR 安全，无 DOM） |
 | `amg-webui/theme/style.css` | 预编译主题 CSS |
-| `amg-webui/telemetry` | 交互观测（**默认关闭**） |
-| `amg-webui/icons` | 图标 catalog / resolver |
-| `amg-webui/components/base` | 按需深路径（利于 tree-shake） |
+| `amg-webui/security` · `telemetry` · `lowcode` | 子系统（`dist/<pkg>/`，非源码） |
+| `amg-webui/icons` · `hooks` · `utils` · `locale` | 运行时包 / 深路径（显式 exports） |
+| `amg-webui/components/base` | 域 barrel（编译 re-export） |
 | `amg-webui/components/business` | 五大业务域套件 |
+
+> 公共子路径一律指向编译产物；消费者不需要仓库 alias / 编译 Vue SFC / 处理内部 SCSS。
 
 ## 本地打库（库作者）
 
 ```bash
-npm run build:lib   # → dist/amg-webui.js · .umd.cjs · style.css · *.d.ts
+npm run build:lib       # → dist 主库 + runtime + on-demand + skill + theme + exports
+npm run test:consumers  # → vite / webpack / nuxt fixture 安装并构建
 ```
 
 ## 与 example 区分

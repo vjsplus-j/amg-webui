@@ -4,6 +4,15 @@
 
 试用发包（pre-1.0）。**API 可变**；正式 1.0 见 `docs/LIBRARY_PLAN.md` P4–P5。
 
+### 包发布契约（本轮主路径，未宣称完全解决全部架构债）
+
+- `build:lib` 现串联：主库 → **runtime 分包**（security / telemetry / lowcode / icons / hooks / utils / locale / …）→ on-demand → skill → theme → `generate:exports`
+- 公共 `exports` **全部指向 `dist/**`**；`files` 不再打包 `packages/` 源码树
+- 按需入口：`amg-webui/button` · `amg-webui/data-table` · …；深路径显式导出（如 `amg-webui/utils/env` · `amg-webui/hooks/useFocusTrap`）
+- on-demand / runtime 产物将 `@amg-webui/*` **改写**为 `amg-webui/*`，避免干净消费者依赖仓库 alias
+- Consumer fixtures：`tests/consumer-vite` · `consumer-webpack` · `consumer-nuxt` + CI `test:consumers`
+- **诚实边界**：Overlay 统一内核、行业件出 base、成熟度算法、E2E 深度、按需 CSS 独立入口 **仍未完全解决**
+
 ### Theme 运行时（多实例 / 色阶 / SSR / Shadow）
 
 - Theme Core：`generatePrimaryScale` · `createShadowHost` · `serializeThemeStyle` / `toStyleTag` · `runtime.setPrimary`
@@ -55,7 +64,8 @@
 - `version` 修正为 `0.1.0`（原占位 `1.0.0` 撤销）
 - `peerDependencies`: `vue@^3.4` · `@lucide/vue@^1.0`
 - 主入口：`dist` ESM + UMD + `style.css` + types
-- 子路径：`theme` · `theme/core` · `theme/style.css` · `telemetry` · `security` · `lowcode` · `icons` · `components/base` · `components/business` · experimental `skill` / `skill/core` · `es/*` · `themes/*`
+- 子路径（**dist 编译产物**）：`theme` · `security` · `telemetry` · `lowcode` · `icons` · `hooks` · `utils` · kebab 组件（`button`…）· `components/base|business` barrels · experimental `skill` · `es/*` · `themes/*`
+- `files` 仅 `dist` + 合同文档（不再发布 `packages/` 源码树）
 
 ### 构建模式（名义 → 实能力）
 

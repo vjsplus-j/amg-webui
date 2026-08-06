@@ -1,16 +1,9 @@
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
+import { packageAlias, publicizePaths, isPublishExternal } from './build/shared.mjs'
 
 const root = __dirname
-
-const alias = {
-  '@amg-webui/locale': resolve(root, 'packages/locale'),
-  '@amg-webui/theme/core': resolve(root, 'packages/theme/core.ts'),
-  '@amg-webui/theme': resolve(root, 'packages/theme'),
-  '@amg-webui/utils': resolve(root, 'packages/utils'),
-  '@amg-webui': resolve(root, 'packages')
-}
 
 /**
  * Independent theme package build.
@@ -47,7 +40,7 @@ export default defineConfig({
       }
     })
   ],
-  resolve: { alias },
+  resolve: { alias: packageAlias },
   build: {
     lib: {
       entry: {
@@ -63,16 +56,12 @@ export default defineConfig({
     sourcemap: true,
     cssCodeSplit: false,
     rollupOptions: {
-      external: [
-        'vue',
-        '@vue/runtime-core',
-        '@amg-webui/locale',
-        /^@amg-webui\/locale(\/.*)?$/
-      ],
+      external: (id) => id === '@vue/runtime-core' || isPublishExternal(id),
       output: {
         assetFileNames: (assetInfo) =>
           assetInfo.name?.endsWith('.css') ? 'style.css' : 'assets/[name][extname]',
         chunkFileNames: 'chunks/[name]-[hash].js',
+        paths: publicizePaths,
         globals: { vue: 'Vue' }
       }
     }

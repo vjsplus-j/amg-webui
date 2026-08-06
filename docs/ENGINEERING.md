@@ -23,12 +23,15 @@
 | `npm run generate:vitepress-api` | 根据 `types.ts` 生成 / 刷新 docs 组件 API stub |
 | `node scripts/classify-mvp.mjs` | 深化波次清单 → `scripts/.component-waves.json` |
 | `node scripts/check-coverage.mjs` | catalog / base 目录覆盖核对 |
-| `npm run build` / `build:lib` | **full**：主库 ESM+UMD+css+dts → `dist/`，再编 skill + theme |
-| `npm run build:ondemand` | **on-demand**：多入口 ESM → `dist/es/**`（组件 / 业务域可 tree-shake） |
+| `npm run build` / `build:lib` | **full**：主库 ESM+UMD+css+dts → `dist/`，再编 **runtime 分包**、on-demand、skill、theme，并 `generate:exports` |
+| `npm run build:runtime` | **runtime**：`telemetry` / `security` / `lowcode` / `icons` / `hooks` / `utils` / `locale` / … → `dist/<pkg>/`（preserveModules） |
+| `npm run build:ondemand` | **on-demand**：多入口 ESM → `dist/es/**`；外部依赖改写为 `amg-webui/*` |
 | `npm run build:themes` | **multi-theme**：六品牌 CSS → `dist/themes/<brand>.css` |
 | `npm run build:dts` | **dts**：仅刷新类型 → `dist/**/*.d.ts`（不重打 JS/CSS） |
 | `npm run build:skill` | 仅构建独立 Skill Runtime → `dist/skill/`（ESM + CJS + `.d.ts`） |
 | `npm run build:theme` | 仅构建主题运行时包 → `dist/theme/`（`index` / `core` + `style.css`） |
+| `npm run generate:exports` | 扫描组件 + runtime 树，重写 `package.json` `exports` / `files`（**仅 dist**） |
+| `npm run test:consumers` | `npm pack` → 安装进 `tests/consumer-{vite,webpack,nuxt}` 并 `build` |
 | `npm run build:example` | example 本地冒烟 → `example-dist/`（**不上线**） |
 | `npm run docs:dev` / `docs:build` | 官方文档站本地编写 / **可部署**构建 |
 | `npm run test` | Vitest |
@@ -53,9 +56,15 @@
 | `@amg-webui/theme/core` | `packages/theme/core.ts`（无 DOM Core） |
 | `@amg-webui/hooks` · `locale` · `icons` · … | 对应 `packages/*` |
 
-`package.json` `exports` 同步暴露：`.` · `./telemetry` · `./security` · `./lowcode` · `./skill` · `./skill/core` · `./theme` · `./theme/core` · `./theme/style.css` · `./icons` · `./components/base` · `./components/business` · `./es/*` · `./themes/*`。
+`package.json` `exports`（由 `generate:exports` 维护）暴露：`.` · `./button` 等 kebab 组件 · `./telemetry` · `./security` · `./lowcode` · `./skill` · `./skill/core` · `./theme` · `./theme/core` · `./theme/style.css` · `./icons` · `./hooks` · `./utils`（及显式深路径）· `./locale` · `./components/base` · `./components/business` · `./es/*` · `./themes/*`。
+
+**全部公共子路径必须指向 `dist/**` 编译产物**（JS + `.d.ts`；样式走 `style.css` / `theme/style.css`）。禁止再把 `packages/**/*.ts` 写进 `exports`。`files` 仅含 `dist` + 合同文档。
+
+On-demand / runtime 构建把内部 `@amg-webui/*` **改写**为消费者可解析的 `amg-webui/*`，并 external peers（`vue` · `@lucide/vue`）与已发布子路径；不再把「只有 monorepo alias 才能解析」的 import 留在产物里。
 
 Skill / Theme 的 subpath 指向 `dist/skill/` · `dist/theme/` 独立产物；根入口 `packages/index.ts` **禁止** re-export Skill。Theme 根入口可再导出服务，但 SSR / 微前端应优先 `theme/core`。
+
+Consumer 门禁：`tests/consumer-vite` · `tests/consumer-webpack` · `tests/consumer-nuxt` + `npm run test:consumers`（CI verify job）。这是包契约冒烟，不是 Overlay / 成熟度 / E2E 深度验收。
 
 ---
 
@@ -65,8 +74,9 @@ Skill / Theme 的 subpath 指向 `dist/skill/` · `dist/theme/` 独立产物；�
 
 | Mode | npm | 可观测产物 | 配置 / 脚本 |
 |------|-----|------------|-------------|
-| **full** | `build:lib` | `dist/amg-webui.{js,umd.cjs}` · `style.css` · types · `dist/skill/` · `dist/theme/` | `vite.config.ts` → skill → theme |
-| **on-demand** | `build:ondemand` | `dist/es/components/base/<Name>/…` · `dist/es/components/business/<domain>/…`（无 UMD 胖包） | `vite.ondemand.config.ts` |
+| **full** | `build:lib` | `dist/amg-webui.{js,umd.cjs}` · `style.css` · types · `dist/{security,telemetry,…}/` · `dist/es/**` · `dist/skill/` · `dist/theme/` · 刷新 exports | main → runtime → ondemand → skill → theme → generate:exports |
+| **runtime** | `build:runtime` | `dist/security` · `telemetry` · `lowcode` · `icons` · `hooks` · `utils` · `locale` · … | `vite.runtime.config.ts` |
+| **on-demand** | `build:ondemand` | `dist/es/components/base/<Name>/…` · biz domains；import 为 `amg-webui/*` | `vite.ondemand.config.ts` |
 | **multi-theme** | `build:themes` | `dist/themes/{mercedes,linear,porsche,lamborghini,ferrari,apple}.css`（与 `dist/theme/` JS 运行时分离） | `vite.themes.config.ts` |
 | **dts** | `build:dts` | 刷新 `dist/**/*.d.ts`；不强制重编 JS/CSS | `build/emit-dts.mjs` + `tsconfig.dts.json` |
 | **skill** | `build:skill` | `dist/skill/` | `vite.skill.config.ts` |
@@ -74,11 +84,13 @@ Skill / Theme 的 subpath 指向 `dist/skill/` · `dist/theme/` 独立产物；�
 
 验收冒烟：
 
-1. `node build/index.mjs on-demand` → 存在例如 `dist/es/components/base/Button/index.js`
-2. `node build/index.mjs multi-theme` → 六品牌 CSS，内容/体积随品牌不同
-3. `node build/index.mjs dts` → 更新 d.ts
-4. `node build/index.mjs nope` → exit ≠ 0 + usage
-5. `build:lib` 行为不回归
+1. `node build/index.mjs on-demand` → 存在例如 `dist/es/components/base/Button/index.js`，且文件内 `import … from "amg-webui/…"`（无残留 `@amg-webui/`）
+2. `node build/index.mjs runtime` → `dist/security/index.js` · `dist/utils/env.js`
+3. `node build/index.mjs multi-theme` → 六品牌 CSS，内容/体积随品牌不同
+4. `node build/index.mjs dts` → 更新 d.ts
+5. `node build/index.mjs nope` → exit ≠ 0 + usage
+6. `build:lib` + `test:consumers` 行为不回归
+7. `package.json` `exports["./security"].import` 等以 `./dist/` 开头，不以 `./packages/` 开头
 
 一次性 `patch-*` 类脚本不得冒充长期构建入口；模式差异必须是**真实产物差异**，禁止只改注释。
 

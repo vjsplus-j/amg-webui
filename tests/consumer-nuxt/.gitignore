@@ -1,0 +1,7 @@
+# Consumer fixture artifacts
+node_modules/
+.output/
+.nuxt/
+dist/
+amg-webui-packed.tgz
+package-lock.json
