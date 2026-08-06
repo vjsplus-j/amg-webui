@@ -3,13 +3,12 @@ import {
   computed,
   getCurrentInstance,
   nextTick,
-  onMounted,
   onUnmounted,
   ref,
   useId,
   watch,
 } from "vue";
-import { useFloatingPanel, useLocale } from "@amg-webui/hooks";
+import { useFloatingPanel, useLocale, useOverlay } from "@amg-webui/hooks";
 import { LocaleKeys } from "@amg-webui/locale";
 import { trackEmit } from "@amg-webui/telemetry";
 import Icon from "../Icon/index.vue";
@@ -45,17 +44,31 @@ const isOpen = computed(() =>
 );
 const placementRef = computed(() => props.placement);
 const offsetRef = computed(() => props.offset);
-const zIndexRef = computed(() => props.zIndex);
+const zIndexProp = computed(() => props.zIndex);
 const panelId = `${uid}-panel`;
 let openTimer: ReturnType<typeof setTimeout> | null = null;
 let closeTimer: ReturnType<typeof setTimeout> | null = null;
+
+const { zIndex } = useOverlay({
+  visible: isOpen,
+  container: panelRef,
+  modal: false,
+  trapFocus: false,
+  closeOnEscape: () => props.dismissible,
+  closeOnClickOutside: () => props.dismissible,
+  ignore: [triggerRef, rootRef],
+  zIndex: zIndexProp,
+  onClose: (reason) => {
+    close(reason === "escape" ? "escape" : "outside");
+  },
+});
 
 const { panelStyle, actualPlacement } = useFloatingPanel(
   triggerRef,
   panelRef,
   isOpen,
   placementRef,
-  { offset: offsetRef, zIndex: zIndexRef },
+  { offset: offsetRef, zIndex },
 );
 
 const rootClass = computed(() => [
@@ -134,21 +147,6 @@ function onTriggerKeydown(event: KeyboardEvent) {
   }
 }
 
-function onDocumentPointer(event: Event) {
-  if (!isOpen.value || !props.dismissible) return;
-  const target = event.target as Node;
-  if (rootRef.value?.contains(target) || panelRef.value?.contains(target))
-    return;
-  close("outside", event);
-}
-
-function onDocumentKeydown(event: KeyboardEvent) {
-  if (isOpen.value && props.dismissible && event.key === "Escape") {
-    event.preventDefault();
-    close("escape", event);
-  }
-}
-
 watch(isOpen, (value) => {
   if (value && props.focusOnOpen) {
     void nextTick(() => {
@@ -167,15 +165,7 @@ watch(
   },
 );
 
-onMounted(() => {
-  document.addEventListener("pointerdown", onDocumentPointer, true);
-  document.addEventListener("keydown", onDocumentKeydown);
-});
-onUnmounted(() => {
-  clearTimers();
-  document.removeEventListener("pointerdown", onDocumentPointer, true);
-  document.removeEventListener("keydown", onDocumentKeydown);
-});
+onUnmounted(clearTimers);
 </script>
 
 <template>

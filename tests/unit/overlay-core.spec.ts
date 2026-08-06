@@ -122,4 +122,44 @@ describe('useOverlay', () => {
     await nextTick()
     expect(document.documentElement.style.overflow).toBe('')
   })
+
+  it('closes on outside click when ignore excludes the target', async () => {
+    const visible = ref(true)
+    const container = ref<HTMLElement | null>(document.createElement('div'))
+    const trigger = ref<HTMLElement | null>(document.createElement('button'))
+    document.body.appendChild(container.value)
+    document.body.appendChild(trigger.value)
+    const reasons: string[] = []
+
+    const Comp = defineComponent({
+      setup() {
+        useOverlay({
+          visible,
+          container,
+          modal: false,
+          trapFocus: false,
+          closeOnEscape: false,
+          closeOnClickOutside: true,
+          ignore: [trigger],
+          onClose: (reason) => reasons.push(reason)
+        })
+        return () => null
+      }
+    })
+
+    mount(Comp)
+    await nextTick()
+    trigger.value!.dispatchEvent(
+      new MouseEvent('pointerdown', { bubbles: true })
+    )
+    expect(reasons).toEqual([])
+
+    document.body.dispatchEvent(
+      new MouseEvent('pointerdown', { bubbles: true })
+    )
+    expect(reasons).toEqual(['outside'])
+
+    container.value?.remove()
+    trigger.value?.remove()
+  })
 })

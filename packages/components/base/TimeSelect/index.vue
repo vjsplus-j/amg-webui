@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
+import { computed, ref } from 'vue'
+import { useLocale, usePopover } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { TimeSelectProps, TimeSelectEmits } from './types'
@@ -41,10 +41,9 @@ const {
 
 const { nativeAttrs } = useNativeInputAttrs()
 
-const isOpen = ref(false)
+const { isOpen, triggerRef, panelRef, close, open, panelStyle } =
+  usePopover()
 const activeIndex = ref(-1)
-const triggerRef = ref<HTMLElement | null>(null)
-const panelRef = ref<HTMLElement | null>(null)
 
 const parseMinutes = (time: string): number => {
   const [h, m] = time.split(':').map(Number)
@@ -87,21 +86,18 @@ const rootClass = computed(() => [
   props.class
 ])
 
-const close = () => {
-  isOpen.value = false
-  activeIndex.value = -1
-}
-
-const open = () => {
+const openPanel = () => {
   if (isDisabled.value) return
-  isOpen.value = true
+  open()
   const idx = timeOptions.value.indexOf(props.modelValue ?? '')
   activeIndex.value = idx >= 0 ? idx : 0
 }
 
-const toggle = () => {
-  if (isOpen.value) close()
-  else open()
+const togglePanel = () => {
+  if (isOpen.value) {
+    close()
+    activeIndex.value = -1
+  } else openPanel()
 }
 
 const selectTime = (time: string) => {
@@ -116,6 +112,7 @@ const selectTime = (time: string) => {
     payload: { value: time }
   })
   close()
+  activeIndex.value = -1
 }
 
 const onClear = (event: MouseEvent) => {
@@ -132,21 +129,13 @@ const onClear = (event: MouseEvent) => {
   })
 }
 
-const handleOutsideClick = (event: MouseEvent) => {
-  if (!isOpen.value) return
-  const target = event.target as HTMLElement
-  if (!triggerRef.value?.contains(target) && !panelRef.value?.contains(target)) {
-    close()
-  }
-}
-
 const onTriggerKeydown = (event: KeyboardEvent) => {
   if (isDisabled.value) return
 
   if (!isOpen.value) {
     if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
-      open()
+      openPanel()
     }
     return
   }
@@ -164,15 +153,13 @@ const onTriggerKeydown = (event: KeyboardEvent) => {
       activeIndex.value = (activeIndex.value - 1 + len) % len
       break
     case 'Enter':
-    case ' ':
       event.preventDefault()
-      if (activeIndex.value >= 0) {
-        selectTime(timeOptions.value[activeIndex.value])
-      }
+      if (activeIndex.value >= 0) selectTime(timeOptions.value[activeIndex.value])
       break
     case 'Escape':
       event.preventDefault()
       close()
+      activeIndex.value = -1
       triggerRef.value?.focus()
       break
     case 'Home':
@@ -189,14 +176,6 @@ const onTriggerKeydown = (event: KeyboardEvent) => {
 const handleTriggerBlur = () => {
   void validateOnBlur()
 }
-
-onMounted(() => {
-  document.addEventListener('click', handleOutsideClick)
-})
-
-onUnmounted(() => {
-  document.removeEventListener('click', handleOutsideClick)
-})
 </script>
 
 <template>
@@ -215,7 +194,7 @@ onUnmounted(() => {
       :aria-invalid="isInvalid || undefined"
       :aria-required="isRequired || undefined"
       :aria-describedby="ariaDescribedby"
-      @click="toggle"
+      @click="togglePanel"
       @keydown="onTriggerKeydown"
       @blur="handleTriggerBlur"
     >
@@ -246,28 +225,31 @@ onUnmounted(() => {
       </span>
     </button>
 
-    <ul
-      v-if="isOpen"
-      ref="panelRef"
-      class="vp-time-select__panel"
-      role="listbox"
-      :aria-label="t(LocaleKeys.component.timeSelect.aria)"
-    >
-      <li
-        v-for="(time, idx) in timeOptions"
-        :key="time"
-        role="option"
-        class="vp-time-select__option"
-        :class="{
-          'vp-time-select__option--selected': modelValue === time,
-          'vp-time-select__option--active': activeIndex === idx
-        }"
-        :aria-selected="modelValue === time"
-        @click="selectTime(time)"
-        @mouseenter="activeIndex = idx"
+    <Teleport to="body">
+      <ul
+        v-if="isOpen"
+        ref="panelRef"
+        class="vp-time-select__panel"
+        role="listbox"
+        :aria-label="t(LocaleKeys.component.timeSelect.aria)"
+        :style="panelStyle"
       >
-        {{ time }}
-      </li>
-    </ul>
+        <li
+          v-for="(time, idx) in timeOptions"
+          :key="time"
+          role="option"
+          class="vp-time-select__option"
+          :class="{
+            'vp-time-select__option--selected': modelValue === time,
+            'vp-time-select__option--active': activeIndex === idx
+          }"
+          :aria-selected="modelValue === time"
+          @click="selectTime(time)"
+          @mouseenter="activeIndex = idx"
+        >
+          {{ time }}
+        </li>
+      </ul>
+    </Teleport>
   </div>
 </template>

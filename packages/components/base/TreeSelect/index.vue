@@ -41,7 +41,7 @@ const {
 
 const { nativeAttrs } = useNativeInputAttrs()
 
-const { isOpen, triggerRef, panelRef, toggle, close } = usePopover()
+const { isOpen, triggerRef, panelRef, toggle, close, panelStyle } = usePopover()
 
 const filterText = ref('')
 const expanded = ref<Set<unknown>>(new Set())
@@ -210,83 +210,91 @@ function clearValue(event: MouseEvent) {
       <span class="vp-treeselect__caret" aria-hidden="true">▾</span>
     </button>
 
-    <div v-if="isOpen" ref="panelRef" class="vp-treeselect__panel" role="listbox">
-      <div v-if="filterable" class="vp-treeselect__filter">
-        <input
-          v-model="filterText"
-          type="search"
-          class="vp-treeselect__filter-input"
-          :placeholder="t('common.search')"
-        />
-      </div>
-
-      <template v-if="checkboxMode">
-        <div
-          v-for="row in checkboxRows"
-          :key="row.id"
-          class="vp-treeselect__node"
-          :style="{ paddingLeft: `calc(var(--spacing-md) + ${row.depth} * var(--spacing-lg))` }"
-        >
-          <button
-            v-if="row.hasChildren || !row.node.isLeaf"
-            type="button"
-            class="vp-treeselect__expand"
-            :aria-label="row.expanded ? t('common.collapse') : t('common.expand')"
-            @click="toggleExpand(row.id, row.node)"
-          >
-            {{ row.expanded ? '−' : '+' }}
-          </button>
-          <span v-else class="vp-treeselect__expand" aria-hidden="true" />
-          <TreeCheckbox
-            :checked="getCheckState(row.node) === 'checked'"
-            :indeterminate="getCheckState(row.node) === 'indeterminate'"
-            :disabled="isDisabled || row.node.disabled"
-            @change="toggleCheck(row.node)"
+    <Teleport to="body">
+      <div
+        v-if="isOpen"
+        ref="panelRef"
+        class="vp-treeselect__panel"
+        role="listbox"
+        :style="panelStyle"
+      >
+        <div v-if="filterable" class="vp-treeselect__filter">
+          <input
+            v-model="filterText"
+            type="search"
+            class="vp-treeselect__filter-input"
+            :placeholder="t('common.search')"
           />
-          <span class="vp-treeselect__node-label">{{ row.node.label }}</span>
         </div>
-      </template>
 
-      <template v-else>
-        <div
-          v-for="{ node, depth } in manualFlatNodes"
-          :key="String(node.value)"
-          :class="[
-            'vp-treeselect__node',
-            {
-              'vp-treeselect__node--selected': node.value === modelValue,
-              'vp-treeselect__node--disabled': node.disabled
-            }
-          ]"
-          :style="{ paddingLeft: `calc(var(--spacing-md) + ${depth} * var(--spacing-lg))` }"
-          role="option"
-          :aria-selected="node.value === modelValue"
-          @click="selectNode(node)"
-        >
-          <button
-            v-if="node.children?.length"
-            type="button"
-            class="vp-treeselect__expand"
-            :aria-label="expanded.has(node.value) ? t('common.collapse') : t('common.expand')"
-            @click="toggleManualExpand(node.value, $event)"
+        <template v-if="checkboxMode">
+          <div
+            v-for="row in checkboxRows"
+            :key="row.id"
+            class="vp-treeselect__node"
+            :style="{ paddingLeft: `calc(var(--spacing-md) + ${row.depth} * var(--spacing-lg))` }"
           >
-            {{ expanded.has(node.value) ? '−' : '+' }}
-          </button>
-          <span v-else class="vp-treeselect__expand" aria-hidden="true" />
-          <span
+            <button
+              v-if="row.hasChildren || !row.node.isLeaf"
+              type="button"
+              class="vp-treeselect__expand"
+              :aria-label="row.expanded ? t('common.collapse') : t('common.expand')"
+              @click="toggleExpand(row.id, row.node)"
+            >
+              {{ row.expanded ? '−' : '+' }}
+            </button>
+            <span v-else class="vp-treeselect__expand" aria-hidden="true" />
+            <TreeCheckbox
+              :checked="getCheckState(row.node) === 'checked'"
+              :indeterminate="getCheckState(row.node) === 'indeterminate'"
+              :disabled="isDisabled || row.node.disabled"
+              @change="toggleCheck(row.node)"
+            />
+            <span class="vp-treeselect__node-label">{{ row.node.label }}</span>
+          </div>
+        </template>
+
+        <template v-else>
+          <div
+            v-for="{ node, depth } in manualFlatNodes"
+            :key="String(node.value)"
             :class="[
-              'vp-treeselect__radio',
-              { 'vp-treeselect__radio--checked': node.value === modelValue }
+              'vp-treeselect__node',
+              {
+                'vp-treeselect__node--selected': node.value === modelValue,
+                'vp-treeselect__node--disabled': node.disabled
+              }
             ]"
-            aria-hidden="true"
-          />
-          <span>{{ node.label }}</span>
-        </div>
-      </template>
+            :style="{ paddingLeft: `calc(var(--spacing-md) + ${depth} * var(--spacing-lg))` }"
+            role="option"
+            :aria-selected="node.value === modelValue"
+            @click="selectNode(node)"
+          >
+            <button
+              v-if="node.children?.length"
+              type="button"
+              class="vp-treeselect__expand"
+              :aria-label="expanded.has(node.value) ? t('common.collapse') : t('common.expand')"
+              @click="toggleManualExpand(node.value, $event)"
+            >
+              {{ expanded.has(node.value) ? '−' : '+' }}
+            </button>
+            <span v-else class="vp-treeselect__expand" aria-hidden="true" />
+            <span
+              :class="[
+                'vp-treeselect__radio',
+                { 'vp-treeselect__radio--checked': node.value === modelValue }
+              ]"
+              aria-hidden="true"
+            />
+            <span>{{ node.label }}</span>
+          </div>
+        </template>
 
-      <p v-if="!hasPanelItems" class="vp-treeselect__empty">
-        {{ t('common.noData') }}
-      </p>
-    </div>
+        <p v-if="!hasPanelItems" class="vp-treeselect__empty">
+          {{ t('common.noData') }}
+        </p>
+      </div>
+    </Teleport>
   </div>
 </template>

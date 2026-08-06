@@ -42,7 +42,7 @@ const {
 const { nativeAttrs } = useNativeInputAttrs()
 
 const { locale } = useLocale()
-const { isOpen, triggerRef, panelRef, toggle, close } = usePopover()
+const { isOpen, triggerRef, panelRef, toggle, close, panelStyle } = usePopover()
 
 const viewDate = ref(new Date())
 
@@ -144,37 +144,44 @@ const selectDay = (day: Date | null) => {
       <span aria-hidden="true">v</span>
     </button>
 
-    <div v-if="isOpen" ref="panelRef" class="vp-datepicker__panel">
-      <div class="vp-datepicker__header">
-        <span>{{ monthLabel }}</span>
-        <div class="vp-datepicker__nav">
-          <button type="button" class="vp-datepicker__nav-btn" @click="prevMonth">‹</button>
-          <button type="button" class="vp-datepicker__nav-btn" @click="nextMonth">›</button>
+    <Teleport to="body">
+      <div
+        v-if="isOpen"
+        ref="panelRef"
+        class="vp-datepicker__panel"
+        :style="panelStyle"
+      >
+        <div class="vp-datepicker__header">
+          <span>{{ monthLabel }}</span>
+          <div class="vp-datepicker__nav">
+            <button type="button" class="vp-datepicker__nav-btn" @click="prevMonth">‹</button>
+            <button type="button" class="vp-datepicker__nav-btn" @click="nextMonth">›</button>
+          </div>
+        </div>
+
+        <div class="vp-datepicker__weekdays">
+          <span v-for="(wd, i) in weekdayLabels" :key="i" class="vp-datepicker__weekday">{{ wd }}</span>
+        </div>
+
+        <div v-for="(week, wi) in weeks" :key="wi" class="vp-datepicker__grid">
+          <button
+            v-for="(day, di) in week"
+            :key="di"
+            type="button"
+            :class="[
+              'vp-datepicker__day',
+              {
+                'vp-datepicker__day--selected': sameDate(day, selectedDate),
+                'vp-datepicker__day--empty': !day
+              }
+            ]"
+            :disabled="!day"
+            @click="selectDay(day)"
+          >
+            {{ day ? day.getDate() : '' }}
+          </button>
         </div>
       </div>
-
-      <div class="vp-datepicker__weekdays">
-        <span v-for="(wd, i) in weekdayLabels" :key="i" class="vp-datepicker__weekday">{{ wd }}</span>
-      </div>
-
-      <div v-for="(week, wi) in weeks" :key="wi" class="vp-datepicker__grid">
-        <button
-          v-for="(day, di) in week"
-          :key="di"
-          type="button"
-          :class="[
-            'vp-datepicker__day',
-            {
-              'vp-datepicker__day--selected': sameDate(day, selectedDate),
-              'vp-datepicker__day--empty': !day
-            }
-          ]"
-          :disabled="!day"
-          @click="selectDay(day)"
-        >
-          {{ day ? day.getDate() : '' }}
-        </button>
-      </div>
-    </div>
+    </Teleport>
   </div>
 </template>

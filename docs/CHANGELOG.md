@@ -4,6 +4,16 @@
 
 ---
 
+## 2026-08-06 — Overlay / floating 面板统一（深度推进，未宣称完成）
+
+- `usePopover` 改为 floating + 非模态 `useOverlay`，组件自行 `Teleport` 并绑定 `panelStyle`。
+- Select / Cascader / TreeSelect / Date* / Time* / Color / Month / Year / TimeSelect / AutoComplete / Mention / Dropdown / TabsNav more 菜单统一 Teleport 定位；去掉面板 `position: absolute` 相对触发器布局。
+- Popover / Tooltip / Popconfirm 外点与 Escape 收口到 `useOverlay`（不再手绑 document 监听）。
+- 单测：`overlay-core` 补 outside-click + ignore；`vue-tsc` 通过。
+- **未完成**：行业组件迁出 base、深 E2E、逐组件 CSS side-entry；Overlay 仍属内核加深，不作「完全解决」。
+
+---
+
 ## 2026-08-05 — Skill Runtime SR1 / SR2（experimental）
 
 - 新增独立可选 `packages/skill`，根 `amg-webui` 入口不导出；公开子路径为 `amg-webui/skill` 与 `amg-webui/skill/core`。

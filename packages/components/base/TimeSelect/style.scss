@@ -104,11 +104,6 @@
 }
 
 .vp-time-select__panel {
-  position: absolute;
-  top: calc(100% + var(--spacing-xs));
-  left: 0;
-  right: 0;
-  z-index: 10;
   margin: 0;
   padding: var(--spacing-xs);
   list-style: none;
@@ -119,6 +114,7 @@
   max-height: calc(var(--height-md) * 8);
   overflow-y: auto;
   box-sizing: border-box;
+  min-width: 8rem;
 }
 
 .vp-time-select__option {

@@ -51,17 +51,13 @@
 }
 
 .vp-cascader__panel {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  margin-top: var(--spacing-xs);
   display: flex;
   background: var(--surface-1);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-lg);
-  z-index: 1000;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .vp-cascader__menu {

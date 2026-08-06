@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
+import { computed, nextTick, ref } from 'vue'
+import { useFloatingPanel, useLocale, useOverlay } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { MentionProps, MentionEmits, MentionOption } from './types'
@@ -47,6 +47,7 @@ const isOpen = ref(false)
 const activeIndex = ref(0)
 const mentionStart = ref(-1)
 const mentionQuery = ref('')
+const placement = ref<'bottom-start'>('bottom-start')
 
 const filteredOptions = computed(() => {
   const q = mentionQuery.value.toLowerCase()
@@ -72,6 +73,27 @@ const rootClass = computed(() => [
   },
   props.class
 ])
+
+const { zIndex } = useOverlay({
+  visible: showPopup,
+  container: popupRef,
+  modal: false,
+  trapFocus: false,
+  closeOnEscape: true,
+  closeOnClickOutside: true,
+  ignore: [textareaRef],
+  onClose: () => {
+    closePopup()
+  }
+})
+
+const { panelStyle } = useFloatingPanel(
+  textareaRef,
+  popupRef,
+  showPopup,
+  placement,
+  { zIndex, matchTriggerWidth: ref(true) }
+)
 
 const closePopup = () => {
   isOpen.value = false
@@ -174,28 +196,9 @@ const onKeydown = (event: KeyboardEvent) => {
   }
 }
 
-const handleOutsideClick = (event: MouseEvent) => {
-  if (!showPopup.value) return
-  const target = event.target as HTMLElement
-  if (
-    !textareaRef.value?.contains(target) &&
-    !popupRef.value?.contains(target)
-  ) {
-    closePopup()
-  }
-}
-
 const handleBlur = () => {
   void validateOnBlur()
 }
-
-onMounted(() => {
-  document.addEventListener('click', handleOutsideClick)
-})
-
-onUnmounted(() => {
-  document.removeEventListener('click', handleOutsideClick)
-})
 </script>
 
 <template>
@@ -219,40 +222,43 @@ onUnmounted(() => {
       @blur="handleBlur"
     />
 
-    <ul
-      v-if="showPopup"
-      ref="popupRef"
-      class="vp-mention__popup"
-      role="listbox"
-      :aria-label="t(LocaleKeys.component.mention.listAria)"
-    >
-      <li v-if="loading" class="vp-mention__option vp-mention__option--loading">
-        {{ t(LocaleKeys.component.mention.loading) }}
-      </li>
-      <li
-        v-else-if="!filteredOptions.length"
-        class="vp-mention__option vp-mention__option--empty"
+    <Teleport to="body">
+      <ul
+        v-if="showPopup"
+        ref="popupRef"
+        class="vp-mention__popup"
+        role="listbox"
+        :aria-label="t(LocaleKeys.component.mention.listAria)"
+        :style="panelStyle"
       >
-        {{ t(LocaleKeys.component.mention.empty) }}
-      </li>
-      <template v-else>
-        <li
-          v-for="(opt, idx) in filteredOptions"
-          :key="opt.value"
-          role="option"
-          class="vp-mention__option"
-          :class="{
-            'vp-mention__option--active': activeIndex === idx,
-            'vp-mention__option--disabled': opt.disabled
-          }"
-          :aria-selected="activeIndex === idx"
-          @click="!opt.disabled && insertMention(opt)"
-          @mouseenter="activeIndex = idx"
-        >
-          <span class="vp-mention__option-label">{{ opt.label }}</span>
-          <span class="vp-mention__option-value">{{ prefix }}{{ opt.value }}</span>
+        <li v-if="loading" class="vp-mention__option vp-mention__option--loading">
+          {{ t(LocaleKeys.component.mention.loading) }}
         </li>
-      </template>
-    </ul>
+        <li
+          v-else-if="!filteredOptions.length"
+          class="vp-mention__option vp-mention__option--empty"
+        >
+          {{ t(LocaleKeys.component.mention.empty) }}
+        </li>
+        <template v-else>
+          <li
+            v-for="(opt, idx) in filteredOptions"
+            :key="opt.value"
+            role="option"
+            class="vp-mention__option"
+            :class="{
+              'vp-mention__option--active': activeIndex === idx,
+              'vp-mention__option--disabled': opt.disabled
+            }"
+            :aria-selected="activeIndex === idx"
+            @click="!opt.disabled && insertMention(opt)"
+            @mouseenter="activeIndex = idx"
+          >
+            <span class="vp-mention__option-label">{{ opt.label }}</span>
+            <span class="vp-mention__option-value">{{ prefix }}{{ opt.value }}</span>
+          </li>
+        </template>
+      </ul>
+    </Teleport>
   </div>
 </template>

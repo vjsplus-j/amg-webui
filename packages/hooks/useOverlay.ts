@@ -15,7 +15,7 @@ import { useZIndex } from './useZIndex'
 export type OverlayCloseReason = 'escape' | 'outside'
 
 export interface UseOverlayOptions {
-  visible: Ref<boolean>
+  visible: Readonly<Ref<boolean>>
   /** Panel / dialog root — focus trap + optional outside-click boundary */
   container: Ref<HTMLElement | null | undefined>
   /** Lock body scroll while open (default: true) */
@@ -29,6 +29,13 @@ export interface UseOverlayOptions {
    * Prefer overlay-host click for modal masks; enable for floating panels.
    */
   closeOnClickOutside?: MaybeRefOrGetter<boolean>
+  /**
+   * Elements treated as “inside” for outside-click (e.g. select trigger).
+   * Clicking these does not fire `onClose('outside')`.
+   */
+  ignore?: MaybeRefOrGetter<
+    Array<Ref<HTMLElement | null | undefined> | HTMLElement | null | undefined>
+  >
   /** Explicit z-index override; otherwise allocated via zIndexManager */
   zIndex?: Ref<number | undefined>
   onClose?: (reason: OverlayCloseReason) => void
@@ -71,6 +78,11 @@ export function useOverlay(options: UseOverlayOptions) {
     const target = e.target
     if (!(target instanceof Node)) return
     if (root && root.contains(target)) return
+    const ignored = toValue(options.ignore ?? [])
+    for (const item of ignored) {
+      const el = item && typeof item === 'object' && 'value' in item ? item.value : item
+      if (el && el.contains(target)) return
+    }
     options.onClose?.('outside')
   }
 

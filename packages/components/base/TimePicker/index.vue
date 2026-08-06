@@ -39,7 +39,7 @@ const {
 
 const { nativeAttrs } = useNativeInputAttrs()
 
-const { isOpen, triggerRef, panelRef, toggle, close } = usePopover()
+const { isOpen, triggerRef, panelRef, toggle, close, panelStyle } = usePopover()
 
 const hours = Array.from({ length: 24 }, (_, i) => i)
 const minutes = computed(() => Array.from({ length: Math.ceil(60 / Math.max(1, props.minuteStep)) }, (_, i) => i * Math.max(1, props.minuteStep)))
@@ -155,42 +155,50 @@ function clearValue(event: MouseEvent) {
     </button>
     <button v-if="clearable && modelValue" type="button" class="vp-timepicker__clear" :disabled="isDisabled || readonly" @click="clearValue"><Icon name="X" size="sm" /></button>
 
-    <div v-if="isOpen" ref="panelRef" class="vp-timepicker__panel" role="listbox">
-      <div class="vp-timepicker__columns">
-        <div class="vp-timepicker__column">
-          <button
-            v-for="h in hours"
-            :key="h"
-            type="button"
-            :class="['vp-timepicker__item', { 'vp-timepicker__item--selected': h === selectedHour }]"
-            @click="selectHour(h)"
-          >
-            {{ pad(h) }}
-          </button>
-        </div>
-        <div class="vp-timepicker__column">
-          <button
-            v-for="m in minutes"
-            :key="m"
-            type="button"
-            :class="['vp-timepicker__item', { 'vp-timepicker__item--selected': m === selectedMinute }]"
-            @click="selectMinute(m)"
-          >
-            {{ pad(m) }}
-          </button>
-        </div>
-        <div v-if="showSeconds" class="vp-timepicker__column">
-          <button
-            v-for="s in seconds"
-            :key="s"
-            type="button"
-            :class="['vp-timepicker__item', { 'vp-timepicker__item--selected': s === selectedSecond }]"
-            @click="selectSecond(s)"
-          >
-            {{ pad(s) }}
-          </button>
+    <Teleport to="body">
+      <div
+        v-if="isOpen"
+        ref="panelRef"
+        class="vp-timepicker__panel"
+        role="listbox"
+        :style="panelStyle"
+      >
+        <div class="vp-timepicker__columns">
+          <div class="vp-timepicker__column">
+            <button
+              v-for="h in hours"
+              :key="h"
+              type="button"
+              :class="['vp-timepicker__item', { 'vp-timepicker__item--selected': h === selectedHour }]"
+              @click="selectHour(h)"
+            >
+              {{ pad(h) }}
+            </button>
+          </div>
+          <div class="vp-timepicker__column">
+            <button
+              v-for="m in minutes"
+              :key="m"
+              type="button"
+              :class="['vp-timepicker__item', { 'vp-timepicker__item--selected': m === selectedMinute }]"
+              @click="selectMinute(m)"
+            >
+              {{ pad(m) }}
+            </button>
+          </div>
+          <div v-if="showSeconds" class="vp-timepicker__column">
+            <button
+              v-for="s in seconds"
+              :key="s"
+              type="button"
+              :class="['vp-timepicker__item', { 'vp-timepicker__item--selected': s === selectedSecond }]"
+              @click="selectSecond(s)"
+            >
+              {{ pad(s) }}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Teleport>
   </div>
 </template>

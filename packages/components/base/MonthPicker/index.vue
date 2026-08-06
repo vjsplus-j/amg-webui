@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<MonthPickerProps>(), {
 });
 const emit = defineEmits<MonthPickerEmits>();
 const { locale, t } = useLocale();
-const { isOpen, triggerRef, panelRef, toggle, close, open } = usePopover();
+const { isOpen, triggerRef, panelRef, toggle, close, open, panelStyle } = usePopover();
 function parse(value: string | Date | null | undefined) {
   if (!value) return null;
   if (value instanceof Date)
@@ -174,60 +174,63 @@ function gridKeydown(event: KeyboardEvent, month: number) {
     >
       ×
     </button>
-    <div
-      v-if="isOpen"
-      ref="panelRef"
-      class="vp-monthpicker__panel"
-      role="dialog"
-      :aria-label="ariaLabel ?? placeholder"
-    >
-      <div class="vp-monthpicker__header">
-        <strong>{{ viewYear }}</strong>
-        <div class="vp-monthpicker__nav">
+    <Teleport to="body">
+      <div
+        v-if="isOpen"
+        ref="panelRef"
+        class="vp-monthpicker__panel"
+        role="dialog"
+        :aria-label="ariaLabel ?? placeholder"
+        :style="panelStyle"
+      >
+        <div class="vp-monthpicker__header">
+          <strong>{{ viewYear }}</strong>
+          <div class="vp-monthpicker__nav">
+            <button
+              type="button"
+              :aria-label="String(viewYear - 1)"
+              @click="viewYear--"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              :aria-label="String(viewYear + 1)"
+              @click="viewYear++"
+            >
+              ›
+            </button>
+          </div>
+        </div>
+        <div class="vp-monthpicker__grid" role="grid">
           <button
+            v-for="(label, month) in labels"
+            :key="month"
             type="button"
-            :aria-label="String(viewYear - 1)"
-            @click="viewYear--"
+            :data-month="month"
+            :class="[
+              'vp-monthpicker__month',
+              {
+                'vp-monthpicker__month--selected':
+                  selectedDate?.getFullYear() === viewYear &&
+                  selectedDate?.getMonth() === month,
+              },
+            ]"
+            :disabled="monthDisabled(month)"
+            :tabindex="month === activeMonth ? 0 : -1"
+            role="gridcell"
+            :aria-selected="
+              selectedDate?.getFullYear() === viewYear &&
+              selectedDate?.getMonth() === month
+            "
+            @focus="activeMonth = month"
+            @click="choose(month)"
+            @keydown="gridKeydown($event, month)"
           >
-            ‹
-          </button>
-          <button
-            type="button"
-            :aria-label="String(viewYear + 1)"
-            @click="viewYear++"
-          >
-            ›
+            {{ label }}
           </button>
         </div>
       </div>
-      <div class="vp-monthpicker__grid" role="grid">
-        <button
-          v-for="(label, month) in labels"
-          :key="month"
-          type="button"
-          :data-month="month"
-          :class="[
-            'vp-monthpicker__month',
-            {
-              'vp-monthpicker__month--selected':
-                selectedDate?.getFullYear() === viewYear &&
-                selectedDate?.getMonth() === month,
-            },
-          ]"
-          :disabled="monthDisabled(month)"
-          :tabindex="month === activeMonth ? 0 : -1"
-          role="gridcell"
-          :aria-selected="
-            selectedDate?.getFullYear() === viewYear &&
-            selectedDate?.getMonth() === month
-          "
-          @focus="activeMonth = month"
-          @click="choose(month)"
-          @keydown="gridKeydown($event, month)"
-        >
-          {{ label }}
-        </button>
-      </div>
-    </div>
+    </Teleport>
   </div>
 </template>
