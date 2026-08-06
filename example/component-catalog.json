@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-30T12:12:20.369Z",
-  "total": 284,
+  "generatedAt": "2026-08-04T02:12:03.916Z",
+  "total": 285,
   "categories": [
     "general",
     "layout",
@@ -258,6 +258,7 @@
       "FreeLayoutDrag",
       "GridLayoutDrag",
       "ImageCrop",
+      "MatrixCode",
       "OcrScan",
       "PdfPreview",
       "Preview",
@@ -1019,6 +1020,11 @@
       "category": "feedback",
       "titleKey": "component.mask.title",
       "leadKey": "component.mask.lead"
+    },
+    "MatrixCode": {
+      "category": "other",
+      "titleKey": "component.matrix-code.title",
+      "leadKey": "component.matrix-code.lead"
     },
     "MdEditor": {
       "category": "data-entry",

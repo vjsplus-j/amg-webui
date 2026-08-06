@@ -1,23 +1,24 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import Menu from '../Menu/index.vue'
-import type { MenuItem } from '../Menu/types'
-import { trackEmit } from '@amg-webui/telemetry'
-import type { MenuBarItem, MenuBarProps } from './types'
-import './style.scss'
+import { computed } from "vue";
+import Menu from "../Menu/index.vue";
+import type { MenuItem } from "../Menu/types";
+import { trackEmit } from "@amg-webui/telemetry";
+import type { MenuBarItem, MenuBarProps } from "./types";
+import "./style.scss";
 
 /**
  * Thin horizontal Menu wrapper (popup flyouts via Menu mode=auto).
  */
 const props = withDefaults(defineProps<MenuBarProps>(), {
   items: () => [],
-  telemetry: undefined
-})
+  telemetry: undefined,
+});
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
-  (e: 'command', command: string, item: MenuBarItem): void
-}>()
+  (e: "update:modelValue", value: string): void;
+  (e: "command", command: string, item: MenuBarItem): void;
+  (e: "change", value: string): void;
+}>();
 
 function mapItems(list: MenuBarItem[]): MenuItem[] {
   return list
@@ -27,42 +28,48 @@ function mapItems(list: MenuBarItem[]): MenuItem[] {
       label: item.label,
       icon: item.icon,
       disabled: item.disabled,
-      children: item.children?.length ? mapItems(item.children) : undefined
-    }))
+      children: item.children?.length ? mapItems(item.children) : undefined,
+    }));
 }
 
-function findBarItem(list: MenuBarItem[], key: string): MenuBarItem | undefined {
+function findBarItem(
+  list: MenuBarItem[],
+  key: string,
+): MenuBarItem | undefined {
   for (const item of list) {
-    if (item.divider) continue
-    if ((item.command || item.label) === key) return item
+    if (item.divider) continue;
+    if ((item.command || item.label) === key) return item;
     if (item.children?.length) {
-      const hit = findBarItem(item.children, key)
-      if (hit) return hit
+      const hit = findBarItem(item.children, key);
+      if (hit) return hit;
     }
   }
-  return undefined
+  return undefined;
 }
 
-const menuItems = computed(() => mapItems(props.items ?? []))
+const menuItems = computed(() => mapItems(props.items ?? []));
 
-const rootClass = computed(() => ['vp-menubar', props.class])
+const rootClass = computed(() => ["vp-menubar", props.class]);
 
 function onModel(value: string) {
-  emit('update:modelValue', value)
+  if (props.disabled) return;
+  emit("update:modelValue", value);
+  emit("change", value);
 }
 
 function onSelect(item: MenuItem) {
-  const barItem = findBarItem(props.items ?? [], item.key)
-  const command = barItem?.command || item.key
+  if (props.disabled) return;
+  const barItem = findBarItem(props.items ?? [], item.key);
+  const command = barItem?.command || item.key;
   trackEmit({
-    component: 'MenuBar',
-    type: 'command',
+    component: "MenuBar",
+    type: "command",
     trackId: props.trackId,
     telemetry: props.telemetry,
-    payload: { command, key: item.key }
-  })
+    payload: { command, key: item.key },
+  });
   if (barItem) {
-    emit('command', command, barItem)
+    emit("command", command, barItem);
   }
 }
 </script>
@@ -72,14 +79,15 @@ function onSelect(item: MenuItem) {
     :class="rootClass"
     :style="style"
     data-component="MenuBar"
-    role="menubar"
-    :aria-orientation="'horizontal'"
+    :aria-label="ariaLabel"
+    :aria-disabled="disabled || undefined"
   >
     <Menu
       direction="horizontal"
       mode="popup"
       :items="menuItems"
       :model-value="modelValue"
+      :disabled="disabled"
       :track-id="trackId"
       :telemetry="telemetry"
       @update:model-value="onModel"

@@ -112,6 +112,14 @@
   --shadow-lg: 0 12px 28px rgb(15 23 42 / 0.1);
   --shadow-xl: 0 20px 40px rgb(15 23 42 / 0.12);
 
+  /* Layering */
+  --z-sticky: 100;
+  --z-dropdown: 1000;
+  --z-popover: 1050;
+  --z-overlay: 1080;
+  --z-modal: 1100;
+  --z-tooltip: 1200;
+
   /* Motion */
   --transition-fast: 120ms ease;
   --transition-normal: 200ms ease;
@@ -120,22 +128,13 @@
 
   /* Typography — base sizes; family controlled by FontService / [data-font] */
   --font-family-sans:
-    'Inter',
-    'Inter Variable',
-    'PingFang SC',
-    'Hiragino Sans GB',
-    'Segoe UI',
-    'Microsoft YaHei',
-    system-ui,
-    sans-serif;
+    "Inter", "Inter Variable", "PingFang SC", "Hiragino Sans GB", "Segoe UI",
+    "Microsoft YaHei", system-ui, sans-serif;
   --font-family-display:
-    'Inter Display',
-    'Inter',
-    'PingFang SC',
-    'Hiragino Sans GB',
-    system-ui,
+    "Inter Display", "Inter", "PingFang SC", "Hiragino Sans GB", system-ui,
     sans-serif;
-  --font-family-mono: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
+  --font-family-mono:
+    "ui-monospace", "SFMono-Regular", "Menlo", "Consolas", monospace;
 
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -150,12 +149,12 @@
   --letter-spacing: 0;
 
   /* Spacing & control sizes — locked to SPEC / theme-spacing contract */
-  --spacing-xs: 0.25rem;   /* 4 */
-  --spacing-sm: 0.5rem;    /* 8 */
-  --spacing-md: 0.75rem;   /* 12 — control / toolbar gap */
-  --spacing-lg: 1rem;      /* 16 */
-  --spacing-xl: 1.5rem;    /* 24 */
-  --spacing-2xl: 2rem;     /* 32 */
+  --spacing-xs: 0.25rem; /* 4 */
+  --spacing-sm: 0.5rem; /* 8 */
+  --spacing-md: 0.75rem; /* 12 — control / toolbar gap */
+  --spacing-lg: 1rem; /* 16 */
+  --spacing-xl: 1.5rem; /* 24 */
+  --spacing-2xl: 2rem; /* 32 */
 
   --theme-page-pad: 1.5rem;
   --theme-section-gap: 1.25rem;
@@ -179,12 +178,12 @@
 }
 
 /* Icon style — global hooks used by Icon / SVG icons */
-[data-icon-style='outline'] {
+[data-icon-style="outline"] {
   --icon-stroke-width: 1.75;
   --icon-opacity: 1;
 }
 
-[data-icon-style='solid'] {
+[data-icon-style="solid"] {
   --icon-stroke-width: 2.25;
   --icon-opacity: 1;
 }

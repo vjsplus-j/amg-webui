@@ -31,10 +31,17 @@ const close = () => {
 
 <template>
   <div v-if="visible" :class="['vp-alert', severityClass, props.class]" :style="style" role="alert">
-    <span v-if="showIcon" class="vp-alert__icon" aria-hidden="true">•</span>
+    <span v-if="showIcon" class="vp-alert__icon" aria-hidden="true">
+      <slot name="icon">
+        {{ icon || '•' }}
+      </slot>
+    </span>
     <div class="vp-alert__content">
       <div v-if="title || $slots.title" class="vp-alert__title">
         <slot name="title">{{ title }}</slot>
+      </div>
+      <div v-if="description || $slots.description" class="vp-alert__description">
+        <slot name="description">{{ description }}</slot>
       </div>
       <div v-if="$slots.default" class="vp-alert__body">
         <slot />

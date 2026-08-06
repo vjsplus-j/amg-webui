@@ -1,6 +1,8 @@
 import Comp from './index.vue'
-import type { SpacerProps, SpacerEmits, SpacerSize, SpacerAxis } from './types'
+import { useSpacerStyle } from './useSpacerStyle'
+import type { SpacerProps, SpacerEmits, SpacerSize, SpacerAxis, SpacerResizePayload } from './types'
 
 export { Comp as Spacer }
-export type { SpacerProps, SpacerEmits, SpacerSize, SpacerAxis }
+export { useSpacerStyle }
+export type { SpacerProps, SpacerEmits, SpacerSize, SpacerAxis, SpacerResizePayload }
 export default Comp

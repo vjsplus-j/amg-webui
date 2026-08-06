@@ -1,0 +1,59 @@
+.vp-matrix-code {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
+
+  &__input {
+    width: 100%;
+    height: var(--height-md);
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--theme-input-radius, var(--border-radius-md));
+    padding: 0 var(--spacing-md);
+    background: var(--surface-0, var(--surface-1));
+    color: var(--text-primary);
+  }
+
+  &__symbol {
+    padding: var(--spacing-md);
+    background: var(--surface-1);
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--theme-card-radius, var(--border-radius-md));
+    line-height: 0;
+  }
+
+  &__canvas {
+    max-width: 100%;
+    overflow-x: auto;
+    color: var(--text-primary);
+
+    svg {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      margin-inline: auto;
+    }
+  }
+
+  &__muted,
+  &__error {
+    margin: 0;
+    font-size: var(--font-size-sm);
+  }
+
+  &__muted {
+    color: var(--text-secondary);
+  }
+
+  &__error {
+    color: var(--color-error);
+  }
+
+  &--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}

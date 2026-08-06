@@ -1,9 +1,18 @@
 import type { InjectionKey, Ref } from 'vue'
 import type { BaseProps } from '@amg-webui/types'
 
+export interface TabsPaneMeta {
+  name: string | number
+  label?: string
+  disabled?: boolean
+}
+
 export const TABS_INJECTION_KEY: InjectionKey<{
   activeName: Ref<string | number | undefined>
   setActive: (name: string | number) => void
+  idPrefix: string
+  registerPane: (pane: TabsPaneMeta) => void
+  unregisterPane: (name: string | number) => void
 }> = Symbol('vp-tabs')
 
 export interface TabsProps extends BaseProps {
@@ -26,4 +35,10 @@ export interface TabPaneProps extends BaseProps {
   lazy?: boolean
   /** Always keep content mounted (overrides lazy after first paint) */
   forceRender?: boolean
+  /** Unmount content whenever the pane becomes inactive */
+  destroyInactive?: boolean
+  /** Accessible name when the pane has no matching tab label */
+  ariaLabel?: string
+  /** Focus order for the active panel */
+  tabindex?: number
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { FooterNav } from '@amg-webui/components/base'
+import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -11,15 +12,16 @@ import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
 
-const mountProps = computed(() => getSampleMountProps('FooterNav'))
+const selected = ref<string | number>('a')
+const items = computed(() => getSampleMountProps('FooterNav').items as NavItem[])
 
 const codeBasic = demoSfc({
   imports: [
-    `import { FooterNav } from '@amg-webui/components/base'`,
-    `import { getSampleMountProps } from '../_shared/sampleMountProps'`
+    `import { ref } from 'vue'`,
+    `import { FooterNav } from '@amg-webui/components/base'`
   ],
-  script: [`const mountProps = getSampleMountProps('FooterNav')`],
-  template: [`  <FooterNav v-bind="mountProps" />`]
+  script: [`const selected = ref('docs')`, `const items = [/* NavItem[] */]`],
+  template: [`  <FooterNav v-model="selected" :items="items" dividers />`]
 })
 
 const propRows = computed<PropRow[]>(() => [
@@ -40,7 +42,7 @@ const propRows = computed<PropRow[]>(() => [
       :code="codeBasic"
       default-open
     >
-      <FooterNav v-bind="mountProps" />
+      <FooterNav v-model="selected" :items="items" dividers />
     </DemoBlock>
     <PropsTable :rows="propRows" />
   </div>

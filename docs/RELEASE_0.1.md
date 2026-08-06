@@ -6,7 +6,7 @@
 
 | 项 | 说明 |
 |----|------|
-| **承诺组件** | Gallery「v0.1」子集（Core∪B1∪B2∪B3），名单：`example/v0.1-subset.ts` · 说明：`docs/V0_1_SUBSET.md` |
+| **承诺组件** | Gallery「v0.1」子集（契约 0.1.3：Core∪B1–B4，去重 140），名单：`example/v0.1-subset.ts` · 说明：`docs/V0_1_SUBSET.md` |
 | **API** | **可变**；破坏性变更会记入 CHANGELOG，不保证到 1.0 前零破坏 |
 | **非承诺** | 子集外组件（行业套件 / 全量图表 / 编辑器深度等）视为 **experimental**，可存在于包内但不作 SLA |
 | **example** | 仅本地调试，**禁止**当官网或线上 demo |
@@ -35,13 +35,16 @@ import { Button, ThemeService } from 'amg-webui'
 | `amg-webui/style.css` | 全量样式 |
 | `amg-webui/theme` | 主题服务（源码导出，需 Vite/TS 路径解析） |
 | `amg-webui/telemetry` | 遥测（默认关闭） |
+| `amg-webui/skill` | Skill Runtime Core + Vue 集成（experimental，不纳入 0.1 稳定承诺） |
+| `amg-webui/skill/core` | 框架无关 Skill Core / Pipeline（experimental） |
 | `amg-webui/icons` | 图标 catalog / resolver |
 | `amg-webui/components/base` | 按需深路径（源码，利于 tree-shake） |
 
 ## 本地打库
 
 ```bash
-npm run build:lib   # → dist/amg-webui.js · .umd.cjs · style.css · *.d.ts
+npm run build:lib   # → 主库产物 + dist/skill/ 独立 ESM/CJS/types
+npm run build:skill # → 仅 dist/skill/
 ```
 
 ## 验收（Release 0.1 分步）
@@ -53,6 +56,7 @@ npm run build:lib   # → dist/amg-webui.js · .umd.cjs · style.css · *.d.ts
 - [x] `exports` / `files` / `license` / `engines`
 - [x] README 声明试用合同
 - [x] `npm run build:lib` → `dist/amg-webui.js` · `.umd.cjs` · `style.css` · `index.d.ts`
+- [x] Skill Runtime 独立 `dist/skill/index.*` · `core.*` · `.d.ts`；根入口不导出 Skill
 
 ### Step 3 — 子集 & Gallery 对齐
 

@@ -30,7 +30,7 @@
   }
 
   &--colon::after {
-    content: ':';
+    content: ":";
     margin-inline-start: var(--spacing-xs);
   }
 }

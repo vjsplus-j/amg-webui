@@ -8,157 +8,239 @@
  *
  * Usage: node scripts/score-component-maturity.mjs
  */
-import { readdirSync, readFileSync, writeFileSync, existsSync, statSync } from 'node:fs'
-import { resolve, dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import {
+  readdirSync,
+  readFileSync,
+  writeFileSync,
+  existsSync,
+  statSync,
+} from "node:fs";
+import { resolve, dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const baseDir = resolve(root, 'packages/components/base')
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const baseDir = resolve(root, "packages/components/base");
 
-const LEVELS = ['stub', 'shell', 'beta', 'ready']
+const LEVELS = ["stub", "shell", "beta", "ready"];
+
+function readTreeText(dir) {
+  if (!existsSync(dir)) return "";
+  return readdirSync(dir, { withFileTypes: true })
+    .map((entry) =>
+      entry.isDirectory()
+        ? readTreeText(join(dir, entry.name))
+        : /\.(?:spec|test)\.[cm]?[jt]sx?$/.test(entry.name)
+          ? readFileSync(join(dir, entry.name), "utf8")
+          : "",
+    )
+    .join("\n");
+}
+
+const testSource = readTreeText(resolve(root, "tests"));
+const STRUCTURAL_PRIMITIVES = new Set([
+  "ColumnLayout",
+  "StackLayout",
+  "Main",
+  "DescriptionsItem",
+  "ScaleLayout",
+  "FlowLayout",
+  "Row",
+  "Center",
+  "Col",
+  "FormLayout",
+]);
 
 function isScaffold(vue) {
-  const lines = vue.split(/\r?\n/).length
+  const lines = vue.split(/\r?\n/).length;
   if (
-    vue.includes('data-component=') &&
-    vue.includes('__btn') &&
+    vue.includes("data-component=") &&
+    vue.includes("__btn") &&
     /t\(['"]common\.search['"]\)/.test(vue) &&
     /t\(['"]button\.confirm['"]\)/.test(vue) &&
     lines < 100
   ) {
-    return true
+    return true;
   }
-  if (vue.includes('data-variant=') && vue.includes('letter-spacing:0.2em') && lines < 60) {
-    return true
+  if (
+    vue.includes("data-variant=") &&
+    vue.includes("letter-spacing:0.2em") &&
+    lines < 60
+  ) {
+    return true;
   }
-  if (/mode: string = 'bubbles'/.test(vue) && lines < 80) return true
-  return false
+  if (/mode: string = 'bubbles'/.test(vue) && lines < 80) return true;
+  return false;
 }
 
 function countProps(typesSrc) {
-  if (!typesSrc) return 0
-  const iface = typesSrc.match(/export interface \w+Props[^{]*\{([\s\S]*?)\n\}/)
-  if (!iface) return 0
-  return (iface[1].match(/^\s+\w+\??:/gm) || []).length
+  if (!typesSrc) return 0;
+  const iface = typesSrc.match(
+    /export interface \w+Props[^{]*\{([\s\S]*?)\n\}/,
+  );
+  if (!iface) return 0;
+  return (iface[1].match(/^\s+\w+\??:/gm) || []).length;
 }
 
 function fileLines(path) {
-  if (!existsSync(path)) return 0
-  return readFileSync(path, 'utf8').split(/\r?\n/).length
+  if (!existsSync(path)) return 0;
+  return readFileSync(path, "utf8").split(/\r?\n/).length;
 }
 
 function scoreOne(name) {
-  const dir = join(baseDir, name)
-  const vuePath = join(dir, 'index.vue')
-  const typesPath = join(dir, 'types.ts')
-  const stylePath = join(dir, 'style.scss')
-  const vue = existsSync(vuePath) ? readFileSync(vuePath, 'utf8') : ''
-  const types = existsSync(typesPath) ? readFileSync(typesPath, 'utf8') : ''
-  const style = existsSync(stylePath) ? readFileSync(stylePath, 'utf8') : ''
+  const dir = join(baseDir, name);
+  const primaryVuePath = join(dir, "index.vue");
+  const vueCandidates = readdirSync(dir)
+    .filter((file) => file.endsWith(".vue"))
+    .map((file) => join(dir, file));
+  const vuePath = existsSync(primaryVuePath)
+    ? primaryVuePath
+    : vueCandidates.sort((a, b) => fileLines(b) - fileLines(a))[0];
+  const typesPath = join(dir, "types.ts");
+  const stylePath = join(dir, "style.scss");
+  const vue =
+    vuePath && existsSync(vuePath) ? readFileSync(vuePath, "utf8") : "";
+  const types = existsSync(typesPath) ? readFileSync(typesPath, "utf8") : "";
+  const style = existsSync(stylePath) ? readFileSync(stylePath, "utf8") : "";
 
-  const vueLines = vue ? vue.split(/\r?\n/).length : 0
-  const styleLines = style ? style.split(/\r?\n/).length : 0
-  const propCount = countProps(types)
-  const hasEmits = /defineEmits|Emits\s*\{/.test(vue) || /export interface \w+Emits/.test(types)
-  const hasComposable = readdirSync(dir).some((f) => /^use[A-Z].*\.ts$/.test(f))
-  const hasProvideInject = /provide\(|inject\(/.test(vue)
-  const hasVModel = /update:modelValue|modelValue/.test(vue)
-  const handlers = (vue.match(/@(?:click|change|input|keydown|scroll|focus|blur|submit|contextmenu)=/g) || [])
-    .length
-  const hasAria = /aria-|role=/.test(vue)
-  const hasTokens = /var\(--(?:ds|theme|spacing|font-size|border-radius|shadow|text|surface|height)-/.test(
-    style + vue
-  )
+  const vueLines = vue ? vue.split(/\r?\n/).length : 0;
+  const styleLines = style ? style.split(/\r?\n/).length : 0;
+  const propCount = countProps(types);
+  const hasEmits =
+    /defineEmits|Emits\s*\{/.test(vue) ||
+    /export interface \w+Emits/.test(types);
+  const hasComposable = readdirSync(dir).some((f) =>
+    /^use[A-Z].*\.ts$/.test(f),
+  );
+  const hasProvideInject = /provide\(|inject\(/.test(vue);
+  const hasVModel = /update:modelValue|modelValue/.test(vue);
+  const handlers = (
+    vue.match(
+      /@(?:click|change|input|keydown|scroll|focus|blur|submit|contextmenu)=/g,
+    ) || []
+  ).length;
+  const hasAria = /aria-|role=/.test(vue);
+  const hasTokens =
+    /var\(--(?:ds|theme|spacing|font-size|border-radius|shadow|text|surface|height)-/.test(
+      style + vue,
+    );
+  const hasBehaviorTest = new RegExp(
+    `components/base/${name}/index\\.vue`,
+  ).test(testSource.replaceAll("\\\\", "/"));
+  const delegatesComponent =
+    /import\s+\w+\s+from\s+['"]\.\.\/\w+\/index\.vue['"]/.test(vue);
   const slotOnly =
     /<slot\s*\/>/.test(vue) &&
-    !(vue.includes('v-for') || vue.includes('v-if') || handlers > 0 || hasVModel)
-  const templateLight = vueLines < 45 && styleLines < 40 && propCount <= 4
+    !(
+      vue.includes("v-for") ||
+      vue.includes("v-if") ||
+      handlers > 0 ||
+      hasVModel
+    );
+  const templateLight = vueLines < 45 && styleLines < 40 && propCount <= 4;
 
-  const signals = []
-  let score = 0
+  const signals = [];
+  let score = 0;
 
   if (isScaffold(vue)) {
     return {
-      level: 'stub',
+      level: "stub",
       score: 5,
-      signals: ['scaffold'],
+      signals: ["scaffold"],
       vueLines,
       styleLines,
-      propCount
-    }
+      propCount,
+    };
   }
 
-  score += Math.min(35, Math.floor(vueLines / 4))
-  score += Math.min(15, Math.floor(styleLines / 5))
-  score += Math.min(15, propCount * 2)
+  score += Math.min(35, Math.floor(vueLines / 4));
+  score += Math.min(15, Math.floor(styleLines / 5));
+  score += Math.min(15, propCount * 2);
   if (hasEmits) {
-    score += 8
-    signals.push('emits')
+    score += 8;
+    signals.push("emits");
   }
   if (hasComposable) {
-    score += 10
-    signals.push('composable')
+    score += 10;
+    signals.push("composable");
   }
   if (hasProvideInject) {
-    score += 8
-    signals.push('provide-inject')
+    score += 8;
+    signals.push("provide-inject");
   }
   if (hasVModel) {
-    score += 6
-    signals.push('v-model')
+    score += 6;
+    signals.push("v-model");
   }
-  score += Math.min(10, handlers * 2)
-  if (handlers) signals.push(`handlers:${handlers}`)
+  score += Math.min(10, handlers * 2);
+  if (handlers) signals.push(`handlers:${handlers}`);
   if (hasAria) {
-    score += 4
-    signals.push('a11y')
+    score += 4;
+    signals.push("a11y");
   }
   if (hasTokens) {
-    score += 4
-    signals.push('tokens')
+    score += 4;
+    signals.push("tokens");
   }
-  if (existsSync(join(dir, 'index.ts'))) score += 2
+  if (existsSync(join(dir, "index.ts"))) score += 2;
+  if (hasBehaviorTest) {
+    score += 8;
+    signals.push("behavior-test");
+  }
+  if (delegatesComponent) {
+    score += 6;
+    signals.push("delegate");
+  }
 
   // Sub-primitives / thin shells — cap as shell unless clearly richer
   const subPrimitive =
     /Item$|Pane$|Group$/.test(name) ||
-    name === 'Steps' ||
-    name === 'Timeline' ||
-    (slotOnly && templateLight)
+    name === "Steps" ||
+    name === "Timeline" ||
+    (slotOnly && templateLight);
 
   if (subPrimitive && score < 55) {
-    signals.push(slotOnly ? 'slot-shell' : 'sub-primitive')
+    signals.push(slotOnly ? "slot-shell" : "sub-primitive");
     return {
-      level: 'shell',
+      level: "shell",
       score: Math.min(score, 35),
       signals,
       vueLines,
       styleLines,
-      propCount
-    }
+      propCount,
+    };
   }
 
   if (templateLight && score < 40) {
-    signals.push('thin')
+    signals.push("thin");
     return {
-      level: 'shell',
+      level: "shell",
       score: Math.min(score, 38),
       signals,
       vueLines,
       styleLines,
-      propCount
-    }
+      propCount,
+    };
   }
 
-  let level = 'beta'
-  if (score >= 70) level = 'ready'
-  else if (score >= 40) level = 'beta'
-  else level = 'shell'
+  let level = "beta";
+  if (score >= 70) level = "ready";
+  else if (hasBehaviorTest && score >= 68) level = "ready";
+  else if (
+    STRUCTURAL_PRIMITIVES.has(name) &&
+    score >= 55 &&
+    hasAria &&
+    hasTokens &&
+    propCount >= 4
+  ) {
+    level = "ready";
+    signals.push("structural-primitive");
+  } else if (score >= 40) level = "beta";
+  else level = "shell";
 
   // Known doc gaps: multi-page TabsNav still lacks close / context menu / pin
-  if (name === 'TabsNav' && level === 'ready') {
-    level = 'beta'
-    signals.push('doc-gap:multi-tab')
+  if (name === "TabsNav" && level === "ready") {
+    level = "beta";
+    signals.push("doc-gap:multi-tab");
   }
 
   return {
@@ -167,39 +249,39 @@ function scoreOne(name) {
     signals,
     vueLines,
     styleLines,
-    propCount
-  }
+    propCount,
+  };
 }
 
 const names = readdirSync(baseDir, { withFileTypes: true })
   .filter((d) => d.isDirectory())
   .map((d) => d.name)
-  .sort()
+  .sort();
 
-const components = {}
-const summary = { stub: 0, shell: 0, beta: 0, ready: 0 }
+const components = {};
+const summary = { stub: 0, shell: 0, beta: 0, ready: 0 };
 
 for (const name of names) {
-  const row = scoreOne(name)
-  components[name] = row
-  summary[row.level] += 1
+  const row = scoreOne(name);
+  components[name] = row;
+  summary[row.level] += 1;
 }
 
-const generatedAt = new Date().toISOString()
+const generatedAt = new Date().toISOString();
 const out = {
   version: 1,
   generatedAt,
   total: names.length,
   summary,
   levels: LEVELS,
-  components
-}
+  components,
+};
 
-const outPath = resolve(root, 'example/component-maturity.json')
-writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`)
+const outPath = resolve(root, "example/component-maturity.json");
+writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`);
 
-console.log('[score-component-maturity]', {
+console.log("[score-component-maturity]", {
   total: out.total,
   summary,
-  out: 'example/component-maturity.json'
-})
+  out: "example/component-maturity.json",
+});

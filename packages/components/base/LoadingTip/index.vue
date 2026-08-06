@@ -1,88 +1,143 @@
 <script setup lang="ts">
-import { computed, ref, watch, onUnmounted } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
-import './style.scss'
+import { computed, ref, watch, onUnmounted } from "vue";
+import type { LoadingTipEmits, LoadingTipProps } from "./types";
+import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
+import { trackEmit } from "@amg-webui/telemetry";
+import "./style.scss";
 
-const props = withDefaults(
-  defineProps<{
-    loading?: boolean
-    message?: string
-    /** Control size for spinner + type */
-    size?: 'sm' | 'md' | 'lg'
-    /** Delay ms before showing spinner (avoids flash on fast loads) */
-    delay?: number
-    /** Stretch to full content width */
-    block?: boolean
-    class?: string
-    style?: Record<string, string>
-  }>(),
-  {
-    loading: true,
-    size: 'md',
-    delay: 0,
-    block: false
-  }
-)
+const props = withDefaults(defineProps<LoadingTipProps>(), {
+  loading: true,
+  size: "md",
+  delay: 0,
+  block: false,
+  persistent: false,
+  overlay: false,
+  cancellable: false,
+  live: "polite",
+  telemetry: undefined,
+});
 
-const { t } = useLocale()
-const visible = ref(props.delay <= 0 && props.loading)
-let timer: ReturnType<typeof setTimeout> | undefined
+const { t } = useLocale();
+const emit = defineEmits<LoadingTipEmits>();
+const visible = ref(props.delay <= 0 && props.loading);
+let timer: ReturnType<typeof setTimeout> | undefined;
 
 function clearTimer() {
   if (timer != null) {
-    clearTimeout(timer)
-    timer = undefined
+    clearTimeout(timer);
+    timer = undefined;
   }
 }
 
 watch(
   () => [props.loading, props.delay] as const,
   ([loading, delay]) => {
-    clearTimer()
+    clearTimer();
     if (!loading) {
-      visible.value = false
-      return
+      if (visible.value) {
+        emit("hide");
+        trackEmit({
+          component: "LoadingTip",
+          type: "hide",
+          trackId: props.trackId,
+          telemetry: props.telemetry,
+        });
+      }
+      visible.value = false;
+      return;
     }
     if (!delay) {
-      visible.value = true
-      return
+      visible.value = true;
+      emit("show");
+      trackEmit({
+        component: "LoadingTip",
+        type: "show",
+        trackId: props.trackId,
+        telemetry: props.telemetry,
+      });
+      return;
     }
-    visible.value = false
+    visible.value = false;
     timer = setTimeout(() => {
-      visible.value = true
-      timer = undefined
-    }, delay)
+      visible.value = true;
+      emit("show");
+      trackEmit({
+        component: "LoadingTip",
+        type: "show",
+        trackId: props.trackId,
+        telemetry: props.telemetry,
+      });
+      timer = undefined;
+    }, delay);
   },
-  { immediate: true }
-)
+  { immediate: true },
+);
 
-onUnmounted(clearTimer)
+onUnmounted(clearTimer);
 
 const rootClass = computed(() => [
-  'vp-loading-tip',
+  "vp-loading-tip",
   `vp-loading-tip--${props.size}`,
   {
-    'vp-loading-tip--loading': visible.value,
-    'vp-loading-tip--block': props.block
+    "vp-loading-tip--loading": visible.value,
+    "vp-loading-tip--block": props.block,
+    "vp-loading-tip--overlay": props.overlay,
   },
-  props.class
-])
+  props.class,
+]);
 
-const label = computed(() => props.message ?? t(LocaleKeys.common.loading))
+const label = computed(() => props.message ?? t(LocaleKeys.common.loading));
+const progressValue = computed(() =>
+  props.progress == null
+    ? undefined
+    : Math.min(100, Math.max(0, props.progress)),
+);
+function cancel(event: MouseEvent) {
+  emit("cancel", event);
+  trackEmit({
+    component: "LoadingTip",
+    type: "cancel",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+  });
+}
 </script>
 
 <template>
   <div
-    v-if="visible"
+    v-if="visible || persistent"
     :class="rootClass"
     :style="style"
     role="status"
-    aria-busy="true"
+    :aria-busy="visible"
+    :aria-live="live"
     data-component="LoadingTip"
   >
-    <span class="vp-loading-tip__spinner" aria-hidden="true" />
-    <span class="vp-loading-tip__text">{{ label }}</span>
-    <slot />
+    <span
+      v-if="visible && progressValue == null"
+      class="vp-loading-tip__spinner"
+      aria-hidden="true"
+    />
+    <span v-if="visible" class="vp-loading-tip__content"
+      ><span class="vp-loading-tip__text">{{ label }}</span
+      ><span
+        v-if="progressValue != null"
+        class="vp-loading-tip__progress"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        :aria-valuenow="progressValue"
+        ><i :style="{ width: `${progressValue}%` }" /></span
+    ></span>
+    <button
+      v-if="visible && cancellable"
+      type="button"
+      class="vp-loading-tip__cancel"
+      @click="cancel"
+    >
+      {{ cancelText ?? t(LocaleKeys.button.cancel) }}
+    </button>
+    <slot :loading="visible" />
   </div>
 </template>

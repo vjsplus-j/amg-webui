@@ -1,43 +1,30 @@
-import { ref, onUnmounted } from 'vue'
-import type { TooltipProps } from './types'
-
-export function useTooltip(props: TooltipProps) {
-  const visible = ref(false)
-  let showTimer: ReturnType<typeof setTimeout> | null = null
-  let hideTimer: ReturnType<typeof setTimeout> | null = null
-
-  const clearTimers = () => {
-    if (showTimer) {
-      clearTimeout(showTimer)
-      showTimer = null
-    }
-    if (hideTimer) {
-      clearTimeout(hideTimer)
-      hideTimer = null
-    }
+import { onUnmounted, ref } from "vue";
+export function useTooltipTimers() {
+  const openTimer = ref<ReturnType<typeof setTimeout> | null>(null);
+  const closeTimer = ref<ReturnType<typeof setTimeout> | null>(null);
+  function clearOpen() {
+    if (openTimer.value) clearTimeout(openTimer.value);
+    openTimer.value = null;
   }
-
-  const show = () => {
-    if (props.disabled) return
-    clearTimers()
-    const delay = props.delay ?? 0
-    if (delay > 0) {
-      showTimer = setTimeout(() => {
-        visible.value = true
-      }, delay)
-    } else {
-      visible.value = true
-    }
+  function clearClose() {
+    if (closeTimer.value) clearTimeout(closeTimer.value);
+    closeTimer.value = null;
   }
-
-  const hide = () => {
-    clearTimers()
-    hideTimer = setTimeout(() => {
-      visible.value = false
-    }, 100)
+  function clear() {
+    clearOpen();
+    clearClose();
   }
-
-  onUnmounted(clearTimers)
-
-  return { visible, show, hide, clearTimers }
+  function scheduleOpen(callback: () => void, delay: number) {
+    clear();
+    if (delay > 0) openTimer.value = setTimeout(callback, delay);
+    else callback();
+  }
+  function scheduleClose(callback: () => void, delay: number) {
+    clearOpen();
+    clearClose();
+    if (delay > 0) closeTimer.value = setTimeout(callback, delay);
+    else callback();
+  }
+  onUnmounted(clear);
+  return { clear, clearClose, scheduleOpen, scheduleClose };
 }

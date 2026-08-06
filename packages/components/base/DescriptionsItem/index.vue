@@ -1,51 +1,51 @@
 <script setup lang="ts">
-import { inject, computed } from 'vue'
-import { DESCRIPTIONS_INJECTION_KEY } from '../Descriptions/types'
-import './style.scss'
+import { inject, computed } from "vue";
+import { DESCRIPTIONS_INJECTION_KEY } from "../Descriptions/types";
+import "./style.scss";
 
-let uidSeq = 0
+let uidSeq = 0;
 
 const props = withDefaults(
   defineProps<{
-    label?: string
-    span?: number
+    label?: string;
+    span?: number;
     /** Append colon after label */
-    colon?: boolean
-    labelAlign?: 'start' | 'end'
+    colon?: boolean;
+    labelAlign?: "start" | "end";
     /** Override parent Descriptions labelWidth */
-    labelWidth?: string | number
-    class?: string
-    style?: Record<string, string>
+    labelWidth?: string | number;
+    class?: string;
+    style?: Record<string, string>;
   }>(),
   {
     span: 1,
     colon: false,
-    labelAlign: 'start'
-  }
-)
+    labelAlign: "start",
+  },
+);
 
-const ctx = inject(DESCRIPTIONS_INJECTION_KEY, null)
-const labelId = `vp-desc-item-label-${++uidSeq}`
+const ctx = inject(DESCRIPTIONS_INJECTION_KEY, null);
+const labelId = `vp-desc-item-label-${++uidSeq}`;
 
 const labelWidthStyle = computed(() => {
-  const raw = props.labelWidth ?? ctx?.labelWidth.value
-  if (raw == null) return undefined
-  if (typeof raw === 'number') {
-    return { width: `calc(var(--spacing-xs) * ${raw})`, flexShrink: '0' }
+  const raw = props.labelWidth ?? ctx?.labelWidth.value;
+  if (raw == null) return undefined;
+  if (typeof raw === "number") {
+    return { width: `calc(var(--spacing-xs) * ${raw})`, flexShrink: "0" };
   }
-  return { width: raw, flexShrink: '0' }
-})
+  return { width: raw, flexShrink: "0" };
+});
 
 const itemStyle = computed(() => ({
   ...(props.style ?? {}),
-  gridColumn: `span ${Math.min(props.span, ctx?.column.value ?? props.span)}`
-}))
+  gridColumn: `span ${Math.min(props.span, ctx?.column.value ?? props.span)}`,
+}));
 
 const labelClass = computed(() => [
-  'vp-descriptions-item__label',
+  "vp-descriptions-item__label",
   `vp-descriptions-item__label--align-${props.labelAlign}`,
-  { 'vp-descriptions-item__label--colon': props.colon }
-])
+  { "vp-descriptions-item__label--colon": props.colon },
+]);
 </script>
 
 <template>

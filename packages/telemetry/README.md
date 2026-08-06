@@ -39,6 +39,8 @@ TelemetryService.configure({
 </TelemetryProvider>
 ```
 
+Provider 默认 `restoreOnUnmount`，卸载后恢复此前配置；需要把配置永久写入全局单例时显式传 `:restore-on-unmount="false"`。`trackLifecycle` 可选记录 Provider 生命周期。
+
 ## 组件挂钩
 
 ```ts

@@ -1,16 +1,9 @@
-import type { BaseProps, Position, Severity } from '@amg-webui/types'
+import type {
+  NoticeCloseReason,
+  NoticeEmits,
+  NoticeProps,
+} from "../../internal/notice";
 
-export interface NotificationProps extends BaseProps {
-  title?: string
-  message?: string
-  severity?: Severity
-  duration?: number
-  closable?: boolean
-  position?: Position
-  visible?: boolean
-}
-
-export interface NotificationEmits {
-  (e: 'update:visible', value: boolean): void
-  (e: 'close'): void
-}
+export interface NotificationProps extends NoticeProps {}
+export interface NotificationEmits extends NoticeEmits {}
+export type { NoticeCloseReason as NotificationCloseReason };

@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-30T12:16:04.019Z",
-  "total": 284,
+  "generatedAt": "2026-08-05T04:17:31.427Z",
+  "total": 285,
   "summary": {
     "stub": 0,
-    "shell": 9,
-    "beta": 139,
-    "ready": 136
+    "shell": 6,
+    "beta": 32,
+    "ready": 247
   },
   "levels": [
     "stub",
@@ -17,41 +17,46 @@
   "components": {
     "AdvancedSearch": {
       "level": "ready",
-      "score": 76,
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 111,
       "styleLines": 57,
       "propCount": 5
     },
     "Affix": {
-      "level": "beta",
-      "score": 52,
+      "level": "ready",
+      "score": 82,
       "signals": [
         "emits",
         "composable",
-        "a11y"
+        "v-model",
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 55,
-      "styleLines": 26,
-      "propCount": 5
+      "vueLines": 82,
+      "styleLines": 28,
+      "propCount": 9
     },
     "Alert": {
-      "level": "beta",
-      "score": 56,
+      "level": "ready",
+      "score": 70,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 54,
+      "vueLines": 61,
       "styleLines": 78,
-      "propCount": 4
+      "propCount": 6
     },
     "Anchor": {
       "level": "ready",
@@ -110,13 +115,14 @@
     },
     "Avatar": {
       "level": "ready",
-      "score": 95,
+      "score": 100,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 338,
       "styleLines": 185,
@@ -124,27 +130,29 @@
     },
     "AvatarGroup": {
       "level": "ready",
-      "score": 87,
+      "score": 93,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
-      "vueLines": 189,
+      "vueLines": 193,
       "styleLines": 52,
       "propCount": 7
     },
     "BackTop": {
-      "level": "beta",
-      "score": 64,
+      "level": "ready",
+      "score": 70,
       "signals": [
         "emits",
         "composable",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 54,
       "styleLines": 48,
@@ -152,51 +160,58 @@
     },
     "Badge": {
       "level": "ready",
-      "score": 93,
+      "score": 99,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 209,
       "styleLines": 217,
       "propCount": 30
     },
     "BarChart": {
-      "level": "beta",
-      "score": 52,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
+        "composable",
+        "v-model",
+        "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 55,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 100,
+      "styleLines": 75,
+      "propCount": 11
     },
     "Barcode": {
-      "level": "beta",
-      "score": 63,
+      "level": "ready",
+      "score": 85,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 58,
-      "styleLines": 46,
-      "propCount": 7
+      "vueLines": 100,
+      "styleLines": 58,
+      "propCount": 11
     },
     "BatchPanel": {
       "level": "beta",
-      "score": 60,
+      "score": 66,
       "signals": [
         "emits",
         "handlers:1",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 101,
       "styleLines": 57,
@@ -204,12 +219,13 @@
     },
     "BatchUpload": {
       "level": "ready",
-      "score": 83,
+      "score": 89,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 145,
       "styleLines": 61,
@@ -227,15 +243,16 @@
     },
     "Breadcrumb": {
       "level": "ready",
-      "score": 75,
+      "score": 82,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
-      "vueLines": 123,
+      "vueLines": 126,
       "styleLines": 29,
       "propCount": 6
     },
@@ -254,30 +271,33 @@
       "propCount": 6
     },
     "BrowserDetect": {
-      "level": "beta",
-      "score": 56,
+      "level": "ready",
+      "score": 74,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 47,
-      "styleLines": 372,
+      "vueLines": 87,
+      "styleLines": 383,
       "propCount": 5
     },
     "Business404": {
-      "level": "beta",
-      "score": 54,
+      "level": "ready",
+      "score": 91,
       "signals": [
         "emits",
-        "handlers:1",
+        "v-model",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 30,
-      "styleLines": 82,
-      "propCount": 6
+      "vueLines": 95,
+      "styleLines": 91,
+      "propCount": 10
     },
     "Button": {
       "level": "ready",
@@ -287,11 +307,13 @@
         "composable",
         "handlers:8",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 526,
+      "vueLines": 530,
       "styleLines": 932,
-      "propCount": 56
+      "propCount": 59
     },
     "ButtonGroup": {
       "level": "ready",
@@ -306,28 +328,32 @@
       "propCount": 8
     },
     "Calendar": {
-      "level": "beta",
-      "score": 59,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
-        "handlers:3",
-        "tokens"
+        "handlers:5",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 109,
-      "styleLines": 12,
-      "propCount": 2
+      "vueLines": 251,
+      "styleLines": 101,
+      "propCount": 10
     },
     "CanvasIo": {
-      "level": "beta",
-      "score": 59,
+      "level": "ready",
+      "score": 69,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 90,
+      "vueLines": 96,
       "styleLines": 39,
       "propCount": 3
     },
@@ -345,67 +371,73 @@
       "propCount": 2
     },
     "CanvasNode": {
-      "level": "beta",
-      "score": 59,
+      "level": "ready",
+      "score": 70,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens"
       ],
-      "vueLines": 98,
+      "vueLines": 133,
       "styleLines": 37,
-      "propCount": 3
+      "propCount": 4
     },
     "CanvasPreview": {
-      "level": "beta",
-      "score": 63,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
+        "v-model",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 51,
-      "styleLines": 373,
-      "propCount": 7
+      "vueLines": 210,
+      "styleLines": 103,
+      "propCount": 16
     },
     "CanvasShortcut": {
-      "level": "beta",
-      "score": 53,
+      "level": "ready",
+      "score": 78,
       "signals": [
         "emits",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 41,
-      "styleLines": 370,
-      "propCount": 5
+      "vueLines": 91,
+      "styleLines": 371,
+      "propCount": 9
     },
     "Card": {
       "level": "ready",
-      "score": 87,
+      "score": 93,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 168,
       "styleLines": 150,
       "propCount": 13
     },
     "CardGrid": {
-      "level": "beta",
-      "score": 55,
+      "level": "ready",
+      "score": 78,
       "signals": [
         "emits",
+        "composable",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 67,
-      "styleLines": 36,
-      "propCount": 7
+      "vueLines": 59,
+      "styleLines": 69,
+      "propCount": 11
     },
     "CardList": {
       "level": "ready",
@@ -421,26 +453,28 @@
       "propCount": 6
     },
     "CardNav": {
-      "level": "beta",
-      "score": 54,
+      "level": "ready",
+      "score": 74,
       "signals": [
         "emits",
-        "v-model",
         "handlers:1",
-        "tokens"
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 55,
-      "styleLines": 38,
-      "propCount": 6
+      "vueLines": 66,
+      "styleLines": 76,
+      "propCount": 8
     },
     "CardWidgets": {
       "level": "ready",
-      "score": 84,
+      "score": 90,
       "signals": [
         "emits",
         "v-model",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 221,
       "styleLines": 98,
@@ -461,17 +495,19 @@
       "propCount": 6
     },
     "Cartoon404": {
-      "level": "beta",
-      "score": 54,
+      "level": "ready",
+      "score": 90,
       "signals": [
         "emits",
-        "handlers:1",
+        "v-model",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 30,
-      "styleLines": 82,
-      "propCount": 6
+      "vueLines": 91,
+      "styleLines": 92,
+      "propCount": 10
     },
     "Cascader": {
       "level": "ready",
@@ -488,25 +524,32 @@
       "propCount": 3
     },
     "CategoryNav": {
-      "level": "shell",
-      "score": 24,
+      "level": "ready",
+      "score": 85,
       "signals": [
-        "emits"
+        "emits",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 11,
-      "styleLines": 2,
-      "propCount": 6
+      "vueLines": 82,
+      "styleLines": 131,
+      "propCount": 7
     },
     "Center": {
-      "level": "beta",
-      "score": 55,
+      "level": "ready",
+      "score": 67,
       "signals": [
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "structural-primitive"
       ],
-      "vueLines": 81,
+      "vueLines": 76,
       "styleLines": 135,
-      "propCount": 5
+      "propCount": 9
     },
     "Checkbox": {
       "level": "ready",
@@ -526,14 +569,15 @@
     },
     "CheckboxGroup": {
       "level": "ready",
-      "score": 86,
+      "score": 92,
       "signals": [
         "emits",
         "composable",
         "provide-inject",
         "v-model",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 85,
       "styleLines": 45,
@@ -541,12 +585,13 @@
     },
     "ChunkUpload": {
       "level": "ready",
-      "score": 85,
+      "score": 91,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 157,
       "styleLines": 73,
@@ -568,39 +613,42 @@
     },
     "CodeEditor": {
       "level": "ready",
-      "score": 79,
+      "score": 85,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 115,
       "styleLines": 83,
       "propCount": 3
     },
     "Col": {
-      "level": "beta",
-      "score": 53,
+      "level": "ready",
+      "score": 68,
       "signals": [
         "emits",
         "handlers:1",
-        "a11y"
+        "a11y",
+        "behavior-test"
       ],
-      "vueLines": 87,
-      "styleLines": 24,
-      "propCount": 6
+      "vueLines": 92,
+      "styleLines": 30,
+      "propCount": 8
     },
     "Collapse": {
       "level": "ready",
-      "score": 90,
+      "score": 96,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 151,
       "styleLines": 164,
@@ -608,13 +656,14 @@
     },
     "ColorInput": {
       "level": "ready",
-      "score": 80,
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 126,
       "styleLines": 110,
@@ -634,35 +683,42 @@
       "propCount": 2
     },
     "ColumnLayout": {
-      "level": "beta",
-      "score": 56,
+      "level": "ready",
+      "score": 65,
       "signals": [
         "emits",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "structural-primitive"
       ],
-      "vueLines": 70,
+      "vueLines": 72,
       "styleLines": 35,
       "propCount": 7
     },
     "ConfigProvider": {
-      "level": "beta",
-      "score": 45,
+      "level": "ready",
+      "score": 92,
       "signals": [
-        "provide-inject"
+        "emits",
+        "composable",
+        "provide-inject",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 77,
-      "styleLines": 7,
-      "propCount": 8
+      "vueLines": 122,
+      "styleLines": 37,
+      "propCount": 14
     },
     "Confirm": {
       "level": "ready",
-      "score": 91,
+      "score": 97,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 175,
       "styleLines": 195,
@@ -670,27 +726,30 @@
     },
     "ConfirmDialog": {
       "level": "ready",
-      "score": 89,
+      "score": 95,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 232,
       "styleLines": 184,
       "propCount": 10
     },
     "Container": {
-      "level": "beta",
-      "score": 53,
+      "level": "ready",
+      "score": 69,
       "signals": [
         "emits",
-        "tokens"
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 57,
-      "styleLines": 54,
-      "propCount": 8
+      "vueLines": 70,
+      "styleLines": 58,
+      "propCount": 11
     },
     "ContextMenu": {
       "level": "ready",
@@ -708,28 +767,32 @@
     },
     "CopyText": {
       "level": "ready",
-      "score": 80,
+      "score": 86,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 132,
       "styleLines": 67,
       "propCount": 7
     },
     "Countdown": {
-      "level": "beta",
-      "score": 51,
+      "level": "ready",
+      "score": 95,
       "signals": [
         "emits",
+        "v-model",
+        "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 100,
-      "styleLines": 10,
-      "propCount": 3
+      "vueLines": 159,
+      "styleLines": 47,
+      "propCount": 10
     },
     "CryptoBox": {
       "level": "ready",
@@ -747,40 +810,45 @@
     },
     "Dashboard": {
       "level": "ready",
-      "score": 71,
+      "score": 77,
       "signals": [
         "emits",
         "handlers:2",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 121,
       "styleLines": 96,
       "propCount": 4
     },
     "DataCard": {
-      "level": "beta",
-      "score": 57,
+      "level": "ready",
+      "score": 99,
       "signals": [
         "emits",
         "handlers:1",
-        "tokens"
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 82,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 149,
+      "styleLines": 145,
+      "propCount": 17
     },
     "DataTable": {
       "level": "ready",
-      "score": 93,
+      "score": 100,
       "signals": [
         "emits",
         "handlers:10",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 493,
-      "styleLines": 303,
-      "propCount": 17
+      "vueLines": 677,
+      "styleLines": 334,
+      "propCount": 21
     },
     "DatePicker": {
       "level": "ready",
@@ -822,12 +890,14 @@
       "propCount": 5
     },
     "DescriptionsItem": {
-      "level": "beta",
-      "score": 57,
+      "level": "ready",
+      "score": 65,
       "signals": [
         "provide-inject",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "structural-primitive"
       ],
       "vueLines": 72,
       "styleLines": 56,
@@ -835,12 +905,13 @@
     },
     "DetailPanel": {
       "level": "ready",
-      "score": 81,
+      "score": 87,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 131,
       "styleLines": 87,
@@ -848,14 +919,16 @@
     },
     "Dialog": {
       "level": "ready",
-      "score": 85,
+      "score": 99,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 211,
+      "vueLines": 216,
       "styleLines": 188,
       "propCount": 11
     },
@@ -872,120 +945,132 @@
       "propCount": 9
     },
     "Doodle404": {
-      "level": "beta",
-      "score": 53,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 30,
-      "styleLines": 74,
-      "propCount": 6
-    },
-    "DragCanvas": {
-      "level": "beta",
-      "score": 60,
+      "level": "ready",
+      "score": 90,
       "signals": [
         "emits",
         "v-model",
-        "tokens"
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 89,
+      "styleLines": 90,
+      "propCount": 10
+    },
+    "DragCanvas": {
+      "level": "beta",
+      "score": 66,
+      "signals": [
+        "emits",
+        "v-model",
+        "tokens",
+        "delegate"
       ],
       "vueLines": 93,
       "styleLines": 36,
       "propCount": 5
     },
     "DragMaterial": {
-      "level": "beta",
-      "score": 60,
+      "level": "ready",
+      "score": 95,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 88,
-      "styleLines": 53,
-      "propCount": 3
+      "vueLines": 151,
+      "styleLines": 90,
+      "propCount": 8
     },
     "DragRuler": {
-      "level": "beta",
-      "score": 59,
+      "level": "ready",
+      "score": 71,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens"
       ],
-      "vueLines": 42,
-      "styleLines": 375,
+      "vueLines": 88,
+      "styleLines": 399,
       "propCount": 7
     },
     "DragSelect": {
       "level": "ready",
-      "score": 86,
+      "score": 92,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 173,
       "styleLines": 85,
       "propCount": 3
     },
     "DragSortNode": {
-      "level": "beta",
-      "score": 62,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 62,
-      "styleLines": 371,
-      "propCount": 6
-    },
-    "DragVerify": {
-      "level": "beta",
-      "score": 52,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
-        "tokens"
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 72,
-      "styleLines": 51,
-      "propCount": 2
+      "vueLines": 193,
+      "styleLines": 96,
+      "propCount": 9
+    },
+    "DragVerify": {
+      "level": "ready",
+      "score": 95,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 139,
+      "styleLines": 56,
+      "propCount": 6
     },
     "DragWrapper": {
-      "level": "beta",
-      "score": 58,
+      "level": "ready",
+      "score": 79,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens"
       ],
-      "vueLines": 36,
-      "styleLines": 371,
-      "propCount": 7
+      "vueLines": 117,
+      "styleLines": 378,
+      "propCount": 8
     },
     "Drawer": {
       "level": "ready",
-      "score": 73,
+      "score": 100,
       "signals": [
         "emits",
-        "handlers:2",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 99,
-      "styleLines": 98,
-      "propCount": 6
+      "vueLines": 189,
+      "styleLines": 151,
+      "propCount": 20
     },
     "DrillTable": {
       "level": "ready",
@@ -1001,26 +1086,28 @@
     },
     "Dropdown": {
       "level": "ready",
-      "score": 92,
+      "score": 98,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
-      "vueLines": 354,
+      "vueLines": 360,
       "styleLines": 151,
       "propCount": 5
     },
     "DynamicForm": {
       "level": "ready",
-      "score": 70,
+      "score": 76,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 132,
       "styleLines": 18,
@@ -1053,28 +1140,30 @@
     },
     "Ellipsis": {
       "level": "ready",
-      "score": 71,
+      "score": 77,
       "signals": [
         "emits",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 148,
       "styleLines": 42,
       "propCount": 5
     },
     "EmbedLayout": {
-      "level": "beta",
-      "score": 63,
+      "level": "ready",
+      "score": 77,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 78,
-      "styleLines": 63,
-      "propCount": 6
+      "vueLines": 92,
+      "styleLines": 55,
+      "propCount": 11
     },
     "Empty": {
       "level": "ready",
@@ -1089,42 +1178,44 @@
       "propCount": 6
     },
     "ErrorModal": {
-      "level": "ready",
-      "score": 70,
+      "level": "shell",
+      "score": 25,
       "signals": [
         "emits",
-        "handlers:4",
-        "a11y",
-        "tokens"
+        "behavior-test",
+        "thin"
       ],
-      "vueLines": 86,
-      "styleLines": 44,
-      "propCount": 8
+      "vueLines": 30,
+      "styleLines": 2,
+      "propCount": 0
     },
     "ExcelIo": {
-      "level": "beta",
-      "score": 58,
+      "level": "ready",
+      "score": 82,
       "signals": [
         "emits",
         "handlers:3",
-        "tokens"
-      ],
-      "vueLines": 71,
-      "styleLines": 69,
-      "propCount": 4
-    },
-    "Exception": {
-      "level": "beta",
-      "score": 53,
-      "signals": [
-        "emits",
-        "handlers:1",
         "a11y",
         "tokens"
       ],
-      "vueLines": 67,
-      "styleLines": 39,
-      "propCount": 5
+      "vueLines": 122,
+      "styleLines": 69,
+      "propCount": 8
+    },
+    "Exception": {
+      "level": "ready",
+      "score": 93,
+      "signals": [
+        "emits",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
+      ],
+      "vueLines": 114,
+      "styleLines": 73,
+      "propCount": 12
     },
     "FilePreview": {
       "level": "beta",
@@ -1141,27 +1232,30 @@
     },
     "FilterBar": {
       "level": "ready",
-      "score": 80,
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
         "handlers:5",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 125,
       "styleLines": 57,
       "propCount": 4
     },
     "FixedLayout": {
-      "level": "beta",
-      "score": 61,
+      "level": "ready",
+      "score": 78,
       "signals": [
+        "emits",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 153,
-      "styleLines": 31,
-      "propCount": 5
+      "vueLines": 149,
+      "styleLines": 12,
+      "propCount": 10
     },
     "FloatButton": {
       "level": "ready",
@@ -1178,36 +1272,40 @@
     },
     "FloatNav": {
       "level": "ready",
-      "score": 84,
+      "score": 90,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 129,
       "styleLines": 88,
       "propCount": 9
     },
     "FlowLayout": {
-      "level": "beta",
-      "score": 54,
+      "level": "ready",
+      "score": 66,
       "signals": [
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "structural-primitive"
       ],
       "vueLines": 85,
-      "styleLines": 58,
-      "propCount": 6
+      "styleLines": 62,
+      "propCount": 9
     },
     "FlowPanel": {
       "level": "ready",
-      "score": 84,
+      "score": 90,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 163,
       "styleLines": 127,
@@ -1241,25 +1339,30 @@
       "propCount": 6
     },
     "FooterNav": {
-      "level": "shell",
-      "score": 33,
+      "level": "ready",
+      "score": 84,
       "signals": [
         "emits",
-        "tokens"
+        "handlers:1",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 11,
-      "styleLines": 25,
-      "propCount": 6
+      "vueLines": 85,
+      "styleLines": 97,
+      "propCount": 7
     },
     "Form": {
       "level": "ready",
-      "score": 85,
+      "score": 93,
       "signals": [
         "emits",
         "composable",
         "provide-inject",
         "handlers:1",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
       "vueLines": 134,
       "styleLines": 23,
@@ -1267,12 +1370,13 @@
     },
     "FormGroup": {
       "level": "ready",
-      "score": 71,
+      "score": 77,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 114,
       "styleLines": 67,
@@ -1280,79 +1384,90 @@
     },
     "FormItem": {
       "level": "ready",
-      "score": 73,
+      "score": 81,
       "signals": [
         "emits",
         "provide-inject",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
       "vueLines": 124,
       "styleLines": 44,
       "propCount": 4
     },
     "FormLayout": {
-      "level": "beta",
-      "score": 59,
+      "level": "ready",
+      "score": 67,
       "signals": [
         "emits",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "structural-primitive"
       ],
       "vueLines": 67,
-      "styleLines": 148,
+      "styleLines": 157,
       "propCount": 5
     },
     "FormTabs": {
       "level": "ready",
-      "score": 73,
+      "score": 79,
       "signals": [
         "emits",
         "v-model",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 133,
       "styleLines": 14,
       "propCount": 7
     },
     "FreeLayoutDrag": {
-      "level": "beta",
-      "score": 55,
+      "level": "ready",
+      "score": 99,
       "signals": [
         "emits",
+        "v-model",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 35,
-      "styleLines": 371,
-      "propCount": 6
+      "vueLines": 196,
+      "styleLines": 97,
+      "propCount": 12
     },
     "GaugeChart": {
-      "level": "beta",
-      "score": 52,
+      "level": "ready",
+      "score": 97,
       "signals": [
         "emits",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 55,
-      "styleLines": 49,
-      "propCount": 6
-    },
-    "GbsAlarmModal": {
-      "level": "beta",
-      "score": 64,
-      "signals": [
-        "emits",
+        "composable",
+        "v-model",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 70,
-      "styleLines": 370,
-      "propCount": 5
+      "vueLines": 95,
+      "styleLines": 65,
+      "propCount": 12
+    },
+    "GbsAlarmModal": {
+      "level": "ready",
+      "score": 99,
+      "signals": [
+        "emits",
+        "handlers:4",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 203,
+      "styleLines": 128,
+      "propCount": 13
     },
     "GbsCascadePanel": {
       "level": "ready",
@@ -1368,17 +1483,18 @@
       "propCount": 5
     },
     "GbsDeviceTree": {
-      "level": "beta",
-      "score": 56,
+      "level": "ready",
+      "score": 95,
       "signals": [
         "emits",
         "v-model",
-        "handlers:3",
-        "tokens"
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 55,
-      "styleLines": 29,
-      "propCount": 6
+      "vueLines": 132,
+      "styleLines": 167,
+      "propCount": 10
     },
     "GbsGatewayForm": {
       "level": "ready",
@@ -1409,17 +1525,18 @@
       "propCount": 5
     },
     "GbsSignMonitor": {
-      "level": "beta",
-      "score": 62,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
-        "handlers:2",
+        "handlers:5",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 71,
-      "styleLines": 370,
-      "propCount": 4
+      "vueLines": 214,
+      "styleLines": 113,
+      "propCount": 11
     },
     "GbsStatusCard": {
       "level": "beta",
@@ -1448,28 +1565,31 @@
       "propCount": 5
     },
     "GraphChart": {
-      "level": "beta",
-      "score": 62,
+      "level": "ready",
+      "score": 84,
       "signals": [
         "emits",
+        "v-model",
+        "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 95,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 92,
+      "styleLines": 53,
+      "propCount": 10
     },
     "GridLayoutDrag": {
-      "level": "beta",
-      "score": 58,
+      "level": "ready",
+      "score": 71,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens"
       ],
-      "vueLines": 36,
-      "styleLines": 371,
+      "vueLines": 89,
+      "styleLines": 380,
       "propCount": 7
     },
     "GroupNav": {
@@ -1487,27 +1607,32 @@
       "propCount": 6
     },
     "Header": {
-      "level": "beta",
-      "score": 54,
+      "level": "ready",
+      "score": 69,
       "signals": [
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 71,
-      "styleLines": 106,
-      "propCount": 6
+      "vueLines": 86,
+      "styleLines": 113,
+      "propCount": 12
     },
     "HeatMap": {
-      "level": "beta",
-      "score": 52,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
+        "composable",
+        "v-model",
+        "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 54,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 102,
+      "styleLines": 73,
+      "propCount": 13
     },
     "Highlight": {
       "level": "ready",
@@ -1529,7 +1654,8 @@
         "composable",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
       "vueLines": 223,
       "styleLines": 98,
@@ -1537,11 +1663,12 @@
     },
     "Image": {
       "level": "ready",
-      "score": 76,
+      "score": 82,
       "signals": [
         "emits",
         "handlers:1",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 145,
       "styleLines": 50,
@@ -1573,13 +1700,14 @@
       "propCount": 6
     },
     "ImageUpload": {
-      "level": "beta",
-      "score": 68,
+      "level": "ready",
+      "score": 74,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 92,
       "styleLines": 58,
@@ -1587,26 +1715,31 @@
     },
     "ImageViewer": {
       "level": "ready",
-      "score": 91,
+      "score": 97,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
-      "vueLines": 242,
+      "vueLines": 246,
       "styleLines": 112,
       "propCount": 10
     },
     "IndexNav": {
-      "level": "shell",
-      "score": 24,
+      "level": "ready",
+      "score": 83,
       "signals": [
-        "emits"
+        "emits",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 11,
-      "styleLines": 2,
-      "propCount": 6
+      "vueLines": 95,
+      "styleLines": 81,
+      "propCount": 8
     },
     "InfiniteScroll": {
       "level": "beta",
@@ -1622,59 +1755,63 @@
       "propCount": 6
     },
     "InfoModal": {
-      "level": "ready",
-      "score": 70,
+      "level": "shell",
+      "score": 17,
       "signals": [
         "emits",
-        "handlers:4",
-        "a11y",
-        "tokens"
+        "thin"
       ],
-      "vueLines": 86,
-      "styleLines": 44,
-      "propCount": 8
+      "vueLines": 28,
+      "styleLines": 2,
+      "propCount": 0
     },
     "Ink404": {
-      "level": "beta",
-      "score": 53,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 30,
-      "styleLines": 71,
-      "propCount": 6
-    },
-    "InputCaptcha": {
-      "level": "beta",
-      "score": 67,
+      "level": "ready",
+      "score": 83,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 117,
+      "vueLines": 71,
+      "styleLines": 83,
+      "propCount": 9
+    },
+    "InputCaptcha": {
+      "level": "ready",
+      "score": 93,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
+      ],
+      "vueLines": 127,
       "styleLines": 33,
-      "propCount": 2
+      "propCount": 7
     },
     "InputNumber": {
       "level": "ready",
-      "score": 94,
+      "score": 100,
       "signals": [
         "emits",
         "composable",
         "v-model",
         "handlers:5",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 80,
+      "vueLines": 88,
       "styleLines": 103,
-      "propCount": 9
+      "propCount": 12
     },
     "InputOTP": {
       "level": "ready",
@@ -1692,53 +1829,62 @@
     },
     "InputText": {
       "level": "ready",
-      "score": 83,
+      "score": 91,
       "signals": [
         "emits",
         "composable",
         "v-model",
         "handlers:4",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
       "vueLines": 61,
       "styleLines": 90,
       "propCount": 9
     },
     "Layout": {
-      "level": "beta",
-      "score": 53,
+      "level": "ready",
+      "score": 69,
       "signals": [
         "provide-inject",
-        "tokens"
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 65,
+      "vueLines": 64,
       "styleLines": 80,
-      "propCount": 4
+      "propCount": 6
     },
     "LazyTree": {
       "level": "ready",
-      "score": 86,
+      "score": 92,
       "signals": [
         "emits",
         "v-model",
-        "handlers:5",
-        "tokens"
+        "handlers:6",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 163,
+      "vueLines": 384,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 0
     },
     "LineChart": {
-      "level": "beta",
-      "score": 53,
+      "level": "ready",
+      "score": 91,
       "signals": [
         "emits",
+        "v-model",
+        "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 59,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 108,
+      "styleLines": 67,
+      "propCount": 12
     },
     "Link": {
       "level": "ready",
@@ -1748,70 +1894,80 @@
         "composable",
         "handlers:7",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 283,
       "styleLines": 151,
       "propCount": 23
     },
     "Loading": {
-      "level": "beta",
-      "score": 60,
+      "level": "ready",
+      "score": 89,
       "signals": [
         "emits",
+        "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 71,
-      "styleLines": 95,
-      "propCount": 5
+      "vueLines": 126,
+      "styleLines": 129,
+      "propCount": 13
     },
     "LoadingTip": {
-      "level": "beta",
-      "score": 53,
+      "level": "ready",
+      "score": 93,
       "signals": [
+        "emits",
+        "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 89,
-      "styleLines": 59,
-      "propCount": 5
+      "vueLines": 144,
+      "styleLines": 107,
+      "propCount": 11
     },
     "LoginPanel": {
       "level": "ready",
-      "score": 94,
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 167,
       "styleLines": 84,
       "propCount": 6
     },
     "Machine404": {
-      "level": "beta",
-      "score": 54,
+      "level": "ready",
+      "score": 83,
       "signals": [
         "emits",
-        "handlers:1",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 30,
-      "styleLines": 75,
-      "propCount": 6
+      "vueLines": 85,
+      "styleLines": 80,
+      "propCount": 10
     },
     "Main": {
-      "level": "beta",
-      "score": 56,
+      "level": "ready",
+      "score": 64,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "structural-primitive"
       ],
       "vueLines": 79,
       "styleLines": 38,
@@ -1819,26 +1975,42 @@
     },
     "Mask": {
       "level": "ready",
-      "score": 70,
+      "score": 78,
       "signals": [
         "emits",
-        "handlers:1",
+        "handlers:2",
         "a11y",
         "tokens"
       ],
-      "vueLines": 119,
-      "styleLines": 48,
-      "propCount": 6
+      "vueLines": 123,
+      "styleLines": 57,
+      "propCount": 15
+    },
+    "MatrixCode": {
+      "level": "ready",
+      "score": 85,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:1",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 98,
+      "styleLines": 60,
+      "propCount": 11
     },
     "MdEditor": {
       "level": "ready",
-      "score": 70,
+      "score": 76,
       "signals": [
         "emits",
         "v-model",
         "handlers:8",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 80,
       "styleLines": 62,
@@ -1860,127 +2032,151 @@
     },
     "Menu": {
       "level": "ready",
-      "score": 99,
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
         "handlers:7",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 384,
-      "styleLines": 174,
+      "vueLines": 460,
+      "styleLines": 239,
       "propCount": 9
     },
     "MenuBar": {
-      "level": "beta",
-      "score": 53,
+      "level": "ready",
+      "score": 73,
       "signals": [
         "emits",
         "v-model",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 90,
+      "vueLines": 98,
       "styleLines": 18,
-      "propCount": 2
-    },
-    "MergeTable": {
-      "level": "beta",
-      "score": 62,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "tokens"
-      ],
-      "vueLines": 101,
-      "styleLines": 49,
-      "propCount": 6
-    },
-    "Message": {
-      "level": "beta",
-      "score": 69,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "tokens"
-      ],
-      "vueLines": 105,
-      "styleLines": 113,
-      "propCount": 6
-    },
-    "MessageBox": {
-      "level": "shell",
-      "score": 37,
-      "signals": [
-        "emits",
-        "tokens"
-      ],
-      "vueLines": 0,
-      "styleLines": 213,
       "propCount": 4
     },
-    "MiniNav": {
-      "level": "shell",
-      "score": 24,
-      "signals": [
-        "emits"
-      ],
-      "vueLines": 11,
-      "styleLines": 2,
-      "propCount": 6
-    },
-    "MonthPicker": {
-      "level": "beta",
-      "score": 63,
+    "MergeTable": {
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
-        "handlers:4",
-        "a11y"
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 116,
-      "styleLines": 2,
-      "propCount": 3
+      "vueLines": 240,
+      "styleLines": 95,
+      "propCount": 16
     },
-    "NoticeBar": {
-      "level": "beta",
-      "score": 56,
+    "Message": {
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 70,
-      "styleLines": 27,
+      "vueLines": 144,
+      "styleLines": 130,
+      "propCount": 15
+    },
+    "MessageBox": {
+      "level": "ready",
+      "score": 90,
+      "signals": [
+        "emits",
+        "handlers:4",
+        "a11y",
+        "tokens",
+        "delegate"
+      ],
+      "vueLines": 370,
+      "styleLines": 246,
+      "propCount": 4
+    },
+    "MiniNav": {
+      "level": "ready",
+      "score": 79,
+      "signals": [
+        "emits",
+        "handlers:1",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
+      ],
+      "vueLines": 73,
+      "styleLines": 131,
       "propCount": 6
     },
+    "MonthPicker": {
+      "level": "ready",
+      "score": 100,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:10",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 234,
+      "styleLines": 40,
+      "propCount": 8
+    },
+    "NoticeBar": {
+      "level": "ready",
+      "score": 100,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
+      ],
+      "vueLines": 143,
+      "styleLines": 110,
+      "propCount": 11
+    },
     "Notification": {
-      "level": "beta",
-      "score": 64,
+      "level": "shell",
+      "score": 22,
       "signals": [
         "emits",
         "handlers:1",
-        "a11y",
-        "tokens"
+        "thin"
       ],
-      "vueLines": 74,
-      "styleLines": 61,
-      "propCount": 7
+      "vueLines": 41,
+      "styleLines": 2,
+      "propCount": 0
     },
     "OcrScan": {
-      "level": "beta",
-      "score": 60,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
-        "handlers:1",
+        "v-model",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 101,
-      "styleLines": 39,
-      "propCount": 4
+      "vueLines": 213,
+      "styleLines": 82,
+      "propCount": 11
     },
     "OnvifAlarmPanel": {
       "level": "beta",
@@ -2022,17 +2218,18 @@
       "propCount": 4
     },
     "OnvifGroupTree": {
-      "level": "beta",
-      "score": 58,
+      "level": "ready",
+      "score": 95,
       "signals": [
         "emits",
         "v-model",
-        "handlers:3",
-        "tokens"
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 55,
-      "styleLines": 35,
-      "propCount": 6
+      "vueLines": 132,
+      "styleLines": 197,
+      "propCount": 10
     },
     "OnvifRecordPlan": {
       "level": "beta",
@@ -2089,26 +2286,29 @@
       "propCount": 4
     },
     "PTZControl": {
-      "level": "beta",
-      "score": 50,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
-        "handlers:7",
+        "v-model",
+        "handlers:10",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 29,
-      "styleLines": 138,
-      "propCount": 0
+      "vueLines": 137,
+      "styleLines": 163,
+      "propCount": 9
     },
     "PageHeader": {
       "level": "beta",
-      "score": 60,
+      "score": 66,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 71,
       "styleLines": 107,
@@ -2116,13 +2316,14 @@
     },
     "PagerNav": {
       "level": "ready",
-      "score": 77,
+      "score": 83,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 91,
       "styleLines": 58,
@@ -2130,13 +2331,14 @@
     },
     "Pagination": {
       "level": "ready",
-      "score": 84,
+      "score": 90,
       "signals": [
         "emits",
         "composable",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 97,
       "styleLines": 73,
@@ -2172,120 +2374,136 @@
     },
     "PermissionPanel": {
       "level": "ready",
-      "score": 78,
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 120,
       "styleLines": 62,
       "propCount": 3
     },
     "PieChart": {
-      "level": "beta",
-      "score": 64,
+      "level": "ready",
+      "score": 100,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 257,
+      "styleLines": 124,
+      "propCount": 16
+    },
+    "PivotTable": {
+      "level": "ready",
+      "score": 100,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 202,
+      "styleLines": 87,
+      "propCount": 17
+    },
+    "Pixel404": {
+      "level": "ready",
+      "score": 85,
+      "signals": [
+        "emits",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 95,
+      "styleLines": 89,
+      "propCount": 10
+    },
+    "Plant404": {
+      "level": "ready",
+      "score": 83,
+      "signals": [
+        "emits",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 85,
+      "styleLines": 82,
+      "propCount": 10
+    },
+    "Popconfirm": {
+      "level": "ready",
+      "score": 100,
+      "signals": [
+        "emits",
+        "handlers:4",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
+      ],
+      "vueLines": 307,
+      "styleLines": 96,
+      "propCount": 20
+    },
+    "Popover": {
+      "level": "ready",
+      "score": 100,
+      "signals": [
+        "emits",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
+      ],
+      "vueLines": 238,
+      "styleLines": 123,
+      "propCount": 16
+    },
+    "Preview": {
+      "level": "ready",
+      "score": 100,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:6",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 207,
+      "styleLines": 87,
+      "propCount": 10
+    },
+    "Print": {
+      "level": "ready",
+      "score": 81,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 68,
-      "styleLines": 49,
-      "propCount": 6
-    },
-    "PivotTable": {
-      "level": "beta",
-      "score": 59,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "tokens"
-      ],
-      "vueLines": 91,
-      "styleLines": 49,
-      "propCount": 6
-    },
-    "Pixel404": {
-      "level": "beta",
-      "score": 54,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 30,
-      "styleLines": 85,
-      "propCount": 6
-    },
-    "Plant404": {
-      "level": "beta",
-      "score": 54,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 30,
-      "styleLines": 78,
-      "propCount": 6
-    },
-    "Popconfirm": {
-      "level": "beta",
-      "score": 59,
-      "signals": [
-        "emits",
-        "handlers:3",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 82,
-      "styleLines": 28,
-      "propCount": 5
-    },
-    "Popover": {
-      "level": "beta",
-      "score": 62,
-      "signals": [
-        "emits",
-        "handlers:2",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 96,
-      "styleLines": 32,
-      "propCount": 5
-    },
-    "Preview": {
-      "level": "beta",
-      "score": 50,
-      "signals": [
-        "emits",
-        "handlers:3",
-        "tokens"
-      ],
-      "vueLines": 59,
-      "styleLines": 62,
-      "propCount": 2
-    },
-    "Print": {
-      "level": "beta",
-      "score": 52,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 60,
-      "styleLines": 45,
-      "propCount": 4
+      "vueLines": 90,
+      "styleLines": 50,
+      "propCount": 10
     },
     "ProTable": {
       "level": "ready",
@@ -2313,43 +2531,50 @@
       "propCount": 5
     },
     "ProgressTip": {
-      "level": "beta",
-      "score": 51,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
+        "v-model",
+        "handlers:6",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 56,
-      "styleLines": 36,
-      "propCount": 6
+      "vueLines": 186,
+      "styleLines": 115,
+      "propCount": 21
     },
     "PropPanel": {
-      "level": "beta",
-      "score": 53,
+      "level": "ready",
+      "score": 96,
       "signals": [
         "emits",
-        "handlers:2",
+        "v-model",
+        "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 78,
-      "styleLines": 42,
-      "propCount": 2
+      "vueLines": 152,
+      "styleLines": 56,
+      "propCount": 5
     },
     "Qrcode": {
-      "level": "beta",
-      "score": 60,
+      "level": "ready",
+      "score": 85,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 56,
-      "styleLines": 43,
-      "propCount": 6
+      "vueLines": 99,
+      "styleLines": 63,
+      "propCount": 11
     },
     "QuarterPicker": {
       "level": "beta",
@@ -2365,26 +2590,35 @@
       "propCount": 3
     },
     "QuickNav": {
-      "level": "shell",
-      "score": 24,
-      "signals": [
-        "emits"
-      ],
-      "vueLines": 11,
-      "styleLines": 2,
-      "propCount": 6
-    },
-    "RadarChart": {
-      "level": "beta",
-      "score": 51,
+      "level": "ready",
+      "score": 80,
       "signals": [
         "emits",
+        "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 51,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 68,
+      "styleLines": 153,
+      "propCount": 7
+    },
+    "RadarChart": {
+      "level": "ready",
+      "score": 99,
+      "signals": [
+        "emits",
+        "composable",
+        "v-model",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 94,
+      "styleLines": 75,
+      "propCount": 11
     },
     "Radio": {
       "level": "ready",
@@ -2404,32 +2638,34 @@
     },
     "RadioGroup": {
       "level": "ready",
-      "score": 81,
+      "score": 87,
       "signals": [
         "emits",
         "composable",
         "provide-inject",
         "v-model",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 73,
       "styleLines": 45,
       "propCount": 6
     },
     "RangeInput": {
-      "level": "beta",
-      "score": 56,
+      "level": "ready",
+      "score": 76,
       "signals": [
         "emits",
         "v-model",
-        "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 78,
-      "styleLines": 17,
-      "propCount": 3
+      "vueLines": 79,
+      "styleLines": 21,
+      "propCount": 10
     },
     "Ranking": {
       "level": "beta",
@@ -2444,18 +2680,19 @@
       "propCount": 6
     },
     "Rate": {
-      "level": "beta",
-      "score": 60,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
-        "handlers:1",
+        "handlers:5",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 64,
-      "styleLines": 50,
-      "propCount": 4
+      "vueLines": 135,
+      "styleLines": 71,
+      "propCount": 9
     },
     "ResizeBox": {
       "level": "ready",
@@ -2469,27 +2706,30 @@
       "propCount": 7
     },
     "Result": {
-      "level": "beta",
-      "score": 57,
+      "level": "ready",
+      "score": 90,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 61,
-      "styleLines": 61,
-      "propCount": 5
+      "vueLines": 106,
+      "styleLines": 100,
+      "propCount": 9
     },
     "RichText": {
-      "level": "beta",
-      "score": 69,
+      "level": "ready",
+      "score": 75,
       "signals": [
         "emits",
         "v-model",
         "handlers:8",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 96,
       "styleLines": 37,
@@ -2510,24 +2750,30 @@
       "propCount": 7
     },
     "Row": {
-      "level": "beta",
-      "score": 58,
+      "level": "ready",
+      "score": 68,
       "signals": [
         "provide-inject",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 87,
+      "vueLines": 92,
       "styleLines": 58,
       "propCount": 4
     },
     "ScaleLayout": {
-      "level": "beta",
-      "score": 57,
-      "signals": [],
-      "vueLines": 146,
-      "styleLines": 40,
-      "propCount": 6
+      "level": "ready",
+      "score": 83,
+      "signals": [
+        "emits",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 178,
+      "styleLines": 42,
+      "propCount": 7
     },
     "ScrollNav": {
       "level": "ready",
@@ -2544,28 +2790,33 @@
       "propCount": 7
     },
     "ScrollNotice": {
-      "level": "beta",
-      "score": 57,
+      "level": "ready",
+      "score": 88,
       "signals": [
         "emits",
         "handlers:1",
-        "tokens"
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 80,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 99,
+      "styleLines": 80,
+      "propCount": 11
     },
     "Scrollbar": {
-      "level": "beta",
-      "score": 55,
+      "level": "ready",
+      "score": 81,
       "signals": [
         "emits",
         "handlers:1",
-        "tokens"
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 81,
-      "styleLines": 48,
-      "propCount": 5
+      "vueLines": 104,
+      "styleLines": 61,
+      "propCount": 9
     },
     "Search": {
       "level": "ready",
@@ -2583,27 +2834,31 @@
       "propCount": 5
     },
     "SearchFilterPanel": {
-      "level": "beta",
-      "score": 55,
+      "level": "ready",
+      "score": 95,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
-        "tokens"
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 73,
+      "vueLines": 154,
       "styleLines": 19,
-      "propCount": 5
+      "propCount": 8
     },
     "Segmented": {
       "level": "ready",
-      "score": 92,
+      "score": 98,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 152,
       "styleLines": 103,
@@ -2616,21 +2871,24 @@
         "emits",
         "composable",
         "v-model",
-        "handlers:6",
-        "tokens"
+        "handlers:9",
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 151,
-      "styleLines": 211,
-      "propCount": 13
+      "vueLines": 328,
+      "styleLines": 273,
+      "propCount": 24
     },
     "SelectNav": {
       "level": "beta",
-      "score": 61,
+      "score": 67,
       "signals": [
         "emits",
         "v-model",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 82,
       "styleLines": 25,
@@ -2638,12 +2896,13 @@
     },
     "SettingPanel": {
       "level": "ready",
-      "score": 77,
+      "score": 83,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 129,
       "styleLines": 66,
@@ -2651,30 +2910,33 @@
     },
     "Sider": {
       "level": "ready",
-      "score": 91,
+      "score": 97,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 134,
       "styleLines": 110,
       "propCount": 8
     },
     "Simple404": {
-      "level": "beta",
-      "score": 52,
+      "level": "ready",
+      "score": 90,
       "signals": [
         "emits",
-        "handlers:1",
+        "v-model",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 30,
-      "styleLines": 68,
-      "propCount": 6
+      "vueLines": 88,
+      "styleLines": 90,
+      "propCount": 10
     },
     "Skeleton": {
       "level": "ready",
@@ -2702,17 +2964,20 @@
       "propCount": 6
     },
     "SmsCode": {
-      "level": "beta",
-      "score": 67,
+      "level": "ready",
+      "score": 91,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
-        "tokens"
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 119,
-      "styleLines": 43,
-      "propCount": 4
+      "vueLines": 124,
+      "styleLines": 30,
+      "propCount": 7
     },
     "Space": {
       "level": "ready",
@@ -2726,28 +2991,33 @@
       "propCount": 9
     },
     "Space404": {
-      "level": "beta",
-      "score": 54,
+      "level": "ready",
+      "score": 83,
       "signals": [
         "emits",
-        "handlers:1",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 30,
-      "styleLines": 78,
-      "propCount": 6
+      "vueLines": 85,
+      "styleLines": 82,
+      "propCount": 10
     },
     "Spacer": {
-      "level": "beta",
-      "score": 51,
+      "level": "ready",
+      "score": 81,
       "signals": [
+        "emits",
+        "composable",
+        "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 83,
-      "styleLines": 48,
-      "propCount": 6
+      "vueLines": 56,
+      "styleLines": 61,
+      "propCount": 11
     },
     "Spin": {
       "level": "ready",
@@ -2775,63 +3045,70 @@
       "propCount": 4
     },
     "SplitVideoWall": {
-      "level": "beta",
-      "score": 50,
+      "level": "ready",
+      "score": 99,
       "signals": [
         "emits",
-        "handlers:4",
+        "v-model",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 30,
-      "styleLines": 185,
-      "propCount": 1
+      "vueLines": 125,
+      "styleLines": 180,
+      "propCount": 8
     },
     "StackLayout": {
-      "level": "beta",
-      "score": 60,
+      "level": "ready",
+      "score": 68,
       "signals": [
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 85,
-      "styleLines": 76,
-      "propCount": 7
+      "vueLines": 81,
+      "styleLines": 93,
+      "propCount": 11
     },
     "Statistic": {
       "level": "ready",
-      "score": 78,
+      "score": 84,
       "signals": [
         "emits",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 137,
       "styleLines": 56,
       "propCount": 10
     },
     "StatusTip": {
-      "level": "beta",
-      "score": 57,
+      "level": "ready",
+      "score": 91,
       "signals": [
         "emits",
-        "handlers:1",
+        "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 78,
-      "styleLines": 63,
-      "propCount": 3
+      "vueLines": 102,
+      "styleLines": 104,
+      "propCount": 8
     },
     "StepForm": {
       "level": "ready",
-      "score": 75,
+      "score": 81,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 92,
       "styleLines": 72,
@@ -2839,13 +3116,14 @@
     },
     "StepItem": {
       "level": "ready",
-      "score": 91,
+      "score": 97,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 136,
       "styleLines": 117,
@@ -2892,17 +3170,15 @@
       "propCount": 6
     },
     "SuccessModal": {
-      "level": "ready",
-      "score": 70,
+      "level": "shell",
+      "score": 17,
       "signals": [
         "emits",
-        "handlers:4",
-        "a11y",
-        "tokens"
+        "thin"
       ],
-      "vueLines": 86,
-      "styleLines": 44,
-      "propCount": 8
+      "vueLines": 30,
+      "styleLines": 2,
+      "propCount": 0
     },
     "Switch": {
       "level": "ready",
@@ -2920,17 +3196,18 @@
       "propCount": 6
     },
     "TabPane": {
-      "level": "shell",
-      "score": 35,
+      "level": "ready",
+      "score": 80,
       "signals": [
+        "emits",
         "provide-inject",
         "a11y",
         "tokens",
-        "sub-primitive"
+        "behavior-test"
       ],
-      "vueLines": 56,
-      "styleLines": 20,
-      "propCount": 5
+      "vueLines": 97,
+      "styleLines": 39,
+      "propCount": 8
     },
     "TableAction": {
       "level": "beta",
@@ -2945,15 +3222,19 @@
       "propCount": 6
     },
     "TableDrag": {
-      "level": "beta",
-      "score": 64,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
-        "tokens"
+        "v-model",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 118,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 248,
+      "styleLines": 102,
+      "propCount": 14
     },
     "TableExport": {
       "level": "ready",
@@ -2968,42 +3249,45 @@
       "propCount": 6
     },
     "TablePrint": {
-      "level": "beta",
-      "score": 59,
+      "level": "ready",
+      "score": 86,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 79,
+      "vueLines": 132,
       "styleLines": 53,
-      "propCount": 5
+      "propCount": 13
     },
     "Tabs": {
       "level": "ready",
-      "score": 87,
+      "score": 95,
       "signals": [
         "emits",
         "provide-inject",
         "v-model",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 181,
+      "vueLines": 177,
       "styleLines": 64,
       "propCount": 2
     },
     "TabsNav": {
       "level": "beta",
-      "score": 99,
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
         "handlers:7",
         "a11y",
         "tokens",
+        "delegate",
         "doc-gap:multi-tab"
       ],
       "vueLines": 391,
@@ -3012,13 +3296,14 @@
     },
     "Tag": {
       "level": "ready",
-      "score": 97,
+      "score": 100,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 253,
       "styleLines": 249,
@@ -3039,50 +3324,58 @@
       "propCount": 6
     },
     "Tech404": {
-      "level": "beta",
-      "score": 53,
+      "level": "ready",
+      "score": 89,
       "signals": [
         "emits",
-        "handlers:1",
+        "v-model",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 30,
-      "styleLines": 74,
-      "propCount": 6
+      "vueLines": 85,
+      "styleLines": 80,
+      "propCount": 10
     },
     "TelemetryProvider": {
-      "level": "shell",
-      "score": 22,
+      "level": "ready",
+      "score": 81,
       "signals": [
-        "provide-inject"
+        "emits",
+        "provide-inject",
+        "a11y",
+        "behavior-test"
       ],
-      "vueLines": 49,
-      "styleLines": 0,
-      "propCount": 0
+      "vueLines": 136,
+      "styleLines": 12,
+      "propCount": 8
     },
     "TemplateDrag": {
-      "level": "beta",
-      "score": 58,
+      "level": "ready",
+      "score": 90,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 37,
-      "styleLines": 371,
+      "vueLines": 111,
+      "styleLines": 381,
       "propCount": 6
     },
     "TemplateSelect": {
       "level": "ready",
-      "score": 87,
+      "score": 93,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 168,
       "styleLines": 74,
@@ -3117,26 +3410,30 @@
     },
     "TimePicker": {
       "level": "ready",
-      "score": 71,
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
-        "handlers:4",
-        "a11y"
+        "handlers:5",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 144,
-      "styleLines": 2,
-      "propCount": 4
+      "vueLines": 164,
+      "styleLines": 64,
+      "propCount": 10
     },
     "TimeRangeInput": {
       "level": "ready",
-      "score": 70,
+      "score": 76,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 108,
       "styleLines": 58,
@@ -3157,78 +3454,93 @@
       "propCount": 7
     },
     "Timeline": {
-      "level": "beta",
-      "score": 57,
+      "level": "ready",
+      "score": 100,
       "signals": [
+        "emits",
         "provide-inject",
+        "v-model",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 73,
-      "styleLines": 130,
-      "propCount": 3
+      "vueLines": 103,
+      "styleLines": 166,
+      "propCount": 14
     },
     "TimelineItem": {
-      "level": "beta",
-      "score": 59,
+      "level": "ready",
+      "score": 91,
       "signals": [
+        "emits",
         "provide-inject",
+        "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 104,
-      "styleLines": 124,
+      "vueLines": 139,
+      "styleLines": 181,
       "propCount": 0
     },
     "TimelineList": {
-      "level": "beta",
-      "score": 64,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "tokens"
-      ],
-      "vueLines": 110,
-      "styleLines": 49,
-      "propCount": 6
-    },
-    "Toast": {
-      "level": "beta",
-      "score": 57,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 66,
-      "styleLines": 38,
-      "propCount": 7
-    },
-    "Tooltip": {
-      "level": "beta",
-      "score": 54,
-      "signals": [
-        "composable",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 44,
-      "styleLines": 107,
-      "propCount": 4
-    },
-    "TopNav": {
-      "level": "beta",
-      "score": 57,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
-        "handlers:1",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 54,
-      "styleLines": 34,
+      "vueLines": 240,
+      "styleLines": 167,
+      "propCount": 15
+    },
+    "Toast": {
+      "level": "shell",
+      "score": 30,
+      "signals": [
+        "emits",
+        "handlers:1",
+        "behavior-test",
+        "thin"
+      ],
+      "vueLines": 41,
+      "styleLines": 2,
+      "propCount": 0
+    },
+    "Tooltip": {
+      "level": "ready",
+      "score": 100,
+      "signals": [
+        "emits",
+        "composable",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 182,
+      "styleLines": 104,
+      "propCount": 14
+    },
+    "TopNav": {
+      "level": "ready",
+      "score": 74,
+      "signals": [
+        "emits",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
+      ],
+      "vueLines": 70,
+      "styleLines": 49,
       "propCount": 6
     },
     "Tour": {
@@ -3241,7 +3553,7 @@
         "a11y",
         "tokens"
       ],
-      "vueLines": 261,
+      "vueLines": 270,
       "styleLines": 112,
       "propCount": 6
     },
@@ -3254,11 +3566,13 @@
         "v-model",
         "handlers:6",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 160,
-      "styleLines": 117,
-      "propCount": 3
+      "vueLines": 348,
+      "styleLines": 111,
+      "propCount": 14
     },
     "TransferTree": {
       "level": "ready",
@@ -3275,29 +3589,34 @@
     },
     "Tree": {
       "level": "ready",
-      "score": 90,
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
-        "handlers:5",
+        "handlers:9",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 155,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 326,
+      "styleLines": 55,
+      "propCount": 11
     },
     "TreeChart": {
-      "level": "beta",
-      "score": 59,
+      "level": "ready",
+      "score": 86,
       "signals": [
         "emits",
+        "v-model",
+        "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 82,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 103,
+      "styleLines": 53,
+      "propCount": 9
     },
     "TreeForm": {
       "level": "ready",
@@ -3314,17 +3633,17 @@
     },
     "TreeSelect": {
       "level": "ready",
-      "score": 83,
+      "score": 99,
       "signals": [
         "emits",
         "v-model",
-        "handlers:3",
+        "handlers:6",
         "a11y",
         "tokens"
       ],
-      "vueLines": 129,
-      "styleLines": 115,
-      "propCount": 3
+      "vueLines": 256,
+      "styleLines": 165,
+      "propCount": 8
     },
     "TreeTable": {
       "level": "ready",
@@ -3362,7 +3681,7 @@
         "a11y",
         "tokens"
       ],
-      "vueLines": 407,
+      "vueLines": 408,
       "styleLines": 273,
       "propCount": 31
     },
@@ -3382,11 +3701,12 @@
     },
     "UserInfoCard": {
       "level": "beta",
-      "score": 63,
+      "score": 69,
       "signals": [
         "emits",
         "handlers:2",
-        "tokens"
+        "tokens",
+        "delegate"
       ],
       "vueLines": 73,
       "styleLines": 81,
@@ -3472,17 +3792,18 @@
       "propCount": 4
     },
     "VcrStorageDashboard": {
-      "level": "beta",
-      "score": 63,
+      "level": "ready",
+      "score": 97,
       "signals": [
         "emits",
-        "handlers:2",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 75,
-      "styleLines": 370,
-      "propCount": 4
+      "vueLines": 192,
+      "styleLines": 129,
+      "propCount": 10
     },
     "VcrTimelinePlayer": {
       "level": "ready",
@@ -3498,16 +3819,20 @@
       "propCount": 5
     },
     "VerticalStepNav": {
-      "level": "shell",
-      "score": 37,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
-        "handlers:1"
+        "handlers:1",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 35,
-      "styleLines": 7,
-      "propCount": 5
+      "vueLines": 136,
+      "styleLines": 159,
+      "propCount": 8
     },
     "VideoAdjust": {
       "level": "ready",
@@ -3548,17 +3873,18 @@
       "propCount": 8
     },
     "VideoSnapshot": {
-      "level": "beta",
-      "score": 64,
+      "level": "ready",
+      "score": 97,
       "signals": [
         "emits",
-        "handlers:2",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 77,
-      "styleLines": 370,
-      "propCount": 4
+      "vueLines": 261,
+      "styleLines": 93,
+      "propCount": 19
     },
     "VideoVolume": {
       "level": "ready",
@@ -3589,66 +3915,72 @@
     },
     "VirtualTable": {
       "level": "ready",
-      "score": 86,
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
         "handlers:5",
-        "tokens"
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 162,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 266,
+      "styleLines": 76,
+      "propCount": 13
     },
     "VirtualTree": {
       "level": "ready",
-      "score": 90,
+      "score": 92,
       "signals": [
         "emits",
         "v-model",
         "handlers:6",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test",
+        "delegate"
       ],
-      "vueLines": 166,
+      "vueLines": 290,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 0
     },
     "WarnModal": {
-      "level": "ready",
-      "score": 70,
+      "level": "shell",
+      "score": 17,
       "signals": [
         "emits",
-        "handlers:4",
-        "a11y",
-        "tokens"
+        "thin"
       ],
-      "vueLines": 86,
-      "styleLines": 44,
-      "propCount": 8
+      "vueLines": 30,
+      "styleLines": 2,
+      "propCount": 0
     },
     "Waterfall": {
-      "level": "beta",
-      "score": 60,
+      "level": "ready",
+      "score": 99,
       "signals": [
         "emits",
+        "v-model",
         "handlers:1",
-        "tokens"
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 94,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 208,
+      "styleLines": 99,
+      "propCount": 10
     },
     "Watermark": {
-      "level": "beta",
-      "score": 64,
+      "level": "ready",
+      "score": 75,
       "signals": [
+        "emits",
         "a11y",
-        "tokens"
+        "behavior-test"
       ],
-      "vueLines": 152,
-      "styleLines": 29,
-      "propCount": 7
+      "vueLines": 262,
+      "styleLines": 19,
+      "propCount": 16
     },
     "WeekPicker": {
       "level": "ready",
@@ -3665,29 +3997,35 @@
       "propCount": 3
     },
     "WordCloud": {
-      "level": "beta",
-      "score": 52,
+      "level": "ready",
+      "score": 95,
       "signals": [
         "emits",
+        "composable",
+        "v-model",
+        "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 53,
-      "styleLines": 49,
-      "propCount": 6
+      "vueLines": 81,
+      "styleLines": 70,
+      "propCount": 12
     },
     "YearPicker": {
-      "level": "beta",
-      "score": 63,
+      "level": "ready",
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
-        "handlers:4",
-        "a11y"
+        "handlers:10",
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
-      "vueLines": 111,
-      "styleLines": 2,
-      "propCount": 4
+      "vueLines": 214,
+      "styleLines": 44,
+      "propCount": 9
     }
   }
 }

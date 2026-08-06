@@ -1,66 +1,58 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue'
-import type { CardGridProps } from './types'
-import './style.scss'
+import { computed } from "vue";
+import type { CardGridEmits, CardGridProps } from "./types";
+import { useCardGridLayout } from "./useCardGridLayout";
+import { useLocale } from "@amg-webui/hooks";
+import "./style.scss";
 
 const props = withDefaults(defineProps<CardGridProps>(), {
-  minTrack: 'md',
-  fit: 'fill',
-  gap: 'lg',
-  equalHeight: true
-})
+  minTrack: "md",
+  fit: "fill",
+  gap: "lg",
+  equalHeight: true,
+  as: "div",
+  loading: false,
+  skeletonCount: 3,
+  empty: false,
+});
 
-const emit = defineEmits<{
-  (e: 'layout-change', columns: number | null): void
-}>()
-
-const trackMap = {
-  sm: 'calc(var(--spacing-2xl) * 6)',
-  md: 'calc(var(--spacing-2xl) * 7.5)',
-  lg: 'calc(var(--spacing-2xl) * 9)'
-} as const
-
-const gapMap = {
-  sm: 'var(--spacing-sm)',
-  md: 'var(--spacing-md)',
-  lg: 'var(--spacing-lg)',
-  xl: 'var(--spacing-xl)',
-  section: 'var(--theme-section-gap)'
-} as const
-
-const cols = computed(() => {
-  if (props.columns == null) return null
-  return Math.min(6, Math.max(1, Math.floor(props.columns)))
-})
-
-watch(cols, (v) => emit('layout-change', v), { immediate: true })
-
-const gridTemplateColumns = computed(() => {
-  if (cols.value != null) {
-    return `repeat(${cols.value}, minmax(0, 1fr))`
-  }
-  const track = trackMap[props.minTrack] ?? trackMap.md
-  const mode = props.fit === 'fit' ? 'auto-fit' : 'auto-fill'
-  return `repeat(${mode}, minmax(${track}, 1fr))`
-})
+const emit = defineEmits<CardGridEmits>();
+const { columns: cols, rootStyle } = useCardGridLayout(props, emit);
+const { t } = useLocale();
+const resolvedEmptyText = computed(() => props.emptyText ?? t("common.noData"));
 
 const rootClass = computed(() => [
-  'vp-card-grid',
+  "vp-card-grid",
   {
-    'vp-card-grid--equal': props.equalHeight
+    "vp-card-grid--equal": props.equalHeight,
   },
-  props.class
-])
+  props.class,
+]);
 
-const rootStyle = computed(() => ({
-  ...(props.style ?? {}),
-  gap: gapMap[props.gap] ?? gapMap.lg,
-  gridTemplateColumns: gridTemplateColumns.value
-}))
 </script>
 
 <template>
-  <div :class="rootClass" :style="rootStyle" data-component="CardGrid" role="list">
-    <slot />
-  </div>
+  <component
+    :is="as"
+    :class="rootClass"
+    :style="rootStyle"
+    data-component="CardGrid"
+    role="list"
+    :aria-label="ariaLabel"
+    :aria-busy="loading || undefined"
+  >
+    <template v-if="loading">
+      <div
+        v-for="index in Math.max(1, skeletonCount)"
+        :key="index"
+        class="vp-card-grid__skeleton"
+        role="listitem"
+        aria-hidden="true"
+      />
+    </template>
+    <div v-else-if="empty" class="vp-card-grid__empty" role="status">
+      <slot name="empty">{{ resolvedEmptyText }}</slot>
+    </div>
+    <slot v-else :columns="cols" />
+  </component>
 </template>

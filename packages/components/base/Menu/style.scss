@@ -117,15 +117,19 @@
     display: inline-flex;
     flex-shrink: 0;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: calc(var(--spacing-xs) / 2);
     max-width: 45%;
   }
 
   &__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    padding-inline: var(--spacing-xs);
+    min-height: var(--spacing-lg);
+    padding-inline: calc(var(--spacing-xs) / 2);
     padding-block: 0;
-    font-size: var(--font-size-xs);
+    font-size: calc(var(--font-size-xs) - (var(--spacing-xs) / 2));
     font-weight: var(--font-weight-semibold, 600);
     line-height: var(--line-height-body);
     border-radius: var(--border-radius-sm);
@@ -145,10 +149,30 @@
       border-color: var(--info-400);
     }
 
+    &--hot {
+      background: var(--danger-100);
+      color: var(--danger-800);
+      border-color: var(--danger-400);
+
+      .vp-icon.vp-icon--lucide svg {
+        fill: var(--warning-400);
+        stroke: var(--danger-600);
+      }
+    }
+
     &--new {
       background: var(--primary-500);
       color: var(--text-on-primary, var(--surface-0));
       border-color: var(--primary-500);
+    }
+
+    &--icon {
+      width: var(--spacing-lg);
+      height: var(--spacing-lg);
+      min-height: 0;
+      padding: 0;
+      border-radius: var(--border-radius-full);
+      line-height: 0;
     }
   }
 

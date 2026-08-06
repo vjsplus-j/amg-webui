@@ -12,6 +12,7 @@ VUE3-AMG-WEBUI/
 ├── packages/
 │   ├── components/        # 核心组件库（base + business 隔离）
 │   ├── telemetry/         # Vp Telemetry 交互观测内核（默认关闭）
+│   ├── skill/             # 可选 Skill Runtime（Core + Vue；不进根入口）
 │   ├── hooks/             # 全局组合式 API（useTheme / useLocale / useTrackedEmit 等）
 │   ├── locale/            # 多语言包
 │   ├── theme/             # 亮色 / 暗色 / designmd 多主题
@@ -28,16 +29,20 @@ VUE3-AMG-WEBUI/
 └── 根配置：vite / vitest / vitepress / tsconfig / package.json …
 ```
 
-包说明：`packages/README.md` · 遥测：`packages/telemetry/README.md` · example：`example/README.md`。
+包说明：`packages/README.md` · Skill：`packages/skill/README.md` / `docs/SKILL_RUNTIME.md` / `vue3-amg-webui-skill-runtime.mdc` · 遥测：`packages/telemetry/README.md` · example：`example/README.md`。
 # Component isolation (mandatory)
 
 - **Base** (`packages/components/base/`): 纯 UI 原语（Button、Input、Dialog…）。**禁止**依赖 business。
 - **Business** (`packages/components/business/`): 五大业务复合模块 — `login` / `users` / `orders` / `content` / `settings`。只消费 base + hooks + theme + utils。
+- **Skill** (`packages/skill/`): 独立可选逻辑运行时；Core 不依赖 Vue 组件或 Telemetry，Vue 集成只负责 Scope / directive / plugin。
 - 路径别名：`@amg-webui/*` → `packages/*`；业务内用 `@amg-webui/components/base`，不要相对路径穿到 base 源码深处。
+- Skill 公开入口只允许 `amg-webui/skill` 与 `amg-webui/skill/core`；根 `amg-webui` / `packages/index.ts` **禁止再导出 Skill**，统一由 `build:skill` 独立构建。
+- **双向隔离**：组件源码禁止 import Skill；Skill Core 禁止 import components / telemetry。Observer → Telemetry 仅允许未来由消费方 Adapter 桥接，不形成包内直接依赖。
 - 新增基础组件放 `base/`；新增域模块放 `business/<domain>/`（`index.ts` · `*.vue` · `types.ts` · `composables/` · `style.scss`）。
 - 主题只来自 `packages/theme`（六套锁定：mercedes / linear / porsche / lamborghini / ferrari / apple）。
 - **example = 本地调试**（不上线）：七大专区 `base|biz|theme|i18n|perf|lab|dev` + `overview`；压测 / bug 复现只放 example。见 `docs/APP_WORKFLOW.md` §0。
 - **docs = 对外文档**：标准示例 / API / 教程；禁止压测与 bug 复现页。
 - **调试页与路由只在 `example/`**：`pages/` + `router/routes.ts` + `layouts/`。
+- Skill Runtime 的 SR3 built-ins 与 example 调试页当前**尚未实现**；不得因目录或规划文档存在而标记完成。
 - **禁止遗留层**：勿恢复扁平 `src/` 再导出、根级 `demo/`、本地 `backup/` / 预览截图。
 - 构建产物：`dist/`（发包）· docs VitePress（可部署）· `example-dist/`（example 本地冒烟，**不上线**）；**不入库**。

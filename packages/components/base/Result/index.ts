@@ -1,6 +1,10 @@
-import Result from './index.vue'
-import type { ResultProps } from './types'
-
-export { Result }
-export type { ResultProps }
-export default Result
+import Result from "./index.vue";
+export { Result };
+export type {
+  ResultProps,
+  ResultEmits,
+  ResultStatus,
+  ResultSize,
+  ResultAction,
+} from "./types";
+export default Result;

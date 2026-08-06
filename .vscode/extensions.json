@@ -1,4 +1,27 @@
-﻿{
-  "recommendations": ["Vue.volar"],
-  "unwantedRecommendations": ["octref.vetur"]
+{
+  "recommendations": [
+    "Vue.volar",
+    "dbaeumer.vscode-eslint",
+    "EditorConfig.EditorConfig",
+    "christian-kohler.path-intellisense",
+    "christian-kohler.npm-intellisense",
+    "usernamehw.errorlens",
+    "lokalise.i18n-ally",
+    "mrmlnc.vscode-scss",
+    "vunguyentuan.vscode-css-variables",
+    "vitest.explorer",
+    "ms-playwright.playwright",
+    "PKief.material-icon-theme",
+    "formulahendry.auto-rename-tag",
+    "naumovs.color-highlight",
+    "eamodio.gitlens",
+    "yzhang.markdown-all-in-one",
+    "DavidAnson.vscode-markdownlint",
+    "redhat.vscode-yaml",
+    "mikestead.dotenv"
+  ],
+  "unwantedRecommendations": [
+    "octref.vetur",
+    "Vue.vscode-typescript-vue-plugin"
+  ]
 }

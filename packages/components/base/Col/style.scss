@@ -1,6 +1,7 @@
 .vp-col {
   min-width: 0;
   box-sizing: border-box;
+  outline: none;
 
   &--flex {
     flex: 1 1 0%;
@@ -10,6 +11,11 @@
   &--span-auto {
     flex: 1 1 0%;
     max-width: 100%;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px
+      color-mix(in srgb, var(--primary-500) 35%, transparent);
   }
 
   /* Span 1–24 via CSS var when set from script */

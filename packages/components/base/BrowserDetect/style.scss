@@ -278,7 +278,11 @@
   &__modal {
     position: fixed;
     inset: 0;
-    background: color-mix(in srgb, var(--surface-0, var(--surface-1)) 40%, transparent);
+    background: color-mix(
+      in srgb,
+      var(--surface-0, var(--surface-1)) 40%,
+      transparent
+    );
     display: flex;
     align-items: center;
     justify-content: center;
@@ -366,6 +370,13 @@
     }
   }
 
-  &__item { display: flex; gap: var(--spacing-md); padding: var(--spacing-xs) 0; }
-  &__item dt { font-weight: 600; min-width: 5rem; }
+  &__item {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xs) 0;
+  }
+  &__item dt {
+    font-weight: 600;
+    min-width: 5rem;
+  }
 }

@@ -28,6 +28,7 @@
   }
 
   &__muted {
+    margin: 0;
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
   }
@@ -54,6 +55,7 @@
   }
 
   &__code {
+    margin: 0;
     font-size: var(--font-size-2xl);
     letter-spacing: 0.2em;
     color: var(--text-secondary);
@@ -64,6 +66,10 @@
     pointer-events: none;
   }
 }
+.vp-machine404__gear { margin: 0; }
+.vp-machine404__action--ghost { background: transparent; border-color: var(--ds-border); color: var(--text-primary); }
+.vp-machine404__action:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
+.vp-machine404--loading { cursor: progress; }
 
 .vp-machine404__gear {
   font-size: var(--font-size-2xl);
@@ -71,4 +77,3 @@
   text-align: center;
   margin-bottom: var(--spacing-md);
 }
-

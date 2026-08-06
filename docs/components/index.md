@@ -55,7 +55,7 @@
 A: 没有。P0/P1（Empty / Highlight / Ellipsis / Divider / ButtonGroup / Space / Tabs / 基建）与 P2（Icon 满分、Spin→ready）均已关闭；docs 本阶段薄 stub + FAQ 边界已齐。
 
 **Q: 能不能一口气做完全库？**  
-A: **不能。** 全库约 **272** 项评分条目中，仍有 **shell ≈ 58**、**beta ≈ 130** 待加深；那是下一阶段 / 多迭代工作量，与「本阶段约定子集正式验收」无关。
+A: **不能。** 当前 catalog 为 **285** 项；启发式成熟度快照为 stub **0** / shell **6** / beta **32** / ready **247**。评分只用于排队，不等于 API 稳定性或完整验收；子集外仍按 experimental 管理。
 
 **Q: 为什么 docs 没有每个组件的完整 FAQ？**  
 A: 本阶段明确将深度 Demo / FAQ 放在 example 调试壳；对外 docs 保证本阶段关键与整改组件有可检索 API stub。完整 FAQ 列入下一阶段。

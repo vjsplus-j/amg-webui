@@ -1,48 +1,123 @@
 .vp-pie-chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  min-width: 0;
+  padding: var(--theme-card-pad);
   color: var(--text-primary);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-body);
-
-  &__title {
-    margin: 0 0 var(--spacing-sm);
+  background: var(--surface-1);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--theme-card-radius);
+  box-sizing: border-box;
+  &__header h3,
+  &__header p {
+    margin: 0;
+  }
+  &__header h3 {
     font-size: var(--font-size-lg);
-    font-weight: 600;
   }
-
-  &__body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    min-width: 0;
-  }
-
-  &__panel {
-    background: var(--surface-1);
-    border: 1px solid var(--ds-border, var(--border-color));
-    border-radius: var(--theme-card-radius, var(--border-radius-md));
-    padding: var(--theme-card-pad, var(--spacing-md));
-  }
-
-  &__muted {
+  &__header p {
+    margin-top: var(--spacing-xs);
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
   }
-
-  &__chart {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  &__toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
+  &__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(
+        calc(var(--spacing-2xl) * 5),
+        auto
+      );
     align-items: center;
+    gap: var(--spacing-lg);
   }
-
-  &--disabled {
-    opacity: 0.55;
+  &__chart {
+    display: block;
+    width: 100%;
+    max-height: calc(var(--spacing-2xl) * 10);
+    overflow: visible;
+  }
+  &__slice {
+    cursor: pointer;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      opacity var(--transition-fast),
+      transform var(--transition-fast),
+      filter var(--transition-fast);
+  }
+  &__slice:hover,
+  &__slice:focus-visible,
+  &__slice--selected {
+    filter: brightness(1.12);
+    transform: scale(1.035);
+    outline: none;
+  }
+  &__slice--disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+  &__label {
+    fill: var(--text-on-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
     pointer-events: none;
+  }
+  &__legend {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  &__legend button {
+    display: grid;
+    grid-template-columns: var(--spacing-sm) minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: var(--text-primary);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--theme-btn-radius);
+    cursor: pointer;
+  }
+  &__legend button:hover,
+  &__legend button[aria-pressed="true"] {
+    background: var(--surface-2);
+    border-color: var(--ds-border);
+  }
+  &__legend button:focus-visible {
+    outline: var(--ds-focus-ring);
+    outline-offset: var(--spacing-xs);
+  }
+  &__legend i {
+    width: var(--spacing-sm);
+    height: var(--spacing-sm);
+    border-radius: var(--border-radius-full);
+  }
+  &__legend span {
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &__legend strong {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+  }
+  &__state {
+    padding: var(--spacing-xl);
+    color: var(--text-secondary);
+    text-align: center;
+  }
+  &--disabled {
+    opacity: 0.6;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vp-pie-chart__slice {
+    transition: none;
   }
 }

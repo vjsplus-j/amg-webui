@@ -1,81 +1,148 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import type { DataCardProps, DataCardEmits } from './types'
-import './style.scss'
+import { computed } from "vue";
+import { useLocale } from "@amg-webui/hooks";
+import { trackEmit } from "@amg-webui/telemetry";
+import Icon from "../Icon/index.vue";
+import type { DataCardEmits, DataCardProps, DataCardTrend } from "./types";
+import "./style.scss";
 
-const props = withDefaults(defineProps<DataCardProps & { value?: number | string; trend?: number; icon?: string }>(), {
-  value: 0,
-  trend: 0,
+const props = withDefaults(defineProps<DataCardProps>(), {
   loading: false,
-  disabled: false
-})
-const emit = defineEmits<DataCardEmits>()
-const { t } = useLocale()
+  disabled: false,
+  clickable: false,
+  selected: false,
+  telemetry: undefined,
+});
+const emit = defineEmits<DataCardEmits>();
+const { t } = useLocale();
+const rawValue = computed(() => props.value ?? props.data);
+const displayValue = computed(() =>
+  props.formatter
+    ? props.formatter(rawValue.value)
+    : rawValue.value == null || rawValue.value === ""
+      ? "—"
+      : String(rawValue.value),
+);
+const trendType = computed<DataCardTrend>(
+  () =>
+    props.trendType ??
+    (Number(props.trend) > 0
+      ? "up"
+      : Number(props.trend) < 0
+        ? "down"
+        : "flat"),
+);
+const progressValue = computed(() =>
+  props.progress == null
+    ? undefined
+    : Math.min(100, Math.max(0, props.progress)),
+);
+const interactive = computed(
+  () => props.clickable && !props.disabled && !props.loading,
+);
 
-const displayValue = computed(() => {
-  if (props.value != null && props.value !== '') return props.value
-  if (typeof props.data === 'number' || typeof props.data === 'string') return props.data
-  return 0
-})
-
-const trendUp = computed(() => Number(props.trend) >= 0)
-const titleText = computed(() => props.title ?? t('component.data-card.title'))
+function activate(event: MouseEvent | KeyboardEvent) {
+  if (!interactive.value) return;
+  if (event instanceof KeyboardEvent) event.preventDefault();
+  const next = !props.selected;
+  emit("update:selected", next);
+  emit("change", next);
+  if (event instanceof MouseEvent) emit("click", event);
+  trackEmit({
+    component: "DataCard",
+    type: "select",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { selected: next },
+  });
+}
 </script>
 
 <template>
-  <div
-    :class="['vp-data-card', 'vp-data-card__panel', { 'vp-data-card--disabled': disabled, 'vp-data-card--loading': loading }, props.class]"
+  <article
+    :class="[
+      'vp-data-card',
+      {
+        'vp-data-card--disabled': disabled,
+        'vp-data-card--loading': loading,
+        'vp-data-card--interactive': interactive,
+        'vp-data-card--selected': selected,
+      },
+      props.class,
+    ]"
     :style="style"
-    @click="emit('click', $event)"
+    :role="interactive ? 'button' : undefined"
+    :tabindex="interactive ? 0 : undefined"
+    :aria-pressed="interactive ? selected : undefined"
+    :aria-busy="loading"
+    data-component="DataCard"
+    @click="activate"
+    @keydown.enter="activate"
+    @keydown.space="activate"
   >
-    <div class="vp-data-card__header">
-      <span v-if="icon" class="vp-data-card__icon">{{ icon }}</span>
-      <h3 class="vp-data-card__title">{{ titleText }}</h3>
+    <header class="vp-data-card__header">
+      <div class="vp-data-card__heading">
+        <slot name="icon"
+          ><Icon v-if="icon" :name="icon" size="md" class="vp-data-card__icon"
+        /></slot>
+        <h3 class="vp-data-card__title">
+          <slot name="title">{{
+            title ?? t("component.data-card.title")
+          }}</slot>
+        </h3>
+      </div>
+      <slot name="action" />
+    </header>
+    <div v-if="loading" class="vp-data-card__skeleton" aria-hidden="true">
+      <i /><i /><i />
     </div>
-    <p v-if="loading" class="vp-data-card__value">{{ t('common.loading') }}</p>
-    <p v-else class="vp-data-card__value">{{ displayValue }}</p>
-    <p v-if="trend != null" class="vp-data-card__trend" :class="trendUp ? 'vp-data-card__trend--up' : 'vp-data-card__trend--down'">
-      {{ trendUp ? '+' : '' }}{{ trend }}%
-    </p>
-    <p v-if="description" class="vp-data-card__desc">{{ description }}</p>
-    <slot />
-  </div>
+    <template v-else>
+      <div
+        class="vp-data-card__metric"
+        :class="status ? `vp-data-card__metric--${status}` : undefined"
+      >
+        <span v-if="prefix" class="vp-data-card__affix">{{ prefix }}</span>
+        <strong class="vp-data-card__value"
+          ><slot name="value" :value="rawValue">{{
+            displayValue
+          }}</slot></strong
+        >
+        <span v-if="suffix" class="vp-data-card__affix">{{ suffix }}</span>
+      </div>
+      <div
+        v-if="trend != null || trendLabel"
+        :class="['vp-data-card__trend', `vp-data-card__trend--${trendType}`]"
+      >
+        <Icon
+          :name="
+            trendType === 'up'
+              ? 'TrendingUp'
+              : trendType === 'down'
+                ? 'TrendingDown'
+                : 'Minus'
+          "
+          size="sm"
+        />
+        <span v-if="trend != null">{{ Math.abs(trend) }}%</span
+        ><span v-if="trendLabel">{{ trendLabel }}</span>
+      </div>
+      <p v-if="description" class="vp-data-card__description">
+        {{ description }}
+      </p>
+      <div
+        v-if="progressValue != null"
+        class="vp-data-card__progress"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        :aria-valuenow="progressValue"
+      >
+        <span :style="{ width: `${progressValue}%` }" />
+      </div>
+      <div v-if="$slots.default" class="vp-data-card__body"><slot /></div>
+      <footer v-if="$slots.footer" class="vp-data-card__footer">
+        <slot name="footer" />
+      </footer>
+    </template>
+  </article>
 </template>
-
-<style scoped>
-.vp-data-card__panel {
-  background: var(--surface-1);
-  border: 1px solid var(--ds-border);
-  border-radius: var(--theme-card-radius);
-  padding: var(--theme-card-pad);
-}
-.vp-data-card__header {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
-.vp-data-card__title {
-  margin: 0;
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-.vp-data-card__value {
-  margin: var(--spacing-md) 0 var(--spacing-xs);
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
-  color: var(--text-primary);
-}
-.vp-data-card__trend {
-  margin: 0;
-  font-size: var(--font-size-sm);
-}
-.vp-data-card__trend--up { color: var(--status-success); }
-.vp-data-card__trend--down { color: var(--status-danger); }
-.vp-data-card__desc {
-  margin: var(--spacing-sm) 0 0;
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-}
-</style>

@@ -7,10 +7,21 @@
   line-height: var(--line-height-body);
   max-width: 100%;
   min-width: 0;
+  box-sizing: border-box;
 
   &--block {
     display: flex;
     width: 100%;
+  }
+
+  &--overlay {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-overlay);
+    justify-content: center;
+    padding: var(--spacing-lg);
+    background: color-mix(in srgb, var(--surface-1) 82%, transparent);
+    backdrop-filter: blur(var(--spacing-xs));
   }
 
   &--sm {
@@ -49,10 +60,47 @@
   &__text {
     min-width: 0;
   }
+  &__content {
+    display: grid;
+    gap: var(--spacing-xs);
+    min-width: 0;
+  }
+  &__progress {
+    width: calc(var(--spacing-2xl) * 3);
+    max-width: 100%;
+    height: var(--spacing-xs);
+    overflow: hidden;
+    background: var(--surface-3);
+    border-radius: var(--border-radius-full);
+    i {
+      display: block;
+      height: 100%;
+      background: var(--primary-500);
+      border-radius: inherit;
+      transition: width var(--transition-normal);
+    }
+  }
+  &__cancel {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--primary-500);
+    font: inherit;
+    cursor: pointer;
+    &:focus-visible {
+      outline: var(--ds-focus-ring);
+    }
+  }
 }
 
 @keyframes vp-loading-tip-spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-loading-tip__spinner {
+    animation-duration: 1.8s;
   }
 }

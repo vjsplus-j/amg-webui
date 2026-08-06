@@ -16,11 +16,25 @@
 - `version` 修正为 `0.1.0`（原占位 `1.0.0` 撤销）
 - `peerDependencies`: `vue@^3.4` · `@lucide/vue@^1.0`
 - 主入口：`dist` ESM + UMD + `style.css` + types
-- 子路径：`theme` · `telemetry` · `icons` · `components/base` · `components/business`
+- 子路径：`theme` · `telemetry` · `icons` · `components/base` · `components/business` · experimental `skill` / `skill/core`
+
+### Skill Runtime（experimental）
+
+- 新增独立可选 `packages/skill`：Unit / Context / Runtime / Scope、Adapter、Observer 与幂等资源回收。
+- 新增 Pipeline JSON v1：顺序、并行、注册条件、有限重试与 fallback；禁止执行配置字符串。
+- 新增 Vue 接入：`createSkillPlugin`、`AmgSkillScope`、`v-skill`；根入口不导出 Skill。
+- 新增 `build:skill` 与 `dist/skill` ESM/CJS/types 产物；官方 built-ins、DevTools 与 example Skill Lab 留待 SR3。
+- 补齐迟到 setup 抑制、并发 dispose、Scope 释放、并行 retry 隔离、fallback 错误分类与默认日志脱敏；当前仍为 experimental 最小基线。
+
+### 实验组件补强
+
+- Barcode 支持 17 种标准一维码制：EAN-13/EAN-8、UPC-A/UPC-E、ITF-14、GS1-128、ISBN/ISSN、GS1 DataBar、Code 128/39/93、Interleaved 2 of 5、Codabar、MSI 与 Pharmacode。
+- Qrcode 从伪矩阵升级为标准 QR Code 编码，新增国标 GB/T 18284、国际 ISO/IEC 18004、日本 JIS X 0510 与美标 AIM ISS QR Code profile，支持纠错等级与静区控制。
+- MatrixCode 新增 34 种二维/堆叠式码制：QR/Micro QR/rMQR/GS1/HIBC/Swiss QR、Data Matrix/DMRE/GS1/HIBC、PDF417/MicroPDF417/HIBC、Aztec、MaxiCode、Han Xin、Code One、DotCode、Code 49、Code 16K、Codablock F、Ultracode 等，补齐矩阵式、堆叠式与行业 profile 条码演示。
 
 ### 能力摘要
 
-- packages 根架构：base / business · hooks · theme · locale · icons · telemetry
+- packages 根架构：base / business · hooks · theme · locale · icons · telemetry · optional skill
 - 六套锁定主题；example 本地调试壳；精选 Demo 覆盖子集
 
 ---

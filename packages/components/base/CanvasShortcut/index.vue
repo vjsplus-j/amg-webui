@@ -7,18 +7,53 @@ import { LocaleKeys } from '@amg-webui/locale'
 import type { CanvasShortcutProps, CanvasShortcutEmits } from './types'
 import './style.scss'
 
-const props = withDefaults(defineProps<CanvasShortcutProps>(), { enabled: true, loading: false, telemetry: undefined })
+const props = withDefaults(defineProps<CanvasShortcutProps>(), {
+  enabled: true,
+  loading: false,
+  keyboard: true,
+  showCommands: true,
+  telemetry: undefined,
+  commands: () => [
+    { key: 'copy', label: 'Copy', shortcut: 'Ctrl/Cmd + C' },
+    { key: 'paste', label: 'Paste', shortcut: 'Ctrl/Cmd + V' },
+    { key: 'delete', label: 'Delete', shortcut: 'Delete / Backspace' },
+    { key: 'undo', label: 'Undo', shortcut: 'Ctrl/Cmd + Z' },
+    { key: 'redo', label: 'Redo', shortcut: 'Ctrl/Cmd + Shift + Z' }
+  ]
+})
 const emit = defineEmits<CanvasShortcutEmits>()
 const { t } = useLocale()
 const editor = useCanvasEditor()
 const titleText = computed(() => props.title ?? t('component.canvas-shortcut.title'))
+const descriptionText = computed(() => props.description ?? t('component.canvas-shortcut.lead'))
+const commandList = computed(() => props.commands)
 
 function onKeyDown(e: KeyboardEvent) {
-  if (!props.enabled || !editor || editor.readonly.value) return
+  if (!props.keyboard || !props.enabled || !editor || editor.readonly.value) return
   const mod = e.metaKey || e.ctrlKey
-  if (mod && e.key.toLowerCase() === 'c') { emit('copy'); trackEmit({ component: 'CanvasShortcut', type: 'copy', trackId: props.trackId, telemetry: props.telemetry }) }
-  else if (mod && e.key.toLowerCase() === 'v') { emit('paste'); trackEmit({ component: 'CanvasShortcut', type: 'paste', trackId: props.trackId, telemetry: props.telemetry }) }
-  else if ((e.key === 'Delete' || e.key === 'Backspace') && editor.selectedIds.value.length) { e.preventDefault(); editor.removeNodes(editor.selectedIds.value); emit('delete'); trackEmit({ component: 'CanvasShortcut', type: 'delete', trackId: props.trackId, telemetry: props.telemetry }) }
+  let command: string | null = null
+  if (mod && e.key.toLowerCase() === 'c') {
+    command = 'copy'
+    emit('copy')
+  } else if (mod && e.key.toLowerCase() === 'v') {
+    command = 'paste'
+    emit('paste')
+  } else if (mod && e.key.toLowerCase() === 'z' && e.shiftKey) {
+    command = 'redo'
+    emit('redo')
+  } else if (mod && e.key.toLowerCase() === 'z') {
+    command = 'undo'
+    emit('undo')
+  } else if ((e.key === 'Delete' || e.key === 'Backspace') && editor.selectedIds.value.length) {
+    e.preventDefault()
+    command = 'delete'
+    editor.removeNodes(editor.selectedIds.value)
+    emit('delete')
+  }
+  if (command) {
+    trackEmit({ component: 'CanvasShortcut', type: command, trackId: props.trackId, telemetry: props.telemetry })
+    emit('execute', command)
+  }
 }
 
 onMounted(() => window.addEventListener('keydown', onKeyDown))
@@ -26,14 +61,29 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeyDown))
 </script>
 
 <template>
-  <section :class="['vp-canvas-shortcut', 'vp-canvas-shortcut__panel', props.class]" :style="style" role="region" aria-labelledby="vp-canvas-shortcut-title" data-component="CanvasShortcut">
+  <section
+    :class="['vp-canvas-shortcut', 'vp-canvas-shortcut__panel', props.class]"
+    :style="style"
+    role="region"
+    aria-labelledby="vp-canvas-shortcut-title"
+    :aria-busy="loading || undefined"
+    data-component="CanvasShortcut"
+  >
     <header class="vp-canvas-shortcut__header">
       <h3 id="vp-canvas-shortcut-title" class="vp-canvas-shortcut__title">{{ titleText }}</h3>
-      <div class="vp-canvas-shortcut__status" role="status">{{ enabled ? 'ON' : 'OFF' }}</div>
+      <div class="vp-canvas-shortcut__status" role="status">
+        <span class="vp-canvas-shortcut__badge" :class="{ 'vp-canvas-shortcut__badge--on': enabled, 'vp-canvas-shortcut__badge--off': !enabled }">{{ enabled ? 'ON' : 'OFF' }}</span>
+      </div>
     </header>
     <div v-if="loading" class="vp-canvas-shortcut__loading" role="status">{{ t(LocaleKeys.common.loading) }}</div>
     <div v-else class="vp-canvas-shortcut__body">
-      <p class="vp-canvas-shortcut__muted">{{ t('component.canvas-shortcut.lead') }}</p>
+      <p class="vp-canvas-shortcut__muted">{{ descriptionText }}</p>
+      <ul v-if="showCommands" class="vp-canvas-shortcut__list" aria-label="Keyboard shortcuts">
+        <li v-for="command in commandList" :key="command.key" class="vp-canvas-shortcut__item">
+          <span class="vp-canvas-shortcut__label">{{ command.label }}</span>
+          <span class="vp-canvas-shortcut__badge vp-canvas-shortcut__badge--off">{{ command.shortcut }}</span>
+        </li>
+      </ul>
       <slot />
     </div>
   </section>

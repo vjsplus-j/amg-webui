@@ -10,6 +10,7 @@
   background: var(--surface-2);
   color: var(--text-primary);
   max-width: 100%;
+  box-sizing: border-box;
 
   &__icon {
     flex-shrink: 0;
@@ -17,6 +18,22 @@
 
   &__text {
     min-width: 0;
+  }
+  &__content {
+    display: grid;
+    gap: var(--spacing-xs);
+    flex: 1;
+    min-width: 0;
+  }
+  &__title {
+    font-size: var(--font-size-sm);
+  }
+  &--block {
+    display: flex;
+    width: 100%;
+  }
+  &--compact {
+    padding: var(--spacing-xs) var(--spacing-sm);
   }
 
   &--success {
@@ -59,4 +76,28 @@
       outline: var(--ds-focus-ring);
     }
   }
+  &__action {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    &:focus-visible {
+      outline: var(--ds-focus-ring);
+    }
+  }
+}
+
+.vp-status-tip-enter-active,
+.vp-status-tip-leave-active {
+  transition:
+    opacity var(--transition-normal),
+    transform var(--transition-normal);
+}
+.vp-status-tip-enter-from,
+.vp-status-tip-leave-to {
+  opacity: 0;
+  transform: translateY(calc(var(--spacing-xs) * -1));
 }

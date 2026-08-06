@@ -29,10 +29,30 @@
     line-height: 0;
   }
 
-  &__muted {
+  &__canvas {
+    color: var(--text-primary);
+
+    svg {
+      display: block;
+      width: min(100%, 180px);
+      height: auto;
+      margin-inline: auto;
+    }
+  }
+
+  &__muted,
+  &__error {
     margin: 0;
-    color: var(--text-secondary);
+    line-height: var(--line-height-body);
     font-size: var(--font-size-sm);
+  }
+
+  &__muted {
+    color: var(--text-secondary);
+  }
+
+  &__error {
+    color: var(--color-error);
   }
 
   &--disabled {

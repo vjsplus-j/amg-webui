@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useSlots } from 'vue'
+import { computed, useSlots, type Slot } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import { trackEmit } from '@amg-webui/telemetry'
@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<DashboardProps>(), {
 
 const emit = defineEmits<DashboardEmits>()
 const { t } = useLocale()
-const slots = useSlots()
+const slots: Readonly<Record<string, Slot | undefined>> = useSlots()
 
 const gridStyle = computed(() => ({
   '--vp-dashboard-columns': String(Math.max(1, props.columns ?? 3))
@@ -32,8 +32,8 @@ const widgetItems = computed(() => {
 
 const statMap = computed(() => Object.fromEntries(props.stats.map((s) => [s.id, s])))
 
-const hasWidgetSlot = (id: string) => !!slots[`widget-${id}`]
-const hasContent = computed(
+const hasWidgetSlot = (id: string): boolean => Boolean(slots[`widget-${id}`])
+const hasContent = computed<boolean>(
   () => props.stats.length > 0 || props.widgets.some((w) => hasWidgetSlot(w.id))
 )
 

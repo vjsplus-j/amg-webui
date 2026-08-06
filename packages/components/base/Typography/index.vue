@@ -8,7 +8,8 @@ import {
   onUnmounted,
   nextTick,
   watch,
-  type CSSProperties
+  type CSSProperties,
+  type Slot
 } from 'vue'
 import type { TypographyProps, TypographyEmits } from './types'
 import { TYPOGRAPHY_CONFIG_KEY } from './config'
@@ -69,7 +70,7 @@ const props = withDefaults(defineProps<TypographyPropsWithMotion>(), {
 
 const emit = defineEmits<TypographyEmits>()
 const { t } = useLocale()
-const slots = useSlots()
+const slots = useSlots() as Readonly<Record<string, Slot | undefined>>
 const globalConfig = inject(TYPOGRAPHY_CONFIG_KEY, {})
 
 const contentRef = ref<HTMLElement | null>(null)

@@ -11,6 +11,10 @@
     flex-wrap: wrap-reverse;
   }
 
+  &--nowrap {
+    flex-wrap: nowrap;
+  }
+
   &--align-start {
     align-items: flex-start;
   }

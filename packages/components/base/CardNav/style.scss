@@ -5,12 +5,19 @@
   flex-wrap: wrap;
   min-width: 0;
 
-  &--vertical { flex-direction: column; align-items: stretch; }
-  &--disabled { opacity: 0.6; pointer-events: none; }
+  &--vertical {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  &--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
 
   &__card {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
     gap: var(--spacing-sm);
     min-width: 8rem;
     padding: var(--theme-card-pad, var(--spacing-md));
@@ -22,16 +29,47 @@
     text-align: start;
     appearance: none;
     font-size: var(--font-size-sm);
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    transition:
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast);
 
     &--active {
       border-color: var(--primary-500);
       box-shadow: var(--shadow-sm);
     }
-    &:disabled { opacity: 0.5; cursor: not-allowed; }
-    &:focus-visible { outline: var(--ds-focus-ring); outline-offset: 1px; }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    &:focus-visible {
+      outline: var(--ds-focus-ring);
+      outline-offset: 1px;
+    }
   }
 
-  &__label { font-weight: var(--font-weight-medium, 500); }
-  &__icon { color: var(--text-secondary); font-size: var(--font-size-xs); }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    min-width: 0;
+  }
+  &__label {
+    font-weight: var(--font-weight-medium, 500);
+  }
+  &__icon {
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
+  }
+  &__description,
+  &__empty {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
+  }
+  &__badge {
+    padding: 0 var(--spacing-sm);
+    border-radius: var(--border-radius-full);
+    background: var(--surface-2);
+    color: var(--text-secondary);
+  }
 }

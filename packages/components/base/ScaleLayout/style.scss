@@ -5,6 +5,7 @@
   min-height: 0;
   overflow: hidden;
   box-sizing: border-box;
+  color: var(--text-primary);
 
   &--fill {
     height: 100%;
@@ -15,6 +16,7 @@
     transform: scale(var(--vp-scale, 1));
     transform-origin: top left;
     box-sizing: border-box;
+    transition: transform var(--transition-normal);
   }
 
   &--center:not(.vp-scale-layout--design) &__inner {

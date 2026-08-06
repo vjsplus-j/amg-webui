@@ -16,7 +16,7 @@ export {
   TELEMETRY_CONFIG_KEY
 } from './config'
 
-export { TelemetryService } from './TelemetryService'
+export { TelemetryService, type TelemetryServiceApi } from './TelemetryService'
 export { trackEmit } from './trackEmit'
 export { redactPayload, trimName } from './redact'
 export { RingBuffer } from './ringBuffer'

@@ -8,12 +8,15 @@ export interface IndexNavProps extends BaseProps {
   modelValue?: string | number
   disabled?: boolean
   direction?: 'horizontal' | 'vertical'
-  trackId?: string
-  telemetry?: boolean
+  scrollToTarget?: boolean
+  scrollBehavior?: ScrollBehavior
+  sticky?: boolean
+  ariaLabel?: string
 }
 
 export interface IndexNavEmits {
   (e: 'update:modelValue', value: string | number): void
   (e: 'change', value: string | number): void
   (e: 'select', item: NavItem, event: MouseEvent): void
+  (e: 'navigate', item: NavItem, target?: HTMLElement): void
 }

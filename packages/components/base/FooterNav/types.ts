@@ -7,9 +7,10 @@ export interface FooterNavProps extends BaseProps {
   items?: NavItem[]
   modelValue?: string | number
   disabled?: boolean
-  direction?: 'horizontal' | 'vertical'
-  trackId?: string
-  telemetry?: boolean
+  align?: 'start' | 'center' | 'end' | 'between'
+  dividers?: boolean
+  wrap?: boolean
+  ariaLabel?: string
 }
 
 export interface FooterNavEmits {

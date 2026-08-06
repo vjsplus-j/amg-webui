@@ -34,6 +34,26 @@
     display: block;
   }
 
+  &__cell {
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: none;
+      filter: drop-shadow(0 0 var(--spacing-xs) var(--primary-500));
+    }
+  }
+
+  &__cell--selected {
+    stroke: var(--primary-700, var(--primary-500));
+    stroke-width: 2;
+  }
+
+  &__value {
+    fill: var(--text-primary);
+    font-size: var(--font-size-xs);
+    pointer-events: none;
+  }
+
   &__toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -44,5 +64,9 @@
   &--disabled {
     opacity: 0.55;
     pointer-events: none;
+  }
+
+  &--loading {
+    cursor: progress;
   }
 }

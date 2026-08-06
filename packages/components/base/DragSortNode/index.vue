@@ -1,61 +1,192 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import { trackEmit } from '@amg-webui/telemetry'
-import { LocaleKeys } from '@amg-webui/locale'
-import type { CanvasNodeData } from '@amg-webui/utils'
-import type { DragSortNodeProps, DragSortNodeEmits } from './types'
-import './style.scss'
+import { computed, ref, watch } from "vue";
+import { useLocale } from "@amg-webui/hooks";
+import { trackEmit } from "@amg-webui/telemetry";
+import type { CanvasNodeData } from "@amg-webui/utils";
+import type { DragSortNodeEmits, DragSortNodeProps } from "./types";
+import "./style.scss";
 
 const props = withDefaults(defineProps<DragSortNodeProps>(), {
-  nodes: () => [
-    { id: 'a', label: 'Node A', type: 'box', x: 0, y: 0, w: 80, h: 32, props: {} },
-    { id: 'b', label: 'Node B', type: 'box', x: 0, y: 0, w: 80, h: 32, props: {} }
-  ],
-  loading: false, disabled: false, telemetry: undefined
-})
-const emit = defineEmits<DragSortNodeEmits>()
-const { t } = useLocale()
-const list = ref<CanvasNodeData[]>([...props.nodes])
-const dragId = ref<string | null>(null)
-const titleText = computed(() => props.title ?? t('component.drag-sort-node.title'))
+  nodes: () => [],
+  loading: false,
+  disabled: false,
+  clearable: true,
+  telemetry: undefined,
+});
+const emit = defineEmits<DragSortNodeEmits>();
+const { t } = useLocale();
+const source = computed(() => props.modelValue ?? props.nodes);
+const list = ref<CanvasNodeData[]>([...source.value]);
+const draggingId = ref<string | null>(null);
+watch(
+  source,
+  (value) => {
+    list.value = [...value];
+  },
+  { deep: true },
+);
 
-watch(() => props.nodes, (v) => { list.value = [...v] })
-
-function onDragStart(id: string) { dragId.value = id }
-function onDrop(targetId: string) {
-  if (!dragId.value || dragId.value === targetId || props.disabled) return
-  const from = list.value.findIndex((n) => n.id === dragId.value)
-  const to = list.value.findIndex((n) => n.id === targetId)
-  if (from < 0 || to < 0) return
-  const next = [...list.value]
-  const [item] = next.splice(from, 1)
-  next.splice(to, 0, item)
-  list.value = next
-  dragId.value = null
-  emit('reorder', next)
-  trackEmit({ component: 'DragSortNode', type: 'reorder', trackId: props.trackId, telemetry: props.telemetry })
+function commit(
+  next: CanvasNodeData[],
+  moved?: { node: CanvasNodeData; from: number; to: number },
+) {
+  list.value = next;
+  emit("update:modelValue", next);
+  emit("change", next);
+  emit("reorder", next);
+  if (moved) emit("move", moved.node, moved.from, moved.to);
+  trackEmit({
+    component: "DragSortNode",
+    type: "reorder",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { from: moved?.from, to: moved?.to, count: next.length },
+  });
 }
-function clearList() {
-  if (props.disabled) return
-  list.value = []
-  emit('clear')
-  trackEmit({ component: 'DragSortNode', type: 'clear', trackId: props.trackId, telemetry: props.telemetry })
+function move(from: number, to: number) {
+  if (
+    props.disabled ||
+    from < 0 ||
+    to < 0 ||
+    from >= list.value.length ||
+    to >= list.value.length
+  )
+    return;
+  const node = list.value[from];
+  if (node.locked || from === to) return;
+  const next = [...list.value];
+  next.splice(from, 1);
+  next.splice(to, 0, node);
+  commit(next, { node, from, to });
+}
+function dragStart(node: CanvasNodeData, event: DragEvent) {
+  if (props.disabled || node.locked) {
+    event.preventDefault();
+    return;
+  }
+  draggingId.value = node.id;
+  event.dataTransfer?.setData("text/plain", node.id);
+  if (event.dataTransfer) event.dataTransfer.effectAllowed = "move";
+  emit("dragStart", node, event);
+}
+function drop(targetIndex: number) {
+  const from = list.value.findIndex((node) => node.id === draggingId.value);
+  move(from, targetIndex);
+  draggingId.value = null;
+}
+function dragEnd(node: CanvasNodeData, event: DragEvent) {
+  draggingId.value = null;
+  emit("dragEnd", node, event);
+}
+function keydown(event: KeyboardEvent, index: number) {
+  const key = event.key;
+  let to = index;
+  if (key === "ArrowUp" || key === "ArrowLeft") to = index - 1;
+  else if (key === "ArrowDown" || key === "ArrowRight") to = index + 1;
+  else if (key === "Home") to = 0;
+  else if (key === "End") to = list.value.length - 1;
+  else return;
+  event.preventDefault();
+  move(index, to);
+}
+function select(node: CanvasNodeData) {
+  if (props.disabled) return;
+  emit("update:selectedId", node.id);
+  emit("select", node);
+}
+function clear() {
+  if (props.disabled || props.loading || !list.value.length) return;
+  list.value = [];
+  emit("update:modelValue", []);
+  emit("change", []);
+  emit("clear");
+  trackEmit({
+    component: "DragSortNode",
+    type: "clear",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+  });
 }
 </script>
 
 <template>
-  <section class="vp-drag-sort-node vp-drag-sort-node__panel" role="region" aria-labelledby="vp-drag-sort-node-title" data-component="DragSortNode">
+  <section
+    :class="[
+      'vp-drag-sort-node',
+      { 'vp-drag-sort-node--disabled': disabled },
+      props.class,
+    ]"
+    :style="style"
+    :aria-label="ariaLabel ?? title ?? t('component.drag-sort-node.title')"
+    :aria-busy="loading"
+    data-component="DragSortNode"
+  >
     <header class="vp-drag-sort-node__header">
-      <h3 id="vp-drag-sort-node-title" class="vp-drag-sort-node__title">{{ titleText }}</h3>
+      <h3 class="vp-drag-sort-node__title">
+        {{ title ?? t("component.drag-sort-node.title") }}
+      </h3>
+      <slot name="actions" :nodes="list" :clear="clear">
+        <button
+          v-if="clearable"
+          type="button"
+          :disabled="disabled || loading || !list.length"
+          @click="clear"
+        >
+          {{ t("button.reset") }}
+        </button>
+      </slot>
     </header>
-    <div v-if="loading" class="vp-drag-sort-node__loading" role="status">{{ t(LocaleKeys.common.loading) }}</div>
-    <ul v-else class="vp-drag-sort-node__list" role="listbox">
-      <li v-for="node in list" :key="node.id" class="vp-drag-sort-node__item" draggable="true" role="option" @dragstart="onDragStart(node.id)" @dragover.prevent @drop="onDrop(node.id)">{{ node.label }}</li>
-      <p v-if="!list.length" class="vp-drag-sort-node__empty">{{ t(LocaleKeys.common.noData) }}</p>
+    <div v-if="loading" class="vp-drag-sort-node__state" role="status">
+      {{ t("common.loading") }}
+    </div>
+    <ul
+      v-else-if="list.length"
+      class="vp-drag-sort-node__list"
+      role="listbox"
+      :aria-disabled="disabled"
+    >
+      <li
+        v-for="(node, index) in list"
+        :key="node.id"
+        :class="[
+          'vp-drag-sort-node__item',
+          {
+            'vp-drag-sort-node__item--selected': selectedId === node.id,
+            'vp-drag-sort-node__item--dragging': draggingId === node.id,
+            'vp-drag-sort-node__item--locked': node.locked,
+          },
+        ]"
+        :draggable="!disabled && !node.locked"
+        role="option"
+        :aria-selected="selectedId === node.id"
+        :aria-disabled="disabled || node.locked"
+        :tabindex="disabled || node.locked ? -1 : 0"
+        @click="select(node)"
+        @keydown="keydown($event, index)"
+        @dragstart="dragStart(node, $event)"
+        @dragover.prevent
+        @drop="drop(index)"
+        @dragend="dragEnd(node, $event)"
+      >
+        <slot
+          name="item"
+          :node="node"
+          :index="index"
+          :selected="selectedId === node.id"
+        >
+          <span class="vp-drag-sort-node__handle" aria-hidden="true">⋮⋮</span>
+          <span class="vp-drag-sort-node__content"
+            ><strong>{{ node.label }}</strong
+            ><small>{{ node.type }}</small></span
+          >
+          <span class="vp-drag-sort-node__position"
+            >{{ index + 1 }} / {{ list.length }}</span
+          >
+        </slot>
+      </li>
     </ul>
-    <div class="vp-drag-sort-node__toolbar">
-      <button type="button" class="vp-drag-sort-node__btn vp-drag-sort-node__btn--ghost" :disabled="disabled" @click="clearList">{{ t(LocaleKeys.button.reset) }}</button>
+    <div v-else class="vp-drag-sort-node__state" role="status">
+      <slot name="empty">{{ emptyText ?? t("common.noData") }}</slot>
     </div>
   </section>
 </template>

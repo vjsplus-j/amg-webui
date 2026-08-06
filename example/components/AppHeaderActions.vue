@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
-import { Button, InputText, Icon } from '@amg-webui/components/base'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { Button, Search, Select } from '@amg-webui/components/base'
+import type { SelectModelValue } from '@amg-webui/components/base/Select/types'
 import {
   ThemeService,
   designStyles,
@@ -31,6 +32,19 @@ const currentScheme = ref<ColorScheme>(ThemeService.getScheme())
 const currentIconStyle = ref<IconStyleName>(IconStyleService.getCurrentStyle())
 const currentFont = ref<FontName>(FontService.getCurrentFont())
 const currentLocale = ref<LocaleCode>(LocaleService.getLocale())
+
+const localeOptions = computed(() =>
+  LOCALE_CODES.map((code) => ({ label: LOCALE_META[code].label, value: code }))
+)
+const designOptions = computed(() =>
+  designStyles.map((item) => ({ label: item.label, value: item.name }))
+)
+const iconOptions = computed(() =>
+  iconStyles.map((item) => ({ label: item.label, value: item.name }))
+)
+const fontOptions = computed(() =>
+  fonts.map((item) => ({ label: item.label, value: item.name }))
+)
 
 let unsubDesign: (() => void) | undefined
 let unsubScheme: (() => void) | undefined
@@ -73,43 +87,58 @@ const handleSearch = () => {
   }
 }
 
-function onLocaleChange(event: Event) {
-  const code = (event.target as HTMLSelectElement).value as LocaleCode
-  LocaleService.setLocale(code)
+function stringValue(value: SelectModelValue): string | undefined {
+  return typeof value === 'string' ? value : undefined
+}
+
+function onLocaleChange(value: SelectModelValue) {
+  const next = stringValue(value) as LocaleCode | undefined
+  if (next) LocaleService.setLocale(next)
+}
+
+function onDesignChange(value: SelectModelValue) {
+  const next = stringValue(value) as DesignStyleName | undefined
+  if (next) ThemeService.setStyle(next)
+}
+
+function onIconChange(value: SelectModelValue) {
+  const next = stringValue(value) as IconStyleName | undefined
+  if (next) IconStyleService.setStyle(next)
+}
+
+function onFontChange(value: SelectModelValue) {
+  const next = stringValue(value) as FontName | undefined
+  if (next) FontService.setFont(next)
 }
 </script>
 
 <template>
   <div class="header-actions">
-    <div class="search">
-      <Icon name="Search" size="sm" class="search__icon" />
-      <InputText
-        v-model="searchText"
-        :placeholder="`${t(LocaleKeys.common.search)}…`"
-        class="p-inputtext-sm search__input"
-        @keyup.enter="handleSearch"
-      />
-    </div>
+    <Search
+      v-model="searchText"
+      class="header-actions__search"
+      size="sm"
+      :placeholder="t(LocaleKeys.common.search)"
+      @search="handleSearch"
+    />
 
-    <select
-      class="chrome-select chrome-select--locale"
-      :value="currentLocale"
-      :title="t(LocaleKeys.chrome.locale)"
-      @change="onLocaleChange"
-    >
-      <option v-for="code in LOCALE_CODES" :key="code" :value="code">
-        {{ LOCALE_META[code].label }}
-      </option>
-    </select>
+    <Select
+      :model-value="currentLocale"
+      :options="localeOptions"
+      size="sm"
+      class="header-actions__select"
+      :placeholder="t(LocaleKeys.chrome.locale)"
+      @update:model-value="onLocaleChange"
+    />
 
-    <select
-      class="chrome-select"
-      :value="currentDesign"
-      :title="t(LocaleKeys.chrome.design)"
-      @change="ThemeService.setStyle(($event.target as HTMLSelectElement).value as DesignStyleName)"
-    >
-      <option v-for="s in designStyles" :key="s.name" :value="s.name">{{ s.label }}</option>
-    </select>
+    <Select
+      :model-value="currentDesign"
+      :options="designOptions"
+      size="sm"
+      class="header-actions__select"
+      :placeholder="t(LocaleKeys.chrome.design)"
+      @update:model-value="onDesignChange"
+    />
 
     <Button
       v-if="currentDesign === 'linear'"
@@ -124,23 +153,23 @@ function onLocaleChange(event: Event) {
       }}
     </Button>
 
-    <select
-      class="chrome-select"
-      :value="currentIconStyle"
-      :title="t(LocaleKeys.chrome.icons)"
-      @change="IconStyleService.setStyle(($event.target as HTMLSelectElement).value as IconStyleName)"
-    >
-      <option v-for="s in iconStyles" :key="s.name" :value="s.name">{{ s.label }}</option>
-    </select>
+    <Select
+      :model-value="currentIconStyle"
+      :options="iconOptions"
+      size="sm"
+      class="header-actions__select"
+      :placeholder="t(LocaleKeys.chrome.icons)"
+      @update:model-value="onIconChange"
+    />
 
-    <select
-      class="chrome-select"
-      :value="currentFont"
-      :title="t(LocaleKeys.chrome.font)"
-      @change="FontService.setFont(($event.target as HTMLSelectElement).value as FontName)"
-    >
-      <option v-for="f in fonts" :key="f.name" :value="f.name">{{ f.label }}</option>
-    </select>
+    <Select
+      :model-value="currentFont"
+      :options="fontOptions"
+      size="sm"
+      class="header-actions__select"
+      :placeholder="t(LocaleKeys.chrome.font)"
+      @update:model-value="onFontChange"
+    />
   </div>
 </template>
 
@@ -151,53 +180,14 @@ function onLocaleChange(event: Event) {
   gap: var(--spacing-sm);
 }
 
-.search {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 11.25rem;
-}
-
-.search__icon {
-  position: absolute;
-  left: var(--spacing-sm);
-  color: var(--text-muted);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.search :deep(.search__input),
-.search :deep(.p-inputtext) {
-  width: 100%;
-  padding-left: var(--spacing-xl);
-  height: var(--height-sm, 1.75rem);
-  font-size: var(--font-size-sm);
-}
-
-.chrome-select {
-  height: var(--height-sm, 1.75rem);
-  max-width: 7.5rem;
-  padding: 0 var(--spacing-sm);
-  border: 1px solid var(--ds-border, var(--border-color));
-  border-radius: var(--border-radius-md);
-  background: var(--surface-2);
-  color: var(--text-primary);
-  font: inherit;
-  font-size: var(--font-size-xs);
-  outline: none;
-}
-
-.chrome-select--locale {
-  max-width: 8.5rem;
-}
-
-.chrome-select:focus {
-  border-color: var(--ds-accent);
-  box-shadow: 0 0 0 3px var(--ds-focus-ring);
+.header-actions__search,
+.header-actions__select {
+  flex: 0 1 calc(var(--spacing-2xl) * 4);
+  min-width: calc(var(--spacing-2xl) * 3);
 }
 
 @media (max-width: 1100px) {
-  .search {
+  .header-actions__search {
     display: none;
   }
 }

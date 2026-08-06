@@ -26,11 +26,11 @@
   &--mode-right {
     align-items: stretch;
 
-    :deep(.vp-timeline-item) {
+    > .vp-timeline-item {
       flex-direction: row-reverse;
     }
 
-    :deep(.vp-timeline-item__content) {
+    > .vp-timeline-item .vp-timeline-item__content {
       text-align: right;
     }
   }
@@ -40,7 +40,7 @@
     padding-inline: var(--spacing-md);
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       bottom: 0;
@@ -51,12 +51,12 @@
       pointer-events: none;
     }
 
-    :deep(.vp-timeline-item) {
+    > .vp-timeline-item {
       width: calc(50% - var(--spacing-lg));
       position: relative;
     }
 
-    :deep(.vp-timeline-item--side-left) {
+    > .vp-timeline-item--side-left {
       align-self: flex-start;
       margin-inline-end: auto;
       padding-inline-end: var(--spacing-lg);
@@ -73,7 +73,7 @@
       }
     }
 
-    :deep(.vp-timeline-item--side-right) {
+    > .vp-timeline-item--side-right {
       align-self: flex-end;
       margin-inline-start: auto;
       padding-inline-start: var(--spacing-lg);
@@ -89,7 +89,7 @@
       }
     }
 
-    :deep(.vp-timeline-item__tail) {
+    > .vp-timeline-item .vp-timeline-item__tail {
       display: none;
     }
   }
@@ -122,8 +122,44 @@
   }
 }
 
-:deep(.vp-timeline-item__dot--pending) {
+.vp-timeline-item__dot--pending {
   --vp-timeline-color: var(--text-secondary);
   background: var(--surface-1);
-  animation: vp-timeline-pending-pulse var(--transition-normal, 0.3s) ease-in-out infinite;
+  animation: vp-timeline-pending-pulse var(--transition-normal, 0.3s)
+    ease-in-out infinite;
+}
+
+.vp-timeline__item-title {
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+.vp-timeline__item-description {
+  margin: var(--spacing-xs) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+@media (max-width: 640px) {
+  .vp-timeline--mode-alternate {
+    padding-inline: 0;
+    &::before {
+      left: calc(var(--spacing-lg) / 2);
+    }
+    > .vp-timeline-item {
+      width: 100%;
+      align-self: stretch;
+      margin: 0;
+      padding-inline: 0 0;
+      flex-direction: row;
+    }
+    > .vp-timeline-item--side-left .vp-timeline-item__axis,
+    > .vp-timeline-item--side-right .vp-timeline-item__axis {
+      position: relative;
+      inset: auto;
+      transform: none;
+    }
+    > .vp-timeline-item .vp-timeline-item__content {
+      text-align: left;
+    }
+  }
 }

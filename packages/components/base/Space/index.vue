@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Comment, Fragment, Text, computed, useSlots, type VNode } from 'vue'
+import { Comment, Fragment, Text, computed, useSlots, type Slot, type VNode } from 'vue'
 import type { Size } from '@amg-webui/types'
 import { SPACE_SIZES } from './types'
 import './style.scss'
@@ -29,7 +29,7 @@ const props = withDefaults(
   }
 )
 
-const slots = useSlots()
+const slots = useSlots() as Readonly<Record<string, Slot | undefined>>
 
 const SIZE_GAP: Record<Size, string> = {
   xs: 'var(--spacing-xs)',

@@ -8,6 +8,7 @@ import {
   watch
 } from 'vue'
 import Icon from '../Icon/index.vue'
+import MenuBadgeMark from './MenuBadgeMark.vue'
 import { trackEmit } from '@amg-webui/telemetry'
 import { getFixedPanelStyle, type PanelPlacement } from '@amg-webui/utils/domPanel'
 import type { MenuItem, MenuBadge } from './types'
@@ -180,7 +181,7 @@ function itemClass(item: MenuItem, depth: number) {
       'vp-menu__item--folder': Boolean(item.children?.length),
       'vp-menu__item--disabled': item.disabled,
       'vp-menu__item--open': item.children?.length ? isOpen(item.key) : false,
-      'vp-menu__item--has-new': badges.some((b) => b.tone === 'new')
+      'vp-menu__item--has-hot': badges.some((b) => b.tone === 'hot')
     }
   ]
 }
@@ -256,13 +257,11 @@ watch(usePopup, (popup) => {
                 v-if="!collapsed && itemBadges(child).length"
                 class="vp-menu__badges"
               >
-                <span
+                <MenuBadgeMark
                   v-for="(b, bi) in itemBadges(child)"
                   :key="`${child.key}-b-${bi}`"
-                  class="vp-menu__badge"
-                  :class="b.tone ? `vp-menu__badge--${b.tone}` : undefined"
-                  >{{ b.label }}</span
-                >
+                  :badge="b"
+                />
               </span>
               <span v-if="!collapsed || usePopup" class="vp-menu__chevron">
                 <Icon
@@ -296,13 +295,11 @@ watch(usePopup, (popup) => {
               >
                 <span class="vp-menu__label">{{ leaf.label }}</span>
                 <span v-if="itemBadges(leaf).length" class="vp-menu__badges">
-                  <span
+                  <MenuBadgeMark
                     v-for="(b, bi) in itemBadges(leaf)"
                     :key="`${leaf.key}-b-${bi}`"
-                    class="vp-menu__badge"
-                    :class="b.tone ? `vp-menu__badge--${b.tone}` : undefined"
-                    >{{ b.label }}</span
-                  >
+                    :badge="b"
+                  />
                 </span>
               </button>
             </div>
@@ -323,13 +320,11 @@ watch(usePopup, (popup) => {
               v-if="!collapsed && itemBadges(child).length"
               class="vp-menu__badges"
             >
-              <span
+              <MenuBadgeMark
                 v-for="(b, bi) in itemBadges(child)"
                 :key="`${child.key}-b-${bi}`"
-                class="vp-menu__badge"
-                :class="b.tone ? `vp-menu__badge--${b.tone}` : undefined"
-                >{{ b.label }}</span
-              >
+                :badge="b"
+              />
             </span>
           </button>
         </template>
@@ -354,13 +349,11 @@ watch(usePopup, (popup) => {
             v-if="!collapsed && itemBadges(item).length"
             class="vp-menu__badges"
           >
-            <span
+            <MenuBadgeMark
               v-for="(b, bi) in itemBadges(item)"
               :key="`${item.key}-b-${bi}`"
-              class="vp-menu__badge"
-              :class="b.tone ? `vp-menu__badge--${b.tone}` : undefined"
-              >{{ b.label }}</span
-            >
+              :badge="b"
+            />
           </span>
           <span v-if="!collapsed || usePopup" class="vp-menu__chevron">
             <Icon
@@ -394,13 +387,11 @@ watch(usePopup, (popup) => {
           >
             <span class="vp-menu__label">{{ leaf.label }}</span>
             <span v-if="itemBadges(leaf).length" class="vp-menu__badges">
-              <span
+              <MenuBadgeMark
                 v-for="(b, bi) in itemBadges(leaf)"
                 :key="`${leaf.key}-b-${bi}`"
-                class="vp-menu__badge"
-                :class="b.tone ? `vp-menu__badge--${b.tone}` : undefined"
-                >{{ b.label }}</span
-              >
+                :badge="b"
+              />
             </span>
           </button>
         </div>
@@ -423,13 +414,11 @@ watch(usePopup, (popup) => {
           v-if="!collapsed && itemBadges(item).length"
           class="vp-menu__badges"
         >
-          <span
+          <MenuBadgeMark
             v-for="(b, bi) in itemBadges(item)"
             :key="`${item.key}-b-${bi}`"
-            class="vp-menu__badge"
-            :class="b.tone ? `vp-menu__badge--${b.tone}` : undefined"
-            >{{ b.label }}</span
-          >
+            :badge="b"
+          />
         </span>
       </button>
     </template>
@@ -456,13 +445,11 @@ watch(usePopup, (popup) => {
             </span>
             <span class="vp-menu__label">{{ leaf.label }}</span>
             <span v-if="itemBadges(leaf).length" class="vp-menu__badges">
-              <span
+              <MenuBadgeMark
                 v-for="(b, bi) in itemBadges(leaf)"
                 :key="`${leaf.key}-b-${bi}`"
-                class="vp-menu__badge"
-                :class="b.tone ? `vp-menu__badge--${b.tone}` : undefined"
-                >{{ b.label }}</span
-              >
+                :badge="b"
+              />
             </span>
           </button>
         </li>

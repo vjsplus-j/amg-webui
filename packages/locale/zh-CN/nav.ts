@@ -21,5 +21,6 @@ export default {
   'nav.primary': '主导航',
   'nav.badge.goldDod': '金标',
   'nav.badge.epParity': 'EP',
+  'nav.badge.hot': '热门',
   'nav.badge.exclusiveNew': 'New'
 } as Record<string, string>

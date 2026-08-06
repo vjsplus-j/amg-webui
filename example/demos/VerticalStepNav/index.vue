@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { VerticalStepNav } from '@amg-webui/components/base'
+import type { VerticalStepNavItem } from '@amg-webui/components/base/VerticalStepNav/types'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -11,15 +12,18 @@ import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
 
-const mountProps = computed(() => getSampleMountProps('VerticalStepNav'))
+const selected = ref<string | number>(0)
+const items = computed(
+  () => getSampleMountProps('VerticalStepNav').items as VerticalStepNavItem[]
+)
 
 const codeBasic = demoSfc({
   imports: [
-    `import { VerticalStepNav } from '@amg-webui/components/base'`,
-    `import { getSampleMountProps } from '../_shared/sampleMountProps'`
+    `import { ref } from 'vue'`,
+    `import { VerticalStepNav } from '@amg-webui/components/base'`
   ],
-  script: [`const mountProps = getSampleMountProps('VerticalStepNav')`],
-  template: [`  <VerticalStepNav v-bind="mountProps" />`]
+  script: [`const selected = ref(0)`, `const items = [/* VerticalStepNavItem[] */]`],
+  template: [`  <VerticalStepNav v-model="selected" :items="items" />`]
 })
 
 const propRows = computed<PropRow[]>(() => [
@@ -40,7 +44,7 @@ const propRows = computed<PropRow[]>(() => [
       :code="codeBasic"
       default-open
     >
-      <VerticalStepNav v-bind="mountProps" />
+      <VerticalStepNav v-model="selected" :items="items" />
     </DemoBlock>
     <PropsTable :rows="propRows" />
   </div>

@@ -1,106 +1,103 @@
-.vp-tooltip-trigger {
-  position: relative;
+.vp-tooltip-trigger,
+.vp-tooltip-trigger__target {
   display: inline-flex;
+  min-width: 0;
   vertical-align: middle;
 }
-
+.vp-tooltip-trigger__target:focus-visible {
+  outline: var(--ds-focus-ring);
+  outline-offset: var(--spacing-xs);
+}
 .vp-tooltip {
-  position: absolute;
-  z-index: 1000;
+  position: fixed;
+  z-index: var(--z-tooltip, 1100);
+  max-width: min(
+    calc(var(--spacing-2xl) * 10),
+    calc(100vw - var(--spacing-lg))
+  );
   padding: var(--spacing-xs) var(--spacing-sm);
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-body);
-  color: var(--text-primary);
-  background: var(--surface-1);
-  border: 1px solid var(--border-color);
+  color: var(--surface-1);
+  background: var(--text-primary);
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-md);
-  white-space: nowrap;
-  max-width: 100%;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-body);
+  overflow-wrap: anywhere;
   pointer-events: none;
-
-  &--top {
-    bottom: calc(100% + var(--spacing-sm));
-    left: 50%;
-    transform: translateX(-50%);
+  box-sizing: border-box;
+  &--enterable {
+    pointer-events: auto;
   }
-
-  &--bottom {
-    top: calc(100% + var(--spacing-sm));
-    left: 50%;
-    transform: translateX(-50%);
+  &__content {
+    position: relative;
+    z-index: 1;
   }
-
-  &--left {
-    right: calc(100% + var(--spacing-sm));
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  &--right {
-    left: calc(100% + var(--spacing-sm));
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
   &__arrow {
     position: absolute;
     width: var(--spacing-sm);
     height: var(--spacing-sm);
-    background: var(--surface-1);
-    border: 1px solid var(--border-color);
+    background: inherit;
     transform: rotate(45deg);
   }
-
-  &--top .vp-tooltip__arrow {
+  &--top &__arrow,
+  &--top-start &__arrow,
+  &--top-end &__arrow {
     bottom: calc(var(--spacing-xs) * -1);
-    left: 50%;
-    margin-left: calc(var(--spacing-xs) * -1);
-    border-top: none;
-    border-left: none;
   }
-
-  &--bottom .vp-tooltip__arrow {
+  &--bottom &__arrow,
+  &--bottom-start &__arrow,
+  &--bottom-end &__arrow {
     top: calc(var(--spacing-xs) * -1);
-    left: 50%;
-    margin-left: calc(var(--spacing-xs) * -1);
-    border-bottom: none;
-    border-right: none;
   }
-
-  &--left .vp-tooltip__arrow {
+  &--top &__arrow,
+  &--bottom &__arrow {
+    left: calc(50% - var(--spacing-xs));
+  }
+  &--top-start &__arrow,
+  &--bottom-start &__arrow {
+    left: var(--spacing-md);
+  }
+  &--top-end &__arrow,
+  &--bottom-end &__arrow {
+    right: var(--spacing-md);
+  }
+  &--left &__arrow,
+  &--left-start &__arrow,
+  &--left-end &__arrow {
     right: calc(var(--spacing-xs) * -1);
-    top: 50%;
-    margin-top: calc(var(--spacing-xs) * -1);
-    border-left: none;
-    border-bottom: none;
   }
-
-  &--right .vp-tooltip__arrow {
+  &--right &__arrow,
+  &--right-start &__arrow,
+  &--right-end &__arrow {
     left: calc(var(--spacing-xs) * -1);
-    top: 50%;
-    margin-top: calc(var(--spacing-xs) * -1);
-    border-right: none;
-    border-top: none;
+  }
+  &--left &__arrow,
+  &--right &__arrow {
+    top: calc(50% - var(--spacing-xs));
+  }
+  &--left-start &__arrow,
+  &--right-start &__arrow {
+    top: var(--spacing-md);
+  }
+  &--left-end &__arrow,
+  &--right-end &__arrow {
+    bottom: var(--spacing-md);
   }
 }
-
 .vp-tooltip-fade-enter-active,
 .vp-tooltip-fade-leave-active {
-  transition: opacity var(--transition-normal), transform var(--transition-normal);
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
 }
-
 .vp-tooltip-fade-enter-from,
 .vp-tooltip-fade-leave-to {
   opacity: 0;
+  transform: scale(0.96);
 }
-
-.vp-tooltip--top.vp-tooltip-fade-enter-from,
-.vp-tooltip--top.vp-tooltip-fade-leave-to {
-  transform: translateX(-50%) translateY(var(--spacing-xs));
-}
-
-.vp-tooltip--bottom.vp-tooltip-fade-enter-from,
-.vp-tooltip--bottom.vp-tooltip-fade-leave-to {
-  transform: translateX(-50%) translateY(calc(var(--spacing-xs) * -1));
+@media (prefers-reduced-motion: reduce) {
+  .vp-tooltip-fade-enter-active,
+  .vp-tooltip-fade-leave-active {
+    transition: none;
+  }
 }

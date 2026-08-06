@@ -158,6 +158,7 @@ export const DEMO_REGISTRY: Record<string, CuratedDemoDoc> = {
   Machine404: { whenKey: 'example.doc.machine404.when', Demo: loadDemo('Machine404') },
   Main: { whenKey: 'example.doc.main.when', Demo: loadDemo('Main') },
   Mask: { whenKey: 'example.doc.mask.when', Demo: loadDemo('Mask') },
+  MatrixCode: { whenKey: 'example.doc.matrixCode.when', Demo: loadDemo('MatrixCode') },
   MdEditor: { whenKey: 'example.doc.mdEditor.when', Demo: loadDemo('MdEditor') },
   Mention: { whenKey: 'example.doc.mention.when', Demo: loadDemo('Mention') },
   Menu: { whenKey: 'example.doc.menu.when', Demo: loadDemo('Menu') },

@@ -4,23 +4,10 @@
   gap: var(--spacing-md);
   min-width: 0;
   width: 100%;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  background: var(--surface-1);
-  border: 1px solid var(--ds-border, var(--border-color));
-  border-radius: var(--theme-input-radius, var(--border-radius-md));
-  transition:
-    border-color var(--transition-normal),
-    box-shadow var(--transition-normal);
-
-  &:focus-within:not(&--disabled) {
-    border-color: var(--primary-500);
-    box-shadow: 0 0 0 2px var(--ds-focus-ring);
-  }
 
   &--disabled {
     opacity: 0.55;
     pointer-events: none;
-    background: var(--surface-2);
   }
 
   &__input {

@@ -270,6 +270,7 @@ const cats = {
     'FreeLayoutDrag',
     'GridLayoutDrag',
     'ImageCrop',
+    'MatrixCode',
     'OcrScan',
     'PdfPreview',
     'Preview',

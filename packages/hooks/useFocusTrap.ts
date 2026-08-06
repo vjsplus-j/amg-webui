@@ -1,5 +1,6 @@
 import { onUnmounted, type Ref, watch } from 'vue'
 import { KEYS } from '@amg-webui/utils/keyboard'
+import { getDocument } from '@amg-webui/utils/env'
 
 const FOCUSABLE =
   'a[href],button:not([disabled]),textarea:not([disabled]),input:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"]),[role="menuitem"]:not([disabled])'
@@ -56,12 +57,14 @@ export function useFocusTrap(
   }
 
   function activate() {
-    previouslyFocused = document.activeElement as HTMLElement | null
-    document.addEventListener('keydown', onKeydown, true)
+    const doc = getDocument()
+    if (!doc) return
+    previouslyFocused = doc.activeElement as HTMLElement | null
+    doc.addEventListener('keydown', onKeydown, true)
   }
 
   function deactivate() {
-    document.removeEventListener('keydown', onKeydown, true)
+    getDocument()?.removeEventListener('keydown', onKeydown, true)
     if (restoreFocus) previouslyFocused?.focus?.()
     previouslyFocused = null
   }

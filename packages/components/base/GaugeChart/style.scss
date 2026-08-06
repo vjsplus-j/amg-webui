@@ -32,6 +32,18 @@
     width: 100%;
     height: auto;
     display: block;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--primary-500) 45%, transparent);
+      outline-offset: var(--spacing-xs);
+    }
+  }
+
+  &__value {
+    fill: var(--text-primary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-heading, 700);
   }
 
   &__toolbar {
@@ -44,5 +56,9 @@
   &--disabled {
     opacity: 0.55;
     pointer-events: none;
+  }
+
+  &--loading {
+    cursor: progress;
   }
 }

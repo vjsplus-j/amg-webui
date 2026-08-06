@@ -1,116 +1,120 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import { trackEmit } from '@amg-webui/telemetry'
-import './style.scss'
+import { computed, nextTick, ref, watch } from "vue";
+import { useBodyScrollLock, useFocusTrap, useLocale } from "@amg-webui/hooks";
+import { trackEmit } from "@amg-webui/telemetry";
+import type { MaskCloseReason, MaskEmits, MaskProps } from "./types";
+import "./style.scss";
 
-const props = withDefaults(
-  defineProps<{
-    visible?: boolean
-    dismissible?: boolean
-    zIndex?: number
-    lockScroll?: boolean
-    trackId?: string
-    telemetry?: boolean
-    class?: string
-    style?: Record<string, string>
-  }>(),
-  {
-    visible: false,
-    dismissible: true,
-    zIndex: 900,
-    lockScroll: true,
-    telemetry: undefined
-  }
-)
+const props = withDefaults(defineProps<MaskProps>(), {
+  visible: false,
+  dismissible: true,
+  zIndex: 900,
+  lockScroll: true,
+  trapFocus: true,
+  centered: true,
+  blur: true,
+  teleportTo: "body",
+  closeOnPressEscape: true,
+  telemetry: undefined,
+});
 
-const emit = defineEmits<{
-  'update:visible': [value: boolean]
-  close: [event?: Event]
-}>()
-const { t } = useLocale()
+const emit = defineEmits<MaskEmits>();
+const { t } = useLocale();
+const panelRef = ref<HTMLElement | null>(null);
+const closing = ref(false);
+const visibleRef = computed(() => props.visible);
+const lockRef = computed(() => props.lockScroll);
+const focusActive = computed(() => props.visible && props.trapFocus);
 
-const panelRef = ref<HTMLElement | null>(null)
-let previousOverflow = ''
+useBodyScrollLock(visibleRef, lockRef);
+useFocusTrap(panelRef, focusActive);
 
 const overlayStyle = computed(() => ({
   ...(props.style ?? {}),
-  zIndex: String(props.zIndex)
-}))
+  zIndex: String(props.zIndex),
+}));
 
-function close(event?: Event) {
-  trackEmit({
-    component: 'Mask',
-    type: 'close',
-    trackId: props.trackId,
-    telemetry: props.telemetry
-  })
-  emit('update:visible', false)
-  emit('close', event)
-}
-
-function onOverlay(e: MouseEvent) {
-  if (props.dismissible && e.target === e.currentTarget) close(e)
-}
-
-function onKey(e: KeyboardEvent) {
-  if (props.visible && props.dismissible && e.key === 'Escape') {
-    e.preventDefault()
-    close(e)
+async function close(reason: MaskCloseReason = "programmatic", event?: Event) {
+  if (closing.value) return;
+  closing.value = true;
+  try {
+    if (props.beforeClose) {
+      try {
+        if ((await props.beforeClose(reason, event)) === false) return;
+      } catch (error) {
+        emit("error", error);
+        return;
+      }
+    }
+    trackEmit({
+      component: "Mask",
+      type: "close",
+      trackId: props.trackId,
+      telemetry: props.telemetry,
+      payload: { reason },
+    });
+    emit("update:visible", false);
+    emit("close", event, reason);
+  } finally {
+    closing.value = false;
   }
 }
 
-function lockBody(lock: boolean) {
-  if (!props.lockScroll || typeof document === 'undefined') return
-  if (lock) {
-    previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = previousOverflow
+function onOverlay(event: MouseEvent) {
+  if (props.dismissible && event.target === event.currentTarget) {
+    void close("overlay", event);
+  }
+}
+
+function onKeydown(event: KeyboardEvent) {
+  if (props.closeOnPressEscape && event.key === "Escape") {
+    event.preventDefault();
+    event.stopPropagation();
+    void close("escape", event);
   }
 }
 
 watch(
   () => props.visible,
-  (v) => {
-    lockBody(Boolean(v))
-    if (v) {
-      requestAnimationFrame(() => panelRef.value?.focus())
-    }
-  }
-)
-
-onMounted(() => {
-  document.addEventListener('keydown', onKey)
-  if (props.visible) lockBody(true)
-})
-
-onUnmounted(() => {
-  document.removeEventListener('keydown', onKey)
-  lockBody(false)
-})
+  (visible) => {
+    if (visible && props.trapFocus)
+      void nextTick(() => panelRef.value?.focus());
+  },
+);
 </script>
 
 <template>
-  <Teleport to="body">
-    <Transition name="vp-mask-fade">
+  <Teleport :to="teleportTo">
+    <Transition
+      name="vp-mask"
+      @after-enter="emit('open')"
+      @after-leave="emit('closed')"
+    >
       <div
         v-if="visible"
-        :class="['vp-mask', props.class]"
+        :class="[
+          'vp-mask',
+          { 'vp-mask--centered': centered, 'vp-mask--blur': blur },
+          props.class,
+        ]"
         :style="overlayStyle"
         role="presentation"
+        data-component="Mask"
         @click="onOverlay"
       >
         <div
           ref="panelRef"
           class="vp-mask__content"
-          role="dialog"
-          aria-modal="true"
-          :aria-label="t('component.mask.aria')"
-          tabindex="-1"
+          :role="trapFocus ? 'dialog' : undefined"
+          :aria-modal="trapFocus || undefined"
+          :aria-label="
+            trapFocus ? ariaLabel || t('component.mask.aria') : undefined
+          "
+          :tabindex="trapFocus ? -1 : undefined"
           @click.stop
+          @keydown="onKeydown"
         >
-          <slot />
+          <slot :close="close" :closing="closing" />
         </div>
       </div>
     </Transition>

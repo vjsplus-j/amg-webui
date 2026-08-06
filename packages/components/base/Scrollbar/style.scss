@@ -32,6 +32,19 @@
 
   scrollbar-width: thin;
   scrollbar-color: var(--ds-border) var(--surface-2);
+
+  &:focus-visible {
+    outline: var(--ds-focus-ring);
+    outline-offset: 2px;
+  }
+  &--axis-x {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  &--axis-y {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 }
 
 .vp-scrollbar--native {

@@ -278,7 +278,11 @@
   &__modal {
     position: fixed;
     inset: 0;
-    background: color-mix(in srgb, var(--surface-0, var(--surface-1)) 40%, transparent);
+    background: color-mix(
+      in srgb,
+      var(--surface-0, var(--surface-1)) 40%,
+      transparent
+    );
     display: flex;
     align-items: center;
     justify-content: center;
@@ -366,9 +370,29 @@
     }
   }
 
-  position: relative; min-height: 12rem;
-  &__h, &__v { position: absolute; background: var(--surface-2); font-size: var(--font-size-xs); }
-  &__h { top: 0; left: 0; right: 0; height: var(--spacing-lg); }
-  &__v { top: 0; left: 0; bottom: 0; width: var(--spacing-lg); }
-  &__guides { position: relative; min-height: 10rem; margin-top: var(--spacing-xl); }
+  position: relative;
+  min-height: 12rem;
+  &__h,
+  &__v {
+    position: absolute;
+    background: var(--surface-2);
+    font-size: var(--font-size-xs);
+  }
+  &__h {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--spacing-lg);
+  }
+  &__v {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--spacing-lg);
+  }
+  &__guides {
+    position: relative;
+    min-height: 10rem;
+    margin-top: var(--spacing-xl);
+  }
 }

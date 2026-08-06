@@ -1,6 +1,158 @@
-/* Thin wrapper — visual language lives on `.vp-step-nav--vertical`. */
 .vp-vertical-step-nav {
-  min-width: 0;
   width: 100%;
+  min-width: 0;
   box-sizing: border-box;
+
+  &--disabled {
+    opacity: var(--ds-disabled-opacity, 0.6);
+  }
+
+  &__list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    list-style: none;
+  }
+
+  &__step {
+    position: relative;
+    display: grid;
+    min-width: 0;
+    grid-template-columns: var(--height-md) minmax(0, 1fr);
+    gap: var(--spacing-md);
+    padding-block-end: var(--spacing-xl);
+
+    &:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      inset-block-start: var(--height-md);
+      inset-block-end: 0;
+      inset-inline-start: calc(var(--height-md) / 2 - 0.5px);
+      width: 1px;
+      background: var(--ds-border, var(--border-color));
+    }
+
+    &--finish:not(:last-child)::before {
+      background: var(--success-500);
+    }
+  }
+
+  &__marker {
+    appearance: none;
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    width: var(--height-md);
+    height: var(--height-md);
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--ds-border, var(--border-color));
+    border-radius: var(--border-radius-full);
+    background: var(--surface-1);
+    color: var(--text-muted);
+    font: inherit;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold, 600);
+    cursor: pointer;
+    transition:
+      color var(--transition-fast),
+      border-color var(--transition-fast),
+      background var(--transition-fast),
+      box-shadow var(--transition-fast),
+      transform var(--transition-fast);
+
+    &:hover:not(:disabled) {
+      border-color: var(--primary-500);
+      color: var(--primary-500);
+      transform: scale(1.04);
+    }
+
+    &:focus-visible {
+      outline: var(--ds-focus-ring);
+      outline-offset: var(--spacing-xs);
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  &__step--process &__marker {
+    border-color: var(--primary-500);
+    background: var(--primary-500);
+    color: var(--surface-0, var(--surface-1));
+    box-shadow: 0 0 0 var(--spacing-xs) color-mix(in srgb, var(--primary-500) 14%, transparent);
+  }
+
+  &__step--finish &__marker {
+    border-color: var(--success-500);
+    background: color-mix(in srgb, var(--success-500) 12%, var(--surface-1));
+    color: var(--success-500);
+  }
+
+  &__step--error &__marker {
+    border-color: var(--danger-500);
+    background: color-mix(in srgb, var(--danger-500) 12%, var(--surface-1));
+    color: var(--danger-500);
+  }
+
+  &__content {
+    min-width: 0;
+    padding-block: var(--spacing-xs);
+  }
+
+  &__title-row {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+  }
+
+  &__title {
+    overflow: hidden;
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium, 500);
+    line-height: var(--line-height-body);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__step--process &__title {
+    color: var(--primary-600, var(--primary-500));
+    font-weight: var(--font-weight-semibold, 600);
+  }
+
+  &__step--error &__title {
+    color: var(--danger-500);
+  }
+
+  &__description {
+    margin: var(--spacing-xs) 0 0;
+    color: var(--text-muted);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-body);
+  }
+
+  &__badge {
+    flex-shrink: 0;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-full);
+    background: var(--surface-2);
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
+  }
+
+  &--static &__marker {
+    cursor: default;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-vertical-step-nav__marker {
+    transition: none;
+  }
 }

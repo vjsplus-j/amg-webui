@@ -1,0 +1,87 @@
+---
+description: AMG-WebUI Skill Runtime package boundary, isolation, lifecycle, safe pipeline, adapters and Vue integration
+alwaysApply: true
+---
+
+# Skill Runtime（locked）
+
+Full spec: `docs/SKILL_RUNTIME.md`
+
+**Doctrine:** UI belongs to components; business logic belongs to optional Skills. Components never know that Skill Runtime exists.
+
+## Package boundary
+
+- Source: `packages/skill/`.
+- Public subpaths: `amg-webui/skill/core` (framework-free) and `amg-webui/skill` (Core + Vue integration).
+- Internal alias: `@amg-webui/skill`.
+- Root `amg-webui` entry **must not** re-export Skill APIs.
+- `skill/core` must not import Vue, components, theme, locale, telemetry, browser globals, or a backend client.
+- `packages/components/**` must not import Skill or add Skill-only props.
+- “Zero cost when unused” means no runtime bundle dependency when the subpath is not imported; do not claim zero install size.
+
+## SR1 / SR2 scope
+
+This delivery contains:
+
+- `defineSkill` · `createSkillRuntime` · `createSkillPipeline` · `createSkillPipelineExecutor`
+- `createSkillPlugin` · `vSkill` · `AmgSkillScope`
+- Unit / Context / Runtime / Scope
+- Pipeline sequence (top-level `items`) / parallel / if / retry / fallback
+- registered Condition, Adapter, Observer
+
+Official built-ins, Telemetry bridge, DevTools, debug UI and low-code editor are SR3 / SR4 follow-ups. Do not invent imports or mark them shipped.
+
+## Isolation and lifecycle
+
+- Every mount/run gets a unique `instanceId`, private `ctx.state`, AbortController and context-managed resources.
+- Scope owns its event bus, explicit `scope.state` and mounted handles; Unit / Adapter / Observer remain Runtime-owned and Conditions remain Executor-owned.
+- Unit definitions stay stateless; never store per-instance data in module globals.
+- `ctx.on()` returns an unsubscribe function. Runtime cleans remaining listeners on dispose.
+- `dispose()` and teardown are idempotent. Late async setup results cannot reactivate a disposed instance.
+- Setup failure, cancellation, Scope disposal and Vue unmount all enter the same cleanup path.
+- Do not reuse the global `EventService` as the internal Skill context bus.
+
+## Types
+
+- Public APIs use generics / `unknown`; no `any`, bare `Function`, unsafe public casts or untyped event handlers.
+- Normalize unknown failures into the `SkillRuntimeError` / `SkillExecutionError` / `SkillAbortError` family while preserving execution context and cause.
+- Abort is control flow, not a retryable ordinary error.
+- Host access uses an explicit, minimal public capability object; never inspect Vue private proxies or internal reactive state.
+
+## Pipeline safety
+
+- Definition version: `{ version: 1, items: [...] }`.
+- Top-level `items` are the sequence; nodes are `skill | parallel | if | retry | fallback`.
+- Pipeline JSON contains JSON values only: no functions, DOM/Vue instances, Symbols, cycles or dynamic imports.
+- `if.condition` resolves only a trusted predicate registered through `executor.registerCondition(name, fn)`.
+- **Never** use `eval`, `new Function`, arbitrary expression strings or template-code evaluation.
+- Unknown predicates / skills / adapters fail fast with structured errors.
+- `retry.max` is the total attempt count and must be an integer from 1 to 10. Retry handles `SkillExecutionError` by default and skips abort / registry / config errors; external side effects require idempotency.
+- Fallback handles `SkillExecutionError` only; it must not mask abort, unknown registration or configuration failures.
+- Parallel failure still cancels or awaits sibling cleanup.
+
+## Adapter and Observer
+
+- Adapters receive `SkillContext` (including its `AbortSignal`) and own backend DTO mapping; Skills do not bind to response envelopes.
+- Core has no implicit network, auth, console or cloud reporting.
+- Observer failures never alter Skill/Pipeline results.
+- Observer events omit raw config/payload by default; never leak auth tokens or sensitive data.
+- Default Console Observer and directive reporting omit raw Error details; full errors require an explicit application-owned handler or opt-in.
+- Telemetry stays default-off and may integrate later through an external Observer bridge; Core does not import telemetry.
+
+## Vue integration
+
+- `AmgSkillScope` only provides/injects Scope and handles lifecycle; it does not render business UI.
+- `createSkillPlugin({ runtime })` registers `v-skill` / `AmgSkillScope` against an explicit Runtime; it must not create a hidden global Runtime.
+- `vSkill` mounts on `mounted`, rebinds after binding reference change, disposes old before new, and always disposes on `unmounted`; callers replace binding objects instead of mutating config in place.
+- Composition code obtains Scope with `useSkillScope()`; directive bindings pass `scope` explicitly instead of inspecting Vue private component internals.
+- Directive bindings pass an explicit versioned `host` capability when needed; DOM / Vue instances are never implicit hosts.
+- SSR import is side-effect free; DOM work starts only in client lifecycle hooks.
+- Removing `v-skill` must leave the component's existing Props / Emits / Slots / Expose behavior unchanged.
+
+## Verification before “done”
+
+- Run at least `npx vue-tsc --noEmit`, Skill unit tests and `npm run build:lib`.
+- Test registration conflicts, multi-instance isolation, nested Scope, cancellation races, idempotent teardown, Adapter abort, Observer failure isolation, every Pipeline node, forbidden/unknown predicates, Vue rebind/unmount, SSR core import and package exports.
+- Verify `amg-webui/skill/core` works without Vue/DOM, `amg-webui/skill` exposes Vue integration, and root `amg-webui` does not expose Skill APIs.
+- Do not turn roadmap language such as “100%”, “zero cost”, “full coverage” into a completion claim without measured evidence.

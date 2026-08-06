@@ -9,7 +9,8 @@ const props = withDefaults(defineProps<ContainerProps>(), {
   padded: true,
   align: 'center',
   gap: 'none',
-  tag: 'div'
+  tag: 'div',
+  fullBleed: false
 })
 
 const gapMap: Record<string, string> = {
@@ -45,12 +46,24 @@ const rootStyle = computed(() => {
     base.display = 'flex'
     base.flexDirection = 'column'
   }
+  if (props.maxWidth) base.maxWidth = props.maxWidth
+  if (props.fullBleed) {
+    base.maxWidth = '100%'
+    base.paddingInline = '0'
+  }
   return base
 })
 </script>
 
 <template>
-  <component :is="tag" :class="rootClass" :style="rootStyle" data-component="Container">
+  <component
+    :is="tag"
+    :class="rootClass"
+    :style="rootStyle"
+    data-component="Container"
+    :role="tag === 'div' ? 'group' : undefined"
+    :aria-label="ariaLabel"
+  >
     <slot />
   </component>
 </template>

@@ -46,3 +46,7 @@
     pointer-events: none;
   }
 }
+
+.vp-tree-chart__node { cursor: pointer; outline: none; }
+.vp-tree-chart__node:focus-visible circle,
+.vp-tree-chart__node--selected circle { stroke-width: 4; }

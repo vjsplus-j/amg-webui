@@ -1,4 +1,71 @@
-/** Deterministic pseudo-QR matrix from string (no external API). */
+import {
+  drawingSVG,
+  qrcode,
+  type RenderOptions
+} from '@bwip-js/generic'
+
+export const QRCODE_STANDARDS = ['gb', 'iso', 'jis', 'aim'] as const
+
+export type QrcodeStandard = (typeof QRCODE_STANDARDS)[number]
+
+export const QRCODE_ERROR_CORRECTION_LEVELS = ['L', 'M', 'Q', 'H'] as const
+
+export type QrcodeErrorCorrectionLevel = (typeof QRCODE_ERROR_CORRECTION_LEVELS)[number]
+
+export const QRCODE_STANDARD_PROFILES = {
+  gb: { label: 'GB/T 18284', errorCorrection: 'M' },
+  iso: { label: 'ISO/IEC 18004', errorCorrection: 'Q' },
+  jis: { label: 'JIS X 0510', errorCorrection: 'Q' },
+  aim: { label: 'AIM ISS QR Code', errorCorrection: 'H' }
+} satisfies Record<QrcodeStandard, { label: string; errorCorrection: QrcodeErrorCorrectionLevel }>
+
+export interface GenerateQrcodeSvgOptions {
+  text: string
+  standard?: QrcodeStandard
+  errorCorrection?: QrcodeErrorCorrectionLevel
+  pixelSize?: number
+  quietZone?: number
+  version?: number
+}
+
+type QrcodeRenderOptions = RenderOptions & {
+  eclevel: QrcodeErrorCorrectionLevel
+  version?: number
+}
+
+function resolveStandard(standard?: QrcodeStandard): QrcodeStandard {
+  return standard && QRCODE_STANDARDS.includes(standard) ? standard : 'iso'
+}
+
+function resolveErrorCorrection(
+  standard: QrcodeStandard,
+  errorCorrection?: QrcodeErrorCorrectionLevel
+): QrcodeErrorCorrectionLevel {
+  return errorCorrection && QRCODE_ERROR_CORRECTION_LEVELS.includes(errorCorrection)
+    ? errorCorrection
+    : QRCODE_STANDARD_PROFILES[standard].errorCorrection
+}
+
+/** Generate a standards-based QR Code SVG. */
+export function generateQrcodeSvg(options: GenerateQrcodeSvgOptions): string {
+  const standard = resolveStandard(options.standard)
+  const renderOptions: QrcodeRenderOptions = {
+    bcid: 'qrcode',
+    text: options.text,
+    scale: Math.max(1, Math.round(options.pixelSize ?? 4)),
+    paddingwidth: Math.max(0, Math.round(options.quietZone ?? 8)),
+    paddingheight: Math.max(0, Math.round(options.quietZone ?? 8)),
+    eclevel: resolveErrorCorrection(standard, options.errorCorrection)
+  }
+
+  if (options.version) {
+    renderOptions.version = Math.max(1, Math.min(40, Math.round(options.version)))
+  }
+
+  return qrcode(renderOptions, drawingSVG()).replace(/#000000/g, 'currentColor')
+}
+
+/** @deprecated Use generateQrcodeSvg() for a standards-compliant symbol. */
 export function buildQrcodeMatrix(text: string, size = 21): boolean[][] {
   const matrix: boolean[][] = Array.from({ length: size }, () => Array(size).fill(false))
 

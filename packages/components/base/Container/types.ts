@@ -8,6 +8,9 @@ export interface ContainerProps {
   gap?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'section'
   /** Landmark role when used as page shell segment */
   tag?: 'div' | 'main' | 'section' | 'article'
+  ariaLabel?: string
+  fullBleed?: boolean
+  maxWidth?: string
   class?: string
   style?: Record<string, string>
 }

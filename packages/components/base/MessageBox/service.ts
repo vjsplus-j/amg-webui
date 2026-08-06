@@ -13,23 +13,23 @@ import type {
 
 const TRANSITION_MS = 220
 
-let activeApp: App | null = null
-let activeContainer: HTMLElement | null = null
+interface ActiveMessageBox {
+  app: App
+  container: HTMLElement
+  cancel: (reason: 'programmatic' | 'replaced') => void
+}
+
+let active: ActiveMessageBox | null = null
 
 function defaultLabel(key: string, fallback: string): string {
   return LocaleService.t(key, undefined, fallback)
 }
 
-function destroyActive() {
-  if (!activeApp || !activeContainer) return
-  const app = activeApp
-  const container = activeContainer
-  activeApp = null
-  activeContainer = null
-  const win = getWindow()
-  win?.setTimeout(() => {
-    app.unmount()
-    container.remove()
+function destroy(instance: ActiveMessageBox) {
+  getWindow()?.setTimeout(() => {
+    if (active === instance) active = null
+    instance.app.unmount()
+    instance.container.remove()
   }, TRANSITION_MS)
 }
 
@@ -44,7 +44,7 @@ function open<T>(config: OpenConfig): Promise<T> {
     return Promise.reject(new Error('[MessageBox] requires a browser environment'))
   }
 
-  MessageBox.close()
+  MessageBox.close('replaced')
 
   return new Promise<T>((resolve) => {
     const doc = getDocument()
@@ -55,16 +55,17 @@ function open<T>(config: OpenConfig): Promise<T> {
 
     const container = doc.createElement('div')
     doc.body.appendChild(container)
-    activeContainer = container
-
     const visible = ref(true)
+    let settled = false
+    let instance: ActiveMessageBox
 
     const finish = (result: T) => {
+      if (settled) return
+      settled = true
       visible.value = false
-      getWindow()?.setTimeout(() => {
-        destroyActive()
-        resolve(result)
-      }, TRANSITION_MS)
+      if (active === instance) active = null
+      destroy(instance)
+      resolve(result)
     }
 
     const hostProps: MessageBoxHostProps = {
@@ -80,7 +81,14 @@ function open<T>(config: OpenConfig): Promise<T> {
       inputPlaceholder: config.inputPlaceholder,
       inputValue: config.inputValue ?? '',
       inputPattern: config.inputPattern,
+      inputValidator: config.inputValidator,
       inputErrorMessage: config.inputErrorMessage,
+      inputType: config.inputType,
+      closeOnClickOverlay: config.closeOnClickOverlay,
+      closeOnPressEscape: config.closeOnPressEscape,
+      autofocus: config.autofocus,
+      beforeClose: config.beforeClose,
+      teleportTo: config.teleportTo,
       showCancel: config.showCancel ?? config.mode !== 'alert'
     }
 
@@ -105,8 +113,13 @@ function open<T>(config: OpenConfig): Promise<T> {
       }
     })
 
-    activeApp = app
     app.mount(container)
+    instance = {
+      app,
+      container,
+      cancel: () => finish('cancel' as T)
+    }
+    active = instance
   })
 }
 
@@ -153,8 +166,8 @@ export const MessageBox = {
     })
   },
 
-  close() {
-    destroyActive()
+  close(reason: 'programmatic' | 'replaced' = 'programmatic') {
+    active?.cancel(reason)
   }
 }
 

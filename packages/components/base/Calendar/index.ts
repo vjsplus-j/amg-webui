@@ -1,6 +1,4 @@
-import Calendar from './index.vue'
-import type { CalendarProps } from './types'
-
-export { Calendar }
-export type { CalendarProps }
-export default Calendar
+import Calendar from "./index.vue";
+export { Calendar };
+export type { CalendarProps, CalendarEmits, CalendarValue } from "./types";
+export default Calendar;

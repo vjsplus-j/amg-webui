@@ -1,11 +1,14 @@
 import type { BaseProps } from '@amg-webui/types'
 
-/** Compact pill tone for sidebar / menu chrome */
-export type MenuBadgeTone = 'gold' | 'ep' | 'new'
+/** Compact pill tone for sidebar / menu chrome (`new` retained for compatibility). */
+export type MenuBadgeTone = 'gold' | 'ep' | 'hot' | 'new'
 
 export interface MenuBadge {
+  /** Visible text, or the accessible label / tooltip for an icon-only badge. */
   label: string
   tone?: MenuBadgeTone
+  /** Optional Lucide icon name. When set, the badge renders icon-only. */
+  icon?: string
 }
 
 export interface MenuItem {
@@ -18,7 +21,7 @@ export interface MenuItem {
    * Still rendered as a single gold-tone badge when `badges` is empty.
    */
   badge?: string
-  /** Compact pills next to the label (DoD / EP / New, …) */
+  /** Compact marks next to the label (DoD / EP / Hot, …) */
   badges?: MenuBadge[]
   disabled?: boolean
   /** Group heading — not selectable */

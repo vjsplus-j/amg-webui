@@ -1,22 +1,24 @@
 /**
  * Shared sidebar + catalog badge classification for base components.
  * Gold membership: `isV01GoldPassed` (v0.1 subset minus DoD gaps).
- * EP / New: `hasEpParity` / exclusive (see `ep-parity.ts`).
+ * EP / Hot: `hasEpParity` / exclusive (see `ep-parity.ts`).
  */
 import { LocaleKeys } from '@amg-webui/locale'
 import { isV01GoldPassed } from './v0.1-subset'
 import { hasEpParity } from './ep-parity'
 
-export type ComponentBadgeTone = 'gold' | 'ep' | 'new'
+export type ComponentBadgeTone = 'gold' | 'ep' | 'hot'
 
 export interface ComponentBadgeSpec {
   tone: ComponentBadgeTone
   labelKey: string
+  icon?: string
 }
 
 export interface ResolvedComponentBadge {
   tone: ComponentBadgeTone
   label: string
+  icon?: string
 }
 
 /** Unlocalized badge specs (stable keys for i18n). */
@@ -29,7 +31,7 @@ export function componentBadgeSpecs(name: string | undefined | null): ComponentB
   if (hasEpParity(name)) {
     out.push({ tone: 'ep', labelKey: LocaleKeys.nav.badge.epParity })
   } else {
-    out.push({ tone: 'new', labelKey: LocaleKeys.nav.badge.exclusiveNew })
+    out.push({ tone: 'hot', labelKey: LocaleKeys.nav.badge.hot, icon: 'Flame' })
   }
   return out
 }
@@ -41,6 +43,7 @@ export function resolveComponentBadges(
 ): ResolvedComponentBadge[] {
   return componentBadgeSpecs(name).map((spec) => ({
     tone: spec.tone,
-    label: t(spec.labelKey)
+    label: t(spec.labelKey),
+    icon: spec.icon
   }))
 }

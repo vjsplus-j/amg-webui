@@ -103,3 +103,10 @@
     font-size: var(--font-size-sm);
   }
 }
+
+.vp-header--elevated { box-shadow: var(--shadow-sm); }
+.vp-header--centered { justify-content: center; text-align: center; }
+.vp-header__heading { display: flex; flex-direction: column; min-width: 0; }
+.vp-header__subtitle { margin: var(--spacing-xs) 0 0; color: var(--text-secondary); font-size: var(--font-size-xs); }
+.vp-header__start,
+.vp-header__end { display: inline-flex; align-items: center; flex: 0 0 auto; }

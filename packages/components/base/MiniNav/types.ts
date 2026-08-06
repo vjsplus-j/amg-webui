@@ -3,14 +3,13 @@ import type { NavItem } from '@amg-webui/utils/nav'
 
 export type { NavItem }
 
-/** Same surface as TopNav — MiniNav is a vertical TopNav wrapper. */
 export interface MiniNavProps extends BaseProps {
   items?: NavItem[]
   modelValue?: string | number
   disabled?: boolean
-  direction?: 'horizontal' | 'vertical'
-  trackId?: string
-  telemetry?: boolean
+  collapsed?: boolean
+  showBadges?: boolean
+  ariaLabel?: string
 }
 
 export interface MiniNavEmits {

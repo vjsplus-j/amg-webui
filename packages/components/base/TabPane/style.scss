@@ -7,6 +7,7 @@
   color: var(--text-primary);
   font-size: var(--font-size-md);
   line-height: var(--line-height-body);
+  animation: vp-tab-pane-enter var(--transition-normal) both;
 
   &[hidden] {
     display: none !important;
@@ -15,5 +16,23 @@
   &:focus-visible {
     outline: var(--ds-focus-ring);
     outline-offset: 1px;
+  }
+}
+
+@keyframes vp-tab-pane-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--spacing-xs));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-tab-pane {
+    animation: none;
   }
 }

@@ -1,18 +1,10 @@
-import type { BaseProps, Severity } from '@amg-webui/types'
+import type {
+  StatusModalCloseReason,
+  StatusModalEmits,
+  StatusModalInitialFocus,
+  StatusModalProps,
+} from "../../internal/statusModal";
 
-export interface InfoModalProps extends BaseProps {
-  visible?: boolean
-  title?: string
-  message?: string
-  closable?: boolean
-  dismissible?: boolean
-  confirmLabel?: string
-  cancelLabel?: string
-  severity?: Severity
-}
-
-export interface InfoModalEmits {
-  (e: 'update:visible', value: boolean): void
-  (e: 'confirm', event: Event): void
-  (e: 'cancel', event: Event): void
-}
+export interface InfoModalProps extends StatusModalProps {}
+export interface InfoModalEmits extends StatusModalEmits {}
+export type { StatusModalCloseReason, StatusModalInitialFocus };

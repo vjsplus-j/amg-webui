@@ -2,24 +2,24 @@
 /**
  * Curated demo — Form wave2 YearPicker
  */
-import { computed, ref } from 'vue'
-import { YearPicker, Space } from '@amg-webui/components/base'
-import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
-import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
-import '../../components/demo/curatedDemo.scss'
+import { computed, ref } from "vue";
+import { YearPicker, Space } from "@amg-webui/components/base";
+import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
+import DemoBlock from "../../components/demo/DemoBlock.vue";
+import PropsTable from "../../components/demo/PropsTable.vue";
+import { demoCode, demoSfc } from "../../components/demo/demoCode";
+import type { ApiRow, PropRow } from "../../components/demo/types";
+import "../../components/demo/curatedDemo.scss";
 
-const { t } = useLocale()
-const year = ref<number | null>(2026)
-const empty = ref<number | null>(null)
+const { t } = useLocale();
+const year = ref<number | null>(2026);
+const empty = ref<number | null>(null);
 
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { YearPicker } from '@amg-webui/components/base'`
+    `import { YearPicker } from '@amg-webui/components/base'`,
   ],
   script: [`const year = ref(2026)`],
   template: [
@@ -27,56 +27,74 @@ const codeBasic = demoSfc({
     `    v-model="year"`,
     `    value-format="number"`,
     `    :placeholder="t('example.doc.yearPicker.sample.placeholder')"`,
-    `  />`
-  ]
-})
+    `  />`,
+  ],
+});
 
 const codeDisabled = demoCode(
   `<YearPicker v-model="empty" :placeholder="t('example.doc.yearPicker.sample.placeholder')" />`,
-  `<YearPicker v-model="year" disabled />`
-)
+  `<YearPicker v-model="year" disabled />`,
+);
 
 const propRows = computed<PropRow[]>(() => [
   {
-    name: 'modelValue',
-    description: t('example.doc.yearPicker.prop.modelValue'),
-    type: 'string | Date | number | null',
-    defaultValue: 'null'
+    name: "modelValue",
+    description: t("example.doc.yearPicker.prop.modelValue"),
+    type: "string | Date | number | null",
+    defaultValue: "null",
   },
   {
-    name: 'placeholder',
-    description: t('example.doc.yearPicker.prop.placeholder'),
-    type: 'string',
-    defaultValue: '—'
+    name: "placeholder",
+    description: t("example.doc.yearPicker.prop.placeholder"),
+    type: "string",
+    defaultValue: "—",
   },
   {
-    name: 'valueFormat',
-    description: t('example.doc.yearPicker.prop.valueFormat'),
+    name: "valueFormat",
+    description: t("example.doc.yearPicker.prop.valueFormat"),
     type: "'number' | 'date' | 'iso'",
-    defaultValue: "'number'"
+    defaultValue: "'number'",
   },
   {
-    name: 'yearRange',
-    description: t('example.doc.yearPicker.prop.yearRange'),
-    type: 'number',
-    defaultValue: '12'
+    name: "yearRange",
+    description: t("example.doc.yearPicker.prop.yearRange"),
+    type: "number",
+    defaultValue: "12",
   },
   {
-    name: 'disabled',
-    description: t('example.doc.yearPicker.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
+    name: "disabled",
+    description: t("example.doc.yearPicker.prop.disabled"),
+    type: "boolean",
+    defaultValue: "false",
+  },
+  {
+    name: "min / max",
+    description: t("example.doc.yearPicker.prop.yearRange"),
+    type: "string | Date | number",
+    defaultValue: "—",
+  },
+  {
+    name: "clearable / readonly",
+    description: t("example.doc.yearPicker.prop.disabled"),
+    type: "boolean",
+    defaultValue: "false",
+  },
+]);
 
 const eventRows = computed<ApiRow[]>(() => [
   {
-    name: 'update:modelValue / change',
-    description: t('example.doc.yearPicker.event.change'),
-    type: '(value: string | Date | number | null) => void',
-    defaultValue: '-'
-  }
-])
+    name: "update:modelValue / change",
+    description: t("example.doc.yearPicker.event.change"),
+    type: "(value: string | Date | number | null) => void",
+    defaultValue: "-",
+  },
+  {
+    name: "clear / openChange / focus / blur",
+    description: t("example.doc.yearPicker.event.change"),
+    type: "events",
+    defaultValue: "-",
+  },
+]);
 </script>
 
 <template>
@@ -91,11 +109,14 @@ const eventRows = computed<ApiRow[]>(() => [
         <YearPicker
           v-model="year"
           value-format="number"
+          :min="2020"
+          :max="2030"
+          clearable
           :placeholder="t('example.doc.yearPicker.sample.placeholder')"
         />
       </div>
       <p v-if="year != null" class="vp-curated__hint">
-        {{ t('example.doc.yearPicker.sample.selected', { year }) }}
+        {{ t("example.doc.yearPicker.sample.selected", { year }) }}
       </p>
     </DemoBlock>
 

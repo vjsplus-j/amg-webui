@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
+import { Icon } from '@amg-webui/components/base'
 import { resolveComponentBadges } from '../nav-component-badges'
 
 const props = defineProps<{
@@ -21,9 +22,22 @@ const badges = computed(() => {
       v-for="b in badges"
       :key="`${name}-${b.tone}`"
       class="vp-comp-badges__pill"
-      :class="`vp-comp-badges__pill--${b.tone}`"
-      >{{ b.label }}</span
+      :class="[
+        `vp-comp-badges__pill--${b.tone}`,
+        { 'vp-comp-badges__pill--icon': Boolean(b.icon) }
+      ]"
+      :role="b.icon ? 'img' : undefined"
+      :aria-label="b.icon ? b.label : undefined"
+      :title="b.icon ? b.label : undefined"
     >
+      <Icon
+        v-if="b.icon"
+        :name="b.icon"
+        size="var(--font-size-xs)"
+        aria-hidden="true"
+      />
+      <template v-else>{{ b.label }}</template>
+    </span>
   </span>
 </template>
 
@@ -37,6 +51,9 @@ const badges = computed(() => {
 }
 
 .vp-comp-badges__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   padding-inline: var(--spacing-xs);
   padding-block: 0;
@@ -59,9 +76,22 @@ const badges = computed(() => {
   border-color: var(--info-400);
 }
 
-.vp-comp-badges__pill--new {
-  background: var(--primary-500);
-  color: var(--text-on-primary, var(--surface-0));
-  border-color: var(--primary-500);
+.vp-comp-badges__pill--hot {
+  background: var(--danger-100);
+  color: var(--danger-800);
+  border-color: var(--danger-400);
+}
+
+.vp-comp-badges__pill--hot :deep(.vp-icon.vp-icon--lucide svg) {
+  fill: var(--warning-400);
+  stroke: var(--danger-600);
+}
+
+.vp-comp-badges__pill--icon {
+  width: var(--spacing-lg);
+  height: var(--spacing-lg);
+  padding: 0;
+  border-radius: var(--border-radius-full);
+  line-height: 0;
 }
 </style>

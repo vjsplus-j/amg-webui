@@ -8,6 +8,7 @@ export default defineConfig({
       { text: '指南', link: '/guide/installation' },
       { text: '组件', link: '/components/' },
       { text: '主题', link: '/theme/' },
+      { text: 'Skill Runtime', link: '/SKILL_RUNTIME' },
       { text: '业务模块', link: '/business/' }
     ],
     sidebar: [
@@ -19,6 +20,13 @@ export default defineConfig({
           { text: '快速开始', link: '/guide/quick-start' },
           { text: '0.1 发布说明', link: '/RELEASE_0.1' },
           { text: '0.1 组件子集', link: '/V0_1_SUBSET' }
+        ]
+      },
+      {
+        text: '独家能力',
+        items: [
+          { text: 'Skill Runtime', link: '/SKILL_RUNTIME' },
+          { text: 'Vp Telemetry', link: '/TELEMETRY' }
         ]
       },
       {

@@ -6,6 +6,7 @@ example/dist
 .DS_Store
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 coverage
 *.log
 .vite

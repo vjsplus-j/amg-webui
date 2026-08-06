@@ -1,47 +1,56 @@
 .vp-mask {
   position: fixed;
   inset: 0;
-  z-index: 900;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--theme-page-pad);
   box-sizing: border-box;
-  /* Always darken the page (keyword black, not surface-0 which fails on light themes). */
-  background: color-mix(in srgb, black 48%, transparent);
-  backdrop-filter: blur(var(--spacing-xs));
+  display: flex;
+  padding: var(--theme-page-pad);
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: color-mix(in srgb, var(--text-primary) 42%, transparent);
+
+  &--centered {
+    align-items: center;
+    justify-content: center;
+  }
+
+  &--blur {
+    backdrop-filter: blur(var(--spacing-xs));
+  }
 
   &__content {
     position: relative;
+    max-width: 100%;
+    max-height: 100%;
     outline: none;
-    width: min(100%, calc(var(--spacing-2xl) * 14));
-    max-height: min(90vh, 100%);
-    overflow: auto;
-    padding: var(--theme-card-pad);
-    background: var(--surface-1);
-    border: 1px solid var(--ds-border);
-    border-radius: var(--theme-card-radius);
-    box-shadow: var(--shadow-lg);
-    color: var(--text-primary);
   }
 }
 
-.vp-mask-fade-enter-active,
-.vp-mask-fade-leave-active {
+.vp-mask-enter-active,
+.vp-mask-leave-active {
   transition: opacity var(--transition-normal);
+
+  .vp-mask__content {
+    transition:
+      transform var(--transition-normal),
+      opacity var(--transition-normal);
+  }
 }
 
-.vp-mask-fade-enter-from,
-.vp-mask-fade-leave-to {
+.vp-mask-enter-from,
+.vp-mask-leave-to {
   opacity: 0;
+
+  .vp-mask__content {
+    opacity: 0;
+    transform: translateY(var(--spacing-sm)) scale(0.98);
+  }
 }
 
-.vp-mask-fade-enter-active .vp-mask__content,
-.vp-mask-fade-leave-active .vp-mask__content {
-  transition: transform var(--transition-normal);
-}
-
-.vp-mask-fade-enter-from .vp-mask__content,
-.vp-mask-fade-leave-to .vp-mask__content {
-  transform: translateY(var(--spacing-sm)) scale(0.98);
+@media (prefers-reduced-motion: reduce) {
+  .vp-mask-enter-active,
+  .vp-mask-leave-active,
+  .vp-mask-enter-active .vp-mask__content,
+  .vp-mask-leave-active .vp-mask__content {
+    transition-duration: 0.01ms;
+  }
 }

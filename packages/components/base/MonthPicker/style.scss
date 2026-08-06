@@ -1,1 +1,39 @@
-@import '../DatePicker/style.scss';
+@import "../DatePicker/style.scss";
+
+.vp-monthpicker {
+  &__clear {
+    position: absolute;
+    right: var(--spacing-xl);
+    top: 50%;
+    z-index: 1;
+    padding: var(--spacing-xs);
+    color: var(--text-secondary);
+    background: transparent;
+    border: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  &__panel {
+    z-index: var(--z-popover);
+  }
+  &__month:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+  &__month:focus-visible,
+  &__nav button:focus-visible {
+    outline: var(--ds-focus-ring);
+    outline-offset: var(--spacing-xs);
+  }
+  &__nav button {
+    display: grid;
+    place-items: center;
+    width: var(--height-sm);
+    height: var(--height-sm);
+    color: var(--text-secondary);
+    background: transparent;
+    border: 0;
+    border-radius: var(--theme-btn-radius);
+    cursor: pointer;
+  }
+}

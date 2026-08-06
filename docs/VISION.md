@@ -2,5 +2,8 @@
 
 - 口号与决策原则：[VISION.md](./VISION.md)
 - 六大维度深度超车：[OVERTAKE_ELEMENT_PLUS.md](./OVERTAKE_ELEMENT_PLUS.md)
+- 差异化逻辑运行时：`packages/skill/README.md`（experimental）
 
 **对标 Element Plus，超越 Element Plus —— 成为最强的国产 WebUI 库。**
+
+Skill Runtime 的愿景是让 UI 保持纯粹、业务逻辑可插拔且可编排。它只通过 `amg-webui/skill` 与 `amg-webui/skill/core` 显式接入，根入口不导出。SR1 / SR2 experimental 最小基线已通过当前基础门禁，稳定化仍按专属 DoD 推进；SR3 官方 built-ins 与 example 尚未实现。

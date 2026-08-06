@@ -1,6 +1,6 @@
 import Comp from './index.vue'
-import type { TooltipProps } from './types'
+import type { TooltipProps, TooltipEmits, TooltipPlacement, TooltipTrigger } from './types'
 
 export { Comp as Tooltip }
-export type { TooltipProps }
+export type { TooltipProps, TooltipEmits, TooltipPlacement, TooltipTrigger }
 export default Comp

@@ -11,10 +11,21 @@ const mode = process.argv[2] || 'full'
 
 console.log(`[build] mode=${mode}`)
 
-const r = spawnSync('npx', ['vite', 'build', '--config', resolve(root, 'vite.config.ts')], {
-  cwd: root,
-  stdio: 'inherit',
-  shell: true
-})
+const configs =
+  mode === 'skill'
+    ? ['vite.skill.config.ts']
+    : ['vite.config.ts', 'vite.skill.config.ts']
+const viteCli = resolve(root, 'node_modules', 'vite', 'bin', 'vite.js')
 
-process.exit(r.status ?? 1)
+for (const config of configs) {
+  const result = spawnSync(
+    process.execPath,
+    [viteCli, 'build', '--config', resolve(root, config)],
+    {
+      cwd: root,
+      stdio: 'inherit',
+      shell: false
+    }
+  )
+  if (result.status !== 0) process.exit(result.status ?? 1)
+}

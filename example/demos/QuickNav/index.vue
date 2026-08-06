@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { QuickNav } from '@amg-webui/components/base'
+import { computed, ref } from 'vue'
+import { QuickNav, Space } from '@amg-webui/components/base'
+import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -11,15 +12,16 @@ import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
 
-const mountProps = computed(() => getSampleMountProps('QuickNav'))
+const selected = ref<string | number>('a')
+const items = computed(() => getSampleMountProps('QuickNav').items as NavItem[])
 
 const codeBasic = demoSfc({
   imports: [
-    `import { QuickNav } from '@amg-webui/components/base'`,
-    `import { getSampleMountProps } from '../_shared/sampleMountProps'`
+    `import { ref } from 'vue'`,
+    `import { QuickNav } from '@amg-webui/components/base'`
   ],
-  script: [`const mountProps = getSampleMountProps('QuickNav')`],
-  template: [`  <QuickNav v-bind="mountProps" />`]
+  script: [`const selected = ref('dashboard')`, `const items = [/* NavItem[] */]`],
+  template: [`  <QuickNav v-model="selected" :items="items" />`]
 })
 
 const propRows = computed<PropRow[]>(() => [
@@ -40,7 +42,10 @@ const propRows = computed<PropRow[]>(() => [
       :code="codeBasic"
       default-open
     >
-      <QuickNav v-bind="mountProps" />
+      <Space direction="vertical" block>
+        <QuickNav v-model="selected" :items="items" :columns="3" />
+        <QuickNav v-model="selected" :items="items" variant="pills" />
+      </Space>
     </DemoBlock>
     <PropsTable :rows="propRows" />
   </div>

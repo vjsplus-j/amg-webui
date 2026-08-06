@@ -1,80 +1,305 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
-import type { PopconfirmProps, PopconfirmEmits } from './types'
-import './style.scss'
+import {
+  computed,
+  getCurrentInstance,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  ref,
+  useId,
+  watch,
+} from "vue";
+import { useFloatingPanel, useFocusTrap, useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
+import { trackEmit } from "@amg-webui/telemetry";
+import Button from "../Button/index.vue";
+import Icon from "../Icon/index.vue";
+import type {
+  PopconfirmCloseReason,
+  PopconfirmEmits,
+  PopconfirmProps,
+} from "./types";
+import "./style.scss";
 
 const props = withDefaults(defineProps<PopconfirmProps>(), {
-  visible: false,
-  placement: 'top',
+  placement: "top",
   dismissible: true,
-  disabled: false
-})
-const emit = defineEmits<PopconfirmEmits>()
-const { t } = useLocale()
+  disabled: false,
+  confirmLabel: "",
+  cancelLabel: "",
+  severity: "warning",
+  loading: false,
+  showIcon: true,
+  offset: 8,
+  teleportTo: "body",
+  telemetry: undefined,
+});
+const emit = defineEmits<PopconfirmEmits>();
+const { t } = useLocale();
+const uid = useId();
+const rootRef = ref<HTMLElement | null>(null);
+const triggerRef = ref<HTMLElement | null>(null);
+const panelRef = ref<HTMLElement | null>(null);
+const confirmRef = ref<{ $el?: HTMLElement } | null>(null);
+const internalVisible = ref(false);
+const pending = ref<"confirm" | "cancel" | null>(null);
+const instance = getCurrentInstance();
+const isControlled = computed(() =>
+  Object.prototype.hasOwnProperty.call(instance?.vnode.props ?? {}, "visible"),
+);
+const isOpen = computed(() =>
+  isControlled.value ? Boolean(props.visible) : internalVisible.value,
+);
+const placementRef = computed(() => props.placement);
+const offsetRef = computed(() => props.offset);
+const zIndexRef = computed(() => props.zIndex);
+const titleId = `${uid}-title`;
+const descriptionId = `${uid}-description`;
 
-const rootRef = ref<HTMLElement | null>(null)
-const panelRef = ref<HTMLElement | null>(null)
+useFocusTrap(panelRef, isOpen);
+const { panelStyle, actualPlacement } = useFloatingPanel(
+  triggerRef,
+  panelRef,
+  isOpen,
+  placementRef,
+  { offset: offsetRef, zIndex: zIndexRef },
+);
 
-function open() {
-  if (props.disabled) return
-  emit('update:visible', true)
+const confirmText = computed(
+  () => props.confirmLabel || t(LocaleKeys.button.confirm),
+);
+const cancelText = computed(
+  () => props.cancelLabel || t(LocaleKeys.button.cancel),
+);
+const busy = computed(() => props.loading || pending.value !== null);
+const rootClass = computed(() => [
+  "vp-popconfirm",
+  {
+    "vp-popconfirm--open": isOpen.value,
+    "vp-popconfirm--disabled": props.disabled,
+  },
+  props.class,
+]);
+
+const iconName = computed(() => {
+  if (props.severity === "danger") return "CircleAlert";
+  if (props.severity === "success") return "CircleCheck";
+  if (props.severity === "info") return "Info";
+  return "TriangleAlert";
+});
+
+function setOpen(value: boolean, reason?: PopconfirmCloseReason) {
+  if (!isControlled.value) internalVisible.value = value;
+  emit("update:visible", value);
+  emit("openChange", value, reason);
 }
 
-function close(e?: Event) {
-  emit('update:visible', false)
-  emit('cancel', e ?? new Event('cancel'))
+function open(event?: Event) {
+  if (props.disabled || isOpen.value) return;
+  setOpen(true);
+  trackEmit({
+    component: "Popconfirm",
+    type: "open",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { placement: actualPlacement.value, trigger: event?.type },
+  });
 }
 
-function confirm(e: Event) {
-  emit('confirm', e)
-  emit('update:visible', false)
+async function canRun(
+  action: "confirm" | "cancel",
+  task: (() => boolean | Promise<boolean>) | undefined,
+) {
+  if (!task) return true;
+  try {
+    return (await task()) !== false;
+  } catch (error) {
+    emit("error", error, action);
+    return false;
+  }
 }
 
-function onDocClick(e: MouseEvent) {
-  if (!props.visible || !props.dismissible) return
-  const target = e.target as Node
-  if (rootRef.value?.contains(target) || panelRef.value?.contains(target)) return
-  close(e)
+async function cancel(reason: PopconfirmCloseReason = "cancel", event?: Event) {
+  if (!isOpen.value || busy.value) return;
+  pending.value = "cancel";
+  try {
+    if (
+      !(await canRun("cancel", () =>
+        props.beforeCancel ? props.beforeCancel(reason, event) : true,
+      ))
+    )
+      return;
+    setOpen(false, reason);
+    trackEmit({
+      component: "Popconfirm",
+      type: "cancel",
+      trackId: props.trackId,
+      telemetry: props.telemetry,
+      payload: { reason },
+    });
+    emit("cancel", event ?? new Event(reason), reason);
+  } finally {
+    pending.value = null;
+  }
 }
 
-function onKey(e: KeyboardEvent) {
-  if (props.visible && props.dismissible && e.key === 'Escape') close(e)
+async function confirm(event: MouseEvent) {
+  if (busy.value) return;
+  pending.value = "confirm";
+  try {
+    if (
+      !(await canRun("confirm", () =>
+        props.beforeConfirm ? props.beforeConfirm(event) : true,
+      ))
+    )
+      return;
+    setOpen(false);
+    trackEmit({
+      component: "Popconfirm",
+      type: "confirm",
+      trackId: props.trackId,
+      telemetry: props.telemetry,
+    });
+    emit("confirm", event);
+  } finally {
+    pending.value = null;
+  }
 }
 
-const rootClass = computed(() => ['vp-popconfirm', { 'vp-popconfirm--open': props.visible }, props.class])
+function onTriggerKeydown(event: KeyboardEvent) {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    open(event);
+  } else if (event.key === "Escape" && isOpen.value) {
+    event.preventDefault();
+    void cancel("escape", event);
+  }
+}
+
+function onDocumentPointer(event: Event) {
+  if (!isOpen.value || !props.dismissible) return;
+  const target = event.target as Node;
+  if (rootRef.value?.contains(target) || panelRef.value?.contains(target))
+    return;
+  void cancel("outside", event);
+}
+
+function onDocumentKeydown(event: KeyboardEvent) {
+  if (isOpen.value && props.dismissible && event.key === "Escape") {
+    event.preventDefault();
+    void cancel("escape", event);
+  }
+}
+
+watch(isOpen, (value) => {
+  if (!value) return;
+  void nextTick(() => {
+    const element = confirmRef.value?.$el;
+    if (element instanceof HTMLElement) element.focus();
+    else panelRef.value?.focus();
+  });
+});
+
+watch(
+  () => props.disabled,
+  (disabled) => {
+    if (disabled && isOpen.value) void cancel("programmatic");
+  },
+);
 
 onMounted(() => {
-  document.addEventListener('click', onDocClick, true)
-  document.addEventListener('keydown', onKey)
-})
+  document.addEventListener("pointerdown", onDocumentPointer, true);
+  document.addEventListener("keydown", onDocumentKeydown);
+});
 onUnmounted(() => {
-  document.removeEventListener('click', onDocClick, true)
-  document.removeEventListener('keydown', onKey)
-})
+  document.removeEventListener("pointerdown", onDocumentPointer, true);
+  document.removeEventListener("keydown", onDocumentKeydown);
+});
 </script>
 
 <template>
   <span ref="rootRef" :class="rootClass" :style="style">
-    <span class="vp-popconfirm__trigger" @click="open">
-      <slot name="trigger" />
+    <span
+      ref="triggerRef"
+      class="vp-popconfirm__trigger"
+      :tabindex="disabled ? undefined : 0"
+      :aria-expanded="isOpen"
+      :aria-controls="isOpen ? titleId : undefined"
+      aria-haspopup="dialog"
+      @click="open"
+      @keydown="onTriggerKeydown"
+    >
+      <slot name="trigger" :open="isOpen" />
     </span>
-    <Teleport to="body">
-      <Transition name="vp-popconfirm-fade">
-        <div v-if="visible" ref="panelRef" class="vp-popconfirm__panel" role="alertdialog" @click.stop>
-          <p class="vp-popconfirm__message">
-            <slot>{{ title }}</slot>
-          </p>
-          <div class="vp-popconfirm__actions">
-            <button type="button" class="vp-popconfirm__btn vp-popconfirm__btn--ghost" @click="close">
-              {{ t(LocaleKeys.button.cancel) }}
-            </button>
-            <button type="button" class="vp-popconfirm__btn vp-popconfirm__btn--primary" @click="confirm">
-              {{ t(LocaleKeys.button.confirm) }}
-            </button>
+    <Teleport :to="teleportTo">
+      <Transition name="vp-popconfirm">
+        <section
+          v-if="isOpen"
+          ref="panelRef"
+          :class="[
+            'vp-popconfirm__panel',
+            `vp-popconfirm__panel--${actualPlacement}`,
+            `vp-popconfirm__panel--${severity}`,
+          ]"
+          :style="panelStyle"
+          role="alertdialog"
+          :aria-labelledby="titleId"
+          :aria-describedby="description ? descriptionId : undefined"
+          :aria-busy="busy || undefined"
+          tabindex="-1"
+          data-component="Popconfirm"
+          @click.stop
+        >
+          <div class="vp-popconfirm__content">
+            <span
+              v-if="showIcon"
+              class="vp-popconfirm__icon"
+              aria-hidden="true"
+            >
+              <Icon :name="iconName" size="md" />
+            </span>
+            <div class="vp-popconfirm__copy">
+              <p :id="titleId" class="vp-popconfirm__title">
+                <slot>{{ title }}</slot>
+              </p>
+              <p
+                v-if="description"
+                :id="descriptionId"
+                class="vp-popconfirm__description"
+              >
+                {{ description }}
+              </p>
+            </div>
           </div>
-        </div>
+          <div class="vp-popconfirm__actions">
+            <Button
+              variant="outline"
+              severity="secondary"
+              size="sm"
+              :disabled="busy"
+              @click="cancel('cancel', $event)"
+            >
+              {{ cancelText }}
+            </Button>
+            <Button
+              ref="confirmRef"
+              variant="solid"
+              :severity="
+                severity === 'danger'
+                  ? 'danger'
+                  : severity === 'warning'
+                    ? 'warning'
+                    : 'primary'
+              "
+              size="sm"
+              :loading="pending === 'confirm' || loading"
+              :disabled="busy"
+              @click="confirm"
+            >
+              {{ confirmText }}
+            </Button>
+          </div>
+        </section>
       </Transition>
     </Teleport>
   </span>

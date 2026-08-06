@@ -1,105 +1,143 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue'
-import type { MessageProps, MessageEmits } from './types'
-import './style.scss'
+import { computed, getCurrentInstance, ref } from "vue";
+import { useAutoDismiss, useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
+import { trackEmit } from "@amg-webui/telemetry";
+import Button from "../Button/index.vue";
+import Icon from "../Icon/index.vue";
+import type { MessageCloseReason, MessageEmits, MessageProps } from "./types";
+import "./style.scss";
 
 const props = withDefaults(defineProps<MessageProps>(), {
-  severity: 'info',
+  severity: "info",
   showIcon: true,
   closable: true,
   autoHide: false,
-  hideDelay: 3000
-})
+  hideDelay: 3000,
+  pauseOnHover: true,
+  showProgress: false,
+  variant: "soft",
+  ariaLive: undefined,
+  telemetry: undefined,
+});
+const emit = defineEmits<MessageEmits>();
+const { t } = useLocale();
+const internalVisible = ref(true);
+const instance = getCurrentInstance();
+const isControlled = computed(() =>
+  Object.prototype.hasOwnProperty.call(instance?.vnode.props ?? {}, "visible"),
+);
+const isVisible = computed(() =>
+  isControlled.value ? Boolean(props.visible) : internalVisible.value,
+);
+const timerActive = computed(
+  () => props.autoHide && isVisible.value && props.hideDelay > 0,
+);
+const duration = computed(() => props.hideDelay);
 
-const emit = defineEmits<MessageEmits>()
+const { paused, pause, resume } = useAutoDismiss(timerActive, duration, () =>
+  close("timeout"),
+);
 
-const visible = ref(true)
-let hideTimer: number | null = null
+const iconName = computed(() => {
+  if (props.severity === "success") return "CircleCheck";
+  if (props.severity === "warning") return "TriangleAlert";
+  if (props.severity === "danger") return "CircleAlert";
+  return "Info";
+});
+const live = computed(
+  () =>
+    props.ariaLive ??
+    (props.severity === "danger" || props.severity === "warning"
+      ? "assertive"
+      : "polite"),
+);
+const rootClass = computed(() => [
+  "vp-message",
+  `vp-message--${props.severity}`,
+  `vp-message--${props.variant}`,
+  { "vp-message--paused": paused.value },
+  props.class,
+]);
+const progressStyle = computed(() => ({
+  "--vp-message-duration": `${props.hideDelay}ms`,
+}));
 
-const close = () => {
-  visible.value = false
-  emit('close')
+function close(reason: MessageCloseReason = "programmatic", event?: Event) {
+  if (!isVisible.value) return;
+  if (!isControlled.value) internalVisible.value = false;
+  emit("update:visible", false);
+  emit("close", reason, event);
+  trackEmit({
+    component: "Message",
+    type: "close",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { severity: props.severity, reason },
+  });
 }
 
-const startHideTimer = () => {
-  if (props.autoHide && props.hideDelay > 0) {
-    stopHideTimer()
-    hideTimer = window.setTimeout(() => {
-      close()
-    }, props.hideDelay)
-  }
+function action(event: MouseEvent) {
+  emit("action", event);
+  trackEmit({
+    component: "Message",
+    type: "action",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { severity: props.severity },
+  });
 }
-
-const stopHideTimer = () => {
-  if (hideTimer) {
-    clearTimeout(hideTimer)
-    hideTimer = null
-  }
-}
-
-watch(() => props.autoHide, () => {
-  startHideTimer()
-})
-
-watch(() => props.hideDelay, () => {
-  startHideTimer()
-})
-
-onMounted(() => {
-  startHideTimer()
-})
-
-onUnmounted(() => {
-  stopHideTimer()
-})
 </script>
 
 <template>
-  <Transition name="fade">
-    <div v-if="visible" class="p-message" :class="`p-message-${severity}`" :style="style">
-      <span v-if="showIcon" class="p-message-icon">
-        <svg v-if="severity === 'success'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-          <polyline points="22 4 12 14.01 9 11.01" />
-        </svg>
-        <svg v-else-if="severity === 'warning'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-        </svg>
-        <svg v-else-if="severity === 'danger'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10" />
-          <line x1="15" y1="9" x2="9" y2="15" />
-          <line x1="9" y1="9" x2="15" y2="15" />
-        </svg>
-        <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10" />
-          <line x1="12" y1="16" x2="12" y2="12" />
-          <line x1="12" y1="8" x2="12.01" y2="8" />
-        </svg>
+  <Transition name="vp-message" @after-leave="emit('closed')">
+    <div
+      v-if="isVisible"
+      :class="rootClass"
+      :style="style"
+      :role="
+        severity === 'danger' || severity === 'warning' ? 'alert' : 'status'
+      "
+      :aria-live="live"
+      data-component="Message"
+      @mouseenter="pauseOnHover && pause()"
+      @mouseleave="pauseOnHover && resume()"
+      @focusin="pauseOnHover && pause()"
+      @focusout="pauseOnHover && resume()"
+    >
+      <span v-if="showIcon" class="vp-message__icon" aria-hidden="true">
+        <slot name="icon"><Icon :name="iconName" size="md" /></slot>
       </span>
-
-      <span class="p-message-text">
-        <slot>{{ text }}</slot>
-      </span>
-
-      <button v-if="closable" class="p-message-close" @click="close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 6L6 18" />
-          <path d="M6 6l12 12" />
-        </svg>
+      <div class="vp-message__content">
+        <strong v-if="title || $slots.title" class="vp-message__title">
+          <slot name="title">{{ title }}</slot>
+        </strong>
+        <div class="vp-message__text">
+          <slot>{{ text }}</slot>
+        </div>
+        <div v-if="$slots.actions || actionText" class="vp-message__actions">
+          <slot name="actions" :close="close">
+            <Button variant="text" severity="primary" size="sm" @click="action">
+              {{ actionText }}
+            </Button>
+          </slot>
+        </div>
+      </div>
+      <button
+        v-if="closable"
+        type="button"
+        class="vp-message__close"
+        :aria-label="t(LocaleKeys.common.close)"
+        @click="close('close', $event)"
+      >
+        <Icon name="X" size="sm" />
       </button>
+      <span
+        v-if="showProgress && timerActive"
+        class="vp-message__progress"
+        :style="progressStyle"
+        aria-hidden="true"
+      />
     </div>
   </Transition>
 </template>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity var(--transition-normal), transform var(--transition-normal);
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-</style>

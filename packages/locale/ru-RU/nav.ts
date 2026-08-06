@@ -21,5 +21,6 @@ export default {
   'nav.primary': 'Основная навигация',
   'nav.badge.goldDod': 'DoD',
   'nav.badge.epParity': 'EP',
+  'nav.badge.hot': 'Популярное',
   'nav.badge.exclusiveNew': 'New'
 } as Record<string, string>

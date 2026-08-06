@@ -40,5 +40,13 @@ const active = ref('a')
 | `label` | `string` | — | 标签文案 |
 | `disabled` | `boolean` | `false` | 禁用 |
 | `lazy` | `boolean` | `false` | 首次激活前不渲染 |
+| `forceRender` | `boolean` | `false` | 始终保持渲染 |
+| `destroyInactive` | `boolean` | `false` | 离开后卸载内容 |
+| `ariaLabel` | `string` | — | 面板无障碍名称 |
+| `tabindex` | `number` | `0` | 激活面板焦点顺序 |
 
-> 完整 Demo 见 `example/demos/Tabs/`。本阶段对外 docs 为薄 API stub。
+| 事件 | 说明 |
+| --- | --- |
+| `activate` / `deactivate` | 面板激活状态变化 |
+
+> 完整 Demo 见 `example/demos/Tabs/`。

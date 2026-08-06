@@ -1,11 +1,15 @@
-import type { BaseProps, Severity } from '@amg-webui/types'
-
+import type { BaseProps, Severity } from "@amg-webui/types";
 export interface StatusTipProps extends BaseProps {
-  message?: string
-  severity?: Severity
-  closable?: boolean
+  message?: string;
+  title?: string;
+  severity?: Severity;
+  icon?: string | boolean;
+  closable?: boolean;
+  actionText?: string;
+  block?: boolean;
+  compact?: boolean;
 }
-
 export interface StatusTipEmits {
-  (e: 'close'): void
+  (e: "close", event: MouseEvent): void;
+  (e: "action", event: MouseEvent): void;
 }

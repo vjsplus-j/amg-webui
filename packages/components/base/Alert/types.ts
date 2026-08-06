@@ -5,6 +5,8 @@ export type AlertSeverity = 'success' | 'warning' | 'error' | 'info' | Severity
 
 export interface AlertProps extends BaseProps {
   title?: string
+  description?: string
+  icon?: string
   severity?: AlertSeverity
   closable?: boolean
   showIcon?: boolean

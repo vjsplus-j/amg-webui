@@ -2,6 +2,16 @@ import type { BaseProps } from '@amg-webui/types'
 import type { ConfirmSeverity } from '../Confirm/types'
 
 export type MessageBoxMode = 'confirm' | 'alert' | 'prompt'
+export type MessageBoxAction = 'confirm' | 'cancel'
+export type MessageBoxCloseReason =
+  | 'cancel'
+  | 'close'
+  | 'overlay'
+  | 'escape'
+  | 'programmatic'
+  | 'replaced'
+export type MessageBoxAutofocus = 'confirm' | 'cancel' | 'input' | 'none'
+export type MessageBoxInputType = 'text' | 'password' | 'email' | 'tel' | 'url'
 
 export interface MessageBoxOptions {
   severity?: ConfirmSeverity
@@ -12,8 +22,18 @@ export interface MessageBoxOptions {
   inputPlaceholder?: string
   inputValue?: string
   inputPattern?: RegExp | string
+  inputValidator?: (value: string) => boolean | string | Promise<boolean | string>
   inputErrorMessage?: string
+  inputType?: MessageBoxInputType
   showCancel?: boolean
+  closeOnClickOverlay?: boolean
+  closeOnPressEscape?: boolean
+  autofocus?: MessageBoxAutofocus
+  beforeClose?: (
+    action: MessageBoxAction,
+    value?: string
+  ) => boolean | Promise<boolean>
+  teleportTo?: string | HTMLElement
 }
 
 export interface MessageBoxHostProps extends MessageBoxOptions, BaseProps {
@@ -26,7 +46,7 @@ export interface MessageBoxHostProps extends MessageBoxOptions, BaseProps {
 export interface MessageBoxHostEmits {
   (e: 'update:visible', value: boolean): void
   (e: 'confirm', value?: string): void
-  (e: 'cancel'): void
+  (e: 'cancel', reason: MessageBoxCloseReason): void
 }
 
 export type MessageBoxConfirmResult = 'confirm' | 'cancel'

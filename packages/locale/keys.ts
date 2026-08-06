@@ -211,6 +211,67 @@ export const LocaleKeys = {
       ariaIcon: 'page.base.atoms.button.ariaIcon',
       ariaImg: 'page.base.atoms.button.ariaImg'
     },
+    dev: {
+      config: {
+        stateDraft: 'page.dev.config.state.draft',
+        stateApplied: 'page.dev.config.state.applied',
+        actionApply: 'page.dev.config.action.apply',
+        actionValidate: 'page.dev.config.action.validate',
+        actionImport: 'page.dev.config.action.import',
+        statusCompleted: 'page.dev.config.status.completed',
+        jsonTitle: 'page.dev.config.json.title',
+        jsonHint: 'page.dev.config.json.hint',
+        jsonInvalid: 'page.dev.config.json.invalid',
+        jsonInvalidAt: 'page.dev.config.json.invalidAt',
+        historyTitle: 'page.dev.config.history.title',
+        historyInitial: 'page.dev.config.history.initial',
+        historyChanged: 'page.dev.config.history.changed'
+      },
+      extensibility: {
+        registryTitle: 'page.dev.extensibility.registry.title',
+        manifestTitle: 'page.dev.extensibility.manifest.title',
+        manifestHelp: 'page.dev.extensibility.manifest.help',
+        manifestInvalidJson: 'page.dev.extensibility.manifest.invalidJson',
+        manifestInvalidField: 'page.dev.extensibility.manifest.invalidField',
+        manifestValid: 'page.dev.extensibility.manifest.valid',
+        actionValidate: 'page.dev.extensibility.action.validate',
+        actionRegister: 'page.dev.extensibility.action.register',
+        actionImport: 'page.dev.extensibility.action.import',
+        stateEnabled: 'page.dev.extensibility.state.enabled',
+        stateDisabled: 'page.dev.extensibility.state.disabled',
+        stateOverride: 'page.dev.extensibility.state.override',
+        stateFallback: 'page.dev.extensibility.state.fallback',
+        summaryRegistered: 'page.dev.extensibility.summary.registered',
+        summaryEnabled: 'page.dev.extensibility.summary.enabled',
+        summaryEvents: 'page.dev.extensibility.summary.events',
+        eventsTitle: 'page.dev.extensibility.events.title'
+      },
+      bugRepro: {
+        build: 'page.dev.bugRepro.build',
+        buildReported: 'page.dev.bugRepro.buildReported',
+        buildCandidate: 'page.dev.bugRepro.buildCandidate',
+        buildFixed: 'page.dev.bugRepro.buildFixed',
+        caseSelectFocus: 'page.dev.bugRepro.case.selectFocus',
+        caseDialogMotion: 'page.dev.bugRepro.case.dialogMotion',
+        caseVirtualCross: 'page.dev.bugRepro.case.virtualCross',
+        caseTitle: 'page.dev.bugRepro.caseTitle',
+        dataset: 'page.dev.bugRepro.dataset',
+        environment: 'page.dev.bugRepro.environment',
+        expected: 'page.dev.bugRepro.expected',
+        failed: 'page.dev.bugRepro.failed',
+        hardAssert: 'page.dev.bugRepro.hardAssert',
+        highContrast: 'page.dev.bugRepro.highContrast',
+        logs: 'page.dev.bugRepro.logs',
+        reducedMotion: 'page.dev.bugRepro.reducedMotion',
+        reference: 'page.dev.bugRepro.reference',
+        report: 'page.dev.bugRepro.report',
+        runAll: 'page.dev.bugRepro.runAll',
+        stepSetup: 'page.dev.bugRepro.step.setup',
+        stepReproduce: 'page.dev.bugRepro.step.reproduce',
+        stepCross: 'page.dev.bugRepro.step.cross',
+        viewport: 'page.dev.bugRepro.viewport'
+      }
+    },
     gallery: {
       openDoc: 'page.gallery.openDoc',
       maturity: {
@@ -358,6 +419,7 @@ export const LocaleKeys = {
     badge: {
       goldDod: 'nav.badge.goldDod',
       epParity: 'nav.badge.epParity',
+      hot: 'nav.badge.hot',
       exclusiveNew: 'nav.badge.exclusiveNew'
     },
     baseCategory: {

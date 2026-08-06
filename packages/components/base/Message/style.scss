@@ -1,113 +1,129 @@
+.vp-message {
+  --vp-message-color: var(--info-500);
 
-.p-message {
+  position: relative;
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-sm);
+  box-sizing: border-box;
+  width: 100%;
   padding: var(--spacing-md);
-  border-radius: var(--border-radius-md);
-  background: var(--surface-1);
-  border: 1px solid var(--border-color);
-  animation: slideIn var(--transition-normal);
+  overflow: hidden;
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--vp-message-color) 8%, var(--surface-1));
+  border: 1px solid
+    color-mix(in srgb, var(--vp-message-color) 38%, var(--ds-border));
+  border-radius: var(--theme-card-radius);
 
-  &-icon {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2px;
+  &--success {
+    --vp-message-color: var(--success-500);
+  }
+  &--warning {
+    --vp-message-color: var(--warning-500);
+  }
+  &--danger {
+    --vp-message-color: var(--danger-500);
+  }
+  &--primary {
+    --vp-message-color: var(--primary-500);
+  }
+  &--secondary {
+    --vp-message-color: var(--text-secondary);
   }
 
-  &-text {
-    flex: 1;
-    font-size: var(--font-size-sm);
-    color: var(--text-primary);
-    line-height: 1.5;
-  }
-
-  &-close {
-    flex-shrink: 0;
+  &--outlined {
     background: transparent;
-    border: none;
+  }
+  &--filled {
+    color: var(--surface-0);
+    background: var(--vp-message-color);
+    border-color: transparent;
+
+    .vp-message__text,
+    .vp-message__close {
+      color: inherit;
+    }
+  }
+
+  &__icon {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    color: var(--vp-message-color);
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+  }
+  &__title {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-heading, 600);
+  }
+  &__text {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-body);
+    overflow-wrap: anywhere;
+  }
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+  }
+
+  &__close {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: var(--height-xs);
+    height: var(--height-xs);
+    padding: 0;
     color: var(--text-secondary);
     cursor: pointer;
-    padding: 2px;
+    background: transparent;
+    border: 0;
     border-radius: var(--border-radius-sm);
-    transition: all var(--transition-fast);
 
     &:hover {
-      background: var(--surface-2);
       color: var(--text-primary);
-    }
-
-    svg {
-      width: 16px;
-      height: 16px;
+      background: color-mix(in srgb, currentColor 8%, transparent);
     }
   }
 
-  &.p-message-success {
-    background: rgba(16, 185, 129, 0.1);
-    border-color: var(--success-500);
-    color: var(--success-500);
-
-    .p-message-icon {
-      color: var(--success-500);
-    }
-
-    .p-message-text {
-      color: var(--success-400);
-    }
+  &__progress {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: var(--spacing-xs);
+    background: var(--vp-message-color);
+    transform-origin: left;
+    animation: vp-message-countdown var(--vp-message-duration) linear forwards;
   }
 
-  &.p-message-warning {
-    background: rgba(245, 158, 11, 0.1);
-    border-color: var(--warning-500);
-
-    .p-message-icon {
-      color: var(--warning-500);
-    }
-
-    .p-message-text {
-      color: var(--warning-400);
-    }
-  }
-
-  &.p-message-danger {
-    background: rgba(239, 68, 68, 0.1);
-    border-color: var(--danger-500);
-
-    .p-message-icon {
-      color: var(--danger-500);
-    }
-
-    .p-message-text {
-      color: var(--danger-400);
-    }
-  }
-
-  &.p-message-info {
-    background: rgba(59, 130, 246, 0.1);
-    border-color: var(--info-500);
-
-    .p-message-icon {
-      color: var(--info-500);
-    }
-
-    .p-message-text {
-      color: var(--info-400);
-    }
+  &--paused &__progress {
+    animation-play-state: paused;
   }
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
+.vp-message-enter-active,
+.vp-message-leave-active {
+  transition:
+    opacity var(--transition-normal),
+    transform var(--transition-normal);
+}
+.vp-message-enter-from,
+.vp-message-leave-to {
+  opacity: 0;
+  transform: translateY(calc(var(--spacing-sm) * -1));
+}
+
+@keyframes vp-message-countdown {
   to {
-    opacity: 1;
-    transform: translateY(0);
+    transform: scaleX(0);
   }
 }

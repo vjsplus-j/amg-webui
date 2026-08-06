@@ -28,6 +28,7 @@
   }
 
   &__muted {
+    margin: 0;
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
   }
@@ -54,6 +55,7 @@
   }
 
   &__code {
+    margin: 0;
     font-size: var(--font-size-2xl);
     letter-spacing: 0.2em;
     color: var(--text-secondary);
@@ -64,6 +66,9 @@
     pointer-events: none;
   }
 }
+.vp-pixel404__action--ghost { background: transparent; border-color: var(--ds-border); color: var(--text-primary); }
+.vp-pixel404__action:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
+.vp-pixel404--loading { cursor: progress; }
 
 .vp-pixel404__grid {
   display: grid;
@@ -81,4 +86,3 @@
   opacity: 0.15;
   background: var(--text-secondary);
 }
-

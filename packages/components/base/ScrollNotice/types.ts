@@ -1,16 +1,21 @@
-import type { BaseProps } from '@amg-webui/types'
-
+import type { BaseProps, Severity } from "@amg-webui/types";
 export interface ScrollNoticeProps extends BaseProps {
-  title?: string
-  description?: string
-  data?: unknown
-  modelValue?: unknown
-  disabled?: boolean
-  loading?: boolean
+  title?: string;
+  text?: string;
+  data?: string;
+  severity?: Severity;
+  speed?: number;
+  direction?: "left" | "right";
+  pauseOnHover?: boolean;
+  paused?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
+  closable?: boolean;
 }
-
 export interface ScrollNoticeEmits {
-  (e: 'update:modelValue', value: unknown): void
-  (e: 'change', value: unknown): void
-  (e: 'click', event: MouseEvent): void
+  (e: "update:paused", value: boolean): void;
+  (e: "pause"): void;
+  (e: "resume"): void;
+  (e: "close", event: MouseEvent): void;
+  (e: "click", event: MouseEvent): void;
 }

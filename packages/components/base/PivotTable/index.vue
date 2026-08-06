@@ -1,90 +1,201 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import type { PivotTableProps, PivotTableEmits } from './types'
-import './style.scss'
+import { computed } from "vue";
+import { useLocale } from "@amg-webui/hooks";
+import { trackEmit } from "@amg-webui/telemetry";
+import type {
+  PivotCell,
+  PivotRecord,
+  PivotTableEmits,
+  PivotTableProps,
+} from "./types";
+import "./style.scss";
 
-const props = withDefaults(
-  defineProps<PivotTableProps & { rows?: Record<string, unknown>[]; rowField?: string; colField?: string; valueField?: string }>(),
-  { rows: () => [], rowField: 'region', colField: 'product', valueField: 'amount', disabled: false }
-)
-const emit = defineEmits<PivotTableEmits>()
-const { t } = useLocale()
+const props = withDefaults(defineProps<PivotTableProps>(), {
+  rows: () => [],
+  data: () => [],
+  aggregator: "sum",
+  modelValue: null,
+  showRowTotals: true,
+  showColumnTotals: true,
+  stickyHeader: true,
+  loading: false,
+  disabled: false,
+  telemetry: undefined,
+});
+const emit = defineEmits<PivotTableEmits>();
+const { t } = useLocale();
+const source = computed(() => (props.rows.length ? props.rows : props.data));
+const rowField = computed(() => props.rowField ?? "");
+const columnField = computed(() => props.columnField ?? props.colField ?? "");
+const rowKeys = computed(() =>
+  rowField.value
+    ? [
+        ...new Set(
+          source.value.map((row) => String(row[rowField.value] ?? "—")),
+        ),
+      ]
+    : [],
+);
+const columnKeys = computed(() =>
+  columnField.value
+    ? [
+        ...new Set(
+          source.value.map((row) => String(row[columnField.value] ?? "—")),
+        ),
+      ]
+    : [""],
+);
 
-const source = computed(() =>
-  props.rows?.length ? props.rows : Array.isArray(props.data) ? (props.data as Record<string, unknown>[]) : []
-)
-
-const pivot = computed(() => {
-  const rf = props.rowField
-  const cf = props.colField
-  const vf = props.valueField
-  const rowKeys = [...new Set(source.value.map((r) => String(r[rf] ?? '')))]
-  const colKeys = [...new Set(source.value.map((r) => String(r[cf] ?? '')))]
-  const matrix: Record<string, Record<string, number>> = {}
-  for (const r of source.value) {
-    const rk = String(r[rf] ?? '')
-    const ck = String(r[cf] ?? '')
-    matrix[rk] ??= {}
-    matrix[rk][ck] = (matrix[rk][ck] ?? 0) + Number(r[vf] ?? 0)
-  }
-  return { rowKeys, colKeys, matrix }
-})
-
-const titleText = computed(() => props.title ?? t('component.pivot-table.title'))
+function aggregate(records: PivotRecord[]) {
+  if (typeof props.aggregator === "function")
+    return props.aggregator(records, props.valueField);
+  if (props.aggregator === "count") return records.length;
+  const values = records
+    .map((record) =>
+      Number(props.valueField ? record[props.valueField] : undefined),
+    )
+    .filter(Number.isFinite);
+  if (!values.length) return 0;
+  if (props.aggregator === "average")
+    return values.reduce((sum, value) => sum + value, 0) / values.length;
+  if (props.aggregator === "min") return Math.min(...values);
+  if (props.aggregator === "max") return Math.max(...values);
+  return values.reduce((sum, value) => sum + value, 0);
+}
+function recordsFor(rowKey?: string, colKey?: string) {
+  return source.value.filter(
+    (row) =>
+      (rowKey == null || String(row[rowField.value] ?? "—") === rowKey) &&
+      (colKey == null ||
+        !columnField.value ||
+        String(row[columnField.value] ?? "—") === colKey),
+  );
+}
+function cell(rowKey: string, columnKey: string): PivotCell {
+  const records = recordsFor(rowKey, columnKey);
+  return { rowKey, columnKey, records, value: aggregate(records) };
+}
+function format(value: number, target?: PivotCell) {
+  return props.valueFormatter
+    ? props.valueFormatter(value, target)
+    : new Intl.NumberFormat().format(value);
+}
+function selectRow(rowKey: string, event: MouseEvent) {
+  if (props.disabled || props.loading) return;
+  const next = props.modelValue === rowKey ? null : rowKey;
+  emit("update:modelValue", next);
+  emit("change", next);
+  emit("rowClick", rowKey, event);
+  trackEmit({
+    component: "PivotTable",
+    type: "rowClick",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { rowKey },
+  });
+}
+function clickCell(target: PivotCell, event: MouseEvent) {
+  if (props.disabled || props.loading) return;
+  event.stopPropagation();
+  emit("cellClick", target, event);
+  trackEmit({
+    component: "PivotTable",
+    type: "cellClick",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: {
+      rowKey: target.rowKey,
+      columnKey: target.columnKey,
+      value: target.value,
+    },
+  });
+}
 </script>
 
 <template>
-  <div :class="['vp-pivot-table', 'vp-pivot-table__panel', { 'vp-pivot-table--disabled': disabled }, props.class]" :style="style">
-    <strong class="vp-pivot-table__heading">{{ titleText }}</strong>
-    <div class="vp-pivot-table__scroll">
+  <section
+    :class="[
+      'vp-pivot-table',
+      { 'vp-pivot-table--disabled': disabled },
+      props.class,
+    ]"
+    :style="style"
+    :aria-busy="loading"
+    data-component="PivotTable"
+  >
+    <header
+      v-if="title || description || $slots.header"
+      class="vp-pivot-table__header"
+    >
+      <slot name="header"
+        ><div>
+          <h3 v-if="title" class="vp-pivot-table__title">{{ title }}</h3>
+          <p v-if="description" class="vp-pivot-table__description">
+            {{ description }}
+          </p>
+        </div></slot
+      >
+    </header>
+    <div v-if="loading" class="vp-pivot-table__loading" role="status">
+      {{ t("common.loading") }}
+    </div>
+    <div v-else class="vp-pivot-table__scroll">
       <table class="vp-pivot-table__grid">
-        <thead>
+        <thead :class="{ 'vp-pivot-table__thead--sticky': stickyHeader }">
           <tr>
-            <th class="vp-pivot-table__head">{{ rowField }}</th>
-            <th v-for="ck in pivot.colKeys" :key="ck" class="vp-pivot-table__head">{{ ck }}</th>
-            <th class="vp-pivot-table__head">{{ t('common.total') }}</th>
+            <th scope="col">{{ rowLabel ?? rowField }}</th>
+            <th v-for="key in columnKeys" :key="key" scope="col">{{ key }}</th>
+            <th v-if="showRowTotals" scope="col">{{ t("common.total") }}</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="rk in pivot.rowKeys" :key="rk" class="vp-pivot-table__row" @click="emit('change', pivot.matrix[rk])">
-            <td class="vp-pivot-table__cell vp-pivot-table__cell--label">{{ rk }}</td>
-            <td v-for="ck in pivot.colKeys" :key="ck" class="vp-pivot-table__cell">
-              {{ pivot.matrix[rk]?.[ck] ?? 0 }}
+          <tr
+            v-for="rowKey in rowKeys"
+            :key="rowKey"
+            :class="{ 'vp-pivot-table__row--selected': modelValue === rowKey }"
+            :tabindex="disabled ? undefined : 0"
+            :aria-selected="modelValue === rowKey"
+            @click="selectRow(rowKey, $event)"
+            @keydown.enter.prevent="
+              selectRow(rowKey, $event as unknown as MouseEvent)
+            "
+          >
+            <th scope="row">
+              <slot name="row" :row-key="rowKey">{{ rowKey }}</slot>
+            </th>
+            <td
+              v-for="columnKey in columnKeys"
+              :key="columnKey"
+              @click="clickCell(cell(rowKey, columnKey), $event)"
+            >
+              <slot name="cell" :cell="cell(rowKey, columnKey)">{{
+                format(cell(rowKey, columnKey).value, cell(rowKey, columnKey))
+              }}</slot>
             </td>
-            <td class="vp-pivot-table__cell">
-              {{ pivot.colKeys.reduce((s, ck) => s + (pivot.matrix[rk]?.[ck] ?? 0), 0) }}
+            <td v-if="showRowTotals" class="vp-pivot-table__total">
+              {{ format(aggregate(recordsFor(rowKey))) }}
             </td>
           </tr>
-          <tr v-if="!pivot.rowKeys.length">
-            <td class="vp-pivot-table__empty">{{ t('common.noData') }}</td>
+          <tr
+            v-if="showColumnTotals && rowKeys.length"
+            class="vp-pivot-table__totals"
+          >
+            <th scope="row">{{ t("common.total") }}</th>
+            <td v-for="columnKey in columnKeys" :key="columnKey">
+              {{ format(aggregate(recordsFor(undefined, columnKey))) }}
+            </td>
+            <td v-if="showRowTotals">{{ format(aggregate(source)) }}</td>
+          </tr>
+          <tr v-if="!rowKeys.length">
+            <td
+              :colspan="columnKeys.length + (showRowTotals ? 2 : 1)"
+              class="vp-pivot-table__empty"
+            >
+              <slot name="empty">{{ t("common.noData") }}</slot>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <slot />
-  </div>
+  </section>
 </template>
-
-<style scoped>
-.vp-pivot-table__scroll {
-  overflow: auto;
-  max-height: 20rem;
-  margin-top: var(--spacing-md);
-}
-.vp-pivot-table__grid {
-  width: 100%;
-  border-collapse: collapse;
-}
-.vp-pivot-table__head,
-.vp-pivot-table__cell,
-.vp-pivot-table__empty {
-  padding: var(--spacing-sm) var(--spacing-md);
-  border: 1px solid var(--ds-border);
-  text-align: right;
-}
-.vp-pivot-table__cell--label {
-  text-align: left;
-  font-weight: 600;
-}
-</style>

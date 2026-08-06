@@ -2,20 +2,20 @@
 /**
  * Curated demo — Layout wave2 EmbedLayout
  */
-import { computed, ref } from 'vue'
-import { EmbedLayout, Button, Space } from '@amg-webui/components/base'
-import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
-import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
-import '../../components/demo/curatedDemo.scss'
+import { computed, ref } from "vue";
+import { EmbedLayout, Button, Space } from "@amg-webui/components/base";
+import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
+import DemoBlock from "../../components/demo/DemoBlock.vue";
+import PropsTable from "../../components/demo/PropsTable.vue";
+import { demoCode, demoSfc } from "../../components/demo/demoCode";
+import type { PropRow } from "../../components/demo/types";
+import "../../components/demo/curatedDemo.scss";
 
-const { t } = useLocale()
-const ratio = ref('16 / 9')
-const fill = ref(false)
-const bordered = ref(true)
+const { t } = useLocale();
+const ratio = ref("16 / 9");
+const fill = ref(false);
+const bordered = ref(true);
 
 const codeBasic = demoSfc({
   imports: [`import { EmbedLayout } from '@amg-webui/components/base'`],
@@ -23,31 +23,43 @@ const codeBasic = demoSfc({
     '  <div class="embed-host">',
     '    <EmbedLayout aspect-ratio="16 / 9">',
     `      <span>{{ t('example.doc.embedLayout.sample.body') }}</span>`,
-    '    </EmbedLayout>',
-    '  </div>'
-  ]
-})
+    "    </EmbedLayout>",
+    "  </div>",
+  ],
+});
 
 const codeFill = demoCode(
   `<EmbedLayout aspect-ratio="4 / 3" fill :bordered="bordered">`,
   `  <span>{{ t('example.doc.embedLayout.sample.body') }}</span>`,
-  `</EmbedLayout>`
-)
+  `</EmbedLayout>`,
+);
 
 const propRows = computed<PropRow[]>(() => [
   {
-    name: 'aspectRatio / fill',
-    type: 'string / boolean',
+    name: "aspectRatio / fill",
+    type: "string / boolean",
     defaultValue: "'16 / 9' / false",
-    description: t('example.doc.embedLayout.prop.ratio')
+    description: t("example.doc.embedLayout.prop.ratio"),
   },
   {
-    name: 'rounded / bordered / objectFit',
-    type: 'boolean / fit',
-    defaultValue: 'true / true / cover',
-    description: t('example.doc.embedLayout.prop.chrome')
-  }
-])
+    name: "rounded / bordered / objectFit",
+    type: "boolean / fit",
+    defaultValue: "true / true / cover",
+    description: t("example.doc.embedLayout.prop.chrome"),
+  },
+  {
+    name: "interactive / disabled / loading",
+    type: "boolean",
+    defaultValue: "false / false / false",
+    description: t("example.doc.embedLayout.prop.chrome"),
+  },
+  {
+    name: "caption / frame-click",
+    type: "string / event",
+    defaultValue: "—",
+    description: t("example.doc.embedLayout.prop.ratio"),
+  },
+]);
 </script>
 
 <template>
@@ -84,7 +96,9 @@ const propRows = computed<PropRow[]>(() => [
         </Space>
         <div class="embed-host">
           <EmbedLayout :aspect-ratio="ratio">
-            <span class="label">{{ t('example.doc.embedLayout.sample.body') }}</span>
+            <span class="label">{{
+              t("example.doc.embedLayout.sample.body")
+            }}</span>
           </EmbedLayout>
         </div>
       </Space>
@@ -109,11 +123,18 @@ const propRows = computed<PropRow[]>(() => [
             :variant="bordered ? 'solid' : 'outlined'"
             @click="bordered = !bordered"
           >
-            {{ t('example.doc.embedLayout.sample.borderToggle') }}
+            {{ t("example.doc.embedLayout.sample.borderToggle") }}
           </Button>
         </Space>
-        <EmbedLayout aspect-ratio="4 / 3" :fill="fill" :bordered="bordered" class="embed-full">
-          <span class="label">{{ t('example.doc.embedLayout.sample.body') }}</span>
+        <EmbedLayout
+          aspect-ratio="4 / 3"
+          :fill="fill"
+          :bordered="bordered"
+          class="embed-full"
+        >
+          <span class="label">{{
+            t("example.doc.embedLayout.sample.body")
+          }}</span>
         </EmbedLayout>
       </Space>
     </DemoBlock>

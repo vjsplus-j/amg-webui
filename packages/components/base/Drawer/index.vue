@@ -1,95 +1,185 @@
 <script setup lang="ts">
-import { computed, watch, onMounted, onUnmounted } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
-import type { DrawerProps, DrawerEmits } from './types'
-import './style.scss'
+import { computed, nextTick, ref, useId, watch } from "vue";
+import { useBodyScrollLock, useFocusTrap, useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
+import { trackEmit } from "@amg-webui/telemetry";
+import Icon from "../Icon/index.vue";
+import type { DrawerCloseReason, DrawerEmits, DrawerProps } from "./types";
+import "./style.scss";
 
 const props = withDefaults(defineProps<DrawerProps>(), {
   visible: false,
-  placement: 'right',
-  width: '320px',
+  placement: "right",
+  width: "",
+  height: "",
+  modal: true,
   closable: true,
-  dismissible: true
-})
+  dismissible: true,
+  closeOnClickOverlay: undefined,
+  closeOnPressEscape: undefined,
+  lockScroll: true,
+  loading: false,
+  teleportTo: "body",
+  telemetry: undefined,
+});
 
-const emit = defineEmits<DrawerEmits>()
+const emit = defineEmits<DrawerEmits>();
+const { t } = useLocale();
+const uid = useId();
+const panelRef = ref<HTMLElement | null>(null);
+const closing = ref(false);
+const visibleRef = computed(() => props.visible);
+const shouldLock = computed(() => props.modal && props.lockScroll);
 
-const { t } = useLocale()
-const closeLabel = computed(() => t(LocaleKeys.common.close))
+useFocusTrap(panelRef, visibleRef);
+useBodyScrollLock(visibleRef, shouldLock);
+
+const closeLabel = computed(() => t(LocaleKeys.common.close));
+const titleId = `${uid}-title`;
+const closeOnOverlay = computed(
+  () => props.closeOnClickOverlay ?? props.dismissible,
+);
+const closeOnEscape = computed(
+  () => props.closeOnPressEscape ?? props.dismissible,
+);
+const isHorizontal = computed(
+  () => props.placement === "left" || props.placement === "right",
+);
 
 const drawerStyle = computed(() => ({
-  width: props.width,
-  ...props.style
-}))
+  ...(props.style ?? {}),
+  ...(isHorizontal.value && props.width ? { width: props.width } : {}),
+  ...(!isHorizontal.value && props.height ? { height: props.height } : {}),
+}));
 
-const transitionName = computed(() =>
-  props.placement === 'left' ? 'vp-drawer-slide-left' : 'vp-drawer-slide-right'
-)
+const overlayStyle = computed(() =>
+  props.zIndex === undefined ? undefined : { zIndex: String(props.zIndex) },
+);
 
-const closeDrawer = (event?: Event) => {
-  emit('update:visible', false)
-  emit('close', event)
-}
-
-const handleOverlayClick = (event: MouseEvent) => {
-  if (props.dismissible && event.target === event.currentTarget) {
-    closeDrawer(event)
+async function closeDrawer(
+  reason: DrawerCloseReason = "programmatic",
+  event?: Event,
+) {
+  if (closing.value || props.loading) return;
+  closing.value = true;
+  try {
+    if (props.beforeClose) {
+      try {
+        if ((await props.beforeClose(reason, event)) === false) return;
+      } catch (error) {
+        emit("error", error);
+        return;
+      }
+    }
+    trackEmit({
+      component: "Drawer",
+      type: "close",
+      trackId: props.trackId,
+      telemetry: props.telemetry,
+      payload: { placement: props.placement, reason },
+    });
+    emit("update:visible", false);
+    emit("close", event, reason);
+  } finally {
+    closing.value = false;
   }
 }
 
-const handleKeydown = (event: KeyboardEvent) => {
-  if (props.visible && props.dismissible && event.key === 'Escape') {
-    closeDrawer(event)
+function handleOverlayClick(event: MouseEvent) {
+  if (
+    props.modal &&
+    closeOnOverlay.value &&
+    event.target === event.currentTarget
+  ) {
+    void closeDrawer("overlay", event);
   }
+}
+
+function handleKeydown(event: KeyboardEvent) {
+  if (closeOnEscape.value && event.key === "Escape") {
+    event.preventDefault();
+    event.stopPropagation();
+    void closeDrawer("escape", event);
+  }
+}
+
+function focusInitial() {
+  const autofocus = panelRef.value?.querySelector<HTMLElement>("[autofocus]");
+  const first = panelRef.value?.querySelector<HTMLElement>(
+    'button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])',
+  );
+  (autofocus ?? first ?? panelRef.value)?.focus();
 }
 
 watch(
   () => props.visible,
-  (val) => {
-    if (val) emit('show', new Event('show'))
-    else emit('hide', new Event('hide'))
-  }
-)
-
-onMounted(() => {
-  document.addEventListener('keydown', handleKeydown)
-})
-
-onUnmounted(() => {
-  document.removeEventListener('keydown', handleKeydown)
-})
+  (visible) => {
+    if (visible) {
+      emit("show", new Event("show"));
+      void nextTick(focusInitial);
+    } else {
+      emit("hide", new Event("hide"));
+    }
+  },
+);
 </script>
 
 <template>
-  <Teleport to="body">
-    <Transition :name="transitionName">
-      <div v-if="visible" class="vp-drawer-overlay" @click="handleOverlayClick">
+  <Teleport :to="teleportTo">
+    <Transition
+      :name="`vp-drawer-${placement}`"
+      @after-enter="emit('open')"
+      @after-leave="emit('closed')"
+    >
+      <div
+        v-if="visible"
+        :class="['vp-drawer-layer', { 'vp-drawer-layer--modal': modal }]"
+        :style="overlayStyle"
+        role="presentation"
+        @click="handleOverlayClick"
+      >
         <aside
+          ref="panelRef"
           :class="['vp-drawer', `vp-drawer--${placement}`, props.class]"
           :style="drawerStyle"
+          role="dialog"
+          :aria-modal="modal || undefined"
+          :aria-labelledby="title ? titleId : undefined"
+          :aria-label="!title ? ariaLabel : undefined"
+          :aria-busy="loading || closing || undefined"
+          tabindex="-1"
+          data-component="Drawer"
           @click.stop
+          @keydown="handleKeydown"
         >
-          <header v-if="title || $slots.header || closable" class="vp-drawer__header">
-            <template v-if="$slots.header">
-              <slot name="header" />
-            </template>
-            <span v-else-if="title" class="vp-drawer__title">{{ title }}</span>
+          <header
+            v-if="title || $slots.header || closable"
+            class="vp-drawer__header"
+          >
+            <div class="vp-drawer__heading">
+              <template v-if="$slots.header"><slot name="header" /></template>
+              <h2 v-else-if="title" :id="titleId" class="vp-drawer__title">
+                {{ title }}
+              </h2>
+            </div>
             <button
               v-if="closable"
               type="button"
               class="vp-drawer__close"
               :aria-label="closeLabel"
-              @click="closeDrawer"
+              :disabled="loading || closing"
+              @click="closeDrawer('close', $event)"
             >
-              ×
+              <Icon name="X" size="sm" />
             </button>
           </header>
-          <div class="vp-drawer__body">
-            <slot />
-          </div>
+          <div class="vp-drawer__body"><slot /></div>
           <footer v-if="$slots.footer" class="vp-drawer__footer">
-            <slot name="footer" />
+            <slot
+              name="footer"
+              :close="closeDrawer"
+              :loading="loading || closing"
+            />
           </footer>
         </aside>
       </div>

@@ -21,5 +21,6 @@ export default {
   'nav.primary': '기본항행',
   'nav.badge.goldDod': '금표',
   'nav.badge.epParity': 'EP',
+  'nav.badge.hot': '인기',
   'nav.badge.exclusiveNew': 'New'
 } as Record<string, string>

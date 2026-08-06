@@ -9,6 +9,10 @@ export type {
   MessageBoxConfirmResult,
   MessageBoxAlertResult,
   MessageBoxPromptResult,
-  MessageBoxMode
+  MessageBoxMode,
+  MessageBoxAction,
+  MessageBoxCloseReason,
+  MessageBoxAutofocus,
+  MessageBoxInputType
 } from './types'
 export default MessageBox

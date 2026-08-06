@@ -7,6 +7,8 @@ alwaysApply: true
 
 Docs: `docs/TELEMETRY.md` · Overtake: `docs/OVERTAKE_ELEMENT_PLUS.md` §企业基建 · package: `packages/telemetry`
 
+Skill Runtime boundary: `docs/SKILL_RUNTIME.md` · locked rule: `vue3-amg-webui-skill-runtime.mdc`
+
 ## Slogan alignment
 Exclusive enterprise track vs Element Plus (EP has no interaction telemetry contract).
 
@@ -22,6 +24,12 @@ Exclusive enterprise track vs Element Plus (EP has no interaction telemetry cont
 - Hook: `useTrackedEmit` from `@amg-webui/hooks`.
 - Provider: `TelemetryProvider` (`vp-telemetry-provider`) under `packages/components/base/TelemetryProvider/`.
 
+## Skill Runtime boundary
+- Skill Observer and Vp Telemetry are separate contracts: Observer traces Skill lifecycle/Pipeline execution; Telemetry observes UI interaction.
+- `packages/skill` and especially `packages/skill/core` **must not import `packages/telemetry` directly**.
+- A later Observer → Telemetry bridge may be provided by the consuming app as an adapter/sink. It must preserve Telemetry opt-in, redaction, sampling, and failure isolation.
+- No bridge is currently shipped. SR3 built-ins and the Skill Runtime example page are also not implemented; do not document them as current Telemetry coverage.
+
 ## Component wiring
 - Props (via `BaseProps`): `trackId?` · `telemetry?: boolean` (`false` forces skip). Components **must** `withDefaults(..., { telemetry: undefined })` — Vue casts omitted Booleans to `false`.
 - First-wave interactive: Button · Link · Tag · Badge · Avatar · AvatarGroup · Card · FloatButton · Collapse · CopyText · Progress · Statistic · Ellipsis · CardWidgets.
@@ -34,4 +42,4 @@ Exclusive enterprise track vs Element Plus (EP has no interaction telemetry cont
 ## When extending
 - Wire new interactive emits with `trackEmit` + `trackId` / `telemetry` props.
 - Keep redact keys + ring buffer; extend `analyze.ts` for new alert kinds.
-- Sync `TELEMETRY.md` + this rule when changing the contract.
+- Sync `TELEMETRY.md` + this rule when changing the contract; cross-runtime changes also sync `SKILL_RUNTIME.md` and its locked rule.

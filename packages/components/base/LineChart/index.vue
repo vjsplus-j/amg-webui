@@ -1,58 +1,107 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
-import { toNumberSeries } from '@amg-webui/utils/data-display/chartHelpers'
-import type { LineChartProps, LineChartEmits } from './types'
+import { toLabelSeries } from '@amg-webui/utils/data-display/chartHelpers'
+import { trackEmit } from '@amg-webui/telemetry'
+import type { LineChartItem, LineChartProps, LineChartEmits } from './types'
 import './style.scss'
 
 const props = withDefaults(defineProps<LineChartProps>(), {
-  data: () => [30, 45, 38, 62, 55, 72, 68]
+  data: () => [],
+  disabled: false,
+  loading: false,
+  height: 160,
+  showArea: true,
+  showPoints: true,
+  selectable: true,
+  telemetry: undefined
 })
-defineEmits<LineChartEmits>()
+const emit = defineEmits<LineChartEmits>()
 const { t } = useLocale()
 
-const series = computed(() => toNumberSeries(props.data))
-const max = computed(() => Math.max(1, ...series.value))
-const points = computed(() => {
-  const w = 360
-  const h = 160
+const items = computed<LineChartItem[]>(() =>
+  toLabelSeries(props.data).map((item, index) => ({ ...item, index }))
+)
+const hasData = computed(() => items.value.length > 0)
+const maxValue = computed(() => Math.max(1, props.max ?? 0, ...items.value.map((item) => item.value)))
+const baseline = computed(() => props.height - 12)
+const pointItems = computed(() => {
   const pad = 12
-  const vals = series.value
-  if (!vals.length) return ''
-  return vals
-    .map((v, i) => {
-      const x = pad + (i * (w - pad * 2)) / Math.max(1, vals.length - 1)
-      const y = h - pad - (v / max.value) * (h - pad * 2)
-      return `${x},${y}`
-    })
-    .join(' ')
+  return items.value.map((item, index) => ({
+    ...item,
+    x: pad + (index * (360 - pad * 2)) / Math.max(1, items.value.length - 1),
+    y: baseline.value - (item.value / maxValue.value) * (props.height - pad * 2)
+  }))
+})
+const points = computed(() => {
+  return pointItems.value.map((item) => `${item.x},${item.y}`).join(' ')
 })
 const area = computed(() => {
   if (!points.value) return ''
-  const first = points.value.split(' ')[0]
-  const last = points.value.split(' ').pop()
-  return `${first} ${points.value} ${last?.split(',')[0]},148 12,148`
+  const first = pointItems.value[0]
+  const last = pointItems.value.at(-1)
+  return `${first?.x},${baseline.value} ${points.value} ${last?.x},${baseline.value}`
 })
 const titleText = computed(() => props.title ?? t('component.line-chart.title'))
+const emptyText = computed(() => props.emptyText ?? t('common.noData'))
+
+function selectPoint(item: LineChartItem, event?: MouseEvent | KeyboardEvent) {
+  if (props.disabled || props.loading || !props.selectable) return
+  trackEmit({
+    component: 'LineChart',
+    type: 'select',
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { label: item.label, value: item.value, index: item.index }
+  })
+  emit('update:modelValue', item.label)
+  emit('change', item)
+  emit('select', item, event)
+  if (event instanceof MouseEvent) emit('click', event)
+}
+
+function onKeydown(event: KeyboardEvent, item: LineChartItem) {
+  if (event.key !== 'Enter' && event.key !== ' ') return
+  event.preventDefault()
+  selectPoint(item, event)
+}
 </script>
 
 <template>
-  <div :class="['vp-line-chart', 'vp-line-chart__panel', { 'vp-line-chart--disabled': disabled }, props.class]" :style="style">
+  <div
+    :class="['vp-line-chart', 'vp-line-chart__panel', { 'vp-line-chart--disabled': disabled, 'vp-line-chart--loading': loading }, props.class]"
+    :style="style"
+    data-component="LineChart"
+    role="group"
+    :aria-label="titleText"
+    :aria-busy="loading || undefined"
+  >
     <h3 class="vp-line-chart__title">{{ titleText }}</h3>
-    <svg class="vp-line-chart__chart" viewBox="0 0 360 160" role="img" :aria-label="titleText">
-      <polygon v-if="area" :points="area" fill="color-mix(in srgb, var(--primary-500) 20%, transparent)" />
+    <p v-if="description" class="vp-line-chart__muted">{{ description }}</p>
+    <p v-if="loading" class="vp-line-chart__muted" role="status">{{ t('common.loading') }}</p>
+    <p v-else-if="!hasData" class="vp-line-chart__muted" role="status">{{ emptyText }}</p>
+    <svg v-else class="vp-line-chart__chart" :viewBox="`0 0 360 ${height}`" role="img" :aria-label="titleText">
+      <line x1="12" :y1="baseline" x2="348" :y2="baseline" stroke="var(--ds-border)" stroke-width="1" />
+      <polygon v-if="showArea && area" class="vp-line-chart__area" :points="area" />
       <polyline v-if="points" fill="none" stroke="var(--primary-500)" stroke-width="2" :points="points" />
       <circle
-        v-for="(v, i) in series"
-        :key="i"
-        :cx="12 + (i * 336) / Math.max(1, series.length - 1)"
-        :cy="148 - 12 - (v / max) * 136"
+        v-for="item in pointItems"
+        v-show="showPoints"
+        :key="item.index"
+        class="vp-line-chart__point"
+        :class="{ 'vp-line-chart__point--selected': modelValue === item.label }"
+        :cx="item.x"
+        :cy="item.y"
         r="3"
-        fill="var(--primary-500)"
+        :tabindex="selectable && !disabled ? 0 : -1"
+        role="button"
+        :aria-label="`${item.label}: ${item.value}`"
+        @click="selectPoint(item, $event)"
+        @keydown="onKeydown($event, item)"
       >
-        <title>{{ v }}</title>
+        <title>{{ item.label }}: {{ item.value }}</title>
       </circle>
     </svg>
-    <slot />
+    <slot :items="items" :selected="modelValue" />
   </div>
 </template>

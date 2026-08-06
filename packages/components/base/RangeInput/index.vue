@@ -1,77 +1,78 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import type { RangeInputProps, RangeInputEmits, RangeValue } from './types'
-import './style.scss'
+import { computed } from "vue";
+import InputNumber from "../InputNumber/index.vue";
+import { trackEmit } from "@amg-webui/telemetry";
+import type { RangeInputProps, RangeInputEmits, RangeValue } from "./types";
+import "./style.scss";
 
 const props = withDefaults(defineProps<RangeInputProps>(), {
   modelValue: () => ({ min: null, max: null }),
   precision: 0,
-  step: 1
-})
+  step: 1,
+  allowCross: false,
+  telemetry: undefined,
+});
 
-const emit = defineEmits<RangeInputEmits>()
+const emit = defineEmits<RangeInputEmits>();
 
-const local = computed(() => props.modelValue ?? { min: null, max: null })
-
-const parseNum = (raw: string): number | null => {
-  if (raw.trim() === '') return null
-  const n = Number(raw)
-  if (Number.isNaN(n)) return null
-  return props.precision > 0 ? Number(n.toFixed(props.precision)) : Math.round(n)
-}
+const local = computed(() => props.modelValue ?? { min: null, max: null });
 
 const emitValue = (next: RangeValue) => {
-  let min = next.min ?? null
-  let max = next.max ?? null
-  if (min != null && max != null && min > max) {
-    ;[min, max] = [max, min]
+  let min = next.min ?? null;
+  let max = next.max ?? null;
+  if (!props.allowCross && min != null && max != null && min > max) {
+    [min, max] = [max, min];
   }
-  const value = { min, max }
-  emit('update:modelValue', value)
-  emit('change', value)
-}
-
-const onMinInput = (event: Event) => {
-  emitValue({ ...local.value, min: parseNum((event.target as HTMLInputElement).value) })
-}
-
-const onMaxInput = (event: Event) => {
-  emitValue({ ...local.value, max: parseNum((event.target as HTMLInputElement).value) })
-}
+  const value = { min, max };
+  emit("update:modelValue", value);
+  emit("change", value);
+  trackEmit({
+    component: "RangeInput",
+    type: "change",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: value,
+  });
+};
 </script>
 
 <template>
-  <div :class="['vp-range-input', props.class]" :style="style" data-component="RangeInput">
-    <input
+  <div
+    :class="[
+      'vp-range-input',
+      { 'vp-range-input--invalid': invalid },
+      props.class,
+    ]"
+    :style="style"
+    data-component="RangeInput"
+    role="group"
+    :aria-label="ariaLabel"
+    :aria-invalid="invalid || undefined"
+  >
+    <InputNumber
       class="vp-range-input__field"
-      type="number"
-      :value="local.min == null ? '' : local.min"
+      :model-value="local.min"
       :disabled="disabled"
       :step="step"
-      @input="onMinInput"
+      :precision="precision"
+      :min="min"
+      :max="max"
+      :invalid="invalid"
+      :placeholder="startPlaceholder"
+      @update:model-value="emitValue({ ...local, min: $event })"
     />
     <span class="vp-range-input__sep" aria-hidden="true">–</span>
-    <input
+    <InputNumber
       class="vp-range-input__field"
-      type="number"
-      :value="local.max == null ? '' : local.max"
+      :model-value="local.max"
       :disabled="disabled"
       :step="step"
-      @input="onMaxInput"
+      :precision="precision"
+      :min="min"
+      :max="max"
+      :invalid="invalid"
+      :placeholder="endPlaceholder"
+      @update:model-value="emitValue({ ...local, max: $event })"
     />
   </div>
 </template>
-
-<style scoped>
-.vp-range-input__field {
-  flex: 1;
-  min-width: 0;
-  height: var(--height-md);
-  border: 1px solid var(--ds-border, var(--border-color));
-  border-radius: var(--theme-input-radius, var(--border-radius-md));
-  padding: 0 var(--spacing-md);
-  background: var(--surface-0, var(--surface-1));
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-}
-</style>

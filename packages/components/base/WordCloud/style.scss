@@ -34,6 +34,23 @@
     display: block;
   }
 
+  &__word {
+    cursor: pointer;
+    dominant-baseline: middle;
+    transition:
+      opacity var(--transition-normal, 0.2s),
+      filter var(--transition-normal, 0.2s);
+
+    &:focus-visible {
+      outline: none;
+      filter: drop-shadow(0 0 var(--spacing-xs) var(--primary-500));
+    }
+  }
+
+  &__word--selected {
+    filter: drop-shadow(0 0 var(--spacing-xs) var(--primary-500));
+  }
+
   &__toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -44,5 +61,9 @@
   &--disabled {
     opacity: 0.55;
     pointer-events: none;
+  }
+
+  &--loading {
+    cursor: progress;
   }
 }

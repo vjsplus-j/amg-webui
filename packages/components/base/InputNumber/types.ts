@@ -10,6 +10,9 @@ export interface InputNumberProps extends BaseProps, DisabledProps {
   size?: Size
   fluid?: boolean
   invalid?: boolean
+  readonly?: boolean
+  placeholder?: string
+  ariaLabel?: string
 }
 
 export interface InputNumberEmits {

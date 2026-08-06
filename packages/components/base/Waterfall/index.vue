@@ -1,93 +1,207 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import type { WaterfallProps, WaterfallEmits } from './types'
-import './style.scss'
-
-interface Card {
-  id?: string | number
-  title?: string
-  image?: string
-  height?: number
-}
-
-const props = withDefaults(defineProps<WaterfallProps & { items?: Card[]; columns?: number }>(), {
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+import { useLocale } from "@amg-webui/hooks";
+import { trackEmit } from "@amg-webui/telemetry";
+import type { WaterfallEmits, WaterfallItem, WaterfallProps } from "./types";
+import "./style.scss";
+const props = withDefaults(defineProps<WaterfallProps>(), {
+  data: () => [],
   items: () => [],
+  modelValue: null,
   columns: 3,
-  disabled: false
-})
-const emit = defineEmits<WaterfallEmits>()
-const { t } = useLocale()
-
-const list = computed<Card[]>(() => {
-  if (props.items?.length) return props.items
-  if (Array.isArray(props.data)) return props.data as Card[]
-  return []
-})
-
-const cols = computed(() => {
-  const n = Math.max(1, props.columns)
-  const buckets: Card[][] = Array.from({ length: n }, () => [])
-  const heights = Array(n).fill(0)
-  for (const item of list.value) {
-    const h = item.height ?? 120
-    const min = heights.indexOf(Math.min(...heights))
-    buckets[min].push(item)
-    heights[min] += h
+  disabled: false,
+  loading: false,
+  clickable: true,
+  telemetry: undefined,
+});
+const emit = defineEmits<WaterfallEmits>();
+const { t } = useLocale();
+const cardRefs = new Map<string | number, HTMLElement>();
+const measured = new Map<string | number, number>();
+const version = ref(0);
+const sentinelRef = ref<HTMLElement | null>(null);
+let resizeObserver: ResizeObserver | null = null;
+let endObserver: IntersectionObserver | null = null;
+let endEmitted = false;
+const list = computed(() => (props.items.length ? props.items : props.data));
+const columnCount = computed(() =>
+  Math.min(12, Math.max(1, Math.floor(props.columns))),
+);
+const buckets = computed(() => {
+  void version.value;
+  const result: WaterfallItem[][] = Array.from(
+    { length: columnCount.value },
+    () => [],
+  );
+  const heights = Array(columnCount.value).fill(0);
+  list.value.forEach((item, index) => {
+    const known = measured.get(item.id) ?? item.height ?? 0;
+    const minimum = Math.min(...heights);
+    const candidates = heights
+      .map((height, i) => (height === minimum ? i : -1))
+      .filter((i) => i >= 0);
+    const target = candidates[index % candidates.length] ?? 0;
+    result[target].push(item);
+    heights[target] += known;
+  });
+  return result;
+});
+watch(buckets, (value) => emit("layoutChange", value), { immediate: true });
+watch(
+  () => list.value.length,
+  () => {
+    endEmitted = false;
+    void nextTick(measureAll);
+  },
+);
+function setCard(item: WaterfallItem, element: Element | null) {
+  const previous = cardRefs.get(item.id);
+  if (previous) resizeObserver?.unobserve(previous);
+  if (!(element instanceof HTMLElement)) {
+    cardRefs.delete(item.id);
+    return;
   }
-  return buckets
-})
-
-const titleText = computed(() => props.title ?? t('component.waterfall.title'))
+  cardRefs.set(item.id, element);
+  resizeObserver?.observe(element);
+  measure(item.id, element);
+}
+function measure(id: string | number, element: HTMLElement) {
+  const height = element.getBoundingClientRect().height || element.offsetHeight;
+  if (height > 0 && measured.get(id) !== height) {
+    measured.set(id, height);
+    version.value++;
+  }
+}
+function measureAll() {
+  cardRefs.forEach((element, id) => measure(id, element));
+}
+function activate(item: WaterfallItem, event: MouseEvent | KeyboardEvent) {
+  if (!props.clickable || props.disabled || item.disabled) return;
+  if (event instanceof KeyboardEvent) event.preventDefault();
+  emit("update:modelValue", item.id);
+  emit("change", item.id);
+  emit("itemClick", item, event);
+  trackEmit({
+    component: "Waterfall",
+    type: "itemClick",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { id: item.id },
+  });
+}
+function imageDone(item: WaterfallItem, event: Event, failed = false) {
+  void nextTick(measureAll);
+  if (failed) emit("imageError", item, event);
+  else emit("imageLoad", item, event);
+}
+onMounted(() => {
+  if (typeof ResizeObserver !== "undefined")
+    resizeObserver = new ResizeObserver(measureAll);
+  if (typeof IntersectionObserver !== "undefined") {
+    endObserver = new IntersectionObserver((entries) => {
+      if (
+        entries.some((entry) => entry.isIntersecting) &&
+        !props.loading &&
+        !endEmitted
+      ) {
+        endEmitted = true;
+        emit("reachEnd");
+      }
+    });
+    if (sentinelRef.value) endObserver.observe(sentinelRef.value);
+  }
+  void nextTick(measureAll);
+});
+onUnmounted(() => {
+  resizeObserver?.disconnect();
+  endObserver?.disconnect();
+});
 </script>
-
 <template>
-  <div :class="['vp-waterfall', 'vp-waterfall__panel', { 'vp-waterfall--disabled': disabled }, props.class]" :style="style">
-    <h3 class="vp-waterfall__heading">{{ titleText }}</h3>
-    <div v-if="list.length" class="vp-waterfall__grid" :style="{ gridTemplateColumns: `repeat(${columns}, 1fr)` }">
-      <div v-for="(col, ci) in cols" :key="ci" class="vp-waterfall__col">
+  <section
+    :class="[
+      'vp-waterfall',
+      { 'vp-waterfall--disabled': disabled },
+      props.class,
+    ]"
+    :style="style"
+    :aria-busy="loading"
+    data-component="Waterfall"
+  >
+    <header
+      v-if="title || description || $slots.header"
+      class="vp-waterfall__header"
+    >
+      <slot name="header"
+        ><div>
+          <h3 v-if="title" class="vp-waterfall__heading">{{ title }}</h3>
+          <p v-if="description" class="vp-waterfall__description">
+            {{ description }}
+          </p>
+        </div></slot
+      >
+    </header>
+    <div
+      v-if="list.length"
+      class="vp-waterfall__grid"
+      :style="{ gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }"
+    >
+      <div
+        v-for="(column, columnIndex) in buckets"
+        :key="columnIndex"
+        class="vp-waterfall__column"
+      >
         <article
-          v-for="(item, i) in col"
-          :key="item.id ?? i"
-          class="vp-waterfall__card"
-          @click="emit('change', item)"
+          v-for="item in column"
+          :key="item.id"
+          :ref="(element) => setCard(item, element as Element | null)"
+          :class="[
+            'vp-waterfall__card',
+            {
+              'vp-waterfall__card--selected': modelValue === item.id,
+              'vp-waterfall__card--interactive':
+                clickable && !disabled && !item.disabled,
+              'vp-waterfall__card--disabled': item.disabled,
+            },
+          ]"
+          :role="clickable ? 'button' : undefined"
+          :tabindex="clickable && !disabled && !item.disabled ? 0 : undefined"
+          :aria-pressed="clickable ? modelValue === item.id : undefined"
+          @click="activate(item, $event)"
+          @keydown.enter="activate(item, $event)"
+          @keydown.space="activate(item, $event)"
         >
-          <img v-if="item.image" class="vp-waterfall__image" :src="item.image" :alt="item.title ?? ''" loading="lazy" />
-          <p v-if="item.title" class="vp-waterfall__title">{{ item.title }}</p>
+          <slot name="item" :item="item" :selected="modelValue === item.id"
+            ><img
+              v-if="item.image"
+              class="vp-waterfall__image"
+              :src="item.image"
+              :alt="item.alt ?? item.title ?? ''"
+              loading="lazy"
+              @load="imageDone(item, $event)"
+              @error="imageDone(item, $event, true)"
+            />
+            <div
+              v-if="item.title || item.description"
+              class="vp-waterfall__content"
+            >
+              <h4 v-if="item.title" class="vp-waterfall__title">
+                {{ item.title }}
+              </h4>
+              <p v-if="item.description" class="vp-waterfall__item-description">
+                {{ item.description }}
+              </p>
+            </div></slot
+          >
         </article>
       </div>
     </div>
-    <p v-else class="vp-waterfall__muted">{{ t('common.noData') }}</p>
-    <slot />
-  </div>
+    <div v-else-if="!loading" class="vp-waterfall__empty" role="status">
+      <slot name="empty">{{ emptyText ?? t("common.noData") }}</slot>
+    </div>
+    <div v-if="loading" class="vp-waterfall__loading" role="status">
+      {{ t("common.loading") }}
+    </div>
+    <div ref="sentinelRef" class="vp-waterfall__sentinel" aria-hidden="true" />
+  </section>
 </template>
-
-<style scoped>
-.vp-waterfall__grid {
-  display: grid;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-md);
-}
-.vp-waterfall__col {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-}
-.vp-waterfall__card {
-  background: var(--surface-1);
-  border: 1px solid var(--ds-border);
-  border-radius: var(--theme-card-radius);
-  overflow: hidden;
-  cursor: pointer;
-}
-.vp-waterfall__image {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-}
-.vp-waterfall__title {
-  margin: 0;
-  padding: var(--spacing-md);
-  font-size: var(--font-size-md);
-}
-</style>

@@ -1,6 +1,6 @@
 /**
  * Ant-style base component catalog for example debug shell.
- * Source: example/component-catalog.json (8 categories, 268 coverage).
+ * Source: example/component-catalog.json (8 categories, 285 coverage).
  */
 import catalog from './component-catalog.json'
 import { componentMaturity, type MaturityLevel } from './component-zones'
@@ -157,7 +157,7 @@ export function assertCatalogCoverage(expectedNames: string[]): {
 
 if (import.meta.env?.DEV) {
   const check = assertCatalogCoverage(allCatalogNames())
-  if (check.duplicates.length || check.total !== 267) {
+  if (check.duplicates.length || check.total !== 285) {
     console.warn('[component-catalog] coverage warning', check)
   }
 }

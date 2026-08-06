@@ -145,19 +145,8 @@
 .vp-split-video-wall__grid {
   display: grid;
   gap: var(--spacing-md);
+  grid-template-columns: repeat(var(--vp-split-video-wall-columns, 2), minmax(0, 1fr));
   min-height: 0;
-}
-
-.vp-split-video-wall__grid--1 {
-  grid-template-columns: 1fr;
-}
-
-.vp-split-video-wall__grid--4 {
-  grid-template-columns: 1fr 1fr;
-}
-
-.vp-split-video-wall__grid--9 {
-  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .vp-split-video-wall__cell {
@@ -165,18 +154,24 @@
   border: 1px solid var(--ds-border, var(--border-color));
   border-radius: var(--theme-card-radius, var(--border-radius-md));
   min-height: var(--height-lg, 3rem);
-  aspect-ratio: 16 / 9;
+  aspect-ratio: var(--vp-split-video-wall-aspect, 16 / 9);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--spacing-md);
   line-height: var(--line-height-body);
+  color: var(--text-secondary);
 }
 
 .vp-split-video-wall__cell--active {
   border-color: var(--primary-500);
   box-shadow: 0 0 0 1px var(--primary-500);
+}
+
+.vp-split-video-wall__cell:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--primary-500) 45%, transparent);
+  outline-offset: var(--spacing-xs);
 }
 
 .vp-split-video-wall__btn--active {

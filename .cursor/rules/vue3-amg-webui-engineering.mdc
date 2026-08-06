@@ -7,6 +7,8 @@ alwaysApply: true
 
 Docs: `docs/ENGINEERING.md` · plan: `docs/LIBRARY_PLAN.md` · telemetry: `docs/TELEMETRY.md`
 
+Skill Runtime: `docs/SKILL_RUNTIME.md` · locked rule: `vue3-amg-webui-skill-runtime.mdc`
+
 ## Scripts (required)
 | npm | purpose |
 |-----|---------|
@@ -16,10 +18,15 @@ Docs: `docs/ENGINEERING.md` · plan: `docs/LIBRARY_PLAN.md` · telemetry: `docs/
 | `validate:catalog` | catalog ↔ base coverage |
 | `score:maturity` | component depth score |
 | `generate:icons` | refresh icon catalog |
+| `build:skill` | build optional `amg-webui/skill` + `amg-webui/skill/core` entries |
 
 Files: `scripts/create-component.mjs` · `generate-entry.mjs` · `extract-i18n.mjs` · …
 
-Alias: `@amg-webui/telemetry` → `packages/telemetry/index.ts` (file path, avoid dual Vite instances).
+Aliases:
+- `@amg-webui/telemetry` → `packages/telemetry/index.ts` (file path, avoid dual Vite instances).
+- `@amg-webui/skill` → `packages/skill/index.ts`; Core resolves to `packages/skill/core.ts`.
+
+Public Skill exports are `amg-webui/skill` and `amg-webui/skill/core`. The root `packages/index.ts` must not export Skill symbols; `build:skill` owns their independent JS and declaration output.
 
 ## Performance (non-negotiable defaults)
 - **All list-like components** (DataTable, Tree, Select dropdown, infinite lists, virtualized menus): **virtual scroll ON by default** (opt-out only with explicit prop + docs warning).
@@ -27,6 +34,14 @@ Alias: `@amg-webui/telemetry` → `packages/telemetry/index.ts` (file path, avoi
 - Smaller bundles: runtime / component / style split; unplugin-vue-components (or equiv) resolver for consumers.
 - Unmount cleans listeners/timers; shallow reactive for large row arrays.
 - Telemetry **off by default**; when disabled, hot path early-return.
+- Skill Runtime remains fully opt-in: the root build must contain no Skill registration, plugin install, or initialization side effect.
+
+## Skill Runtime engineering boundary
+- `packages/components/**` never imports `packages/skill`; Skills interact only through public host capabilities and scoped events.
+- `packages/skill/core` is framework-neutral and has no direct dependency on components or `packages/telemetry`.
+- A future Observer → Telemetry bridge must be supplied through a consumer adapter/interface; do not import Telemetry from Skill Core.
+- Pipeline JSON v1 accepts declarative data and registered condition names only; never evaluate JSON text as JavaScript.
+- SR1/SR2 remain experimental until verified. **SR3 built-ins and the example page are not implemented yet.**
 
 ## When adding a list component
 Wire shared virtualizer hook first; never ship a full-DOM dump of unbounded data as default.

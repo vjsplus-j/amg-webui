@@ -1,106 +1,209 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { usePopover } from '@amg-webui/hooks'
-import { toISODate } from '@amg-webui/utils'
-import type { YearPickerProps, YearPickerEmits } from './types'
-import './style.scss'
+import { computed, nextTick, ref, watch } from "vue";
+import { useLocale, usePopover } from "@amg-webui/hooks";
+import { trackEmit } from "@amg-webui/telemetry";
+import { toISODate } from "@amg-webui/utils";
+import type { YearPickerEmits, YearPickerProps } from "./types";
+import "./style.scss";
 
 const props = withDefaults(defineProps<YearPickerProps>(), {
   modelValue: null,
-  valueFormat: 'number',
-  yearRange: 12
-})
-
-const emit = defineEmits<YearPickerEmits>()
-
-const { isOpen, triggerRef, panelRef, toggle, close } = usePopover()
-
-const selectedYear = computed(() => {
-  if (!props.modelValue) return null
-  if (typeof props.modelValue === 'number') return props.modelValue
-  if (props.modelValue instanceof Date) return props.modelValue.getFullYear()
-  const parsed = Number(String(props.modelValue).slice(0, 4))
-  return Number.isNaN(parsed) ? null : parsed
-})
-
+  valueFormat: "number",
+  yearRange: 12,
+  clearable: false,
+  readonly: false,
+  telemetry: undefined,
+});
+const emit = defineEmits<YearPickerEmits>();
+const { t } = useLocale();
+const { isOpen, triggerRef, panelRef, toggle, close, open } = usePopover();
+function yearOf(value: string | Date | number | null | undefined) {
+  if (value == null || value === "") return null;
+  if (typeof value === "number")
+    return Number.isFinite(value) ? Math.trunc(value) : null;
+  if (value instanceof Date)
+    return Number.isNaN(value.getTime()) ? null : value.getFullYear();
+  const parsed = Number(String(value).slice(0, 4));
+  return Number.isFinite(parsed) ? parsed : null;
+}
+const selectedYear = computed(() => yearOf(props.modelValue));
+const minYear = computed(() => yearOf(props.min));
+const maxYear = computed(() => yearOf(props.max));
+const rangeSize = computed(() =>
+  Math.min(60, Math.max(4, Math.floor(props.yearRange))),
+);
 const startYear = ref(
-  (selectedYear.value ?? new Date().getFullYear()) - Math.floor(props.yearRange / 2)
-)
-
+  (selectedYear.value ?? new Date().getFullYear()) -
+    Math.floor(rangeSize.value / 2),
+);
+const activeYear = ref(selectedYear.value ?? new Date().getFullYear());
+watch(selectedYear, (value) => {
+  if (value != null) activeYear.value = value;
+});
+watch(isOpen, (value) => emit("openChange", value));
 const years = computed(() =>
-  Array.from({ length: props.yearRange }, (_, i) => startYear.value + i)
-)
-
-const displayLabel = computed(() => {
-  if (selectedYear.value == null) return ''
-  return String(selectedYear.value)
-})
-
-const isPlaceholder = computed(() => props.modelValue == null && !!props.placeholder)
-
-const emitValue = (year: number) => {
-  let value: string | Date | number
-  if (props.valueFormat === 'number') {
-    value = year
-  } else if (props.valueFormat === 'date') {
-    value = new Date(year, 0, 1)
-  } else {
-    value = toISODate(new Date(year, 0, 1))
+  Array.from(
+    { length: rangeSize.value },
+    (_, index) => startYear.value + index,
+  ),
+);
+function disabledYear(year: number) {
+  return (
+    (minYear.value != null && year < minYear.value) ||
+    (maxYear.value != null && year > maxYear.value)
+  );
+}
+function choose(year: number) {
+  if (props.disabled || props.readonly || disabledYear(year)) return;
+  const date = new Date(year, 0, 1);
+  const value =
+    props.valueFormat === "number"
+      ? year
+      : props.valueFormat === "date"
+        ? date
+        : toISODate(date);
+  emit("update:modelValue", value);
+  emit("change", value);
+  close();
+  trackEmit({
+    component: "YearPicker",
+    type: "change",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { year },
+  });
+}
+function clearValue(event: MouseEvent) {
+  event.stopPropagation();
+  if (props.disabled || props.readonly) return;
+  emit("update:modelValue", null);
+  emit("change", null);
+  emit("clear");
+}
+function focusActive() {
+  panelRef.value
+    ?.querySelector<HTMLElement>(`[data-year="${activeYear.value}"]`)
+    ?.focus();
+}
+function ensureVisible(year: number) {
+  if (year < startYear.value || year >= startYear.value + rangeSize.value) {
+    startYear.value = year - Math.floor(rangeSize.value / 2);
   }
-  emit('update:modelValue', value)
-  emit('change', value)
-  close()
 }
-
-const prevRange = () => {
-  startYear.value -= props.yearRange
+function togglePanel() {
+  if (!props.disabled && !props.readonly) toggle();
 }
-
-const nextRange = () => {
-  startYear.value += props.yearRange
+function triggerKeydown(event: KeyboardEvent) {
+  if (props.disabled || props.readonly) return;
+  if (event.key === "ArrowDown") {
+    event.preventDefault();
+    open();
+    void nextTick(focusActive);
+  }
 }
-
-const handleTriggerClick = () => {
-  if (props.disabled) return
-  toggle()
+function gridKeydown(event: KeyboardEvent, year: number) {
+  let next = year;
+  if (event.key === "ArrowLeft") next--;
+  else if (event.key === "ArrowRight") next++;
+  else if (event.key === "ArrowUp") next -= 3;
+  else if (event.key === "ArrowDown") next += 3;
+  else if (event.key === "Home") next = years.value[0];
+  else if (event.key === "End") next = years.value.at(-1) ?? year;
+  else if (event.key === "PageUp") next -= rangeSize.value;
+  else if (event.key === "PageDown") next += rangeSize.value;
+  else if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    choose(year);
+    return;
+  } else return;
+  event.preventDefault();
+  activeYear.value = next;
+  ensureVisible(next);
+  void nextTick(focusActive);
 }
 </script>
 
 <template>
-  <div :class="['vp-yearpicker', props.class]" :style="style">
+  <div
+    :class="['vp-yearpicker', props.class]"
+    :style="style"
+    data-component="YearPicker"
+  >
     <button
       ref="triggerRef"
       type="button"
       class="vp-yearpicker__trigger"
       :disabled="disabled"
-      @click="handleTriggerClick"
+      :aria-label="ariaLabel ?? placeholder"
+      aria-haspopup="dialog"
+      :aria-expanded="isOpen"
+      @click="togglePanel"
+      @keydown="triggerKeydown"
+      @focus="emit('focus', $event)"
+      @blur="emit('blur', $event)"
     >
       <span
-        :class="['vp-yearpicker__label', { 'vp-yearpicker__label--placeholder': isPlaceholder }]"
+        :class="[
+          'vp-yearpicker__label',
+          { 'vp-yearpicker__label--placeholder': modelValue == null },
+        ]"
       >
-        {{ isPlaceholder ? placeholder : displayLabel }}
-      </span>
-      <span aria-hidden="true">v</span>
+        {{ modelValue == null ? placeholder : selectedYear }} </span
+      ><span aria-hidden="true">⌄</span>
     </button>
-
-    <div v-if="isOpen" ref="panelRef" class="vp-yearpicker__panel">
+    <button
+      v-if="clearable && modelValue != null"
+      type="button"
+      class="vp-yearpicker__clear"
+      :disabled="disabled || readonly"
+      :aria-label="t('button.reset')"
+      @click="clearValue"
+    >
+      ×
+    </button>
+    <div
+      v-if="isOpen"
+      ref="panelRef"
+      class="vp-yearpicker__panel"
+      role="dialog"
+      :aria-label="ariaLabel ?? placeholder"
+    >
       <div class="vp-yearpicker__header">
-        <span>{{ years[0] }} –{{ years[years.length - 1] }}</span>
+        <strong>{{ years[0] }} – {{ years.at(-1) }}</strong>
         <div class="vp-yearpicker__nav">
-          <button type="button" class="vp-yearpicker__nav-btn" @click="prevRange">‹</button>
-          <button type="button" class="vp-yearpicker__nav-btn" @click="nextRange">›</button>
+          <button
+            type="button"
+            :disabled="minYear != null && years[0] <= minYear"
+            @click="startYear -= rangeSize"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            :disabled="maxYear != null && (years.at(-1) ?? 0) >= maxYear"
+            @click="startYear += rangeSize"
+          >
+            ›
+          </button>
         </div>
       </div>
-      <div class="vp-yearpicker__grid">
+      <div class="vp-yearpicker__grid" role="grid">
         <button
           v-for="year in years"
           :key="year"
           type="button"
+          :data-year="year"
           :class="[
             'vp-yearpicker__year',
-            { 'vp-yearpicker__year--selected': year === selectedYear }
+            { 'vp-yearpicker__year--selected': selectedYear === year },
           ]"
-          @click="emitValue(year)"
+          :disabled="disabledYear(year)"
+          :tabindex="year === activeYear ? 0 : -1"
+          role="gridcell"
+          :aria-selected="selectedYear === year"
+          @focus="activeYear = year"
+          @click="choose(year)"
+          @keydown="gridKeydown($event, year)"
         >
           {{ year }}
         </button>

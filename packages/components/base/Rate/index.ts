@@ -1,6 +1,4 @@
-import Comp from './index.vue'
-import type { RateProps } from './types'
-
-export { Comp as Rate }
-export type { RateProps }
-export default Comp
+import Comp from "./index.vue";
+export { Comp as Rate };
+export type { RateProps, RateEmits, RateSize } from "./types";
+export default Comp;

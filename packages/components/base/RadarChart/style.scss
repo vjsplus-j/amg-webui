@@ -34,6 +34,28 @@
     display: block;
   }
 
+  &__point {
+    fill: var(--surface-0, var(--surface-1));
+    stroke: var(--primary-500);
+    stroke-width: 2;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: none;
+      filter: drop-shadow(0 0 var(--spacing-xs) var(--primary-500));
+    }
+  }
+
+  &__point--selected {
+    fill: var(--primary-500);
+  }
+
+  &__value {
+    fill: var(--text-secondary);
+    font-size: var(--font-size-xs);
+    pointer-events: none;
+  }
+
   &__toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -44,5 +66,9 @@
   &--disabled {
     opacity: 0.55;
     pointer-events: none;
+  }
+
+  &--loading {
+    cursor: progress;
   }
 }

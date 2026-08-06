@@ -7,23 +7,40 @@ import './style.scss'
 const props = withDefaults(defineProps<AffixProps>(), {
   offsetTop: 0,
   disabled: false,
+  placeholder: true,
+  ariaLive: 'off',
   telemetry: undefined
 })
 
 const emit = defineEmits<AffixEmits>()
 const contentRef = ref<HTMLElement | null>(null)
 
-const { affixed, placeholderHeight, placeholderWidth, fixedStyle } = useAffix(
+const { affixed, placeholderHeight, placeholderWidth, fixedStyle, update } = useAffix(
   props,
   contentRef,
-  (value) => emit('change', value),
+  (value) => {
+    emit('update:modelValue', value)
+    emit('change', value)
+  },
   (payload) => emit('scroll', payload)
 )
 
+const visibleAffixed = computed(() => props.modelValue ?? affixed.value)
+const isFixed = computed(() => visibleAffixed.value && !props.disabled)
 const rootStyle = computed(() => ({
   ...props.style,
   ...(props.zIndex !== undefined ? { '--vp-affix-z-index': String(props.zIndex) } : {})
 }))
+
+function handleFocus(event: FocusEvent) {
+  emit('focus', event)
+}
+
+function handleBlur(event: FocusEvent) {
+  emit('blur', event)
+}
+
+defineExpose({ update, affixed: visibleAffixed })
 </script>
 
 <template>
@@ -32,9 +49,13 @@ const rootStyle = computed(() => ({
     :class="props.class"
     :style="rootStyle"
     data-component="Affix"
+    :data-affixed="isFixed"
+    :aria-live="ariaLive"
+    @focusin="handleFocus"
+    @focusout="handleBlur"
   >
     <div
-      v-if="affixed && !disabled"
+      v-if="isFixed && placeholder"
       class="vp-affix__placeholder"
       :style="{
         width: `${placeholderWidth}px`,
@@ -45,10 +66,16 @@ const rootStyle = computed(() => ({
     <div
       ref="contentRef"
       class="vp-affix__content"
-      :class="{ 'vp-affix__content--fixed': affixed && !disabled, 'vp-affix--fixed': affixed && !disabled }"
-      :style="affixed && !disabled ? fixedStyle : undefined"
+      :class="[
+        {
+          'vp-affix__content--fixed': isFixed,
+          'vp-affix--fixed': isFixed
+        },
+        isFixed ? affixedClass : undefined
+      ]"
+      :style="isFixed ? fixedStyle : undefined"
     >
-      <slot />
+      <slot :affixed="isFixed" :update="update" />
     </div>
   </div>
 </template>

@@ -2,24 +2,24 @@
 /**
  * Curated demo — Form wave2 MonthPicker
  */
-import { computed, ref } from 'vue'
-import { MonthPicker, Space } from '@amg-webui/components/base'
-import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
-import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
-import '../../components/demo/curatedDemo.scss'
+import { computed, ref } from "vue";
+import { MonthPicker, Space } from "@amg-webui/components/base";
+import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
+import DemoBlock from "../../components/demo/DemoBlock.vue";
+import PropsTable from "../../components/demo/PropsTable.vue";
+import { demoCode, demoSfc } from "../../components/demo/demoCode";
+import type { ApiRow, PropRow } from "../../components/demo/types";
+import "../../components/demo/curatedDemo.scss";
 
-const { t } = useLocale()
-const month = ref<string | null>('2026-07-01')
-const empty = ref<string | null>(null)
+const { t } = useLocale();
+const month = ref<string | null>("2026-07-01");
+const empty = ref<string | null>(null);
 
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { MonthPicker } from '@amg-webui/components/base'`
+    `import { MonthPicker } from '@amg-webui/components/base'`,
   ],
   script: [`const month = ref('2026-07-01')`],
   template: [
@@ -27,50 +27,68 @@ const codeBasic = demoSfc({
     `    v-model="month"`,
     `    value-format="iso"`,
     `    :placeholder="t('example.doc.monthPicker.sample.placeholder')"`,
-    `  />`
-  ]
-})
+    `  />`,
+  ],
+});
 
 const codeDisabled = demoCode(
   `<MonthPicker v-model="empty" :placeholder="t('example.doc.monthPicker.sample.placeholder')" />`,
-  `<MonthPicker v-model="month" disabled />`
-)
+  `<MonthPicker v-model="month" disabled />`,
+);
 
 const propRows = computed<PropRow[]>(() => [
   {
-    name: 'modelValue',
-    description: t('example.doc.monthPicker.prop.modelValue'),
-    type: 'string | Date | null',
-    defaultValue: 'null'
+    name: "modelValue",
+    description: t("example.doc.monthPicker.prop.modelValue"),
+    type: "string | Date | null",
+    defaultValue: "null",
   },
   {
-    name: 'placeholder',
-    description: t('example.doc.monthPicker.prop.placeholder'),
-    type: 'string',
-    defaultValue: '—'
+    name: "placeholder",
+    description: t("example.doc.monthPicker.prop.placeholder"),
+    type: "string",
+    defaultValue: "—",
   },
   {
-    name: 'valueFormat',
-    description: t('example.doc.monthPicker.prop.valueFormat'),
+    name: "valueFormat",
+    description: t("example.doc.monthPicker.prop.valueFormat"),
     type: "'date' | 'iso'",
-    defaultValue: "'iso'"
+    defaultValue: "'iso'",
   },
   {
-    name: 'disabled',
-    description: t('example.doc.monthPicker.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
+    name: "disabled",
+    description: t("example.doc.monthPicker.prop.disabled"),
+    type: "boolean",
+    defaultValue: "false",
+  },
+  {
+    name: "min / max",
+    description: t("example.doc.monthPicker.prop.valueFormat"),
+    type: "string | Date",
+    defaultValue: "—",
+  },
+  {
+    name: "clearable / readonly",
+    description: t("example.doc.monthPicker.prop.disabled"),
+    type: "boolean",
+    defaultValue: "false",
+  },
+]);
 
 const eventRows = computed<ApiRow[]>(() => [
   {
-    name: 'update:modelValue / change',
-    description: t('example.doc.monthPicker.event.change'),
-    type: '(value: string | Date | null) => void',
-    defaultValue: '-'
-  }
-])
+    name: "update:modelValue / change",
+    description: t("example.doc.monthPicker.event.change"),
+    type: "(value: string | Date | null) => void",
+    defaultValue: "-",
+  },
+  {
+    name: "clear / openChange / focus / blur",
+    description: t("example.doc.monthPicker.event.change"),
+    type: "events",
+    defaultValue: "-",
+  },
+]);
 </script>
 
 <template>
@@ -85,6 +103,9 @@ const eventRows = computed<ApiRow[]>(() => [
         <MonthPicker
           v-model="month"
           value-format="iso"
+          min="2025-01-01"
+          max="2027-12-01"
+          clearable
           :placeholder="t('example.doc.monthPicker.sample.placeholder')"
         />
       </div>

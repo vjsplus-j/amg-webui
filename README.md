@@ -2,7 +2,7 @@
 
 > **对标 Element Plus，超越 Element Plus —— 成为最强的国产 WebUI 库。**
 
-Vue 3 组件库 — packages 单体架构；六套 designmd 锁定主题；base / business 分层隔离；可选 **Vp Telemetry** 交互观测内核。  
+Vue 3 组件库 — packages 单体架构；六套 designmd 锁定主题；base / business 分层隔离；可选 **Vp Telemetry** 交互观测内核；实验性、独立可选的 **Skill Runtime**。
 愿景：[`docs/VISION.md`](./docs/VISION.md) · 深度超车：[`docs/OVERTAKE_ELEMENT_PLUS.md`](./docs/OVERTAKE_ELEMENT_PLUS.md)
 
 ## 当前版本：0.1.0（试用）
@@ -10,7 +10,7 @@ Vue 3 组件库 — packages 单体架构；六套 designmd 锁定主题；base 
 | 项 | 说明 |
 |----|------|
 | npm SemVer | **`0.1.0`** — **不是**正式 1.0 |
-| 承诺范围 | **v0.1 精选子集**（约 128 组件）· [`docs/V0_1_SUBSET.md`](./docs/V0_1_SUBSET.md) |
+| 承诺范围 | **v0.1.3 精选子集**（Core∪B1–B4 去重 **140** 组件）· [`docs/V0_1_SUBSET.md`](./docs/V0_1_SUBSET.md) |
 | API | **可变**；破坏性变更记 CHANGELOG |
 | 子集外 | experimental，不作稳定承诺 |
 | 发包说明 | [`docs/RELEASE_0.1.md`](./docs/RELEASE_0.1.md) |
@@ -27,6 +27,15 @@ import { Button, ThemeService } from 'amg-webui'
 
 本地打库：`npm run build:lib` → `dist/`。
 
+### Skill Runtime（experimental）
+
+- `amg-webui/skill`：Core + Vue 集成（插件、`AmgSkillScope`、`v-skill`）。
+- `amg-webui/skill/core`：框架无关 Core 与 Pipeline JSON v1。
+- 根入口 `amg-webui` **不导出** Skill Runtime；只有显式导入上述子路径时才进入应用依赖图。
+- SR1 / SR2 experimental 最小基线已实现并通过当前类型、单测、构建与包形基础门禁；这不等于 stable，稳定化 DoD 继续按规范推进。SR3 官方内置 Skill 与 example 调试页尚未实现。
+
+当前 API 不属于 0.1 稳定承诺，1.0 前可能调整。权威规范见 [`docs/SKILL_RUNTIME.md`](./docs/SKILL_RUNTIME.md)，使用说明见 [`packages/skill/README.md`](./packages/skill/README.md)。
+
 ## 根目录
 
 ```
@@ -37,6 +46,7 @@ VUE3-AMG-WEBUI/
 │   ├── components/base/        # 纯 UI（含通用区 Button / CardWidgets / CopyText …）
 │   ├── components/business/  # 五大业务域
 │   ├── telemetry/              # Vp Telemetry 交互观测内核（默认关闭）
+│   ├── skill/                  # Skill Runtime（experimental；独立可选子路径）
 │   ├── theme/ · hooks/ · locale/ · icons/ · animations/ · utils/ · types/
 ├── example/                       # 开发调试工具（仅本地，不上线）
 │   ├── pages/                  # 七大专区：base / biz / theme / i18n / perf / lab / dev
@@ -79,13 +89,14 @@ TelemetryService.configure({
 })
 ```
 
-子路径导出见 `package.json` → `exports`：`.` · `./style.css` · `./telemetry` · `./theme` · `./icons` · `./components/base` · `./components/business`。
+子路径导出见 `package.json` → `exports`：`.` · `./style.css` · `./telemetry` · `./theme` · `./icons` · `./components/base` · `./components/business` · experimental `./skill` · `./skill/core`。Skill Runtime 不从 `.` 导出。
 
 ## 近期能力（摘要）
 
 | 能力 | 说明 | 文档 |
 |------|------|------|
 | **Vp Telemetry** | 默认关闭的交互事件缓冲 + Sink + 习惯/告警/错误分析 | [`docs/TELEMETRY.md`](./docs/TELEMETRY.md) |
+| **Skill Runtime（experimental）** | 独立子路径、实例隔离、Scope 与 Pipeline JSON v1；SR3 built-ins / example 尚未实现 | [`docs/SKILL_RUNTIME.md`](./docs/SKILL_RUNTIME.md) |
 | **通用区组件** | Button / Link / Tag / Avatar… + Space / Spin / CopyText / Collapse / Statistic / CardWidgets（ABCD 拖拽互换）等 | example `base` 目录 · catalog |
 | **事件契约** | 交互组件旁路 `trackEmit`；业务 `emit` 保留（Badge click、FloatButton openChange、Progress finish…） | TELEMETRY · 各组件 types |
 | **工程脚本** | `create:component` · `generate:entry` · `extract:i18n` · `validate:catalog` · `score:maturity` … | [`docs/ENGINEERING.md`](./docs/ENGINEERING.md) |
@@ -98,6 +109,7 @@ TelemetryService.configure({
 | **六大维度深度超车 EP** | [`docs/OVERTAKE_ELEMENT_PLUS.md`](./docs/OVERTAKE_ELEMENT_PLUS.md) | `vue3-amg-webui-overtake.mdc` |
 | **总计划（200+ 库必备条件）** | [`docs/LIBRARY_PLAN.md`](./docs/LIBRARY_PLAN.md) | `vue3-amg-webui-library-plan.mdc` |
 | **交互观测 Vp Telemetry** | [`docs/TELEMETRY.md`](./docs/TELEMETRY.md) | `vue3-amg-webui-telemetry.mdc` |
+| **Skill Runtime（experimental）** | [`docs/SKILL_RUNTIME.md`](./docs/SKILL_RUNTIME.md) · [`packages/skill/README.md`](./packages/skill/README.md) | `vue3-amg-webui-skill-runtime.mdc` |
 | **Theme Studio（自定义主题工具）** | [`docs/THEME_STUDIO.md`](./docs/THEME_STUDIO.md) | `vue3-amg-webui-theme-studio.mdc` |
 | **工程脚本 · 性能默认** | [`docs/ENGINEERING.md`](./docs/ENGINEERING.md) | `vue3-amg-webui-engineering.mdc` |
 | 目录与包边界 | README / [`packages/README.md`](./packages/README.md) | `vue3-amg-webui-structure.mdc` |

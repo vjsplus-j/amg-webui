@@ -2,25 +2,30 @@
 /**
  * Curated demo — feedback wave1 Result
  */
-import { computed } from 'vue'
-import { Result, Button } from '@amg-webui/components/base'
-import type { ResultStatus } from '@amg-webui/components/base/Result/types'
-import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
-import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
-import '../../components/demo/curatedDemo.scss'
+import { computed } from "vue";
+import { Result, Button } from "@amg-webui/components/base";
+import type { ResultStatus } from "@amg-webui/components/base/Result/types";
+import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
+import DemoBlock from "../../components/demo/DemoBlock.vue";
+import PropsTable from "../../components/demo/PropsTable.vue";
+import { demoCode, demoSfc } from "../../components/demo/demoCode";
+import type { ApiRow, PropRow } from "../../components/demo/types";
+import "../../components/demo/curatedDemo.scss";
 
-const { t } = useLocale()
-const statuses: ResultStatus[] = ['success', 'warning', 'error', 'info']
-const subKey: Record<ResultStatus, string> = {
-  success: 'example.doc.result.sample.sub',
-  warning: 'example.doc.result.sample.subWarning',
-  error: 'example.doc.result.sample.subError',
-  info: 'example.doc.result.sample.subInfo'
-}
+const { t } = useLocale();
+const statuses = [
+  "success",
+  "warning",
+  "error",
+  "info",
+] as const satisfies readonly ResultStatus[];
+const subKey: Record<(typeof statuses)[number], string> = {
+  success: "example.doc.result.sample.sub",
+  warning: "example.doc.result.sample.subWarning",
+  error: "example.doc.result.sample.subError",
+  info: "example.doc.result.sample.subInfo",
+};
 
 const codeBasic = demoSfc({
   imports: [`import { Result, Button } from '@amg-webui/components/base'`],
@@ -29,49 +34,49 @@ const codeBasic = demoSfc({
     `    <template #extra>`,
     `      <Button size="sm" severity="primary">{{ t('button.continue') }}</Button>`,
     `    </template>`,
-    `  </Result>`
-  ]
-})
+    `  </Result>`,
+  ],
+});
 
 const codeStatus = demoCode(
   `<Result status="success" :sub-title="t('example.doc.result.sample.sub')" />`,
   `<Result status="warning" :sub-title="t('example.doc.result.sample.subWarning')" />`,
   `<Result status="error" :sub-title="t('example.doc.result.sample.subError')" />`,
-  `<Result status="info" :sub-title="t('example.doc.result.sample.subInfo')" />`
-)
+  `<Result status="info" :sub-title="t('example.doc.result.sample.subInfo')" />`,
+);
 
 const propRows = computed<PropRow[]>(() => [
   {
-    name: 'status',
-    description: t('example.doc.result.prop.status'),
+    name: "status",
+    description: t("example.doc.result.prop.status"),
     type: "'success' | 'warning' | 'error' | 'info'",
-    defaultValue: "'info'"
+    defaultValue: "'info'",
   },
   {
-    name: 'title / subTitle',
-    description: t('example.doc.result.prop.title'),
-    type: 'string',
-    defaultValue: '—'
-  }
-])
+    name: "title / subTitle",
+    description: t("example.doc.result.prop.title"),
+    type: "string",
+    defaultValue: "—",
+  },
+]);
 
 const eventRows = computed<ApiRow[]>(() => [
   {
-    name: 'extra-click',
-    description: t('example.doc.result.event.extraClick'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  }
-])
+    name: "extra-click",
+    description: t("example.doc.result.event.extraClick"),
+    type: "(event: MouseEvent) => void",
+    defaultValue: "-",
+  },
+]);
 
 const slotRows = computed<ApiRow[]>(() => [
   {
-    name: 'icon / title / subTitle / extra / default',
-    description: t('example.doc.result.slot.extra'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
+    name: "icon / title / subTitle / extra / default",
+    description: t("example.doc.result.slot.extra"),
+    type: "VNode",
+    defaultValue: "-",
+  },
+]);
 </script>
 
 <template>
@@ -83,7 +88,10 @@ const slotRows = computed<ApiRow[]>(() => [
       default-open
     >
       <div class="vp-curated__row">
-        <Result status="success" :sub-title="t('example.doc.result.sample.sub')">
+        <Result
+          status="success"
+          :sub-title="t('example.doc.result.sample.sub')"
+        >
           <template #extra>
             <Button size="sm" variant="solid" severity="primary">
               {{ t(LocaleKeys.button.continue) }}

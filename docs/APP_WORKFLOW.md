@@ -93,7 +93,7 @@ example/pages/
 └── dev/                      # 七、开发辅助
 ```
 
-**base 专区（Ant 式）：** 侧栏按「通用 / 布局 / 导航 / 数据录入 / 数据展示 / 反馈 / 其他 / 行业」分组；`example/component-catalog.json` 全量 **272**；文档骨架见 `DemoBlock` · `PropsTable` · `ComponentDocPage`。旧 zone 路径 redirect 到 `/base/overview`。
+**base 专区（Ant 式）：** 侧栏按「通用 / 布局 / 导航 / 数据录入 / 数据展示 / 反馈 / 其他 / 行业」分组；`example/component-catalog.json` 当前全量 **285**；文档骨架见 `DemoBlock` · `PropsTable` · `ComponentDocPage`。旧 zone 路径 redirect 到 `/base/overview`。
 
 通用区（`general`）近期加深：Space · Spin · CopyText · Collapse · Statistic · **CardWidgets**（ABCD DnD）等；交互件可挂 `trackId` / Telemetry。
 

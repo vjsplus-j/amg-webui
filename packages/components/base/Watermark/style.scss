@@ -1,28 +1,18 @@
 .vp-watermark {
+  --vp-watermark-z: 1;
   position: relative;
   display: block;
   width: 100%;
-  height: 100%;
-  --vp-watermark-gap-x: var(--spacing-2xl);
-  --vp-watermark-gap-y: var(--spacing-2xl);
-  --vp-watermark-rotate: -22deg;
-  --vp-watermark-font-size: var(--font-size-sm);
-  --vp-watermark-opacity: 0.15;
-  --vp-watermark-z: 1;
-}
-
-.vp-watermark__canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: var(--vp-watermark-z);
-  background-repeat: repeat;
-  background-position: 0 0;
-}
-
-.vp-watermark__content {
-  position: relative;
-  z-index: 0;
+  min-width: 0;
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: var(--vp-watermark-z);
+    pointer-events: none;
+    background-repeat: repeat;
+  }
+  &__content {
+    position: relative;
+    z-index: 0;
+  }
 }

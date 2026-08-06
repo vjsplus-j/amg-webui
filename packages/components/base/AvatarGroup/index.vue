@@ -8,6 +8,7 @@ import {
   Fragment,
   Comment,
   Text,
+  type Slot,
   type VNode
 } from 'vue'
 import type { AvatarGroupProps } from './types'
@@ -36,11 +37,14 @@ const props = withDefaults(
   }
 )
 
-/** Inline tuple emits â€?Vite compiler-sfc fails on imported emit type aliases */
+/** Inline tuple emits: Vite compiler-sfc fails on imported emit type aliases. */
 const emit = defineEmits<{
   overflowClick: [event: MouseEvent]
 }>()
-const slots = useSlots()
+const slots = useSlots() as Readonly<{
+  default?: Slot
+  overflowTooltip?: Slot
+}>
 const { t } = useLocale()
 const globalConfig = inject(AVATAR_GROUP_CONFIG_KEY, {})
 

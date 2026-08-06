@@ -43,6 +43,9 @@
   &__btn,
   &__action {
     appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid transparent;
     background: var(--primary-500);
     color: var(--surface-0, var(--surface-1));
@@ -51,6 +54,23 @@
     padding: 0 var(--spacing-lg);
     cursor: pointer;
     font-size: var(--font-size-sm);
+    line-height: var(--line-height-body);
+    text-decoration: none;
+
+    &:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+
+  &__action--ghost {
+    background: var(--surface-0, var(--surface-1));
+    border-color: var(--ds-border, var(--border-color));
+    color: var(--text-primary);
+  }
+
+  &__action--active {
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-500) 35%, transparent);
   }
 
   &__code {
@@ -61,7 +81,9 @@
 
   &--disabled {
     opacity: 0.55;
-    pointer-events: none;
+  }
+
+  &--loading {
+    cursor: progress;
   }
 }
-

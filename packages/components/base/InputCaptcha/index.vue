@@ -9,7 +9,10 @@ import './style.scss'
 
 const props = withDefaults(defineProps<InputCaptchaProps>(), {
   modelValue: '',
-  length: 4
+  length: 4,
+  caseSensitive: false,
+  refreshDelay: 300,
+  showRefreshButton: false
 })
 
 const emit = defineEmits<InputCaptchaEmits>()
@@ -22,13 +25,16 @@ let refreshTimer: ReturnType<typeof setTimeout> | null = null
 const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
 
 const generateCode = () => {
-  let next = ''
-  for (let i = 0; i < props.length; i++) {
-    next += chars[Math.floor(Math.random() * chars.length)]
+  let next = props.generator?.(props.length) ?? ''
+  if (!next) {
+    for (let i = 0; i < props.length; i++) {
+      next += chars[Math.floor(Math.random() * chars.length)]
+    }
   }
-  code.value = next
+  code.value = next.slice(0, props.length)
   drawCaptcha()
   emit('refresh')
+  emit('generated', code.value)
 }
 
 const drawCaptcha = () => {
@@ -65,14 +71,16 @@ const drawCaptcha = () => {
 
 const refreshDebounced = () => {
   if (refreshTimer) clearTimeout(refreshTimer)
-  refreshTimer = setTimeout(generateCode, 300)
+  refreshTimer = setTimeout(generateCode, Math.max(0, props.refreshDelay))
 }
 
 const onInput = (val: string) => {
   emit('update:modelValue', val)
   emit('change', val)
   if (val.length >= props.length) {
-    const valid = val.toUpperCase() === code.value
+    const valid = props.caseSensitive
+      ? val === code.value
+      : val.toUpperCase() === code.value.toUpperCase()
     emit('verify', valid)
   }
 }
@@ -92,6 +100,7 @@ watch(() => props.length, generateCode)
       :model-value="modelValue"
       :disabled="disabled"
       :maxlength="length"
+      :aria-label="ariaLabel"
       :placeholder="t(LocaleKeys.auth.captcha)"
       @update:model-value="onInput"
     />
@@ -106,6 +115,7 @@ watch(() => props.length, generateCode)
       <canvas ref="canvasRef" class="vp-input-captcha__canvas" width="120" height="40" />
     </button>
     <Button
+      v-if="showRefreshButton"
       variant="outlined"
       size="sm"
       :label="t(LocaleKeys.button.refresh)"

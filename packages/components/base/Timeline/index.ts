@@ -1,5 +1,5 @@
-import Comp from './index.vue'
-export { Comp as Timeline }
+import Comp from "./index.vue";
+export { Comp as Timeline };
 export type {
   TimelineProps,
   TimelineMode,
@@ -7,7 +7,10 @@ export type {
   TimelineItemProps,
   TimelineItemSide,
   TimelineItemTimestampPlacement,
-  TimelineItemColor
-} from './types'
-export { TIMELINE_INJECTION_KEY } from './types'
-export default Comp
+  TimelineItemColor,
+  TimelineKey,
+  TimelineEmits,
+  TimelineItemEmits,
+} from "./types";
+export { TIMELINE_INJECTION_KEY } from "./types";
+export default Comp;

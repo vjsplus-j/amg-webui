@@ -100,7 +100,7 @@ const iconTokenSize = computed(() => props.iconSize ?? resolvedSize.value)
 const titleAttr = computed(() => {
   if (isDisabled.value && props.disabledTitle) return props.disabledTitle
   if (disableByPermission.value && props.permissionTip) return props.permissionTip
-  return undefined
+  return props.title
 })
 
 const safeHref = computed(() => {
@@ -330,6 +330,8 @@ function handleKeydown(event: KeyboardEvent) {
             :aria-disabled="isDisabled || isReadonly ? true : undefined"
             :aria-busy="isLoading ? true : undefined"
             :aria-label="resolvedAriaLabel"
+            :aria-expanded="ariaExpanded"
+            :aria-pressed="ariaPressed"
             :aria-readonly="isReadonly ? true : undefined"
             :title="titleAttr"
             :style="buttonStyle"
@@ -433,6 +435,8 @@ function handleKeydown(event: KeyboardEvent) {
         :aria-disabled="isDisabled || isReadonly ? true : undefined"
         :aria-busy="isLoading ? true : undefined"
         :aria-label="resolvedAriaLabel"
+        :aria-expanded="ariaExpanded"
+        :aria-pressed="ariaPressed"
         :aria-readonly="isReadonly ? true : undefined"
         :title="titleAttr"
         :style="buttonStyle"

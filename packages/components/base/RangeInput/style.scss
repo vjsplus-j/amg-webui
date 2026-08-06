@@ -9,6 +9,10 @@
     min-width: 0;
   }
 
+  &--invalid &__sep {
+    color: var(--status-danger, var(--danger-500));
+  }
+
   &__sep {
     color: var(--text-secondary);
     flex-shrink: 0;

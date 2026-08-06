@@ -4,6 +4,29 @@
 
 ---
 
+## 2026-08-05 — Skill Runtime SR1 / SR2（experimental）
+
+- 新增独立可选 `packages/skill`，根 `amg-webui` 入口不导出；公开子路径为 `amg-webui/skill` 与 `amg-webui/skill/core`。
+- 落地 Unit / Context / Runtime / Scope、Adapter / Observer、请求取消、有限重试、幂等 teardown 与异步卸载竞态处理。
+- Pipeline JSON v1 支持顺序、并行、命名条件、重试与 fallback；禁止 `eval` / `new Function`，配置仅接收 JSON 值。
+- Vue 层提供 `createSkillPlugin`、`AmgSkillScope` 与 `v-skill`；新增独立 ESM/CJS/types 构建与生命周期 / 隔离 / Pipeline / Vue 单测。
+- 收紧迟到 setup 结果、并发 dispose、Scope 句柄释放、并行 retry、fallback 错误分类、显式 host 与默认错误脱敏边界；当前基础门禁记录见 `docs/SKILL_RUNTIME.md` §11。
+- SR3 官方 built-ins、Telemetry bridge、DevTools 与 example Skill Lab 尚未实现，不纳入 0.1 稳定承诺。
+
+---
+
+## 2026-08-03 — example 样式收口与 shell 清零
+
+- example 删除未使用的 `styles/layout.scss`；全局入口只加载库动画，不再维护第二套布局组件样式。
+- AppHeader / AppShell / ComponentGallery / DemoBlock / MotionLivePanel 改用库内 Search、Select、Button、Avatar，移除输入、下拉、按钮的重复样式和深层覆盖。
+- CategoryNav、FooterNav、IndexNav、MiniNav、QuickNav、VerticalStepNav 从 TopNav/StepNav 薄转发升级为独立 API、交互、Token 样式、A11Y 与 Telemetry 实现。
+- Tabs/TabPane 改为面板注册机制，修复多 Tabs ID 冲突及销毁后槽内容丢失；补 `destroyInactive`、生命周期事件和唯一 ARIA 关联。
+- TelemetryProvider 支持响应式配置、卸载恢复和生命周期追踪；MessageBox 补焦点陷阱、自动聚焦、异步 validator/beforeClose、关闭原因及命令式 Promise 收口。
+- Barcode 从伪 Code128 条纹升级为标准编码内核，新增 EAN/UPC、GS1-128、ITF-14、ISBN/ISSN、GS1 DataBar 及工业码等 17 种一维码制；example 同屏展示国标与国际码制并校验非法内容。
+- Qrcode 从伪矩阵升级为标准 QR Code 编码，新增国标 GB/T 18284、国际 ISO/IEC 18004、日本 JIS X 0510 与美标 AIM ISS QR Code profile；example 同屏展示四类二维码并支持纠错等级切换。
+- 新增 MatrixCode 二维条码组件，覆盖 QR/Micro QR/rMQR/GS1/HIBC/Swiss QR、Data Matrix/DMRE/GS1/HIBC、PDF417/MicroPDF417/HIBC、Aztec、MaxiCode、Han Xin、Code One、DotCode、Code 49、Code 16K、Codablock F、Ultracode 等 34 种矩阵式、堆叠式与行业 profile 码制；example 同屏展示完整格式族。
+- 成熟度：stub **0** / shell **0** / beta **140** / ready **145**；新增 shell、条码与二维码标准测试。
+
 ## 2026-07-15（晚）— play → example 更名
 
 - 调试壳目录：`play/` → **`example/`**

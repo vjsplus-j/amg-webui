@@ -6,6 +6,16 @@
   gap: var(--spacing-md);
   padding: var(--theme-page-pad);
 
+  &__visual {
+    display: grid;
+    place-items: center;
+    width: calc(var(--spacing-2xl) * 2);
+    height: calc(var(--spacing-2xl) * 2);
+    color: var(--primary-500);
+    background: color-mix(in srgb, var(--primary-500) 10%, var(--surface-1));
+    border-radius: var(--border-radius-full);
+  }
+
   &__code {
     margin: 0;
     font-size: var(--font-size-2xl);
@@ -34,5 +44,29 @@
     gap: var(--spacing-md);
     justify-content: center;
     margin-top: var(--spacing-sm);
+  }
+
+  &__details {
+    width: min(100%, calc(var(--spacing-2xl) * 8));
+    padding: var(--spacing-md);
+    color: var(--text-secondary);
+    text-align: left;
+    background: var(--surface-2);
+    border: 1px solid var(--ds-border);
+    border-radius: var(--theme-card-radius);
+  }
+
+  &--compact {
+    align-items: flex-start;
+    padding: var(--theme-card-pad);
+    text-align: left;
+
+    .vp-exception__visual {
+      width: var(--height-lg);
+      height: var(--height-lg);
+    }
+    .vp-exception__actions {
+      justify-content: flex-start;
+    }
   }
 }

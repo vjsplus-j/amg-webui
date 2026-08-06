@@ -15,6 +15,8 @@ export default defineConfig({
       '@amg-webui/components': resolve(__dirname, 'packages/components'),
       '@amg-webui/hooks': resolve(__dirname, 'packages/hooks'),
       '@amg-webui/telemetry': resolve(__dirname, 'packages/telemetry/index.ts'),
+      '@amg-webui/skill/core': resolve(__dirname, 'packages/skill/core.ts'),
+      '@amg-webui/skill': resolve(__dirname, 'packages/skill/index.ts'),
       '@amg-webui/theme': resolve(__dirname, 'packages/theme'),
       '@amg-webui/icons': resolve(__dirname, 'packages/icons'),
       '@amg-webui/utils': resolve(__dirname, 'packages/utils'),

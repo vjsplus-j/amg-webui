@@ -17,8 +17,25 @@
     flex-direction: column;
   }
 
+  &--vertical.vp-stack-layout--reverse {
+    flex-direction: column-reverse;
+  }
+
   &--horizontal {
     flex-direction: row;
+  }
+
+  &--horizontal.vp-stack-layout--reverse {
+    flex-direction: row-reverse;
+  }
+
+  &--divider.vp-stack-layout--vertical > :not(:last-child) {
+    padding-block-end: var(--vp-stack-gap);
+    border-block-end: 1px solid var(--ds-border);
+  }
+  &--divider.vp-stack-layout--horizontal > :not(:last-child) {
+    padding-inline-end: var(--vp-stack-gap);
+    border-inline-end: 1px solid var(--ds-border);
   }
 
   &--wrap {

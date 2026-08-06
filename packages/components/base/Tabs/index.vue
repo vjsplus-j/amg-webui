@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { provide, ref, watch, computed, useSlots } from 'vue'
+import { provide, ref, watch, useId } from 'vue'
 import { trackEmit } from '@amg-webui/telemetry'
-import { TABS_INJECTION_KEY } from './types'
+import { TABS_INJECTION_KEY, type TabsPaneMeta } from './types'
 import './style.scss'
 
 const props = withDefaults(
@@ -24,7 +24,7 @@ const emit = defineEmits<{
   tabClick: [value: string | number, event: MouseEvent | KeyboardEvent]
 }>()
 
-const slots = useSlots()
+const idPrefix = `vp-tabs-${useId()}`
 
 const activeName = ref<string | number | undefined>(props.modelValue)
 
@@ -35,28 +35,22 @@ watch(
   }
 )
 
-interface TabMeta {
-  name: string | number
-  label?: string
-  disabled?: boolean
+const tabItems = ref<TabsPaneMeta[]>([])
+
+function registerPane(pane: TabsPaneMeta) {
+  const index = tabItems.value.findIndex((item) => item.name === pane.name)
+  if (index >= 0) {
+    const next = [...tabItems.value]
+    next[index] = pane
+    tabItems.value = next
+  } else {
+    tabItems.value = [...tabItems.value, pane]
+  }
 }
 
-const paneNodes = computed(() => slots.default?.() ?? [])
-
-const tabItems = computed(() => {
-  const items: TabMeta[] = []
-  for (const node of paneNodes.value) {
-    const p = (node.props ?? {}) as TabMeta
-    if (p.name !== undefined) {
-      items.push({
-        name: p.name,
-        label: p.label,
-        disabled: Boolean((p as { disabled?: boolean }).disabled)
-      })
-    }
-  }
-  return items
-})
+function unregisterPane(name: string | number) {
+  tabItems.value = tabItems.value.filter((item) => item.name !== name)
+}
 
 watch(
   tabItems,
@@ -83,7 +77,13 @@ const setActive = (name: string | number) => {
   emit('change', name)
 }
 
-provide(TABS_INJECTION_KEY, { activeName, setActive })
+provide(TABS_INJECTION_KEY, {
+  activeName,
+  setActive,
+  idPrefix,
+  registerPane,
+  unregisterPane
+})
 
 function focusableIndices(): number[] {
   return tabItems.value
@@ -135,11 +135,11 @@ function onTabKeydown(event: KeyboardEvent, index: number) {
 }
 
 function tabId(name: string | number) {
-  return `vp-tab-${String(name)}`
+  return `${idPrefix}-tab-${String(name)}`
 }
 
 function panelId(name: string | number) {
-  return `vp-tabpanel-${String(name)}`
+  return `${idPrefix}-tabpanel-${String(name)}`
 }
 </script>
 
@@ -170,11 +170,7 @@ function panelId(name: string | number) {
       </button>
     </div>
     <div class="vp-tabs__content">
-      <component
-        :is="node"
-        v-for="(node, i) in paneNodes"
-        :key="String((node.props as TabMeta | undefined)?.name ?? i)"
-      />
+      <slot />
     </div>
   </div>
 </template>

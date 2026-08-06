@@ -1,109 +1,239 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import type { TimelineListProps, TimelineListEmits } from './types'
-import './style.scss'
+import { computed, ref, watch } from "vue";
+import { useLocale } from "@amg-webui/hooks";
+import { trackEmit } from "@amg-webui/telemetry";
+import type {
+  TimelineListEmits,
+  TimelineListItem,
+  TimelineListKey,
+  TimelineListProps,
+} from "./types";
+import "./style.scss";
 
-interface TimelineItem {
-  id?: string | number
-  time: string
-  title: string
-  status?: 'success' | 'warning' | 'danger' | 'info'
-  content?: string
-}
-
-const props = withDefaults(defineProps<TimelineListProps & { items?: TimelineItem[] }>(), {
+const props = withDefaults(defineProps<TimelineListProps>(), {
   items: () => [],
-  disabled: false
-})
-const emit = defineEmits<TimelineListEmits>()
-const { t } = useLocale()
+  modelValue: null,
+  selectable: true,
+  reverse: false,
+  groupBy: "day",
+  collapsible: false,
+  defaultExpandedKeys: () => [],
+  disabled: false,
+  loading: false,
+  pending: false,
+  telemetry: undefined,
+});
+const emit = defineEmits<TimelineListEmits>();
+const { t, locale } = useLocale();
+const expandedKeys = ref(new Set<string>());
 
-const list = computed<TimelineItem[]>(() => {
-  if (props.items?.length) return props.items
-  if (Array.isArray(props.data)) return props.data as TimelineItem[]
-  return []
-})
-
-const grouped = computed(() => {
-  const map = new Map<string, TimelineItem[]>()
-  for (const item of list.value) {
-    const day = item.time.split(' ')[0] ?? item.time
-    map.set(day, [...(map.get(day) ?? []), item])
+const list = computed(() => {
+  const source = props.items.length ? props.items : (props.data ?? []);
+  return props.reverse ? [...source].reverse() : source;
+});
+function itemKey(item: TimelineListItem, index: number): TimelineListKey {
+  return item.id ?? item.itemKey ?? index;
+}
+function groupKey(item: TimelineListItem) {
+  if (typeof props.groupBy === "function") return props.groupBy(item);
+  if (props.groupBy === "none") return "";
+  if (item.time instanceof Date)
+    return new Intl.DateTimeFormat(locale.value, {
+      dateStyle: "medium",
+    }).format(item.time);
+  return String(item.time).split(/[T\s]/)[0] || String(item.time);
+}
+const groups = computed(() => {
+  const map = new Map<
+    string,
+    Array<{ item: TimelineListItem; index: number }>
+  >();
+  list.value.forEach((item, index) => {
+    const key = groupKey(item);
+    map.set(key, [...(map.get(key) ?? []), { item, index }]);
+  });
+  return [...map.entries()].map(([key, entries]) => ({ key, entries }));
+});
+watch(
+  groups,
+  (value) => {
+    if (!props.collapsible) return;
+    const requested = props.defaultExpandedKeys;
+    expandedKeys.value = new Set(
+      requested.length ? requested : value.map((group) => group.key),
+    );
+  },
+  { immediate: true },
+);
+function isExpanded(key: string) {
+  return !props.collapsible || expandedKeys.value.has(key);
+}
+function toggleGroup(key: string) {
+  if (!props.collapsible || props.disabled) return;
+  const next = new Set(expandedKeys.value);
+  next.has(key) ? next.delete(key) : next.add(key);
+  expandedKeys.value = next;
+  emit("groupToggle", key, next.has(key));
+  trackEmit({
+    component: "TimelineList",
+    type: "groupToggle",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { key, expanded: next.has(key) },
+  });
+}
+function activate(
+  item: TimelineListItem,
+  index: number,
+  event: MouseEvent | KeyboardEvent,
+) {
+  if (props.disabled || item.disabled) return;
+  const key = itemKey(item, index);
+  if (props.selectable) {
+    emit("update:modelValue", key);
+    emit("change", key, item);
   }
-  return [...map.entries()]
-})
-
-const titleText = computed(() => props.title ?? t('component.timeline-list.title'))
+  emit("itemClick", item, index, event);
+  if (event instanceof MouseEvent) emit("click", event);
+  trackEmit({
+    component: "TimelineList",
+    type: "itemClick",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { key, index },
+  });
+}
+function onKeydown(
+  item: TimelineListItem,
+  index: number,
+  event: KeyboardEvent,
+) {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  event.preventDefault();
+  activate(item, index, event);
+}
+function formatTime(value: TimelineListItem["time"]) {
+  if (value instanceof Date)
+    return new Intl.DateTimeFormat(locale.value, {
+      dateStyle: "medium",
+      timeStyle: "short",
+    }).format(value);
+  return String(value);
+}
+const titleText = computed(
+  () => props.title ?? t("component.timeline-list.title"),
+);
 </script>
 
 <template>
-  <div :class="['vp-timeline-list', 'vp-timeline-list__panel', { 'vp-timeline-list--disabled': disabled }, props.class]" :style="style">
-    <h3 class="vp-timeline-list__heading">{{ titleText }}</h3>
-    <div v-if="list.length" class="vp-timeline-list__track">
-      <section v-for="[day, items] in grouped" :key="day" class="vp-timeline-list__group">
-        <h4 class="vp-timeline-list__day">{{ day }}</h4>
-        <article
-          v-for="(item, i) in items"
-          :key="item.id ?? i"
-          class="vp-timeline-list__item"
-          :class="'vp-timeline-list__item--' + (item.status ?? 'info')"
-          @click="emit('change', item)"
-        >
-          <time class="vp-timeline-list__time">{{ item.time }}</time>
-          <h5 class="vp-timeline-list__title">{{ item.title }}</h5>
-          <p v-if="item.content" class="vp-timeline-list__content">{{ item.content }}</p>
-        </article>
-      </section>
+  <section
+    :class="[
+      'vp-timeline-list',
+      {
+        'vp-timeline-list--disabled': disabled,
+        'vp-timeline-list--reverse': reverse,
+      },
+      props.class,
+    ]"
+    :style="style"
+    :aria-label="ariaLabel ?? titleText"
+    :aria-busy="loading"
+    data-component="TimelineList"
+  >
+    <header
+      v-if="titleText || description || $slots.header"
+      class="vp-timeline-list__header"
+    >
+      <slot name="header"
+        ><h3>{{ titleText }}</h3>
+        <p v-if="description">{{ description }}</p></slot
+      >
+    </header>
+    <div v-if="loading" class="vp-timeline-list__state" role="status">
+      {{ t("common.loading") }}
     </div>
-    <p v-else class="vp-timeline-list__muted">{{ t('common.noData') }}</p>
-    <slot />
-  </div>
+    <div v-else-if="groups.length" class="vp-timeline-list__track" role="list">
+      <section
+        v-for="group in groups"
+        :key="group.key"
+        class="vp-timeline-list__group"
+      >
+        <button
+          v-if="group.key && collapsible"
+          type="button"
+          class="vp-timeline-list__group-toggle"
+          :aria-expanded="isExpanded(group.key)"
+          @click="toggleGroup(group.key)"
+        >
+          <slot
+            name="group-label"
+            :group="group.key"
+            :items="group.entries.map((entry) => entry.item)"
+            >{{ group.key }}</slot
+          ><span aria-hidden="true">⌄</span>
+        </button>
+        <h4 v-else-if="group.key" class="vp-timeline-list__day">
+          <slot
+            name="group-label"
+            :group="group.key"
+            :items="group.entries.map((entry) => entry.item)"
+            >{{ group.key }}</slot
+          >
+        </h4>
+        <div v-show="isExpanded(group.key)" class="vp-timeline-list__items">
+          <article
+            v-for="entry in group.entries"
+            :key="itemKey(entry.item, entry.index)"
+            :class="[
+              'vp-timeline-list__item',
+              `vp-timeline-list__item--${entry.item.status ?? 'info'}`,
+              {
+                'vp-timeline-list__item--selected':
+                  modelValue === itemKey(entry.item, entry.index),
+                'vp-timeline-list__item--disabled': entry.item.disabled,
+              },
+            ]"
+            role="listitem"
+            :tabindex="disabled || entry.item.disabled ? -1 : 0"
+            :aria-current="
+              modelValue === itemKey(entry.item, entry.index)
+                ? 'step'
+                : undefined
+            "
+            @click="activate(entry.item, entry.index, $event)"
+            @keydown="onKeydown(entry.item, entry.index, $event)"
+          >
+            <span class="vp-timeline-list__dot" aria-hidden="true"
+              ><slot name="icon" :item="entry.item">{{
+                entry.item.icon
+              }}</slot></span
+            >
+            <slot name="item" :item="entry.item" :index="entry.index">
+              <time class="vp-timeline-list__time">{{
+                formatTime(entry.item.time)
+              }}</time>
+              <h5 class="vp-timeline-list__title">{{ entry.item.title }}</h5>
+              <p
+                v-if="entry.item.content || entry.item.description"
+                class="vp-timeline-list__content"
+              >
+                {{ entry.item.content ?? entry.item.description }}
+              </p>
+            </slot>
+          </article>
+        </div>
+      </section>
+      <div v-if="pending" class="vp-timeline-list__pending" role="status">
+        <span class="vp-timeline-list__dot" aria-hidden="true" /><slot
+          name="pending"
+          >{{
+            typeof pending === "string" ? pending : t("common.loading")
+          }}</slot
+        >
+      </div>
+    </div>
+    <div v-else class="vp-timeline-list__state" role="status">
+      <slot name="empty">{{ emptyText ?? t("common.noData") }}</slot>
+    </div>
+  </section>
 </template>
-
-<style scoped>
-.vp-timeline-list__track {
-  margin-top: var(--spacing-md);
-  border-left: 2px solid var(--ds-border);
-  padding-left: var(--spacing-lg);
-}
-.vp-timeline-list__day {
-  margin: var(--spacing-md) 0 var(--spacing-sm);
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-}
-.vp-timeline-list__item {
-  position: relative;
-  margin-bottom: var(--spacing-md);
-  padding: var(--spacing-md);
-  background: var(--surface-1);
-  border: 1px solid var(--ds-border);
-  border-radius: var(--theme-card-radius);
-}
-.vp-timeline-list__item::before {
-  content: '';
-  position: absolute;
-  left: calc(-1 * var(--spacing-lg) - 5px);
-  top: var(--spacing-md);
-  width: var(--spacing-sm);
-  height: var(--spacing-sm);
-  border-radius: var(--border-radius-full, 50%);
-  background: var(--primary-500);
-}
-.vp-timeline-list__item--success::before { background: var(--status-success); }
-.vp-timeline-list__item--warning::before { background: var(--status-warning); }
-.vp-timeline-list__item--danger::before { background: var(--status-danger); }
-.vp-timeline-list__time {
-  font-size: var(--font-size-xs);
-  color: var(--text-secondary);
-}
-.vp-timeline-list__title {
-  margin: var(--spacing-xs) 0;
-  font-size: var(--font-size-md);
-}
-.vp-timeline-list__content {
-  margin: 0;
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-}
-</style>

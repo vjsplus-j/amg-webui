@@ -10,11 +10,80 @@
   border: 1px solid var(--ds-border);
   border-radius: var(--theme-card-radius);
 
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    min-width: 0;
+  }
+
+  &__title {
+    flex: 1;
+    min-width: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-heading, 600);
+  }
+
+  &__state {
+    display: grid;
+    place-items: center;
+    color: var(--primary-500);
+  }
+  &--success &__state {
+    color: var(--success-500);
+  }
+  &--danger &__state,
+  &--error &__state {
+    color: var(--danger-500);
+  }
+  &__details {
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--ds-border);
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
+  }
+
+  &__step {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    font-variant-numeric: tabular-nums;
+  }
+
   &__message {
     margin: 0;
     font-size: var(--font-size-sm);
     color: var(--text-secondary);
     line-height: var(--line-height-body);
+  }
+
+  &__btn,
+  &__close {
+    appearance: none;
+    border: 1px solid var(--ds-border, var(--border-color));
+    background: var(--surface-0, var(--surface-1));
+    color: var(--text-primary);
+    border-radius: var(--theme-btn-radius, var(--border-radius-md));
+    min-height: var(--height-sm, 2rem);
+    padding: 0 var(--spacing-sm);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+  }
+
+  &__close {
+    min-width: var(--height-sm, 2rem);
+    padding: 0;
+  }
+
+  &--indeterminate {
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--primary-500) 10%, transparent),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: vp-progress-tip-indeterminate var(--transition-slow, 1.2s) linear
+      infinite;
   }
 
   &--success {
@@ -31,5 +100,15 @@
 
   &--info {
     border-color: color-mix(in srgb, var(--info-500) 45%, var(--ds-border));
+  }
+}
+
+@keyframes vp-progress-tip-indeterminate {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
   }
 }

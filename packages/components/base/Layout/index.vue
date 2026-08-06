@@ -1,24 +1,17 @@
 <script setup lang="ts">
 import { computed, provide, ref, toRef } from 'vue'
 import { LAYOUT_INJECTION_KEY } from './types'
+import type { LayoutProps } from './types'
 import './style.scss'
 
 const props = withDefaults(
-  defineProps<{
-    hasSider?: boolean
-    direction?: 'horizontal' | 'vertical'
-    shell?: boolean
-    fill?: boolean
-    trackId?: string
-    telemetry?: boolean
-    class?: string
-    style?: Record<string, string>
-  }>(),
+  defineProps<LayoutProps>(),
   {
     hasSider: false,
     direction: 'vertical',
     shell: false,
     fill: false,
+    as: 'section',
     telemetry: undefined
   }
 )
@@ -58,7 +51,13 @@ const rootClass = computed(() => [
 </script>
 
 <template>
-  <section :class="rootClass" :style="style" data-component="Layout">
+  <component
+    :is="as"
+    :class="rootClass"
+    :style="style"
+    data-component="Layout"
+    :aria-label="ariaLabel"
+  >
     <slot />
-  </section>
+  </component>
 </template>

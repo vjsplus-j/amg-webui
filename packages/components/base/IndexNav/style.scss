@@ -1,1 +1,80 @@
-/* Thin TopNav wrapper — catalog identity via class on TopNav root. */
+.vp-index-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-width: 0;
+  padding: var(--spacing-xs);
+  overflow: auto;
+  border: 1px solid var(--ds-border, var(--border-color));
+  border-radius: var(--theme-card-radius, var(--border-radius-lg));
+  background: color-mix(in srgb, var(--surface-2) 72%, transparent);
+  scrollbar-width: thin;
+
+  &--vertical {
+    width: max-content;
+    max-height: calc(var(--height-xl) * 6);
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &--sticky {
+    position: sticky;
+    inset-block-start: var(--theme-header-height, var(--height-xl));
+    z-index: var(--vp-z-index-sticky, 10);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &--disabled {
+    opacity: var(--ds-disabled-opacity, 0.6);
+  }
+
+  &__item {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--height-sm);
+    height: var(--height-sm);
+    padding-inline: var(--spacing-sm);
+    border: none;
+    border-radius: var(--theme-btn-radius, var(--border-radius-md));
+    background: transparent;
+    color: var(--text-secondary);
+    font: inherit;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium, 500);
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      color var(--transition-fast),
+      background var(--transition-fast),
+      box-shadow var(--transition-fast);
+
+    &:hover:not(:disabled) {
+      color: var(--text-primary);
+      background: var(--surface-1);
+    }
+
+    &:focus-visible {
+      outline: var(--ds-focus-ring);
+      outline-offset: var(--spacing-xs);
+    }
+
+    &:disabled {
+      opacity: var(--ds-disabled-opacity, 0.5);
+      cursor: not-allowed;
+    }
+
+    &--active {
+      color: var(--surface-0, var(--surface-1));
+      background: var(--primary-500);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-index-nav__item {
+    transition: none;
+  }
+}

@@ -1,6 +1,18 @@
-import Comp from './index.vue'
-import type { TableDragProps, TableDragEmits } from './types'
+import Comp from "./index.vue";
+import type {
+  TableDragColumn,
+  TableDragEmits,
+  TableDragKey,
+  TableDragProps,
+  TableDragRow,
+} from "./types";
 
-export { Comp as TableDrag }
-export type { TableDragProps, TableDragEmits }
-export default Comp
+export { Comp as TableDrag };
+export type {
+  TableDragColumn,
+  TableDragEmits,
+  TableDragKey,
+  TableDragProps,
+  TableDragRow,
+};
+export default Comp;

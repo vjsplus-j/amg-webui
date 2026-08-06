@@ -44,6 +44,23 @@ function createSessionId(): string {
 
 type Listener = (event: VpTelemetryEvent) => void
 
+/** Public surface of the process-wide telemetry service. */
+export interface TelemetryServiceApi {
+  configure(partial: VpTelemetryConfig): void
+  replaceConfig(next: VpTelemetryConfig): void
+  enable(): void
+  disable(): void
+  isEnabled(): boolean
+  getConfig(): Readonly<VpTelemetryConfig>
+  getSessionId(): string
+  rotateSession(): string
+  track(options: TrackEmitOptions): VpTelemetryEvent | undefined
+  subscribe(listener: Listener): () => void
+  flush(): Promise<void>
+  getBuffer(): VpTelemetryEvent[]
+  clear(): void
+}
+
 class TelemetryServiceImpl {
   private cfg: VpTelemetryConfig = { ...DEFAULT_TELEMETRY_CONFIG }
   private sessionId = createSessionId()
@@ -68,6 +85,22 @@ class TelemetryServiceImpl {
     if (partial.sinks) {
       this.sinks = [...partial.sinks]
     }
+  }
+
+  /** Replace the effective config (used by scoped providers when they unmount). */
+  replaceConfig(next: VpTelemetryConfig): void {
+    this.cfg = {
+      ...DEFAULT_TELEMETRY_CONFIG,
+      ...next,
+      categories: {
+        ...DEFAULT_TELEMETRY_CONFIG.categories,
+        ...next.categories
+      },
+      redactKeys: next.redactKeys ?? [...DEFAULT_TELEMETRY_CONFIG.redactKeys],
+      sinks: next.sinks ?? []
+    }
+    this.buffer.resize(this.cfg.maxBuffer ?? DEFAULT_TELEMETRY_CONFIG.maxBuffer)
+    this.sinks = [...(this.cfg.sinks ?? [])]
   }
 
   enable(): void {
@@ -205,5 +238,5 @@ type TelemetryGlobal = typeof globalThis & {
 
 const g = globalThis as TelemetryGlobal
 
-export const TelemetryService: TelemetryServiceImpl =
+export const TelemetryService: TelemetryServiceApi =
   g[GLOBAL_KEY] ?? (g[GLOBAL_KEY] = new TelemetryServiceImpl())

@@ -93,6 +93,11 @@ export interface ButtonProps extends BaseProps, MotionProps {
   img?: string
   /** icon-only / img 时的无障碍标签 */
   ariaLabel?: string
+  /** Native tooltip text */
+  title?: string
+  /** State semantics for disclosure/toggle buttons */
+  ariaExpanded?: boolean
+  ariaPressed?: boolean
   /**
    * Permission gate. `true` / missing = allowed.
    * `false` or failing checker → hide or disable per `permissionMode`.

@@ -1,12 +1,20 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, useId, watch } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
+import { useFocusTrap } from '@amg-webui/hooks/useFocusTrap'
 import { LocaleKeys } from '@amg-webui/locale'
+import { trackEmit } from '@amg-webui/telemetry'
+import { getDocument } from '@amg-webui/utils/env'
 import Icon from '../Icon/index.vue'
 import Button from '../Button/index.vue'
 import InputText from '../InputText/index.vue'
 import type { ConfirmSeverity } from '../Confirm/types'
-import type { MessageBoxHostEmits, MessageBoxHostProps } from './types'
+import type {
+  MessageBoxAction,
+  MessageBoxCloseReason,
+  MessageBoxHostEmits,
+  MessageBoxHostProps
+} from './types'
 import './style.scss'
 
 const props = withDefaults(defineProps<MessageBoxHostProps>(), {
@@ -18,7 +26,12 @@ const props = withDefaults(defineProps<MessageBoxHostProps>(), {
   confirmLabel: '',
   cancelLabel: '',
   inputValue: '',
+  inputType: 'text',
   showCancel: undefined,
+  closeOnClickOverlay: undefined,
+  closeOnPressEscape: undefined,
+  autofocus: undefined,
+  teleportTo: 'body',
   telemetry: undefined
 })
 
@@ -27,13 +40,25 @@ const { t } = useLocale()
 
 const inputModel = ref(props.inputValue)
 const inputInvalid = ref(false)
+const validatorMessage = ref('')
+const working = ref(false)
+const dialogRef = ref<HTMLElement | null>(null)
+const cancelButtonRef = ref<{ $el?: HTMLElement } | null>(null)
+const confirmButtonRef = ref<{ $el?: HTMLElement } | null>(null)
+const visibleRef = computed(() => props.visible)
+const uid = useId()
+
+useFocusTrap(dialogRef, visibleRef)
 
 const confirmText = computed(() => props.confirmLabel || t(LocaleKeys.button.confirm))
 const cancelText = computed(() => props.cancelLabel || t(LocaleKeys.button.cancel))
 const closeLabel = computed(() => t(LocaleKeys.common.close))
+const titleText = computed(() => props.title || t(LocaleKeys.button.confirm))
 const inputErrorText = computed(
-  () => props.inputErrorMessage || t(LocaleKeys.component.messageBox.inputError)
+  () => validatorMessage.value || props.inputErrorMessage || t(LocaleKeys.component.messageBox.inputError)
 )
+const titleId = `${uid}-title`
+const descriptionId = `${uid}-description`
 
 const showCancelButton = computed(() => {
   if (props.showCancel !== undefined) return props.showCancel
@@ -51,6 +76,15 @@ const ICON_MAP: Record<ConfirmSeverity, string> = {
 }
 
 const iconName = computed(() => ICON_MAP[props.severity] ?? 'TriangleAlert')
+const closeOnOverlay = computed(
+  () => props.closeOnClickOverlay ?? props.dismissible
+)
+const closeOnEscape = computed(
+  () => props.closeOnPressEscape ?? props.dismissible
+)
+const resolvedAutofocus = computed(
+  () => props.autofocus ?? (props.mode === 'prompt' ? 'input' : 'confirm')
+)
 
 const confirmSeverity = computed(() => {
   switch (props.severity) {
@@ -77,45 +111,134 @@ const rootClass = computed(() => [
   props.class
 ])
 
-function validateInput(): boolean {
+async function validateInput(): Promise<boolean> {
   if (props.mode !== 'prompt') return true
   const value = inputModel.value
-  if (!props.inputPattern) {
-    inputInvalid.value = false
-    return true
+  validatorMessage.value = ''
+
+  if (props.inputPattern) {
+    try {
+      const pattern =
+        props.inputPattern instanceof RegExp
+          ? props.inputPattern
+          : new RegExp(props.inputPattern)
+      pattern.lastIndex = 0
+      if (!pattern.test(value)) {
+        inputInvalid.value = true
+        return false
+      }
+    } catch {
+      inputInvalid.value = true
+      return false
+    }
   }
-  const pattern =
-    props.inputPattern instanceof RegExp
-      ? props.inputPattern
-      : new RegExp(props.inputPattern)
-  const valid = pattern.test(value)
-  inputInvalid.value = !valid
-  return valid
+
+  if (props.inputValidator) {
+    try {
+      const result = await props.inputValidator(value)
+      if (result !== true) {
+        validatorMessage.value = typeof result === 'string' ? result : ''
+        inputInvalid.value = true
+        return false
+      }
+    } catch {
+      inputInvalid.value = true
+      return false
+    }
+  }
+
+  inputInvalid.value = false
+  return true
 }
 
-function close() {
-  emit('update:visible', false)
-  emit('cancel')
+async function canClose(action: MessageBoxAction, value?: string) {
+  if (!props.beforeClose) return true
+  try {
+    return await props.beforeClose(action, value)
+  } catch {
+    return false
+  }
 }
 
-function confirm() {
-  if (!validateInput()) return
-  emit('confirm', props.mode === 'prompt' ? inputModel.value : undefined)
-  emit('update:visible', false)
+async function close(reason: MessageBoxCloseReason = 'cancel') {
+  if (working.value) return
+  working.value = true
+  try {
+    if (!(await canClose('cancel'))) return
+    trackEmit({
+      component: 'MessageBox',
+      type: 'cancel',
+      trackId: props.trackId,
+      telemetry: props.telemetry,
+      payload: { mode: props.mode, reason }
+    })
+    emit('update:visible', false)
+    emit('cancel', reason)
+  } finally {
+    working.value = false
+  }
+}
+
+async function confirm() {
+  if (working.value || !(await validateInput())) return
+  working.value = true
+  const value = props.mode === 'prompt' ? inputModel.value : undefined
+  try {
+    if (!(await canClose('confirm', value))) return
+    trackEmit({
+      component: 'MessageBox',
+      type: 'confirm',
+      trackId: props.trackId,
+      telemetry: props.telemetry,
+      payload: { mode: props.mode }
+    })
+    emit('confirm', value)
+    emit('update:visible', false)
+  } finally {
+    working.value = false
+  }
 }
 
 function onOverlay(e: MouseEvent) {
-  if (props.dismissible && e.target === e.currentTarget) close()
+  if (closeOnOverlay.value && e.target === e.currentTarget) void close('overlay')
 }
 
 function onKey(e: KeyboardEvent) {
   if (!props.visible) return
-  if (props.dismissible && e.key === 'Escape') close()
-  if (e.key === 'Enter' && props.mode === 'prompt') confirm()
+  if (closeOnEscape.value && e.key === 'Escape') {
+    e.preventDefault()
+    void close('escape')
+  }
+  if (e.key === 'Enter' && props.mode === 'prompt' && e.target instanceof HTMLInputElement) {
+    e.preventDefault()
+    void confirm()
+  }
 }
 
+let previousOverflow: string | undefined
+
 function lockScroll(lock: boolean) {
-  document.documentElement.style.overflow = lock ? 'hidden' : ''
+  const root = getDocument()?.documentElement
+  if (!root) return
+  if (lock) {
+    if (previousOverflow === undefined) previousOverflow = root.style.overflow
+    root.style.overflow = 'hidden'
+  } else if (previousOverflow !== undefined) {
+    root.style.overflow = previousOverflow
+    previousOverflow = undefined
+  }
+}
+
+function focusInitial() {
+  if (resolvedAutofocus.value === 'none') return
+  let target: Element | null | undefined
+  if (resolvedAutofocus.value === 'confirm') target = confirmButtonRef.value?.$el
+  else if (resolvedAutofocus.value === 'cancel') target = cancelButtonRef.value?.$el
+  else target = dialogRef.value?.querySelector('input.vp-message-box__input')
+  const focusable = target?.matches?.('button, input')
+    ? target
+    : target?.querySelector?.('button, input')
+  if (focusable instanceof HTMLElement) focusable.focus()
 }
 
 watch(
@@ -127,23 +250,29 @@ watch(
 
 watch(
   () => props.visible,
-  (v) => lockScroll(v),
+  (v) => {
+    lockScroll(v)
+    if (v) void nextTick(focusInitial)
+  },
   { immediate: true }
 )
 
 watch(inputModel, () => {
-  if (inputInvalid.value) validateInput()
+  if (inputInvalid.value) void validateInput()
 })
 
-onMounted(() => document.addEventListener('keydown', onKey))
+onMounted(() => {
+  getDocument()?.addEventListener('keydown', onKey)
+  if (props.visible) void nextTick(focusInitial)
+})
 onUnmounted(() => {
-  document.removeEventListener('keydown', onKey)
+  getDocument()?.removeEventListener('keydown', onKey)
   lockScroll(false)
 })
 </script>
 
 <template>
-  <Teleport to="body">
+  <Teleport :to="teleportTo">
     <Transition name="vp-message-box">
       <div
         v-if="visible"
@@ -152,12 +281,14 @@ onUnmounted(() => {
         @click="onOverlay"
       >
         <div
+          ref="dialogRef"
           :class="rootClass"
           :style="style"
           role="alertdialog"
           aria-modal="true"
-          :aria-labelledby="title ? 'vp-message-box-title' : undefined"
-          :aria-describedby="message ? 'vp-message-box-desc' : undefined"
+          :aria-labelledby="titleId"
+          :aria-describedby="message ? descriptionId : undefined"
+          :aria-busy="working || undefined"
           data-component="MessageBox"
           @click.stop
         >
@@ -169,12 +300,8 @@ onUnmounted(() => {
                 <Icon :name="iconName" size="md" />
               </span>
               <div class="vp-message-box__titles">
-                <h3
-                  v-if="title"
-                  id="vp-message-box-title"
-                  class="vp-message-box__title"
-                >
-                  {{ title }}
+                <h3 :id="titleId" class="vp-message-box__title">
+                  <slot name="title">{{ titleText }}</slot>
                 </h3>
               </div>
             </div>
@@ -183,7 +310,8 @@ onUnmounted(() => {
               type="button"
               class="vp-message-box__close"
               :aria-label="closeLabel"
-              @click="close"
+              :disabled="working"
+              @click="close('close')"
             >
               <Icon name="X" size="sm" />
             </button>
@@ -191,16 +319,20 @@ onUnmounted(() => {
 
           <div
             v-if="message || mode === 'prompt'"
-            id="vp-message-box-desc"
+            :id="descriptionId"
             class="vp-message-box__body"
           >
-            <p v-if="message" class="vp-message-box__message">{{ message }}</p>
+            <p v-if="message" class="vp-message-box__message">
+              <slot>{{ message }}</slot>
+            </p>
             <InputText
               v-if="mode === 'prompt'"
               v-model="inputModel"
               class="vp-message-box__input"
               :placeholder="inputPlaceholder"
+              :type="inputType"
               :invalid="inputInvalid"
+              :disabled="working"
               fluid
             />
             <p v-if="inputInvalid" class="vp-message-box__error" role="alert">
@@ -209,20 +341,26 @@ onUnmounted(() => {
           </div>
 
           <footer class="vp-message-box__footer">
-            <Button
-              v-if="showCancelButton"
-              variant="outlined"
-              size="md"
-              :label="cancelText"
-              @click="close"
-            />
-            <Button
-              variant="solid"
-              size="md"
-              :severity="confirmSeverity"
-              :label="confirmText"
-              @click="confirm"
-            />
+            <slot name="footer" :confirm="confirm" :cancel="close" :working="working">
+              <Button
+                v-if="showCancelButton"
+                ref="cancelButtonRef"
+                variant="outlined"
+                size="md"
+                :label="cancelText"
+                :disabled="working"
+                @click="close('cancel')"
+              />
+              <Button
+                ref="confirmButtonRef"
+                variant="solid"
+                size="md"
+                :severity="confirmSeverity"
+                :label="confirmText"
+                :loading="working"
+                @click="confirm"
+              />
+            </slot>
           </footer>
         </div>
       </div>

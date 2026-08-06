@@ -19,4 +19,8 @@ export interface LayoutProps extends BaseProps {
   shell?: boolean
   /** Fill parent height (nested panels) */
   fill?: boolean
+  /** Accessible label when the layout is used as a landmark */
+  ariaLabel?: string
+  /** Root element; defaults to section */
+  as?: 'div' | 'section' | 'main'
 }

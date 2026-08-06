@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, provide, toRef, useSlots } from 'vue'
+import { computed, provide, toRef, useSlots, type Slot } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import BreadcrumbItem from '../BreadcrumbItem/index.vue'
@@ -29,7 +29,10 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useLocale()
-const slots = useSlots()
+const slots = useSlots() as Readonly<{
+  default?: Slot
+  separator?: Slot
+}>
 
 provide(BREADCRUMB_INJECTION_KEY, {
   separator: toRef(props, 'separator'),

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { MiniNav } from '@amg-webui/components/base'
+import { computed, ref } from 'vue'
+import { MiniNav, Space } from '@amg-webui/components/base'
+import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -11,15 +12,16 @@ import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
 
-const mountProps = computed(() => getSampleMountProps('MiniNav'))
+const selected = ref<string | number>('a')
+const items = computed(() => getSampleMountProps('MiniNav').items as NavItem[])
 
 const codeBasic = demoSfc({
   imports: [
-    `import { MiniNav } from '@amg-webui/components/base'`,
-    `import { getSampleMountProps } from '../_shared/sampleMountProps'`
+    `import { ref } from 'vue'`,
+    `import { MiniNav } from '@amg-webui/components/base'`
   ],
-  script: [`const mountProps = getSampleMountProps('MiniNav')`],
-  template: [`  <MiniNav v-bind="mountProps" />`]
+  script: [`const selected = ref('home')`, `const items = [/* NavItem[] */]`],
+  template: [`  <MiniNav v-model="selected" :items="items" />`]
 })
 
 const propRows = computed<PropRow[]>(() => [
@@ -40,7 +42,10 @@ const propRows = computed<PropRow[]>(() => [
       :code="codeBasic"
       default-open
     >
-      <MiniNav v-bind="mountProps" />
+      <Space align="start">
+        <MiniNav v-model="selected" :items="items" />
+        <MiniNav v-model="selected" :items="items" collapsed />
+      </Space>
     </DemoBlock>
     <PropsTable :rows="propRows" />
   </div>

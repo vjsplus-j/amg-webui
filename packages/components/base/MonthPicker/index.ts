@@ -1,6 +1,6 @@
-import MonthPicker from './index.vue'
-import type { MonthPickerProps } from './types'
+import MonthPicker from "./index.vue";
+import type { MonthPickerProps, MonthPickerEmits } from "./types";
 
-export { MonthPicker }
-export type { MonthPickerProps }
-export default MonthPicker
+export { MonthPicker };
+export type { MonthPickerProps, MonthPickerEmits };
+export default MonthPicker;

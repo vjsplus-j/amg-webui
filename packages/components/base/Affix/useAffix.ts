@@ -164,6 +164,7 @@ export function useAffix(
     affixed,
     placeholderHeight,
     placeholderWidth,
-    fixedStyle
+    fixedStyle,
+    update: measure
   }
 }

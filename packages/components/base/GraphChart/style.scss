@@ -46,3 +46,7 @@
     pointer-events: none;
   }
 }
+
+.vp-graph-chart__node { cursor: pointer; outline: none; }
+.vp-graph-chart__node:focus-visible circle,
+.vp-graph-chart__node--selected circle { stroke: var(--text-primary); stroke-width: 3; }

@@ -7,23 +7,29 @@ alwaysApply: true
 
 Full: `docs/LIBRARY_PLAN.md` · Vision: `docs/VISION.md` · Theme Studio: `docs/THEME_STUDIO.md` · Engineering: `docs/ENGINEERING.md`
 
+Skill Runtime: `docs/SKILL_RUNTIME.md` · locked rule: `vue3-amg-webui-skill-runtime.mdc`
+
 ## Slogan (locked)
 **对标 Element Plus，超越 Element Plus —— 成为最强的国产 WebUI 库。**  
 Overtake playbook (6 dimensions, no EP-style patching): `docs/OVERTAKE_ELEMENT_PLUS.md` · `vue3-amg-webui-overtake.mdc`.
 
-Target: Vue 3 UI lib — **200+ components**, multi-theme, i18n, **5 biz modules**, **designmd-like Theme Studio**.
+Target: Vue 3 UI lib — **200+ components**, multi-theme, i18n, **5 biz modules**, **designmd-like Theme Studio**, and an optional isolated **Skill Runtime**.
 
 ## Priority
 1. Architecture: TS, layering, Tokens, **`vp-`**
 2. Performance: **default virtual scroll**, deep tree-shake, smaller bundles, leak cleanup
 3. Product: base + biz + themes + **Theme Studio** + i18n
-4. Tooling: `create:component` · `generate:entry` · `extract:i18n`
-5. Visual: modern product feel — **not** generic ERP admin
-6. Compatibility / compliance
+4. Optional logic runtime: isolated Context / Scope / Pipeline without contaminating UI components
+5. Tooling: `create:component` · `generate:entry` · `extract:i18n` · `build:skill`
+6. Visual: modern product feel — **not** generic ERP admin
+7. Compatibility / compliance
 
 ## Architecture
 - Full `.d.ts`; generics; **base pure / business → base only**
 - Pluggable ESM/CJS/CDN; Tokens only — see `TOKENS.md`
+- Skill Runtime lives in `packages/skill`; public imports are `amg-webui/skill` and `amg-webui/skill/core`.
+- The root `amg-webui` entry **must not re-export Skill Runtime**. `packages/components/**` must never import Skill; Core must not directly depend on Vue components or Telemetry.
+- Skill Observer may be bridged to Vp Telemetry later only through an app-supplied adapter. The runtime has no direct Telemetry dependency.
 
 ## Theme Studio & visuals
 - Parity with [designmd Build](https://designmd.santiagoalonso.com/build?cat=Dev+Tools%2CSaaS&sort=popular): live token edit + preview + export
@@ -38,6 +44,11 @@ Target: Vue 3 UI lib — **200+ components**, multi-theme, i18n, **5 biz modules
 ## Tooling
 - Scripts in `docs/ENGINEERING.md`; never hand-maintain mega barrels
 - New component: types + **all** locales + test/docs stub + `vp-` class
+- `build:skill` verifies the optional Skill entries independently and must not pull Skill code into the root bundle.
+
+## Skill Runtime delivery status
+- The SR1/SR2 minimum baseline has passed its current typecheck, unit, package-build, and isolation gates, but remains experimental until the stabilization DoD is complete.
+- **SR3 is not implemented:** the five official built-ins and the `example` Skill Runtime page remain follow-up work. Do not present them as shipped.
 
 ## When implementing
-Follow P0 → P5 (+ P0.5 Studio, P1.5 scripts) in `LIBRARY_PLAN.md`. Do not break isolation, Tokens, `vp-`, virtual-scroll defaults, or Studio export contract.
+Follow P0 → P5 (+ P0.5 Studio, P1.5 scripts) in `LIBRARY_PLAN.md` and SR1 → SR3 in `SKILL_RUNTIME.md`. Do not break component/Skill isolation, root-entry opt-in, Tokens, `vp-`, virtual-scroll defaults, or Studio export contract.

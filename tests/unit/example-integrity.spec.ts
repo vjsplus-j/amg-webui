@@ -38,6 +38,10 @@ describe('sampleMountProps', () => {
     expect(Array.isArray(getSampleMountProps('Tree').options)).toBe(true)
     expect(getSampleMountProps('CanvasNode').node).toBeTruthy()
     expect(Array.isArray(getSampleMountProps('TopNav').items)).toBe(true)
+    expect(typeof getSampleMountProps('Barcode').modelValue).toBe('string')
+    expect(typeof getSampleMountProps('Barcode').value).toBe('string')
+    expect(typeof getSampleMountProps('Qrcode').modelValue).toBe('string')
+    expect(typeof getSampleMountProps('MatrixCode').modelValue).toBe('string')
   })
 })
 

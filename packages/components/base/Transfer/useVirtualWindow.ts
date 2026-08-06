@@ -1,42 +1,23 @@
-import { ref, computed, type Ref } from 'vue'
+import type { Ref } from "vue";
+import { useVirtualList } from "@amg-webui/utils/data-display/useVirtualList";
 
-const ITEM_HEIGHT = 36
-const OVERSCAN = 4
+const ITEM_HEIGHT = 36;
+const OVERSCAN = 4;
 
 export function useVirtualWindow<T>(
   items: Ref<T[]>,
-  containerHeight = 280
+  containerHeight = 280,
+  containerRef?: Ref<HTMLElement | null>,
 ) {
-  const scrollTop = ref(0)
-  const visibleCount = Math.ceil(containerHeight / ITEM_HEIGHT) + OVERSCAN
-
-  const startIndex = computed(() =>
-    Math.max(0, Math.floor(scrollTop.value / ITEM_HEIGHT) - OVERSCAN)
-  )
-
-  const endIndex = computed(() =>
-    Math.min(items.value.length, startIndex.value + visibleCount)
-  )
-
-  const visibleItems = computed(() =>
-    items.value.slice(startIndex.value, endIndex.value).map((item, i) => ({
-      item,
-      index: startIndex.value + i
-    }))
-  )
-
-  const totalHeight = computed(() => items.value.length * ITEM_HEIGHT)
-  const offsetY = computed(() => startIndex.value * ITEM_HEIGHT)
-
-  function onScroll(event: Event) {
-    scrollTop.value = (event.target as HTMLElement).scrollTop
-  }
+  const virtual = useVirtualList(items, {
+    itemHeight: ITEM_HEIGHT,
+    containerHeight,
+    overscan: OVERSCAN,
+    containerRef,
+  });
 
   return {
     ITEM_HEIGHT,
-    visibleItems,
-    totalHeight,
-    offsetY,
-    onScroll
-  }
+    ...virtual,
+  };
 }

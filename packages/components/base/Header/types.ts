@@ -12,4 +12,10 @@ export interface HeaderProps extends BaseProps {
   padding?: HeaderPadding
   /** Soft glass surface (default true) */
   translucent?: boolean
+  elevated?: boolean
+  centered?: boolean
+  title?: string
+  subtitle?: string
+  ariaLabel?: string
+  as?: 'header' | 'div'
 }

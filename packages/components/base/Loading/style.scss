@@ -3,92 +3,126 @@
   align-items: center;
   justify-content: center;
   color: var(--primary-500);
-
+  box-sizing: border-box;
   &--inline {
     position: relative;
-    min-height: var(--height-xl);
     width: 100%;
+    min-height: var(--height-xl);
   }
-
   &--fullscreen {
     position: fixed;
     inset: 0;
-    z-index: 2000;
-    background: var(--ds-bg-overlay, color-mix(in srgb, var(--surface-0) 60%, transparent));
+    z-index: var(--z-modal);
   }
-
-  &--lock {
-    overflow: hidden;
+  &--backdrop {
+    background: color-mix(in srgb, var(--surface-1) 76%, transparent);
+    backdrop-filter: blur(var(--spacing-xs));
   }
-
-  &--size-sm &__spinner svg {
-    width: var(--spacing-lg);
-    height: var(--spacing-lg);
-  }
-
-  &--size-md &__spinner svg {
-    width: var(--spacing-xl);
-    height: var(--spacing-xl);
-  }
-
-  &--size-lg &__spinner svg {
-    width: calc(var(--spacing-2xl) + var(--spacing-sm));
-    height: calc(var(--spacing-2xl) + var(--spacing-sm));
-  }
-
   &__overlay {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-md);
     padding: var(--spacing-lg);
-    border-radius: var(--border-radius-md);
     background: var(--surface-1);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--ds-border);
+    border-radius: var(--theme-card-radius);
     box-shadow: var(--shadow-md);
   }
-
   &--inline &__overlay {
-    background: transparent;
-    border: none;
-    box-shadow: none;
     padding: var(--spacing-md);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
   }
-
   &__spinner {
-    display: inline-flex;
     width: var(--height-md);
     height: var(--height-md);
-    animation: vp-loading-spin 1s linear infinite;
-
-    svg {
-      width: 100%;
-      height: 100%;
+    border: 2px solid color-mix(in srgb, currentColor 25%, transparent);
+    border-top-color: currentColor;
+    border-radius: var(--border-radius-full);
+    animation: vp-loading-spin 0.8s linear infinite;
+  }
+  &--size-sm &__spinner {
+    width: var(--height-xs);
+    height: var(--height-xs);
+  }
+  &--size-lg &__spinner {
+    width: var(--height-lg);
+    height: var(--height-lg);
+  }
+  &__dots {
+    display: flex;
+    gap: var(--spacing-xs);
+    i {
+      width: var(--spacing-sm);
+      height: var(--spacing-sm);
+      background: currentColor;
+      border-radius: var(--border-radius-full);
+      animation: vp-loading-dot 1s ease-in-out infinite;
+      &:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+      &:nth-child(3) {
+        animation-delay: 0.3s;
+      }
     }
   }
-
+  &__progress {
+    width: calc(var(--spacing-2xl) * 4);
+    height: var(--spacing-xs);
+    overflow: hidden;
+    background: var(--surface-3);
+    border-radius: var(--border-radius-full);
+    i {
+      display: block;
+      height: 100%;
+      background: currentColor;
+      border-radius: inherit;
+      transition: width var(--transition-normal);
+    }
+  }
   &__text {
-    font-size: var(--font-size-sm);
+    max-width: calc(var(--spacing-2xl) * 8);
     color: var(--text-secondary);
-    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    text-align: center;
+  }
+  &__cancel {
+    appearance: none;
+    padding: var(--spacing-xs) var(--spacing-md);
+    color: var(--primary-500);
+    background: transparent;
+    border: 0;
+    border-radius: var(--theme-btn-radius);
+    cursor: pointer;
+    &:focus-visible {
+      outline: var(--ds-focus-ring);
+    }
   }
 }
-
 .vp-loading-fade-enter-active,
 .vp-loading-fade-leave-active {
   transition: opacity var(--transition-normal);
 }
-
 .vp-loading-fade-enter-from,
 .vp-loading-fade-leave-to {
   opacity: 0;
 }
-
 @keyframes vp-loading-spin {
-  from {
-    transform: rotate(0deg);
-  }
   to {
     transform: rotate(360deg);
+  }
+}
+@keyframes vp-loading-dot {
+  50% {
+    opacity: 0.35;
+    transform: translateY(calc(var(--spacing-xs) * -1));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vp-loading__spinner,
+  .vp-loading__dots i {
+    animation: none;
   }
 }

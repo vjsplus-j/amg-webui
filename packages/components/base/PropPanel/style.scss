@@ -23,7 +23,10 @@
     font-size: var(--font-size-sm);
 
     input[type='text'],
-    input[type='number'] {
+    input[type='number'],
+    input[type='color'],
+    select,
+    textarea {
       height: var(--height-md);
       border: 1px solid var(--ds-border, var(--border-color));
       border-radius: var(--theme-input-radius, var(--border-radius-md));
@@ -31,6 +34,17 @@
       background: var(--surface-0, var(--surface-1));
       color: var(--text-primary);
     }
+
+    textarea {
+      min-height: calc(var(--height-md) * 2);
+      padding-block: var(--spacing-sm);
+      resize: vertical;
+    }
+  }
+
+  &__description {
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
   }
 
   &__muted {

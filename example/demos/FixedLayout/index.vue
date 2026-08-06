@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref } from "vue";
 import {
   Avatar,
   Button,
@@ -8,33 +8,49 @@ import {
   Icon,
   InputText,
   Space,
-  Tag
-} from '@amg-webui/components/base'
-import { useLocale } from '@amg-webui/hooks'
-import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
-import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
-import '../../components/demo/curatedDemo.scss'
+  Tag,
+} from "@amg-webui/components/base";
+import { useLocale } from "@amg-webui/hooks";
+import DemoBlock from "../../components/demo/DemoBlock.vue";
+import PropsTable from "../../components/demo/PropsTable.vue";
+import { demoSfc } from "../../components/demo/demoCode";
+import type { PropRow } from "../../components/demo/types";
+import "../../components/demo/curatedDemo.scss";
 
-const { t } = useLocale()
+const { t } = useLocale();
 
-type NavId = 'home' | 'docs' | 'users' | 'settings'
+type NavId = "home" | "docs" | "users" | "settings";
 
-const side = ref<'left' | 'right'>('left')
-const nav = ref<NavId>('home')
-const query = ref('')
+const side = ref<"left" | "right">("left");
+const nav = ref<NavId>("home");
+const query = ref("");
 
 const navItems = computed(() =>
   (
     [
-      { id: 'home' as const, icon: 'LayoutDashboard', labelKey: 'example.doc.fixedLayout.nav.home' },
-      { id: 'docs' as const, icon: 'FileText', labelKey: 'example.doc.fixedLayout.nav.docs' },
-      { id: 'users' as const, icon: 'User', labelKey: 'example.doc.fixedLayout.nav.users' },
-      { id: 'settings' as const, icon: 'Settings', labelKey: 'example.doc.fixedLayout.nav.settings' }
+      {
+        id: "home" as const,
+        icon: "LayoutDashboard",
+        labelKey: "example.doc.fixedLayout.nav.home",
+      },
+      {
+        id: "docs" as const,
+        icon: "FileText",
+        labelKey: "example.doc.fixedLayout.nav.docs",
+      },
+      {
+        id: "users" as const,
+        icon: "User",
+        labelKey: "example.doc.fixedLayout.nav.users",
+      },
+      {
+        id: "settings" as const,
+        icon: "Settings",
+        labelKey: "example.doc.fixedLayout.nav.settings",
+      },
     ] as const
-  ).map((item) => ({ ...item, label: t(item.labelKey) }))
-)
+  ).map((item) => ({ ...item, label: t(item.labelKey) })),
+);
 
 const codeBasic = demoSfc({
   imports: [`import { FixedLayout, Button } from '@amg-webui/components/base'`],
@@ -44,33 +60,35 @@ const codeBasic = demoSfc({
     '      <div class="toolbar">',
     `        <span>{{ t('example.doc.fixedLayout.sample.top') }}</span>`,
     `        <Button size="sm">{{ t('example.doc.fixedLayout.sample.action') }}</Button>`,
-    '      </div>',
-    '    </FixedLayout>',
+    "      </div>",
+    "    </FixedLayout>",
     '    <div class="body">…</div>',
-    '  </div>'
-  ]
-})
+    "  </div>",
+  ],
+});
 
 const codeSide = demoSfc({
-  imports: [`import { FixedLayout, Button, Icon } from '@amg-webui/components/base'`],
+  imports: [
+    `import { FixedLayout, Button, Icon } from '@amg-webui/components/base'`,
+  ],
   template: [
     '  <div class="frame frame--left">',
     '    <FixedLayout mode="absolute" position="left">',
     '      <nav class="rail">',
     '        <Button variant="text" @click="nav = \'home\'">',
     '          <Icon name="LayoutDashboard" size="sm" />',
-    '          {{ label }}',
-    '        </Button>',
-    '      </nav>',
-    '    </FixedLayout>',
+    "          {{ label }}",
+    "        </Button>",
+    "      </nav>",
+    "    </FixedLayout>",
     '    <div class="body">…</div>',
-    '  </div>'
-  ]
-})
+    "  </div>",
+  ],
+});
 
 const codeShell = demoSfc({
   imports: [
-    `import { FixedLayout, Button, Icon, InputText, Card, Tag, Avatar } from '@amg-webui/components/base'`
+    `import { FixedLayout, Button, Icon, InputText, Card, Tag, Avatar } from '@amg-webui/components/base'`,
   ],
   template: [
     '  <div class="shell">',
@@ -78,10 +96,10 @@ const codeShell = demoSfc({
     '    <div class="shell__row">',
     '      <FixedLayout mode="absolute" position="left">…rail…</FixedLayout>',
     '      <main class="body">…cards…</main>',
-    '    </div>',
-    '  </div>'
-  ]
-})
+    "    </div>",
+    "  </div>",
+  ],
+});
 
 const codeFooter = demoSfc({
   imports: [`import { FixedLayout, Button } from '@amg-webui/components/base'`],
@@ -92,22 +110,49 @@ const codeFooter = demoSfc({
     '      <div class="toolbar toolbar--footer">',
     `        <span>{{ t('example.doc.fixedLayout.sample.bottom') }}</span>`,
     `        <Button size="sm">{{ t('example.doc.fixedLayout.sample.action') }}</Button>`,
-    '      </div>',
-    '    </FixedLayout>',
-    '  </div>'
-  ]
-})
+    "      </div>",
+    "    </FixedLayout>",
+    "  </div>",
+  ],
+});
 
 const propRows = computed<PropRow[]>(() => [
-  { name: 'mode', type: "'fixed'|'absolute'", defaultValue: "'fixed'", description: t('example.doc.fixedLayout.prop.mode') },
-  { name: 'position / offset', type: 'edge / spacing', defaultValue: "'top' / 'none'", description: t('example.doc.fixedLayout.prop.position') },
-  { name: 'placeholder', type: 'boolean', defaultValue: 'true', description: t('example.doc.fixedLayout.prop.placeholder') }
-])
+  {
+    name: "mode",
+    type: "'fixed'|'absolute'",
+    defaultValue: "'fixed'",
+    description: t("example.doc.fixedLayout.prop.mode"),
+  },
+  {
+    name: "position / offset",
+    type: "edge / spacing",
+    defaultValue: "'top' / 'none'",
+    description: t("example.doc.fixedLayout.prop.position"),
+  },
+  {
+    name: "placeholder / safeArea",
+    type: "boolean",
+    defaultValue: "true / false",
+    description: t("example.doc.fixedLayout.prop.placeholder"),
+  },
+  {
+    name: "as / teleportTo / ariaLabel",
+    type: "element / target / string",
+    defaultValue: "'div' / — / —",
+    description: t("example.doc.fixedLayout.prop.mode"),
+  },
+  {
+    name: "resize",
+    type: "(size) => void",
+    defaultValue: "—",
+    description: t("example.doc.fixedLayout.prop.placeholder"),
+  },
+]);
 </script>
 
 <template>
   <div class="vp-curated">
-    <p class="vp-curated__lead">{{ t('example.doc.fixedLayout.when') }}</p>
+    <p class="vp-curated__lead">{{ t("example.doc.fixedLayout.when") }}</p>
 
     <!-- 1. Header only -->
     <DemoBlock
@@ -117,18 +162,29 @@ const propRows = computed<PropRow[]>(() => [
       default-open
     >
       <div class="frame frame--top">
-        <FixedLayout mode="absolute" position="top" offset="none" class="chrome">
+        <FixedLayout
+          mode="absolute"
+          position="top"
+          offset="none"
+          class="chrome"
+        >
           <div class="toolbar">
-            <span class="toolbar__title">{{ t('example.doc.fixedLayout.sample.top') }}</span>
+            <span class="toolbar__title">{{
+              t("example.doc.fixedLayout.sample.top")
+            }}</span>
             <Space>
-              <Button size="sm" variant="outlined">{{ t('example.doc.fixedLayout.sample.more') }}</Button>
-              <Button size="sm">{{ t('example.doc.fixedLayout.sample.action') }}</Button>
+              <Button size="sm" variant="outlined">{{
+                t("example.doc.fixedLayout.sample.more")
+              }}</Button>
+              <Button size="sm">{{
+                t("example.doc.fixedLayout.sample.action")
+              }}</Button>
             </Space>
           </div>
         </FixedLayout>
         <div class="body">
           <p v-for="n in 5" :key="n" class="body__p">
-            {{ t('example.doc.fixedLayout.sample.footerLine', { n }) }}
+            {{ t("example.doc.fixedLayout.sample.footerLine", { n }) }}
           </p>
         </div>
       </div>
@@ -159,8 +215,16 @@ const propRows = computed<PropRow[]>(() => [
         </Space>
         <div class="frame" :class="`frame--${side}`">
           <template v-if="side === 'left'">
-            <FixedLayout mode="absolute" position="left" offset="none" class="chrome">
-              <nav class="rail" :aria-label="t('example.doc.fixedLayout.sample.side')">
+            <FixedLayout
+              mode="absolute"
+              position="left"
+              offset="none"
+              class="chrome"
+            >
+              <nav
+                class="rail"
+                :aria-label="t('example.doc.fixedLayout.sample.side')"
+              >
                 <Button
                   v-for="item in navItems"
                   :key="item.id"
@@ -175,17 +239,41 @@ const propRows = computed<PropRow[]>(() => [
               </nav>
             </FixedLayout>
             <div class="body">
-              <p class="body__lead">{{ t('example.doc.fixedLayout.sample.sideBody', { name: t(`example.doc.fixedLayout.nav.${nav}`) }) }}</p>
-              <p v-for="n in 4" :key="n" class="body__p">{{ t('example.doc.fixedLayout.sample.body') }}</p>
+              <p class="body__lead">
+                {{
+                  t("example.doc.fixedLayout.sample.sideBody", {
+                    name: t(`example.doc.fixedLayout.nav.${nav}`),
+                  })
+                }}
+              </p>
+              <p v-for="n in 4" :key="n" class="body__p">
+                {{ t("example.doc.fixedLayout.sample.body") }}
+              </p>
             </div>
           </template>
           <template v-else>
             <div class="body">
-              <p class="body__lead">{{ t('example.doc.fixedLayout.sample.sideBody', { name: t(`example.doc.fixedLayout.nav.${nav}`) }) }}</p>
-              <p v-for="n in 4" :key="n" class="body__p">{{ t('example.doc.fixedLayout.sample.body') }}</p>
+              <p class="body__lead">
+                {{
+                  t("example.doc.fixedLayout.sample.sideBody", {
+                    name: t(`example.doc.fixedLayout.nav.${nav}`),
+                  })
+                }}
+              </p>
+              <p v-for="n in 4" :key="n" class="body__p">
+                {{ t("example.doc.fixedLayout.sample.body") }}
+              </p>
             </div>
-            <FixedLayout mode="absolute" position="right" offset="none" class="chrome">
-              <nav class="rail rail--end" :aria-label="t('example.doc.fixedLayout.sample.side')">
+            <FixedLayout
+              mode="absolute"
+              position="right"
+              offset="none"
+              class="chrome"
+            >
+              <nav
+                class="rail rail--end"
+                :aria-label="t('example.doc.fixedLayout.sample.side')"
+              >
                 <Button
                   v-for="item in navItems"
                   :key="item.id"
@@ -211,11 +299,18 @@ const propRows = computed<PropRow[]>(() => [
       :code="codeShell"
     >
       <div class="shell">
-        <FixedLayout mode="absolute" position="top" offset="none" class="chrome">
+        <FixedLayout
+          mode="absolute"
+          position="top"
+          offset="none"
+          class="chrome"
+        >
           <div class="toolbar">
             <Space>
               <Icon name="PanelLeft" size="sm" />
-              <span class="toolbar__title">{{ t('example.doc.fixedLayout.sample.brand') }}</span>
+              <span class="toolbar__title">{{
+                t("example.doc.fixedLayout.sample.brand")
+              }}</span>
             </Space>
             <Space>
               <InputText
@@ -224,14 +319,28 @@ const propRows = computed<PropRow[]>(() => [
                 :placeholder="t('example.doc.fixedLayout.sample.searchPh')"
                 class="toolbar__search"
               />
-              <Button size="sm" variant="outlined" shape="circle" icon="Bell" :aria-label="t('example.doc.fixedLayout.sample.notify')" />
+              <Button
+                size="sm"
+                variant="outlined"
+                shape="circle"
+                icon="Bell"
+                :aria-label="t('example.doc.fixedLayout.sample.notify')"
+              />
               <Avatar size="sm" text="AM" />
             </Space>
           </div>
         </FixedLayout>
         <div class="shell__row">
-          <FixedLayout mode="absolute" position="left" offset="none" class="chrome">
-            <nav class="rail" :aria-label="t('example.doc.fixedLayout.sample.side')">
+          <FixedLayout
+            mode="absolute"
+            position="left"
+            offset="none"
+            class="chrome"
+          >
+            <nav
+              class="rail"
+              :aria-label="t('example.doc.fixedLayout.sample.side')"
+            >
               <Button
                 v-for="item in navItems"
                 :key="item.id"
@@ -247,16 +356,26 @@ const propRows = computed<PropRow[]>(() => [
           </FixedLayout>
           <div class="body body--stack">
             <Space wrap>
-              <Tag severity="primary">{{ t(`example.doc.fixedLayout.nav.${nav}`) }}</Tag>
+              <Tag severity="primary">{{
+                t(`example.doc.fixedLayout.nav.${nav}`)
+              }}</Tag>
               <Tag v-if="query" severity="info">{{ query }}</Tag>
             </Space>
             <Card>
               <Space direction="vertical" block size="md">
-                <p class="body__lead">{{ t('example.doc.fixedLayout.sample.cardTitle') }}</p>
-                <p class="body__p">{{ t('example.doc.fixedLayout.sample.cardBody') }}</p>
+                <p class="body__lead">
+                  {{ t("example.doc.fixedLayout.sample.cardTitle") }}
+                </p>
+                <p class="body__p">
+                  {{ t("example.doc.fixedLayout.sample.cardBody") }}
+                </p>
                 <Space>
-                  <Button size="sm">{{ t('example.doc.fixedLayout.sample.action') }}</Button>
-                  <Button size="sm" variant="outlined">{{ t('example.doc.fixedLayout.sample.more') }}</Button>
+                  <Button size="sm">{{
+                    t("example.doc.fixedLayout.sample.action")
+                  }}</Button>
+                  <Button size="sm" variant="outlined">{{
+                    t("example.doc.fixedLayout.sample.more")
+                  }}</Button>
                 </Space>
               </Space>
             </Card>
@@ -264,8 +383,12 @@ const propRows = computed<PropRow[]>(() => [
               <Space>
                 <Avatar size="md" text="JD" />
                 <div>
-                  <p class="body__lead">{{ t('example.doc.fixedLayout.sample.userName') }}</p>
-                  <p class="body__p">{{ t('example.doc.fixedLayout.sample.userMeta') }}</p>
+                  <p class="body__lead">
+                    {{ t("example.doc.fixedLayout.sample.userName") }}
+                  </p>
+                  <p class="body__p">
+                    {{ t("example.doc.fixedLayout.sample.userMeta") }}
+                  </p>
                 </div>
               </Space>
             </Card>
@@ -283,13 +406,22 @@ const propRows = computed<PropRow[]>(() => [
       <div class="frame frame--bottom">
         <div class="body">
           <p v-for="n in 5" :key="n" class="body__p">
-            {{ t('example.doc.fixedLayout.sample.footerLine', { n }) }}
+            {{ t("example.doc.fixedLayout.sample.footerLine", { n }) }}
           </p>
         </div>
-        <FixedLayout mode="absolute" position="bottom" offset="none" class="chrome">
+        <FixedLayout
+          mode="absolute"
+          position="bottom"
+          offset="none"
+          class="chrome"
+        >
           <div class="toolbar toolbar--footer">
-            <span class="toolbar__title">{{ t('example.doc.fixedLayout.sample.bottom') }}</span>
-            <Button size="sm">{{ t('example.doc.fixedLayout.sample.action') }}</Button>
+            <span class="toolbar__title">{{
+              t("example.doc.fixedLayout.sample.bottom")
+            }}</span>
+            <Button size="sm">{{
+              t("example.doc.fixedLayout.sample.action")
+            }}</Button>
           </div>
         </FixedLayout>
       </div>

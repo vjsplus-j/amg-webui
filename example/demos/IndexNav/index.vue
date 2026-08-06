@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { IndexNav } from '@amg-webui/components/base'
+import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -11,15 +12,16 @@ import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
 
-const mountProps = computed(() => getSampleMountProps('IndexNav'))
+const selected = ref<string | number>('a')
+const items = computed(() => getSampleMountProps('IndexNav').items as NavItem[])
 
 const codeBasic = demoSfc({
   imports: [
-    `import { IndexNav } from '@amg-webui/components/base'`,
-    `import { getSampleMountProps } from '../_shared/sampleMountProps'`
+    `import { ref } from 'vue'`,
+    `import { IndexNav } from '@amg-webui/components/base'`
   ],
-  script: [`const mountProps = getSampleMountProps('IndexNav')`],
-  template: [`  <IndexNav v-bind="mountProps" />`]
+  script: [`const selected = ref('a')`, `const items = [/* NavItem[] */]`],
+  template: [`  <IndexNav v-model="selected" :items="items" />`]
 })
 
 const propRows = computed<PropRow[]>(() => [
@@ -40,7 +42,7 @@ const propRows = computed<PropRow[]>(() => [
       :code="codeBasic"
       default-open
     >
-      <IndexNav v-bind="mountProps" />
+      <IndexNav v-model="selected" :items="items" />
     </DemoBlock>
     <PropsTable :rows="propRows" />
   </div>

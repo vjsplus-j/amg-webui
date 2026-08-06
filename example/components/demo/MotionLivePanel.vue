@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Icon, Slider, Switch } from '@amg-webui/components/base'
+import { Button, Slider, Switch } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
 
 export interface MotionLiveState {
@@ -181,15 +181,15 @@ const panelTitle = computed(() => t('example.doc.icon.demo.motion'))
     <div class="vp-motion-live__panel">
       <header class="vp-motion-live__head">
         <h4 class="vp-motion-live__title">{{ panelTitle }}</h4>
-        <button
-          type="button"
-          class="vp-motion-live__reset"
+        <Button
+          icon="RotateCcw"
+          size="sm"
+          shape="square"
+          variant="outlined"
           :aria-label="t('example.doc.icon.demo.motionReset')"
           :title="t('example.doc.icon.demo.motionReset')"
           @click="reset"
-        >
-          <Icon name="RotateCcw" size="sm" />
-        </button>
+        />
       </header>
 
       <p class="vp-motion-live__debug" aria-live="polite">{{ debugText }}</p>
@@ -392,35 +392,6 @@ const panelTitle = computed(() => t('example.doc.icon.demo.motion'))
   font-weight: var(--font-weight-heading, 600);
   color: var(--text-primary);
   line-height: var(--line-height-body);
-}
-
-.vp-motion-live__reset {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--height-sm);
-  height: var(--height-sm);
-  padding: 0;
-  border: 1px solid var(--ds-border);
-  border-radius: var(--theme-btn-radius);
-  background: var(--surface-1);
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition:
-    color var(--transition-normal),
-    border-color var(--transition-normal),
-    background var(--transition-normal);
-}
-
-.vp-motion-live__reset:hover {
-  color: var(--text-primary);
-  border-color: var(--border-color-hover);
-  background: var(--surface-2);
-}
-
-.vp-motion-live__reset:focus-visible {
-  outline: 2px solid var(--ds-focus-ring);
-  outline-offset: 2px;
 }
 
 .vp-motion-live__row {

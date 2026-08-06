@@ -1,6 +1,6 @@
 import TabPane from './index.vue'
-import type { TabPaneProps } from './types'
+import type { TabPaneEmits, TabPaneProps } from './types'
 
 export { TabPane }
-export type { TabPaneProps }
+export type { TabPaneProps, TabPaneEmits }
 export default TabPane

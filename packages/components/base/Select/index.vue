@@ -1,22 +1,24 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
-import { isClient } from '@amg-webui/utils/env'
-import type { SelectProps, SelectEmits } from './types'
-import { useSelect } from './useSelect'
-import './style.scss'
+import { onMounted, onUnmounted } from "vue";
+import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
+import { isClient } from "@amg-webui/utils/env";
+import type { SelectProps, SelectEmits } from "./types";
+import { useSelect } from "./useSelect";
+import "./style.scss";
 
 const props = withDefaults(defineProps<SelectProps>(), {
   options: () => [],
-  size: 'md',
+  size: "md",
   maxCollapseTags: 1,
+  virtual: undefined,
   virtualThreshold: 60,
-  telemetry: undefined
-})
+  filterDebounce: 200,
+  telemetry: undefined,
+});
 
-const emit = defineEmits<SelectEmits>()
-const { t } = useLocale()
+const emit = defineEmits<SelectEmits>();
+const { t } = useLocale();
 
 const {
   isOpen,
@@ -24,6 +26,7 @@ const {
   triggerRef,
   panelRef,
   filterRef,
+  listRef,
   listboxId,
   filteredOptions,
   displayLabel,
@@ -36,6 +39,7 @@ const {
   selectStyle,
   useVirtualScroll,
   virtual,
+  remoteLoading,
   showFilter,
   toggle,
   close,
@@ -43,84 +47,94 @@ const {
   isOptionSelected,
   resolveSelectValue,
   resolveClearValue,
-  resolveRemoveTagValue
-} = useSelect(props)
+  resolveRemoveTagValue,
+} = useSelect(props, (error, query) => emit("remote-error", error, query));
 
 const handleTriggerClick = () => {
-  toggle()
+  toggle();
   if (isOpen.value) {
-    emit('show')
+    emit("show");
   } else {
-    emit('hide')
+    emit("hide");
   }
-}
+};
 
 const handleFocus = () => {
-  emit('focus', {} as FocusEvent)
-}
+  emit("focus", {} as FocusEvent);
+};
 
 const handleBlur = () => {
-  emit('blur', {} as FocusEvent)
-}
+  emit("blur", {} as FocusEvent);
+};
 
-const handleOptionClick = (option: (typeof props.options)[0], event: MouseEvent) => {
-  if (option.disabled || props.disabled || props.readonly) return
-  const next = resolveSelectValue(option)
-  emit('update:modelValue', next)
-  emit('change', { originalEvent: event, value: next })
+const handleOptionClick = (
+  option: (typeof props.options)[0],
+  event: MouseEvent,
+) => {
+  if (option.disabled || props.disabled || props.readonly) return;
+  const next = resolveSelectValue(option);
+  emit("update:modelValue", next);
+  emit("change", { originalEvent: event, value: next });
   if (shouldCloseAfterSelect()) {
-    close()
-    emit('hide')
+    close();
+    emit("hide");
   }
-}
+};
 
 const handleClear = (event: MouseEvent) => {
-  event.stopPropagation()
-  const next = resolveClearValue()
-  emit('update:modelValue', next)
-  emit('clear')
-}
+  event.stopPropagation();
+  const next = resolveClearValue();
+  emit("update:modelValue", next);
+  emit("clear");
+};
 
 const handleRemoveTag = (event: MouseEvent, value: string | number) => {
-  event.stopPropagation()
-  const next = resolveRemoveTagValue(value)
-  emit('update:modelValue', next)
-  emit('remove-tag', value)
-}
+  event.stopPropagation();
+  const next = resolveRemoveTagValue(value);
+  emit("update:modelValue", next);
+  emit("remove-tag", value);
+};
 
 const handleKeydown = (event: KeyboardEvent) => {
   if (!isOpen.value) {
-    if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      toggle()
-      emit('show')
+    if (
+      event.key === "ArrowDown" ||
+      event.key === "Enter" ||
+      event.key === " "
+    ) {
+      event.preventDefault();
+      toggle();
+      emit("show");
     }
-  } else if (event.key === 'Escape') {
-    event.preventDefault()
-    close()
-    emit('hide')
+  } else if (event.key === "Escape") {
+    event.preventDefault();
+    close();
+    emit("hide");
   }
-}
+};
 
 onMounted(() => {
-  if (!isClient) return
-  document.addEventListener('click', handleOutsideClick)
-})
+  if (!isClient) return;
+  document.addEventListener("click", handleOutsideClick);
+});
 
 onUnmounted(() => {
-  if (!isClient) return
-  document.removeEventListener('click', handleOutsideClick)
-})
+  if (!isClient) return;
+  document.removeEventListener("click", handleOutsideClick);
+});
 
 const handleOutsideClick = (event: MouseEvent) => {
   if (isOpen.value) {
-    const target = event.target as HTMLElement
-    if (!triggerRef.value?.contains(target) && !panelRef.value?.contains(target)) {
-      close()
-      emit('hide')
+    const target = event.target as HTMLElement;
+    if (
+      !triggerRef.value?.contains(target) &&
+      !panelRef.value?.contains(target)
+    ) {
+      close();
+      emit("hide");
     }
   }
-}
+};
 </script>
 
 <template>
@@ -147,8 +161,16 @@ const handleOutsideClick = (event: MouseEvent) => {
         :aria-label="t(LocaleKeys.component.select.clear)"
         @click="handleClear"
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
         </svg>
       </span>
 
@@ -163,22 +185,42 @@ const handleOutsideClick = (event: MouseEvent) => {
             v-if="!disabled && !readonly"
             class="vp-select__tag-close"
             role="button"
-            :aria-label="t(LocaleKeys.component.select.removeTag, { label: tag.label })"
+            :aria-label="
+              t(LocaleKeys.component.select.removeTag, { label: tag.label })
+            "
             @click="handleRemoveTag($event, tag.value)"
           >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              />
             </svg>
           </span>
         </span>
-        <span v-if="collapsedCount > 0" class="vp-select__tag vp-select__tag--collapsed">
-          {{ t(LocaleKeys.component.select.collapsedTags, { count: collapsedCount }) }}
+        <span
+          v-if="collapsedCount > 0"
+          class="vp-select__tag vp-select__tag--collapsed"
+        >
+          {{
+            t(LocaleKeys.component.select.collapsedTags, {
+              count: collapsedCount,
+            })
+          }}
         </span>
       </div>
 
       <span
         v-else
-        :class="['vp-select__label', { 'vp-select__label--placeholder': isPlaceholder }]"
+        :class="[
+          'vp-select__label',
+          { 'vp-select__label--placeholder': isPlaceholder },
+        ]"
       >
         {{ displayLabel }}
       </span>
@@ -209,14 +251,15 @@ const handleOutsideClick = (event: MouseEvent) => {
       </div>
 
       <div
+        ref="listRef"
         :id="listboxId"
         class="vp-select__list"
         role="listbox"
         :aria-label="t(LocaleKeys.component.select.listboxAria)"
-        :aria-busy="loading || undefined"
+        :aria-busy="loading || remoteLoading || undefined"
         @scroll="useVirtualScroll ? virtual.onScroll : undefined"
       >
-        <div v-if="loading" class="vp-select__loading">
+        <div v-if="loading || remoteLoading" class="vp-select__loading">
           {{ t(LocaleKeys.component.select.loading) }}
         </div>
 
@@ -229,7 +272,10 @@ const handleOutsideClick = (event: MouseEvent) => {
         </div>
 
         <template v-else-if="useVirtualScroll">
-          <div class="vp-select__virtual-spacer" :style="{ height: `${virtual.totalHeight.value}px` }">
+          <div
+            class="vp-select__virtual-spacer"
+            :style="{ height: `${virtual.totalHeight.value}px` }"
+          >
             <div
               class="vp-select__virtual-window"
               :style="{ transform: `translateY(${virtual.offsetY.value}px)` }"
@@ -242,11 +288,11 @@ const handleOutsideClick = (event: MouseEvent) => {
                   'vp-select__option',
                   {
                     'vp-select__option--selected': isOptionSelected(option),
-                    'vp-select__option--disabled': option.disabled
-                  }
+                    'vp-select__option--disabled': option.disabled,
+                  },
                 ]"
                 :aria-selected="isOptionSelected(option)"
-                :style="{ height: `${virtual.itemHeight}px` }"
+                :style="{ height: `${virtual.itemHeight.value}px` }"
                 @click="handleOptionClick(option, $event)"
               >
                 {{ option.label }}
@@ -264,8 +310,8 @@ const handleOutsideClick = (event: MouseEvent) => {
               'vp-select__option',
               {
                 'vp-select__option--selected': isOptionSelected(option),
-                'vp-select__option--disabled': option.disabled
-              }
+                'vp-select__option--disabled': option.disabled,
+              },
             ]"
             :aria-selected="isOptionSelected(option)"
             @click="handleOptionClick(option, $event)"

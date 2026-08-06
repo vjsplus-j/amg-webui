@@ -1,59 +1,112 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
-import { useTableState, type TableColumn } from '@amg-webui/utils/data-display/useTableState'
-import { useVirtualList } from '@amg-webui/utils/data-display/useVirtualList'
-import type { VirtualTableProps, VirtualTableEmits } from './types'
-import './style.scss'
+import { computed, onUnmounted, ref, watch } from "vue";
+import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
+import {
+  useTableState,
+  type TableColumn,
+} from "@amg-webui/utils/data-display/useTableState";
+import { useVirtualList } from "@amg-webui/utils/data-display/useVirtualList";
+import type { VirtualTableProps, VirtualTableEmits } from "./types";
+import "./style.scss";
 
 const props = withDefaults(defineProps<VirtualTableProps>(), {
   columns: () => [],
   rows: () => [],
   virtual: true,
+  rowKey: "id",
+  filterDebounce: 200,
   disabled: false,
   loading: false,
-  telemetry: undefined
-})
-const emit = defineEmits<VirtualTableEmits>()
-const { t } = useLocale()
+  telemetry: undefined,
+});
+const emit = defineEmits<VirtualTableEmits>();
+const { t } = useLocale();
 
 const rawRows = computed(() =>
-  props.rows?.length ? props.rows : Array.isArray(props.data) ? props.data : []
-)
+  props.rows?.length ? props.rows : Array.isArray(props.data) ? props.data : [],
+);
 
 const rawCols = computed<TableColumn[]>(() => {
-  if (props.columns?.length) return props.columns
-  const first = rawRows.value[0]
-  if (!first) return []
-  return Object.keys(first).slice(0, 8).map((field) => ({ field, header: field, sortable: true }))
-})
+  if (props.columns?.length) return props.columns;
+  const first = rawRows.value[0];
+  if (!first) return [];
+  return Object.keys(first)
+    .slice(0, 8)
+    .map((field) => ({ field, header: field, sortable: true }));
+});
 
-const { keyword, sortField, sortDir, visibleColumns, filteredRows, toggleSort, exportCsv } = useTableState(
-  rawRows,
-  rawCols
-)
+const {
+  keyword,
+  sortField,
+  sortDir,
+  visibleColumns,
+  filteredRows,
+  toggleSort,
+  exportCsv,
+} = useTableState(rawRows, rawCols);
 
-const rowRef = computed(() => filteredRows.value)
-const { visibleItems, totalHeight, offsetY, itemHeight, onScroll } = useVirtualList(rowRef, {
+const keywordInput = ref("");
+const bodyRef = ref<HTMLElement | null>(null);
+let filterTimer: ReturnType<typeof setTimeout> | null = null;
+watch(keywordInput, (value) => {
+  if (filterTimer) clearTimeout(filterTimer);
+  filterTimer = setTimeout(
+    () => {
+      keyword.value = value;
+    },
+    Math.max(0, props.filterDebounce),
+  );
+});
+onUnmounted(() => {
+  if (filterTimer) clearTimeout(filterTimer);
+});
+
+const rowRef = computed(() => filteredRows.value);
+const {
+  visibleItems,
+  totalHeight,
+  offsetY,
+  itemHeight,
+  onScroll,
+  reset: resetVirtual,
+} = useVirtualList(rowRef, {
   containerHeight: 320,
-  itemHeight: 40
-})
+  itemHeight: 40,
+  containerRef: bodyRef,
+});
+watch([keyword, sortField, sortDir], resetVirtual);
 
-function onRowClick(row: Record<string, unknown>) {
-  emit('update:modelValue', row)
-  emit('change', row)
+function rowIdentity(row: Record<string, unknown>, index: number) {
+  const key = row[props.rowKey];
+  return typeof key === "string" || typeof key === "number" ? key : index;
 }
 
-const titleText = computed(() => props.title ?? t('component.virtual-table.title'))
+function onRowClick(row: Record<string, unknown>) {
+  emit("update:modelValue", row);
+  emit("change", row);
+}
+
+const titleText = computed(
+  () => props.title ?? t("component.virtual-table.title"),
+);
 </script>
 
 <template>
   <div
-    :class="['vp-virtual-table', 'vp-virtual-table__panel', { 'vp-virtual-table--disabled': disabled }, props.class]"
+    :class="[
+      'vp-virtual-table',
+      'vp-virtual-table__panel',
+      { 'vp-virtual-table--disabled': disabled },
+      props.class,
+    ]"
     :style="style"
   >
-    <div v-if="loading" class="vp-virtual-table__loading" :aria-label="t(LocaleKeys.common.loading)">
+    <div
+      v-if="loading"
+      class="vp-virtual-table__loading"
+      :aria-label="t(LocaleKeys.common.loading)"
+    >
       <slot name="loading">
         <span class="vp-virtual-table__spinner" aria-hidden="true" />
       </slot>
@@ -61,8 +114,19 @@ const titleText = computed(() => props.title ?? t('component.virtual-table.title
 
     <div class="vp-virtual-table__toolbar">
       <strong class="vp-virtual-table__heading">{{ titleText }}</strong>
-      <input v-model="keyword" class="vp-virtual-table__filter" type="search" :placeholder="t('common.search')" />
-      <button type="button" class="vp-virtual-table__control" @click="exportCsv()">{{ t('common.export') }}</button>
+      <input
+        v-model="keywordInput"
+        class="vp-virtual-table__filter"
+        type="search"
+        :placeholder="t('common.search')"
+      />
+      <button
+        type="button"
+        class="vp-virtual-table__control"
+        @click="exportCsv()"
+      >
+        {{ t("common.export") }}
+      </button>
     </div>
     <div class="vp-virtual-table__scroll">
       <table class="vp-virtual-table__grid">
@@ -76,37 +140,64 @@ const titleText = computed(() => props.title ?? t('component.virtual-table.title
             >
               {{ c.header }}
               <span v-if="sortField === c.field" class="vp-virtual-table__sort">
-                {{ sortDir === 'asc' ? t('common.sortAsc') : t('common.sortDesc') }}
+                {{
+                  sortDir === "asc" ? t("common.sortAsc") : t("common.sortDesc")
+                }}
               </span>
             </th>
           </tr>
         </thead>
       </table>
-      <div class="vp-virtual-table__body" @scroll="onScroll">
+      <div
+        ref="bodyRef"
+        class="vp-virtual-table__body"
+        @scroll="virtual ? onScroll : undefined"
+      >
         <div :style="{ height: `${totalHeight}px`, position: 'relative' }">
-          <table class="vp-virtual-table__grid" :style="{ transform: `translateY(${offsetY}px)` }">
+          <table
+            class="vp-virtual-table__grid"
+            :style="{ transform: `translateY(${offsetY}px)` }"
+          >
             <tbody>
               <template v-if="virtual">
                 <tr
                   v-for="{ item: row, index } in visibleItems"
-                  :key="index"
+                  :key="rowIdentity(row, index)"
                   class="vp-virtual-table__row"
                   :style="{ height: `${itemHeight}px` }"
                   @click="onRowClick(row)"
                 >
-                  <td v-for="c in visibleColumns" :key="c.field" class="vp-virtual-table__cell">
+                  <td
+                    v-for="c in visibleColumns"
+                    :key="c.field"
+                    class="vp-virtual-table__cell"
+                  >
                     {{ row[c.field] }}
                   </td>
                 </tr>
               </template>
               <template v-else>
-                <tr v-for="(row, i) in filteredRows" :key="i" class="vp-virtual-table__row" @click="onRowClick(row)">
-                  <td v-for="c in visibleColumns" :key="c.field" class="vp-virtual-table__cell">{{ row[c.field] }}</td>
+                <tr
+                  v-for="(row, i) in filteredRows"
+                  :key="rowIdentity(row, i)"
+                  class="vp-virtual-table__row"
+                  @click="onRowClick(row)"
+                >
+                  <td
+                    v-for="c in visibleColumns"
+                    :key="c.field"
+                    class="vp-virtual-table__cell"
+                  >
+                    {{ row[c.field] }}
+                  </td>
                 </tr>
               </template>
               <tr v-if="!filteredRows.length">
-                <td :colspan="Math.max(visibleColumns.length, 1)" class="vp-virtual-table__empty">
-                  <slot name="empty">{{ t('common.noData') }}</slot>
+                <td
+                  :colspan="Math.max(visibleColumns.length, 1)"
+                  class="vp-virtual-table__empty"
+                >
+                  <slot name="empty">{{ t("common.noData") }}</slot>
                 </td>
               </tr>
             </tbody>
@@ -114,7 +205,9 @@ const titleText = computed(() => props.title ?? t('component.virtual-table.title
         </div>
       </div>
     </div>
-    <p class="vp-virtual-table__meta">{{ filteredRows.length }} {{ t('common.rows') }}</p>
+    <p class="vp-virtual-table__meta">
+      {{ filteredRows.length }} {{ t("common.rows") }}
+    </p>
     <slot />
   </div>
 </template>

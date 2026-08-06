@@ -50,21 +50,23 @@ const startCountdown = () => {
   remaining.value = props.countdown
   timer = setInterval(() => {
     remaining.value -= 1
+    emit('countdown', Math.max(0, remaining.value))
     if (remaining.value <= 0) clearTimer()
   }, 1000)
 }
 
-const onSend = () => {
+const onSend = async () => {
   if (!canSend.value) return
-  emit('send')
-  hasSent.value = true
-  startCountdown()
-  trackEmit({
-    component: 'SmsCode',
-    type: 'send',
-    trackId: props.trackId,
-    telemetry: props.telemetry
-  })
+  try {
+    const allowed = await props.beforeSend?.()
+    if (allowed === false) return
+    emit('send')
+    hasSent.value = true
+    startCountdown()
+    trackEmit({ component: 'SmsCode', type: 'send', trackId: props.trackId, telemetry: props.telemetry })
+  } catch (error) {
+    emit('send-error', error)
+  }
 }
 
 const onInput = (val: string) => {
@@ -95,6 +97,9 @@ onUnmounted(clearTimer)
     ]"
     :style="style"
     data-component="SmsCode"
+    role="group"
+    :aria-label="ariaLabel"
+    :aria-invalid="invalid || undefined"
   >
     <InputText
       class="vp-sms-code__input"

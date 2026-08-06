@@ -1,9 +1,46 @@
 .vp-countdown {
   display: inline-flex;
   align-items: center;
+  gap: var(--spacing-sm);
   font-family: var(--font-family-sans);
   font-size: var(--font-size-md);
   font-variant-numeric: tabular-nums;
   color: var(--text-primary);
   line-height: var(--line-height-body);
+
+  &__affix {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+  }
+
+  &__controls {
+    display: inline-flex;
+    gap: var(--spacing-xs);
+    margin-left: var(--spacing-sm);
+  }
+
+  &__btn {
+    appearance: none;
+    border: 1px solid var(--ds-border, var(--border-color));
+    background: var(--surface-0, var(--surface-1));
+    color: var(--text-primary);
+    border-radius: var(--theme-btn-radius, var(--border-radius-md));
+    min-height: var(--height-sm, 2rem);
+    padding: 0 var(--spacing-md);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+
+    &:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+
+  &__btn--ghost {
+    color: var(--text-secondary);
+  }
+
+  &--finished {
+    color: var(--text-secondary);
+  }
 }

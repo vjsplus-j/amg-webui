@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
-import { Icon } from '@amg-webui/components/base'
+import { Button } from '@amg-webui/components/base'
 import { ToastService } from '@amg-webui/theme'
 import DemoCode from './DemoCode.vue'
 
@@ -69,25 +69,23 @@ async function copyCode() {
     </div>
 
     <div v-if="props.code || $slots.code" class="vp-demo-block__actions">
-      <button
+      <Button
         v-if="resolvedCode"
-        type="button"
-        class="vp-demo-block__toggle"
+        icon="Copy"
+        size="sm"
+        variant="outlined"
+        :label="t(LocaleKeys.exampleDoc.copyCode)"
         :disabled="copying"
         @click="copyCode"
-      >
-        <Icon name="Copy" size="sm" />
-        <span>{{ t(LocaleKeys.exampleDoc.copyCode) }}</span>
-      </button>
-      <button
-        type="button"
-        class="vp-demo-block__toggle"
+      />
+      <Button
+        :icon="open ? 'ChevronUp' : 'Code'"
+        size="sm"
+        variant="outlined"
         :aria-expanded="open"
+        :label="open ? t(LocaleKeys.exampleDoc.hideCode) : t(LocaleKeys.exampleDoc.showCode)"
         @click="open = !open"
-      >
-        <Icon :name="open ? 'ChevronUp' : 'Code'" size="sm" />
-        <span>{{ open ? t(LocaleKeys.exampleDoc.hideCode) : t(LocaleKeys.exampleDoc.showCode) }}</span>
-      </button>
+      />
     </div>
 
     <slot v-if="open" name="code">
@@ -167,27 +165,4 @@ async function copyCode() {
   background: var(--surface-2, var(--surface-1));
 }
 
-.vp-demo-block__toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  min-height: var(--height-sm);
-  padding: 0 var(--spacing-md);
-  border: 1px solid var(--ds-border);
-  border-radius: var(--theme-btn-radius);
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  cursor: pointer;
-}
-
-.vp-demo-block__toggle:hover:not(:disabled) {
-  border-color: var(--border-color-hover);
-  color: var(--text-primary);
-}
-
-.vp-demo-block__toggle:disabled {
-  opacity: 0.6;
-  cursor: default;
-}
 </style>

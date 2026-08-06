@@ -1,6 +1,7 @@
 .vp-drag-verify {
   color: var(--text-primary);
   font-size: var(--font-size-md);
+  width: var(--vp-drag-verify-width, 100%);
 
   &__track {
     position: relative;
@@ -10,6 +11,7 @@
     background: var(--surface-2, var(--surface-1));
     overflow: hidden;
     user-select: none;
+    outline: none;
   }
 
   &__hint {
@@ -38,6 +40,10 @@
     z-index: 1;
   }
 
+  &__track:focus-visible {
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-500) 35%, transparent);
+  }
+
   &--passed &__track {
     border-color: var(--success-500, var(--primary-500));
     background: color-mix(in srgb, var(--success-500, var(--primary-500)) 12%, var(--surface-1));
@@ -45,6 +51,5 @@
 
   &--disabled {
     opacity: 0.55;
-    pointer-events: none;
   }
 }

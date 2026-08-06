@@ -93,6 +93,7 @@
 - **v0.1.1 扩大分批（2026-07-30）**：Core∪B1∪B2 ≈105；B1/B2 精选加厚；B3 立项未解锁；integrity 金标门禁
 - **v0.1.2 B3 解锁（2026-07-30）**：Core∪B1∪B2∪B3 ≈128；B3 布局/日期/树表精选加厚；金标脚手架 0
 - **Gap Batch B4（2026-07-30）**：P0→P2 常用面缺口 12 件落地；子集 **0.1.3** = Core∪B1∪B2∪B3∪B4；catalog **284**
+- **S1 薄封装清零（2026-08-03）**：CategoryNav / FooterNav / IndexNav / MiniNav / QuickNav / VerticalStepNav 独立实现；TabPane 注册/销毁/唯一 ID；TelemetryProvider 配置恢复；MessageBox 焦点陷阱、异步关闭守卫、Promise 收口；Barcode/Qrcode/MatrixCode 标准编码补强；maturity **shell 9→0**，最终 stub0 / shell0 / beta140 / ready145
 - Play：`/base/catalog` 全量检索 · `/base/industry` 行业套件 · curated：几乎全部 `/base/:name` · **v0.1 筛选项（含 B4）**
 - 计划文件：`docs/COMPONENT_DEEPEN_PLAN.md` · 波次 JSON：`scripts/.component-waves.json`
 - **未纳入本波（LIBRARY_PLAN P4–P5）**：完整 Vitest/E2E、VitePress API 全表、SSR、公开 npm/商标决策 —— 仍属上架就绪轨，非组件深化轨
@@ -122,3 +123,4 @@
 | 2026-07-30 | **v0.1.2** | 解锁 B3；子集 ≈128；B3 精选加厚；金标脚手架 0；`vue-tsc` |
 | 2026-07-30 | **发版步1+2** | `0.1.0` 试用合同；peerDeps；`build:lib`→dist；`RELEASE_0.1.md` |
 | 2026-07-30 | **Gap B4** | P0→P2：ConfigProvider/MessageBox/Affix/PageHeader/Segmented/InputOTP/TimeSelect/Mention/Image/ImageViewer/Tour/InfiniteScroll；子集 0.1.3；catalog 284；`vue-tsc` + integrity 绿 |
+| 2026-08-03 | **S1/样式收口** | 9 个 shell 补强并清零；example 删除未使用 layout.scss，AppHeader/AppShell/Gallery/Demo 工具改用库 Search/Select/Button/Avatar；Barcode/Qrcode/MatrixCode 标准编码补强；新增条码、二维码与 shell 行为单测 |

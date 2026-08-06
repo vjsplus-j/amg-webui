@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { computed, toRef } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import { normalizeTreeNodes } from '@amg-webui/utils/data-display/tree-types'
-import { useTreeState } from '@amg-webui/utils/data-display/useTreeState'
-import { useVirtualList } from '@amg-webui/utils/data-display/useVirtualList'
-import Spin from '../Spin/index.vue'
-import TreeCheckbox from './TreeCheckbox.vue'
-import type { TreeProps, TreeEmits } from './types'
-import './style.scss'
+import { computed, ref, toRef, watch } from "vue";
+import { useLocale } from "@amg-webui/hooks";
+import { normalizeTreeNodes } from "@amg-webui/utils/data-display/tree-types";
+import { useTreeState } from "@amg-webui/utils/data-display/useTreeState";
+import { useVirtualList } from "@amg-webui/utils/data-display/useVirtualList";
+import Spin from "../Spin/index.vue";
+import TreeCheckbox from "./TreeCheckbox.vue";
+import type { TreeProps, TreeEmits } from "./types";
+import "./style.scss";
 
 const props = withDefaults(defineProps<TreeProps>(), {
   options: () => [],
@@ -16,14 +16,17 @@ const props = withDefaults(defineProps<TreeProps>(), {
   defaultExpandAll: false,
   disabled: false,
   loading: false,
-  virtual: false
-})
+  virtual: undefined,
+  virtualThreshold: 100,
+  filterDebounce: 200,
+});
 
-const emit = defineEmits<TreeEmits>()
-const { t } = useLocale()
+const emit = defineEmits<TreeEmits>();
+const { t } = useLocale();
 
-const roots = computed(() => normalizeTreeNodes(props.data, props.options))
-const modelRef = toRef(props, 'modelValue')
+const roots = computed(() => normalizeTreeNodes(props.data, props.options));
+const modelRef = toRef(props, "modelValue");
+const viewportRef = ref<HTMLElement | null>(null);
 
 const {
   searchQuery,
@@ -34,23 +37,37 @@ const {
   getCheckState,
   selectNode,
   expandAll,
-  collapseAll
+  collapseAll,
 } = useTreeState(roots, modelRef, emit, {
   checkable: props.checkable,
   defaultExpandAll: props.defaultExpandAll,
-  checkStrictly: props.checkStrictly
-})
+  checkStrictly: props.checkStrictly,
+  filterDebounce: props.filterDebounce,
+});
 
-const flatRef = computed(() => flatRows.value)
-const virtualEnabled = computed(() => props.virtual)
-const { visibleItems, totalHeight, offsetY, itemHeight, onScroll } = useVirtualList(flatRef, {
-  containerHeight: 320
-})
+const flatRef = computed(() => flatRows.value);
+const virtualEnabled = computed(
+  () =>
+    props.virtual === true ||
+    (props.virtual !== false && flatRows.value.length > props.virtualThreshold),
+);
+const {
+  visibleItems,
+  totalHeight,
+  offsetY,
+  itemHeight,
+  onScroll,
+  reset: resetVirtual,
+} = useVirtualList(flatRef, {
+  containerHeight: 320,
+  containerRef: viewportRef,
+});
+watch(searchQuery, resetVirtual);
 
-const titleText = computed(() => props.title ?? t('component.tree.title'))
+const titleText = computed(() => props.title ?? t("component.tree.title"));
 const displayRows = computed(() =>
-  virtualEnabled.value ? visibleItems.value.map((v) => v.item) : flatRows.value
-)
+  virtualEnabled.value ? visibleItems.value.map((v) => v.item) : flatRows.value,
+);
 </script>
 
 <template>
@@ -61,9 +78,9 @@ const displayRows = computed(() =>
       {
         'vp-tree--disabled': disabled,
         'vp-tree--loading': loading,
-        'vp-tree--virtual': virtual
+        'vp-tree--virtual': virtualEnabled,
       },
-      props.class
+      props.class,
     ]"
     :style="style"
   >
@@ -76,16 +93,27 @@ const displayRows = computed(() =>
         :placeholder="t('common.search')"
         :disabled="disabled"
       />
-      <button type="button" class="vp-tree__action" :disabled="disabled" @click="expandAll">
-        {{ t('common.expand') }}
+      <button
+        type="button"
+        class="vp-tree__action"
+        :disabled="disabled"
+        @click="expandAll"
+      >
+        {{ t("common.expand") }}
       </button>
-      <button type="button" class="vp-tree__action" :disabled="disabled" @click="collapseAll">
-        {{ t('common.collapse') }}
+      <button
+        type="button"
+        class="vp-tree__action"
+        :disabled="disabled"
+        @click="collapseAll"
+      >
+        {{ t("common.collapse") }}
       </button>
     </div>
 
     <div class="vp-tree__body">
       <div
+        ref="viewportRef"
         class="vp-tree__viewport"
         role="tree"
         :aria-label="titleText"
@@ -110,7 +138,7 @@ const displayRows = computed(() =>
                 :class="{ 'vp-tree__row--active': activeId === row.id }"
                 :style="{
                   height: `${itemHeight}px`,
-                  paddingLeft: `calc(${row.depth} * var(--spacing-lg))`
+                  paddingLeft: `calc(${row.depth} * var(--spacing-lg))`,
                 }"
                 :aria-expanded="row.hasChildren ? row.expanded : undefined"
               >
@@ -118,11 +146,13 @@ const displayRows = computed(() =>
                   v-if="row.hasChildren"
                   type="button"
                   class="vp-tree__toggle"
-                  :aria-label="row.expanded ? t('common.collapse') : t('common.expand')"
+                  :aria-label="
+                    row.expanded ? t('common.collapse') : t('common.expand')
+                  "
                   :disabled="disabled"
                   @click="toggleExpand(row.id, row.node)"
                 >
-                  {{ row.expanded ? '−' : '+' }}
+                  {{ row.expanded ? "−" : "+" }}
                 </button>
                 <span v-else class="vp-tree__indent" aria-hidden="true" />
                 <TreeCheckbox
@@ -157,11 +187,13 @@ const displayRows = computed(() =>
                 v-if="row.hasChildren"
                 type="button"
                 class="vp-tree__toggle"
-                :aria-label="row.expanded ? t('common.collapse') : t('common.expand')"
+                :aria-label="
+                  row.expanded ? t('common.collapse') : t('common.expand')
+                "
                 :disabled="disabled"
                 @click="toggleExpand(row.id, row.node)"
               >
-                {{ row.expanded ? '−' : '+' }}
+                {{ row.expanded ? "−" : "+" }}
               </button>
               <span v-else class="vp-tree__indent" aria-hidden="true" />
               <TreeCheckbox
@@ -183,11 +215,16 @@ const displayRows = computed(() =>
           </ul>
         </template>
         <slot v-else name="empty">
-          <p class="vp-tree__muted">{{ t('common.noData') }}</p>
+          <p class="vp-tree__muted">{{ t("common.noData") }}</p>
         </slot>
       </div>
 
-      <Spin v-if="loading" class="vp-tree__spin" :spinning="loading" size="sm" />
+      <Spin
+        v-if="loading"
+        class="vp-tree__spin"
+        :spinning="loading"
+        size="sm"
+      />
     </div>
 
     <slot />

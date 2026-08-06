@@ -34,6 +34,24 @@
     display: block;
   }
 
+  &__area {
+    fill: color-mix(in srgb, var(--primary-500) 20%, transparent);
+  }
+
+  &__point {
+    fill: var(--primary-500);
+    cursor: pointer;
+    transition: r var(--transition-fast), fill var(--transition-fast);
+
+    &:hover,
+    &:focus-visible,
+    &--selected {
+      r: 5px;
+      fill: var(--primary-600);
+      outline: none;
+    }
+  }
+
   &__toolbar {
     display: flex;
     flex-wrap: wrap;

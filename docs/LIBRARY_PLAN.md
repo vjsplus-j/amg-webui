@@ -5,22 +5,24 @@
 > 目标：强大齐全 + 高性能的 Vue 3 UI 库（200+ 组件、多主题、多语言、业务复合模块）  
 > Agent 记忆：`.cursor/rules/vue3-amg-webui-library-plan.mdc`  
 > 状态：规划基线（与当前骨架对齐，分期落地）  
-> 包边界：`packages/README.md` · 组件：`packages/components/README.md` · 遥测：`packages/telemetry/README.md`
+> 包边界：`packages/README.md` · 组件：`packages/components/README.md` · 遥测：`packages/telemetry/README.md` · Skill Runtime：`docs/SKILL_RUNTIME.md` / `packages/skill/README.md`
 
 ---
 
-## 近期落地（2026-07 · 摘要）
+## 近期落地（2026-08 · 摘要）
 
 | 项 | 状态 |
 |----|------|
 | `@amg-webui/telemetry` 交互观测内核 | ✅ 默认关闭 · Provider · Sink · analyze · example `lab/telemetry` |
+| **Skill Runtime SR1 / SR2** | 🧪 **experimental** · Unit / Context / Runtime / Scope · JSON Pipeline（顺序 / 并行 / 条件 / 重试 / 降级）· Adapter / Observer · `v-skill` / `AmgSkillScope`；独立 `amg-webui/skill` / `skill/core`，根入口不导出；SR3 built-ins / DevTools / example 待续 |
 | 通用 catalog 加深 | ✅ Space / Spin / CopyText / Collapse / Statistic / CardWidgets（DnD）等入 `general` |
 | 交互 emit 契约 | ✅ Badge / FloatButton / Progress / Collapse / Statistic / Ellipsis / CopyText 等补齐 |
 | 工程护栏 | ✅ `validate:catalog` · `score:maturity` · `generate:icons` · `vue-tsc` 完成必验 |
-| base 目录规模 | ✅ catalog **272** 组件目录（含行业扩展；成熟度不齐，持续 deepen） |
+| base 目录规模 | ✅ catalog **285** 组件目录（含行业扩展；成熟度持续 deepen） |
 | 组件深化收口（2026-07-30） | ✅ stub0 · shell**8**（薄封装）· beta135 · ready129；curated demos≈全量；`vue-tsc`/`validate:catalog` 绿 |
+| 当前成熟度快照（2026-08-05） | 🧭 启发式评分：stub **0** · shell **6** · beta **32** · ready **247**；shell 为 ErrorModal / InfoModal / Notification / SuccessModal / Toast / WarnModal，仍需继续加深 |
 | 质量止血（2026-07-30） | ✅ exampleDoc FFFD=0；DemoSafeHost；低 beta≥50；Loading/Result 等 SFC Emits 修复；模块 transform 冒烟 |
-| **v0.1 子集**（2026-07-30） | ✅ **0.1.2** · Core∪B1∪B2∪B3 ≈**128** · 精选加厚 · Gallery 筛选 · `docs/V0_1_SUBSET.md` |
+| **v0.1 子集** | ✅ 契约 **0.1.3**（npm 仍为 0.1.0）· Core∪B1–B4 去重 **140** · 当前 gold gaps **7** · `docs/V0_1_SUBSET.md` |
 | P4–P5 上架 | ⏳ 步 3–6 未完成 · **步 1+2 已合并完成**：`0.1.0` 试用合同 + `build:lib` 产物（见 `docs/RELEASE_0.1.md`） |
 
 权威遥测文档：`docs/TELEMETRY.md`。
@@ -37,11 +39,12 @@
 ## 核心优先级（自上而下）
 
 1. **底层架构**：TS 分层、Token、`vp-` 前缀隔离  
-2. **性能体系**：列表默认虚拟滚动、深度 Tree-Shaking、泄漏防护、更小包体积  
-3. **功能闭环**：通用组件 + 5 大业务模块 + 多主题 + **Theme Studio** + i18n  
-4. **工程自动化**：一键新建组件、自动入口、批量 i18n 提取、测试 / 文档  
-5. **视觉质感**：现代产品感，差异化传统后台  
-6. **兼容扩展 / 合规上架**：SSR、多构建、SemVer、商标风险  
+2. **逻辑运行时**：Skill 可选注入、实例隔离、Scope、可审计 Pipeline，UI 源码零耦合
+3. **性能体系**：列表默认虚拟滚动、深度 Tree-Shaking、泄漏防护、更小包体积
+4. **功能闭环**：通用组件 + 5 大业务模块 + 多主题 + **Theme Studio** + i18n
+5. **工程自动化**：一键新建组件、自动入口、批量 i18n 提取、测试 / 文档
+6. **视觉质感**：现代产品感，差异化传统后台
+7. **兼容扩展 / 合规上架**：SSR、多构建、SemVer、商标风险
 
 ---
 
@@ -54,6 +57,7 @@
 | TypeScript 强类型 | 全组件 / hooks / 工具 / 主题 / i18n 输出完整 `.d.ts`；严格 Props；泛型组件（Table / Select / Tree）；统一导出全局类型 |
 | 分层解耦 | **原子 base** 纯 UI、不耦合业务；**business** 只依赖 base；样式 / 逻辑 / 类型 / 测试隔离；模块不互相循环 |
 | 可插拔 | 按需引入；主题 / i18n / 图标 / 动画可单独引入或移除；CDN 全量 · ESM 按需 · CJS 三种用法 |
+| Skill Runtime | `packages/skill` 独立可选；`skill/core` 框架无关；组件源码禁止依赖；Pipeline 条件只认注册名，禁止 `eval` / `new Function` |
 | 设计 Token | 颜色 / 间距 / 圆角 / 阴影 / 字号全部 Token 化（见 `packages/theme/TOKENS.md`），禁止硬编码 |
 
 ### 必须解决
@@ -64,7 +68,7 @@
 
 ### 与现状对齐
 
-- 已有：`packages/components/base` · `business` · `@amg-webui/*` 别名 · Token / SPEC · **`@amg-webui/telemetry`** · `generate:entry` / `create:component` / `extract:i18n`  
+- 已有：`packages/components/base` · `business` · `@amg-webui/*` 别名 · Token / SPEC · **`@amg-webui/telemetry`** · **experimental `packages/skill` SR1 / SR2** · `generate:entry` / `create:component` / `extract:i18n`
 - 通用原子加深中：Button / Link / Tag / Avatar / Typography / CardWidgets / CopyText …（见 catalog `general`）  
 - 待补：完整 `.d.ts` 流水线、子包拆分、`vp-` 前缀全面落地、列表虚拟滚动默认铺全、Theme Studio 对标 designmd 全能力  
 
@@ -81,6 +85,17 @@
 5. **导航布局**：菜单、标签页、面包屑、步骤、下拉、栅格、弹性、分栏、自适应容器  
 6. **第三方封装**：图预览、文件预览、Excel、打印、裁剪、图表容器  
 7. **企业基建（独家）**：**Vp Telemetry** 交互观测（默认关）· 微前端 ConfigProvider 规划 · 信创/离线（见 OVERTAKE）  
+
+### 1.1 Skill Runtime（experimental · SR1 / SR2）
+
+- **UI / 逻辑解耦**：组件保持原 Props / Emits / Slots / Expose，不 import Skill；业务通过 `v-skill` 或显式 Runtime 挂载逻辑。
+- **隔离与回收**：每次 mount 独立 Context / state / AbortSignal；Scope 显式共享事件与 scope state；dispose / teardown 幂等。
+- **声明式编排**：Pipeline JSON v1 支持顺序、并行、注册条件、有限重试与 fallback；配置不得携带可执行字符串。
+- **可插拔边界**：Adapter 适配后端；Observer 是旁路观测点。Core 不绑定后端、Vue、组件或 Telemetry。
+- **独立包形**：`amg-webui/skill`（Vue 集成）· `amg-webui/skill/core`（框架无关）；根入口 `amg-webui` 不导出 Skill API。
+- **当前边界**：SR1 / SR2 仍为 pre-1.0 experimental；官方 `table-search` 等 built-ins、Telemetry bridge、DevTools 与 example Skill Lab 属 SR3，尚未交付。
+
+权威契约：`docs/SKILL_RUNTIME.md`。
 
 ### 2. 五大业务复合模块（锁定）
 
@@ -153,7 +168,7 @@
 
 | 域 | 内容 |
 |----|------|
-| 构建 | Vite：全量 / ES / 主题 / 类型分层脚本（`build/`） |
+| 构建 | Vite：全量 / ES / 主题 / 类型分层脚本（`build/`）；Skill 独立 `npm run build:skill` → `dist/skill/` |
 | 脚本 | 见 `docs/ENGINEERING.md`：`create:component` · `generate:entry` · `extract:i18n` · `validate:catalog` · `score:maturity` |
 | 质量 | ESLint + Prettier；Vitest 单测；E2E（表 / 弹 / 表单） |
 | 调试 | `example/` 独立热更预览 + Theme Studio |
@@ -217,6 +232,15 @@
 | P4 工程 / 文档 | Vitest/E2E、VitePress API 表 | CI 绿 |
 | P5 上架就绪 | SSR、迁移指南、商标决策 | 可发版 |
 
+Skill Runtime 使用并行 SR 轨道，不改写既有 P0 → P5：
+
+| Skill 阶段 | 范围 | 状态 / 验收 |
+|------------|------|-------------|
+| SR1 Core | Unit / Context / Runtime、Adapter、Observer、隔离与幂等回收 | 🧪 experimental；类型、生命周期、SSR core import 单测 |
+| SR2 Compose + Vue | Scope、Pipeline JSON v1、`v-skill`、`AmgSkillScope`、Vue Plugin | 🧪 experimental；全部节点、安全条件、卸载清理、独立 build / exports 验收 |
+| SR3 Ecosystem | 官方 built-ins、Telemetry Observer bridge、DevTools、example Skill Lab | ⏳ pending |
+| SR4 Low-code | Pipeline 可视化、Schema 校验 / 迁移、低代码接入 | ⏳ pending |
+
 ---
 
 ## 关联文档
@@ -233,5 +257,6 @@
 | Theme Studio | `docs/THEME_STUDIO.md` |
 | 工程脚本 · 性能包形 | `docs/ENGINEERING.md` |
 | **Vp Telemetry** | `docs/TELEMETRY.md` |
+| **Skill Runtime** | `docs/SKILL_RUNTIME.md` · `packages/skill/README.md` |
 | 本计划入口 | `docs/plan.md` |
 | 近期变更札记 | `docs/CHANGELOG.md` |

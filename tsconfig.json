@@ -24,6 +24,8 @@
       "@amg-webui/components/business": ["packages/components/business/index.ts"],
       "@amg-webui/hooks": ["packages/hooks/index.ts"],
       "@amg-webui/telemetry": ["packages/telemetry/index.ts"],
+      "@amg-webui/skill/core": ["packages/skill/core.ts"],
+      "@amg-webui/skill": ["packages/skill/index.ts"],
       "@amg-webui/theme": ["packages/theme/index.ts"],
       "@amg-webui/icons": ["packages/icons/index.ts"],
       "@amg-webui/utils": ["packages/utils/index.ts"],

@@ -10,6 +10,8 @@ const alias = {
   '@amg-webui/components': resolve(root, 'packages/components'),
   '@amg-webui/hooks': resolve(root, 'packages/hooks'),
   '@amg-webui/telemetry': resolve(root, 'packages/telemetry/index.ts'),
+  '@amg-webui/skill/core': resolve(root, 'packages/skill/core.ts'),
+  '@amg-webui/skill': resolve(root, 'packages/skill/index.ts'),
   '@amg-webui/theme': resolve(root, 'packages/theme'),
   '@amg-webui/icons': resolve(root, 'packages/icons'),
   '@amg-webui/utils': resolve(root, 'packages/utils'),

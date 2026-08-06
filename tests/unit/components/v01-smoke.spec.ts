@@ -10,6 +10,9 @@ import Dialog from '../../../packages/components/base/Dialog/index.vue'
 import Form from '../../../packages/components/base/Form/index.vue'
 import FormItem from '../../../packages/components/base/FormItem/index.vue'
 import InputText from '../../../packages/components/base/InputText/index.vue'
+import Barcode from '../../../packages/components/base/Barcode/index.vue'
+import Qrcode from '../../../packages/components/base/Qrcode/index.vue'
+import MatrixCode from '../../../packages/components/base/MatrixCode/index.vue'
 import { getSampleMountProps } from '../../../example/demos/_shared/sampleMountProps'
 
 beforeAll(() => {
@@ -35,7 +38,7 @@ describe('v0.1 component smoke mounts', () => {
       }
     })
     await nextTick()
-    expect(wrapper.find('.p-select').exists()).toBe(true)
+    expect(wrapper.find('.vp-select').exists()).toBe(true)
   })
 
   it('mounts DataTable with small row set', async () => {
@@ -99,5 +102,28 @@ describe('v0.1 component smoke mounts', () => {
     await nextTick()
     expect(wrapper.find('.vp-form').exists()).toBe(true)
     expect(wrapper.find('.vp-form-item').exists()).toBe(true)
+  })
+
+  it('mounts Barcode, Qrcode, and MatrixCode previews with string-safe sample values', async () => {
+    const barcode = mount(Barcode, {
+      props: getSampleMountProps('Barcode') as any
+    })
+    const qrcode = mount(Qrcode, {
+      props: getSampleMountProps('Qrcode') as any
+    })
+    const matrixCode = mount(MatrixCode, {
+      props: getSampleMountProps('MatrixCode') as any
+    })
+    await nextTick()
+
+    expect(barcode.find('.vp-barcode__bars').exists()).toBe(true)
+    expect(qrcode.find('.vp-qrcode__matrix').exists()).toBe(true)
+    expect(matrixCode.find('.vp-matrix-code__symbol').exists()).toBe(true)
+
+    const invalid = mount(Barcode as any, {
+      props: { value: [{ id: 1 }] },
+      global: { config: { warnHandler: () => undefined } }
+    })
+    expect(invalid.find('.vp-barcode__muted').exists()).toBe(true)
   })
 })

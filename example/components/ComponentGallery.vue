@@ -12,7 +12,7 @@ import {
   type MaturityLevel,
   type ExampleZoneId
 } from '../component-zones'
-import { isV01Component, V01_COMPONENTS } from '../v0.1-subset'
+import { isV01Component } from '../v0.1-subset'
 
 const props = withDefaults(
   defineProps<{
@@ -194,36 +194,33 @@ function openDoc(name: string) {
         class="gallery__search"
       />
       <div class="gallery__filters" role="group" :aria-label="t(LocaleKeys.page.gallery.maturity.filter)">
-        <button
-          type="button"
-          class="gallery__chip"
-          :class="{ 'gallery__chip--active': maturityFilter === 'all' }"
+        <Button
+          size="sm"
+          :variant="maturityFilter === 'all' ? 'solid' : 'outlined'"
           @click="maturityFilter = 'all'"
         >
           {{ t(LocaleKeys.common.all) }}
           <span class="gallery__chip-count">{{ names.length }}</span>
-        </button>
-        <button
-          type="button"
-          class="gallery__chip"
-          :class="{ 'gallery__chip--active': maturityFilter === 'v01' }"
-          :title="t(LocaleKeys.page.gallery.v01.hint, { count: V01_COMPONENTS.length })"
+        </Button>
+        <Button
+          size="sm"
+          :variant="maturityFilter === 'v01' ? 'solid' : 'outlined'"
           @click="maturityFilter = 'v01'"
         >
           {{ t(LocaleKeys.page.gallery.v01.filter) }}
           <span class="gallery__chip-count">{{ v01Count }}</span>
-        </button>
-        <button
+        </Button>
+        <Button
           v-for="level in levelOrder"
           :key="level"
-          type="button"
-          class="gallery__chip"
-          :class="{ 'gallery__chip--active': maturityFilter === level }"
+          size="sm"
+          :variant="maturityFilter === level ? 'solid' : 'outlined'"
+          :severity="levelSeverity(level)"
           @click="maturityFilter = level"
         >
           {{ levelLabel(level) }}
           <span class="gallery__chip-count">{{ zoneSummary[level] }}</span>
-        </button>
+        </Button>
       </div>
       <span class="gallery__count">{{ filtered.length }} / {{ names.length }}</span>
     </Card>
@@ -318,35 +315,9 @@ function openDoc(name: string) {
   align-items: center;
 }
 
-.gallery__chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  min-height: var(--height-sm);
-  padding: 0 var(--spacing-md);
-  border: 1px solid var(--ds-border);
-  border-radius: var(--theme-btn-radius);
-  background: var(--surface-1);
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  cursor: pointer;
-  transition: border-color var(--transition-normal), color var(--transition-normal),
-    background var(--transition-normal);
-}
-
-.gallery__chip:hover {
-  border-color: var(--border-color-hover);
-  color: var(--text-primary);
-}
-
-.gallery__chip--active {
-  border-color: var(--ds-accent);
-  color: var(--text-primary);
-  background: var(--surface-2, var(--surface-1));
-}
-
 .gallery__chip-count {
-  color: var(--text-muted);
+  color: inherit;
+  opacity: var(--ds-muted-opacity, 0.72);
   font-variant-numeric: tabular-nums;
 }
 

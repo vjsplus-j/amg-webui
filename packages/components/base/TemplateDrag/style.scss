@@ -278,7 +278,11 @@
   &__modal {
     position: fixed;
     inset: 0;
-    background: color-mix(in srgb, var(--surface-0, var(--surface-1)) 40%, transparent);
+    background: color-mix(
+      in srgb,
+      var(--surface-0, var(--surface-1)) 40%,
+      transparent
+    );
     display: flex;
     align-items: center;
     justify-content: center;
@@ -366,5 +370,11 @@
     }
   }
 
-  &__item { cursor: grab; padding: var(--spacing-sm) var(--spacing-md); background: var(--surface-2); border-radius: var(--border-radius-sm); list-style: none; }
+  &__item {
+    cursor: grab;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--surface-2);
+    border-radius: var(--border-radius-sm);
+    list-style: none;
+  }
 }

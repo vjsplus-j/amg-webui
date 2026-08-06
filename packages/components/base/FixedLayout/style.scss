@@ -1,30 +1,11 @@
 .vp-fixed-layout {
+  z-index: var(--z-sticky);
   box-sizing: border-box;
 
-  &--fixed {
-    position: fixed;
-  }
-
-  &--absolute {
-    position: absolute;
-  }
-
   &__placeholder {
-    box-sizing: border-box;
     flex-shrink: 0;
+    box-sizing: border-box;
     pointer-events: none;
     visibility: hidden;
-
-    &--top,
-    &--bottom {
-      display: block;
-      width: 100%;
-    }
-
-    &--left,
-    &--right {
-      display: block;
-      align-self: stretch;
-    }
   }
 }

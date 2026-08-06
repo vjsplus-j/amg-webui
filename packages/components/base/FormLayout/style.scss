@@ -31,7 +31,7 @@
   &--colon {
     :deep(.vp-form-layout__label)::after,
     :deep(.vp-form-item__label)::after {
-      content: var(--vp-form-layout-colon, ':');
+      content: var(--vp-form-layout-colon, ":");
       margin-inline-start: var(--spacing-xs);
       color: var(--text-secondary);
     }
@@ -41,7 +41,10 @@
   &--layout-horizontal {
     :deep(.vp-form-layout__row),
     :deep(.vp-form-item) {
-      grid-template-columns: var(--vp-form-layout-label, calc(var(--spacing-2xl) * 3.5)) minmax(0, 1fr);
+      grid-template-columns: var(
+          --vp-form-layout-label,
+          calc(var(--spacing-2xl) * 3.5)
+        ) minmax(0, 1fr);
     }
 
     :deep(.vp-form-layout__label),
@@ -52,12 +55,18 @@
     &.vp-form-layout--cols-2,
     &.vp-form-layout--cols-3 {
       display: grid;
-      grid-template-columns: repeat(var(--vp-form-layout-columns, 1), minmax(0, 1fr));
+      grid-template-columns: repeat(
+        var(--vp-form-layout-columns, 1),
+        minmax(0, 1fr)
+      );
       gap: var(--spacing-md);
 
       :deep(.vp-form-layout__row),
       :deep(.vp-form-item) {
-        grid-template-columns: var(--vp-form-layout-label, calc(var(--spacing-2xl) * 3.5)) minmax(0, 1fr);
+        grid-template-columns: var(
+            --vp-form-layout-label,
+            calc(var(--spacing-2xl) * 3.5)
+          ) minmax(0, 1fr);
       }
     }
 

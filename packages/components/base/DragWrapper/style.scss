@@ -278,7 +278,11 @@
   &__modal {
     position: fixed;
     inset: 0;
-    background: color-mix(in srgb, var(--surface-0, var(--surface-1)) 40%, transparent);
+    background: color-mix(
+      in srgb,
+      var(--surface-0, var(--surface-1)) 40%,
+      transparent
+    );
     display: flex;
     align-items: center;
     justify-content: center;
@@ -366,5 +370,8 @@
     }
   }
 
-  min-height: 6rem; border: 1px dashed var(--ds-border); border-radius: var(--border-radius-md); padding: var(--spacing-md);
+  min-height: 6rem;
+  border: 1px dashed var(--ds-border);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
 }

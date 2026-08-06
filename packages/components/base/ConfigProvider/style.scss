@@ -1,6 +1,36 @@
 .vp-config-provider {
   --vp-z-index: 1000;
+  --vp-config-control-height: var(--height-md, 2.5rem);
+  --vp-config-density-gap: var(--spacing-md);
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
+  isolation: isolate;
+}
+
+.vp-config-provider[data-density='compact'] {
+  --vp-config-density-gap: var(--spacing-sm);
+}
+
+.vp-config-provider[data-density='spacious'] {
+  --vp-config-density-gap: var(--spacing-xl);
+}
+
+.vp-config-provider[data-size='xs'] {
+  --vp-config-control-height: var(--height-xs, 1.75rem);
+}
+
+.vp-config-provider[data-size='sm'] {
+  --vp-config-control-height: var(--height-sm, 2rem);
+}
+
+.vp-config-provider[data-size='lg'] {
+  --vp-config-control-height: var(--height-lg, 3rem);
+}
+
+.vp-config-provider[data-size='xl'] {
+  --vp-config-control-height: var(--height-xl, 3.5rem);
 }

@@ -13,6 +13,7 @@
 | 编译底层 | 纯运行时、VDOM、样式覆盖困难 | Vapor 无 VDOM 编译、Headless、编译型原子 CSS |
 | 业务能力 | 仅基础控件，无业务页面 | 5 大完整业务模块、低代码 Schema、AI 组件套件 |
 | 企业适配 | 微前端 / 信创弱、XSS 风险 | 原生微前端隔离、国产化、底层安全拦截 |
+| 业务逻辑运行时 | 无独立逻辑单元、Scope 与安全编排协议 | **Skill Runtime**：Unit / Context / Scope、JSON Pipeline、Adapter / Observer，组件源码零依赖 |
 | 性能内存 | 泄漏点多、虚拟滚动单一 | 统一资源回收、十万级分片虚拟滚动、跨端自适应 |
 | 主题 i18n | 明暗预编译为主、无强类型 | 运行时动态主题、强类型 i18n、RTL |
 | 下一代生态 | 无官方 AI / 低代码标准 | 原生 AI 流式组件、官方拖拽低代码预览器 |
@@ -89,6 +90,19 @@
 - 分析：`summarizeHabits` · `findAlerts` · `findErrors`  
 - 文档：[`docs/TELEMETRY.md`](./TELEMETRY.md)；example：`lab/telemetry`
 
+### 5. Skill Runtime（experimental SR1 / SR2）
+
+> 区别于 ProComponent 与零散 Hooks：不换组件、不侵入组件源码，用独立运行时挂载业务逻辑。
+
+- **SR1 Core**：SkillUnit / SkillContext / Runtime；每次 mount 独立 state / AbortSignal，统一 setup / teardown / dispose。
+- **SR2 Compose + Vue**：Scope 显式共享事件与 scope state；Pipeline JSON v1 支持顺序、并行、注册条件、有限重试与 fallback；Vue 提供 `v-skill` / `AmgSkillScope`。
+- **安全边界**：条件只引用 `registerCondition()` 注册的受信任谓词，禁止 `eval`、`new Function` 与任意表达式字符串。
+- **后端无关**：Adapter 映射外部协议；Observer 只走旁路，失败不改变业务结果。
+- **独立可选**：`amg-webui/skill/core` 框架无关，`amg-webui/skill` 包含 Vue 集成；根入口不导出，`npm run build:skill` 独立构建。
+- **诚实状态**：当前 SR1 / SR2 为 pre-1.0 experimental；官方 built-ins、Telemetry bridge、DevTools 与 example Skill Lab 属 SR3，仍为 pending。
+
+权威规范：[`docs/SKILL_RUNTIME.md`](./SKILL_RUNTIME.md)。
+
 ---
 
 ## 三、多主题 / i18n 下一代
@@ -121,6 +135,7 @@
 - 每组件标准化 JSON Schema  
 - 文档站拖拽预览 → 生成 Vue 代码  
 - 对外低代码引擎依赖包，企业可直接搭内部平台  
+- Skill Pipeline JSON v1 只保存 Skill / 条件注册名与 JSON 配置，为 SR4 可视化编排提供可审计底座；不把代码字符串当低代码协议
 
 ### 3. AI 原生套件（2026 赛道）
 
@@ -148,7 +163,7 @@
 
 ### 插件化内核
 
-可关：图标 / 动画 / i18n / 虚拟滚动 / 微前端；可扩：校验、Token、业务模块；配置分层（基础 / 表单 / 表格 / 业务）互不抢占。
+可关：图标 / 动画 / i18n / 虚拟滚动 / 微前端；可扩：校验、Token、业务模块；配置分层（基础 / 表单 / 表格 / 业务）互不抢占。Skill Runtime 通过独立 subpath 显式启用，base / business 组件不反向依赖。
 
 ### 自动化流水线
 
@@ -166,6 +181,8 @@
 | P3–P4 | 低代码 Schema、文档拖拽器、信创离线审计 |
 | P4–P5 | Vapor 双模式、原子 CSS 编译链路、AI 套件、A11Y 全过关、性能报告入 CI |
 
+Skill Runtime 采用并行 SR 轨道：**SR1 / SR2 experimental 已进入工程**；SR3（built-ins / Telemetry bridge / DevTools / example）与 SR4（低代码可视化编排）后续推进，不等同于当前完成。
+
 ---
 
 ## Agent / 开发硬规则
@@ -175,4 +192,5 @@
 3. 样式默认 `vp-` + Token；提供 / 演进 Headless；禁止靠 `!important` 堆覆盖。  
 4. 列表默认虚拟滚动；弹层销毁必须走统一回收。  
 5. 业务模块是产品壁垒，不得弱化为「几个零散 Demo 按钮」。  
-6. 变更同步本文 + `VISION.md` + `vue3-amg-webui-overtake.mdc` + `LIBRARY_PLAN.md`。
+6. Skill Runtime 不侵入组件源码；Pipeline 禁止执行字符串代码；Core 不依赖 Vue / Telemetry / 后端。
+7. 变更同步本文 + `VISION.md` + `vue3-amg-webui-overtake.mdc` + `LIBRARY_PLAN.md` + `SKILL_RUNTIME.md`。

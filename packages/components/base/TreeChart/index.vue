@@ -11,13 +11,17 @@ interface NodePos {
   y: number
   label: string
   parentId: string | null
+  node: TreeNode
 }
 
-const props = withDefaults(defineProps<TreeChartProps & { options?: TreeNode[] }>(), {
+const props = withDefaults(defineProps<TreeChartProps>(), {
   options: () => [],
-  disabled: false
+  disabled: false,
+  loading: false,
+  selectable: true,
+  telemetry: undefined
 })
-defineEmits<TreeChartEmits>()
+const emit = defineEmits<TreeChartEmits>()
 const { t } = useLocale()
 
 function layout(nodes: TreeNode[], depth = 0, startX = 0, parentId: string | null = null): { positions: NodePos[]; width: number } {
@@ -29,11 +33,11 @@ function layout(nodes: TreeNode[], depth = 0, startX = 0, parentId: string | nul
     if (n.children?.length) {
       const child = layout(n.children, depth + 1, x, id)
       const cx = x + child.width / 2
-      positions.push({ id, x: cx, y, label: n.label, parentId })
+      positions.push({ id, x: cx, y, label: n.label, parentId, node: n })
       positions.push(...child.positions)
       x += child.width + 24
     } else {
-      positions.push({ id, x: x + 20, y, label: n.label, parentId })
+      positions.push({ id, x: x + 20, y, label: n.label, parentId, node: n })
       x += 48
     }
   }
@@ -41,7 +45,7 @@ function layout(nodes: TreeNode[], depth = 0, startX = 0, parentId: string | nul
 }
 
 const roots = computed(() => normalizeTreeNodes(props.data, props.options))
-const layoutData = computed(() => layout(roots.value.length ? roots.value : [{ label: 'Root', children: [{ label: 'A' }, { label: 'B' }] }]))
+const layoutData = computed(() => layout(roots.value))
 const positions = computed(() => layoutData.value.positions)
 
 const edges = computed(() =>
@@ -55,12 +59,29 @@ const edges = computed(() =>
 )
 
 const titleText = computed(() => props.title ?? t('component.tree-chart.title'))
+const emptyText = computed(() => props.emptyText ?? t('common.noData'))
+
+function selectNode(item: NodePos, event?: MouseEvent | KeyboardEvent) {
+  if (props.disabled || props.loading || !props.selectable) return
+  emit('update:modelValue', item.id)
+  emit('change', item.node)
+  emit('select', item.node, event)
+  if (event instanceof MouseEvent) emit('click', event)
+}
+
+function onKeydown(event: KeyboardEvent, item: NodePos) {
+  if (event.key !== 'Enter' && event.key !== ' ') return
+  event.preventDefault()
+  selectNode(item, event)
+}
 </script>
 
 <template>
   <div :class="['vp-tree-chart', 'vp-tree-chart__panel', { 'vp-tree-chart--disabled': disabled }, props.class]" :style="style">
     <h3 class="vp-tree-chart__title">{{ titleText }}</h3>
-    <svg class="vp-tree-chart__chart" viewBox="0 0 320 180" role="img" :aria-label="titleText">
+    <p v-if="loading" class="vp-tree-chart__muted" role="status">{{ t('common.loading') }}</p>
+    <p v-else-if="!positions.length" class="vp-tree-chart__muted" role="status">{{ emptyText }}</p>
+    <svg v-else class="vp-tree-chart__chart" viewBox="0 0 320 180" role="img" :aria-label="titleText">
       <line
         v-for="(e, i) in edges"
         :key="i"
@@ -71,7 +92,7 @@ const titleText = computed(() => props.title ?? t('component.tree-chart.title'))
         stroke="var(--ds-border)"
         stroke-width="1"
       />
-      <g v-for="p in positions" :key="p.id">
+      <g v-for="p in positions" :key="p.id" class="vp-tree-chart__node" :class="{ 'vp-tree-chart__node--selected': modelValue === p.id }" role="button" :tabindex="selectable && !disabled ? 0 : -1" :aria-label="p.label" @click="selectNode(p, $event)" @keydown="onKeydown($event, p)">
         <circle :cx="p.x" :cy="p.y" r="14" fill="var(--surface-1)" stroke="var(--primary-500)" stroke-width="2" />
         <text :x="p.x" :y="p.y + 28" text-anchor="middle" font-size="10" fill="var(--text-secondary)">{{ p.label }}</text>
       </g>

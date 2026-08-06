@@ -13,9 +13,11 @@ import {
   Footer,
   Menu,
   TabsNav,
-  Icon
+  Avatar,
+  Button,
+  Search
 } from '@amg-webui/components/base'
-import type { MenuBadge, MenuItem } from '@amg-webui/components/base/Menu'
+import type { MenuItem } from '@amg-webui/components/base/Menu'
 import AppHeaderActions from '../components/AppHeaderActions.vue'
 import {
   getShellNavItems,
@@ -322,7 +324,12 @@ void isAdmin
 
 <template>
   <Layout shell has-sider class="vp-app-shell">
-    <Sider v-model:collapsed="collapsed" collapsible>
+    <Sider
+      v-model:collapsed="collapsed"
+      class="vp-app-shell__sider"
+      width="fit-content"
+      collapsible
+    >
       <template #header>
         <a class="vp-app-shell__brand" href="#" @click.prevent="goDashboard">
           <span class="vp-app-shell__brand-mark">VP</span>
@@ -334,11 +341,11 @@ void isAdmin
         <label class="vp-app-shell__filter-label" for="vp-nav-base-filter">{{
           t('example.doc.catalog.navFilter')
         }}</label>
-        <input
+        <Search
           id="vp-nav-base-filter"
           v-model="navFilter"
-          type="search"
-          class="vp-app-shell__filter-input"
+          size="sm"
+          fluid
           :placeholder="t(LocaleKeys.common.search)"
         />
       </div>
@@ -353,33 +360,37 @@ void isAdmin
 
       <template #footer>
         <div class="vp-app-shell__user" :title="collapsed ? currentUser?.username : undefined">
-          <span class="vp-app-shell__avatar">{{ userInitial }}</span>
+          <Avatar
+            :text="userInitial"
+            :alt="currentUser?.username"
+            size="sm"
+            shape="circle"
+          />
           <div v-if="!collapsed" class="vp-app-shell__meta">
             <div class="vp-app-shell__account-row">
               <span class="vp-app-shell__name" :title="currentUser?.username">{{
                 currentUser?.username
               }}</span>
-              <span class="vp-app-shell__logout-cluster">
-                <span class="vp-app-shell__sep" aria-hidden="true">|</span>
-                <button type="button" class="vp-app-shell__logout" @click="handleLogout">
-                  {{ t(LocaleKeys.auth.signOut) }}
-                </button>
-              </span>
+              <Button
+                variant="text"
+                size="xs"
+                :label="t(LocaleKeys.auth.signOut)"
+                @click="handleLogout"
+              />
             </div>
             <span class="vp-app-shell__role">{{
               isAdmin ? t(LocaleKeys.common.admin) : t(LocaleKeys.common.user)
             }}</span>
           </div>
-          <button
+          <Button
             v-else
-            type="button"
-            class="vp-app-shell__logout vp-app-shell__logout--icon"
-            :title="t(LocaleKeys.auth.signOut)"
+            icon="LogOut"
+            variant="text"
+            size="sm"
+            shape="square"
             :aria-label="t(LocaleKeys.auth.signOut)"
             @click="handleLogout"
-          >
-            <Icon name="X" size="sm" />
-          </button>
+          />
         </div>
       </template>
     </Sider>
@@ -418,6 +429,10 @@ void isAdmin
 </template>
 
 <style scoped>
+.vp-app-shell__sider:not(.vp-sider--collapsed) {
+  min-width: var(--ln-sidebar-width);
+}
+
 .vp-app-shell__filter {
   display: flex;
   flex-direction: column;
@@ -462,44 +477,12 @@ void isAdmin
   color: var(--text-muted);
 }
 
-.vp-app-shell__filter-input {
-  width: 100%;
-  min-height: var(--height-sm);
-  padding: 0 var(--spacing-md);
-  border: 1px solid var(--ds-border);
-  border-radius: var(--theme-input-radius);
-  background: var(--surface-1);
-  color: var(--text-primary);
-  font: inherit;
-  font-size: var(--font-size-sm);
-  box-sizing: border-box;
-}
-
-.vp-app-shell__filter-input:focus {
-  outline: none;
-  border-color: var(--ds-accent);
-  box-shadow: 0 0 0 1px var(--ds-focus-ring, var(--ds-accent));
-}
-
 .vp-app-shell__user {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
   min-width: 0;
   padding: var(--spacing-xs);
-}
-
-.vp-app-shell__avatar {
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: var(--height-md);
-  height: var(--height-md);
-  border-radius: 50%;
-  background: var(--surface-2);
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium, 500);
 }
 
 .vp-app-shell__meta {
@@ -524,47 +507,6 @@ void isAdmin
   white-space: nowrap;
   font-size: var(--font-size-sm);
   color: var(--text-primary);
-}
-
-.vp-app-shell__logout-cluster {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  flex-shrink: 0;
-}
-
-.vp-app-shell__sep {
-  color: var(--text-muted);
-}
-
-.vp-app-shell__logout {
-  appearance: none;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  color: var(--text-secondary);
-  font: inherit;
-  font-size: var(--font-size-xs);
-  cursor: pointer;
-}
-
-.vp-app-shell__logout:hover {
-  color: var(--text-primary);
-}
-
-.vp-app-shell__logout--icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--height-md);
-  height: var(--height-md);
-  border-radius: var(--border-radius-md);
-  color: var(--text-muted);
-}
-
-.vp-app-shell__logout--icon:hover {
-  color: var(--text-primary);
-  background: var(--surface-5);
 }
 
 .vp-app-shell__role {

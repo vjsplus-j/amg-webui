@@ -1,6 +1,10 @@
-import Comp from './index.vue'
-import type { PivotTableProps, PivotTableEmits } from './types'
-
-export { Comp as PivotTable }
-export type { PivotTableProps, PivotTableEmits }
-export default Comp
+import Comp from "./index.vue";
+export { Comp as PivotTable };
+export type {
+  PivotTableProps,
+  PivotTableEmits,
+  PivotRecord,
+  PivotAggregator,
+  PivotCell,
+} from "./types";
+export default Comp;

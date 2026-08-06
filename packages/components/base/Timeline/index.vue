@@ -1,59 +1,89 @@
 <script setup lang="ts">
-import { computed, provide, ref } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
-import type { TimelineProps } from './types'
-import { TIMELINE_INJECTION_KEY } from './types'
-import './style.scss'
+import { computed, provide, ref } from "vue";
+import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
+import { trackEmit } from "@amg-webui/telemetry";
+import TimelineItem from "../TimelineItem/index.vue";
+import type { TimelineEmits, TimelineKey, TimelineProps } from "./types";
+import { TIMELINE_INJECTION_KEY } from "./types";
+import "./style.scss";
 
 const props = withDefaults(defineProps<TimelineProps>(), {
-  mode: 'left',
+  items: () => [],
+  mode: "left",
   pending: false,
-  reverse: false
-})
-
-const { t } = useLocale()
-const itemCount = ref(0)
-
-const claimIndex = () => itemCount.value++
-
+  reverse: false,
+  selectable: false,
+  modelValue: null,
+  telemetry: undefined,
+});
+const emit = defineEmits<TimelineEmits>();
+const { t } = useLocale();
+const count = ref(0);
+const activeKey = computed(() => props.modelValue);
+const selectable = computed(() => props.selectable);
+function itemByKey(key: TimelineKey) {
+  return props.items.find((item, index) => (item.itemKey ?? index) === key);
+}
+function select(key: TimelineKey, event: MouseEvent | KeyboardEvent) {
+  const item = itemByKey(key);
+  if (!props.selectable || item?.disabled) return;
+  emit("update:modelValue", key);
+  emit("change", key);
+  emit("itemClick", item, event);
+  trackEmit({
+    component: "Timeline",
+    type: "select",
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { key },
+  });
+}
 provide(TIMELINE_INJECTION_KEY, {
   mode: computed(() => props.mode),
-  pending: computed(() => props.pending),
-  reverse: computed(() => props.reverse),
-  claimIndex
-})
-
+  activeKey,
+  selectable,
+  claimIndex: () => count.value++,
+  select,
+});
 const rootClass = computed(() => [
-  'vp-timeline',
+  "vp-timeline",
   `vp-timeline--mode-${props.mode}`,
   {
-    'vp-timeline--reverse': props.reverse,
-    'vp-timeline--pending': Boolean(props.pending)
+    "vp-timeline--reverse": props.reverse,
+    "vp-timeline--selectable": props.selectable,
   },
-  props.class
-])
-
-const showPending = computed(() => props.pending !== false && props.pending !== '')
-
-const pendingLabel = computed(() => {
-  if (typeof props.pending === 'string' && props.pending.length > 0) {
-    return props.pending
-  }
-  return t(LocaleKeys.component.timeline.pending)
-})
+  props.class,
+]);
+const pendingLabel = computed(() =>
+  typeof props.pending === "string" && props.pending
+    ? props.pending
+    : t(LocaleKeys.component.timeline.pending),
+);
 </script>
-
 <template>
-  <ul
-    :class="rootClass"
-    :style="style"
-    role="list"
-    data-component="Timeline"
-  >
+  <ul :class="rootClass" :style="style" role="list" data-component="Timeline">
+    <TimelineItem
+      v-for="(item, index) in items"
+      :key="item.itemKey ?? index"
+      v-bind="item"
+      :item-key="item.itemKey ?? index"
+      :clickable="selectable || item.clickable"
+    >
+      <template #default
+        ><slot name="item" :item="item" :index="index"
+          ><h4 v-if="item.title" class="vp-timeline__item-title">
+            {{ item.title }}
+          </h4>
+          <p v-if="item.description" class="vp-timeline__item-description">
+            {{ item.description }}
+          </p></slot
+        ></template
+      >
+    </TimelineItem>
     <slot />
     <li
-      v-if="showPending"
+      v-if="pending !== false && pending !== ''"
       class="vp-timeline__pending"
       role="listitem"
       aria-live="polite"
@@ -65,7 +95,7 @@ const pendingLabel = computed(() => {
         />
       </div>
       <div class="vp-timeline-item__content">
-        <span class="vp-timeline__pending-text">{{ pendingLabel }}</span>
+        <span>{{ pendingLabel }}</span>
       </div>
     </li>
   </ul>

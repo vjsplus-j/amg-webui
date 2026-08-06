@@ -1,17 +1,20 @@
-import type { BaseProps, Severity } from '@amg-webui/types'
-
+import type { BaseProps, Severity } from "@amg-webui/types";
 export interface NoticeBarProps extends BaseProps {
-  message?: string
-  severity?: Severity
-  closable?: boolean
-  scrollable?: boolean
-  /** Marquee duration in seconds when scrollable */
-  speed?: number
-  /** Pause marquee on hover */
-  pauseOnHover?: boolean
+  modelValue?: boolean;
+  message?: string;
+  title?: string;
+  severity?: Severity;
+  icon?: string | boolean;
+  closable?: boolean;
+  scrollable?: boolean;
+  speed?: number;
+  pauseOnHover?: boolean;
+  wrap?: boolean;
+  actionText?: string;
 }
-
 export interface NoticeBarEmits {
-  (e: 'close'): void
-  (e: 'click', event: MouseEvent): void
+  (e: "update:modelValue", value: boolean): void;
+  (e: "close", event: MouseEvent): void;
+  (e: "click", event: MouseEvent): void;
+  (e: "action", event: MouseEvent): void;
 }
