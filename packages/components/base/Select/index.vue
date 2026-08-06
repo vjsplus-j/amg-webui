@@ -5,7 +5,11 @@ import { LocaleKeys } from "@amg-webui/locale";
 import { isClient } from "@amg-webui/utils/env";
 import type { SelectProps, SelectEmits } from "./types";
 import { useSelect } from "./useSelect";
+import { useFormItem } from "../FormItem/useFormItem";
+import { useNativeInputAttrs } from "../FormItem/useNativeInputAttrs";
 import "./style.scss";
+
+defineOptions({ inheritAttrs: false, name: "Select" });
 
 const props = withDefaults(defineProps<SelectProps>(), {
   options: () => [],
@@ -19,6 +23,23 @@ const props = withDefaults(defineProps<SelectProps>(), {
 
 const emit = defineEmits<SelectEmits>();
 const { t } = useLocale();
+
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  validateOnBlur,
+  validateOnChange,
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name,
+});
+
+const { nativeAttrs } = useNativeInputAttrs();
 
 const {
   isOpen,
@@ -51,6 +72,7 @@ const {
 } = useSelect(props, (error, query) => emit("remote-error", error, query));
 
 const handleTriggerClick = () => {
+  if (isDisabled.value || props.readonly) return;
   toggle();
   if (isOpen.value) {
     emit("show");
@@ -65,16 +87,18 @@ const handleFocus = () => {
 
 const handleBlur = () => {
   emit("blur", {} as FocusEvent);
+  void validateOnBlur();
 };
 
 const handleOptionClick = (
   option: (typeof props.options)[0],
   event: MouseEvent,
 ) => {
-  if (option.disabled || props.disabled || props.readonly) return;
+  if (option.disabled || isDisabled.value || props.readonly) return;
   const next = resolveSelectValue(option);
   emit("update:modelValue", next);
   emit("change", { originalEvent: event, value: next });
+  void validateOnChange();
   if (shouldCloseAfterSelect()) {
     close();
     emit("hide");
@@ -86,6 +110,7 @@ const handleClear = (event: MouseEvent) => {
   const next = resolveClearValue();
   emit("update:modelValue", next);
   emit("clear");
+  void validateOnChange();
 };
 
 const handleRemoveTag = (event: MouseEvent, value: string | number) => {
@@ -93,9 +118,11 @@ const handleRemoveTag = (event: MouseEvent, value: string | number) => {
   const next = resolveRemoveTagValue(value);
   emit("update:modelValue", next);
   emit("remove-tag", value);
+  void validateOnChange();
 };
 
 const handleKeydown = (event: KeyboardEvent) => {
+  if (isDisabled.value || props.readonly) return;
   if (!isOpen.value) {
     if (
       event.key === "ArrowDown" ||
@@ -141,12 +168,17 @@ const handleOutsideClick = (event: MouseEvent) => {
   <div :class="selectClass" :style="{ ...style, ...selectStyle }">
     <div
       ref="triggerRef"
+      v-bind="nativeAttrs"
+      :id="inputId"
       :class="triggerClass"
       role="combobox"
       :aria-expanded="isOpen"
       aria-haspopup="listbox"
       :aria-controls="listboxId"
-      :aria-disabled="disabled || readonly || undefined"
+      :aria-disabled="isDisabled || readonly || undefined"
+      :aria-invalid="isInvalid || undefined"
+      :aria-required="isRequired || undefined"
+      :aria-describedby="ariaDescribedby"
       :aria-label="placeholder || t(LocaleKeys.component.select.aria)"
       tabindex="0"
       @click="handleTriggerClick"
@@ -155,7 +187,7 @@ const handleOutsideClick = (event: MouseEvent) => {
       @keydown="handleKeydown"
     >
       <span
-        v-if="clearable && hasValue && !disabled && !readonly"
+        v-if="clearable && hasValue && !isDisabled && !readonly"
         class="vp-select__clear"
         role="button"
         :aria-label="t(LocaleKeys.component.select.clear)"
@@ -182,7 +214,7 @@ const handleOutsideClick = (event: MouseEvent) => {
         >
           <span class="vp-select__tag-label">{{ tag.label }}</span>
           <span
-            v-if="!disabled && !readonly"
+            v-if="!isDisabled && !readonly"
             class="vp-select__tag-close"
             role="button"
             :aria-label="

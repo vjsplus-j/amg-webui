@@ -25,9 +25,26 @@
   gap: var(--spacing-sm, 0.5rem);
 }
 
-.biz-users__form {
+.biz-users__perms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.biz-users__perm-edit {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md, 0.75rem);
-  min-width: min(360px, 100%);
+  gap: var(--spacing-sm);
 }
+
+.biz-users__detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.biz-users__pager {
+  margin-top: var(--spacing-md);
+  width: 100%;
+}
+

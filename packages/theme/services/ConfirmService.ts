@@ -1,5 +1,5 @@
 import './confirmService.scss'
-import { LocaleService, LocaleKeys } from '@amg-webui/locale'
+import { LocaleService, LocaleKeys, type LocaleKey } from '@amg-webui/locale'
 
 export type ConfirmSeverity = 'success' | 'info' | 'warn' | 'error'
 
@@ -25,7 +25,7 @@ const SEVERITY_ICONS: Record<ConfirmSeverity, string> = {
     '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>'
 }
 
-function t(key: string, fallback: string) {
+function t(key: LocaleKey, fallback: string) {
   try {
     const value = LocaleService.t(key, undefined, fallback)
     return value && value !== key ? value : fallback

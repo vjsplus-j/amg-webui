@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-04T02:12:03.916Z",
-  "total": 285,
+  "generatedAt": "2026-08-06T03:25:03.474Z",
+  "total": 287,
   "categories": [
     "general",
     "layout",
@@ -265,9 +265,11 @@
       "Print",
       "PropPanel",
       "Qrcode",
+      "SchemaRenderer",
       "TablePrint",
       "TelemetryProvider",
-      "TemplateDrag"
+      "TemplateDrag",
+      "ThemeProvider"
     ],
     "industry": [
       "AudioTalk",
@@ -1296,6 +1298,11 @@
       "titleKey": "component.scale-layout.title",
       "leadKey": "component.scale-layout.lead"
     },
+    "SchemaRenderer": {
+      "category": "other",
+      "titleKey": "component.schema-renderer.title",
+      "leadKey": "component.schema-renderer.lead"
+    },
     "ScrollNav": {
       "category": "navigation",
       "titleKey": "component.scroll-nav.title",
@@ -1515,6 +1522,11 @@
       "category": "data-entry",
       "titleKey": "component.textarea.title",
       "leadKey": "component.textarea.lead"
+    },
+    "ThemeProvider": {
+      "category": "other",
+      "titleKey": "component.theme-provider.title",
+      "leadKey": "component.theme-provider.lead"
     },
     "Thumbnail": {
       "category": "data-display",

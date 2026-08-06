@@ -1,8 +1,13 @@
+export type BizLoginMode = 'password' | 'sms' | 'qr'
+
 export interface BizLoginCredentials {
   username: string
   password: string
   remember?: boolean
   captchaToken?: string
+  mode?: BizLoginMode
+  phone?: string
+  code?: string
 }
 
 export interface BizLoginProps {
@@ -15,12 +20,18 @@ export interface BizLoginProps {
   showForgot?: boolean
   showCaptcha?: boolean
   captchaMode?: BizCaptchaMode
+  /** Enabled auth modes (tabs). Default password + sms + qr. */
+  modes?: BizLoginMode[]
+  defaultMode?: BizLoginMode
+  verifyCaptcha?: () => Promise<string>
 }
 
 export interface BizLoginEmits {
   (e: 'submit', payload: BizLoginCredentials): void
   (e: 'register'): void
   (e: 'forgot'): void
+  (e: 'send-code'): void
+  (e: 'update:mode', mode: BizLoginMode): void
 }
 
 export type BizCaptchaMode = 'checkbox' | 'slider'

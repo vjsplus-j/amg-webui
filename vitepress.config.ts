@@ -26,7 +26,9 @@ export default defineConfig({
         text: '独家能力',
         items: [
           { text: 'Skill Runtime', link: '/SKILL_RUNTIME' },
-          { text: 'Vp Telemetry', link: '/TELEMETRY' }
+          { text: 'Vp Telemetry', link: '/TELEMETRY' },
+          { text: '安全防护层', link: '/SECURITY' },
+          { text: '低代码 Schema', link: '/LOWCODE' }
         ]
       },
       {

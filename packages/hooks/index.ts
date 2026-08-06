@@ -25,6 +25,14 @@ export {
   type CanvasEditorContext,
 } from "./useCanvasEditor";
 
+export {
+  createThemeScope,
+  THEME_RUNTIME_KEY,
+  type ThemeScopeOptions,
+  type ThemeScopeHandle,
+} from "./useThemeScope";
+export { useThemeRuntime } from "./useThemeRuntime";
+
 /** Theme / font / icon / toast — re-exported for hooks-first DX */
 export {
   useTheme,

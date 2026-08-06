@@ -2,9 +2,21 @@
 import { computed, useId } from "vue";
 import Icon from "../Icon/index.vue";
 import { useLocale } from "@amg-webui/hooks";
+import type { LocaleKey } from "@amg-webui/locale";
 import { trackEmit } from "@amg-webui/telemetry";
 import type { ResultEmits, ResultProps, ResultStatus } from "./types";
 import "./style.scss";
+
+const RESULT_TITLE_KEYS: Record<ResultStatus, LocaleKey> = {
+  success: "component.result.success",
+  warning: "component.result.warning",
+  error: "component.result.error",
+  info: "component.result.info",
+  "403": "component.result.403",
+  "404": "component.result.404",
+  "500": "component.result.500",
+};
+
 const props = withDefaults(defineProps<ResultProps>(), {
   status: "info",
   size: "md",
@@ -30,9 +42,11 @@ const iconMap: Record<ResultStatus, string> = {
 const iconName = computed(() =>
   props.icon === false ? undefined : (props.icon ?? iconMap[props.status]),
 );
-const titleText = computed(
-  () => props.title ?? t(`component.result.${props.status}`),
-);
+const titleText = computed(() => {
+  if (props.title) return props.title
+  const key = RESULT_TITLE_KEYS[props.status]
+  return t(key)
+});
 function action(key: string, event: MouseEvent) {
   emit("action", key, event);
   trackEmit({

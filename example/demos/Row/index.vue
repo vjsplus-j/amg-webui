@@ -21,7 +21,7 @@ import { demoSfc, demoCode } from '../../components/demo/demoCode'
 import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
-const { t } = useLocale()
+const { t, tDyn } = useLocale()
 
 type PagePreset = 'shell' | 'dashboard' | 'form' | 'detail' | 'editorial'
 const page = ref<PagePreset>('shell')
@@ -269,7 +269,7 @@ const propRows = computed<PropRow[]>(() => [
                 </Row>
                 <Row gutter="var(--spacing-md)" align="stretch">
                   <Col :span="16">
-                    <Card bordered :header="t('example.doc.row.sample.mainTitle', { nav: t(`example.doc.row.sample.nav.${nav}`) })">
+                    <Card bordered :header="t('example.doc.row.sample.mainTitle', { nav: tDyn(`example.doc.row.sample.nav.${nav}`) })">
                       <Space direction="vertical" block size="md">
                         <p class="prose">{{ t('example.doc.row.sample.mainBody') }}</p>
                         <Row gutter="var(--spacing-sm)">

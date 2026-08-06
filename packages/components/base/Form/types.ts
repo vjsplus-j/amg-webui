@@ -32,6 +32,11 @@ export interface FormProps extends BaseProps {
   disabled?: boolean
   labelWidth?: string
   labelPosition?: 'left' | 'top'
+  /**
+   * Before successful submit, deep-filter string fields with `sanitizeModelStrings`.
+   * Mutates `model` in place when provided as a reactive object.
+   */
+  sanitizeOnSubmit?: boolean
   trackId?: string
   telemetry?: boolean
 }

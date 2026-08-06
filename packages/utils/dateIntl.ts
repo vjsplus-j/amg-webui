@@ -1,14 +1,14 @@
 import { LocaleService } from '@amg-webui/locale'
-import type { LocaleCode } from '@amg-webui/locale'
 
-export function getLocaleCode(): LocaleCode {
+/** Active BCP 47 / locale pack code (built-in or registered). */
+export function getLocaleCode(): string {
   return LocaleService.getLocale()
 }
 
 export function formatWithIntl(
   date: Date,
   options: Intl.DateTimeFormatOptions,
-  locale?: LocaleCode
+  locale?: string
 ): string {
   return new Intl.DateTimeFormat(locale ?? getLocaleCode(), options).format(date)
 }
@@ -35,7 +35,7 @@ export function parseISODate(str: string): Date | null {
   return Number.isNaN(d.getTime()) ? null : d
 }
 
-export function getWeekdayLabels(locale?: LocaleCode): string[] {
+export function getWeekdayLabels(locale?: string): string[] {
   const code = locale ?? getLocaleCode()
   const fmt = new Intl.DateTimeFormat(code, { weekday: 'short' })
   const base = new Date(2024, 0, 7)
@@ -46,13 +46,13 @@ export function getWeekdayLabels(locale?: LocaleCode): string[] {
   })
 }
 
-export function getMonthLabels(year: number, locale?: LocaleCode): string[] {
+export function getMonthLabels(year: number, locale?: string): string[] {
   const code = locale ?? getLocaleCode()
   const fmt = new Intl.DateTimeFormat(code, { month: 'short' })
   return Array.from({ length: 12 }, (_, m) => fmt.format(new Date(year, m, 1)))
 }
 
-export function getMonthYearLabel(date: Date, locale?: LocaleCode): string {
+export function getMonthYearLabel(date: Date, locale?: string): string {
   return formatWithIntl(date, { month: 'long', year: 'numeric' }, locale)
 }
 

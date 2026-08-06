@@ -4,7 +4,11 @@ import { trackEmit } from '@amg-webui/telemetry'
 import type { CheckboxProps, CheckboxEmits } from './types'
 import { CHECKBOX_GROUP_INJECTION_KEY } from './types'
 import { useCheckbox } from './useCheckbox'
+import { useFormItem } from '../FormItem/useFormItem'
+import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'Checkbox' })
 
 const props = withDefaults(defineProps<CheckboxProps>(), {
   modelValue: false,
@@ -17,10 +21,27 @@ const emit = defineEmits<CheckboxEmits>()
 const group = inject(CHECKBOX_GROUP_INJECTION_KEY, null)
 const inputRef = ref<HTMLInputElement | null>(null)
 
+const {
+  inputId,
+  isDisabled: formDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  name: resolvedName,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
+
+const { nativeAttrs } = useNativeInputAttrs()
+
 const checkboxSource = computed(() => ({
   modelValue: props.modelValue,
   value: props.value,
-  disabled: props.disabled,
+  disabled: formDisabled.value,
   size: props.size,
   indeterminate: props.indeterminate,
   class: props.class,
@@ -48,6 +69,7 @@ const handleChange = (event: Event) => {
     emit('update:modelValue', target.checked)
     emit('change', target.checked)
   }
+  void validateOnChange()
   trackEmit({
     component: 'Checkbox',
     type: 'change',
@@ -62,11 +84,17 @@ const handleChange = (event: Event) => {
   <label :class="rootClass" :style="style">
     <input
       ref="inputRef"
+      v-bind="nativeAttrs"
+      :id="inputId"
       class="vp-checkbox__input"
       type="checkbox"
+      :name="resolvedName"
       :checked="isChecked"
       :disabled="isDisabled"
       :aria-checked="showIndeterminate ? 'mixed' : isChecked"
+      :aria-invalid="isInvalid || undefined"
+      :aria-required="isRequired || undefined"
+      :aria-describedby="ariaDescribedby"
       @change="handleChange"
     />
     <span class="vp-checkbox__mark" aria-hidden="true">

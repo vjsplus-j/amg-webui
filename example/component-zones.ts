@@ -38,16 +38,26 @@ export function zoneNames(zone: ExampleZoneId): string[] {
   return [...(COMPONENT_ZONES[zone] || [])].sort((a, b) => a.localeCompare(b))
 }
 
+export type CapabilityTier = 'thin' | 'form' | 'interaction' | 'composite'
+
+export const CAPABILITY_SUMMARY = (maturity as { byCapability?: Record<CapabilityTier, number> })
+  .byCapability ?? { thin: 0, form: 0, interaction: 0, composite: 0 }
+
 export function componentMaturity(name: string): {
   level: MaturityLevel
   score: number
+  capability: CapabilityTier
 } {
-  const row = (maturity.components as Record<string, { level?: MaturityLevel; score?: number }>)[
-    name
-  ]
+  const row = (
+    maturity.components as Record<
+      string,
+      { level?: MaturityLevel; score?: number; capability?: CapabilityTier }
+    >
+  )[name]
   return {
     level: row?.level ?? 'shell',
-    score: typeof row?.score === 'number' ? row.score : 0
+    score: typeof row?.score === 'number' ? row.score : 0,
+    capability: row?.capability ?? 'thin'
   }
 }
 

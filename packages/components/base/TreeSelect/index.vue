@@ -6,7 +6,11 @@ import type { TreeNode } from '@amg-webui/utils/data-display/tree-types'
 import { filterTreeNodes, useTreeState } from '@amg-webui/utils/data-display/useTreeState'
 import TreeCheckbox from '../Tree/TreeCheckbox.vue'
 import type { TreeSelectProps, TreeSelectEmits, TreeSelectOption } from './types'
+import { useFormItem } from '../FormItem/useFormItem'
+import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'TreeSelect' })
 
 const props = withDefaults(defineProps<TreeSelectProps>(), {
   options: () => [],
@@ -19,6 +23,24 @@ const props = withDefaults(defineProps<TreeSelectProps>(), {
 
 const emit = defineEmits<TreeSelectEmits>()
 const { t } = useLocale()
+
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  validateOnBlur,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
+
+const { nativeAttrs } = useNativeInputAttrs()
+
 const { isOpen, triggerRef, panelRef, toggle, close } = usePopover()
 
 const filterText = ref('')
@@ -53,6 +75,7 @@ const arrayModel = computed({
   set: (v: (string | number)[]) => {
     emit('update:modelValue', v)
     emit('change', v)
+    void validateOnChange()
   }
 })
 
@@ -119,8 +142,12 @@ const hasPanelItems = computed(() =>
 )
 
 function handleTriggerClick() {
-  if (props.disabled) return
+  if (isDisabled.value) return
   toggle()
+}
+
+function handleTriggerBlur() {
+  void validateOnBlur()
 }
 
 function toggleManualExpand(value: unknown, event: Event) {
@@ -135,6 +162,7 @@ function selectNode(node: TreeSelectOption) {
   if (node.disabled || checkboxMode.value) return
   emit('update:modelValue', node.value)
   emit('change', node.value)
+  void validateOnChange()
   close()
 }
 
@@ -143,6 +171,7 @@ function clearValue(event: MouseEvent) {
   const empty = checkboxMode.value ? [] : undefined
   emit('update:modelValue', empty)
   emit('change', empty)
+  void validateOnChange()
 }
 </script>
 
@@ -150,11 +179,19 @@ function clearValue(event: MouseEvent) {
   <div :class="['vp-treeselect', props.class]" :style="style">
     <button
       ref="triggerRef"
+      v-bind="nativeAttrs"
+      :id="inputId"
       type="button"
       class="vp-treeselect__trigger"
-      :disabled="disabled"
+      role="combobox"
+      :disabled="isDisabled"
       :aria-expanded="isOpen"
+      aria-haspopup="listbox"
+      :aria-invalid="isInvalid || undefined"
+      :aria-required="isRequired || undefined"
+      :aria-describedby="ariaDescribedby"
       @click="handleTriggerClick"
+      @blur="handleTriggerBlur"
     >
       <span
         :class="['vp-treeselect__label', { 'vp-treeselect__label--placeholder': isPlaceholder }]"
@@ -203,7 +240,7 @@ function clearValue(event: MouseEvent) {
           <TreeCheckbox
             :checked="getCheckState(row.node) === 'checked'"
             :indeterminate="getCheckState(row.node) === 'indeterminate'"
-            :disabled="disabled || row.node.disabled"
+            :disabled="isDisabled || row.node.disabled"
             @change="toggleCheck(row.node)"
           />
           <span class="vp-treeselect__node-label">{{ row.node.label }}</span>

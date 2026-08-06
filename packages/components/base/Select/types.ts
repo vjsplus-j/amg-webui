@@ -12,6 +12,10 @@ export type SelectModelValue =
   string | number | boolean | (string | number)[] | undefined;
 
 export interface SelectProps extends BaseProps {
+  /** Native id — falls back to FormItem field id when nested */
+  id?: string;
+  /** Native name — falls back to FormItem `prop` when nested */
+  name?: string;
   /** v-model — scalar for single mode, array for `multiple` */
   modelValue?: SelectModelValue;
   /** Option list rendered in the dropdown */

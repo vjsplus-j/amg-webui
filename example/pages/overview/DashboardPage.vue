@@ -8,7 +8,7 @@ import ExamplePageHero from '../../components/ExamplePageHero.vue'
 import { NAV_GROUP_TITLE_KEYS, type NavGroupId } from '../../router/routes'
 
 const router = useRouter()
-const { t, locale } = useLocale()
+const { t, tDyn, locale } = useLocale()
 
 /** Simulate slow home-data fetch after login — content pane skeleton until ready */
 const homeLoading = ref(true)
@@ -39,7 +39,7 @@ const zones = computed(() => {
   return list.map((z) => ({
     ...z,
     title: t(NAV_GROUP_TITLE_KEYS[z.group]),
-    blurb: t(z.blurbKey)
+    blurb: tDyn(z.blurbKey)
   }))
 })
 

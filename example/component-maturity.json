@@ -1,23 +1,38 @@
 {
-  "version": 1,
-  "generatedAt": "2026-08-05T04:17:31.427Z",
-  "total": 285,
+  "version": 2,
+  "generatedAt": "2026-08-06T03:45:14.246Z",
+  "total": 287,
+  "disclaimer": "total is directory inventory. Maturity is by capability tier + depth level. Not 1.0-ready.",
   "summary": {
     "stub": 0,
-    "shell": 6,
-    "beta": 32,
-    "ready": 247
+    "shell": 56,
+    "beta": 199,
+    "ready": 32
   },
+  "byCapability": {
+    "thin": 240,
+    "form": 21,
+    "interaction": 5,
+    "composite": 21
+  },
+  "capabilities": [
+    "thin",
+    "form",
+    "interaction",
+    "composite"
+  ],
   "levels": [
     "stub",
     "shell",
     "beta",
     "ready"
   ],
+  "thinFormGaps": [],
   "components": {
     "AdvancedSearch": {
-      "level": "ready",
-      "score": 82,
+      "level": "shell",
+      "capability": "thin",
+      "score": 64,
       "signals": [
         "emits",
         "v-model",
@@ -27,80 +42,106 @@
       ],
       "vueLines": 111,
       "styleLines": 57,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Affix": {
-      "level": "ready",
-      "score": 82,
+      "level": "beta",
+      "capability": "thin",
+      "score": 67,
       "signals": [
         "emits",
         "composable",
         "v-model",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 82,
       "styleLines": 28,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Alert": {
-      "level": "ready",
-      "score": 70,
+      "level": "beta",
+      "capability": "thin",
+      "score": 56,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 61,
       "styleLines": 78,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Anchor": {
-      "level": "ready",
-      "score": 91,
+      "level": "beta",
+      "capability": "thin",
+      "score": 70,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 225,
       "styleLines": 75,
-      "propCount": 12
+      "propCount": 12,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "AudioPlay": {
-      "level": "ready",
-      "score": 71,
+      "level": "beta",
+      "capability": "thin",
+      "score": 60,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 68,
       "styleLines": 371,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "AudioTalk": {
-      "level": "ready",
-      "score": 73,
+      "level": "beta",
+      "capability": "thin",
+      "score": 59,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 113,
       "styleLines": 370,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "AutoComplete": {
       "level": "ready",
-      "score": 98,
+      "capability": "composite",
+      "score": 75,
       "signals": [
         "emits",
         "composable",
@@ -111,71 +152,90 @@
       ],
       "vueLines": 110,
       "styleLines": 84,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Avatar": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "composite",
+      "score": 77,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:2",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry"
       ],
       "vueLines": 338,
       "styleLines": 185,
-      "propCount": 35
+      "propCount": 35,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "AvatarGroup": {
-      "level": "ready",
-      "score": 93,
+      "level": "beta",
+      "capability": "composite",
+      "score": 72,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry"
       ],
       "vueLines": 193,
       "styleLines": 52,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "BackTop": {
-      "level": "ready",
-      "score": 70,
+      "level": "beta",
+      "capability": "thin",
+      "score": 57,
       "signals": [
         "emits",
         "composable",
         "handlers:1",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 54,
       "styleLines": 48,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Badge": {
-      "level": "ready",
-      "score": 99,
+      "level": "beta",
+      "capability": "composite",
+      "score": 75,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry"
       ],
       "vueLines": 209,
       "styleLines": 217,
-      "propCount": 30
+      "propCount": 30,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "BarChart": {
       "level": "ready",
-      "score": 100,
+      "capability": "composite",
+      "score": 80,
       "signals": [
         "emits",
         "composable",
@@ -187,39 +247,50 @@
       ],
       "vueLines": 100,
       "styleLines": 75,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Barcode": {
-      "level": "ready",
-      "score": 85,
+      "level": "beta",
+      "capability": "thin",
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 100,
       "styleLines": 58,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "BatchPanel": {
-      "level": "beta",
-      "score": 66,
+      "level": "shell",
+      "capability": "thin",
+      "score": 53,
       "signals": [
         "emits",
         "handlers:1",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry"
       ],
       "vueLines": 101,
       "styleLines": 57,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "BatchUpload": {
-      "level": "ready",
-      "score": 89,
+      "level": "shell",
+      "capability": "thin",
+      "score": 65,
       "signals": [
         "emits",
         "v-model",
@@ -229,107 +300,143 @@
       ],
       "vueLines": 145,
       "styleLines": 61,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Block": {
-      "level": "beta",
-      "score": 65,
+      "level": "shell",
+      "capability": "thin",
+      "score": 47,
       "signals": [
         "tokens"
       ],
       "vueLines": 119,
       "styleLines": 101,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Breadcrumb": {
-      "level": "ready",
-      "score": 82,
+      "level": "beta",
+      "capability": "composite",
+      "score": 66,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry"
       ],
       "vueLines": 126,
       "styleLines": 29,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "BreadcrumbItem": {
-      "level": "ready",
-      "score": 75,
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 99,
       "styleLines": 59,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "BrowserDetect": {
-      "level": "ready",
-      "score": 74,
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 87,
       "styleLines": 383,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Business404": {
-      "level": "ready",
-      "score": 91,
+      "level": "beta",
+      "capability": "thin",
+      "score": 73,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 95,
       "styleLines": 91,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Button": {
       "level": "ready",
+      "capability": "interaction",
       "score": 100,
       "signals": [
         "emits",
         "composable",
+        "provide-inject",
         "handlers:8",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "permission",
+        "confirm",
+        "throttle-wait"
       ],
-      "vueLines": 530,
+      "vueLines": 531,
       "styleLines": 932,
-      "propCount": 59
+      "propCount": 59,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ButtonGroup": {
-      "level": "ready",
-      "score": 71,
+      "level": "shell",
+      "capability": "thin",
+      "score": 35,
       "signals": [
         "provide-inject",
         "a11y",
-        "tokens"
+        "tokens",
+        "slot-shell"
       ],
       "vueLines": 92,
       "styleLines": 149,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Calendar": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 88,
       "signals": [
         "emits",
         "v-model",
@@ -337,111 +444,148 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 251,
       "styleLines": 101,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "CanvasIo": {
-      "level": "ready",
-      "score": 69,
+      "level": "beta",
+      "capability": "thin",
+      "score": 58,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
-      "vueLines": 96,
+      "vueLines": 98,
       "styleLines": 39,
-      "propCount": 3
+      "propCount": 3,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "CanvasLayer": {
-      "level": "ready",
-      "score": 73,
+      "level": "beta",
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "emits",
         "handlers:5",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 104,
       "styleLines": 75,
-      "propCount": 2
+      "propCount": 2,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "CanvasNode": {
-      "level": "ready",
-      "score": 70,
+      "level": "beta",
+      "capability": "thin",
+      "score": 61,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
-      "vueLines": 133,
-      "styleLines": 37,
-      "propCount": 4
+      "vueLines": 154,
+      "styleLines": 47,
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "CanvasPreview": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 80,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
-      "vueLines": 210,
+      "vueLines": 231,
       "styleLines": 103,
-      "propCount": 16
+      "propCount": 18,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "CanvasShortcut": {
-      "level": "ready",
-      "score": 78,
+      "level": "beta",
+      "capability": "thin",
+      "score": 68,
       "signals": [
         "emits",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
-      "vueLines": 91,
+      "vueLines": 107,
       "styleLines": 371,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Card": {
-      "level": "ready",
-      "score": 93,
+      "level": "beta",
+      "capability": "thin",
+      "score": 71,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 168,
       "styleLines": 150,
-      "propCount": 13
+      "propCount": 13,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "CardGrid": {
-      "level": "ready",
-      "score": 78,
+      "level": "beta",
+      "capability": "thin",
+      "score": 64,
       "signals": [
         "emits",
         "composable",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 59,
       "styleLines": 69,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "CardList": {
-      "level": "ready",
-      "score": 70,
+      "level": "shell",
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "emits",
         "v-model",
@@ -450,110 +594,141 @@
       ],
       "vueLines": 103,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "CardNav": {
-      "level": "ready",
-      "score": 74,
+      "level": "beta",
+      "capability": "thin",
+      "score": 60,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 66,
       "styleLines": 76,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "CardWidgets": {
-      "level": "ready",
-      "score": 90,
+      "level": "beta",
+      "capability": "thin",
+      "score": 68,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 221,
       "styleLines": 98,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Carousel": {
-      "level": "ready",
-      "score": 88,
+      "level": "beta",
+      "capability": "thin",
+      "score": 67,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 172,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Cartoon404": {
-      "level": "ready",
-      "score": 90,
+      "level": "beta",
+      "capability": "thin",
+      "score": 73,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 91,
       "styleLines": 92,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Cascader": {
       "level": "ready",
-      "score": 77,
+      "capability": "form",
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
-        "handlers:2",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "form-item",
+        "native-attrs"
       ],
-      "vueLines": 112,
+      "vueLines": 147,
       "styleLines": 112,
-      "propCount": 3
+      "propCount": 5,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "CategoryNav": {
-      "level": "ready",
-      "score": 85,
+      "level": "beta",
+      "capability": "thin",
+      "score": 67,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 82,
       "styleLines": 131,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Center": {
-      "level": "ready",
-      "score": 67,
+      "level": "shell",
+      "capability": "thin",
+      "score": 53,
       "signals": [
         "a11y",
         "tokens",
-        "behavior-test",
-        "structural-primitive"
+        "behavior-test"
       ],
       "vueLines": 76,
       "styleLines": 135,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Checkbox": {
       "level": "ready",
-      "score": 89,
+      "capability": "form",
+      "score": 100,
       "signals": [
         "emits",
         "composable",
@@ -561,15 +736,21 @@
         "v-model",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "form-item",
+        "native-attrs",
+        "telemetry"
       ],
-      "vueLines": 83,
+      "vueLines": 111,
       "styleLines": 95,
-      "propCount": 5
+      "propCount": 8,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "CheckboxGroup": {
-      "level": "ready",
-      "score": 92,
+      "level": "beta",
+      "capability": "thin",
+      "score": 72,
       "signals": [
         "emits",
         "composable",
@@ -577,15 +758,19 @@
         "v-model",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 85,
       "styleLines": 45,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ChunkUpload": {
-      "level": "ready",
-      "score": 91,
+      "level": "shell",
+      "capability": "thin",
+      "score": 65,
       "signals": [
         "emits",
         "v-model",
@@ -595,11 +780,14 @@
       ],
       "vueLines": 157,
       "styleLines": 73,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Clipboard": {
-      "level": "beta",
-      "score": 66,
+      "level": "shell",
+      "capability": "thin",
+      "score": 54,
       "signals": [
         "emits",
         "v-model",
@@ -609,26 +797,33 @@
       ],
       "vueLines": 82,
       "styleLines": 54,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "CodeEditor": {
-      "level": "ready",
-      "score": 85,
+      "level": "beta",
+      "capability": "thin",
+      "score": 66,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
-      "vueLines": 115,
+      "vueLines": 119,
       "styleLines": 83,
-      "propCount": 3
+      "propCount": 3,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Col": {
-      "level": "ready",
-      "score": 68,
+      "level": "shell",
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "emits",
         "handlers:1",
@@ -637,68 +832,89 @@
       ],
       "vueLines": 92,
       "styleLines": 30,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Collapse": {
-      "level": "ready",
-      "score": 96,
+      "level": "beta",
+      "capability": "thin",
+      "score": 73,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 151,
       "styleLines": 164,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ColorInput": {
-      "level": "ready",
-      "score": 86,
+      "level": "beta",
+      "capability": "thin",
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 126,
       "styleLines": 110,
-      "propCount": 3
+      "propCount": 3,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ColorPicker": {
-      "level": "beta",
-      "score": 66,
+      "level": "ready",
+      "capability": "form",
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
-        "handlers:3",
-        "tokens"
+        "handlers:4",
+        "a11y",
+        "tokens",
+        "form-item",
+        "native-attrs"
       ],
-      "vueLines": 87,
+      "vueLines": 122,
       "styleLines": 108,
-      "propCount": 2
+      "propCount": 4,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "ColumnLayout": {
-      "level": "ready",
-      "score": 65,
+      "level": "shell",
+      "capability": "thin",
+      "score": 53,
       "signals": [
         "emits",
         "a11y",
         "tokens",
-        "behavior-test",
-        "structural-primitive"
+        "behavior-test"
       ],
       "vueLines": 72,
       "styleLines": 35,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ConfigProvider": {
-      "level": "ready",
-      "score": 92,
+      "level": "beta",
+      "capability": "composite",
+      "score": 72,
       "signals": [
         "emits",
         "composable",
@@ -706,180 +922,237 @@
         "tokens",
         "behavior-test"
       ],
-      "vueLines": 122,
+      "vueLines": 182,
       "styleLines": 37,
-      "propCount": 14
+      "propCount": 23,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Confirm": {
-      "level": "ready",
-      "score": 97,
+      "level": "beta",
+      "capability": "thin",
+      "score": 71,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 175,
       "styleLines": 195,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ConfirmDialog": {
-      "level": "ready",
-      "score": 95,
+      "level": "beta",
+      "capability": "thin",
+      "score": 69,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 232,
       "styleLines": 184,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Container": {
-      "level": "ready",
-      "score": 69,
+      "level": "beta",
+      "capability": "thin",
+      "score": 57,
       "signals": [
         "emits",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 70,
       "styleLines": 58,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ContextMenu": {
-      "level": "ready",
-      "score": 84,
+      "level": "beta",
+      "capability": "thin",
+      "score": 65,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 168,
       "styleLines": 117,
-      "propCount": 3
+      "propCount": 3,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "CopyText": {
-      "level": "ready",
-      "score": 86,
+      "level": "beta",
+      "capability": "thin",
+      "score": 68,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 132,
       "styleLines": 67,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Countdown": {
-      "level": "ready",
-      "score": 95,
+      "level": "beta",
+      "capability": "thin",
+      "score": 73,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 159,
       "styleLines": 47,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "CryptoBox": {
-      "level": "ready",
-      "score": 84,
+      "level": "beta",
+      "capability": "thin",
+      "score": 65,
       "signals": [
         "emits",
         "v-model",
         "handlers:5",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 118,
       "styleLines": 66,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Dashboard": {
-      "level": "ready",
-      "score": 77,
+      "level": "shell",
+      "capability": "thin",
+      "score": 60,
       "signals": [
         "emits",
         "handlers:2",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry"
       ],
       "vueLines": 121,
       "styleLines": 96,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DataCard": {
-      "level": "ready",
-      "score": 99,
+      "level": "beta",
+      "capability": "thin",
+      "score": 77,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 149,
       "styleLines": 145,
-      "propCount": 17
+      "propCount": 17,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DataTable": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 79,
       "signals": [
         "emits",
         "handlers:10",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 677,
       "styleLines": 334,
-      "propCount": 21
+      "propCount": 21,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DatePicker": {
       "level": "ready",
-      "score": 88,
+      "capability": "form",
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
-        "handlers:4",
+        "handlers:5",
         "a11y",
-        "tokens"
+        "tokens",
+        "form-item",
+        "native-attrs"
       ],
-      "vueLines": 146,
+      "vueLines": 181,
       "styleLines": 244,
-      "propCount": 3
+      "propCount": 5,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "DateTimePicker": {
-      "level": "ready",
+      "level": "beta",
+      "capability": "form",
       "score": 73,
       "signals": [
         "emits",
         "v-model",
-        "handlers:7",
-        "a11y"
+        "handlers:8",
+        "a11y",
+        "form-item",
+        "native-attrs"
       ],
-      "vueLines": 249,
+      "vueLines": 284,
       "styleLines": 2,
-      "propCount": 4
+      "propCount": 6,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "Descriptions": {
-      "level": "beta",
-      "score": 65,
+      "level": "shell",
+      "capability": "thin",
+      "score": 50,
       "signals": [
         "provide-inject",
         "a11y",
@@ -887,194 +1160,253 @@
       ],
       "vueLines": 119,
       "styleLines": 41,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DescriptionsItem": {
-      "level": "ready",
-      "score": 65,
+      "level": "shell",
+      "capability": "thin",
+      "score": 35,
       "signals": [
         "provide-inject",
         "a11y",
         "tokens",
         "behavior-test",
-        "structural-primitive"
+        "sub-primitive"
       ],
       "vueLines": 72,
       "styleLines": 56,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DetailPanel": {
-      "level": "ready",
-      "score": 87,
+      "level": "beta",
+      "capability": "thin",
+      "score": 64,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 131,
       "styleLines": 87,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Dialog": {
-      "level": "ready",
-      "score": 99,
+      "level": "beta",
+      "capability": "thin",
+      "score": 73,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 216,
       "styleLines": 188,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Divider": {
-      "level": "ready",
-      "score": 74,
+      "level": "beta",
+      "capability": "thin",
+      "score": 57,
       "signals": [
         "composable",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 96,
       "styleLines": 129,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Doodle404": {
-      "level": "ready",
-      "score": 90,
+      "level": "beta",
+      "capability": "thin",
+      "score": 72,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 89,
       "styleLines": 90,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DragCanvas": {
-      "level": "beta",
-      "score": 66,
+      "level": "shell",
+      "capability": "thin",
+      "score": 58,
       "signals": [
         "emits",
         "v-model",
         "tokens",
         "delegate"
       ],
-      "vueLines": 93,
+      "vueLines": 122,
       "styleLines": 36,
-      "propCount": 5
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DragMaterial": {
-      "level": "ready",
-      "score": 95,
+      "level": "beta",
+      "capability": "thin",
+      "score": 75,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
-      "vueLines": 151,
+      "vueLines": 152,
       "styleLines": 90,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DragRuler": {
-      "level": "ready",
-      "score": 71,
+      "level": "beta",
+      "capability": "thin",
+      "score": 58,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 88,
       "styleLines": 399,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DragSelect": {
-      "level": "ready",
-      "score": 92,
+      "level": "beta",
+      "capability": "thin",
+      "score": 71,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 173,
       "styleLines": 85,
-      "propCount": 3
+      "propCount": 3,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DragSortNode": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 193,
       "styleLines": 96,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DragVerify": {
-      "level": "ready",
-      "score": 95,
+      "level": "beta",
+      "capability": "thin",
+      "score": 74,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 139,
       "styleLines": 56,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DragWrapper": {
-      "level": "ready",
-      "score": 79,
+      "level": "beta",
+      "capability": "thin",
+      "score": 64,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 117,
       "styleLines": 378,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Drawer": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 81,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 189,
       "styleLines": 151,
-      "propCount": 20
+      "propCount": 20,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DrillTable": {
-      "level": "ready",
-      "score": 76,
+      "level": "shell",
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "emits",
         "handlers:3",
@@ -1082,26 +1414,33 @@
       ],
       "vueLines": 154,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Dropdown": {
-      "level": "ready",
-      "score": 98,
+      "level": "beta",
+      "capability": "thin",
+      "score": 72,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 360,
       "styleLines": 151,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "DynamicForm": {
-      "level": "ready",
-      "score": 76,
+      "level": "shell",
+      "capability": "thin",
+      "score": 57,
       "signals": [
         "emits",
         "v-model",
@@ -1111,11 +1450,14 @@
       ],
       "vueLines": 132,
       "styleLines": 18,
-      "propCount": 3
+      "propCount": 3,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "EditTable": {
-      "level": "ready",
-      "score": 75,
+      "level": "shell",
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "emits",
         "handlers:3",
@@ -1123,11 +1465,14 @@
       ],
       "vueLines": 138,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "EditTree": {
-      "level": "ready",
-      "score": 86,
+      "level": "shell",
+      "capability": "thin",
+      "score": 62,
       "signals": [
         "emits",
         "v-model",
@@ -1136,50 +1481,68 @@
       ],
       "vueLines": 153,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Ellipsis": {
-      "level": "ready",
-      "score": 77,
+      "level": "beta",
+      "capability": "thin",
+      "score": 60,
       "signals": [
         "emits",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 148,
       "styleLines": 42,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "EmbedLayout": {
-      "level": "ready",
-      "score": 77,
+      "level": "beta",
+      "capability": "thin",
+      "score": 67,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 92,
       "styleLines": 55,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Empty": {
-      "level": "ready",
-      "score": 80,
+      "level": "beta",
+      "capability": "thin",
+      "score": 60,
       "signals": [
         "emits",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 153,
       "styleLines": 79,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ErrorModal": {
       "level": "shell",
-      "score": 25,
+      "capability": "thin",
+      "score": 21,
       "signals": [
         "emits",
         "behavior-test",
@@ -1187,52 +1550,70 @@
       ],
       "vueLines": 30,
       "styleLines": 2,
-      "propCount": 0
+      "propCount": 0,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ExcelIo": {
-      "level": "ready",
-      "score": 82,
+      "level": "beta",
+      "capability": "thin",
+      "score": 69,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 122,
       "styleLines": 69,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Exception": {
-      "level": "ready",
-      "score": 93,
+      "level": "beta",
+      "capability": "thin",
+      "score": 78,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 114,
       "styleLines": 73,
-      "propCount": 12
+      "propCount": 12,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FilePreview": {
       "level": "beta",
-      "score": 65,
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 61,
       "styleLines": 372,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FilterBar": {
-      "level": "ready",
-      "score": 86,
+      "level": "shell",
+      "capability": "thin",
+      "score": 64,
       "signals": [
         "emits",
         "v-model",
@@ -1242,92 +1623,120 @@
       ],
       "vueLines": 125,
       "styleLines": 57,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FixedLayout": {
-      "level": "ready",
-      "score": 78,
+      "level": "beta",
+      "capability": "thin",
+      "score": 59,
       "signals": [
         "emits",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 149,
       "styleLines": 12,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FloatButton": {
-      "level": "ready",
-      "score": 79,
+      "level": "beta",
+      "capability": "thin",
+      "score": 64,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 116,
       "styleLines": 115,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FloatNav": {
-      "level": "ready",
-      "score": 90,
+      "level": "beta",
+      "capability": "thin",
+      "score": 67,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 129,
       "styleLines": 88,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FlowLayout": {
-      "level": "ready",
-      "score": 66,
+      "level": "beta",
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "a11y",
         "tokens",
         "behavior-test",
-        "structural-primitive"
+        "thin-cap:no-ready"
       ],
       "vueLines": 85,
       "styleLines": 62,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FlowPanel": {
-      "level": "ready",
-      "score": 90,
+      "level": "beta",
+      "capability": "thin",
+      "score": 69,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 163,
       "styleLines": 127,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FolderTree": {
-      "level": "ready",
-      "score": 84,
+      "level": "beta",
+      "capability": "thin",
+      "score": 67,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 126,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Footer": {
-      "level": "beta",
-      "score": 65,
+      "level": "shell",
+      "capability": "thin",
+      "score": 50,
       "signals": [
         "emits",
         "handlers:1",
@@ -1336,112 +1745,146 @@
       ],
       "vueLines": 72,
       "styleLines": 100,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FooterNav": {
-      "level": "ready",
-      "score": 84,
+      "level": "beta",
+      "capability": "thin",
+      "score": 66,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 85,
       "styleLines": 97,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Form": {
       "level": "ready",
-      "score": 93,
+      "capability": "composite",
+      "score": 75,
       "signals": [
         "emits",
         "composable",
         "provide-inject",
         "handlers:1",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry"
       ],
-      "vueLines": 134,
+      "vueLines": 141,
       "styleLines": 23,
-      "propCount": 7
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FormGroup": {
-      "level": "ready",
-      "score": 77,
+      "level": "beta",
+      "capability": "thin",
+      "score": 64,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 114,
       "styleLines": 67,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FormItem": {
       "level": "ready",
-      "score": 81,
+      "capability": "composite",
+      "score": 90,
       "signals": [
         "emits",
+        "composable",
         "provide-inject",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "form-item",
+        "native-attrs"
+      ],
+      "vueLines": 140,
+      "styleLines": 44,
+      "propCount": 4,
+      "formIntegrated": true,
+      "nativeAttrs": true
+    },
+    "FormLayout": {
+      "level": "shell",
+      "capability": "thin",
+      "score": 54,
+      "signals": [
+        "emits",
         "a11y",
         "tokens",
         "behavior-test"
       ],
-      "vueLines": 124,
-      "styleLines": 44,
-      "propCount": 4
-    },
-    "FormLayout": {
-      "level": "ready",
-      "score": 67,
-      "signals": [
-        "emits",
-        "a11y",
-        "tokens",
-        "behavior-test",
-        "structural-primitive"
-      ],
       "vueLines": 67,
       "styleLines": 157,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FormTabs": {
-      "level": "ready",
-      "score": 79,
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 133,
       "styleLines": 14,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "FreeLayoutDrag": {
-      "level": "ready",
-      "score": 99,
+      "level": "beta",
+      "capability": "thin",
+      "score": 78,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 196,
       "styleLines": 97,
-      "propCount": 12
+      "propCount": 12,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "GaugeChart": {
-      "level": "ready",
-      "score": 97,
+      "level": "beta",
+      "capability": "thin",
+      "score": 79,
       "signals": [
         "emits",
         "composable",
@@ -1449,152 +1892,203 @@
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 95,
       "styleLines": 65,
-      "propCount": 12
+      "propCount": 12,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "GbsAlarmModal": {
-      "level": "ready",
-      "score": 99,
+      "level": "beta",
+      "capability": "thin",
+      "score": 79,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 203,
       "styleLines": 128,
-      "propCount": 13
+      "propCount": 13,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "GbsCascadePanel": {
-      "level": "ready",
-      "score": 73,
+      "level": "beta",
+      "capability": "thin",
+      "score": 61,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 88,
       "styleLines": 370,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "GbsDeviceTree": {
-      "level": "ready",
-      "score": 95,
+      "level": "beta",
+      "capability": "thin",
+      "score": 76,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 132,
       "styleLines": 167,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "GbsGatewayForm": {
-      "level": "ready",
-      "score": 85,
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
       "signals": [
         "emits",
         "v-model",
         "handlers:6",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 161,
       "styleLines": 34,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "GbsRegisterForm": {
-      "level": "ready",
-      "score": 85,
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
       "signals": [
         "emits",
         "v-model",
         "handlers:5",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 150,
       "styleLines": 34,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "GbsSignMonitor": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 79,
       "signals": [
         "emits",
         "handlers:5",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 214,
       "styleLines": 113,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "GbsStatusCard": {
       "level": "beta",
-      "score": 68,
+      "capability": "thin",
+      "score": 56,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 77,
       "styleLines": 370,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "GbsTimeSync": {
-      "level": "ready",
-      "score": 70,
+      "level": "beta",
+      "capability": "thin",
+      "score": 59,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 84,
       "styleLines": 370,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "GraphChart": {
-      "level": "ready",
-      "score": 84,
+      "level": "beta",
+      "capability": "thin",
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 92,
       "styleLines": 53,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "GridLayoutDrag": {
-      "level": "ready",
-      "score": 71,
+      "level": "beta",
+      "capability": "thin",
+      "score": 58,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 89,
       "styleLines": 380,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "GroupNav": {
-      "level": "beta",
-      "score": 66,
+      "level": "shell",
+      "capability": "thin",
+      "score": 53,
       "signals": [
         "emits",
         "v-model",
@@ -1604,23 +2098,30 @@
       ],
       "vueLines": 60,
       "styleLines": 68,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Header": {
-      "level": "ready",
-      "score": 69,
+      "level": "beta",
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 86,
       "styleLines": 113,
-      "propCount": 12
+      "propCount": 12,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "HeatMap": {
       "level": "ready",
-      "score": 100,
+      "capability": "composite",
+      "score": 81,
       "signals": [
         "emits",
         "composable",
@@ -1632,23 +2133,30 @@
       ],
       "vueLines": 102,
       "styleLines": 73,
-      "propCount": 13
+      "propCount": 13,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Highlight": {
-      "level": "ready",
-      "score": 71,
+      "level": "beta",
+      "capability": "thin",
+      "score": 56,
       "signals": [
         "emits",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 104,
       "styleLines": 60,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Icon": {
       "level": "ready",
-      "score": 100,
+      "capability": "composite",
+      "score": 83,
       "signals": [
         "emits",
         "composable",
@@ -1659,24 +2167,31 @@
       ],
       "vueLines": 223,
       "styleLines": 98,
-      "propCount": 30
+      "propCount": 30,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Image": {
-      "level": "ready",
-      "score": 82,
+      "level": "shell",
+      "capability": "thin",
+      "score": 62,
       "signals": [
         "emits",
         "handlers:1",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry"
       ],
       "vueLines": 145,
       "styleLines": 50,
-      "propCount": 13
+      "propCount": 13,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ImageCrop": {
-      "level": "beta",
-      "score": 69,
+      "level": "shell",
+      "capability": "thin",
+      "score": 50,
       "signals": [
         "emits",
         "handlers:2",
@@ -1684,24 +2199,31 @@
       ],
       "vueLines": 137,
       "styleLines": 58,
-      "propCount": 3
+      "propCount": 3,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ImageGroup": {
-      "level": "ready",
-      "score": 80,
+      "level": "beta",
+      "capability": "thin",
+      "score": 62,
       "signals": [
         "emits",
         "handlers:5",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 125,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ImageUpload": {
-      "level": "ready",
-      "score": 74,
+      "level": "shell",
+      "capability": "thin",
+      "score": 57,
       "signals": [
         "emits",
         "v-model",
@@ -1711,39 +2233,50 @@
       ],
       "vueLines": 92,
       "styleLines": 58,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ImageViewer": {
-      "level": "ready",
-      "score": 97,
+      "level": "beta",
+      "capability": "thin",
+      "score": 71,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 246,
       "styleLines": 112,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "IndexNav": {
-      "level": "ready",
-      "score": 83,
+      "level": "beta",
+      "capability": "thin",
+      "score": 66,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 95,
       "styleLines": 81,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "InfiniteScroll": {
       "level": "beta",
-      "score": 69,
+      "capability": "composite",
+      "score": 53,
       "signals": [
         "emits",
         "composable",
@@ -1752,37 +2285,28 @@
       ],
       "vueLines": 101,
       "styleLines": 23,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "InfoModal": {
       "level": "shell",
-      "score": 17,
+      "capability": "thin",
+      "score": 12,
       "signals": [
         "emits",
         "thin"
       ],
       "vueLines": 28,
       "styleLines": 2,
-      "propCount": 0
+      "propCount": 0,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Ink404": {
-      "level": "ready",
-      "score": 83,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:2",
-        "a11y",
-        "tokens",
-        "behavior-test"
-      ],
-      "vueLines": 71,
-      "styleLines": 83,
-      "propCount": 9
-    },
-    "InputCaptcha": {
-      "level": "ready",
-      "score": 93,
+      "level": "beta",
+      "capability": "thin",
+      "score": 71,
       "signals": [
         "emits",
         "v-model",
@@ -1790,14 +2314,38 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "telemetry",
+        "thin-cap:no-ready"
       ],
-      "vueLines": 127,
+      "vueLines": 71,
+      "styleLines": 83,
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "InputCaptcha": {
+      "level": "ready",
+      "capability": "form",
+      "score": 87,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate",
+        "form-item"
+      ],
+      "vueLines": 147,
       "styleLines": 33,
-      "propCount": 7
+      "propCount": 9,
+      "formIntegrated": true,
+      "nativeAttrs": false
     },
     "InputNumber": {
       "level": "ready",
+      "capability": "form",
       "score": 100,
       "signals": [
         "emits",
@@ -1807,44 +2355,62 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "form-item",
+        "native-attrs",
+        "telemetry"
       ],
-      "vueLines": 88,
+      "vueLines": 133,
       "styleLines": 103,
-      "propCount": 12
+      "propCount": 15,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "InputOTP": {
       "level": "ready",
-      "score": 90,
+      "capability": "form",
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
-        "handlers:2",
+        "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "form-item",
+        "telemetry"
       ],
-      "vueLines": 175,
+      "vueLines": 208,
       "styleLines": 77,
-      "propCount": 6
+      "propCount": 8,
+      "formIntegrated": true,
+      "nativeAttrs": false
     },
     "InputText": {
       "level": "ready",
-      "score": 91,
+      "capability": "form",
+      "score": 100,
       "signals": [
         "emits",
         "composable",
         "v-model",
-        "handlers:4",
+        "handlers:5",
+        "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "form-item",
+        "native-attrs",
+        "telemetry"
       ],
-      "vueLines": 61,
+      "vueLines": 119,
       "styleLines": 90,
-      "propCount": 9
+      "propCount": 14,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "Layout": {
-      "level": "ready",
-      "score": 69,
+      "level": "shell",
+      "capability": "thin",
+      "score": 54,
       "signals": [
         "provide-inject",
         "a11y",
@@ -1853,11 +2419,14 @@
       ],
       "vueLines": 64,
       "styleLines": 80,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "LazyTree": {
-      "level": "ready",
-      "score": 92,
+      "level": "beta",
+      "capability": "thin",
+      "score": 70,
       "signals": [
         "emits",
         "v-model",
@@ -1865,174 +2434,229 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 384,
       "styleLines": 49,
-      "propCount": 0
+      "propCount": 0,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "LineChart": {
-      "level": "ready",
-      "score": 91,
+      "level": "beta",
+      "capability": "thin",
+      "score": 78,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 108,
       "styleLines": 67,
-      "propCount": 12
+      "propCount": 12,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Link": {
       "level": "ready",
-      "score": 100,
+      "capability": "interaction",
+      "score": 93,
       "signals": [
         "emits",
         "composable",
         "handlers:7",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "permission",
+        "throttle-wait"
       ],
       "vueLines": 283,
       "styleLines": 151,
-      "propCount": 23
+      "propCount": 23,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Loading": {
-      "level": "ready",
-      "score": 89,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "a11y",
-        "tokens",
-        "behavior-test"
-      ],
-      "vueLines": 126,
-      "styleLines": 129,
-      "propCount": 13
-    },
-    "LoadingTip": {
-      "level": "ready",
-      "score": 93,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "a11y",
-        "tokens",
-        "behavior-test"
-      ],
-      "vueLines": 144,
-      "styleLines": 107,
-      "propCount": 11
-    },
-    "LoginPanel": {
-      "level": "ready",
-      "score": 100,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:4",
-        "a11y",
-        "tokens",
-        "delegate"
-      ],
-      "vueLines": 167,
-      "styleLines": 84,
-      "propCount": 6
-    },
-    "Machine404": {
-      "level": "ready",
-      "score": 83,
-      "signals": [
-        "emits",
-        "handlers:3",
-        "a11y",
-        "tokens",
-        "behavior-test"
-      ],
-      "vueLines": 85,
-      "styleLines": 80,
-      "propCount": 10
-    },
-    "Main": {
-      "level": "ready",
-      "score": 64,
+      "level": "beta",
+      "capability": "thin",
+      "score": 73,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
-        "structural-primitive"
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 126,
+      "styleLines": 129,
+      "propCount": 13,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "LoadingTip": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 73,
+      "signals": [
+        "emits",
+        "handlers:1",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 144,
+      "styleLines": 107,
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "LoginPanel": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 77,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:4",
+        "a11y",
+        "tokens",
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 167,
+      "styleLines": 84,
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Machine404": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 67,
+      "signals": [
+        "emits",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 85,
+      "styleLines": 80,
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Main": {
+      "level": "shell",
+      "capability": "thin",
+      "score": 54,
+      "signals": [
+        "emits",
+        "handlers:1",
+        "a11y",
+        "tokens",
+        "behavior-test"
       ],
       "vueLines": 79,
       "styleLines": 38,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Mask": {
-      "level": "ready",
-      "score": 78,
+      "level": "beta",
+      "capability": "thin",
+      "score": 66,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 123,
       "styleLines": 57,
-      "propCount": 15
+      "propCount": 15,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "MatrixCode": {
-      "level": "ready",
-      "score": 85,
+      "level": "beta",
+      "capability": "thin",
+      "score": 70,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 98,
       "styleLines": 60,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "MdEditor": {
-      "level": "ready",
-      "score": 76,
+      "level": "beta",
+      "capability": "thin",
+      "score": 60,
       "signals": [
         "emits",
         "v-model",
         "handlers:8",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
-      "vueLines": 80,
+      "vueLines": 81,
       "styleLines": 62,
-      "propCount": 2
+      "propCount": 2,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Mention": {
       "level": "ready",
-      "score": 92,
+      "capability": "form",
+      "score": 94,
       "signals": [
         "emits",
         "v-model",
-        "handlers:3",
+        "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "form-item",
+        "native-attrs",
+        "telemetry"
       ],
-      "vueLines": 225,
+      "vueLines": 259,
       "styleLines": 114,
-      "propCount": 6
+      "propCount": 8,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "Menu": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 88,
       "signals": [
         "emits",
         "v-model",
@@ -2040,104 +2664,138 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 460,
       "styleLines": 239,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "MenuBar": {
-      "level": "ready",
-      "score": 73,
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 98,
       "styleLines": 18,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "MergeTable": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 80,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 240,
       "styleLines": 95,
-      "propCount": 16
+      "propCount": 16,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Message": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 79,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 144,
       "styleLines": 130,
-      "propCount": 15
+      "propCount": 15,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "MessageBox": {
-      "level": "ready",
-      "score": 90,
+      "level": "beta",
+      "capability": "thin",
+      "score": 69,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 370,
       "styleLines": 246,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "MiniNav": {
-      "level": "ready",
-      "score": 79,
+      "level": "beta",
+      "capability": "thin",
+      "score": 62,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 73,
       "styleLines": 131,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "MonthPicker": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 80,
       "signals": [
         "emits",
         "v-model",
         "handlers:10",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 234,
       "styleLines": 40,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "NoticeBar": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
@@ -2145,15 +2803,20 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 143,
       "styleLines": 110,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Notification": {
       "level": "shell",
-      "score": 22,
+      "capability": "thin",
+      "score": 16,
       "signals": [
         "emits",
         "handlers:1",
@@ -2161,148 +2824,199 @@
       ],
       "vueLines": 41,
       "styleLines": 2,
-      "propCount": 0
+      "propCount": 0,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "OcrScan": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 213,
       "styleLines": 82,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "OnvifAlarmPanel": {
       "level": "beta",
-      "score": 65,
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 74,
       "styleLines": 370,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "OnvifChannelManage": {
       "level": "beta",
-      "score": 66,
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 76,
       "styleLines": 370,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "OnvifDeviceList": {
       "level": "beta",
-      "score": 68,
+      "capability": "thin",
+      "score": 57,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 86,
       "styleLines": 370,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "OnvifGroupTree": {
-      "level": "ready",
-      "score": 95,
+      "level": "beta",
+      "capability": "thin",
+      "score": 76,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 132,
       "styleLines": 197,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "OnvifRecordPlan": {
       "level": "beta",
-      "score": 66,
+      "capability": "thin",
+      "score": 56,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 79,
       "styleLines": 370,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "OnvifSearch": {
-      "level": "ready",
-      "score": 80,
+      "level": "beta",
+      "capability": "thin",
+      "score": 61,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 119,
       "styleLines": 264,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "OnvifSettingPanel": {
-      "level": "ready",
-      "score": 74,
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 79,
       "styleLines": 370,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "OnvifUrlForm": {
-      "level": "ready",
-      "score": 70,
+      "level": "beta",
+      "capability": "thin",
+      "score": 59,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 78,
       "styleLines": 370,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "PTZControl": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 80,
       "signals": [
         "emits",
         "v-model",
         "handlers:10",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 137,
       "styleLines": 163,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "PageHeader": {
-      "level": "beta",
-      "score": 66,
+      "level": "shell",
+      "capability": "thin",
+      "score": 50,
       "signals": [
         "emits",
         "handlers:1",
@@ -2312,202 +3026,265 @@
       ],
       "vueLines": 71,
       "styleLines": 107,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "PagerNav": {
-      "level": "ready",
-      "score": 83,
+      "level": "beta",
+      "capability": "thin",
+      "score": 71,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 91,
       "styleLines": 58,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Pagination": {
-      "level": "ready",
-      "score": 90,
+      "level": "beta",
+      "capability": "thin",
+      "score": 71,
       "signals": [
         "emits",
         "composable",
         "handlers:4",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 97,
       "styleLines": 73,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Password": {
       "level": "ready",
-      "score": 87,
+      "capability": "form",
+      "score": 100,
       "signals": [
         "emits",
         "composable",
         "v-model",
-        "handlers:4",
+        "handlers:5",
         "a11y",
-        "tokens"
+        "tokens",
+        "form-item",
+        "native-attrs",
+        "telemetry"
       ],
-      "vueLines": 73,
+      "vueLines": 147,
       "styleLines": 85,
-      "propCount": 6
+      "propCount": 13,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "PdfPreview": {
-      "level": "beta",
-      "score": 65,
+      "level": "shell",
+      "capability": "thin",
+      "score": 54,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry"
       ],
       "vueLines": 64,
       "styleLines": 371,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "PermissionPanel": {
-      "level": "ready",
-      "score": 84,
+      "level": "beta",
+      "capability": "thin",
+      "score": 73,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "permission",
+        "thin-cap:no-ready"
       ],
       "vueLines": 120,
       "styleLines": 62,
-      "propCount": 3
+      "propCount": 3,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "PieChart": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 257,
       "styleLines": 124,
-      "propCount": 16
+      "propCount": 16,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "PivotTable": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 80,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 202,
       "styleLines": 87,
-      "propCount": 17
+      "propCount": 17,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Pixel404": {
-      "level": "ready",
-      "score": 85,
+      "level": "beta",
+      "capability": "thin",
+      "score": 68,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 95,
       "styleLines": 89,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Plant404": {
-      "level": "ready",
-      "score": 83,
+      "level": "beta",
+      "capability": "thin",
+      "score": 67,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 85,
       "styleLines": 82,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Popconfirm": {
       "level": "ready",
-      "score": 100,
+      "capability": "interaction",
+      "score": 89,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "confirm"
       ],
       "vueLines": 307,
       "styleLines": 96,
-      "propCount": 20
+      "propCount": 20,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Popover": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 81,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 238,
       "styleLines": 123,
-      "propCount": 16
+      "propCount": 16,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Preview": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 80,
       "signals": [
         "emits",
         "v-model",
         "handlers:6",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 207,
       "styleLines": 87,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Print": {
-      "level": "ready",
-      "score": 81,
+      "level": "beta",
+      "capability": "thin",
+      "score": 67,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 90,
       "styleLines": 50,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ProTable": {
-      "level": "ready",
-      "score": 86,
+      "level": "shell",
+      "capability": "thin",
+      "score": 62,
       "signals": [
         "emits",
         "v-model",
@@ -2516,23 +3293,31 @@
       ],
       "vueLines": 228,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Progress": {
-      "level": "ready",
-      "score": 78,
+      "level": "beta",
+      "capability": "thin",
+      "score": 59,
       "signals": [
         "emits",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 177,
       "styleLines": 98,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ProgressTip": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 88,
       "signals": [
         "emits",
         "v-model",
@@ -2540,45 +3325,59 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 186,
       "styleLines": 115,
-      "propCount": 21
+      "propCount": 21,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "PropPanel": {
-      "level": "ready",
-      "score": 96,
+      "level": "beta",
+      "capability": "thin",
+      "score": 80,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
-      "vueLines": 152,
+      "vueLines": 192,
       "styleLines": 56,
-      "propCount": 5
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Qrcode": {
-      "level": "ready",
-      "score": 85,
+      "level": "beta",
+      "capability": "thin",
+      "score": 70,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 99,
       "styleLines": 63,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "QuarterPicker": {
-      "level": "beta",
-      "score": 69,
+      "level": "shell",
+      "capability": "thin",
+      "score": 53,
       "signals": [
         "emits",
         "v-model",
@@ -2587,26 +3386,33 @@
       ],
       "vueLines": 94,
       "styleLines": 74,
-      "propCount": 3
+      "propCount": 3,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "QuickNav": {
-      "level": "ready",
-      "score": 80,
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 68,
       "styleLines": 153,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "RadarChart": {
-      "level": "ready",
-      "score": 99,
+      "level": "beta",
+      "capability": "thin",
+      "score": 79,
       "signals": [
         "emits",
         "composable",
@@ -2614,15 +3420,19 @@
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 94,
       "styleLines": 75,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Radio": {
       "level": "ready",
-      "score": 85,
+      "capability": "form",
+      "score": 96,
       "signals": [
         "emits",
         "composable",
@@ -2630,15 +3440,21 @@
         "v-model",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "form-item",
+        "native-attrs",
+        "telemetry"
       ],
-      "vueLines": 66,
+      "vueLines": 93,
       "styleLines": 95,
-      "propCount": 5
+      "propCount": 7,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "RadioGroup": {
-      "level": "ready",
-      "score": 87,
+      "level": "beta",
+      "capability": "thin",
+      "score": 68,
       "signals": [
         "emits",
         "composable",
@@ -2646,30 +3462,39 @@
         "v-model",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 73,
       "styleLines": 45,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "RangeInput": {
-      "level": "ready",
-      "score": 76,
+      "level": "beta",
+      "capability": "thin",
+      "score": 66,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 79,
       "styleLines": 21,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Ranking": {
-      "level": "beta",
-      "score": 69,
+      "level": "shell",
+      "capability": "thin",
+      "score": 53,
       "signals": [
         "emits",
         "handlers:2",
@@ -2677,107 +3502,159 @@
       ],
       "vueLines": 121,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Rate": {
       "level": "ready",
-      "score": 100,
+      "capability": "form",
+      "score": 96,
       "signals": [
         "emits",
         "v-model",
         "handlers:5",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "form-item",
+        "telemetry"
       ],
-      "vueLines": 135,
+      "vueLines": 160,
       "styleLines": 71,
-      "propCount": 9
+      "propCount": 11,
+      "formIntegrated": true,
+      "nativeAttrs": false
     },
     "ResizeBox": {
-      "level": "ready",
-      "score": 78,
+      "level": "shell",
+      "capability": "thin",
+      "score": 53,
       "signals": [
         "emits",
         "tokens"
       ],
       "vueLines": 145,
       "styleLines": 160,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Result": {
-      "level": "ready",
-      "score": 90,
+      "level": "beta",
+      "capability": "thin",
+      "score": 77,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
-      "vueLines": 106,
+      "vueLines": 120,
       "styleLines": 100,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "RichText": {
       "level": "ready",
-      "score": 75,
+      "capability": "interaction",
+      "score": 89,
       "signals": [
         "emits",
+        "composable",
         "v-model",
-        "handlers:8",
+        "handlers:14",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "permission"
       ],
-      "vueLines": 96,
-      "styleLines": 37,
-      "propCount": 2
+      "vueLines": 356,
+      "styleLines": 58,
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "RouterNav": {
-      "level": "ready",
-      "score": 81,
+      "level": "beta",
+      "capability": "thin",
+      "score": 68,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 119,
       "styleLines": 60,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Row": {
-      "level": "ready",
-      "score": 68,
+      "level": "beta",
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "provide-inject",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 92,
       "styleLines": 58,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ScaleLayout": {
-      "level": "ready",
-      "score": 83,
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
       "signals": [
         "emits",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 178,
       "styleLines": 42,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "SchemaRenderer": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
+      "signals": [
+        "emits",
+        "a11y",
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 185,
+      "styleLines": 85,
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ScrollNav": {
-      "level": "ready",
-      "score": 70,
+      "level": "shell",
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "emits",
         "v-model",
@@ -2787,55 +3664,72 @@
       ],
       "vueLines": 61,
       "styleLines": 81,
-      "propCount": 7
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "ScrollNotice": {
-      "level": "ready",
-      "score": 88,
+      "level": "beta",
+      "capability": "thin",
+      "score": 73,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 99,
       "styleLines": 80,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Scrollbar": {
-      "level": "ready",
-      "score": 81,
+      "level": "beta",
+      "capability": "thin",
+      "score": 70,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 104,
       "styleLines": 61,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Search": {
-      "level": "ready",
-      "score": 91,
+      "level": "beta",
+      "capability": "thin",
+      "score": 70,
       "signals": [
         "emits",
         "composable",
         "v-model",
         "handlers:6",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 88,
       "styleLines": 97,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "SearchFilterPanel": {
-      "level": "ready",
-      "score": 95,
+      "level": "beta",
+      "capability": "thin",
+      "score": 77,
       "signals": [
         "emits",
         "v-model",
@@ -2843,29 +3737,39 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 154,
       "styleLines": 19,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Segmented": {
-      "level": "ready",
-      "score": 98,
+      "level": "beta",
+      "capability": "thin",
+      "score": 75,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 152,
       "styleLines": 103,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Select": {
       "level": "ready",
+      "capability": "form",
       "score": 100,
       "signals": [
         "emits",
@@ -2874,558 +3778,127 @@
         "handlers:9",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "form-item",
+        "native-attrs"
       ],
-      "vueLines": 328,
+      "vueLines": 360,
       "styleLines": 273,
-      "propCount": 24
+      "propCount": 26,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "SelectNav": {
       "level": "beta",
-      "score": 67,
+      "capability": "thin",
+      "score": 56,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 82,
       "styleLines": 25,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "SettingPanel": {
-      "level": "ready",
-      "score": 83,
+      "level": "shell",
+      "capability": "thin",
+      "score": 65,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry"
       ],
       "vueLines": 129,
       "styleLines": 66,
-      "propCount": 4
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Sider": {
-      "level": "ready",
-      "score": 97,
+      "level": "beta",
+      "capability": "composite",
+      "score": 75,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
         "tokens",
-        "delegate"
+        "delegate",
+        "telemetry"
       ],
       "vueLines": 134,
       "styleLines": 110,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Simple404": {
-      "level": "ready",
-      "score": 90,
+      "level": "beta",
+      "capability": "thin",
+      "score": 72,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 88,
       "styleLines": 90,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Skeleton": {
-      "level": "ready",
-      "score": 75,
+      "level": "shell",
+      "capability": "thin",
+      "score": 53,
       "signals": [
         "a11y",
         "tokens"
       ],
       "vueLines": 440,
       "styleLines": 555,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Slider": {
       "level": "ready",
-      "score": 92,
-      "signals": [
-        "emits",
-        "composable",
-        "v-model",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 136,
-      "styleLines": 63,
-      "propCount": 6
-    },
-    "SmsCode": {
-      "level": "ready",
-      "score": 91,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:1",
-        "a11y",
-        "tokens",
-        "behavior-test",
-        "delegate"
-      ],
-      "vueLines": 124,
-      "styleLines": 30,
-      "propCount": 7
-    },
-    "Space": {
-      "level": "ready",
-      "score": 75,
-      "signals": [
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 148,
-      "styleLines": 84,
-      "propCount": 9
-    },
-    "Space404": {
-      "level": "ready",
-      "score": 83,
-      "signals": [
-        "emits",
-        "handlers:3",
-        "a11y",
-        "tokens",
-        "behavior-test"
-      ],
-      "vueLines": 85,
-      "styleLines": 82,
-      "propCount": 10
-    },
-    "Spacer": {
-      "level": "ready",
-      "score": 81,
-      "signals": [
-        "emits",
-        "composable",
-        "handlers:2",
-        "a11y",
-        "tokens",
-        "behavior-test"
-      ],
-      "vueLines": 56,
-      "styleLines": 61,
-      "propCount": 11
-    },
-    "Spin": {
-      "level": "ready",
-      "score": 78,
-      "signals": [
-        "emits",
-        "composable",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 92,
-      "styleLines": 110,
-      "propCount": 6
-    },
-    "Split": {
-      "level": "beta",
-      "score": 65,
-      "signals": [
-        "emits",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 118,
-      "styleLines": 54,
-      "propCount": 4
-    },
-    "SplitVideoWall": {
-      "level": "ready",
-      "score": 99,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:3",
-        "a11y",
-        "tokens",
-        "behavior-test"
-      ],
-      "vueLines": 125,
-      "styleLines": 180,
-      "propCount": 8
-    },
-    "StackLayout": {
-      "level": "ready",
-      "score": 68,
-      "signals": [
-        "a11y",
-        "tokens",
-        "behavior-test"
-      ],
-      "vueLines": 81,
-      "styleLines": 93,
-      "propCount": 11
-    },
-    "Statistic": {
-      "level": "ready",
-      "score": 84,
-      "signals": [
-        "emits",
-        "a11y",
-        "tokens",
-        "delegate"
-      ],
-      "vueLines": 137,
-      "styleLines": 56,
-      "propCount": 10
-    },
-    "StatusTip": {
-      "level": "ready",
-      "score": 91,
-      "signals": [
-        "emits",
-        "handlers:2",
-        "a11y",
-        "tokens",
-        "behavior-test",
-        "delegate"
-      ],
-      "vueLines": 102,
-      "styleLines": 104,
-      "propCount": 8
-    },
-    "StepForm": {
-      "level": "ready",
-      "score": 81,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:3",
-        "a11y",
-        "tokens",
-        "delegate"
-      ],
-      "vueLines": 92,
-      "styleLines": 72,
-      "propCount": 4
-    },
-    "StepItem": {
-      "level": "ready",
-      "score": 97,
-      "signals": [
-        "emits",
-        "provide-inject",
-        "handlers:1",
-        "a11y",
-        "tokens",
-        "delegate"
-      ],
-      "vueLines": 136,
-      "styleLines": 117,
-      "propCount": 7
-    },
-    "StepNav": {
-      "level": "ready",
-      "score": 75,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:1",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 91,
-      "styleLines": 96,
-      "propCount": 6
-    },
-    "Steps": {
-      "level": "beta",
-      "score": 68,
-      "signals": [
-        "emits",
-        "provide-inject",
-        "v-model",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 85,
-      "styleLines": 17,
-      "propCount": 6
-    },
-    "StickyTable": {
-      "level": "beta",
-      "score": 67,
-      "signals": [
-        "emits",
-        "handlers:2",
-        "tokens"
-      ],
-      "vueLines": 114,
-      "styleLines": 49,
-      "propCount": 6
-    },
-    "SuccessModal": {
-      "level": "shell",
-      "score": 17,
-      "signals": [
-        "emits",
-        "thin"
-      ],
-      "vueLines": 30,
-      "styleLines": 2,
-      "propCount": 0
-    },
-    "Switch": {
-      "level": "ready",
-      "score": 85,
-      "signals": [
-        "emits",
-        "composable",
-        "v-model",
-        "handlers:1",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 89,
-      "styleLines": 118,
-      "propCount": 6
-    },
-    "TabPane": {
-      "level": "ready",
-      "score": 80,
-      "signals": [
-        "emits",
-        "provide-inject",
-        "a11y",
-        "tokens",
-        "behavior-test"
-      ],
-      "vueLines": 97,
-      "styleLines": 39,
-      "propCount": 8
-    },
-    "TableAction": {
-      "level": "beta",
-      "score": 65,
-      "signals": [
-        "emits",
-        "handlers:1",
-        "tokens"
-      ],
-      "vueLines": 113,
-      "styleLines": 49,
-      "propCount": 6
-    },
-    "TableDrag": {
-      "level": "ready",
-      "score": 100,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:2",
-        "a11y",
-        "tokens",
-        "behavior-test"
-      ],
-      "vueLines": 248,
-      "styleLines": 102,
-      "propCount": 14
-    },
-    "TableExport": {
-      "level": "ready",
-      "score": 72,
-      "signals": [
-        "emits",
-        "handlers:3",
-        "tokens"
-      ],
-      "vueLines": 124,
-      "styleLines": 49,
-      "propCount": 6
-    },
-    "TablePrint": {
-      "level": "ready",
+      "capability": "form",
       "score": 86,
       "signals": [
         "emits",
+        "composable",
+        "v-model",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "form-item"
       ],
-      "vueLines": 132,
-      "styleLines": 53,
-      "propCount": 13
+      "vueLines": 173,
+      "styleLines": 63,
+      "propCount": 8,
+      "formIntegrated": true,
+      "nativeAttrs": false
     },
-    "Tabs": {
-      "level": "ready",
-      "score": 95,
-      "signals": [
-        "emits",
-        "provide-inject",
-        "v-model",
-        "handlers:2",
-        "a11y",
-        "tokens",
-        "behavior-test"
-      ],
-      "vueLines": 177,
-      "styleLines": 64,
-      "propCount": 2
-    },
-    "TabsNav": {
+    "SmsCode": {
       "level": "beta",
-      "score": 100,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:7",
-        "a11y",
-        "tokens",
-        "delegate",
-        "doc-gap:multi-tab"
-      ],
-      "vueLines": 391,
-      "styleLines": 229,
-      "propCount": 8
-    },
-    "Tag": {
-      "level": "ready",
-      "score": 100,
-      "signals": [
-        "emits",
-        "provide-inject",
-        "handlers:3",
-        "a11y",
-        "tokens",
-        "delegate"
-      ],
-      "vueLines": 253,
-      "styleLines": 249,
-      "propCount": 32
-    },
-    "TagInput": {
-      "level": "ready",
-      "score": 77,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:3",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 90,
-      "styleLines": 69,
-      "propCount": 6
-    },
-    "Tech404": {
-      "level": "ready",
-      "score": 89,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:3",
-        "a11y",
-        "tokens",
-        "behavior-test"
-      ],
-      "vueLines": 85,
-      "styleLines": 80,
-      "propCount": 10
-    },
-    "TelemetryProvider": {
-      "level": "ready",
-      "score": 81,
-      "signals": [
-        "emits",
-        "provide-inject",
-        "a11y",
-        "behavior-test"
-      ],
-      "vueLines": 136,
-      "styleLines": 12,
-      "propCount": 8
-    },
-    "TemplateDrag": {
-      "level": "ready",
-      "score": 90,
-      "signals": [
-        "emits",
-        "handlers:2",
-        "a11y",
-        "tokens",
-        "behavior-test",
-        "delegate"
-      ],
-      "vueLines": 111,
-      "styleLines": 381,
-      "propCount": 6
-    },
-    "TemplateSelect": {
-      "level": "ready",
-      "score": 93,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:2",
-        "a11y",
-        "tokens",
-        "delegate"
-      ],
-      "vueLines": 168,
-      "styleLines": 74,
-      "propCount": 5
-    },
-    "Textarea": {
-      "level": "ready",
-      "score": 87,
-      "signals": [
-        "emits",
-        "composable",
-        "v-model",
-        "handlers:4",
-        "tokens"
-      ],
-      "vueLines": 79,
-      "styleLines": 84,
-      "propCount": 12
-    },
-    "Thumbnail": {
-      "level": "ready",
-      "score": 71,
-      "signals": [
-        "emits",
-        "handlers:2",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 112,
-      "styleLines": 49,
-      "propCount": 6
-    },
-    "TimePicker": {
-      "level": "ready",
-      "score": 100,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:5",
-        "a11y",
-        "tokens",
-        "behavior-test",
-        "delegate"
-      ],
-      "vueLines": 164,
-      "styleLines": 64,
-      "propCount": 10
-    },
-    "TimeRangeInput": {
-      "level": "ready",
+      "capability": "thin",
       "score": 76,
       "signals": [
         "emits",
@@ -3433,29 +3906,657 @@
         "handlers:1",
         "a11y",
         "tokens",
-        "delegate"
+        "behavior-test",
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
-      "vueLines": 108,
-      "styleLines": 58,
-      "propCount": 3
+      "vueLines": 124,
+      "styleLines": 30,
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
-    "TimeSelect": {
-      "level": "ready",
-      "score": 96,
+    "Space": {
+      "level": "shell",
+      "capability": "thin",
+      "score": 53,
       "signals": [
-        "emits",
-        "v-model",
-        "handlers:4",
         "a11y",
         "tokens"
       ],
-      "vueLines": 240,
+      "vueLines": 148,
+      "styleLines": 84,
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Space404": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 67,
+      "signals": [
+        "emits",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 85,
+      "styleLines": 82,
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Spacer": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 68,
+      "signals": [
+        "emits",
+        "composable",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 56,
+      "styleLines": 61,
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Spin": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 59,
+      "signals": [
+        "emits",
+        "composable",
+        "a11y",
+        "tokens",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 92,
+      "styleLines": 110,
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Split": {
+      "level": "shell",
+      "capability": "thin",
+      "score": 51,
+      "signals": [
+        "emits",
+        "a11y",
+        "tokens"
+      ],
+      "vueLines": 118,
+      "styleLines": 54,
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "SplitVideoWall": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 78,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 125,
+      "styleLines": 180,
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "StackLayout": {
+      "level": "shell",
+      "capability": "thin",
+      "score": 54,
+      "signals": [
+        "a11y",
+        "tokens",
+        "behavior-test"
+      ],
+      "vueLines": 81,
+      "styleLines": 93,
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Statistic": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 66,
+      "signals": [
+        "emits",
+        "a11y",
+        "tokens",
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 137,
+      "styleLines": 56,
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "StatusTip": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 76,
+      "signals": [
+        "emits",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 102,
+      "styleLines": 104,
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "StepForm": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "delegate",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 92,
+      "styleLines": 72,
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "StepItem": {
+      "level": "beta",
+      "capability": "composite",
+      "score": 74,
+      "signals": [
+        "emits",
+        "provide-inject",
+        "handlers:1",
+        "a11y",
+        "tokens",
+        "delegate",
+        "telemetry"
+      ],
+      "vueLines": 136,
+      "styleLines": 117,
+      "propCount": 7,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "StepNav": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 62,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:1",
+        "a11y",
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 91,
+      "styleLines": 96,
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Steps": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 57,
+      "signals": [
+        "emits",
+        "provide-inject",
+        "v-model",
+        "a11y",
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 85,
+      "styleLines": 17,
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "StickyTable": {
+      "level": "shell",
+      "capability": "thin",
+      "score": 52,
+      "signals": [
+        "emits",
+        "handlers:2",
+        "tokens"
+      ],
+      "vueLines": 114,
+      "styleLines": 49,
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "SuccessModal": {
+      "level": "shell",
+      "capability": "thin",
+      "score": 13,
+      "signals": [
+        "emits",
+        "thin"
+      ],
+      "vueLines": 30,
+      "styleLines": 2,
+      "propCount": 0,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Switch": {
+      "level": "ready",
+      "capability": "form",
+      "score": 95,
+      "signals": [
+        "emits",
+        "composable",
+        "v-model",
+        "handlers:1",
+        "a11y",
+        "tokens",
+        "form-item",
+        "native-attrs",
+        "telemetry"
+      ],
+      "vueLines": 117,
+      "styleLines": 118,
+      "propCount": 9,
+      "formIntegrated": true,
+      "nativeAttrs": true
+    },
+    "TabPane": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 65,
+      "signals": [
+        "emits",
+        "provide-inject",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 97,
+      "styleLines": 39,
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "TableAction": {
+      "level": "shell",
+      "capability": "thin",
+      "score": 49,
+      "signals": [
+        "emits",
+        "handlers:1",
+        "tokens"
+      ],
+      "vueLines": 113,
+      "styleLines": 49,
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "TableDrag": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 80,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 248,
+      "styleLines": 102,
+      "propCount": 14,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "TableExport": {
+      "level": "shell",
+      "capability": "thin",
+      "score": 55,
+      "signals": [
+        "emits",
+        "handlers:3",
+        "tokens"
+      ],
+      "vueLines": 124,
+      "styleLines": 49,
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "TablePrint": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 67,
+      "signals": [
+        "emits",
+        "handlers:1",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 132,
+      "styleLines": 53,
+      "propCount": 13,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Tabs": {
+      "level": "ready",
+      "capability": "composite",
+      "score": 77,
+      "signals": [
+        "emits",
+        "provide-inject",
+        "v-model",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "telemetry"
+      ],
+      "vueLines": 177,
+      "styleLines": 64,
+      "propCount": 2,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "TabsNav": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 80,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:7",
+        "a11y",
+        "tokens",
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 391,
+      "styleLines": 229,
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Tag": {
+      "level": "beta",
+      "capability": "composite",
+      "score": 83,
+      "signals": [
+        "emits",
+        "provide-inject",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "delegate",
+        "telemetry",
+        "throttle-wait"
+      ],
+      "vueLines": 253,
+      "styleLines": 249,
+      "propCount": 32,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "TagInput": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 62,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 90,
+      "styleLines": 69,
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Tech404": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 72,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 85,
+      "styleLines": 80,
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "TelemetryProvider": {
+      "level": "beta",
+      "capability": "composite",
+      "score": 65,
+      "signals": [
+        "emits",
+        "provide-inject",
+        "a11y",
+        "behavior-test",
+        "telemetry"
+      ],
+      "vueLines": 136,
+      "styleLines": 12,
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "TemplateDrag": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 74,
+      "signals": [
+        "emits",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 111,
+      "styleLines": 381,
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "TemplateSelect": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 72,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 168,
+      "styleLines": 74,
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Textarea": {
+      "level": "ready",
+      "capability": "form",
+      "score": 100,
+      "signals": [
+        "emits",
+        "composable",
+        "v-model",
+        "handlers:5",
+        "a11y",
+        "tokens",
+        "form-item",
+        "native-attrs",
+        "telemetry"
+      ],
+      "vueLines": 138,
+      "styleLines": 84,
+      "propCount": 17,
+      "formIntegrated": true,
+      "nativeAttrs": true
+    },
+    "ThemeProvider": {
+      "level": "beta",
+      "capability": "composite",
+      "score": 50,
+      "signals": [
+        "emits",
+        "provide-inject",
+        "a11y",
+        "tokens"
+      ],
+      "vueLines": 70,
+      "styleLines": 25,
+      "propCount": 13,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "Thumbnail": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 56,
+      "signals": [
+        "emits",
+        "handlers:2",
+        "a11y",
+        "tokens",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 112,
+      "styleLines": 49,
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "TimePicker": {
+      "level": "ready",
+      "capability": "form",
+      "score": 100,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:6",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "delegate",
+        "form-item",
+        "native-attrs"
+      ],
+      "vueLines": 197,
+      "styleLines": 64,
+      "propCount": 11,
+      "formIntegrated": true,
+      "nativeAttrs": true
+    },
+    "TimeRangeInput": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 64,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:1",
+        "a11y",
+        "tokens",
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 108,
+      "styleLines": 58,
+      "propCount": 3,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "TimeSelect": {
+      "level": "ready",
+      "capability": "form",
+      "score": 94,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:5",
+        "a11y",
+        "tokens",
+        "form-item",
+        "native-attrs",
+        "telemetry"
+      ],
+      "vueLines": 274,
       "styleLines": 144,
-      "propCount": 7
+      "propCount": 9,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "Timeline": {
       "level": "ready",
-      "score": 100,
+      "capability": "composite",
+      "score": 83,
       "signals": [
         "emits",
         "provide-inject",
@@ -3463,15 +4564,19 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry"
       ],
       "vueLines": 103,
       "styleLines": 166,
-      "propCount": 14
+      "propCount": 14,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "TimelineItem": {
-      "level": "ready",
-      "score": 91,
+      "level": "beta",
+      "capability": "composite",
+      "score": 71,
       "signals": [
         "emits",
         "provide-inject",
@@ -3479,30 +4584,39 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry"
       ],
       "vueLines": 139,
       "styleLines": 181,
-      "propCount": 0
+      "propCount": 0,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "TimelineList": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 240,
       "styleLines": 167,
-      "propCount": 15
+      "propCount": 15,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Toast": {
       "level": "shell",
-      "score": 30,
+      "capability": "thin",
+      "score": 24,
       "signals": [
         "emits",
         "handlers:1",
@@ -3511,54 +4625,70 @@
       ],
       "vueLines": 41,
       "styleLines": 2,
-      "propCount": 0
+      "propCount": 0,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Tooltip": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "interaction",
+      "score": 83,
       "signals": [
         "emits",
         "composable",
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry"
       ],
       "vueLines": 182,
       "styleLines": 104,
-      "propCount": 14
+      "propCount": 14,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "TopNav": {
-      "level": "ready",
-      "score": 74,
+      "level": "beta",
+      "capability": "thin",
+      "score": 61,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 70,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Tour": {
-      "level": "ready",
-      "score": 94,
+      "level": "beta",
+      "capability": "thin",
+      "score": 73,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 270,
       "styleLines": 112,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Transfer": {
       "level": "ready",
+      "capability": "form",
       "score": 100,
       "signals": [
         "emits",
@@ -3568,15 +4698,20 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "form-item",
+        "telemetry"
       ],
-      "vueLines": 348,
+      "vueLines": 375,
       "styleLines": 111,
-      "propCount": 14
+      "propCount": 16,
+      "formIntegrated": true,
+      "nativeAttrs": false
     },
     "TransferTree": {
-      "level": "ready",
-      "score": 84,
+      "level": "shell",
+      "capability": "thin",
+      "score": 62,
       "signals": [
         "emits",
         "v-model",
@@ -3585,11 +4720,14 @@
       ],
       "vueLines": 134,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Tree": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 83,
       "signals": [
         "emits",
         "v-model",
@@ -3597,30 +4735,38 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 326,
       "styleLines": 55,
-      "propCount": 11
+      "propCount": 11,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "TreeChart": {
-      "level": "ready",
-      "score": 86,
+      "level": "beta",
+      "capability": "thin",
+      "score": 71,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 103,
       "styleLines": 53,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "TreeForm": {
-      "level": "ready",
-      "score": 80,
+      "level": "shell",
+      "capability": "thin",
+      "score": 62,
       "signals": [
         "emits",
         "v-model",
@@ -3629,25 +4775,33 @@
       ],
       "vueLines": 127,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "TreeSelect": {
       "level": "ready",
-      "score": 99,
+      "capability": "form",
+      "score": 90,
       "signals": [
         "emits",
         "v-model",
-        "handlers:6",
+        "handlers:7",
         "a11y",
-        "tokens"
+        "tokens",
+        "form-item",
+        "native-attrs"
       ],
-      "vueLines": 256,
+      "vueLines": 293,
       "styleLines": 165,
-      "propCount": 8
+      "propCount": 10,
+      "formIntegrated": true,
+      "nativeAttrs": true
     },
     "TreeTable": {
-      "level": "ready",
-      "score": 76,
+      "level": "shell",
+      "capability": "thin",
+      "score": 56,
       "signals": [
         "emits",
         "v-model",
@@ -3656,11 +4810,14 @@
       ],
       "vueLines": 134,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "TreeTransfer": {
-      "level": "ready",
-      "score": 86,
+      "level": "shell",
+      "capability": "thin",
+      "score": 62,
       "signals": [
         "emits",
         "v-model",
@@ -3669,39 +4826,51 @@
       ],
       "vueLines": 168,
       "styleLines": 49,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Typography": {
-      "level": "ready",
-      "score": 95,
+      "level": "beta",
+      "capability": "composite",
+      "score": 77,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "throttle-wait"
       ],
       "vueLines": 408,
       "styleLines": 273,
-      "propCount": 31
+      "propCount": 31,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Upload": {
-      "level": "ready",
-      "score": 91,
+      "level": "beta",
+      "capability": "thin",
+      "score": 68,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 139,
       "styleLines": 86,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "UserInfoCard": {
-      "level": "beta",
-      "score": 69,
+      "level": "shell",
+      "capability": "thin",
+      "score": 51,
       "signals": [
         "emits",
         "handlers:2",
@@ -3710,117 +4879,160 @@
       ],
       "vueLines": 73,
       "styleLines": 81,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "VcrBackupTask": {
       "level": "beta",
-      "score": 67,
-      "signals": [
-        "emits",
-        "handlers:3",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 81,
-      "styleLines": 370,
-      "propCount": 4
-    },
-    "VcrClipCut": {
-      "level": "ready",
-      "score": 72,
-      "signals": [
-        "emits",
-        "handlers:4",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 86,
-      "styleLines": 370,
-      "propCount": 5
-    },
-    "VcrDownloadPanel": {
-      "level": "beta",
-      "score": 65,
-      "signals": [
-        "emits",
-        "handlers:3",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 74,
-      "styleLines": 370,
-      "propCount": 4
-    },
-    "VcrMarkPoint": {
-      "level": "ready",
-      "score": 70,
-      "signals": [
-        "emits",
-        "handlers:4",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 87,
-      "styleLines": 370,
-      "propCount": 4
-    },
-    "VcrSearchPanel": {
-      "level": "beta",
-      "score": 67,
-      "signals": [
-        "emits",
-        "handlers:3",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 73,
-      "styleLines": 370,
-      "propCount": 5
-    },
-    "VcrSpeedControl": {
-      "level": "ready",
-      "score": 72,
-      "signals": [
-        "emits",
-        "v-model",
-        "handlers:3",
-        "a11y",
-        "tokens"
-      ],
-      "vueLines": 77,
-      "styleLines": 370,
-      "propCount": 4
-    },
-    "VcrStorageDashboard": {
-      "level": "ready",
-      "score": 97,
+      "capability": "thin",
+      "score": 56,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "telemetry",
+        "thin-cap:no-ready"
       ],
-      "vueLines": 192,
-      "styleLines": 129,
-      "propCount": 10
+      "vueLines": 81,
+      "styleLines": 370,
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
-    "VcrTimelinePlayer": {
-      "level": "ready",
-      "score": 72,
+    "VcrClipCut": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 61,
+      "signals": [
+        "emits",
+        "handlers:4",
+        "a11y",
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 86,
+      "styleLines": 370,
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "VcrDownloadPanel": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 55,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 74,
+      "styleLines": 370,
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "VcrMarkPoint": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 59,
+      "signals": [
+        "emits",
+        "handlers:4",
+        "a11y",
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 87,
+      "styleLines": 370,
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "VcrSearchPanel": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 57,
+      "signals": [
+        "emits",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 73,
+      "styleLines": 370,
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "VcrSpeedControl": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 60,
+      "signals": [
+        "emits",
+        "v-model",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 77,
+      "styleLines": 370,
+      "propCount": 4,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "VcrStorageDashboard": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 77,
+      "signals": [
+        "emits",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
+      ],
+      "vueLines": 192,
+      "styleLines": 129,
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
+    },
+    "VcrTimelinePlayer": {
+      "level": "beta",
+      "capability": "thin",
+      "score": 60,
+      "signals": [
+        "emits",
+        "handlers:3",
+        "a11y",
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 94,
       "styleLines": 370,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "VerticalStepNav": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
@@ -3828,28 +5040,38 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 136,
       "styleLines": 159,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "VideoAdjust": {
-      "level": "ready",
-      "score": 78,
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
       "signals": [
         "emits",
         "handlers:5",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 92,
       "styleLines": 375,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "VideoPlayer": {
-      "level": "beta",
-      "score": 69,
+      "level": "shell",
+      "capability": "thin",
+      "score": 52,
       "signals": [
         "emits",
         "handlers:4",
@@ -3857,80 +5079,107 @@
       ],
       "vueLines": 80,
       "styleLines": 164,
-      "propCount": 6
+      "propCount": 6,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "VideoPreview": {
-      "level": "ready",
-      "score": 80,
+      "level": "beta",
+      "capability": "thin",
+      "score": 66,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 114,
       "styleLines": 376,
-      "propCount": 8
+      "propCount": 8,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "VideoSnapshot": {
-      "level": "ready",
-      "score": 97,
+      "level": "beta",
+      "capability": "thin",
+      "score": 77,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 261,
       "styleLines": 93,
-      "propCount": 19
+      "propCount": 19,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "VideoVolume": {
-      "level": "ready",
-      "score": 76,
+      "level": "beta",
+      "capability": "thin",
+      "score": 64,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 86,
       "styleLines": 370,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "VideoWatermark": {
       "level": "beta",
-      "score": 67,
+      "capability": "thin",
+      "score": 57,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 73,
       "styleLines": 370,
-      "propCount": 5
+      "propCount": 5,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "VirtualTable": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 80,
       "signals": [
         "emits",
         "v-model",
         "handlers:5",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 266,
       "styleLines": 76,
-      "propCount": 13
+      "propCount": 13,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "VirtualTree": {
-      "level": "ready",
-      "score": 92,
+      "level": "beta",
+      "capability": "thin",
+      "score": 70,
       "signals": [
         "emits",
         "v-model",
@@ -3938,67 +5187,87 @@
         "a11y",
         "tokens",
         "behavior-test",
-        "delegate"
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 290,
       "styleLines": 49,
-      "propCount": 0
+      "propCount": 0,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "WarnModal": {
       "level": "shell",
-      "score": 17,
+      "capability": "thin",
+      "score": 13,
       "signals": [
         "emits",
         "thin"
       ],
       "vueLines": 30,
       "styleLines": 2,
-      "propCount": 0
+      "propCount": 0,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Waterfall": {
-      "level": "ready",
-      "score": 99,
+      "level": "beta",
+      "capability": "thin",
+      "score": 78,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 208,
       "styleLines": 99,
-      "propCount": 10
+      "propCount": 10,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "Watermark": {
-      "level": "ready",
-      "score": 75,
+      "level": "shell",
+      "capability": "thin",
+      "score": 60,
       "signals": [
         "emits",
         "a11y",
-        "behavior-test"
+        "behavior-test",
+        "telemetry"
       ],
       "vueLines": 262,
       "styleLines": 19,
-      "propCount": 16
+      "propCount": 16,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "WeekPicker": {
-      "level": "ready",
-      "score": 82,
+      "level": "beta",
+      "capability": "thin",
+      "score": 63,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
-        "tokens"
+        "tokens",
+        "thin-cap:no-ready"
       ],
       "vueLines": 124,
       "styleLines": 87,
-      "propCount": 3
+      "propCount": 3,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "WordCloud": {
-      "level": "ready",
-      "score": 95,
+      "level": "beta",
+      "capability": "thin",
+      "score": 77,
       "signals": [
         "emits",
         "composable",
@@ -4006,26 +5275,34 @@
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "thin-cap:no-ready"
       ],
       "vueLines": 81,
       "styleLines": 70,
-      "propCount": 12
+      "propCount": 12,
+      "formIntegrated": false,
+      "nativeAttrs": false
     },
     "YearPicker": {
-      "level": "ready",
-      "score": 100,
+      "level": "beta",
+      "capability": "thin",
+      "score": 81,
       "signals": [
         "emits",
         "v-model",
         "handlers:10",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 214,
       "styleLines": 44,
-      "propCount": 9
+      "propCount": 9,
+      "formIntegrated": false,
+      "nativeAttrs": false
     }
   }
 }

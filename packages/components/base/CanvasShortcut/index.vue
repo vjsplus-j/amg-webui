@@ -30,19 +30,35 @@ const commandList = computed(() => props.commands)
 
 function onKeyDown(e: KeyboardEvent) {
   if (!props.keyboard || !props.enabled || !editor || editor.readonly.value) return
+  const target = e.target as HTMLElement | null
+  if (
+    target &&
+    (target.isContentEditable ||
+      target.closest('input, textarea, select, [contenteditable="true"], .vp-rich-text'))
+  ) {
+    return
+  }
   const mod = e.metaKey || e.ctrlKey
   let command: string | null = null
   if (mod && e.key.toLowerCase() === 'c') {
+    e.preventDefault()
     command = 'copy'
+    editor.copySelection()
     emit('copy')
   } else if (mod && e.key.toLowerCase() === 'v') {
+    e.preventDefault()
     command = 'paste'
+    editor.pasteClipboard()
     emit('paste')
   } else if (mod && e.key.toLowerCase() === 'z' && e.shiftKey) {
+    e.preventDefault()
     command = 'redo'
+    editor.redo()
     emit('redo')
   } else if (mod && e.key.toLowerCase() === 'z') {
+    e.preventDefault()
     command = 'undo'
+    editor.undo()
     emit('undo')
   } else if ((e.key === 'Delete' || e.key === 'Backspace') && editor.selectedIds.value.length) {
     e.preventDefault()

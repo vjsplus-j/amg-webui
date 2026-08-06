@@ -6,7 +6,7 @@ import { computed, ref } from 'vue'
 import { Icon, Tag } from '@amg-webui/components/base'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
+import { LocaleKeys, type LocaleKey } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
 import MotionLivePanel from '../../components/demo/MotionLivePanel.vue'
@@ -34,7 +34,7 @@ const codeMotionLive = computed(() =>
   ])
 )
 
-type ClosableItem = { id: number; labelKey: string; severity: (typeof severities)[number] }
+type ClosableItem = { id: number; labelKey: LocaleKey; severity: (typeof severities)[number] }
 
 let nextId = 4
 const closableTags = ref<ClosableItem[]>([

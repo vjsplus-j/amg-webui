@@ -9,9 +9,6 @@ import {
   BizOrders,
   BizContent,
   BizSettings,
-  type BizUser,
-  type BizOrder,
-  type BizContentItem,
   type BizLoginCredentials,
   type BizRegisterPayload,
   type BizForgotPasswordPayload
@@ -20,6 +17,11 @@ import { Button } from '@amg-webui/components/base'
 import { ToastService } from '@amg-webui/theme'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
+import {
+  createUsersMockStore,
+  createOrdersMockStore,
+  createContentMockStore
+} from '../mock/biz/adapters'
 
 defineProps<{ module: 'login' | 'users' | 'orders' | 'content' | 'settings' }>()
 const router = useRouter()
@@ -28,41 +30,20 @@ const { t } = useLocale()
 type AuthPane = 'login' | 'register' | 'forgot'
 const authPane = ref<AuthPane>('login')
 
-const users = ref<BizUser[]>([
-  { id: 1, name: 'Avery Quinn', email: 'aq@amg.io', phone: '13800000001', role: 'admin', status: 'active' },
-  { id: 2, name: 'Jordan Lee', email: 'jl@amg.io', phone: '13800000002', role: 'ops', status: 'active' },
-  { id: 3, name: 'Sam Rivera', email: 'sr@amg.io', role: 'dev', status: 'disabled' }
-])
+const usersStore = createUsersMockStore()
+const ordersStore = createOrdersMockStore()
+const contentStore = createContentMockStore()
 
-const orders = ref<BizOrder[]>([
-  { id: '1', orderNo: 'ORD-10021', customer: 'Avery', amount: 1280, status: 'paid', createdAt: '2026-07-12' },
-  { id: '2', orderNo: 'ORD-10022', customer: 'Jordan', amount: 560, status: 'pending', createdAt: '2026-07-13' },
-  { id: '3', orderNo: 'ORD-10023', customer: 'Sam', amount: 2499, status: 'shipped', createdAt: '2026-07-14' }
-])
-
-const contents = ref<BizContentItem[]>([
-  {
-    id: 'c1',
-    title: 'Release notes',
-    category: 'announce',
-    status: 'published',
-    updatedAt: '2026-07-10',
-    summary: 'AMG-WebUI packages ready.'
-  },
-  {
-    id: 'c2',
-    title: 'Theme guide',
-    category: 'docs',
-    status: 'draft',
-    updatedAt: '2026-07-14',
-    summary: 'Six designmd themes handbook.'
-  }
-])
+const settingsProfile = ref({ displayName: 'AMG Operator', email: 'ops@example.com' })
+const settingsParams = ref<Record<string, string | number | boolean>>({
+  sessionTimeout: 30,
+  featureFlagBeta: false
+})
 
 function onLoginSubmit(payload: BizLoginCredentials) {
   ToastService.success({
     summary: t(LocaleKeys.auth.loginSuccess),
-    detail: `${payload.username}`
+    detail: `${payload.mode ?? 'password'} · ${payload.username || payload.phone}`
   })
   router.push({ name: 'biz-users' })
 }
@@ -86,36 +67,8 @@ function onForgotSubmit(payload: BizForgotPasswordPayload) {
 function onSendCode(kind: string) {
   ToastService.info({ summary: t(LocaleKeys.auth.sendCode), detail: kind })
 }
-
-function onCreateUser(u: Omit<BizUser, 'id'>) {
-  users.value.push({ id: Date.now(), ...u, status: u.status || 'active' })
-  ToastService.success({ summary: t(LocaleKeys.tip.created) })
-}
-
-function onUpdateUser(u: BizUser) {
-  const i = users.value.findIndex((x) => x.id === u.id)
-  if (i >= 0) users.value[i] = u
-  ToastService.success({ summary: t(LocaleKeys.tip.updated) })
-}
-
-function onDeleteUser(id: BizUser['id']) {
-  users.value = users.value.filter((u) => u.id !== id)
-  ToastService.success({ summary: t(LocaleKeys.tip.deleted) })
-}
-
-function onCancelOrder(id: string) {
-  const o = orders.value.find((x) => x.id === id)
-  if (o) o.status = 'cancelled'
-}
-
-function onPublish(id: string) {
-  const it = contents.value.find((c) => c.id === id)
-  if (it) it.status = 'published'
-}
-
-function onArchive(id: string) {
-  const it = contents.value.find((c) => c.id === id)
-  if (it) it.status = 'archived'
+function onParamsUpdate(p: Record<string, string | number | boolean>) {
+  settingsParams.value = { ...p }
 }
 </script>
 
@@ -157,9 +110,17 @@ function onArchive(id: string) {
       show-captcha
       captcha-mode="checkbox"
       @submit="onLoginSubmit"
+      @send-code="onSendCode('sms')"
       @register="authPane = 'register'"
       @forgot="authPane = 'forgot'"
-    />
+    >
+      <template #qr>
+        <p class="theme-kit-body-lg">{{ t('biz.login.qrPlaceholder') }}</p>
+      </template>
+      <template #oauth>
+        <p class="theme-kit-body-lg">{{ t('biz.login.oauthPlaceholder') }}</p>
+      </template>
+    </BizLogin>
 
     <BizRegister
       v-else-if="authPane === 'register'"
@@ -180,35 +141,46 @@ function onArchive(id: string) {
 
   <BizUsers
     v-else-if="module === 'users'"
-    :users="users"
-    @create="onCreateUser"
-    @update="onUpdateUser"
-    @delete="onDeleteUser"
-    @refresh="ToastService.info({ summary: t(LocaleKeys.button.refresh), detail: t(LocaleKeys.tip.hostRefreshUsers) })"
-  />
+    :adapter="usersStore.adapter"
+    :page-size="3"
+  >
+    <template #actions>
+      <Button size="sm" variant="outlined" @click="usersStore.adapter.list({ page: 1, pageSize: 3 })">
+        {{ t(LocaleKeys.button.refresh) }}
+      </Button>
+    </template>
+  </BizUsers>
 
   <BizOrders
     v-else-if="module === 'orders'"
-    :orders="orders"
-    @view="(o) => ToastService.info({ summary: o.orderNo, detail: o.customer })"
-    @cancel="onCancelOrder"
-    @refresh="ToastService.info({ summary: t(LocaleKeys.tip.hostRefreshOrders) })"
+    :adapter="ordersStore.adapter"
+    :page-size="3"
+    @cancel="ordersStore.cancel"
+    @refund="ordersStore.refund"
+    @batch-cancel="ordersStore.batchCancel"
+    @refresh="void ordersStore.adapter.list({ page: 1, pageSize: 3 })"
   />
 
   <BizContent
     v-else-if="module === 'content'"
-    :items="contents"
-    @create="ToastService.info({ summary: t(LocaleKeys.tip.newContent) })"
-    @edit="(it) => ToastService.info({ summary: t(LocaleKeys.tip.editContent), detail: it.title })"
-    @publish="onPublish"
-    @archive="onArchive"
-    @refresh="ToastService.info({ summary: t(LocaleKeys.tip.hostRefreshContent) })"
+    :adapter="contentStore.adapter"
+    :categories="contentStore.categories"
+    :page-size="4"
+    @publish="contentStore.publish"
+    @archive="contentStore.archive"
   />
 
   <BizSettings
     v-else
+    :profile="settingsProfile"
+    :params="settingsParams"
+    @update:params="onParamsUpdate"
+    @change-password="
+      (p) => ToastService.success({ summary: t('biz.settings.changePassword'), detail: p.newPassword.length + '' })
+    "
     @save="(p) => ToastService.success({ summary: t(LocaleKeys.tip.saved), detail: JSON.stringify(p) })"
     @theme-change="(s) => ToastService.info({ summary: t(LocaleKeys.tip.theme), detail: s })"
+    @locale-change="(c) => ToastService.info({ summary: t('biz.settings.locale'), detail: c })"
   />
 </template>
 

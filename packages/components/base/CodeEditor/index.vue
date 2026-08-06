@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
+import { escapeHtml, sanitizeHtml } from '@amg-webui/security'
 import Select from '../Select/index.vue'
 import Button from '../Button/index.vue'
 import type { CodeEditorProps, CodeEditorEmits, CodeLanguage } from './types'
@@ -49,22 +50,25 @@ const formatCode = () => {
 }
 
 const highlightLine = (line: string) => {
-  let escaped = line
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
+  let escaped = escapeHtml(line)
   if (localLang.value === 'json') {
-    escaped = escaped.replace(/"([^"]+)"/g, '<span class="vp-code-editor__str">"$1"</span>')
+    escaped = escaped.replace(/&quot;([^&]+)&quot;/g, '<span class="vp-code-editor__str">&quot;$1&quot;</span>')
     escaped = escaped.replace(/\b(true|false|null)\b/g, '<span class="vp-code-editor__kw">$1</span>')
   } else {
     escaped = escaped.replace(
       /\b(const|let|var|function|return|if|else|import|export|from|class|interface|type|async|await)\b/g,
       '<span class="vp-code-editor__kw">$1</span>'
     )
-    escaped = escaped.replace(/('([^']*)'|"([^"]*)")/g, '<span class="vp-code-editor__str">$1</span>')
+    escaped = escaped.replace(
+      /(&#39;.*?&#39;|&quot;.*?&quot;)/g,
+      '<span class="vp-code-editor__str">$1</span>'
+    )
     escaped = escaped.replace(/(\/\/.*$)/g, '<span class="vp-code-editor__comment">$1</span>')
   }
-  return escaped
+  return sanitizeHtml(escaped, {
+    allowedTags: ['span'],
+    allowedAttributes: { span: ['class'], '*': [] }
+  })
 }
 
 const highlighted = computed(() =>

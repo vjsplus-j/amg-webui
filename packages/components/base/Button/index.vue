@@ -5,7 +5,7 @@ import { useButton } from './useButton'
 import Icon from '../Icon/index.vue'
 import Popconfirm from '../Popconfirm/index.vue'
 import ButtonSplitMenu from './ButtonSplitMenu.vue'
-import { isSafeHref } from '../Link/useLink'
+import { isSafeHref, reportBlockedHref } from '@amg-webui/security'
 import { trackEmit } from '@amg-webui/telemetry'
 import './style.scss'
 
@@ -105,6 +105,7 @@ const titleAttr = computed(() => {
 
 const safeHref = computed(() => {
   if (props.href && isSafeHref(props.href)) return props.href
+  if (props.href) reportBlockedHref(props.href)
   return undefined
 })
 

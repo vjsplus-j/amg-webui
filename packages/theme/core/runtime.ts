@@ -34,6 +34,8 @@ import {
   resolveThemeFromStorage,
   serializeThemeAttrs
 } from './attrs'
+import { generatePrimaryScale } from './scale'
+import { serializeThemeStyle, themeStyleTag } from './serialize'
 
 function cloneState(state: ThemeSnapshot): ThemeSnapshot {
   return {
@@ -181,6 +183,13 @@ export function createThemeRuntime(options: ThemeRuntimeOptions = {}): ThemeRunt
       notify()
     },
 
+    setPrimary(primary) {
+      if (disposed) return
+      const scale = generatePrimaryScale(primary)
+      if (Object.keys(scale).length === 0) return
+      api.applyCustom(scale)
+    },
+
     init(initOptions: ThemeInitOptions = {}) {
       if (disposed) return
       const preferStorage = initOptions.preferStorage !== false
@@ -253,6 +262,17 @@ export function createThemeRuntime(options: ThemeRuntimeOptions = {}): ThemeRunt
 
     serializeAttrs() {
       return serializeThemeAttrs(state)
+    },
+
+    serializeStyle(selector = ':root') {
+      return serializeThemeStyle(state, { selector })
+    },
+
+    toStyleTag(options) {
+      return themeStyleTag(state, {
+        id: options?.id,
+        selector: options?.selector
+      })
     },
 
     toBootScript() {

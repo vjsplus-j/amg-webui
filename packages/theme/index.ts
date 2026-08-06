@@ -62,12 +62,15 @@ export {
   type ButtonForm
 } from './specs'
 
+export { THEME_RUNTIME_KEY } from './injection'
+
 /** Core re-exports for monorepo convenience (prefer `amg-webui/theme/core` in apps). */
 export {
   createThemeRuntime,
   createNullHost,
   createDocumentHost,
   createAutoHost,
+  createShadowHost,
   createMemoryStorage,
   createWebStorage,
   createAutoStorage,
@@ -75,6 +78,9 @@ export {
   themeAttrsToHtmlString,
   createThemeBootScript,
   themeBootScriptTag,
+  serializeThemeStyle,
+  themeStyleTag,
+  generatePrimaryScale,
   resolveThemeFromStorage,
   configureDefaultThemeRuntime,
   getDefaultThemeRuntime,

@@ -10,4 +10,4 @@ export default {
   'error.pattern': '形式が正しくありません',
   'error.passwordMismatch': 'パスワードが一致しません',
   'error.invalidEmail': '有効なメールアドレスを入力してください'
-} as Record<string, string>
+}

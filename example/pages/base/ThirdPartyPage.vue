@@ -38,11 +38,12 @@ const clip = ref('AMG-WebUI')
       <Card :title="t('page.base.thirdParty.c3')">
         <div class="lowcode">
           <DragMaterial />
-          <DragCanvas />
-          <div class="stack">
-            <PropPanel />
-            <CanvasIo />
-          </div>
+          <DragCanvas class="lowcode__drag">
+            <div class="stack">
+              <PropPanel />
+              <CanvasIo />
+            </div>
+          </DragCanvas>
         </div>
       </Card>
     </template>
@@ -58,9 +59,16 @@ const clip = ref('AMG-WebUI')
 
 .lowcode {
   display: grid;
-  grid-template-columns: 12rem 1fr 14rem;
+  grid-template-columns: 12rem 1fr;
   gap: var(--spacing-md);
   min-height: 18rem;
+}
+
+.lowcode__drag {
+  display: grid;
+  grid-template-columns: 1fr 14rem;
+  gap: var(--spacing-md);
+  min-width: 0;
 }
 
 .stack {
@@ -70,7 +78,8 @@ const clip = ref('AMG-WebUI')
 }
 
 @media (max-width: 60rem) {
-  .lowcode {
+  .lowcode,
+  .lowcode__drag {
     grid-template-columns: 1fr;
   }
 }

@@ -23,4 +23,4 @@ export default {
   'nav.badge.epParity': 'EP',
   'nav.badge.hot': '注目',
   'nav.badge.exclusiveNew': 'New'
-} as Record<string, string>
+}

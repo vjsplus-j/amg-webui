@@ -13,7 +13,7 @@ import { demoCode, demoSfc } from "../../components/demo/demoCode";
 import type { ApiRow, PropRow } from "../../components/demo/types";
 import "../../components/demo/curatedDemo.scss";
 
-const { t } = useLocale();
+const { t, tDyn } = useLocale();
 const statuses = [
   "success",
   "warning",
@@ -111,7 +111,7 @@ const slotRows = computed<ApiRow[]>(() => [
           v-for="st in statuses"
           :key="st"
           :status="st"
-          :sub-title="t(subKey[st])"
+          :sub-title="tDyn(subKey[st])"
         />
       </div>
     </DemoBlock>

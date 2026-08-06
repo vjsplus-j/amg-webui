@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { Card, InputText, Tag, Button } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
+import type { LocaleKey } from '@amg-webui/locale'
 import ExamplePageHero from './ExamplePageHero.vue'
 import {
   zoneNames,
@@ -17,8 +18,8 @@ import { isV01Component } from '../v0.1-subset'
 const props = withDefaults(
   defineProps<{
     zone: ExampleZoneId
-    titleKey?: string
-    leadKey?: string
+    titleKey?: LocaleKey
+    leadKey?: LocaleKey
     /** Keep curated demo slot above the grid */
     showSearch?: boolean
     /** Click tile name → /base/:name doc page */

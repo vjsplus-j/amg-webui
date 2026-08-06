@@ -4,7 +4,11 @@ import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { TimeSelectProps, TimeSelectEmits } from './types'
+import { useFormItem } from '../FormItem/useFormItem'
+import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'TimeSelect' })
 
 const props = withDefaults(defineProps<TimeSelectProps>(), {
   modelValue: null,
@@ -19,6 +23,23 @@ const props = withDefaults(defineProps<TimeSelectProps>(), {
 
 const emit = defineEmits<TimeSelectEmits>()
 const { t } = useLocale()
+
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  validateOnBlur,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
+
+const { nativeAttrs } = useNativeInputAttrs()
 
 const isOpen = ref(false)
 const activeIndex = ref(-1)
@@ -61,7 +82,7 @@ const rootClass = computed(() => [
   `vp-time-select--size-${props.size}`,
   {
     'vp-time-select--open': isOpen.value,
-    'vp-time-select--disabled': props.disabled
+    'vp-time-select--disabled': isDisabled.value
   },
   props.class
 ])
@@ -72,7 +93,7 @@ const close = () => {
 }
 
 const open = () => {
-  if (props.disabled) return
+  if (isDisabled.value) return
   isOpen.value = true
   const idx = timeOptions.value.indexOf(props.modelValue ?? '')
   activeIndex.value = idx >= 0 ? idx : 0
@@ -86,6 +107,7 @@ const toggle = () => {
 const selectTime = (time: string) => {
   emit('update:modelValue', time)
   emit('change', time)
+  void validateOnChange()
   trackEmit({
     component: 'TimeSelect',
     type: 'change',
@@ -101,6 +123,7 @@ const onClear = (event: MouseEvent) => {
   emit('update:modelValue', null)
   emit('change', null)
   emit('clear')
+  void validateOnChange()
   trackEmit({
     component: 'TimeSelect',
     type: 'clear',
@@ -118,7 +141,7 @@ const handleOutsideClick = (event: MouseEvent) => {
 }
 
 const onTriggerKeydown = (event: KeyboardEvent) => {
-  if (props.disabled) return
+  if (isDisabled.value) return
 
   if (!isOpen.value) {
     if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
@@ -163,6 +186,10 @@ const onTriggerKeydown = (event: KeyboardEvent) => {
   }
 }
 
+const handleTriggerBlur = () => {
+  void validateOnBlur()
+}
+
 onMounted(() => {
   document.addEventListener('click', handleOutsideClick)
 })
@@ -176,14 +203,21 @@ onUnmounted(() => {
   <div :class="rootClass" :style="style" data-component="TimeSelect">
     <button
       ref="triggerRef"
+      v-bind="nativeAttrs"
+      :id="inputId"
       type="button"
       class="vp-time-select__trigger"
-      :disabled="disabled"
+      role="combobox"
+      :disabled="isDisabled"
       :aria-label="t(LocaleKeys.component.timeSelect.aria)"
       :aria-expanded="isOpen"
       aria-haspopup="listbox"
+      :aria-invalid="isInvalid || undefined"
+      :aria-required="isRequired || undefined"
+      :aria-describedby="ariaDescribedby"
       @click="toggle"
       @keydown="onTriggerKeydown"
+      @blur="handleTriggerBlur"
     >
       <span
         v-if="clearable && modelValue"

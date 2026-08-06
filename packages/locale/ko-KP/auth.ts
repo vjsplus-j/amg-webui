@@ -54,4 +54,4 @@ export default {
   'auth.terms': 'Terms',
   'auth.privacy': 'Privacy Policy',
   'auth.and': 'and',
-} as Record<string, string>
+}

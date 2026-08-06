@@ -16,7 +16,7 @@ import type { PropRow } from '../../components/demo/types'
 
 const route = useRoute()
 const router = useRouter()
-const { t, locale } = useLocale()
+const { t, tDyn, locale } = useLocale()
 
 const componentName = computed(() => String(route.params.name ?? ''))
 
@@ -32,11 +32,11 @@ const displayTitle = computed(() => {
 const whenToUse = computed(() => {
   void locale.value
   if (curated.value?.whenKey) {
-    return t(curated.value.whenKey)
+    return tDyn(curated.value.whenKey)
   }
   const leadKey = entry.value?.titleKey.replace(/\.title$/, '.lead')
   if (leadKey) {
-    const lead = t(leadKey, undefined, '')
+    const lead = tDyn(leadKey, undefined, '')
     if (lead && lead !== leadKey) return lead
   }
   return t(LocaleKeys.exampleDoc.whenFallback, { name: componentName.value })

@@ -12,7 +12,8 @@ const props = withDefaults(defineProps<DragCanvasProps>(), {
   mode: 'free',
   readonly: false,
   materials: () => [],
-  gridCols: 24
+  gridCols: 24,
+  renderMode: 'chrome'
 })
 
 const emit = defineEmits<DragCanvasEmits>()
@@ -57,10 +58,32 @@ function onDrop(e: DragEvent) {
   const type = e.dataTransfer?.getData('application/vp-material-type')
   const label = e.dataTransfer?.getData('application/vp-material-label') || type || 'Node'
   if (!type) return
+  const materialRaw = e.dataTransfer?.getData('application/vp-material')
+  let defaultProps: Record<string, unknown> = {}
+  let defaultSize: { w: number; h: number } | undefined
+  if (materialRaw) {
+    try {
+      const parsed = JSON.parse(materialRaw) as {
+        defaultProps?: Record<string, unknown>
+        defaultSize?: { w: number; h: number }
+        label?: string
+      }
+      defaultProps = parsed.defaultProps ?? {}
+      defaultSize = parsed.defaultSize
+    } catch {
+      /* ignore bad payload */
+    }
+  }
+  const fromList = props.materials.find((m) => m.type === type)
+  if (fromList?.defaultProps) defaultProps = { ...fromList.defaultProps, ...defaultProps }
+  if (fromList?.defaultSize) defaultSize = fromList.defaultSize
   const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
-  const node = createCanvasNode(type, label, {
+  const node = createCanvasNode(type, fromList?.label || label, {
     x: e.clientX - rect.left - 40,
-    y: e.clientY - rect.top - 20
+    y: e.clientY - rect.top - 20,
+    w: defaultSize?.w,
+    h: defaultSize?.h,
+    props: { ...defaultProps }
   })
   editor.addNode(node)
 }
@@ -84,7 +107,13 @@ function onCanvasClick() {
       @drop="onDrop"
       @click.self="onCanvasClick"
     >
-      <CanvasNode v-for="node in nodes.filter((n) => !n.hidden)" :key="node.id" :node="node" />
+      <CanvasNode
+        v-for="node in nodes.filter((n) => !n.hidden)"
+        :key="node.id"
+        :node="node"
+        :registry="registry"
+        :render-mode="renderMode"
+      />
       <p v-if="!nodes.length" class="vp-drag-canvas__empty">{{ t('component.drag-canvas.empty') }}</p>
     </div>
     <slot />

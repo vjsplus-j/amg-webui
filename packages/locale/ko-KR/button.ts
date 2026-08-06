@@ -14,4 +14,4 @@ export default {
   'button.getStarted': '시작하기',
   'button.learnMore': '자세히 보기',
   'button.enter': '입장',
-} as Record<string, string>
+}

@@ -17,4 +17,4 @@ export default {
   'tip.newContent': '新建内容',
   'tip.editContent': '编辑',
   'tip.theme': '主题',
-} as Record<string, string>
+}

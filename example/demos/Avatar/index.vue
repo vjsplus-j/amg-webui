@@ -19,7 +19,7 @@ import {
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
 import type { ApiRow, PropRow } from '../../components/demo/types'
 
-const { t } = useLocale()
+const { t, tDyn } = useLocale()
 
 const sizes: Size[] = ['xs', 'sm', 'md', 'lg', 'xl']
 
@@ -392,10 +392,10 @@ const slotRows = computed<ApiRow[]>(() => [
           <Avatar
             :size="sz"
             :src="imgA"
-            :alt="t(sizeLabelKey[sz])"
-            :tooltip="t(sizeLabelKey[sz])"
+            :alt="tDyn(sizeLabelKey[sz])"
+            :tooltip="tDyn(sizeLabelKey[sz])"
           />
-          <span class="vp-avatar-size-label">{{ t(sizeLabelKey[sz]) }}</span>
+          <span class="vp-avatar-size-label">{{ tDyn(sizeLabelKey[sz]) }}</span>
         </div>
         <div class="vp-avatar-size-item">
           <Avatar

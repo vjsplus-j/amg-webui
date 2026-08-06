@@ -2,6 +2,7 @@ export type {
   BizLoginProps,
   BizLoginEmits,
   BizLoginCredentials,
+  BizLoginMode,
   BizCaptchaMode,
   BizCaptchaProps,
   BizCaptchaEmits,

@@ -54,4 +54,4 @@ export default {
   'auth.terms': '服务条款',
   'auth.privacy': '隐私政策',
   'auth.and': '和',
-} as Record<string, string>
+} as const

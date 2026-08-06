@@ -10,4 +10,4 @@ export default {
   'error.pattern': '格式不正確',
   'error.passwordMismatch': '兩次輸入的密碼不一致',
   'error.invalidEmail': '請輸入有效的電子郵件地址'
-} as Record<string, string>
+}

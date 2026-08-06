@@ -5,7 +5,10 @@ import { LocaleKeys } from '@amg-webui/locale'
 import InputText from '../InputText/index.vue'
 import Button from '../Button/index.vue'
 import type { InputCaptchaProps, InputCaptchaEmits } from './types'
+import { useFormItem } from '../FormItem/useFormItem'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'InputCaptcha' })
 
 const props = withDefaults(defineProps<InputCaptchaProps>(), {
   modelValue: '',
@@ -17,6 +20,19 @@ const props = withDefaults(defineProps<InputCaptchaProps>(), {
 
 const emit = defineEmits<InputCaptchaEmits>()
 const { t } = useLocale()
+
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  name: resolvedName,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const code = ref('')
@@ -77,6 +93,7 @@ const refreshDebounced = () => {
 const onInput = (val: string) => {
   emit('update:modelValue', val)
   emit('change', val)
+  void validateOnChange()
   if (val.length >= props.length) {
     const valid = props.caseSensitive
       ? val === code.value
@@ -97,8 +114,11 @@ watch(() => props.length, generateCode)
   <div :class="['vp-input-captcha', props.class]" :style="style" data-component="InputCaptcha">
     <InputText
       class="vp-input-captcha__input"
+      :id="inputId"
+      :name="resolvedName"
       :model-value="modelValue"
-      :disabled="disabled"
+      :disabled="isDisabled"
+      :invalid="isInvalid"
       :maxlength="length"
       :aria-label="ariaLabel"
       :placeholder="t(LocaleKeys.auth.captcha)"
@@ -107,7 +127,7 @@ watch(() => props.length, generateCode)
     <button
       type="button"
       class="vp-input-captcha__canvas-wrap"
-      :disabled="disabled"
+      :disabled="isDisabled"
       :title="t(LocaleKeys.auth.captchaRefresh)"
       :aria-label="t(LocaleKeys.auth.captchaRefresh)"
       @click="refreshDebounced"
@@ -119,7 +139,7 @@ watch(() => props.length, generateCode)
       variant="outlined"
       size="sm"
       :label="t(LocaleKeys.button.refresh)"
-      :disabled="disabled"
+      :disabled="isDisabled"
       @click="refreshDebounced"
     />
   </div>

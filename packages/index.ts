@@ -9,6 +9,8 @@ import '@amg-webui/animations/text-shimmer.scss'
 export * from './components'
 export * from './hooks'
 export * from './telemetry'
+export * from './security'
+export * from './lowcode'
 export * from './theme'
 /** Catalog + resolver only — named Lucide glyphs live on `@amg-webui/icons` to avoid clashing with UI components */
 export {

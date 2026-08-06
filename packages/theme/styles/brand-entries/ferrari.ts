@@ -1,0 +1,1 @@
+import './ferrari.scss'

@@ -1,0 +1,17 @@
+export default {
+  'button.save': 'حفظ',
+  'button.cancel': 'إلغاء',
+  'button.delete': 'حذف',
+  'button.confirm': 'تأكيد',
+  'button.continue': 'متابعة',
+  'button.refresh': 'تحديث',
+  'button.create': 'إنشاء',
+  'button.edit': 'تعديل',
+  'button.submit': 'إرسال',
+  'button.reset': 'إعادة تعيين',
+  'button.signIn': 'تسجيل الدخول',
+  'button.signOut': 'تسجيل الخروج',
+  'button.getStarted': 'ابدأ',
+  'button.learnMore': 'اعرف المزيد',
+  'button.enter': 'دخول',
+}

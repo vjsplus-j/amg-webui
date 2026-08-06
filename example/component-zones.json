@@ -27,6 +27,7 @@
     "MessageBox",
     "PageHeader",
     "Pagination",
+    "SchemaRenderer",
     "Scrollbar",
     "Segmented",
     "Spin",

@@ -10,4 +10,4 @@ export default {
   'error.pattern': '형식이 올바르지 않습니다',
   'error.passwordMismatch': '비밀번호가 일치하지 않습니다',
   'error.invalidEmail': '유효한 이메일 주소를 입력하세요'
-} as Record<string, string>
+}

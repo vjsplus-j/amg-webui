@@ -1,10 +1,17 @@
-import { computed, watch, nextTick } from 'vue'
+import { computed, watch, nextTick, type MaybeRefOrGetter, toValue } from 'vue'
 import type { TextareaProps } from './types'
 
-export function useTextarea(props: TextareaProps, textareaRef: { value: HTMLTextAreaElement | null }) {
+export function useTextarea(
+  props: TextareaProps,
+  textareaRef: { value: HTMLTextAreaElement | null },
+  state?: {
+    invalid?: MaybeRefOrGetter<boolean>
+    disabled?: MaybeRefOrGetter<boolean>
+  }
+) {
   const textareaClass = computed(() => {
     const classes = ['p-textarea']
-    
+
     const sizeClass: Record<string, string> = {
       xs: 'p-textarea-xs',
       sm: 'p-textarea-sm',
@@ -14,8 +21,12 @@ export function useTextarea(props: TextareaProps, textareaRef: { value: HTMLText
     }
     classes.push(sizeClass[props.size || 'md'])
 
-    if (props.invalid) {
+    if (props.invalid || toValue(state?.invalid)) {
       classes.push('p-textarea-invalid')
+    }
+
+    if (props.disabled || toValue(state?.disabled)) {
+      classes.push('p-textarea-disabled')
     }
 
     if (props.fluid) {

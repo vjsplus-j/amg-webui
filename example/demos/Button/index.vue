@@ -18,7 +18,7 @@ import {
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
 import type { ApiRow, PropRow } from '../../components/demo/types'
 
-const { t } = useLocale()
+const { t, tDyn } = useLocale()
 const loading = ref(false)
 const clickCount = ref(0)
 const lastEvent = ref('')
@@ -545,7 +545,7 @@ const slotRows = computed<ApiRow[]>(() => [
           severity="primary"
           @click="flash"
         >
-          {{ t(sizeLabelKey[sz]) }}
+          {{ tDyn(sizeLabelKey[sz]) }}
         </Button>
       </div>
     </DemoBlock>

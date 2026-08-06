@@ -12,7 +12,11 @@ import {
   formatWithIntl
 } from '@amg-webui/utils'
 import type { DateTimePickerProps, DateTimePickerEmits } from './types'
+import { useFormItem } from '../FormItem/useFormItem'
+import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'DateTimePicker' })
 
 const props = withDefaults(defineProps<DateTimePickerProps>(), {
   modelValue: null,
@@ -21,6 +25,23 @@ const props = withDefaults(defineProps<DateTimePickerProps>(), {
 })
 
 const emit = defineEmits<DateTimePickerEmits>()
+
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  validateOnBlur,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
+
+const { nativeAttrs } = useNativeInputAttrs()
 
 const { locale } = useLocale()
 const { isOpen, triggerRef, panelRef, toggle } = usePopover()
@@ -97,6 +118,7 @@ const emitValue = () => {
       : `${toISODate(d)} ${toTimeString(d, props.showSeconds)}`
   emit('update:modelValue', value)
   emit('change', value)
+  void validateOnChange()
 }
 
 const prevMonth = () => {
@@ -108,8 +130,12 @@ const nextMonth = () => {
 }
 
 const handleTriggerClick = () => {
-  if (props.disabled) return
+  if (isDisabled.value) return
   toggle()
+}
+
+const handleTriggerBlur = () => {
+  void validateOnBlur()
 }
 
 const selectDay = (day: Date | null) => {
@@ -146,10 +172,19 @@ const selectSecond = (s: number) => {
   <div :class="['vp-datetimepicker', props.class]" :style="style">
     <button
       ref="triggerRef"
+      v-bind="nativeAttrs"
+      :id="inputId"
       type="button"
       class="vp-datetimepicker__trigger"
-      :disabled="disabled"
+      role="combobox"
+      :aria-expanded="isOpen"
+      aria-haspopup="dialog"
+      :aria-invalid="isInvalid || undefined"
+      :aria-required="isRequired || undefined"
+      :aria-describedby="ariaDescribedby"
+      :disabled="isDisabled"
       @click="handleTriggerClick"
+      @blur="handleTriggerBlur"
     >
       <span
         :class="[

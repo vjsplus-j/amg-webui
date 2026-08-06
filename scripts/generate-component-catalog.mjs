@@ -279,6 +279,8 @@ const cats = {
     'Qrcode',
     'TablePrint',
     'TelemetryProvider',
+    'ThemeProvider',
+    'SchemaRenderer',
     'TemplateDrag'
   ]),
   industry: new Set([

@@ -63,6 +63,11 @@ export interface ThemeRuntime {
   setIconStyle(style: IconStyleName): void
   applyCustom(tokens: Record<string, string>): void
   clearCustom(): void
+  /**
+   * Derive primary → `--primary-50…900` + semantic bridges and apply as overlay.
+   * Invalid color is a no-op (fail-soft).
+   */
+  setPrimary(primary: string): void
   init(options?: ThemeInitOptions): void
   subscribe(listener: ThemeListener): () => void
   /** Re-target host (micro-FE mount) and re-apply current snapshot. */
@@ -73,6 +78,10 @@ export interface ThemeRuntime {
   dispose(): void
   /** Attribute map for SSR HTML / hydration. */
   serializeAttrs(): Record<string, string>
+  /** CSS rule text for SSR `<style>` (custom tokens + icon stroke). */
+  serializeStyle(selector?: string): string
+  /** Full `<style id="amg-theme-ssr">` tag. */
+  toStyleTag(options?: { id?: string; selector?: string }): string
   /** Inline `<script>` body that syncs storage → root attrs before paint (FOUC). */
   toBootScript(): string
 }

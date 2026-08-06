@@ -2,13 +2,34 @@
 import { computed, ref } from 'vue'
 import { usePopover } from '@amg-webui/hooks'
 import type { CascaderProps, CascaderEmits, CascaderOption } from './types'
+import { useFormItem } from '../FormItem/useFormItem'
+import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'Cascader' })
 
 const props = withDefaults(defineProps<CascaderProps>(), {
   options: () => []
 })
 
 const emit = defineEmits<CascaderEmits>()
+
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  validateOnBlur,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
+
+const { nativeAttrs } = useNativeInputAttrs()
 
 const { isOpen, triggerRef, panelRef, toggle, close } = usePopover()
 const activePath = ref<CascaderOption[]>([])
@@ -46,8 +67,12 @@ const displayLabel = computed(() => {
 const isPlaceholder = computed(() => !props.modelValue && !!props.placeholder)
 
 const handleTriggerClick = () => {
-  if (props.disabled) return
+  if (isDisabled.value) return
   toggle()
+}
+
+const handleTriggerBlur = () => {
+  void validateOnBlur()
 }
 
 const handleItemClick = (menuIndex: number, option: CascaderOption) => {
@@ -57,6 +82,7 @@ const handleItemClick = (menuIndex: number, option: CascaderOption) => {
   if (!option.children?.length) {
     emit('update:modelValue', option.value)
     emit('change', option.value)
+    void validateOnChange()
     close()
     activePath.value = []
   }
@@ -73,10 +99,19 @@ const handleItemHover = (menuIndex: number, option: CascaderOption) => {
   <div :class="['vp-cascader', props.class]" :style="style">
     <button
       ref="triggerRef"
+      v-bind="nativeAttrs"
+      :id="inputId"
       type="button"
       class="vp-cascader__trigger"
-      :disabled="disabled"
+      role="combobox"
+      :aria-expanded="isOpen"
+      aria-haspopup="listbox"
+      :aria-invalid="isInvalid || undefined"
+      :aria-required="isRequired || undefined"
+      :aria-describedby="ariaDescribedby"
+      :disabled="isDisabled"
       @click="handleTriggerClick"
+      @blur="handleTriggerBlur"
     >
       <span
         :class="['vp-cascader__label', { 'vp-cascader__label--placeholder': isPlaceholder }]"

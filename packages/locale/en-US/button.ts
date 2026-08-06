@@ -14,4 +14,4 @@ export default {
   'button.getStarted': 'Get started',
   'button.learnMore': 'Learn more',
   'button.enter': 'Enter',
-} as Record<string, string>
+}

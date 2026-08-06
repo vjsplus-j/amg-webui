@@ -1,17 +1,23 @@
 import { ref, computed, onUnmounted, getCurrentInstance } from 'vue'
-import { LocaleService } from '@amg-webui/locale'
-import type { LocaleCode, LocaleMessages } from '@amg-webui/locale'
+import { isLocaleKey, LocaleService } from '@amg-webui/locale'
+import type { LocaleKey, LocaleMessages, TextDirection } from '@amg-webui/locale'
 
 export function useLocale() {
-  const locale = ref<LocaleCode>(LocaleService.getLocale())
+  const locale = ref(LocaleService.getLocale())
+  const dir = ref<TextDirection>(LocaleService.getDir())
 
   const unsub = LocaleService.subscribe((code) => {
     locale.value = code
   })
+  const unsubDir = LocaleService.subscribeDir((next) => {
+    dir.value = next
+  })
 
-  // Clean up when used inside a component setup; no-op in plain scripts
   if (getCurrentInstance()) {
-    onUnmounted(() => unsub())
+    onUnmounted(() => {
+      unsub()
+      unsubDir()
+    })
   }
 
   const messages = computed<LocaleMessages>(() => {
@@ -19,20 +25,34 @@ export function useLocale() {
     return LocaleService.getMessages()
   })
 
-  function t(key: string, params?: Record<string, string | number>, fallback?: string) {
+  function t(key: LocaleKey, params?: Record<string, string | number>, fallback?: string) {
     void locale.value
     return LocaleService.t(key, params, fallback)
   }
 
-  function setLocale(code: LocaleCode) {
+  /** Runtime / interpolated keys — unknown keys return fallback or the key itself. */
+  function tDyn(key: string, params?: Record<string, string | number>, fallback?: string) {
+    void locale.value
+    if (!isLocaleKey(key)) return fallback ?? key
+    return LocaleService.t(key, params, fallback)
+  }
+
+  function setLocale(code: string) {
     LocaleService.setLocale(code)
+  }
+
+  function setDirection(next: TextDirection | null) {
+    LocaleService.setDirection(next)
   }
 
   return {
     locale,
+    dir,
     messages,
     t,
+    tDyn,
     setLocale,
+    setDirection,
     toggle: LocaleService.toggle
   }
 }

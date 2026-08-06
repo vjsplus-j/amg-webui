@@ -1,4 +1,4 @@
-import type { BaseProps, DisabledProps, LoadingProps } from '@amg-webui/types'
+import type { BaseProps, DisabledProps, InvalidProps, LoadingProps } from '@amg-webui/types'
 
 export interface MentionOption {
   label: string
@@ -6,7 +6,11 @@ export interface MentionOption {
   disabled?: boolean
 }
 
-export interface MentionProps extends BaseProps, DisabledProps, LoadingProps {
+export interface MentionProps extends BaseProps, DisabledProps, LoadingProps, InvalidProps {
+  /** Native id — falls back to FormItem field id when nested */
+  id?: string
+  /** Native name — falls back to FormItem `prop` when nested */
+  name?: string
   modelValue?: string
   options?: MentionOption[]
   prefix?: string

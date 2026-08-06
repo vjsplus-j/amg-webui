@@ -13,7 +13,7 @@ import { demoCode, demoSfc } from '../../components/demo/demoCode'
 import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
-const { t } = useLocale()
+const { t, tDyn } = useLocale()
 const autoHideKey = ref(0)
 const showKey = ref(0)
 const severities: Severity[] = ['info', 'success', 'warning', 'danger']
@@ -115,7 +115,7 @@ const slotRows = computed<ApiRow[]>(() => [
     >
       <div class="vp-curated__stack">
         <Message v-for="sev in severities" :key="sev" :severity="sev">
-          {{ t(sampleKey[sev]) }}
+          {{ tDyn(sampleKey[sev]) }}
         </Message>
       </div>
     </DemoBlock>

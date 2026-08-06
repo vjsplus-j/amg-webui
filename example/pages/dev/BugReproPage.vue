@@ -52,7 +52,7 @@ const BUILDS: Build[] = ['reported', 'candidate', 'fixed']
 const BROWSERS = ['Chromium', 'Firefox', 'WebKit'] as const
 const VIEWPORTS = ['1280 × 800', '390 × 844'] as const
 const DATASETS = [100, 1000, 10000] as const
-const { t, locale } = useLocale()
+const { t, tDyn, locale } = useLocale()
 
 const sharedSteps = (): ReproStep[] => [
   { id: 'setup', titleKey: 'page.dev.bugRepro.step.setup', expectedKey: 'page.dev.bugRepro.c2' },
@@ -141,9 +141,9 @@ const statusKeys: Record<RunStatus, string> = {
 const statusSeverity = (status: RunStatus) => ({
   idle: 'default', running: 'info', passed: 'success', failed: 'danger', warning: 'warning'
 } as const)[status]
-const caseTitle = (item: ReproCase) => item.titleKey ? t(item.titleKey) : item.title ?? t(LocaleKeys.common.unknown)
-const stepTitle = (step: ReproStep) => step.titleKey ? t(step.titleKey) : step.title ?? t(LocaleKeys.common.unknown)
-const expectedText = (step: ReproStep) => step.expectedKey ? t(step.expectedKey) : step.expected ?? t(LocaleKeys.common.noData)
+const caseTitle = (item: ReproCase) => item.titleKey ? tDyn(item.titleKey) : item.title ?? tDyn(LocaleKeys.common.unknown)
+const stepTitle = (step: ReproStep) => step.titleKey ? tDyn(step.titleKey) : step.title ?? tDyn(LocaleKeys.common.unknown)
+const expectedText = (step: ReproStep) => step.expectedKey ? tDyn(step.expectedKey) : step.expected ?? tDyn(LocaleKeys.common.noData)
 const edgeEnvironment = () =>
   environment.browser === 'WebKit' ||
   environment.viewport.startsWith('390') ||
@@ -390,7 +390,7 @@ watch([customCases, selectedId, environment], persist, { deep: true })
       </template>
     </ExamplePageHero>
 
-    <p v-if="noticeKey" class="bug-repro__notice" role="status" aria-live="polite">{{ t(noticeKey) }}</p>
+    <p v-if="noticeKey" class="bug-repro__notice" role="status" aria-live="polite">{{ tDyn(noticeKey) }}</p>
 
     <div class="bug-repro__layout">
       <Card class="bug-repro__cases" :header="t('page.dev.bugRepro.c1')">
@@ -426,11 +426,11 @@ watch([customCases, selectedId, environment], persist, { deep: true })
         </Card>
 
         <Card :header="`${activeCase.reference} · ${caseTitle(activeCase)}`" data-testid="repro-scenario">
-          <template #extra><Tag :label="t(statusKeys[overallStatus])" :severity="statusSeverity(overallStatus)" effect="light" :data-status="overallStatus" /></template>
+          <template #extra><Tag :label="tDyn(statusKeys[overallStatus])" :severity="statusSeverity(overallStatus)" effect="light" :data-status="overallStatus" /></template>
           <p class="bug-repro__component"><code>{{ activeCase.component }}</code></p>
           <ol class="bug-repro__steps">
             <li v-for="(step, index) in activeCase.steps" :key="step.id" :data-status="currentState.steps[index]" data-testid="repro-step">
-              <div><strong>{{ index + 1 }}. {{ stepTitle(step) }}</strong><Tag :label="t(statusKeys[currentState.steps[index]])" :severity="statusSeverity(currentState.steps[index])" size="sm" effect="light" /></div>
+              <div><strong>{{ index + 1 }}. {{ stepTitle(step) }}</strong><Tag :label="tDyn(statusKeys[currentState.steps[index]])" :severity="statusSeverity(currentState.steps[index])" size="sm" effect="light" /></div>
               <p><span>{{ t('page.dev.bugRepro.expected') }}</span>{{ expectedText(step) }}</p>
               <Button size="sm" variant="outlined" icon="Play" :label="t(LocaleKeys.common.play)" :disabled="running" :data-step-index="index" data-testid="run-step" @click="runSingle(index)" />
             </li>
@@ -442,7 +442,7 @@ watch([customCases, selectedId, environment], persist, { deep: true })
           <p class="bug-repro__cross-hint">{{ t('page.dev.bugRepro.c4') }}</p>
           <div class="bug-repro__assertions">
             <article v-for="assertion in [{ id: 'hard', label: t('page.dev.bugRepro.hardAssert'), status: currentState.hard }, { id: 'soft', label: t('page.dev.bugRepro.c3'), status: currentState.soft }, { id: 'perf', label: 'Perf', status: currentState.perf }, { id: 'a11y', label: 'A11y', status: currentState.a11y }]" :key="assertion.id" :data-assertion="assertion.id" :data-status="assertion.status" data-testid="assertion">
-              <strong>{{ assertion.label }}</strong><Tag :label="t(statusKeys[assertion.status])" :severity="statusSeverity(assertion.status)" effect="light" />
+              <strong>{{ assertion.label }}</strong><Tag :label="tDyn(statusKeys[assertion.status])" :severity="statusSeverity(assertion.status)" effect="light" />
               <small v-if="assertion.id === 'perf' && currentState.metric != null">{{ currentState.metric }} ms / {{ PERF_BUDGET }} ms</small>
               <small v-if="assertion.id === 'a11y' && currentState.violations != null">{{ currentState.violations }}</small>
             </article>
@@ -450,7 +450,7 @@ watch([customCases, selectedId, environment], persist, { deep: true })
         </Card>
 
         <div class="bug-repro__bottom">
-          <Card :header="t('page.dev.bugRepro.logs')"><template #extra><Button size="sm" variant="text" :label="t(LocaleKeys.button.delete)" @click="logs = []" /></template><div class="bug-repro__logs" role="log" data-testid="run-log"><p v-if="!logs.length">{{ t(LocaleKeys.common.noData) }}</p><p v-for="entry in logs" :key="entry.id" :data-status="entry.status"><time>{{ new Date(entry.at).toLocaleTimeString(locale) }}</time><Tag :label="t(statusKeys[entry.status])" :severity="statusSeverity(entry.status)" size="sm" effect="light" /><span>{{ entry.subject }}</span></p></div></Card>
+          <Card :header="t('page.dev.bugRepro.logs')"><template #extra><Button size="sm" variant="text" :label="tDyn(LocaleKeys.button.delete)" @click="logs = []" /></template><div class="bug-repro__logs" role="log" data-testid="run-log"><p v-if="!logs.length">{{ tDyn(LocaleKeys.common.noData) }}</p><p v-for="entry in logs" :key="entry.id" :data-status="entry.status"><time>{{ new Date(entry.at).toLocaleTimeString(locale) }}</time><Tag :label="tDyn(statusKeys[entry.status])" :severity="statusSeverity(entry.status)" size="sm" effect="light" /><span>{{ entry.subject }}</span></p></div></Card>
           <Card :header="t('page.dev.bugRepro.report')"><pre class="bug-repro__report" data-testid="report-preview">{{ reportText }}</pre></Card>
         </div>
       </main>

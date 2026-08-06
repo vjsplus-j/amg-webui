@@ -8,7 +8,10 @@ import Icon from "../Icon/index.vue";
 import { useLocale } from "@amg-webui/hooks";
 import { LocaleKeys } from "@amg-webui/locale";
 import { trackEmit } from "@amg-webui/telemetry";
+import { useFormItem } from "../FormItem/useFormItem";
 import "./style.scss";
+
+defineOptions({ inheritAttrs: false, name: "Transfer" });
 
 const props = withDefaults(defineProps<TransferProps>(), {
   data: () => [],
@@ -22,6 +25,20 @@ const props = withDefaults(defineProps<TransferProps>(), {
 
 const emit = defineEmits<TransferEmits>();
 const { t } = useLocale();
+
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  validateOnChange,
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name,
+});
 
 const leftFilter = ref("");
 const rightFilter = ref("");
@@ -124,13 +141,14 @@ onUnmounted(() => {
 
 const rootClass = computed(() => [
   "vp-transfer",
-  { "vp-transfer--disabled": props.disabled },
+  { "vp-transfer--disabled": isDisabled.value },
   props.class,
 ]);
 
 const emitKeys = (keys: (string | number)[]) => {
   emit("update:modelValue", keys);
   emit("change", keys);
+  void validateOnChange();
 };
 
 const toggleCheck = (
@@ -145,7 +163,7 @@ const toggleCheck = (
 };
 
 const moveToRight = () => {
-  if (props.disabled || props.loading || !leftChecked.value.length) return;
+  if (isDisabled.value || props.loading || !leftChecked.value.length) return;
   const moved = [...leftChecked.value];
   const next = [...new Set([...(props.modelValue ?? []), ...moved])];
   leftChecked.value = [];
@@ -161,7 +179,7 @@ const moveToRight = () => {
 };
 
 const moveToLeft = () => {
-  if (props.disabled || props.loading || !rightChecked.value.length) return;
+  if (isDisabled.value || props.loading || !rightChecked.value.length) return;
   const moved = [...rightChecked.value];
   const remove = new Set(rightChecked.value);
   const next = (props.modelValue ?? []).filter((k) => !remove.has(k));
@@ -192,7 +210,16 @@ function handleScroll(direction: "left" | "right", event: Event) {
 </script>
 
 <template>
-  <div :class="rootClass" :style="style" :aria-busy="loading || undefined">
+  <div
+    :id="inputId"
+    :class="rootClass"
+    :style="style"
+    role="group"
+    :aria-invalid="isInvalid || undefined"
+    :aria-required="isRequired || undefined"
+    :aria-describedby="ariaDescribedby"
+    :aria-busy="loading || undefined"
+  >
     <div class="vp-transfer__panel">
       <div class="vp-transfer__header">
         <slot name="left-title" :count="leftItems.length">{{ leftTitle }}</slot>
@@ -201,7 +228,7 @@ function handleScroll(direction: "left" | "right", event: Event) {
         <InputText
           v-model="leftFilter"
           :placeholder="filterPlaceholder ?? t(LocaleKeys.common.search)"
-          :disabled="disabled || loading"
+          :disabled="isDisabled || loading"
         />
       </div>
       <div
@@ -234,7 +261,7 @@ function handleScroll(direction: "left" | "right", event: Event) {
               <input
                 type="checkbox"
                 :checked="leftChecked.includes(item.key)"
-                :disabled="item.disabled || disabled || loading"
+                :disabled="item.disabled || isDisabled || loading"
                 @change="
                   leftChecked = toggleCheck(
                     leftChecked,
@@ -261,7 +288,7 @@ function handleScroll(direction: "left" | "right", event: Event) {
       <button
         type="button"
         class="vp-transfer__action"
-        :disabled="disabled || loading || !leftChecked.length"
+        :disabled="isDisabled || loading || !leftChecked.length"
         :aria-label="t(LocaleKeys.common.next)"
         @click="moveToRight"
       >
@@ -270,7 +297,7 @@ function handleScroll(direction: "left" | "right", event: Event) {
       <button
         type="button"
         class="vp-transfer__action"
-        :disabled="disabled || loading || !rightChecked.length"
+        :disabled="isDisabled || loading || !rightChecked.length"
         :aria-label="t(LocaleKeys.common.previous)"
         @click="moveToLeft"
       >
@@ -288,7 +315,7 @@ function handleScroll(direction: "left" | "right", event: Event) {
         <InputText
           v-model="rightFilter"
           :placeholder="filterPlaceholder ?? t(LocaleKeys.common.search)"
-          :disabled="disabled || loading"
+          :disabled="isDisabled || loading"
         />
       </div>
       <div
@@ -321,7 +348,7 @@ function handleScroll(direction: "left" | "right", event: Event) {
               <input
                 type="checkbox"
                 :checked="rightChecked.includes(item.key)"
-                :disabled="item.disabled || disabled || loading"
+                :disabled="item.disabled || isDisabled || loading"
                 @change="
                   rightChecked = toggleCheck(
                     rightChecked,

@@ -1,5 +1,5 @@
 import { createApp, h, ref, type App } from 'vue'
-import { LocaleKeys, LocaleService } from '@amg-webui/locale'
+import { LocaleKeys, LocaleService, type LocaleKey } from '@amg-webui/locale'
 import { isClient, getDocument, getWindow } from '@amg-webui/utils/env'
 import MessageBoxHost from './MessageBoxHost.vue'
 import type {
@@ -21,7 +21,7 @@ interface ActiveMessageBox {
 
 let active: ActiveMessageBox | null = null
 
-function defaultLabel(key: string, fallback: string): string {
+function defaultLabel(key: LocaleKey, fallback: string): string {
   return LocaleService.t(key, undefined, fallback)
 }
 

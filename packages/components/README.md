@@ -4,7 +4,7 @@ Vue 3 组件源码。**base** 与 **business** 强制隔离。
 
 ```
 components/
-├── base/          # 纯 UI · ~270+ 目录（含行业扩展）
+├── base/          # 纯 UI · 目录库存 ~280+（含行业扩展；库存 ≠ 成熟度）
 ├── business/      # login · users · orders · content · settings
 └── index.ts       # generate:entry 维护；禁止手改巨型 barrel
 ```
@@ -34,7 +34,7 @@ components/
 ## 相关
 
 - Catalog：`example/component-catalog.json`（`npm run validate:catalog`）
-- 成熟度：`npm run score:maturity` · 覆盖：`node scripts/check-coverage.mjs`
+- 成熟度：`npm run score:maturity`（v2：**capability** thin/form/interaction/composite 为主，目录数不是成熟度）· 覆盖：`node scripts/check-coverage.mjs`
 - 对外 stub：[`docs/components/`](../../docs/components/) · 深化计划：[`docs/COMPONENT_DEEPEN_PLAN.md`](../../docs/COMPONENT_DEEPEN_PLAN.md)
 - Telemetry：[`../telemetry/README.md`](../telemetry/README.md)
 - Skill Runtime（独立包，非本目录）：[`../skill/README.md`](../skill/README.md)

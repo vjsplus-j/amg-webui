@@ -1,28 +1,39 @@
 ---
-description: i18n — centralized button, title, tip, and error copy
+description: i18n — typed keys, compile-fail gaps, RTL
 alwaysApply: true
 ---
 
 # i18n (locked)
 
-Docs: `packages/locale/I18N.md` · keys: `packages/locale/keys.ts`
+Docs: `packages/locale/I18N.md` · schema: `message-schema.ts` · keys: `packages/locale/keys.ts`
 
 ## Locales (all keys required in every pack)
-`zh-CN` · `zh-TW` · `en-US` · `ja-JP` · `ko-KR` · `ko-KP` · `ru-RU`  
-Meta: `LOCALE_META` · codes: `LOCALE_CODES`
+`zh-CN` · `zh-TW` · `en-US` · `ja-JP` · `ko-KR` · `ko-KP` · `ru-RU` · **`ar-SA` (rtl)**  
+Meta: `LOCALE_META` · codes: `LOCALE_CODES` · custom: `registerLocale`
+
+## Typed i18n (mandatory)
+- `LocaleKey` / `LocaleMessages` generated from zh-CN (`npm run generate:locale-types` / `extract:i18n`).
+- `LocaleService.t` / `useLocale().t` accept **`LocaleKey` only** — arbitrary string = compile fail.
+- Locale pack indexes use **`satisfies LocaleMessages`** — missing key = compile fail.
+- `LocaleKeys` tree `satisfies LocaleKeyTree`. Dynamic keys → `tDyn` / `isLocaleKey`.
 
 ## Rules
 - All user-visible copy via `t(key)` / `LocaleService.t` — buttons, page titles, tips, errors, validation.
 - Key shape: `domain.entity.desc` — `button.*` · `page.*` · `tip.*` · `error.*` · `auth.*` · `biz.*` · `nav.*` · `common.*`
-- Add key to `LocaleKeys` + **every** locale pack. Missing translation = bug.
+- Add key to **every** locale pack (+ regenerate schema). Missing translation = bug.
 - Interpolate: `error.minLength` → `t(key, { min: 6 })`.
-- Boot: `LocaleService.init()`; persist `data-locale` + `lang`; URL `?lang=ja-JP`.
+- Boot: `LocaleService.init()`; persist `data-locale` + `lang` + `dir`; URL `?lang=ja-JP`.
+
+## Native RTL
+- `LOCALE_META.dir` · `html[dir]` · `LocaleService.getDir` / `setDirection`
+- Theme: `rtl.scss` + logical properties on chrome; `.vp-rtl-mirror` / `.vp-ltr`
+- `ConfigProvider` direction defaults from `LocaleService.getDir()` when omitted
 
 ## Length (CJK vs Latin/Cyrillic)
 - Short CJK vs long EN/RU → UI chrome: grow/wrap (≤2-line clamp), not forced `…`.
 - Dynamic data: ellipsis OK with `:title`.
-- Styles: `i18n-layout.scss` · `en-US`/`ru-RU` widen chrome · `ja-JP`/`ko-*` mild widen.
+- Styles: `i18n-layout.scss` · `en-US`/`ru-RU`/`ar-SA` widen chrome · `ja-JP`/`ko-*` mild widen.
 
 ## Don’t
-Hardcode copy in SFC/SCSS/**example pages** (toasts, placeholders, stub checklists, `title` attrs); ship one locale only; clip labels with fixed width + ellipsis.
+Hardcode copy in SFC/SCSS/**example pages**; ship one locale only; clip labels with fixed width + ellipsis; use `as LocaleMessages` to hide gaps.
 See also **`vue3-amg-webui-no-hardcode.mdc`** (copy + token ban, alwaysApply).

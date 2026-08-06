@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 import type { InputNumberProps } from './types'
 
 function clamp(value: number, min?: number, max?: number): number {
@@ -14,7 +14,13 @@ function applyPrecision(value: number, precision?: number): number {
   return Math.round(value * factor) / factor
 }
 
-export function useInputNumber(props: InputNumberProps) {
+export function useInputNumber(
+  props: InputNumberProps,
+  state?: {
+    invalid?: MaybeRefOrGetter<boolean>
+    disabled?: MaybeRefOrGetter<boolean>
+  }
+) {
   const step = computed(() => props.step ?? 1)
   const precision = computed(() => props.precision)
 
@@ -23,8 +29,8 @@ export function useInputNumber(props: InputNumberProps) {
     `vp-inputnumber--${props.size ?? 'md'}`,
     {
       'vp-inputnumber--fluid': props.fluid,
-      'vp-inputnumber--disabled': props.disabled,
-      'vp-inputnumber--invalid': props.invalid,
+      'vp-inputnumber--disabled': props.disabled || toValue(state?.disabled),
+      'vp-inputnumber--invalid': props.invalid || toValue(state?.invalid),
       'vp-inputnumber--controls': props.controls !== false
     },
     props.class

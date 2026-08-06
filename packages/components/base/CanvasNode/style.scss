@@ -24,6 +24,16 @@
     cursor: not-allowed;
   }
 
+  &--component {
+    padding: var(--spacing-sm);
+    user-select: auto;
+  }
+
+  &__mount {
+    pointer-events: auto;
+    max-width: 100%;
+  }
+
   &__label {
     font-weight: 600;
     color: var(--text-primary);

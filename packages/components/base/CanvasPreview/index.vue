@@ -8,6 +8,8 @@ import {
   watch,
 } from "vue";
 import { useLocale } from "@amg-webui/hooks";
+import { resolveNodeRender } from "@amg-webui/lowcode";
+import { LocaleKeys } from "@amg-webui/locale";
 import { trackEmit } from "@amg-webui/telemetry";
 import type { CanvasNodeData } from "@amg-webui/utils";
 import type { CanvasPreviewEmits, CanvasPreviewProps } from "./types";
@@ -27,6 +29,7 @@ const props = withDefaults(defineProps<CanvasPreviewProps>(), {
   loading: false,
   disabled: false,
   interactive: true,
+  renderMode: "chrome",
   telemetry: undefined,
 });
 const emit = defineEmits<CanvasPreviewEmits>();
@@ -132,6 +135,10 @@ function refresh() {
     telemetry: props.telemetry,
   });
 }
+
+function renderOf(node: CanvasNodeData) {
+  return resolveNodeRender(node, props.registry);
+}
 </script>
 
 <template>
@@ -188,16 +195,30 @@ function refresh() {
             },
           ]"
           :style="nodeStyle(node)"
-          :role="interactive ? 'button' : undefined"
-          :tabindex="interactive && !disabled && !node.locked ? 0 : undefined"
-          :aria-pressed="interactive ? modelValue === node.id : undefined"
+          :role="interactive ? (renderMode === 'component' ? 'group' : 'button') : undefined"
+          :tabindex="
+            interactive && !disabled && !node.locked && renderMode !== 'component' ? 0 : undefined
+          "
+          :aria-selected="interactive ? modelValue === node.id : undefined"
           @click.stop="activate(node, $event)"
-          @keydown.enter="activate(node, $event)"
-          @keydown.space="activate(node, $event)"
+          @keydown.enter="renderMode !== 'component' && activate(node, $event)"
+          @keydown.space="renderMode !== 'component' && activate(node, $event)"
         >
           <slot name="node" :node="node" :selected="modelValue === node.id">
-            <strong>{{ node.label }}</strong
-            ><small>{{ node.type }}</small>
+            <template v-if="renderMode === 'component' && registry">
+              <component
+                :is="renderOf(node).component"
+                v-bind="renderOf(node).props"
+                v-if="renderOf(node).component"
+              />
+              <div v-else class="vp-canvas-preview__unknown" role="status">
+                {{ t(LocaleKeys.component.schemaRenderer.unknown, { type: node.type }) }}
+              </div>
+            </template>
+            <template v-else>
+              <strong>{{ node.label }}</strong>
+              <small>{{ node.type }}</small>
+            </template>
           </slot>
         </div>
       </div>

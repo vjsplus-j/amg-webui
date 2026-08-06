@@ -4,7 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useAuth } from '../stores/auth'
 import { ToastService } from '@amg-webui/theme'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
+import { LocaleKeys, type LocaleKey } from '@amg-webui/locale'
 import {
   Layout,
   Sider,
@@ -35,7 +35,7 @@ const { logout, isAdmin, currentUser } = useAuth()
 const { t, locale } = useLocale()
 
 const collapsed = ref(localStorage.getItem('ln-sidebar-collapsed') === '1')
-const tabs = ref<{ name: string; titleKey?: string; fallback: string }[]>([])
+const tabs = ref<{ name: string; titleKey?: LocaleKey; fallback: string }[]>([])
 const navFilter = ref('')
 
 const openCategories = ref<Record<string, boolean>>(
@@ -239,7 +239,7 @@ watch(
     const id = routeTabId(route)
     if (!id) return
 
-    let titleKey = route.meta.titleKey as string | undefined
+    let titleKey = route.meta.titleKey
     let fallback = String(route.meta.title ?? id)
 
     if (route.name === 'base-component' && componentParam.value) {

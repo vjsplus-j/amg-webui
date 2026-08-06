@@ -10,4 +10,4 @@ export default {
   'error.pattern': '格式不正确',
   'error.passwordMismatch': '两次输入的密码不一致',
   'error.invalidEmail': '请输入有效的邮箱地址'
-} as Record<string, string>
+} as const

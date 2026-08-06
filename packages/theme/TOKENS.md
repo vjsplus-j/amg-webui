@@ -168,7 +168,9 @@ border: 1px solid var(--ds-border);
 | `[data-locale]` | 文案语言（见 i18n 规范） |
 
 切换：`ThemeService` · `FontService` · `IconStyleService` · `LocaleService`。  
-内核：`createThemeRuntime`（`amg-webui/theme/core`）— Host / Storage 可注入，SSR 用 `createNullHost` + `createMemoryStorage`；无闪屏用 `themeBootScriptTag()`。
+内核：`createThemeRuntime`（`amg-webui/theme/core`）— Host / Storage 可注入，SSR 用 `createNullHost` + `createMemoryStorage`；无闪屏用 `themeBootScriptTag()`；色阶用 `generatePrimaryScale` / `runtime.setPrimary`；同页局部主题用 `ThemeProvider` / `ConfigProvider` + `useThemeRuntime()`（勿抢 `ThemeService` 单例）。  
+SSR 自定义 Token / 色阶：`runtime.toStyleTag()` / `serializeThemeStyle`。  
+Shadow：`createShadowHost(shadowRoot)`（属性与 CSS 变量写在宿主元素）。
 
 ### 3.5 TS 常量镜像
 

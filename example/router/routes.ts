@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
+import type { LocaleKey } from '@amg-webui/locale'
 import {
   CATALOG_CATEGORY_ICONS,
   CATALOG_CATEGORY_ORDER,
@@ -23,7 +24,7 @@ export type NavGroupId =
 export interface AppRouteMeta {
   title?: string
   /** i18n key — preferred over title when set */
-  titleKey?: string
+  titleKey?: LocaleKey
   public?: boolean
   requiresAuth?: boolean
   group?: NavGroupId
@@ -336,6 +337,26 @@ export const routes: RouteRecordRaw[] = [
           icon: 'Activity'
         }
       },
+      {
+        path: 'lab/security',
+        name: 'lab-security',
+        component: () => import('../pages/lab/SecurityLabPage.vue'),
+        meta: {
+          titleKey: 'page.lab.security.title',
+          group: 'lab',
+          icon: 'Shield'
+        }
+      },
+      {
+        path: 'lab/lowcode',
+        name: 'lab-lowcode',
+        component: () => import('../pages/lab/LowcodeLabPage.vue'),
+        meta: {
+          titleKey: 'page.lab.lowcode.title',
+          group: 'lab',
+          icon: 'LayoutTemplate'
+        }
+      },
 
       {
         path: 'dev/config',
@@ -376,7 +397,7 @@ export const routes: RouteRecordRaw[] = [
   { path: '/:pathMatch(.*)*', redirect: { name: 'dashboard' } }
 ]
 
-export const NAV_GROUP_TITLE_KEYS: Record<NavGroupId, string> = {
+export const NAV_GROUP_TITLE_KEYS: Record<NavGroupId, LocaleKey> = {
   overview: 'nav.overview',
   intro: 'nav.intro',
   base: 'nav.base',
@@ -389,7 +410,7 @@ export const NAV_GROUP_TITLE_KEYS: Record<NavGroupId, string> = {
 }
 
 /** @deprecated use NAV_GROUP_TITLE_KEYS + t() */
-export const NAV_GROUP_LABELS: Record<NavGroupId, string> = {
+export const NAV_GROUP_LABELS: Record<NavGroupId, LocaleKey> = {
   overview: 'nav.overview',
   intro: 'nav.intro',
   base: 'nav.base',
@@ -404,7 +425,7 @@ export const NAV_GROUP_LABELS: Record<NavGroupId, string> = {
 export interface ShellNavChild {
   /** Stable UI / tab id — e.g. base:Button or route name */
   key: string
-  titleKey?: string
+  titleKey?: LocaleKey
   label: string
   icon?: string
   routeName: string
@@ -413,7 +434,7 @@ export interface ShellNavChild {
 
 export interface ShellNavItem {
   key: string
-  titleKey?: string
+  titleKey?: LocaleKey
   label: string
   icon?: string
   routeName?: string
@@ -423,7 +444,8 @@ export interface ShellNavItem {
 }
 
 export interface ShellNavGroup {
-  titleKey: string
+  titleKey: LocaleKey
+  /** Fallback label (often the key string itself) */
   title: string
   group: NavGroupId
   items: ShellNavItem[]
@@ -484,20 +506,20 @@ export function getShellNavItems(): ShellNavGroup[] {
     if (group === 'base') {
       return {
         titleKey: NAV_GROUP_TITLE_KEYS[group],
-        title: NAV_GROUP_TITLE_KEYS[group],
+        title: String(NAV_GROUP_TITLE_KEYS[group]),
         group,
         items: buildBaseNavItems()
       }
     }
     return {
       titleKey: NAV_GROUP_TITLE_KEYS[group],
-      title: NAV_GROUP_TITLE_KEYS[group],
+      title: String(NAV_GROUP_TITLE_KEYS[group]),
       group,
       items: children
         .filter((c) => c.meta?.group === group)
         .map((c) => ({
           key: String(c.name),
-          titleKey: (c.meta?.titleKey as string | undefined) ?? undefined,
+          titleKey: c.meta?.titleKey,
           label: String(c.meta?.titleKey ?? c.name),
           icon: String(c.meta?.icon ?? 'Activity'),
           routeName: String(c.name)
@@ -507,8 +529,8 @@ export function getShellNavItems(): ShellNavGroup[] {
 }
 
 export function resolveRouteTitle(
-  meta: { titleKey?: string; title?: unknown },
-  t: (key: string, params?: Record<string, string | number>, fallback?: string) => string,
+  meta: { titleKey?: LocaleKey; title?: unknown },
+  t: (key: LocaleKey, params?: Record<string, string | number>, fallback?: string) => string,
   componentName?: string
 ): string {
   // Base component pages / tabs: English leaf name only (Button), not「按钮 Button」.

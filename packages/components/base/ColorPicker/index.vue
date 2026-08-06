@@ -3,7 +3,11 @@ import { computed } from 'vue'
 import { usePopover } from '@amg-webui/hooks'
 import { cssVarToHex } from '@amg-webui/utils'
 import type { ColorPickerProps, ColorPickerEmits } from './types'
+import { useFormItem } from '../FormItem/useFormItem'
+import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'ColorPicker' })
 
 const props = withDefaults(defineProps<ColorPickerProps>(), {
   modelValue: '',
@@ -25,18 +29,40 @@ const props = withDefaults(defineProps<ColorPickerProps>(), {
 
 const emit = defineEmits<ColorPickerEmits>()
 
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  validateOnBlur,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
+
+const { nativeAttrs } = useNativeInputAttrs()
+
 const { isOpen, triggerRef, panelRef, toggle } = usePopover()
 
 const displayColor = computed(() => props.modelValue || 'var(--surface-2)')
 
 const handleTriggerClick = () => {
-  if (props.disabled) return
+  if (isDisabled.value) return
   toggle()
+}
+
+const handleTriggerBlur = () => {
+  void validateOnBlur()
 }
 
 const emitValue = (value: string) => {
   emit('update:modelValue', value)
   emit('change', value)
+  void validateOnChange()
 }
 
 const selectPreset = (preset: string) => {
@@ -53,10 +79,19 @@ const handleInput = (event: Event) => {
   <div :class="['vp-colorpicker', props.class]" :style="style">
     <button
       ref="triggerRef"
+      v-bind="nativeAttrs"
+      :id="inputId"
       type="button"
       class="vp-colorpicker__trigger"
-      :disabled="disabled"
+      role="combobox"
+      :aria-expanded="isOpen"
+      aria-haspopup="listbox"
+      :aria-invalid="isInvalid || undefined"
+      :aria-required="isRequired || undefined"
+      :aria-describedby="ariaDescribedby"
+      :disabled="isDisabled"
       @click="handleTriggerClick"
+      @blur="handleTriggerBlur"
     >
       <span class="vp-colorpicker__swatch" :style="{ background: displayColor }" />
       <span class="vp-colorpicker__value">{{ modelValue || '' }}</span>
@@ -78,7 +113,7 @@ const handleInput = (event: Event) => {
         class="vp-colorpicker__input"
         type="text"
         :value="modelValue"
-        :disabled="disabled"
+        :disabled="isDisabled"
         @input="handleInput"
       />
     </div>

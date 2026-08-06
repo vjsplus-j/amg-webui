@@ -1,4 +1,4 @@
-import type { BaseProps, DisabledProps } from '@amg-webui/types'
+import type { BaseProps, DisabledProps, InvalidProps } from '@amg-webui/types'
 
 export interface CascaderOption {
   label: string
@@ -7,7 +7,11 @@ export interface CascaderOption {
   children?: CascaderOption[]
 }
 
-export interface CascaderProps extends BaseProps, DisabledProps {
+export interface CascaderProps extends BaseProps, DisabledProps, InvalidProps {
+  /** Native id — falls back to FormItem field id when nested */
+  id?: string
+  /** Native name — falls back to FormItem `prop` when nested */
+  name?: string
   modelValue?: unknown
   options?: CascaderOption[]
   placeholder?: string

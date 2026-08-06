@@ -150,9 +150,9 @@ example/pages/
 
 ### 四、国际化专项（`group: 'i18n'`）
 
-- 全局语种切换（7 语种全量 key）
+- 全局语种切换（8 语种全量 key，含 RTL `ar-SA`）
 - 基础内置文案、校验提示、弹窗操作、业务词条同步跟随
-- 自定义词条扩展、远程动态加载、RTL / 双向布局预留
+- 自定义词条扩展、远程动态加载（`registerLocale`）、**原生 RTL**（`ar-SA` · `setDirection` · `rtl.scss`）
 
 ### 五、性能与边界（`group: 'perf'`）
 

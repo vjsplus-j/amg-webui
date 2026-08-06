@@ -10,7 +10,7 @@ alwaysApply: true
 ## Copy (i18n)
 - All user-visible strings via `t(key)` / `LocaleService.t` / `LocaleKeys.*`.
 - Includes: buttons, titles, tips, toasts, validation, placeholders, `title` / `aria-label`, stub checklists, nav labels.
-- Add key to `LocaleKeys` + **every** locale pack (`zh-CN` · `zh-TW` · `en-US` · `ja-JP` · `ko-KR` · `ko-KP` · `ru-RU`). Missing key = bug.
+- Add key to **every** locale pack (`zh-CN` · `zh-TW` · `en-US` · `ja-JP` · `ko-KR` · `ko-KP` · `ru-RU` · `ar-SA`). Missing key = bug / compile fail.
 - Route `meta.title` Chinese/hardcoded fallbacks are forbidden as primary source — use `meta.titleKey` only; fallback may be the key string.
 - Mock **data values** may be Latin sample names/emails; **role/status labels** shown in UI must be codes + `t()`, never locale-bound literals as display text.
 - Brand / product proper nouns (`AMG-WebUI`) may stay literal once; comment `/* brand */` if needed.

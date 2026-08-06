@@ -44,6 +44,8 @@
 | **表单 wave1** Radio / RadioGroup | [radio](./radio) | `example/demos/Radio/` |
 | **表单 wave1** Checkbox / CheckboxGroup | [checkbox](./checkbox) | `example/demos/Checkbox/` |
 | Button / Link / Tag / Avatar / Badge / Typography / Card / Collapse / Skeleton / Progress / FloatButton / … | 其余主力以 example 为准（全量 MD 属后续阶段） | `example/demos/<Name>/` |
+| RichText | [rich-text](./rich-text) | `example/demos/RichText/` |
+| SchemaRenderer | [schema-renderer](./schema-renderer) | `lab/lowcode` |
 
 **通用基础 / 展示阶段清单：已全部 ready。**  
 表单 wave1（Switch / Radio / RadioGroup / Checkbox / CheckboxGroup）已有 docs stub + example curated；深化节奏见 [`COMPONENT_DEEPEN_PLAN.md`](../COMPONENT_DEEPEN_PLAN.md)。  
@@ -55,7 +57,7 @@
 A: 通用 / 展示关键子集已关闭；docs 本阶段薄 stub + FAQ 边界已齐。后续按深化计划分波推进。
 
 **Q: 能不能一口气做完全库？**  
-A: **不能。** 当前 catalog 约 **285** 项；启发式成熟度快照仅用于排队（`npm run score:maturity`），不等于 API 稳定性或完整验收；子集外仍按 experimental 管理。覆盖核对：`node scripts/check-coverage.mjs`。
+A: **不能。** 当前 catalog 约 **285** 是**目录库存**，不是成熟组件数，更不是 1.0。启发式评分 v2 以 **capability**（thin / form / interaction / composite）为主轴，深度 stub→ready 为副轴（`npm run score:maturity`）；`ready` 只表示该能力档基线。子集外仍按 experimental 管理。覆盖核对：`node scripts/check-coverage.mjs`。
 
 **Q: 为什么 docs 没有每个组件的完整 FAQ？**  
 A: 本阶段明确将深度 Demo / FAQ 放在 example 调试壳；对外 docs 保证关键组件有可检索 API stub。完整 FAQ 列入后续阶段。
@@ -63,6 +65,8 @@ A: 本阶段明确将深度 Demo / FAQ 放在 example 调试壳；对外 docs �
 **Q: Telemetry / 事件总线 / 动画总开关是否已建成？**  
 A: Telemetry 存在且**默认关闭**（[`TELEMETRY.md`](../TELEMETRY.md)）；全局 `EventService`（`@amg-webui/utils`）与 `AnimationService`（`@amg-webui/animations`，运动默认开启、显式 `disable`）已落地最小可用契约。联调页 `example` → `lab/telemetry` · `lab/utils`。
 
+**Q: 安全防护层 / 低代码 Schema 现状？**  
+A: 安全层见 [`SECURITY.md`](../SECURITY.md)（`@amg-webui/security`）；低代码见 [`LOWCODE.md`](../LOWCODE.md)（`@amg-webui/lowcode` + `SchemaRenderer`）。example：`lab/security` · `lab/lowcode`。
 **Q: Icon 能否与 Button / Link 同口径宣称「满分闭环」？**  
 A: 可以。Icon 已具备 `useIcon`、交互态（`interactive` / `@click`）、键盘与 a11y、curated demo + 薄 docs stub；成熟度评分与 Button / Link 同属满分档。
 

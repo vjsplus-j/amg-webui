@@ -17,4 +17,4 @@ export default {
   'tip.newContent': 'New content',
   'tip.editContent': 'Edit',
   'tip.theme': 'Theme',
-} as Record<string, string>
+}

@@ -3,7 +3,7 @@
  * Gold membership: `isV01GoldPassed` (v0.1 subset minus DoD gaps).
  * EP / Hot: `hasEpParity` / exclusive (see `ep-parity.ts`).
  */
-import { LocaleKeys } from '@amg-webui/locale'
+import { LocaleKeys, type LocaleKey } from '@amg-webui/locale'
 import { isV01GoldPassed } from './v0.1-subset'
 import { hasEpParity } from './ep-parity'
 
@@ -11,7 +11,7 @@ export type ComponentBadgeTone = 'gold' | 'ep' | 'hot'
 
 export interface ComponentBadgeSpec {
   tone: ComponentBadgeTone
-  labelKey: string
+  labelKey: LocaleKey
   icon?: string
 }
 
@@ -39,7 +39,7 @@ export function componentBadgeSpecs(name: string | undefined | null): ComponentB
 /** Resolve labels via `t()` — same helper for AppShell and 组件总览. */
 export function resolveComponentBadges(
   name: string | undefined | null,
-  t: (key: string, params?: Record<string, string | number>, fallback?: string) => string
+  t: (key: LocaleKey, params?: Record<string, string | number>, fallback?: string) => string
 ): ResolvedComponentBadge[] {
   return componentBadgeSpecs(name).map((spec) => ({
     tone: spec.tone,

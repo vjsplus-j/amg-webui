@@ -4,7 +4,11 @@ import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { MentionProps, MentionEmits, MentionOption } from './types'
+import { useFormItem } from '../FormItem/useFormItem'
+import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'Mention' })
 
 const props = withDefaults(defineProps<MentionProps>(), {
   modelValue: '',
@@ -18,6 +22,24 @@ const props = withDefaults(defineProps<MentionProps>(), {
 
 const emit = defineEmits<MentionEmits>()
 const { t } = useLocale()
+
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  name: resolvedName,
+  validateOnBlur,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
+
+const { nativeAttrs } = useNativeInputAttrs()
 
 const textareaRef = ref<HTMLTextAreaElement | null>(null)
 const popupRef = ref<HTMLElement | null>(null)
@@ -45,7 +67,7 @@ const showPopup = computed(
 const rootClass = computed(() => [
   'vp-mention',
   {
-    'vp-mention--disabled': props.disabled,
+    'vp-mention--disabled': isDisabled.value,
     'vp-mention--open': showPopup.value
   },
   props.class
@@ -83,10 +105,11 @@ const detectMention = (value: string, cursor: number) => {
 const emitValue = (value: string) => {
   emit('update:modelValue', value)
   emit('change', value)
+  void validateOnChange()
 }
 
 const onInput = (event: Event) => {
-  if (props.disabled) return
+  if (isDisabled.value) return
   const target = event.target as HTMLTextAreaElement
   emitValue(target.value)
   detectMention(target.value, target.selectionStart ?? target.value.length)
@@ -162,6 +185,10 @@ const handleOutsideClick = (event: MouseEvent) => {
   }
 }
 
+const handleBlur = () => {
+  void validateOnBlur()
+}
+
 onMounted(() => {
   document.addEventListener('click', handleOutsideClick)
 })
@@ -175,14 +202,21 @@ onUnmounted(() => {
   <div :class="rootClass" :style="style" data-component="Mention">
     <textarea
       ref="textareaRef"
+      v-bind="nativeAttrs"
+      :id="inputId"
       class="vp-mention__input"
+      :name="resolvedName"
       :value="modelValue"
       :placeholder="placeholder ?? t(LocaleKeys.component.mention.placeholder)"
-      :disabled="disabled"
+      :disabled="isDisabled"
       :rows="rows"
       :maxlength="maxLength"
+      :aria-invalid="isInvalid || undefined"
+      :aria-required="isRequired || undefined"
+      :aria-describedby="ariaDescribedby"
       @input="onInput"
       @keydown="onKeydown"
+      @blur="handleBlur"
     />
 
     <ul

@@ -66,6 +66,11 @@ export class ThemeService {
     getDefaultThemeRuntime().clearCustom()
   }
 
+  /** Primary → full `--primary-*` scale overlay (fail-soft on invalid color). */
+  static setPrimary(primary: string): void {
+    getDefaultThemeRuntime().setPrimary(primary)
+  }
+
   static init(options?: ThemeInitOptions): void {
     getDefaultThemeRuntime().init(options)
   }
@@ -117,6 +122,16 @@ export class ThemeService {
     return getDefaultThemeRuntime().serializeAttrs()
   }
 
+  /** SSR: CSS rule text for custom token overlay. */
+  static serializeStyle(selector?: string): string {
+    return getDefaultThemeRuntime().serializeStyle(selector)
+  }
+
+  /** SSR: full `<style id="amg-theme-ssr">` tag. */
+  static toStyleTag(options?: { id?: string; selector?: string }): string {
+    return getDefaultThemeRuntime().toStyleTag(options)
+  }
+
   /** Inline boot script body (storage → attrs before paint). */
   static toBootScript(): string {
     return getDefaultThemeRuntime().toBootScript()
@@ -131,6 +146,7 @@ export function useTheme() {
     setScheme: ThemeService.setScheme,
     applyCustom: ThemeService.applyCustom,
     clearCustom: ThemeService.clearCustom,
+    setPrimary: ThemeService.setPrimary,
     getTheme: ThemeService.getCurrentTheme,
     getStyle: ThemeService.getCurrentStyle,
     getScheme: ThemeService.getScheme,
@@ -145,6 +161,8 @@ export function useTheme() {
     subscribe: ThemeService.subscribe,
     subscribeScheme: ThemeService.subscribeScheme,
     serializeAttrs: ThemeService.serializeAttrs,
+    serializeStyle: ThemeService.serializeStyle,
+    toStyleTag: ThemeService.toStyleTag,
     toBootScript: ThemeService.toBootScript
   }
 }

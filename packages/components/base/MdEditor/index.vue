@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
+import { sanitizeHtml } from '@amg-webui/security'
 import Button from '../Button/index.vue'
 import type { MdEditorProps, MdEditorEmits } from './types'
 import './style.scss'
@@ -45,7 +46,7 @@ const previewHtml = computed(() => {
   html = html.replace(/^- (.+)$/gm, '<li>$1</li>')
   html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
   html = html.replace(/\n/g, '<br />')
-  return html
+  return sanitizeHtml(html)
 })
 </script>
 

@@ -35,8 +35,16 @@
   color: var(--text-secondary);
 }
 
-.biz-settings__actions {
+.biz-settings__params {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.biz-settings__param-row {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-sm, 0.5rem);
+  gap: var(--spacing-sm);
+  width: 100%;
 }
+

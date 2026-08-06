@@ -2,6 +2,9 @@ import type { BaseProps, DisabledProps, Size } from '@amg-webui/types'
 
 export interface InputNumberProps extends BaseProps, DisabledProps {
   modelValue?: number | null
+  id?: string
+  name?: string
+  autocomplete?: string
   min?: number
   max?: number
   step?: number

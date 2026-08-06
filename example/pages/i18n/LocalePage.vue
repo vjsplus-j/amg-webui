@@ -2,10 +2,10 @@
 import { computed } from 'vue'
 import { Card } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys, LOCALE_META } from '@amg-webui/locale'
+import { LocaleKeys, getLocaleMeta } from '@amg-webui/locale'
 import ExamplePageHero from '../../components/ExamplePageHero.vue'
 
-const { t, locale } = useLocale()
+const { t, locale, dir, setDirection } = useLocale()
 
 const samples = computed(() => {
   void locale.value
@@ -19,17 +19,35 @@ const samples = computed(() => {
   ]
 })
 
-const meta = computed(() => LOCALE_META[locale.value])
+const meta = computed(() => getLocaleMeta(locale.value))
 
 const localeLead = computed(() => {
   void locale.value
-  return `${locale.value} · ${meta.value.label} · ${meta.value.lang} / ${meta.value.dir}`
+  void dir.value
+  const m = meta.value
+  return `${locale.value} · ${m?.label ?? '—'} · ${m?.lang ?? '—'} / ${dir.value}`
 })
+
+const rtlActionLabel = computed(() => {
+  void locale.value
+  void dir.value
+  return dir.value === 'rtl' ? t('page.i18n.rtlAuto') : t('page.i18n.rtlForce')
+})
+
+function toggleRtlPreview() {
+  setDirection(dir.value === 'rtl' ? null : 'rtl')
+}
 </script>
 
 <template>
   <div class="i18n-lab">
-    <ExamplePageHero title-key="page.i18n.title" :lead="localeLead" />
+    <ExamplePageHero title-key="page.i18n.title" :lead="localeLead">
+      <template #actions>
+        <button type="button" class="i18n-lab__rtl-btn" @click="toggleRtlPreview">
+          {{ rtlActionLabel }}
+        </button>
+      </template>
+    </ExamplePageHero>
 
     <Card class="i18n-lab__card">
       <p class="i18n-lab__hint">
@@ -37,7 +55,7 @@ const localeLead = computed(() => {
       </p>
       <ul class="i18n-lab__list">
         <li v-for="item in samples" :key="item.key">
-          <code>{{ item.key }}</code>
+          <code class="vp-ltr">{{ item.key }}</code>
           <span>{{ item.value }}</span>
         </li>
       </ul>
@@ -80,5 +98,15 @@ const localeLead = computed(() => {
 .i18n-lab__list code {
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
+}
+
+.i18n-lab__rtl-btn {
+  border: 1px solid var(--ds-border);
+  border-radius: var(--theme-btn-radius);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
 }
 </style>

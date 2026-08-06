@@ -14,7 +14,7 @@ import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import ComponentGallery from '../../components/ComponentGallery.vue'
 
-const { t } = useLocale()
+const { t, tDyn } = useLocale()
 const loading = ref(false)
 
 /** Tiny SVG avatar for img-button column (no external asset) */
@@ -69,7 +69,7 @@ function flash() {
             role="row"
           >
             <span class="vp-btn-matrix__cell vp-btn-matrix__cell--label" role="rowheader">
-              {{ t(sizeLabelKey[sz]) }}
+              {{ tDyn(sizeLabelKey[sz]) }}
             </span>
             <span class="vp-btn-matrix__cell" role="cell">
               <Button :size="sz" @click="flash">{{ t(LocaleKeys.button.confirm) }}</Button>

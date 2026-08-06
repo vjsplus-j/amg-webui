@@ -1,8 +1,7 @@
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
+import { isSafeHref as securityIsSafeHref, reportBlockedHref } from '@amg-webui/security'
 import type { Size } from '@amg-webui/types'
 import type { LinkProps } from './types'
-
-const DANGEROUS_PROTOCOL = /^(javascript|data|vbscript):/i
 
 const SPACING_TOKEN: Record<Size, string> = {
   xs: 'var(--spacing-xs)',
@@ -12,9 +11,9 @@ const SPACING_TOKEN: Record<Size, string> = {
   xl: 'var(--spacing-xl)'
 }
 
+/** @deprecated Prefer `@amg-webui/security` — kept for Link/Button backward compat. */
 export function isSafeHref(href: string | undefined): boolean {
-  if (!href) return false
-  return !DANGEROUS_PROTOCOL.test(href.trim())
+  return securityIsSafeHref(href)
 }
 
 export function useLink(props: LinkProps) {
@@ -49,10 +48,18 @@ export function useLink(props: LinkProps) {
   )
 
   const safeHref = computed(() => {
-    if (props.href && isSafeHref(props.href)) return props.href
+    if (props.href && securityIsSafeHref(props.href)) return props.href
     if (props.to) return props.to
     return undefined
   })
+
+  watch(
+    () => props.href,
+    (href) => {
+      if (href && !securityIsSafeHref(href)) reportBlockedHref(href)
+    },
+    { immediate: true }
+  )
 
   /** Render as `<a>` only when navigable and not locked. */
   const isAnchor = computed(

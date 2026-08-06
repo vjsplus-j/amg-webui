@@ -1,4 +1,5 @@
 import type { BaseProps } from '@amg-webui/types'
+import type { ComponentRegistry } from '@amg-webui/lowcode'
 
 export interface PropField {
   key: string
@@ -11,10 +12,14 @@ export interface PropField {
   step?: number
   options?: Array<{ label: string; value: string | number }>
   disabled?: boolean
+  /** When true, write into node.props instead of top-level geometry fields. */
+  fromProps?: boolean
 }
 
 export interface PropPanelProps extends BaseProps {
   fields?: PropField[]
+  /** When set, merge layout fields + registry propsSchema for the selected node. */
+  registry?: ComponentRegistry
   readonly?: boolean
   modelValue?: Record<string, unknown>
   title?: string

@@ -4,7 +4,10 @@ import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { InputOTPProps, InputOTPEmits } from './types'
+import { useFormItem } from '../FormItem/useFormItem'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'InputOTP' })
 
 const props = withDefaults(defineProps<InputOTPProps>(), {
   modelValue: '',
@@ -22,6 +25,22 @@ const props = withDefaults(defineProps<InputOTPProps>(), {
 const emit = defineEmits<InputOTPEmits>()
 const { t } = useLocale()
 
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  name: resolvedName,
+  validateOnBlur,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
+
 const cellRefs = ref<(HTMLInputElement | null)[]>([])
 
 const digits = computed(() => {
@@ -33,8 +52,8 @@ const rootClass = computed(() => [
   'vp-input-otp',
   `vp-input-otp--size-${props.size}`,
   {
-    'vp-input-otp--disabled': props.disabled,
-    'vp-input-otp--invalid': props.invalid
+    'vp-input-otp--disabled': isDisabled.value,
+    'vp-input-otp--invalid': isInvalid.value
   },
   props.class
 ])
@@ -49,6 +68,7 @@ const sanitizeChar = (char: string) => {
 const emitValue = (value: string) => {
   emit('update:modelValue', value)
   emit('change', value)
+  void validateOnChange()
   if (value.length === props.length) {
     emit('complete', value)
     trackEmit({
@@ -76,7 +96,7 @@ const setCellRef = (el: unknown, index: number) => {
 const buildValue = (chars: string[]) => chars.join('').slice(0, props.length)
 
 const onCellInput = (event: Event, index: number) => {
-  if (props.disabled || props.readonly) return
+  if (isDisabled.value || props.readonly) return
 
   const target = event.target as HTMLInputElement
   const raw = sanitizeChar(target.value)
@@ -91,7 +111,7 @@ const onCellInput = (event: Event, index: number) => {
 }
 
 const onCellKeydown = (event: KeyboardEvent, index: number) => {
-  if (props.disabled || props.readonly) return
+  if (isDisabled.value || props.readonly) return
 
   if (event.key === 'Backspace') {
     const next = [...digits.value]
@@ -114,7 +134,7 @@ const onCellKeydown = (event: KeyboardEvent, index: number) => {
 }
 
 const onPaste = (event: ClipboardEvent) => {
-  if (props.disabled || props.readonly) return
+  if (isDisabled.value || props.readonly) return
   event.preventDefault()
 
   const pasted = event.clipboardData?.getData('text') ?? ''
@@ -131,8 +151,12 @@ const onPaste = (event: ClipboardEvent) => {
   focusCell(Math.min(chars.length, props.length - 1))
 }
 
+const handleCellBlur = () => {
+  void validateOnBlur()
+}
+
 onMounted(() => {
-  if (props.autofocus && !props.disabled) {
+  if (props.autofocus && !isDisabled.value) {
     focusCell(0)
   }
 })
@@ -151,6 +175,9 @@ watch(
     :style="style"
     role="group"
     :aria-label="t(LocaleKeys.component.inputOtp.aria)"
+    :aria-invalid="isInvalid || undefined"
+    :aria-required="isRequired || undefined"
+    :aria-describedby="ariaDescribedby"
     data-component="InputOTP"
   >
     <input
@@ -158,17 +185,23 @@ watch(
       :key="index"
       :ref="(el) => setCellRef(el, index)"
       class="vp-input-otp__cell"
+      :id="index === 0 ? inputId : undefined"
+      :name="index === 0 ? resolvedName : undefined"
       :type="mask ? 'password' : 'text'"
       :inputmode="type === 'number' ? 'numeric' : 'text'"
       maxlength="1"
       autocomplete="one-time-code"
       :value="digits[index]"
-      :disabled="disabled"
+      :disabled="isDisabled"
       :readonly="readonly"
+      :aria-invalid="isInvalid || undefined"
+      :aria-required="isRequired || undefined"
+      :aria-describedby="ariaDescribedby"
       :aria-label="t(LocaleKeys.component.inputOtp.digit, { n: index + 1 })"
       @input="onCellInput($event, index)"
       @keydown="onCellKeydown($event, index)"
       @paste="onPaste"
+      @blur="handleCellBlur"
     />
   </div>
 </template>

@@ -21,7 +21,7 @@ import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
 import type { ApiRow, PropRow } from '../../components/demo/types'
 
-const { t } = useLocale()
+const { t, tDyn } = useLocale()
 
 const widgetOrder = ref(['a', 'b', 'c', 'd'])
 const clickCount = ref(0)
@@ -398,7 +398,7 @@ const slotRows = computed<ApiRow[]>(() => [
           }}
         </Button>
         <section v-for="group in skeletonGroups" :key="group.titleKey" class="vp-card-demo__group">
-          <h3 class="vp-card-demo__group-title">{{ t(group.titleKey) }}</h3>
+          <h3 class="vp-card-demo__group-title">{{ tDyn(group.titleKey) }}</h3>
           <div class="vp-card-demo__grid">
             <Card
               v-for="sk in group.items"

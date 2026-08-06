@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import ExamplePageHero from '../ExamplePageHero.vue'
+import type { LocaleKey } from '@amg-webui/locale'
 
 defineProps<{
-  titleKey: string
-  leadKey: string
-  eyebrowKey?: string
+  titleKey: LocaleKey
+  leadKey: LocaleKey
+  eyebrowKey?: LocaleKey
 }>()
 </script>
 

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { SettingPanel, StatusTip } from '@amg-webui/components/base'
+import type { SettingGroup } from '@amg-webui/components/base/SettingPanel/types'
 import { useLocale } from '@amg-webui/hooks'
+import { LOCALE_META } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
@@ -14,19 +16,19 @@ const action = ref('')
 
 const defaults = { darkMode: false, locale: 'en-US', emailAlerts: true }
 
-const groups = computed(() => [
+const groups = computed<SettingGroup[]>(() => [
   {
     id: 'general',
     titleKey: 'example.doc.settingPanel.sample.groupGeneral',
     items: [
-      { key: 'darkMode', labelKey: 'example.doc.settingPanel.sample.darkMode', type: 'switch' as const },
+      { key: 'darkMode', labelKey: 'example.doc.settingPanel.sample.darkMode', type: 'switch' },
       {
         key: 'locale',
         labelKey: 'example.doc.settingPanel.sample.locale',
-        type: 'select' as const,
+        type: 'select',
         options: [
-          { label: 'English', value: 'en-US' },
-          { label: '中文', value: 'zh-CN' }
+          { label: LOCALE_META['en-US'].label, value: 'en-US' },
+          { label: LOCALE_META['zh-CN'].label, value: 'zh-CN' }
         ]
       }
     ]
@@ -35,7 +37,7 @@ const groups = computed(() => [
     id: 'notifications',
     titleKey: 'example.doc.settingPanel.sample.groupNotify',
     items: [
-      { key: 'emailAlerts', labelKey: 'example.doc.settingPanel.sample.emailAlerts', type: 'switch' as const }
+      { key: 'emailAlerts', labelKey: 'example.doc.settingPanel.sample.emailAlerts', type: 'switch' }
     ]
   }
 ])

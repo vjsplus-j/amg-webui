@@ -9,9 +9,30 @@
   &__toolbar {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: var(--spacing-xs);
     padding: var(--spacing-sm);
     border-bottom: 1px solid var(--ds-border, var(--border-color));
+  }
+
+  &__link-row {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    min-width: 0;
+  }
+
+  &__link-input {
+    width: 10rem;
+    max-width: 100%;
+    min-width: 0;
+    height: var(--height-sm, 2rem);
+    padding: 0 var(--spacing-sm);
+    border: 1px solid var(--ds-border);
+    border-radius: var(--theme-input-radius);
+    background: var(--surface-0, var(--surface-1));
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
   }
 
   &__editor {

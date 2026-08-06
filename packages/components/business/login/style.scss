@@ -68,10 +68,18 @@
   font: inherit;
 }
 
-.biz-login__submit {
-  width: 100%;
-  justify-content: center;
+.biz-login__modes {
+  margin-bottom: var(--spacing-md);
 }
+
+.biz-login__alt,
+.biz-login__oauth {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--theme-card-radius);
+}
+
 
 /* —— Verify code —— */
 .biz-verify {

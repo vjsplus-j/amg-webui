@@ -52,6 +52,7 @@ function dragStart(event: DragEvent, item: CanvasMaterialItem) {
     return;
   }
   event.dataTransfer?.setData("application/vp-material-type", item.type);
+  event.dataTransfer?.setData("application/vp-material-label", item.label);
   event.dataTransfer?.setData("application/vp-material", JSON.stringify(item));
   if (event.dataTransfer) event.dataTransfer.effectAllowed = "copy";
   draggingType.value = item.type;

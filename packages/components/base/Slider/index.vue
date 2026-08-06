@@ -2,7 +2,10 @@
 import { onMounted, onUnmounted } from 'vue'
 import type { SliderProps, SliderEmits, SliderValue } from './types'
 import { useSlider } from './useSlider'
+import { useFormItem } from '../FormItem/useFormItem'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'Slider' })
 
 const props = withDefaults(defineProps<SliderProps>(), {
   min: 0,
@@ -13,6 +16,21 @@ const props = withDefaults(defineProps<SliderProps>(), {
 })
 
 const emit = defineEmits<SliderEmits>()
+
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  validateOnBlur,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
 
 const {
   trackRef,
@@ -28,10 +46,11 @@ const {
 const update = (value: SliderValue) => {
   emit('update:modelValue', value)
   emit('change', value)
+  void validateOnChange()
 }
 
 const startDrag = (which: 'low' | 'high' | 'single', event: PointerEvent) => {
-  if (props.disabled) return
+  if (isDisabled.value) return
   event.preventDefault()
   event.stopPropagation()
   dragging.value = which
@@ -39,7 +58,7 @@ const startDrag = (which: 'low' | 'high' | 'single', event: PointerEvent) => {
 }
 
 const onPointerMove = (event: PointerEvent) => {
-  if (!dragging.value || props.disabled) return
+  if (!dragging.value || isDisabled.value) return
   const val = valueFromClientX(event.clientX)
   const [low, high] = values.value
   if (dragging.value === 'low') {
@@ -63,7 +82,7 @@ const stopDrag = (event?: PointerEvent) => {
 }
 
 const handleTrackPointer = (event: PointerEvent) => {
-  if (props.disabled) return
+  if (isDisabled.value) return
   // Only react to primary button / touch / pen
   if (event.pointerType === 'mouse' && event.button !== 0) return
   const val = valueFromClientX(event.clientX)
@@ -96,13 +115,31 @@ onUnmounted(() => {
   document.removeEventListener('pointerup', stopDrag)
   document.removeEventListener('pointercancel', stopDrag)
 })
+const handleBlur = () => {
+  void validateOnBlur()
+}
 </script>
 
 <template>
-  <div :class="rootClass" :style="style">
+  <div
+    :id="inputId"
+    :class="rootClass"
+    :style="style"
+    role="group"
+    :aria-invalid="isInvalid || undefined"
+    :aria-required="isRequired || undefined"
+    :aria-describedby="ariaDescribedby"
+    tabindex="0"
+    @blur="handleBlur"
+  >
     <div
       ref="trackRef"
       class="vp-slider__track"
+      role="slider"
+      :aria-valuemin="min"
+      :aria-valuemax="max"
+      :aria-valuenow="range ? undefined : values[0]"
+      :aria-disabled="isDisabled || undefined"
       @pointerdown="handleTrackPointer"
     >
       <div

@@ -4,7 +4,11 @@ import { usePopover } from '@amg-webui/hooks'
 import Icon from '../Icon/index.vue'
 import { toTimeString } from '@amg-webui/utils'
 import type { TimePickerProps, TimePickerEmits } from './types'
+import { useFormItem } from '../FormItem/useFormItem'
+import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'TimePicker' })
 
 const props = withDefaults(defineProps<TimePickerProps>(), {
   modelValue: null,
@@ -17,6 +21,23 @@ const props = withDefaults(defineProps<TimePickerProps>(), {
 })
 
 const emit = defineEmits<TimePickerEmits>()
+
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  validateOnBlur,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
+
+const { nativeAttrs } = useNativeInputAttrs()
 
 const { isOpen, triggerRef, panelRef, toggle, close } = usePopover()
 
@@ -66,11 +87,16 @@ const emitValue = () => {
   const value = props.valueFormat === 'date' ? d : toTimeString(d, props.showSeconds)
   emit('update:modelValue', value)
   emit('change', value)
+  void validateOnChange()
 }
 
 const handleTriggerClick = () => {
-  if (props.disabled || props.readonly) return
+  if (isDisabled.value || props.readonly) return
   toggle()
+}
+
+const handleTriggerBlur = () => {
+  void validateOnBlur()
 }
 
 const selectHour = (h: number) => {
@@ -92,26 +118,33 @@ const pad = (n: number) => String(n).padStart(2, '0')
 
 function clearValue(event: MouseEvent) {
   event.stopPropagation()
-  if (props.disabled || props.readonly) return
+  if (isDisabled.value || props.readonly) return
   emit('update:modelValue', null)
   emit('change', null)
   emit('clear')
+  void validateOnChange()
   close()
 }
 </script>
 
 <template>
-  <div :class="['vp-timepicker', { 'vp-timepicker--invalid': invalid, 'vp-timepicker--disabled': disabled }, props.class]" :style="style" data-component="TimePicker">
+  <div :class="['vp-timepicker', { 'vp-timepicker--invalid': isInvalid, 'vp-timepicker--disabled': isDisabled }, props.class]" :style="style" data-component="TimePicker">
     <button
       ref="triggerRef"
+      v-bind="nativeAttrs"
+      :id="inputId"
       type="button"
       class="vp-timepicker__trigger"
-      :disabled="disabled"
+      role="combobox"
+      :disabled="isDisabled"
       :aria-label="ariaLabel"
       :aria-expanded="isOpen"
       aria-haspopup="listbox"
-      :aria-invalid="invalid || undefined"
+      :aria-invalid="isInvalid || undefined"
+      :aria-required="isRequired || undefined"
+      :aria-describedby="ariaDescribedby"
       @click="handleTriggerClick"
+      @blur="handleTriggerBlur"
     >
       <span
         :class="['vp-timepicker__label', { 'vp-timepicker__label--placeholder': isPlaceholder }]"
@@ -120,7 +153,7 @@ function clearValue(event: MouseEvent) {
       </span>
       <Icon name="Clock" size="sm" aria-hidden="true" />
     </button>
-    <button v-if="clearable && modelValue" type="button" class="vp-timepicker__clear" :disabled="disabled || readonly" @click="clearValue"><Icon name="X" size="sm" /></button>
+    <button v-if="clearable && modelValue" type="button" class="vp-timepicker__clear" :disabled="isDisabled || readonly" @click="clearValue"><Icon name="X" size="sm" /></button>
 
     <div v-if="isOpen" ref="panelRef" class="vp-timepicker__panel" role="listbox">
       <div class="vp-timepicker__columns">

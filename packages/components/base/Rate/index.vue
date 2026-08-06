@@ -2,7 +2,11 @@
 import { computed, ref } from "vue";
 import { trackEmit } from "@amg-webui/telemetry";
 import type { RateEmits, RateProps } from "./types";
+import { useFormItem } from "../FormItem/useFormItem";
 import "./style.scss";
+
+defineOptions({ inheritAttrs: false, name: "Rate" });
+
 const props = withDefaults(defineProps<RateProps>(), {
   modelValue: 0,
   max: 5,
@@ -15,13 +19,29 @@ const props = withDefaults(defineProps<RateProps>(), {
   telemetry: undefined,
 });
 const emit = defineEmits<RateEmits>();
+
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  validateOnBlur,
+  validateOnChange,
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name,
+});
+
 const hoverValue = ref<number | null>(null);
 const count = computed(() => Math.min(100, Math.max(1, Math.floor(props.max))));
 const value = computed(() =>
   Math.min(count.value, Math.max(0, props.modelValue)),
 );
 const displayValue = computed(() => hoverValue.value ?? value.value);
-const interactive = computed(() => !props.disabled && !props.readonly);
+const interactive = computed(() => !isDisabled.value && !props.readonly);
 function resolve(event: MouseEvent, index: number) {
   if (!props.allowHalf) return index;
   const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
@@ -35,6 +55,7 @@ function commit(next: number) {
       : Math.min(count.value, Math.max(0, next));
   emit("update:modelValue", normalized);
   emit("change", normalized);
+  void validateOnChange();
   trackEmit({
     component: "Rate",
     type: "change",
@@ -80,33 +101,37 @@ const scoreText = computed(
 </script>
 <template>
   <div
+    :id="inputId"
     :class="[
       'vp-rate',
       `vp-rate--${size}`,
-      { 'vp-rate--disabled': disabled, 'vp-rate--readonly': readonly },
+      { 'vp-rate--disabled': isDisabled, 'vp-rate--readonly': readonly },
       props.class,
     ]"
     :style="style"
     role="slider"
-    :tabindex="disabled ? -1 : 0"
+    :tabindex="isDisabled ? -1 : 0"
     aria-valuemin="0"
     :aria-valuenow="value"
     :aria-valuemax="count"
     :aria-readonly="readonly"
-    :aria-disabled="disabled"
+    :aria-disabled="isDisabled"
+    :aria-invalid="isInvalid || undefined"
+    :aria-required="isRequired || undefined"
+    :aria-describedby="ariaDescribedby"
     :aria-label="ariaLabel"
     data-component="Rate"
     @keydown="keydown"
     @mouseleave="leave"
     @focus="emit('focus', $event)"
-    @blur="emit('blur', $event)"
+    @blur="(e) => { emit('blur', e); void validateOnBlur(); }"
   >
     <button
       v-for="index in count"
       :key="index"
       type="button"
       :class="['vp-rate__item', { 'vp-rate__item--active': active(index) }]"
-      :disabled="disabled || readonly"
+      :disabled="isDisabled || readonly"
       :tabindex="-1"
       :aria-label="texts[index - 1] ?? `${index}/${count}`"
       @click="commit(resolve($event, index))"

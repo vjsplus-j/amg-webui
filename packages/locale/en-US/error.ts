@@ -10,4 +10,4 @@ export default {
   'error.pattern': 'Invalid format',
   'error.passwordMismatch': 'Passwords do not match',
   'error.invalidEmail': 'Enter a valid email address'
-} as Record<string, string>
+}

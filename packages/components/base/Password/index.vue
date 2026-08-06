@@ -2,19 +2,49 @@
 import { computed } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
+import { trackEmit } from '@amg-webui/telemetry'
+import { applySanitizeInput } from '@amg-webui/security'
 import type { PasswordProps, PasswordEmits } from './types'
 import { usePassword } from './usePassword'
+import { useFormItem } from '../FormItem/useFormItem'
+import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'Password' })
 
 const props = withDefaults(defineProps<PasswordProps>(), {
   modelValue: '',
   showToggle: true,
-  size: 'md'
+  size: 'md',
+  autocomplete: 'current-password',
+  sanitizeInput: true,
+  telemetry: undefined
 })
 
 const emit = defineEmits<PasswordEmits>()
 const { t } = useLocale()
-const { inputType, rootClass, toggle } = usePassword(props)
+
+const {
+  inputId,
+  isDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  name: resolvedName,
+  validateOnBlur,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
+
+const { nativeAttrs } = useNativeInputAttrs()
+const { inputType, rootClass, toggle } = usePassword(props, {
+  invalid: isInvalid,
+  disabled: isDisabled
+})
 
 const resolvedPlaceholder = computed(
   () => props.placeholder ?? t(LocaleKeys.auth.password)
@@ -22,36 +52,80 @@ const resolvedPlaceholder = computed(
 
 const handleInput = (event: Event) => {
   const target = event.target as HTMLInputElement
-  emit('update:modelValue', target.value)
+  const next = applySanitizeInput(target.value, props.sanitizeInput, 'input')
+  if (next !== target.value) target.value = next
+  emit('update:modelValue', next)
   emit('input', event)
+  void validateOnChange()
+  trackEmit({
+    component: 'Password',
+    type: 'input',
+    trackId: props.trackId,
+    telemetry: props.telemetry,
+    payload: { length: next.length }
+  })
+}
+
+const handleChange = (event: Event) => {
+  emit('change', event)
+  void validateOnChange()
+}
+
+const handleFocus = (event: FocusEvent) => emit('focus', event)
+const handleBlur = (event: FocusEvent) => {
+  const target = event.target as HTMLInputElement
+  const next = applySanitizeInput(target.value, props.sanitizeInput, 'blur')
+  if (next !== target.value) {
+    target.value = next
+    emit('update:modelValue', next)
+  }
+  emit('blur', event)
+  void validateOnBlur()
 }
 </script>
 
 <template>
   <div :class="rootClass" :style="style">
     <input
+      v-bind="nativeAttrs"
+      :id="inputId"
       class="vp-password__input"
       :type="inputType"
+      :name="resolvedName"
       :value="modelValue"
       :placeholder="resolvedPlaceholder"
-      :disabled="disabled"
+      :disabled="isDisabled"
+      :readonly="readonly"
+      :maxlength="maxlength"
+      :autocomplete="autocomplete"
+      :aria-label="ariaLabel"
+      :aria-invalid="isInvalid || undefined"
+      :aria-required="isRequired || undefined"
+      :aria-describedby="ariaDescribedby"
       @input="handleInput"
-      @focus="emit('focus', $event)"
-      @blur="emit('blur', $event)"
+      @change="handleChange"
+      @focus="handleFocus"
+      @blur="handleBlur"
     />
     <button
       v-if="showToggle"
       type="button"
       class="vp-password__toggle"
-      :disabled="disabled"
+      tabindex="-1"
+      :disabled="isDisabled"
       :aria-pressed="inputType === 'text'"
+      :aria-label="
+        inputType === 'password'
+          ? t('component.login-panel.showPassword')
+          : t('component.login-panel.hidePassword')
+      "
       @click="toggle"
     >
       <svg
         v-if="inputType === 'password'"
         viewBox="0 0 24 24"
-        width="16"
-        height="16"
+        width="1em"
+        height="1em"
         fill="currentColor"
         aria-hidden="true"
       >
@@ -60,8 +134,8 @@ const handleInput = (event: Event) => {
       <svg
         v-else
         viewBox="0 0 24 24"
-        width="16"
-        height="16"
+        width="1em"
+        height="1em"
         fill="currentColor"
         aria-hidden="true"
       >

@@ -1,0 +1,33 @@
+/**
+ * Native RTL layout contract.
+ * Activated by `html[dir=rtl]` (LocaleService / ar-SA) and `.vp-config-provider[dir=rtl]`.
+ * Prefer CSS logical properties on chrome; this file covers utilities + RTL-safe isolates.
+ */
+html[dir='rtl'],
+.vp-config-provider[dir='rtl'] {
+  --vp-dir-factor: -1;
+}
+
+html[dir='ltr'],
+.vp-config-provider[dir='ltr'] {
+  --vp-dir-factor: 1;
+}
+
+/* Icons / chevrons that encode “forward” should flip in RTL */
+html[dir='rtl'] .vp-rtl-mirror,
+.vp-config-provider[dir='rtl'] .vp-rtl-mirror {
+  transform: scaleX(-1);
+}
+
+/* Keep code / LTR fragments readable inside RTL pages */
+html[dir='rtl'] code,
+html[dir='rtl'] kbd,
+html[dir='rtl'] pre,
+html[dir='rtl'] .vp-ltr,
+.vp-config-provider[dir='rtl'] code,
+.vp-config-provider[dir='rtl'] kbd,
+.vp-config-provider[dir='rtl'] pre,
+.vp-config-provider[dir='rtl'] .vp-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}

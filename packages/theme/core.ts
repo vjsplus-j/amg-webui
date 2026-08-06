@@ -52,6 +52,7 @@ export {
   createNullHost,
   createDocumentHost,
   createAutoHost,
+  createShadowHost,
   applyLegacyThemeClassCleanup
 } from './core/host'
 export {
@@ -62,6 +63,21 @@ export {
   themeBootScriptTag,
   normalizeCssVarName
 } from './core/attrs'
+export {
+  serializeThemeStyle,
+  themeStyleTag,
+  type SerializeThemeStyleOptions
+} from './core/serialize'
+export {
+  generatePrimaryScale,
+  parseCssColor,
+  rgbToHsl,
+  hslToRgb,
+  type GeneratePrimaryScaleOptions,
+  type PrimaryScaleStop,
+  type RgbColor,
+  type HslColor
+} from './core/scale'
 export { createThemeRuntime } from './core/runtime'
 export {
   getDefaultThemeRuntime,

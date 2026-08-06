@@ -73,10 +73,11 @@
 
 ### 3. 安全防护层
 
-- 文本默认 HTML 转义 + 白名单富文本  
-- 链接拦截 `javascript:` / `data:`  
-- 表单过滤脚本与危险字符  
-- 开发环境安全告警与定位日志  
+- 文本默认 HTML 转义 + 白名单富文本 → **`@amg-webui/security`**（`sanitizeHtml` / `escapeHtml`）
+- 链接拦截 `javascript:` / `data:` / `vbscript:` / `file:` → `isSafeHref` / `sanitizeUrl`（`Link` / `Button` / `RichText`）
+- 表单过滤脚本与危险字符 → `filterDangerousInput`
+- 开发环境安全告警与定位日志 → `SecurityService`
+- 文档：[`docs/SECURITY.md`](./SECURITY.md)；example：`lab/security`
 
 ### 4. 交互观测内核（Vp Telemetry）
 
@@ -110,10 +111,14 @@
 ### 主题三层
 
 1. Design Token 原子（尺寸 / 圆角 / 阴影 / 动效）  
-2. **色阶系统**：主色自动衍生 5 阶 + 中性 / 语义色  
-3. **运行时动态编译 CSS**：前端输主色 → 完整主题，无需重打包  
+2. **色阶系统**：`generatePrimaryScale(primary)` → `--primary-50…900` + `--ds-accent` / focus 语义桥（`runtime.setPrimary` / ThemeProvider `primary`）  
+3. **运行时 overlay**：`applyCustom` / Provider `tokens` 热更新 CSS 变量，无需重打包  
 
-附加：主题缓存、无闪屏预加载、分系统主题存储；Theme Studio 可视化（见 `THEME_STUDIO.md`）。
+运行时分层：Theme Core 多实例 + Host/Storage；`ThemeService` 仅应用默认单例；同页 / 微前端用 `ThemeProvider` · `ConfigProvider` · `useThemeRuntime()`。SSR：`serializeAttrs` + `toStyleTag`；Shadow：`createShadowHost`（host 写 attr/var）。  
+
+诚实限制：Teleport 挂 `body` 可能逃出局部主题根；Shadow 完整品牌 SCSS `adoptedStyleSheets` 未交付。  
+
+附加：主题缓存、无闪屏预加载、分系统主题存储；Theme Studio 可视化（见 `THEME_STUDIO.md`，UI 仍为后续）。
 
 ### 强类型 i18n
 
@@ -132,11 +137,13 @@
 
 ### 2. 低代码 Schema
 
-- 每组件标准化 JSON Schema  
-- 文档站拖拽预览 → 生成 Vue 代码  
-- 对外低代码引擎依赖包，企业可直接搭内部平台  
+- 每组件标准化 JSON Schema（物料 `propsSchema` + 注册表）
+- Schema 渲染器 `SchemaRenderer` / `CanvasPreview`（`renderMode: component`）
+- 拖拽编排：`DragMaterial` + `DragCanvas` + `PropPanel` + `CanvasIo` + undo/redo/clipboard
+- Schema → Vue 代码生成：`generateVueSfc`
+- 包：`@amg-webui/lowcode`；文档：[`docs/LOWCODE.md`](./LOWCODE.md)；example：`lab/lowcode`
 - Skill Pipeline JSON v1 只保存 Skill / 条件注册名与 JSON 配置，为 SR4 可视化编排提供可审计底座；不把代码字符串当低代码协议
-
+- **后续**：完整组件 Schema 目录自动生成、`unplugin-amg-webui`、文档站拖拽器上线
 ### 3. AI 原生套件（2026 赛道）
 
 - 对话气泡、流式输出、思考骨架  

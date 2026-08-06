@@ -1,4 +1,4 @@
-import type { BaseProps, DisabledProps } from "@amg-webui/types";
+import type { BaseProps, DisabledProps, InvalidProps } from "@amg-webui/types";
 
 export interface TransferItem {
   key: string | number;
@@ -6,7 +6,11 @@ export interface TransferItem {
   disabled?: boolean;
 }
 
-export interface TransferProps extends BaseProps, DisabledProps {
+export interface TransferProps extends BaseProps, DisabledProps, InvalidProps {
+  /** Native id — falls back to FormItem field id when nested */
+  id?: string;
+  /** Native name — falls back to FormItem `prop` when nested */
+  name?: string;
   data?: TransferItem[];
   modelValue?: (string | number)[];
   filterable?: boolean;

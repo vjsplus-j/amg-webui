@@ -1,10 +1,11 @@
 import type { BaseProps, DisabledProps } from '@amg-webui/types'
+import type { LocaleKey } from '@amg-webui/locale'
 
 export interface SettingItem {
   key: string
   label?: string
   /** i18n key — resolved when label is omitted */
-  labelKey?: string
+  labelKey?: LocaleKey
   type: 'switch' | 'select' | 'text'
   value?: unknown
   options?: { label: string; value: unknown }[]
@@ -13,7 +14,7 @@ export interface SettingItem {
 export interface SettingGroup {
   id: string
   title?: string
-  titleKey?: string
+  titleKey?: LocaleKey
   items: SettingItem[]
 }
 

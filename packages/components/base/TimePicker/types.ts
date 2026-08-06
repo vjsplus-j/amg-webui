@@ -1,6 +1,10 @@
-import type { BaseProps, DisabledProps } from '@amg-webui/types'
+import type { BaseProps, DisabledProps, InvalidProps } from '@amg-webui/types'
 
-export interface TimePickerProps extends BaseProps, DisabledProps {
+export interface TimePickerProps extends BaseProps, DisabledProps, InvalidProps {
+  /** Native id — falls back to FormItem field id when nested */
+  id?: string
+  /** Native name — falls back to FormItem `prop` when nested */
+  name?: string
   modelValue?: string | Date | null
   placeholder?: string
   showSeconds?: boolean
@@ -9,7 +13,6 @@ export interface TimePickerProps extends BaseProps, DisabledProps {
   secondStep?: number
   clearable?: boolean
   readonly?: boolean
-  invalid?: boolean
   ariaLabel?: string
 }
 

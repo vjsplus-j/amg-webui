@@ -54,4 +54,4 @@ export default {
   'auth.terms': '服務條款',
   'auth.privacy': '隱私政策',
   'auth.and': '和',
-} as Record<string, string>
+}

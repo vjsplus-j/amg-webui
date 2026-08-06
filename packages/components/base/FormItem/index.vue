@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { inject, computed, watch, onUnmounted } from 'vue'
+import { inject, computed, watch, onUnmounted, provide } from 'vue'
 import { FORM_INJECTION_KEY } from '../Form/types'
 import type { FormRule } from '../Form/types'
+import { FORM_ITEM_INJECTION_KEY } from './types'
 import './style.scss'
 
 let uidSeq = 0
@@ -31,6 +32,8 @@ const fieldId = `vp-form-item-${++uidSeq}`
 const labelId = `${fieldId}-label`
 const errorId = `${fieldId}-error`
 
+const propRef = computed(() => props.prop)
+
 const error = computed(() => {
   if (!props.prop || !form) return null
   return form.getError(props.prop)
@@ -46,6 +49,8 @@ const ruleRequired = computed(() => {
 
 const isRequired = computed(() => props.required || ruleRequired.value)
 
+const isDisabled = computed(() => Boolean(form?.disabled.value))
+
 const labelStyle = computed(() => {
   const width = props.labelWidth ?? form?.labelWidth.value
   return width ? { width } : undefined
@@ -55,7 +60,7 @@ const rootClass = computed(() => [
   'vp-form-item',
   {
     'vp-form-item--error': Boolean(error.value),
-    'vp-form-item--disabled': Boolean(form?.disabled.value)
+    'vp-form-item--disabled': isDisabled.value
   },
   props.class
 ])
@@ -71,6 +76,17 @@ async function validate() {
   emit('validate', err)
   return err
 }
+
+provide(FORM_ITEM_INJECTION_KEY, {
+  inputId: fieldId,
+  errorId,
+  labelId,
+  prop: propRef,
+  error,
+  required: isRequired,
+  disabled: isDisabled,
+  validate
+})
 
 let stopWatch: (() => void) | undefined
 if (props.prop && form) {

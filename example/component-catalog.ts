@@ -4,6 +4,7 @@
  */
 import catalog from './component-catalog.json'
 import { componentMaturity, type MaturityLevel } from './component-zones'
+import type { LocaleKey } from '@amg-webui/locale'
 
 export type CatalogCategoryId =
   | 'general'
@@ -18,8 +19,8 @@ export type CatalogCategoryId =
 export interface CatalogEntry {
   name: string
   category: CatalogCategoryId
-  titleKey: string
-  leadKey?: string
+  titleKey: LocaleKey
+  leadKey?: LocaleKey
   maturity: MaturityLevel
 }
 
@@ -34,7 +35,7 @@ export const CATALOG_CATEGORY_ORDER: CatalogCategoryId[] = [
   'industry'
 ]
 
-export const CATALOG_CATEGORY_TITLE_KEYS: Record<CatalogCategoryId, string> = {
+export const CATALOG_CATEGORY_TITLE_KEYS: Record<CatalogCategoryId, LocaleKey> = {
   general: 'nav.base.category.general',
   layout: 'nav.base.category.layout',
   navigation: 'nav.base.category.navigation',
@@ -84,8 +85,8 @@ function buildEntries(): CatalogEntry[] {
       out.push({
         name,
         category,
-        titleKey: meta?.titleKey ?? componentTitleKey(name),
-        leadKey: meta?.leadKey,
+        titleKey: (meta?.titleKey ?? componentTitleKey(name)) as LocaleKey,
+        leadKey: meta?.leadKey as LocaleKey | undefined,
         maturity: componentMaturity(name).level
       })
     }

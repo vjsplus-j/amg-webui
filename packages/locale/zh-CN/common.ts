@@ -59,4 +59,5 @@ export default {
   'chrome.current': '当前：{label}',
   'chrome.brandFoot': 'AMG-WebUI · packages 架构',
   'chrome.stackLayers': 'base · business · theme · hooks',
-} as Record<string, string>
+  'common.today': '今天',
+} as const

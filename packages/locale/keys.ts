@@ -1,4 +1,9 @@
-/** Canonical message keys — import these instead of raw strings where possible */
+import type { LocaleKey } from './message-schema'
+
+/** Nested namespace whose leaves must be valid LocaleKey (compile-fail otherwise). */
+type LocaleKeyTree = LocaleKey | { readonly [key: string]: LocaleKeyTree }
+
+/** Canonical message keys — prefer these over raw strings */
 export const LocaleKeys = {
   common: {
     loading: 'common.loading',
@@ -45,6 +50,28 @@ export const LocaleKeys = {
     columns: 'common.columns'
   },
   component: {
+    richText: {
+      toolbar: 'component.rich-text.toolbar',
+      bold: 'component.rich-text.bold',
+      italic: 'component.rich-text.italic',
+      underline: 'component.rich-text.underline',
+      list: 'component.rich-text.list',
+      orderedList: 'component.rich-text.orderedList',
+      heading: 'component.rich-text.heading',
+      quote: 'component.rich-text.quote',
+      code: 'component.rich-text.code',
+      link: 'component.rich-text.link',
+      linkHref: 'component.rich-text.linkHref',
+      unlink: 'component.rich-text.unlink',
+      pastePlain: 'component.rich-text.pastePlain',
+      undo: 'component.rich-text.undo',
+      redo: 'component.rich-text.redo',
+      placeholder: 'component.rich-text.placeholder'
+    },
+    schemaRenderer: {
+      unknown: 'component.schema-renderer.unknown',
+      empty: 'component.schema-renderer.empty'
+    },
     pagination: {
       /** Pagination nav landmark label */
       aria: 'component.pagination.aria'
@@ -592,6 +619,9 @@ export const LocaleKeys = {
       done: 'industry.vcr.done'
     }
   }
-} as const
+} as const satisfies LocaleKeyTree
 
-export type LocaleKeyPath = string
+/** @deprecated Use `LocaleKey` from message-schema / package root */
+export type LocaleKeyPath = LocaleKey
+
+export type { LocaleKey }

@@ -13,9 +13,11 @@ export interface RadioGroupContext {
 
 export interface RadioProps extends BaseProps, DisabledProps {
   modelValue?: unknown
+  id?: string
   value: unknown
   label?: string
   name?: string
+  invalid?: boolean
   size?: Size
 }
 

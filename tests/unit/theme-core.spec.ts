@@ -95,4 +95,81 @@ describe('Theme Core (SSR-safe)', () => {
     expect(storage.getItem('app-a-design-v3')).toBe('ferrari')
     expect(storage.getItem('amg-webui-design-v3')).toBeNull()
   })
+
+  it('generatePrimaryScale yields full stop ladder + semantic bridges', async () => {
+    const { generatePrimaryScale, parseCssColor } = await import('@amg-webui/theme/core')
+    expect(parseCssColor('not-a-color')).toBeNull()
+    expect(generatePrimaryScale('nope')).toEqual({})
+
+    const scale = generatePrimaryScale('#3b82f6')
+    expect(scale['--primary-500']).toBe('#3b82f6')
+    expect(scale['--primary-50']).toMatch(/^#[0-9a-f]{6}$/)
+    expect(scale['--primary-900']).toMatch(/^#[0-9a-f]{6}$/)
+    expect(scale['--ds-accent']).toBe('#3b82f6')
+    expect(scale['--ds-focus-ring']).toMatch(/^#[0-9a-f]{6}$/)
+  })
+
+  it('setPrimary + serializeStyle for SSR injection', async () => {
+    const core = await import('@amg-webui/theme/core')
+    const runtime = core.createThemeRuntime({
+      host: core.createNullHost(),
+      storage: core.createMemoryStorage(),
+      persist: false
+    })
+    runtime.init({ overrides: { design: 'mercedes' } })
+    runtime.setPrimary('#ef4444')
+    expect(runtime.getState().customTokens['--primary-500']).toBe('#ef4444')
+
+    const css = runtime.serializeStyle(':root')
+    expect(css).toContain('--primary-500:#ef4444')
+    expect(css).toContain('--ds-accent:#ef4444')
+    expect(runtime.toStyleTag()).toMatch(/^<style id="amg-theme-ssr">/)
+  })
+
+  it('two runtimes stay isolated', async () => {
+    const core = await import('@amg-webui/theme/core')
+    const stylesA = new Map<string, string>()
+    const stylesB = new Map<string, string>()
+    const makeHost = (styles: Map<string, string>) => ({
+      setAttribute() {},
+      setStyleProperty(name: string, value: string | null) {
+        if (value === null) styles.delete(name)
+        else styles.set(name, value)
+      }
+    })
+    const a = core.createThemeRuntime({
+      host: makeHost(stylesA),
+      storage: core.createMemoryStorage(),
+      persist: false
+    })
+    const b = core.createThemeRuntime({
+      host: makeHost(stylesB),
+      storage: core.createMemoryStorage(),
+      persist: false
+    })
+    a.setPrimary('#111111')
+    b.setPrimary('#eeeeee')
+    expect(stylesA.get('--primary-500')).toBe('#111111')
+    expect(stylesB.get('--primary-500')).toBe('#eeeeee')
+    expect(a.getState().customTokens['--primary-500']).not.toBe(
+      b.getState().customTokens['--primary-500']
+    )
+  })
+
+  it('createShadowHost paints attrs/vars on shadow host element', async () => {
+    const core = await import('@amg-webui/theme/core')
+    const hostEl = document.createElement('div')
+    document.body.appendChild(hostEl)
+    const shadow = hostEl.attachShadow({ mode: 'open' })
+    const runtime = core.createThemeRuntime({
+      host: core.createShadowHost(shadow),
+      storage: core.createMemoryStorage(),
+      persist: false
+    })
+    runtime.init({ overrides: { design: 'porsche' } })
+    runtime.applyCustom({ '--ds-accent': '#00ff00' })
+    expect(hostEl.getAttribute('data-design')).toBe('porsche')
+    expect(hostEl.style.getPropertyValue('--ds-accent')).toBe('#00ff00')
+    hostEl.remove()
+  })
 })

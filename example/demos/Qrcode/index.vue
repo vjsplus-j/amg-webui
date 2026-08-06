@@ -21,7 +21,7 @@ import { demoSfc } from '../../components/demo/demoCode'
 import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
-const { t } = useLocale()
+const { t, tDyn } = useLocale()
 
 type QrcodeExample = {
   standard: QrcodeStandard
@@ -74,7 +74,7 @@ const activeValue = ref(examples[0]!.value)
 const activeErrorCorrection = ref<QrcodeErrorCorrectionLevel>(examples[0]!.errorCorrection)
 
 const standardOptions = computed(() =>
-  examples.map((item) => ({ label: t(item.titleKey), value: item.standard }))
+  examples.map((item) => ({ label: tDyn(item.titleKey), value: item.standard }))
 )
 
 watch(activeStandard, (standard) => {
@@ -142,7 +142,7 @@ const eventRows = computed<ApiRow[]>(() => [
         <Card
           v-for="item in examples"
           :key="item.standard"
-          :title="t(item.titleKey)"
+          :title="tDyn(item.titleKey)"
           :subtitle="item.standardText"
         >
           <Space direction="vertical" block size="md">

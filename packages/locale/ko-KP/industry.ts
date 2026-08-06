@@ -115,4 +115,4 @@ export default {
   'industry.vcr.pending': '대기 중',
   'industry.vcr.running': '진행 중',
   'industry.vcr.done': '완료',
-} as Record<string, string>
+}

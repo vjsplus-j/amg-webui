@@ -99,15 +99,3 @@ export function truncateText(text: string, maxLength: number, suffix: string = '
   if (text.length <= maxLength) return text
   return text.substring(0, maxLength) + suffix
 }
-
-export function escapeHtml(text: string): string {
-  const div = document.createElement('div')
-  div.textContent = text
-  return div.innerHTML
-}
-
-export function unescapeHtml(text: string): string {
-  const div = document.createElement('div')
-  div.innerHTML = text
-  return div.textContent || ''
-}

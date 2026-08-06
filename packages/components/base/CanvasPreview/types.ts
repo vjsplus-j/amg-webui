@@ -1,5 +1,6 @@
 import type { BaseProps } from "@amg-webui/types";
 import type { CanvasNodeData } from "@amg-webui/utils";
+import type { ComponentRegistry, SchemaRenderMode } from "@amg-webui/lowcode";
 
 export interface CanvasPreviewProps extends BaseProps {
   nodes?: CanvasNodeData[];
@@ -18,6 +19,9 @@ export interface CanvasPreviewProps extends BaseProps {
   title?: string;
   emptyText?: string;
   ariaLabel?: string;
+  /** When set with renderMode=`component`, mounts real components via registry. */
+  registry?: ComponentRegistry;
+  renderMode?: SchemaRenderMode;
 }
 
 export interface CanvasPreviewEmits {

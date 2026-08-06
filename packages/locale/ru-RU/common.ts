@@ -59,4 +59,5 @@ export default {
   'chrome.current': 'Current: {label}',
   'chrome.brandFoot': 'AMG-WebUI · packages architecture',
   'chrome.stackLayers': 'base · business · theme · hooks',
-} as Record<string, string>
+  'common.today': 'Сегодня',
+}

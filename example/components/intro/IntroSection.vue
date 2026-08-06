@@ -2,9 +2,10 @@
 import { computed } from 'vue'
 import { Card } from '@amg-webui/components/base'
 import { useLocale } from '@amg-webui/hooks'
+import type { LocaleKey } from '@amg-webui/locale'
 
 const props = defineProps<{
-  titleKey: string
+  titleKey: LocaleKey
 }>()
 
 const { t, locale } = useLocale()

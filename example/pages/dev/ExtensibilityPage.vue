@@ -40,7 +40,7 @@ interface PreviewNode {
   children?: PreviewNode[]
 }
 
-const { t, locale } = useLocale()
+const { t, tDyn, locale } = useLocale()
 const fileInput = ref<HTMLInputElement | null>(null)
 const selectedId = ref('builtin.slot-pack')
 const enabledSlots = ref<SlotName[]>(['header', 'prepend', 'footer', 'actions'])
@@ -330,7 +330,7 @@ const adapterEnabled = computed(() => isRendererEnabled('token-adapter'))
         <div v-if="manifestChecked" class="manifest-result" :data-valid="manifestIssues.length === 0">
           <Tag :severity="manifestIssues.length ? 'danger' : 'success'">{{ t(manifestIssues.length ? LocaleKeys.error.validation : 'page.dev.extensibility.manifest.valid') }}</Tag>
           <ul v-if="manifestIssues.length">
-            <li v-for="(issue, index) in manifestIssues" :key="`${issue.key}-${index}`">{{ t(issue.key, issue.field ? { field: issue.field } : undefined) }}</li>
+            <li v-for="(issue, index) in manifestIssues" :key="`${issue.key}-${index}`">{{ tDyn(issue.key, issue.field ? { field: issue.field } : undefined) }}</li>
           </ul>
         </div>
       </Card>
@@ -385,7 +385,7 @@ const adapterEnabled = computed(() => isRendererEnabled('token-adapter'))
       <template #extra><Button size="xs" variant="text" icon="Trash2" :label="t(LocaleKeys.button.delete)" :disabled="!events.length" @click="events = []" /></template>
       <p v-if="!events.length" class="hint">{{ t(LocaleKeys.common.noData) }}</p>
       <ol v-else class="event-list">
-        <li v-for="event in events" :key="event.id" :data-event-id="event.id"><time>{{ event.time }}</time><Tag size="xs">{{ t(event.actionKey) }}</Tag><code>{{ event.target }}</code></li>
+        <li v-for="event in events" :key="event.id" :data-event-id="event.id"><time>{{ event.time }}</time><Tag size="xs">{{ tDyn(event.actionKey) }}</Tag><code>{{ event.target }}</code></li>
       </ol>
     </Card>
   </div>

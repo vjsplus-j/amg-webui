@@ -14,17 +14,21 @@
 | `npm run create:component -- base Foo` | 一键新建 base 组件骨架（`vp-`、types、style、桩） |
 | `npm run create:component -- business bar` | 一键新建 business 模块骨架 |
 | `npm run generate:entry` | 扫描 `packages/components/**` 自动生成 / 刷新 `index.ts` 导出 |
-| `npm run extract:i18n` | 批量扫描文案 → 补全 `LocaleKeys` + **全部**语种模板（缺 key 告警） |
+| `npm run generate:locale-types` | 从 zh-CN 生成 `LocaleKey` / `LocaleMessages`（`message-schema.ts`） |
+| `npm run extract:i18n` | 重生 schema + 校验全部语种 key 对齐 + `LocaleKeys` 叶子 ⊆ zh-CN（缺 key / 不对齐 = 失败） |
 | `npm run generate:icons` | 刷新图标目录 / 解析表 |
 | `npm run validate:catalog` | 校验 `example/component-catalog.json` ↔ base 目录覆盖 |
-| `npm run score:maturity` | 组件成熟度评分（脚手架 vs 实现深度） |
+| `npm run score:maturity` | 组件成熟度评分（**能力档** thin/form/interaction/composite + 深度 stub→ready；目录数≠成熟度） |
 | `npm run sync:example-zones` | 同步 example 专区侧栏 / 区域元数据 |
 | `npm run generate:vitepress-api` | 根据 `types.ts` 生成 / 刷新 docs 组件 API stub |
 | `node scripts/classify-mvp.mjs` | 深化波次清单 → `scripts/.component-waves.json` |
 | `node scripts/check-coverage.mjs` | catalog / base 目录覆盖核对 |
-| `npm run build` / `build:lib` | 库发包构建 → `dist/` |
+| `npm run build` / `build:lib` | **full**：主库 ESM+UMD+css+dts → `dist/`，再编 skill + theme |
+| `npm run build:ondemand` | **on-demand**：多入口 ESM → `dist/es/**`（组件 / 业务域可 tree-shake） |
+| `npm run build:themes` | **multi-theme**：六品牌 CSS → `dist/themes/<brand>.css` |
+| `npm run build:dts` | **dts**：仅刷新类型 → `dist/**/*.d.ts`（不重打 JS/CSS） |
 | `npm run build:skill` | 仅构建独立 Skill Runtime → `dist/skill/`（ESM + CJS + `.d.ts`） |
-| `npm run build:theme` | 仅构建主题包 → `dist/theme/`（`index` / `core` + `style.css`） |
+| `npm run build:theme` | 仅构建主题运行时包 → `dist/theme/`（`index` / `core` + `style.css`） |
 | `npm run build:example` | example 本地冒烟 → `example-dist/`（**不上线**） |
 | `npm run docs:dev` / `docs:build` | 官方文档站本地编写 / **可部署**构建 |
 | `npm run test` | Vitest |
@@ -41,15 +45,42 @@
 | `@amg-webui/components/base` | `packages/components/base` |
 | `@amg-webui/components/business` | `packages/components/business` |
 | `@amg-webui/telemetry` | `packages/telemetry/index.ts`（**写死到文件**，避免目录解析双实例） |
+| `@amg-webui/security` | `packages/security/index.ts` |
+| `@amg-webui/lowcode` | `packages/lowcode/index.ts` |
 | `@amg-webui/skill` | `packages/skill/index.ts`（Core + Vue 集成） |
 | `@amg-webui/skill/core` | `packages/skill/core.ts`（框架无关） |
 | `@amg-webui/theme` | `packages/theme/index.ts`（本地）；发包 → `dist/theme` |
 | `@amg-webui/theme/core` | `packages/theme/core.ts`（无 DOM Core） |
 | `@amg-webui/hooks` · `locale` · `icons` · … | 对应 `packages/*` |
 
-`package.json` `exports` 同步暴露：`.` · `./telemetry` · `./skill` · `./skill/core` · `./theme` · `./theme/core` · `./theme/style.css` · `./icons` · `./components/base` · `./components/business`。
+`package.json` `exports` 同步暴露：`.` · `./telemetry` · `./security` · `./lowcode` · `./skill` · `./skill/core` · `./theme` · `./theme/core` · `./theme/style.css` · `./icons` · `./components/base` · `./components/business` · `./es/*` · `./themes/*`。
 
 Skill / Theme 的 subpath 指向 `dist/skill/` · `dist/theme/` 独立产物；根入口 `packages/index.ts` **禁止** re-export Skill。Theme 根入口可再导出服务，但 SSR / 微前端应优先 `theme/core`。
+
+---
+
+## 构建模式（`build/index.mjs`）
+
+入口：`node build/index.mjs <mode>`。未知 mode **非 0 退出**并打印 usage，禁止静默回落 `full`。
+
+| Mode | npm | 可观测产物 | 配置 / 脚本 |
+|------|-----|------------|-------------|
+| **full** | `build:lib` | `dist/amg-webui.{js,umd.cjs}` · `style.css` · types · `dist/skill/` · `dist/theme/` | `vite.config.ts` → skill → theme |
+| **on-demand** | `build:ondemand` | `dist/es/components/base/<Name>/…` · `dist/es/components/business/<domain>/…`（无 UMD 胖包） | `vite.ondemand.config.ts` |
+| **multi-theme** | `build:themes` | `dist/themes/{mercedes,linear,porsche,lamborghini,ferrari,apple}.css`（与 `dist/theme/` JS 运行时分离） | `vite.themes.config.ts` |
+| **dts** | `build:dts` | 刷新 `dist/**/*.d.ts`；不强制重编 JS/CSS | `build/emit-dts.mjs` + `tsconfig.dts.json` |
+| **skill** | `build:skill` | `dist/skill/` | `vite.skill.config.ts` |
+| **theme** | `build:theme` | `dist/theme/` | `vite.theme.config.ts` |
+
+验收冒烟：
+
+1. `node build/index.mjs on-demand` → 存在例如 `dist/es/components/base/Button/index.js`
+2. `node build/index.mjs multi-theme` → 六品牌 CSS，内容/体积随品牌不同
+3. `node build/index.mjs dts` → 更新 d.ts
+4. `node build/index.mjs nope` → exit ≠ 0 + usage
+5. `build:lib` 行为不回归
+
+一次性 `patch-*` 类脚本不得冒充长期构建入口；模式差异必须是**真实产物差异**，禁止只改注释。
 
 ---
 
@@ -60,9 +91,11 @@ Skill / Theme 的 subpath 指向 `dist/skill/` · `dist/theme/` 独立产物；�
 3. **i18n**：提取硬编码字符串候选；新 key 同步 **全部** locale 目录；缺失 = CI fail。  
 4. **性能包形**：产物 ESM 可 tree-shake；组件样式可拆；禁止无 sideEffects 的脏 barrel 拖垮体积。  
 5. **Catalog**：通用 / 布局 / … / 行业分类与 `validate:catalog` 对齐；新 general 组件登记 `example/component-catalog.json`。  
-6. **Telemetry**：交互件 `trackEmit` 旁路；`telemetry` prop 在 `withDefaults` 中默认 **`undefined`**（防 Vue Boolean 省略 → `false`）。  
-7. **Skill Runtime**：Core 禁止依赖 Vue / components / telemetry / DOM；Pipeline 条件只允许 `registerCondition()` 注册名，禁止执行配置字符串；实例与 Scope 销毁必须清理资源。
-8. **完成必验**：改完 `packages/` / `example/` 至少 `npx vue-tsc --noEmit`；关键路径用 example 打开验证（见 `vue3-amg-webui-verify-before-done.mdc`）。
+6. **Telemetry**：交互件 `trackEmit` 旁路；`telemetry` prop 在 `withDefaults` 中默认 **`undefined`**（防 Vue Boolean 省略 → `false`）。
+7. **Security**：富文本 / `v-html` / 链接出口走 `@amg-webui/security`；禁止裸 `innerHTML` 外部值。
+8. **Low-code**：画布 Schema 经注册表渲染；代码生成只输出源码文本，禁止 eval。
+9. **Skill Runtime**：Core 禁止依赖 Vue / components / telemetry / security / lowcode / DOM；Pipeline 条件只允许 `registerCondition()` 注册名，禁止执行配置字符串；实例与 Scope 销毁必须清理资源。
+10. **完成必验**：改完 `packages/` / `example/` 至少 `npx vue-tsc --noEmit`；关键路径用 example 打开验证（见 `vue3-amg-webui-verify-before-done.mdc`）。
 
 ---
 
@@ -105,3 +138,24 @@ scripts/
 ```
 
 一次性 `patch-*` / `upgrade-*` / `fix-*` / `inject-*` / demo 生成脚本**不得长期入库**；用完即删。新自动化优先挂到上表 npm 脚本。
+
+---
+
+## 组件成熟度评分契约（`score:maturity` v2）
+
+产物：`example/component-maturity.json`（example 调试用启发式，**非**对外 1.0 宣称）。
+
+| 轴 | 含义 |
+|----|------|
+| `total` | **仅目录库存**（base 文件夹数）。禁止把它读成「已成熟组件数」或 1.0 就绪度。 |
+| `byCapability` | **主轴**：`thin`（薄封装）· `form`（FormItem 自动接线）· `interaction`（权限/确认/节流等完整交互）· `composite`（复合面） |
+| `summary` / `level` | **深度副轴**：`stub` → `shell` → `beta` → `ready`（`ready` = 该能力档基线，**≠** 库整体 1.0） |
+
+硬规则：
+
+- 表单族（InputText / Textarea / Select…）缺 `useFormItem` → 强制 `capability: thin` + `level` 上限 `shell`。
+- 原生文本控件还须 `useNativeInputAttrs`（`inheritAttrs: false` + 落到真实 input）才可进 form 档 `ready`。
+- `thin` **永不**标 `ready`；行数/props 堆高不能单独刷成熟度。
+- 强组件参照：`Button`（interaction）；表单参照：已接线的 `InputText`（form）。
+
+控制台会打印 `byCapability` 与 `thinFormGaps`。Gallery 仍可按 depth level 筛选；读报告时先看能力档。

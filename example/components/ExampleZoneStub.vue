@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
+import type { LocaleKey } from '@amg-webui/locale'
 import ExamplePageHero from './ExamplePageHero.vue'
 
 const props = defineProps<{
   title?: string
-  titleKey?: string
+  titleKey?: LocaleKey
   subtitle?: string
-  subtitleKey?: string
+  subtitleKey?: LocaleKey
   checklist?: string[]
-  checklistKeys?: string[]
+  checklistKeys?: LocaleKey[]
 }>()
 
 const { t, locale } = useLocale()

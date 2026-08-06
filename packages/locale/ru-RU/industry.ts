@@ -115,4 +115,4 @@ export default {
   'industry.vcr.pending': 'Ожидание',
   'industry.vcr.running': 'Выполняется',
   'industry.vcr.done': 'Готово',
-} as Record<string, string>
+}

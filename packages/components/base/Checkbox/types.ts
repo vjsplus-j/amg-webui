@@ -13,9 +13,12 @@ export interface CheckboxGroupContext {
 
 export interface CheckboxProps extends BaseProps, DisabledProps {
   modelValue?: boolean
+  id?: string
+  name?: string
   value?: unknown
   label?: string
   indeterminate?: boolean
+  invalid?: boolean
   size?: Size
 }
 

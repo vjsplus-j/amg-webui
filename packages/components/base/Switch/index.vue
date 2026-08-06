@@ -5,7 +5,11 @@ import { LocaleKeys } from '@amg-webui/locale'
 import { trackEmit } from '@amg-webui/telemetry'
 import type { SwitchProps, SwitchEmits } from './types'
 import { useSwitch } from './useSwitch'
+import { useFormItem } from '../FormItem/useFormItem'
+import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
 import './style.scss'
+
+defineOptions({ inheritAttrs: false, name: 'Switch' })
 
 const props = withDefaults(defineProps<SwitchProps>(), {
   modelValue: false,
@@ -18,9 +22,26 @@ const props = withDefaults(defineProps<SwitchProps>(), {
 const emit = defineEmits<SwitchEmits>()
 const { t } = useLocale()
 
+const {
+  inputId,
+  isDisabled: formDisabled,
+  isInvalid,
+  isRequired,
+  ariaDescribedby,
+  name: resolvedName,
+  validateOnChange
+} = useFormItem({
+  id: () => props.id,
+  disabled: () => props.disabled,
+  invalid: () => props.invalid,
+  name: () => props.name
+})
+
+const { nativeAttrs } = useNativeInputAttrs()
+
 const switchSource = computed(() => ({
   modelValue: props.modelValue,
-  disabled: props.disabled,
+  disabled: formDisabled.value,
   loading: props.loading,
   size: props.size,
   inlinePrompt: props.inlinePrompt,
@@ -37,6 +58,7 @@ function commit(next: boolean) {
   if (isDisabled.value) return
   emit('update:modelValue', next)
   emit('change', next)
+  void validateOnChange()
   trackEmit({
     component: 'Switch',
     type: 'change',
@@ -55,14 +77,20 @@ const handleChange = (event: Event) => {
 <template>
   <label :class="[rootClass, props.class]" :style="style">
     <input
+      v-bind="nativeAttrs"
+      :id="inputId"
       class="vp-switch__input"
       type="checkbox"
       role="switch"
+      :name="resolvedName"
       :checked="modelValue"
       :disabled="isDisabled"
       :aria-checked="modelValue"
       :aria-label="switchAriaLabel"
       :aria-busy="loading || undefined"
+      :aria-invalid="isInvalid || undefined"
+      :aria-required="isRequired || undefined"
+      :aria-describedby="ariaDescribedby"
       @change="handleChange"
     />
     <span class="vp-switch__track" aria-hidden="true">

@@ -1,11 +1,13 @@
 /** Shared highlight style for all DemoCode panels (example-only, in-house highlighter). */
 
+import type { LocaleKey } from '@amg-webui/locale'
+
 export type DemoCodeStyleId = 'idea' | 'github' | 'vscode' | 'atom' | 'vi' | 'vim'
 
 export interface DemoCodeStyleOption {
   id: DemoCodeStyleId
   /** i18n key under example.doc.* */
-  labelKey: string
+  labelKey: LocaleKey
 }
 
 export const DEMO_CODE_STYLES: DemoCodeStyleOption[] = [

@@ -1,8 +1,7 @@
 import type { FormRule } from './types'
-import { LocaleService } from '@amg-webui/locale'
-import { LocaleKeys } from '@amg-webui/locale'
+import { LocaleService, LocaleKeys, type LocaleKey } from '@amg-webui/locale'
 
-function t(key: string, params?: Record<string, string | number>) {
+function t(key: LocaleKey, params?: Record<string, string | number>) {
   return LocaleService.t(key, params)
 }
 

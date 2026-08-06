@@ -31,9 +31,9 @@
 
   &.p-inputtext-invalid {
     border-color: var(--danger-500);
-    
+
     &:focus {
-      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--danger-500) 20%, transparent);
     }
   }
 

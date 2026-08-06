@@ -9,6 +9,8 @@
 | `components/base` | `@amg-webui/components/base` | 纯 UI 原语；**禁止**依赖 business |
 | `components/business` | `@amg-webui/components/business` | 五大域：`login` · `users` · `orders` · `content` · `settings` |
 | `telemetry` | `@amg-webui/telemetry` | Vp Telemetry 交互观测内核（**默认关闭**） |
+| `security` | `@amg-webui/security` | 安全防护层：消毒 / 协议拦截 / 表单过滤 |
+| `lowcode` | `@amg-webui/lowcode` | 低代码 Schema：注册表 / 校验 / 代码生成 |
 | `skill` | `@amg-webui/skill` · `@amg-webui/skill/core` | Skill Runtime（**experimental**；独立可选） |
 | `theme` | `@amg-webui/theme` | 六套 designmd 主题 · Token · Theme Studio |
 | `locale` | `@amg-webui/locale` | 7 语种 · `LocaleKeys` · `LocaleService` |

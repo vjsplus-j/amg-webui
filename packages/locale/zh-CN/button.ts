@@ -14,4 +14,4 @@ export default {
   'button.getStarted': '开始使用',
   'button.learnMore': '了解更多',
   'button.enter': '进入',
-} as Record<string, string>
+} as const

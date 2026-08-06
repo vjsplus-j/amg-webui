@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { provide, ref, computed, toRef } from 'vue'
 import { trackEmit } from '@amg-webui/telemetry'
+import { sanitizeModelStrings } from '@amg-webui/security'
 import { FORM_INJECTION_KEY } from './types'
 import { validateRules } from './useFormValidate'
 import './style.scss'
@@ -12,6 +13,7 @@ const props = withDefaults(
     disabled?: boolean
     labelWidth?: string
     labelPosition?: 'left' | 'top'
+    sanitizeOnSubmit?: boolean
     trackId?: string
     telemetry?: boolean
     class?: string
@@ -20,6 +22,7 @@ const props = withDefaults(
   {
     model: () => ({}),
     labelPosition: 'left',
+    sanitizeOnSubmit: false,
     telemetry: undefined
   }
 )
@@ -113,6 +116,10 @@ const handleSubmit = async (event: Event) => {
   event.preventDefault()
   const valid = await validate()
   if (valid) {
+    if (props.sanitizeOnSubmit && props.model) {
+      const cleaned = sanitizeModelStrings(props.model)
+      Object.assign(props.model, cleaned)
+    }
     trackEmit({
       component: 'Form',
       type: 'submit',

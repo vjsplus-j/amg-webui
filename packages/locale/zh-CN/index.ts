@@ -9,8 +9,9 @@ import nav from './nav'
 import component from './component'
 import industry from './industry'
 import exampleDoc from './exampleDoc'
+import type { LocaleMessages } from '../message-schema'
 
-export default {
+const zhCN = {
   ...common,
   ...button,
   ...page,
@@ -22,4 +23,6 @@ export default {
   ...component,
   ...industry,
   ...exampleDoc
-} as Record<string, string>
+} as LocaleMessages
+
+export default zhCN

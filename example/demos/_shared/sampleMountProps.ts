@@ -1,4 +1,4 @@
-import { LocaleKeys, LocaleService } from "@amg-webui/locale";
+import { LocaleKeys, LocaleService, type LocaleKey } from "@amg-webui/locale";
 import type { CanvasNodeData } from "@amg-webui/utils";
 import type { NavItem } from "@amg-webui/utils/nav";
 
@@ -20,7 +20,7 @@ const PLACEHOLDER_VIDEO =
     </svg>`,
   );
 
-function t(key: string, params?: Record<string, string | number>) {
+function t(key: LocaleKey, params?: Record<string, string | number>) {
   return LocaleService.t(key, params);
 }
 

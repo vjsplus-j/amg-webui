@@ -31,7 +31,7 @@ const currentDesign = ref<DesignStyleName>(ThemeService.getCurrentStyle())
 const currentScheme = ref<ColorScheme>(ThemeService.getScheme())
 const currentIconStyle = ref<IconStyleName>(IconStyleService.getCurrentStyle())
 const currentFont = ref<FontName>(FontService.getCurrentFont())
-const currentLocale = ref<LocaleCode>(LocaleService.getLocale())
+const currentLocale = ref<string>(LocaleService.getLocale())
 
 const localeOptions = computed(() =>
   LOCALE_CODES.map((code) => ({ label: LOCALE_META[code].label, value: code }))

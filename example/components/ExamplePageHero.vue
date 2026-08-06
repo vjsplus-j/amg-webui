@@ -2,15 +2,16 @@
 import { computed, useSlots } from 'vue'
 import { useRoute } from 'vue-router'
 import { useLocale } from '@amg-webui/hooks'
+import type { LocaleKey } from '@amg-webui/locale'
 
 const props = defineProps<{
   /** Literal title (e.g. catalog leaf name). Prefer titleKey when i18n. */
   title?: string
-  titleKey?: string
+  titleKey?: LocaleKey
   lead?: string
-  leadKey?: string
+  leadKey?: LocaleKey
   eyebrow?: string
-  eyebrowKey?: string
+  eyebrowKey?: LocaleKey
 }>()
 
 const route = useRoute()
@@ -21,7 +22,7 @@ const displayTitle = computed(() => {
   void locale.value
   if (props.titleKey) return t(props.titleKey)
   if (props.title != null && props.title !== '') return props.title
-  const metaKey = route.meta.titleKey as string | undefined
+  const metaKey = route.meta.titleKey
   if (metaKey) return t(metaKey)
   return ''
 })

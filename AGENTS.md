@@ -30,6 +30,18 @@ Cursor：`vue3-amg-webui-theme-studio.mdc`。
 默认关闭；`trackEmit` 旁路 `emit`；习惯 / 告警 / 错误分析；Sink 可插拔。  
 包：`@amg-webui/telemetry` · Provider：`TelemetryProvider` · example：`lab/telemetry`。
 
+## 安全防护层（锁定）
+
+见 **`docs/SECURITY.md`** · 包：`@amg-webui/security`。  
+`sanitizeHtml` · `isSafeHref` / `sanitizeUrl` · `filterDangerousInput` · `SecurityService`。  
+`RichText` / `Link` / `Button` 已接入；example：`lab/security`。
+
+## 低代码 Schema（锁定）
+
+见 **`docs/LOWCODE.md`** · 包：`@amg-webui/lowcode`。  
+注册表 · Schema 渲染（`SchemaRenderer` / `CanvasPreview`）· 校验/迁移 · `generateVueSfc`。  
+example：`lab/lowcode`。与 Skill Pipeline（逻辑编排）分离。
+
 ## Skill Runtime（实验性锁定）
 
 见 **`docs/SKILL_RUNTIME.md`** · `packages/skill/README.md` · Cursor：`vue3-amg-webui-skill-runtime.mdc`。源码目录：`packages/skill/`。
@@ -52,7 +64,7 @@ Cursor：`vue3-amg-webui-design-specs.mdc` · `vue3-amg-webui-tokens.mdc`。
 
 见 **`packages/locale/I18N.md`** · `LocaleKeys` · `LocaleService` · `useLocale()`。
 
-按钮 / 页标题 / 提示 / 错误文案统一走 key；Cursor：`vue3-amg-webui-i18n.mdc`。
+按钮 / 页标题 / 提示 / 错误文案统一走 key；**强类型 `LocaleKey`（缺 key 编译失败）** · 八语种含 **`ar-SA` RTL**；Cursor：`vue3-amg-webui-i18n.mdc`。
 
 ## 应用工作流 / example ↔ docs（锁定）
 

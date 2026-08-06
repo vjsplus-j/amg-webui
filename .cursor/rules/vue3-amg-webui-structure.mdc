@@ -12,6 +12,8 @@ VUE3-AMG-WEBUI/
 ├── packages/
 │   ├── components/        # 核心组件库（base + business 隔离）
 │   ├── telemetry/         # Vp Telemetry 交互观测内核（默认关闭）
+│   ├── security/          # 安全防护层（消毒 / 协议拦截 / 表单过滤）
+│   ├── lowcode/           # 低代码 Schema（注册表 / 校验 / 代码生成）
 │   ├── skill/             # 可选 Skill Runtime（Core + Vue；不进根入口）
 │   ├── hooks/             # 全局组合式 API（useTheme / useLocale / useTrackedEmit 等）
 │   ├── locale/            # 多语言包

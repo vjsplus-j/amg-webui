@@ -22,7 +22,7 @@ interface RuntimeConfig {
   zIndex: number
   namespace: string
   theme: DesignStyleName
-  locale: LocaleCode
+  locale: string
   validateMessages: Record<'required' | 'minLength' | 'pattern', string>
   componentDefaults: { Dialog: { closeOnEsc: boolean; closeOnOverlay: boolean } }
   button: { severity: Severity; clickGuard: Guard; wait: number; ripple: boolean }
@@ -39,7 +39,7 @@ const DIRECTIONS: ConfigProviderDirection[] = ['ltr', 'rtl']
 const SEVERITIES: Severity[] = ['default', 'primary', 'secondary', 'success', 'warning', 'danger', 'info']
 const GUARDS: Guard[] = ['none', 'debounce', 'throttle']
 const EFFECTS: Effect[] = ['solid', 'outlined', 'light', 'neon']
-const { t, locale: uiLocale } = useLocale()
+const { t, tDyn, locale: uiLocale } = useLocale()
 
 function clone<T>(value: T): T { return JSON.parse(JSON.stringify(value)) as T }
 function defaults(): RuntimeConfig {
@@ -77,7 +77,7 @@ const themeOptions = designStyles.map(({ name, label }) => ({ value: name, label
 const localeOptions = LOCALE_CODES.map((value) => ({ value, label: LOCALE_META[value].label }))
 const draftJson = computed(() => JSON.stringify(draft, null, 2))
 const dirty = computed(() => draftJson.value !== JSON.stringify(applied.value, null, 2))
-const noticeText = computed(() => notice.value ? t(notice.value.key, notice.value.params) : '')
+const noticeText = computed(() => notice.value ? tDyn(notice.value.key, notice.value.params) : '')
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
@@ -122,7 +122,7 @@ function addLog(actionKey: string, changed: string[]) {
   logs.value = logs.value.slice(0, 12)
 }
 function done(actionKey: string) {
-  notice.value = { severity: 'success', key: 'page.dev.config.status.completed', params: { action: t(actionKey) } }
+  notice.value = { severity: 'success', key: 'page.dev.config.status.completed', params: { action: tDyn(actionKey) } }
 }
 function invalid(path?: string) {
   notice.value = path
@@ -318,7 +318,7 @@ onMounted(() => {
       <p v-if="!logs.length" class="hint">{{ t(LocaleKeys.common.noData) }}</p>
       <ol v-else class="log-list">
         <li v-for="entry in logs" :key="entry.id">
-          <div><Tag :label="t(entry.actionKey)" size="sm" /><time :datetime="entry.at">{{ formatTime(entry.at) }}</time></div>
+          <div><Tag :label="tDyn(entry.actionKey)" size="sm" /><time :datetime="entry.at">{{ formatTime(entry.at) }}</time></div>
           <span>{{ t('page.dev.config.history.changed', { count: entry.paths.length }) }}</span>
           <code v-if="entry.paths.length">{{ entry.paths.join(', ') }}</code>
         </li>

@@ -18,6 +18,8 @@
     "dist",
     "packages/theme",
     "packages/telemetry",
+    "packages/security",
+    "packages/lowcode",
     "packages/icons",
     "packages/locale",
     "packages/hooks",
@@ -53,10 +55,22 @@
       "default": "./dist/theme/core.js"
     },
     "./theme/style.css": "./dist/theme/style.css",
+    "./es/*": "./dist/es/*",
+    "./themes/*": "./dist/themes/*",
     "./telemetry": {
       "types": "./packages/telemetry/index.ts",
       "import": "./packages/telemetry/index.ts",
       "default": "./packages/telemetry/index.ts"
+    },
+    "./security": {
+      "types": "./packages/security/index.ts",
+      "import": "./packages/security/index.ts",
+      "default": "./packages/security/index.ts"
+    },
+    "./lowcode": {
+      "types": "./packages/lowcode/index.ts",
+      "import": "./packages/lowcode/index.ts",
+      "default": "./packages/lowcode/index.ts"
     },
     "./skill": {
       "types": "./dist/skill/index.d.ts",
@@ -91,6 +105,9 @@
     "dev": "vite --config vite.example.config.ts",
     "build": "vue-tsc --noEmit && vite build",
     "build:lib": "node build/index.mjs full",
+    "build:ondemand": "node build/index.mjs on-demand",
+    "build:themes": "node build/index.mjs multi-theme",
+    "build:dts": "node build/index.mjs dts",
     "build:skill": "node build/index.mjs skill",
     "build:theme": "node build/index.mjs theme",
     "build:example": "vue-tsc --noEmit && vite build --config vite.example.config.ts",
@@ -101,6 +118,7 @@
     "sync:example-zones": "node scripts/sync-example-zones.mjs",
     "score:maturity": "node scripts/score-component-maturity.mjs",
     "validate:catalog": "node scripts/validate-component-catalog.mjs",
+    "generate:locale-types": "node scripts/generate-locale-types.mjs",
     "extract:i18n": "node scripts/extract-i18n.mjs",
     "test": "vitest run",
     "test:ssr": "vitest run tests/unit/ssr-env.spec.ts tests/unit/ssr-import.spec.ts tests/unit/theme-core.spec.ts",

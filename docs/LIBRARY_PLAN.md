@@ -18,9 +18,9 @@
 | 通用 catalog 加深 | ✅ Space / Spin / CopyText / Collapse / Statistic / CardWidgets（DnD）等入 `general` |
 | 交互 emit 契约 | ✅ Badge / FloatButton / Progress / Collapse / Statistic / Ellipsis / CopyText 等补齐 |
 | 工程护栏 | ✅ `validate:catalog` · `score:maturity` · `generate:icons` · `vue-tsc` 完成必验 |
-| base 目录规模 | ✅ catalog **285** 组件目录（含行业扩展；成熟度持续 deepen） |
-| 组件深化收口（2026-07-30） | ✅ stub0 · shell**8**（薄封装）· beta135 · ready129；curated demos≈全量；`vue-tsc`/`validate:catalog` 绿 |
-| 当前成熟度快照（2026-08-05） | 🧭 启发式评分：stub **0** · shell **6** · beta **32** · ready **247**；shell 为 ErrorModal / InfoModal / Notification / SuccessModal / Toast / WarnModal，仍需继续加深 |
+| base 目录规模 | 📦 catalog ~285 **目录库存**（含行业扩展）——**库存 ≠ 成熟度 / ≠ 1.0**；以 `score:maturity` 的 **capability** 为准 |
+| 组件深化收口（2026-07-30） | ✅ 波次收口记录见 CHANGELOG / COMPONENT_DEEPEN_PLAN；勿把历史 ready 计数当作当前能力档 |
+| 当前成熟度契约（v2） | 🧭 **能力档优先**：thin / form / interaction / composite + 深度 stub→ready；`thin` 永不 ready；表单缺 FormItem → shell；**非 1.0** |
 | 质量止血（2026-07-30） | ✅ exampleDoc FFFD=0；DemoSafeHost；低 beta≥50；Loading/Result 等 SFC Emits 修复；模块 transform 冒烟 |
 | **v0.1 子集** | ✅ 契约 **0.1.3**（npm 仍为 0.1.0）· Core∪B1–B4 去重 **140** · 当前 gold gaps **7** · `docs/V0_1_SUBSET.md` |
 | P4–P5 上架 | ⏳ 步 3–6 未完成 · **步 1+2 已合并完成**：`0.1.0` 试用合同 + `build:lib` 产物（见 `docs/RELEASE_0.1.md`） |
@@ -121,7 +121,7 @@
 
 ### 4. 国际化
 
-- 已内置语种基线：`zh-CN` · `zh-TW` · `en-US` · `ja-JP` · `ko-KR` · `ko-KP` · `ru-RU`（可无限扩展）  
+- 已内置语种基线：`zh-CN` · `zh-TW` · `en-US` · `ja-JP` · `ko-KR` · `ko-KP` · `ru-RU` · `ar-SA`（RTL）（可无限扩展）
 - 组件文案托管语言包，禁止硬编码；`useLocale`；动态切换 + 本地缓存  
 - 见 `packages/locale/I18N.md`（含中英长度膨胀防 `…`）  
 

@@ -4,6 +4,39 @@
 
 试用发包（pre-1.0）。**API 可变**；正式 1.0 见 `docs/LIBRARY_PLAN.md` P4–P5。
 
+### Theme 运行时（多实例 / 色阶 / SSR / Shadow）
+
+- Theme Core：`generatePrimaryScale` · `createShadowHost` · `serializeThemeStyle` / `toStyleTag` · `runtime.setPrimary`
+- Vue：`ThemeProvider` + `THEME_RUNTIME_KEY` + `useThemeRuntime()`（inject 优先）；`ConfigProvider` 支持 `design` / `scheme` / `tokens` / `primary` 局部 Runtime
+- `ThemeService` 仍为应用默认单例；同页多主题勿用 `configure` 抢单例
+- example：`lab/micro-fe` 双 ThemeProvider + ConfigProvider + Shadow host 演示
+- 文档：`docs/theme/index.md` · `packages/theme/README.md` · OVERTAKE / TOKENS 诚实边界（Teleport / adoptedStyleSheets / Studio UI 未交付）
+
+### 安全防护层 / 低代码 Schema（本轮补齐）
+
+- 新增 `@amg-webui/security`：`sanitizeHtml` · `isSafeHref` / `sanitizeUrl` · `filterDangerousInput` · `SecurityService`（见 `docs/SECURITY.md`）
+- `RichText`：读写/粘贴白名单消毒；**移除** `document.execCommand`；链接走协议拦截
+- `Link` / `Button`：协议策略统一到 security 包
+- 新增 `@amg-webui/lowcode`：注册表 · `validateCanvasSchema` / `migrateCanvasSchema` · `generateVueSfc`
+- 新增 `SchemaRenderer`；`CanvasPreview` 支持 `registry` + `renderMode: component`
+- `useCanvasEditor`：undo / redo / copy / paste；`CanvasShortcut` 接线
+- example：`lab/security` · `lab/lowcode`；文档：`docs/SECURITY.md` · `docs/LOWCODE.md`
+
+### 安全 / 低代码硬化（续）
+
+- 修复 `unescapeHtml` DOM XSS；协议折叠抗 mXSS；扩充安全单测语料
+- `DragCanvas`/`CanvasNode` 支持 registry WYSIWYG；`PropPanel` 读取 `propsSchema`
+- Schema/Preview 组件模式 a11y（避免嵌套 `role=button`）；Shortcut 输入框焦点守卫
+- `CanvasIo` 导入走校验；RichText 扩展标题/有序列表/引用/代码 + 历史合并
+- 文档诚实边界：SSR 不等价、codegen 草图、未交付清单写明
+
+### 安全 / 低代码继续超越
+
+- 表单：`InputText`/`Textarea`/`Password` `sanitizeInput`；`Form.sanitizeOnSubmit`
+- RichText：去链接、粘贴纯文本、`aria-pressed` 格式态；CodeEditor 高亮消毒
+- 低代码：`parentId` 树 + 循环检测 + PropPanel 仅容器可选 + codegen 嵌套/事件 stubs
+- `applySanitizeInput` / `sanitizeModelStrings`；example `lab/lowcode` 嵌套 Card 演示
+
 ### 仓库卫生
 
 - 移除根目录组件规范草稿、阶段验收报告与杂项产物（`exampleDoc.ts` / `missing-components.txt` / `test-results`）。
@@ -22,7 +55,39 @@
 - `version` 修正为 `0.1.0`（原占位 `1.0.0` 撤销）
 - `peerDependencies`: `vue@^3.4` · `@lucide/vue@^1.0`
 - 主入口：`dist` ESM + UMD + `style.css` + types
-- 子路径：`theme` · `theme/core` · `theme/style.css` · `telemetry` · `icons` · `components/base` · `components/business` · experimental `skill` / `skill/core`
+- 子路径：`theme` · `theme/core` · `theme/style.css` · `telemetry` · `security` · `lowcode` · `icons` · `components/base` · `components/business` · experimental `skill` / `skill/core` · `es/*` · `themes/*`
+
+### 构建模式（名义 → 实能力）
+
+- `build/index.mjs` 按 mode **真分支**：`full` · `on-demand` · `multi-theme` · `dts` · `skill` · `theme`；未知 mode 非 0 退出
+- **on-demand**：`vite.ondemand.config.ts` → `dist/es/**` 多入口 ESM（`npm run build:ondemand`）
+- **multi-theme**：`vite.themes.config.ts` → `dist/themes/<brand>.css` 六品牌（`npm run build:themes`）
+- **dts**：`build/emit-dts.mjs` 仅类型（`npm run build:dts`）
+- 详见 `docs/ENGINEERING.md` 构建模式表
+
+### 业务模块 DoD
+
+- 共享契约 `business/_shared`：`BizPageQuery` · `BizCrudAdapter` · `useBizAsync` · 标准槽名（含 `loading`）
+- **users**：Avatar、详情/编辑 Dialog、权限区、分页（无 adapter 时客户端切片）、`#loading`/`empty`/`error`、插槽、可选 adapter
+- **orders**：详情 Drawer、退款、批量取消、分页切片、`#loading`、插槽、可选 adapter
+- **content**：分类 Tree + 列表、`#editor` 槽、草稿/发布/归档、分页切片、`#loading`
+- **settings**：locale / 改密 / 全局 params；profile 由 props 注入
+- **login**：password + sms；`#qr` / `#oauth` 槽；必填校验
+- example：`example/mock/biz/adapters.ts` + `BusinessExampleSandbox` 真联调（非仅 Toast）
+- 对外对照：`docs/business/index.md` DoD 表 + 验收清单
+
+### 表单 FormItem 闭环（能力诚实）
+
+- `FormItem` provide + `useFormItem` / `useNativeInputAttrs`
+- 文本/布尔：`InputText` · `Textarea` · `InputNumber` · `Password` · `Checkbox` · `Radio` · `Switch`
+- 复合表单族：`Select` · `Cascader` · `DatePicker` · `DateTimePicker` · `TimePicker` · `TimeSelect` · `TreeSelect` · `ColorPicker` · `Slider` · `Rate` · `Transfer` · `Mention` · `InputOTP` · `InputCaptcha`
+- `score:maturity` v2：`thinFormGaps` 清空；目录库存 ≠ 成熟度；**非 1.0**
+
+### 强类型 i18n + 原生 RTL
+
+- `LocaleKey` / `LocaleMessages` 由 zh-CN 生成（`message-schema.ts`）；`t()` 仅接受 `LocaleKey`；语种包 `satisfies LocaleMessages`（缺 key 编译失败）
+- 内置八语种含 **`ar-SA`（RTL，独立阿语包）** · `LocaleService.setDirection` · `ConfigProvider` 跟随 `getDir()` · 主题 `rtl.scss` + chrome 逻辑属性
+- `ja-JP` / `ko-*` / `ru-RU` `biz.ts` 正文本地化；`npm run generate:locale-types` / `extract:i18n` 对齐校验；动态 key 用 `tDyn`
 
 ### Theme Core
 
