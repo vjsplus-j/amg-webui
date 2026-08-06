@@ -1,10 +1,6 @@
 /**
- * Library build entry — real modes (not name-only):
- *   full | on-demand | multi-theme | dts | skill | theme
- *
- * Usage:
- *   node build/index.mjs [mode]
- *   npm run build:lib | build:ondemand | build:themes | build:dts | build:skill | build:theme
+ * Library build entry — real modes:
+ *   full | on-demand | multi-theme | dts | skill | theme | runtime
  */
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
@@ -17,23 +13,20 @@ const viteCli = resolve(root, 'node_modules', 'vite', 'bin', 'vite.js')
 const USAGE = `Usage: node build/index.mjs <mode>
 
 Modes:
-  full         Main library (ESM+UMD+css+dts) + skill + theme runtime   [default]
-  on-demand    Multi-entry ESM → dist/es/** (per-component / biz domain)
+  full         Main lib + runtime packages + on-demand + skill + theme + exports
+  on-demand    Multi-entry ESM → dist/es/**
   multi-theme  Per-brand CSS → dist/themes/<brand>.css
-  dts          Types only → dist/**/*.d.ts (no JS/CSS rebundle)
+  dts          Types only → dist/**/*.d.ts
   skill        Optional Skill Runtime → dist/skill/
   theme        Theme runtime package → dist/theme/
+  runtime      telemetry/security/lowcode/icons/hooks/utils/locale/… → dist/
 `
 
 function runVite(configFile) {
   const result = spawnSync(
     process.execPath,
     [viteCli, 'build', '--config', resolve(root, configFile)],
-    {
-      cwd: root,
-      stdio: 'inherit',
-      shell: false
-    }
+    { cwd: root, stdio: 'inherit', shell: false }
   )
   if (result.status !== 0) process.exit(result.status ?? 1)
 }
@@ -52,11 +45,17 @@ console.log(`[build] mode=${mode}`)
 switch (mode) {
   case 'full':
     runVite('vite.config.ts')
+    runVite('vite.runtime.config.ts')
+    runVite('vite.ondemand.config.ts')
+    runNode('build/write-component-barrels.mjs')
     runVite('vite.skill.config.ts')
     runVite('vite.theme.config.ts')
+    runNode('scripts/generate-package-exports.mjs')
     break
   case 'on-demand':
     runVite('vite.ondemand.config.ts')
+    runNode('build/write-component-barrels.mjs')
+    runNode('scripts/generate-package-exports.mjs')
     break
   case 'multi-theme':
     runVite('vite.themes.config.ts')
@@ -69,6 +68,10 @@ switch (mode) {
     break
   case 'theme':
     runVite('vite.theme.config.ts')
+    break
+  case 'runtime':
+    runVite('vite.runtime.config.ts')
+    runNode('scripts/generate-package-exports.mjs')
     break
   default:
     console.error(`[build] unknown mode: ${mode}\n`)

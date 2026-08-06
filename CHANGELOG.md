@@ -4,6 +4,14 @@
 
 试用发包（pre-1.0）。**API 可变**；正式 1.0 见 `docs/LIBRARY_PLAN.md` P4–P5。
 
+### 包发布契约
+
+- `build:lib` 串联：主库 → runtime 分包 → on-demand → skill → theme → `generate:exports`
+- 公共 `exports` 全部指向 `dist/**`；`files` 不再打包 `packages/` 源码树
+- 按需入口：`amg-webui/button` · `amg-webui/data-table` · …；深路径显式导出（`amg-webui/utils/env` 等）
+- on-demand / runtime 产物将 `@amg-webui/*` 改写为 `amg-webui/*`
+- Consumer fixtures：`tests/consumer-vite` · `consumer-webpack` · `consumer-nuxt` + CI `test:consumers`
+
 ### Theme 运行时（多实例 / 色阶 / SSR / Shadow）
 
 - Theme Core：`generatePrimaryScale` · `createShadowHost` · `serializeThemeStyle` / `toStyleTag` · `runtime.setPrimary`
