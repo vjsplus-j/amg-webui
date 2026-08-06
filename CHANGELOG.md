@@ -12,6 +12,14 @@
 - on-demand / runtime 产物将 `@amg-webui/*` 改写为 `amg-webui/*`
 - Consumer fixtures：`tests/consumer-vite` · `consumer-webpack` · `consumer-nuxt` + CI `test:consumers`
 
+### Overlay 内核（深度补齐）
+
+- 新增 `zIndexManager` · `useZIndex` · `useOverlay`（FocusTrap + 引用计数 ScrollLock + Escape + 栈 z-index）
+- `ConfigProvider.zIndex` 写入 `setZIndexBase`（此前 `--vp-z-index` 无人消费）
+- 接入：`Dialog` · `Confirm` · `MessageBox` · `Drawer`（去掉各自 raw overflow 锁）
+- 单测：`tests/unit/overlay-core.spec.ts`
+- **仍未全量**：Select 无 Teleport、部分浮层未迁 `useFloatingPanel`、行业件仍在 base、E2E 深度
+
 ### Theme 运行时（多实例 / 色阶 / SSR / Shadow）
 
 - Theme Core：`generatePrimaryScale` · `createShadowHost` · `serializeThemeStyle` / `toStyleTag` · `runtime.setPrimary`

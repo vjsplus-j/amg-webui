@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, useId, watch } from "vue";
-import { useBodyScrollLock, useFocusTrap, useLocale } from "@amg-webui/hooks";
+import { useLocale, useOverlay } from "@amg-webui/hooks";
 import { LocaleKeys } from "@amg-webui/locale";
 import { trackEmit } from "@amg-webui/telemetry";
 import Icon from "../Icon/index.vue";
@@ -30,17 +30,27 @@ const panelRef = ref<HTMLElement | null>(null);
 const closing = ref(false);
 const visibleRef = computed(() => props.visible);
 const shouldLock = computed(() => props.modal && props.lockScroll);
+const closeOnEscape = computed(
+  () => props.closeOnPressEscape ?? props.dismissible,
+);
+const explicitZ = computed(() => props.zIndex);
 
-useFocusTrap(panelRef, visibleRef);
-useBodyScrollLock(visibleRef, shouldLock);
+const { zIndex } = useOverlay({
+  visible: visibleRef,
+  container: panelRef,
+  modal: shouldLock,
+  trapFocus: true,
+  closeOnEscape,
+  zIndex: explicitZ,
+  onClose: (reason) => {
+    if (reason === "escape") void closeDrawer("escape");
+  },
+});
 
 const closeLabel = computed(() => t(LocaleKeys.common.close));
 const titleId = `${uid}-title`;
 const closeOnOverlay = computed(
   () => props.closeOnClickOverlay ?? props.dismissible,
-);
-const closeOnEscape = computed(
-  () => props.closeOnPressEscape ?? props.dismissible,
 );
 const isHorizontal = computed(
   () => props.placement === "left" || props.placement === "right",
@@ -52,9 +62,10 @@ const drawerStyle = computed(() => ({
   ...(!isHorizontal.value && props.height ? { height: props.height } : {}),
 }));
 
-const overlayStyle = computed(() =>
-  props.zIndex === undefined ? undefined : { zIndex: String(props.zIndex) },
-);
+const overlayStyle = computed(() => ({
+  zIndex: String(zIndex.value),
+}));
+
 
 async function closeDrawer(
   reason: DrawerCloseReason = "programmatic",
@@ -92,14 +103,6 @@ function handleOverlayClick(event: MouseEvent) {
     event.target === event.currentTarget
   ) {
     void closeDrawer("overlay", event);
-  }
-}
-
-function handleKeydown(event: KeyboardEvent) {
-  if (closeOnEscape.value && event.key === "Escape") {
-    event.preventDefault();
-    event.stopPropagation();
-    void closeDrawer("escape", event);
   }
 }
 
@@ -150,7 +153,6 @@ watch(
           tabindex="-1"
           data-component="Drawer"
           @click.stop
-          @keydown="handleKeydown"
         >
           <header
             v-if="title || $slots.header || closable"

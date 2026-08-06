@@ -3,6 +3,7 @@ import { computed, inject, onUnmounted, provide, reactive, ref, watch } from 'vu
 import { LocaleService } from '@amg-webui/locale'
 import { THEME_RUNTIME_KEY } from '@amg-webui/theme'
 import { createThemeScope } from '@amg-webui/hooks'
+import { setZIndexBase } from '@amg-webui/utils/zIndexManager'
 import { BUTTON_CONFIG_KEY } from '../Button/config'
 import { TAG_CONFIG_KEY } from '../Tag/config'
 import { BADGE_CONFIG_KEY } from '../Badge/config'
@@ -96,6 +97,14 @@ const mergedConfig = computed<ConfigProviderResolvedConfig>(() => {
 })
 
 provide(CONFIG_PROVIDER_KEY, mergedConfig)
+
+watch(
+  () => mergedConfig.value.zIndex,
+  (z) => {
+    if (z != null) setZIndexBase(z)
+  },
+  { immediate: true }
+)
 
 function provideNested(
   key: symbol,

@@ -95,4 +95,13 @@ npm run test:consumers # → npm pack 后在 vite / webpack / nuxt fixture 中�
 
 已闭环：源码子路径导出 → dist 导出；ondemand 改写 `amg-webui/*`；consumer 三套安装构建；CI `test:consumers`。
 
-仍属其他架构债（不在本轮「完全解决」宣称内）：Overlay 统一内核、行业件出 base、成熟度启发式、E2E 深度、按需 CSS 独立 side-entry。
+仍属其他架构债（不在本轮「完全解决」宣称内）：Select 等浮层 Teleport/`useFloatingPanel` 全量迁移、行业件出 base、成熟度启发式、E2E 深度、按需 CSS 独立 side-entry。
+
+## Overlay 内核（本轮深度续做）
+
+- [x] `packages/utils/zIndexManager.ts` · `useZIndex` · `useOverlay`
+- [x] `ConfigProvider.zIndex` → `setZIndexBase`
+- [x] `Dialog` / `Confirm` / `MessageBox` / `Drawer` 接入（引用计数 scroll lock + focus trap + Escape）
+- [x] `tests/unit/overlay-core.spec.ts`
+- [ ] Select / Cascader / DatePicker 等下拉 Teleport + floating 统一
+- [ ] Mask / Popover / Tooltip / Dropdown 全面迁到 `useOverlay`

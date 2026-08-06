@@ -13,3 +13,10 @@ export * from './browserInfo'
 export * from './data-display'
 export * from './nav'
 export * from './eventBus'
+export {
+  getZIndexBase,
+  getCurrentZIndex,
+  setZIndexBase,
+  nextZIndex,
+  resetZIndexManager
+} from './zIndexManager'
