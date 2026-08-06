@@ -1,13 +1,20 @@
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve, dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const base = resolve(root, 'packages/components/base')
-const dirs = readdirSync(base, { withFileTypes: true })
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name)
-  .sort()
+const industry = resolve(root, 'packages/components/industry')
+const dirs = [
+  ...readdirSync(base, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name),
+  ...(existsSync(industry)
+    ? readdirSync(industry, { withFileTypes: true })
+        .filter((d) => d.isDirectory())
+        .map((d) => d.name)
+    : [])
+].sort()
 
 const waves = {
   w1_form: [],

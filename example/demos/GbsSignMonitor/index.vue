@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { GbsSignMonitor } from "@amg-webui/components/base";
+import { GbsSignMonitor } from "@amg-webui/components/industry";
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
 import PropsTable from "../../components/demo/PropsTable.vue";
@@ -24,7 +24,7 @@ const logs = ref(mountProps.value.logs as DemoSignEntry[]);
 
 const codeBasic = demoSfc({
   imports: [
-    `import { GbsSignMonitor } from '@amg-webui/components/base'`,
+    `import { GbsSignMonitor } from '@amg-webui/components/industry'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`,
   ],
   script: [`const mountProps = getSampleMountProps('GbsSignMonitor')`],

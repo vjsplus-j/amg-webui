@@ -1,7 +1,7 @@
 import { nextTick } from "vue";
 import { mount } from "@vue/test-utils";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import GbsAlarmModal from "../../../packages/components/base/GbsAlarmModal/index.vue";
+import GbsAlarmModal from "../../../packages/components/industry/GbsAlarmModal/index.vue";
 import PieChart from "../../../packages/components/base/PieChart/index.vue";
 import TableDrag from "../../../packages/components/base/TableDrag/index.vue";
 import TimelineList from "../../../packages/components/base/TimelineList/index.vue";

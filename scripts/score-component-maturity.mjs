@@ -30,6 +30,13 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const baseDir = resolve(root, "packages/components/base");
+const industryDir = resolve(root, "packages/components/industry");
+
+function resolveComponentDir(name) {
+  const industry = join(industryDir, name);
+  if (existsSync(industry)) return industry;
+  return join(baseDir, name);
+}
 
 const LEVELS = ["stub", "shell", "beta", "ready"];
 const CAPABILITIES = ["thin", "form", "interaction", "composite"];
@@ -138,7 +145,7 @@ function fileLines(path) {
 }
 
 function scoreOne(name) {
-  const dir = join(baseDir, name);
+  const dir = resolveComponentDir(name);
   const primaryVuePath = join(dir, "index.vue");
   const vueCandidates = readdirSync(dir)
     .filter((file) => file.endsWith(".vue"))
@@ -176,7 +183,7 @@ function scoreOne(name) {
       style + vue,
     );
   const hasBehaviorTest = new RegExp(
-    `components/base/${name}/index\\.vue`,
+    `components/(?:base|industry)/${name}/index\\.vue`,
   ).test(testSource.replaceAll("\\\\", "/"));
   const delegatesComponent =
     /import\s+\w+\s+from\s+['"]\.\.\/\w+\/index\.vue['"]/.test(vue);
@@ -440,10 +447,18 @@ function scoreOne(name) {
   };
 }
 
-const names = readdirSync(baseDir, { withFileTypes: true })
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name)
-  .sort();
+function listLeafDirs() {
+  const out = [];
+  for (const layer of [baseDir, industryDir]) {
+    if (!existsSync(layer)) continue;
+    for (const d of readdirSync(layer, { withFileTypes: true })) {
+      if (d.isDirectory()) out.push(d.name);
+    }
+  }
+  return out.sort();
+}
+
+const names = listLeafDirs();
 
 const components = {};
 const summary = { stub: 0, shell: 0, beta: 0, ready: 0 };

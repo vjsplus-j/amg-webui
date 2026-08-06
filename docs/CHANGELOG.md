@@ -4,6 +4,16 @@
 
 ---
 
+## 2026-08-06 — Overlay 浮动统一 + industry 首批迁出（深度推进）
+
+- `usePopover` / Teleport floating pickers；Popover/Tooltip/Popconfirm 经 `useOverlay` 收口（见上条细节）。
+- 新增 `packages/components/industry/` 层；`Gbs*` 八件从 `base` 迁出；`generate:entry` / ondemand / exports / catalog / create:component 同步。
+- 根 kebab（`amg-webui/gbs-*`）保持；新增子路径 `amg-webui/components/industry`。
+- 单测：`floating-teleport-overflow`（Select/DatePicker 在 overflow:hidden 宿主外 Teleport）。
+- **未完成**：Onvif / VCR / Video / 404 等仍在 base；深 E2E；逐组件 CSS side-entry。
+
+---
+
 ## 2026-08-06 — Overlay / floating 面板统一（深度推进，未宣称完成）
 
 - `usePopover` 改为 floating + 非模态 `useOverlay`，组件自行 `Teleport` 并绑定 `panelStyle`。

@@ -7,7 +7,7 @@ import { resolve } from 'node:path'
 import {
   root,
   toKebab,
-  listBaseComponentNames,
+  listLeafComponentNames,
   BIZ_DOMAINS,
   componentEsImportPath,
   componentTypesPath,
@@ -78,6 +78,10 @@ const exportsMap = {
     './dist/components/business/index.d.ts',
     './dist/es/components/business-barrel.js'
   ),
+  './components/industry': subpath(
+    './dist/components/industry/index.d.ts',
+    './dist/es/components/industry-barrel.js'
+  ),
 
   './themes/*': './dist/themes/*',
   './es/*': './dist/es/*'
@@ -98,7 +102,7 @@ for (const pkgDir of [
   addRuntimeTree(exportsMap, pkgDir)
 }
 
-for (const name of listBaseComponentNames()) {
+for (const name of listLeafComponentNames()) {
   const kebab = toKebab(name)
   exportsMap[`./${kebab}`] = subpath(componentTypesPath(name), componentEsImportPath(name))
 }

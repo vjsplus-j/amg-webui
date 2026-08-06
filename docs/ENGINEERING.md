@@ -12,6 +12,7 @@
 | 命令 | 作用 |
 |------|------|
 | `npm run create:component -- base Foo` | 一键新建 base 组件骨架（`vp-`、types、style、桩） |
+| `npm run create:component -- industry Foo` | 一键新建 industry 行业套件骨架 |
 | `npm run create:component -- business bar` | 一键新建 business 模块骨架 |
 | `npm run generate:entry` | 扫描 `packages/components/**` 自动生成 / 刷新 `index.ts` 导出 |
 | `npm run generate:locale-types` | 从 zh-CN 生成 `LocaleKey` / `LocaleMessages`（`message-schema.ts`） |

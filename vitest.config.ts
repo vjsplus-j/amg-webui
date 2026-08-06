@@ -12,6 +12,7 @@ export default defineConfig({
     alias: {
       '@amg-webui/components/base': resolve(__dirname, 'packages/components/base'),
       '@amg-webui/components/business': resolve(__dirname, 'packages/components/business'),
+      '@amg-webui/components/industry': resolve(__dirname, 'packages/components/industry'),
       '@amg-webui/components': resolve(__dirname, 'packages/components'),
       '@amg-webui/hooks': resolve(__dirname, 'packages/hooks'),
       '@amg-webui/telemetry': resolve(__dirname, 'packages/telemetry/index.ts'),

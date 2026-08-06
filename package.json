@@ -67,6 +67,11 @@
       "types": "./dist/components/business/index.d.ts",
       "default": "./dist/es/components/business-barrel.js"
     },
+    "./components/industry": {
+      "import": "./dist/es/components/industry-barrel.js",
+      "types": "./dist/components/industry/index.d.ts",
+      "default": "./dist/es/components/industry-barrel.js"
+    },
     "./themes/*": "./dist/themes/*",
     "./es/*": "./dist/es/*",
     "./telemetry/TelemetryService": {
@@ -289,6 +294,11 @@
       "types": "./dist/hooks/useObjectUrl.d.ts",
       "default": "./dist/hooks/useObjectUrl.js"
     },
+    "./hooks/useOverlay": {
+      "import": "./dist/hooks/useOverlay.js",
+      "types": "./dist/hooks/useOverlay.d.ts",
+      "default": "./dist/hooks/useOverlay.js"
+    },
     "./hooks/usePopover": {
       "import": "./dist/hooks/usePopover.js",
       "types": "./dist/hooks/usePopover.d.ts",
@@ -323,6 +333,11 @@
       "import": "./dist/hooks/useVModel.js",
       "types": "./dist/hooks/useVModel.d.ts",
       "default": "./dist/hooks/useVModel.js"
+    },
+    "./hooks/useZIndex": {
+      "import": "./dist/hooks/useZIndex.js",
+      "types": "./dist/hooks/useZIndex.d.ts",
+      "default": "./dist/hooks/useZIndex.js"
     },
     "./utils/barcodePattern": {
       "import": "./dist/utils/barcodePattern.js",
@@ -443,6 +458,11 @@
       "import": "./dist/utils/qrcodeMatrix.js",
       "types": "./dist/utils/qrcodeMatrix.d.ts",
       "default": "./dist/utils/qrcodeMatrix.js"
+    },
+    "./utils/zIndexManager": {
+      "import": "./dist/utils/zIndexManager.js",
+      "types": "./dist/utils/zIndexManager.d.ts",
+      "default": "./dist/utils/zIndexManager.js"
     },
     "./locale/LocaleService": {
       "import": "./dist/locale/LocaleService.js",
@@ -1495,44 +1515,44 @@
       "default": "./dist/es/components/base/GaugeChart/index.js"
     },
     "./gbs-alarm-modal": {
-      "import": "./dist/es/components/base/GbsAlarmModal/index.js",
-      "types": "./dist/components/base/GbsAlarmModal/index.d.ts",
-      "default": "./dist/es/components/base/GbsAlarmModal/index.js"
+      "import": "./dist/es/components/industry/GbsAlarmModal/index.js",
+      "types": "./dist/components/industry/GbsAlarmModal/index.d.ts",
+      "default": "./dist/es/components/industry/GbsAlarmModal/index.js"
     },
     "./gbs-cascade-panel": {
-      "import": "./dist/es/components/base/GbsCascadePanel/index.js",
-      "types": "./dist/components/base/GbsCascadePanel/index.d.ts",
-      "default": "./dist/es/components/base/GbsCascadePanel/index.js"
+      "import": "./dist/es/components/industry/GbsCascadePanel/index.js",
+      "types": "./dist/components/industry/GbsCascadePanel/index.d.ts",
+      "default": "./dist/es/components/industry/GbsCascadePanel/index.js"
     },
     "./gbs-device-tree": {
-      "import": "./dist/es/components/base/GbsDeviceTree/index.js",
-      "types": "./dist/components/base/GbsDeviceTree/index.d.ts",
-      "default": "./dist/es/components/base/GbsDeviceTree/index.js"
+      "import": "./dist/es/components/industry/GbsDeviceTree/index.js",
+      "types": "./dist/components/industry/GbsDeviceTree/index.d.ts",
+      "default": "./dist/es/components/industry/GbsDeviceTree/index.js"
     },
     "./gbs-gateway-form": {
-      "import": "./dist/es/components/base/GbsGatewayForm/index.js",
-      "types": "./dist/components/base/GbsGatewayForm/index.d.ts",
-      "default": "./dist/es/components/base/GbsGatewayForm/index.js"
+      "import": "./dist/es/components/industry/GbsGatewayForm/index.js",
+      "types": "./dist/components/industry/GbsGatewayForm/index.d.ts",
+      "default": "./dist/es/components/industry/GbsGatewayForm/index.js"
     },
     "./gbs-register-form": {
-      "import": "./dist/es/components/base/GbsRegisterForm/index.js",
-      "types": "./dist/components/base/GbsRegisterForm/index.d.ts",
-      "default": "./dist/es/components/base/GbsRegisterForm/index.js"
+      "import": "./dist/es/components/industry/GbsRegisterForm/index.js",
+      "types": "./dist/components/industry/GbsRegisterForm/index.d.ts",
+      "default": "./dist/es/components/industry/GbsRegisterForm/index.js"
     },
     "./gbs-sign-monitor": {
-      "import": "./dist/es/components/base/GbsSignMonitor/index.js",
-      "types": "./dist/components/base/GbsSignMonitor/index.d.ts",
-      "default": "./dist/es/components/base/GbsSignMonitor/index.js"
+      "import": "./dist/es/components/industry/GbsSignMonitor/index.js",
+      "types": "./dist/components/industry/GbsSignMonitor/index.d.ts",
+      "default": "./dist/es/components/industry/GbsSignMonitor/index.js"
     },
     "./gbs-status-card": {
-      "import": "./dist/es/components/base/GbsStatusCard/index.js",
-      "types": "./dist/components/base/GbsStatusCard/index.d.ts",
-      "default": "./dist/es/components/base/GbsStatusCard/index.js"
+      "import": "./dist/es/components/industry/GbsStatusCard/index.js",
+      "types": "./dist/components/industry/GbsStatusCard/index.d.ts",
+      "default": "./dist/es/components/industry/GbsStatusCard/index.js"
     },
     "./gbs-time-sync": {
-      "import": "./dist/es/components/base/GbsTimeSync/index.js",
-      "types": "./dist/components/base/GbsTimeSync/index.d.ts",
-      "default": "./dist/es/components/base/GbsTimeSync/index.js"
+      "import": "./dist/es/components/industry/GbsTimeSync/index.js",
+      "types": "./dist/components/industry/GbsTimeSync/index.d.ts",
+      "default": "./dist/es/components/industry/GbsTimeSync/index.js"
     },
     "./graph-chart": {
       "import": "./dist/es/components/base/GraphChart/index.js",

@@ -53,6 +53,7 @@ export function publicizePaths(id) {
 export const packageAlias = {
   '@amg-webui/components/base': resolve(root, 'packages/components/base'),
   '@amg-webui/components/business': resolve(root, 'packages/components/business'),
+  '@amg-webui/components/industry': resolve(root, 'packages/components/industry'),
   '@amg-webui/components': resolve(root, 'packages/components'),
   '@amg-webui/hooks': resolve(root, 'packages/hooks'),
   '@amg-webui/telemetry': resolve(root, 'packages/telemetry/index.ts'),
@@ -97,25 +98,52 @@ export function collectTsEntries(pkgRelDir) {
   return entries
 }
 
-export function listBaseComponentNames() {
-  const baseRoot = resolve(root, 'packages/components/base')
+export function listComponentNamesInLayer(layer) {
+  const layerRoot = resolve(root, 'packages/components', layer)
+  if (!existsSync(layerRoot)) return []
   const names = []
-  for (const name of readdirSync(baseRoot)) {
-    const dir = resolve(baseRoot, name)
+  for (const name of readdirSync(layerRoot)) {
+    const dir = resolve(layerRoot, name)
     if (!statSync(dir).isDirectory()) continue
     if (existsSync(resolve(dir, 'index.ts'))) names.push(name)
   }
   return names.sort()
 }
 
+export function listBaseComponentNames() {
+  return listComponentNamesInLayer('base')
+}
+
+export function listIndustryComponentNames() {
+  return listComponentNamesInLayer('industry')
+}
+
+/** Leaf UI packages published as kebab subpaths (base + industry). */
+export function listLeafComponentNames() {
+  return [...listBaseComponentNames(), ...listIndustryComponentNames()].sort()
+}
+
+export function resolveComponentLayer(pascalName) {
+  const industryDir = resolve(
+    root,
+    'packages/components/industry',
+    pascalName,
+    'index.ts'
+  )
+  if (existsSync(industryDir)) return 'industry'
+  return 'base'
+}
+
 export const BIZ_DOMAINS = ['login', 'users', 'orders', 'content', 'settings']
 
 export function componentEsImportPath(pascalName) {
-  return `./dist/es/components/base/${pascalName}/index.js`
+  const layer = resolveComponentLayer(pascalName)
+  return `./dist/es/components/${layer}/${pascalName}/index.js`
 }
 
 export function componentTypesPath(pascalName) {
-  return `./dist/components/base/${pascalName}/index.d.ts`
+  const layer = resolveComponentLayer(pascalName)
+  return `./dist/components/${layer}/${pascalName}/index.d.ts`
 }
 
 export function bizEsImportPath(domain) {

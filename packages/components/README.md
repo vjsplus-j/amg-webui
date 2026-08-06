@@ -1,10 +1,11 @@
 # packages/components
 
-Vue 3 组件源码。**base** 与 **business** 强制隔离。
+Vue 3 组件源码。**base** · **industry** · **business** 强制隔离。
 
 ```
 components/
-├── base/          # 纯 UI · 目录库存 ~280+（含行业扩展；库存 ≠ 成熟度）
+├── base/          # 纯 UI 原语
+├── industry/      # 行业套件（首批：Gbs* GB28181；后续 Onvif / VCR / Video / 404）
 ├── business/      # login · users · orders · content · settings
 └── index.ts       # generate:entry 维护；禁止手改巨型 barrel
 ```
@@ -14,18 +15,17 @@ components/
 - 路径别名：`@amg-webui/components/base`
 - 类名：`vp-*`（遗留 `p-*` 分批迁移）
 - 新组件：`npm run create:component -- base Name`
-- Provider 类：`TelemetryProvider`（配置遥测，后续可并入 `VpConfigProvider`）
+- **禁止**依赖 business / industry
 
-### 通用区（example catalog `general`）
+## industry
 
-| 组件 | 要点 |
-|------|------|
-| Button / Link / Tag / Badge / Avatar* / Card / FloatButton | 交互 + `trackEmit` |
-| Typography / Ellipsis / Progress / Statistic | 展示 + 关键回调/遥测 |
-| Space / Spin / Skeleton / Divider / Empty / Highlight / Icon | 展示/布局为主 |
-| **CopyText** | 独立复制控件；`copy` / `copyError` |
-| **Collapse** | 轻量折叠；`expand` / `collapse` |
-| **CardWidgets** | ABCD 槽位 HTML5 DnD 互换；`v-model` 顺序；`swap` / `change` |
+- 路径别名：`@amg-webui/components/industry`
+- 可消费 base + hooks + theme + utils + locale + telemetry
+- **禁止**依赖 business；base **禁止**反向依赖 industry
+- 根 kebab 子路径保持稳定（如 `amg-webui/gbs-alarm-modal` → `dist/es/components/industry/...`）
+- 新组件：`npm run create:component -- industry Name`
+- 首批已迁：`GbsAlarmModal` · `GbsCascadePanel` · `GbsDeviceTree` · `GbsGatewayForm` · `GbsRegisterForm` · `GbsSignMonitor` · `GbsStatusCard` · `GbsTimeSync`
+- 仍在 base 的 industry 目录库存（Onvif / VCR / Video / 404 等）按同路径续迁
 
 ## business
 
@@ -33,8 +33,8 @@ components/
 
 ## 相关
 
-- Catalog：`example/component-catalog.json`（`npm run validate:catalog`）
-- 成熟度：`npm run score:maturity`（v2：**capability** thin/form/interaction/composite 为主，目录数不是成熟度）· 覆盖：`node scripts/check-coverage.mjs`
+- Catalog：`example/component-catalog.json`（`npm run validate:catalog`；覆盖 base + industry）
+- 成熟度：`npm run score:maturity` · 覆盖：`node scripts/check-coverage.mjs`
 - 对外 stub：[`docs/components/`](../../docs/components/) · 深化计划：[`docs/COMPONENT_DEEPEN_PLAN.md`](../../docs/COMPONENT_DEEPEN_PLAN.md)
 - Telemetry：[`../telemetry/README.md`](../telemetry/README.md)
 - Skill Runtime（独立包，非本目录）：[`../skill/README.md`](../skill/README.md)

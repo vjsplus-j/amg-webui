@@ -10,6 +10,7 @@ import {
   root,
   packageAlias,
   listBaseComponentNames,
+  listIndustryComponentNames,
   BIZ_DOMAINS,
   isPublishExternal,
   publicizePaths
@@ -21,6 +22,12 @@ function collectEntries() {
     const indexTs = resolve(root, 'packages/components/base', name, 'index.ts')
     if (existsSync(indexTs)) {
       entries[`components/base/${name}/index`] = indexTs
+    }
+  }
+  for (const name of listIndustryComponentNames()) {
+    const indexTs = resolve(root, 'packages/components/industry', name, 'index.ts')
+    if (existsSync(indexTs)) {
+      entries[`components/industry/${name}/index`] = indexTs
     }
   }
   for (const domain of BIZ_DOMAINS) {

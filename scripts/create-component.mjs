@@ -1,6 +1,7 @@
 /**
- * Scaffold a component under packages/components/base or business.
+ * Scaffold a component under packages/components/base, industry, or business.
  * Usage: node scripts/create-component.mjs base MyWidget
+ *        node scripts/create-component.mjs industry GbsFoo
  *        node scripts/create-component.mjs business payments
  */
 import { mkdirSync, writeFileSync, existsSync } from 'node:fs'
@@ -10,15 +11,15 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const [, , layer, name] = process.argv
 
-if (!layer || !name || !['base', 'business'].includes(layer)) {
-  console.error('Usage: node scripts/create-component.mjs <base|business> <Name>')
+if (!layer || !name || !['base', 'business', 'industry'].includes(layer)) {
+  console.error('Usage: node scripts/create-component.mjs <base|business|industry> <Name>')
   process.exit(1)
 }
 
 const dir =
-  layer === 'base'
-    ? resolve(root, 'packages/components/base', name)
-    : resolve(root, 'packages/components/business', name.toLowerCase())
+  layer === 'business'
+    ? resolve(root, 'packages/components/business', name.toLowerCase())
+    : resolve(root, 'packages/components', layer, name)
 
 if (existsSync(dir)) {
   console.error('Already exists:', dir)
@@ -27,7 +28,7 @@ if (existsSync(dir)) {
 
 mkdirSync(resolve(dir, 'composables'), { recursive: true })
 
-if (layer === 'base') {
+if (layer === 'base' || layer === 'industry') {
   writeFileSync(
     resolve(dir, 'index.ts'),
     `import Comp from './index.vue'\nexport { Comp as ${name} }\nexport default Comp\n`

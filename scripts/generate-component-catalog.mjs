@@ -7,11 +7,17 @@ import path from 'node:path'
 
 const root = process.cwd()
 const baseDir = path.join(root, 'packages', 'components', 'base')
-const names = fs
-  .readdirSync(baseDir, { withFileTypes: true })
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name)
-  .sort()
+const industryDir = path.join(root, 'packages', 'components', 'industry')
+
+function dirsOf(dir) {
+  if (!fs.existsSync(dir)) return []
+  return fs
+    .readdirSync(dir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+}
+
+const names = [...dirsOf(baseDir), ...dirsOf(industryDir)].sort()
 
 function toKebab(name) {
   return name

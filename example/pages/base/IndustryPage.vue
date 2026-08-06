@@ -4,11 +4,11 @@ import {
   SplitVideoWall,
   PTZControl,
   OnvifSearch,
-  GbsStatusCard,
-  VcrTimelinePlayer,
   Simple404,
-  Tech404
+  Tech404,
+  VcrTimelinePlayer
 } from '@amg-webui/components/base'
+import { GbsStatusCard } from '@amg-webui/components/industry'
 import ComponentGallery from '../../components/ComponentGallery.vue'
 </script>
 
@@ -38,5 +38,6 @@ import ComponentGallery from '../../components/ComponentGallery.vue'
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: var(--theme-section-gap);
+  width: 100%;
 }
 </style>
