@@ -1,18 +1,32 @@
 {
   "status": "PASS",
-  "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
-    "Space"
+  "component": "Popover",
+  "family": "overlay",
+  "testFile": "tests/unit/hardening/keyboard/overlay.spec.ts",
+  "testCases": [
+    {
+      "name": "enter-opens-popover",
+      "key": "Enter",
+      "expected": "Enter on trigger opens popover panel",
+      "status": "PASS"
+    },
+    {
+      "name": "escape-closes-popover",
+      "key": "Escape",
+      "expected": "Escape closes open popover panel",
+      "status": "PASS"
+    }
   ],
-  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.727Z"
+  "keys": [
+    "Enter",
+    "Escape"
+  ],
+  "runId": "a4917dcd-5b97-4748-bb92-5713fefaf6aa",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:55.125Z",
+  "detail": "Enter: Enter on trigger opens popover panel; Escape: Escape closes open popover panel",
+  "sourceHash": "b62876910261641af0e4d6b5e582e78fa400f748c397649f15fd2c51e38896ff",
+  "contractHash": "8b7b8fd30ab3fa4b9d95be9651ded80be059c9df87c5d936f315c18336758fac",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:55.209Z"
 }

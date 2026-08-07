@@ -5,9 +5,14 @@ import type { ShowcaseNavItem } from '@showcase/shared/types/nav'
 const appTitle = 'SaaS Console'
 
 const navItems: ShowcaseNavItem[] = [
-  { path: '/', label: 'Home' },
-  { path: '/manage', label: 'Tenants' },
-  { path: '/about', label: 'About' }
+  { path: '/', label: 'Overview' },
+  { path: '/tenants', label: 'Tenants' },
+  { path: '/organizations', label: 'Organizations' },
+  { path: '/members', label: 'Members' },
+  { path: '/subscriptions', label: 'Subscriptions' },
+  { path: '/plans', label: 'Plans' },
+  { path: '/usage', label: 'Usage' },
+  { path: '/billing', label: 'Billing' }
 ]
 </script>
 

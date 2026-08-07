@@ -41,18 +41,18 @@ Curated demo：`example/demos/DatePicker/index.vue`
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `id` | `string` | — | — |
-| `name` | `string` | — | — |
-| `modelValue` | `string \| Date \| null` | — | — |
-| `placeholder` | `string` | — | — |
+| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
+| `name` | `string` | — | 表单字段名 / Form field name |
+| `modelValue` | `string \| Date \| null` | — | 绑定值 / Bound value (v-model) |
+| `placeholder` | `string` | — | 占位提示 / Placeholder text |
 | `valueFormat` | `'date' \| 'iso'` | — | — |
 
 ## Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
-| `update:modelValue` | `value: string \| Date \| null` | — |
-| `change` | `value: string \| Date \| null` | — |
+| `update:modelValue` | `value: string \| Date \| null` | v-model 更新 / v-model update |
+| `change` | `value: string \| Date \| null` | 值变更 / Change |
 
 ## Slots
 
@@ -95,4 +95,4 @@ Curated demo：`example/demos/DatePicker/index.vue`
 | apiFreeze | `frozen` |
 | API extract | `generated/component-api/DatePicker.json` |
 
-> 完整 Demo 见 `example/demos/DatePicker`。对外 docs 为 API 导向页面；交互预览仅在本地 example（不上线）。
+> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/DatePicker`。

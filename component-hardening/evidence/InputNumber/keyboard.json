@@ -1,18 +1,32 @@
 {
   "status": "PASS",
-  "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
-    "Space"
+  "component": "InputNumber",
+  "family": "input",
+  "testFile": "tests/unit/hardening/keyboard/input.spec.ts",
+  "testCases": [
+    {
+      "name": "typing-updates-model",
+      "key": "Type",
+      "expected": "typing updates InputNumber modelValue",
+      "status": "PASS"
+    },
+    {
+      "name": "disabled-no-model-update",
+      "key": "Key7",
+      "expected": "disabled InputNumber does not emit update:modelValue on key interaction",
+      "status": "PASS"
+    }
   ],
-  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.640Z"
+  "keys": [
+    "Type",
+    "Key7"
+  ],
+  "runId": "cca6d1c9-057e-462c-ab36-79c1652384f2",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:55.018Z",
+  "detail": "Type: typing updates InputNumber modelValue; Key7: disabled InputNumber does not emit update:modelValue on key interaction",
+  "sourceHash": "81ad02d5de8e6dbac393112d73a27ce4ceeca9d6839c88c813ed05fb469a90a9",
+  "contractHash": "7df2ce665e68e8db3172872b3bb2da968b3887e0fd642ced607d898391950a16",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:55.085Z"
 }

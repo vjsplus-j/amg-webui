@@ -42,7 +42,7 @@
     {
       "id": "behavior",
       "status": "PASS",
-      "detail": "input family unit+e2e"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "visual",
@@ -52,12 +52,12 @@
     {
       "id": "a11y",
       "status": "PASS",
-      "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "keyboard",
       "status": "PASS",
-      "detail": "batch keyboard dispatch on mounted surface (10 keys)"
+      "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "theme",
@@ -77,22 +77,22 @@
     {
       "id": "docs",
       "status": "PASS",
-      "detail": "VitePress docs page + generated API extract"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "ssr",
       "status": "PASS",
-      "detail": "structural=PASS; evidence=structural DOM clean"
+      "detail": "structural=PASS; evidence=STALE: PASS evidence missing sourceHash/contractHash (non-stable — structural only for verify PASS)"
     }
   ],
   "failCount": 0,
   "status": "PASS",
-  "stable": true,
-  "verifiedStable": true,
-  "productMaturity": "stable",
-  "apiFreeze": true,
-  "evidenceOk": true,
+  "stable": false,
+  "verifiedStable": false,
+  "productMaturity": "rc",
+  "apiFreeze": false,
+  "evidenceOk": false,
   "auditMode": false,
   "strictEvidence": true,
-  "verifiedAt": "2026-08-07T16:15:11.290Z"
+  "verifiedAt": "2026-08-07T17:40:06.843Z"
 }

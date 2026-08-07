@@ -1,88 +1,81 @@
-# Checkbox / CheckboxGroup 多选
+# Checkbox 复选框
 
+Checkbox 为 **Stable** 公共组件（API frozen）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
+## 概览
 
-勾选与半选：独立 `Checkbox` 或 `CheckboxGroup`（`options`、`max`、尺寸级联）。交互旁路 `trackEmit`（Telemetry **默认关闭**）。
+Checkbox 已通过 Component Hardening 证据门禁；完整交互演示见本地 example curated demo。
 
+## 何时使用 / 何时不用
 
+- **适用**：生产可用的 Stable 组件场景。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 基础用法
 
-
-
 ```vue
-
 <script setup>
-
-import { ref } from 'vue'
-
-import { Checkbox, CheckboxGroup } from '@amg-webui/form'
-
-const ok = ref(true)
-
-const set = ref(['read'])
-
+import { Checkbox } from '@amg-webui/form'
 </script>
 
-
-
 <template>
-
-  <Checkbox v-model="ok" label="Agree" />
-
-  <Checkbox v-model="ok" indeterminate label="Partial" />
-
-  <CheckboxGroup v-model="set" :max="2">
-
-    <Checkbox value="read" label="Read" />
-
-    <Checkbox value="write" label="Write" />
-
-  </CheckboxGroup>
-
+  <Checkbox />
 </template>
-
 ```
 
-
+Curated demo：`example/demos/Checkbox/index.vue`
 
 ## 交互演示
 
 <DocsDemo name="checkbox-basic" />
 
-
-
-## 常用 API
-
-
+## Props
 
 | Prop | 类型 | 默认 | 说明 |
-
 | --- | --- | --- | --- |
+| `modelValue` | `boolean` | — | 绑定值 / Bound value (v-model) |
+| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
+| `name` | `string` | — | 表单字段名 / Form field name |
+| `value` | `unknown` | — | 表格行数据或绑定值 / Row data or bound value |
+| `label` | `string` | — | 显示文案 / Display label |
+| `indeterminate` | `boolean` | — | 半选状态 / Indeterminate |
+| `invalid` | `boolean` | — | — |
+| `skipFormItem` | `boolean` | — | — |
+| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
 
-| `modelValue` | `boolean` / `unknown[]` | `false` / `[]` | 勾选或组选中集合 |
+## Events
 
-| `value` / `label` | `unknown` / `string` | — | 组内选项值与文案 |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `update:modelValue` | `value: boolean` | v-model 更新 / v-model update |
+| `change` | `value: boolean` | 值变更 / Change |
 
-| `indeterminate` | `boolean` | `false` | 半选（`aria-checked=mixed`） |
+## Models
 
-| `size` | `Size` | `'md'` | xs–xl |
-
-| `max` | `number` | — | 组最大可选数 |
-
-| `options` | `CheckboxOption[]` | — | 声明式选项 |
-
-| `direction` | `'horizontal' \| 'vertical'` | `'horizontal'` | 组排列 |
-
-
-
-| 事件 | 说明 |
-
+| Model | 说明 |
 | --- | --- |
+| `modelValue` | v-model |
 
-| `update:modelValue` / `change` | 勾选变化 |
+## Public types
 
+- `CheckboxGroupContext`
+- `CheckboxProps`
+- `CheckboxEmits`
 
+## 无障碍与键盘
 
-> curated：`example/demos/Checkbox/`。表单 wave1；组容器不单独埋点，子 Checkbox 旁路 trackEmit。
+交互行为与键盘路径以 `component-hardening/evidence/Checkbox/a11y.json` · `keyboard.json` 为准；本地可复现：`example/demos/Checkbox/`。
 
+## 稳定性
+
+| 字段 | 值 |
+| --- | --- |
+| maturity | `stable` |
+| apiFreeze | `frozen` |
+| API extract | `generated/component-api/Checkbox.json` |
+
+> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/Checkbox`。

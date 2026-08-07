@@ -42,22 +42,22 @@
     {
       "id": "behavior",
       "status": "PASS",
-      "detail": "template-five.spec.ts + curated Basic.vue?raw demo"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "visual",
       "status": "PASS",
-      "detail": "table family 3-theme screenshots"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "a11y",
       "status": "PASS",
-      "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "keyboard",
       "status": "PASS",
-      "detail": "DataTable grid row nav Home/End/Arrow + Enter selection + Escape clear; sort header Enter"
+      "detail": "ArrowDown: ArrowDown/ArrowUp/Home/End move grid row focus; Enter: Enter selects focused row and emits update:selection; Escape: Escape clears row focus without additional selection"
     },
     {
       "id": "theme",
@@ -72,27 +72,27 @@
     {
       "id": "perf",
       "status": "PASS",
-      "detail": "mount 2000 rows in 14ms"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash"
     },
     {
       "id": "docs",
       "status": "PASS",
-      "detail": "VitePress docs page + generated API extract"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "ssr",
       "status": "PASS",
-      "detail": "structural=PASS; evidence=structural top-level DOM clean"
+      "detail": "structural=PASS; evidence=STALE: PASS evidence missing sourceHash/contractHash (non-stable — structural only for verify PASS)"
     }
   ],
   "failCount": 0,
   "status": "PASS",
-  "stable": true,
-  "verifiedStable": true,
-  "productMaturity": "stable",
-  "apiFreeze": true,
-  "evidenceOk": true,
+  "stable": false,
+  "verifiedStable": false,
+  "productMaturity": "rc",
+  "apiFreeze": false,
+  "evidenceOk": false,
   "auditMode": false,
   "strictEvidence": true,
-  "verifiedAt": "2026-08-07T16:15:05.723Z"
+  "verifiedAt": "2026-08-07T17:40:03.208Z"
 }

@@ -404,6 +404,7 @@ onBeforeUnmount(() => {
   <div
     ref="surfaceRef"
     class="vp-studio-canvas"
+    data-testid="studio-canvas"
     :class="{ 'is-panning': panning || spaceDown, 'is-preview': preview }"
     @wheel="onWheel"
     @pointerdown="onPointerDown"

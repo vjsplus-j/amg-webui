@@ -1,13 +1,39 @@
 {
   "status": "PASS",
+  "component": "DataTable",
+  "family": "table",
+  "testFile": "tests/unit/hardening/keyboard/table.spec.ts",
+  "testCases": [
+    {
+      "name": "arrow-row-navigation",
+      "key": "ArrowDown",
+      "expected": "ArrowDown/ArrowUp/Home/End move grid row focus",
+      "status": "PASS"
+    },
+    {
+      "name": "enter-row-select",
+      "key": "Enter",
+      "expected": "Enter selects focused row and emits update:selection",
+      "status": "PASS"
+    },
+    {
+      "name": "escape-clear-focus",
+      "key": "Escape",
+      "expected": "Escape clears row focus without additional selection",
+      "status": "PASS"
+    }
+  ],
   "keys": [
     "ArrowDown",
-    "ArrowUp",
-    "Home",
-    "End",
     "Enter",
     "Escape"
   ],
-  "detail": "DataTable grid row nav Home/End/Arrow + Enter selection + Escape clear; sort header Enter",
-  "source": "tests/unit/components/datatable-keyboard.spec.ts"
+  "runId": "1d194941-abec-494c-ace4-ff37482d9ce3",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:55.001Z",
+  "detail": "ArrowDown: ArrowDown/ArrowUp/Home/End move grid row focus; Enter: Enter selects focused row and emits update:selection; Escape: Escape clears row focus without additional selection",
+  "sourceHash": "1f12b27f83f447a7a0cf011c79757be1c86595374d7956b4de985bea7710bafa",
+  "contractHash": "ca4662242d40c6edf25ba1d68b79b26b277b777e1189c6e3dd6be8e3a7af98aa",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:55.001Z"
 }

@@ -1,18 +1,25 @@
 {
   "status": "PASS",
-  "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
-    "Space"
+  "component": "LazyTree",
+  "family": "tree",
+  "testFile": "tests/unit/hardening/keyboard/tree.spec.ts",
+  "testCases": [
+    {
+      "name": "enter-selects-node",
+      "key": "Enter",
+      "expected": "Enter on label button selects node and emits update:modelValue",
+      "status": "PASS"
+    }
   ],
-  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.650Z"
+  "keys": [
+    "Enter"
+  ],
+  "runId": "b92502b2-3a1e-4222-bea3-14719626a187",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:54.986Z",
+  "detail": "Enter: Enter on label button selects node and emits update:modelValue",
+  "sourceHash": "c1f4342f9857064f215f2f978bc25f1899c6197b98c37bc118fdf2463fcf313a",
+  "contractHash": "6f279f23b307ce73fb54c36bb317b59b35ddd70842313e9357a67f8eba5c517b",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:55.062Z"
 }

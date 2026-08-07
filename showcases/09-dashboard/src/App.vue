@@ -4,11 +4,7 @@ import type { ShowcaseNavItem } from '@showcase/shared/types/nav'
 
 const appTitle = 'Analytics Dashboard'
 
-const navItems: ShowcaseNavItem[] = [
-  { path: '/', label: 'Home' },
-  { path: '/manage', label: 'Widgets' },
-  { path: '/about', label: 'About' }
-]
+const navItems: ShowcaseNavItem[] = [{ path: '/', label: 'Dashboard' }]
 </script>
 
 <template>

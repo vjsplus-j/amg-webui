@@ -1,18 +1,25 @@
 {
   "status": "PASS",
-  "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
-    "Space"
+  "component": "VirtualTree",
+  "family": "tree",
+  "testFile": "tests/unit/hardening/keyboard/tree.spec.ts",
+  "testCases": [
+    {
+      "name": "enter-selects-node",
+      "key": "Enter",
+      "expected": "Enter on label button selects node and emits update:modelValue",
+      "status": "PASS"
+    }
   ],
-  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.895Z"
+  "keys": [
+    "Enter"
+  ],
+  "runId": "a3b58378-3e94-45f2-9573-0ebdc9eecf07",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:55.068Z",
+  "detail": "Enter: Enter on label button selects node and emits update:modelValue",
+  "sourceHash": "f325443d42d2ee7a5d04da96682f0c5ab77591dd3177853ddb16b323a7be08c9",
+  "contractHash": "638ecf297e7e6732cd3e2e80858015dbbbe6c6d3c9b54b4e7cef8a2b5af7085a",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:55.135Z"
 }

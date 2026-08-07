@@ -23,7 +23,12 @@ import {
   sortRowsSync,
 } from "@amg-webui/utils/data-display/sortRows";
 import { trackEmit } from "@amg-webui/telemetry";
-import type { Column, RowKey, SortOrder } from "./types";
+import type {
+  Column,
+  RowKey,
+  SortOrder,
+  DataTableRowInteractionEvent,
+} from "./types";
 import "./style.scss";
 
 /**
@@ -93,9 +98,15 @@ const emit = defineEmits<{
   "update:rows": [rows: number];
   sort: [event: { field: string; order: SortOrder }];
   "row-select": [
-    event: { originalEvent: MouseEvent; data: any; checked: boolean },
+    event: {
+      originalEvent: DataTableRowInteractionEvent;
+      data: any;
+      checked: boolean;
+    },
   ];
-  "row-click": [event: { originalEvent: MouseEvent; data: any }];
+  "row-click": [
+    event: { originalEvent: DataTableRowInteractionEvent; data: any },
+  ];
   page: [
     event: { first: number; rows: number; page: number; pageCount: number },
   ];
@@ -186,10 +197,45 @@ onUnmounted(() => {
   disposeSortWorker();
 });
 
-function resolveRowKey(row: any, index?: number): RowKey {
-  const key = row?.[props.rowKey];
-  if (key !== undefined && key !== null) return key as RowKey;
-  return index ?? 0;
+function resolveRowKey(row: any, index: number): RowKey {
+  const fieldKey = row?.[props.rowKey];
+  if (fieldKey !== undefined && fieldKey !== null) return fieldKey as RowKey;
+  return index;
+}
+
+const rowKeyIssueWarned = ref(false);
+
+function warnRowKeyIssues(source: any[]) {
+  if (!import.meta.env.DEV || rowKeyIssueWarned.value) return;
+  const needsStableKeys = Boolean(props.selectionMode) || useVirtual.value;
+  if (!needsStableKeys || !source.length) return;
+
+  const seen = new Map<RowKey, number>();
+  let missingField = false;
+
+  for (let i = 0; i < source.length; i += 1) {
+    const row = source[i];
+    const fieldKey = row?.[props.rowKey];
+    if (fieldKey === undefined || fieldKey === null) missingField = true;
+    const key = resolveRowKey(row, i);
+    seen.set(key, (seen.get(key) ?? 0) + 1);
+  }
+
+  const duplicates = [...seen.entries()].filter(([, count]) => count > 1);
+  if (!missingField && !duplicates.length) return;
+
+  rowKeyIssueWarned.value = true;
+  if (missingField) {
+    console.warn(
+      `[DataTable] Rows missing unique "${props.rowKey}" values; using row index as fallback. Provide stable rowKey values when selection or virtual scroll is enabled.`,
+    );
+  }
+  if (duplicates.length) {
+    console.warn(
+      "[DataTable] Duplicate row keys detected:",
+      duplicates.map(([key]) => key),
+    );
+  }
 }
 
 function emitSelection() {
@@ -278,6 +324,15 @@ const filteredData = computed(() => {
 
 /** Virtual applies to the current display set (full list or current page). */
 const useVirtual = computed(() => props.virtual !== false);
+
+watch(
+  [filteredData, () => props.selectionMode, useVirtual, () => props.rowKey],
+  ([list]) => {
+    rowKeyIssueWarned.value = false;
+    warnRowKeyIssues(Array.isArray(list) ? list : []);
+  },
+  { immediate: true },
+);
 
 const displaySource = computed(() => {
   const list = filteredData.value;
@@ -531,14 +586,18 @@ function handleSort(column: Column) {
   emit("sort", { field: column.field, order: next });
 }
 
-function handleRowClick(row: any, event: MouseEvent) {
+function handleRowClick(row: any, index: number, event: MouseEvent) {
   emit("row-click", { originalEvent: event, data: row });
-  if (props.selectionMode) toggleRowSelection(row, event);
+  if (props.selectionMode) toggleRowSelection(row, index, event);
 }
 
-function toggleRowSelection(row: any, event: MouseEvent) {
+function toggleRowSelection(
+  row: any,
+  index: number,
+  event: DataTableRowInteractionEvent,
+) {
   if (!props.selectionMode) return;
-  const key = resolveRowKey(row);
+  const key = resolveRowKey(row, index);
   const checked = !selectedKeys.value.has(key);
   if (checked) {
     if (props.selectionMode === "single") selectedKeys.value.clear();
@@ -559,23 +618,19 @@ function toggleRowSelection(row: any, event: MouseEvent) {
 
 function toggleSelectAll(event: Event) {
   const checked = (event.target as HTMLInputElement).checked;
-  if (checked) {
-    for (const row of filteredData.value) {
-      selectedKeys.value.add(resolveRowKey(row));
-    }
-  } else {
-    for (const row of filteredData.value) {
-      selectedKeys.value.delete(resolveRowKey(row));
-    }
-  }
+  filteredData.value.forEach((row, index) => {
+    const key = resolveRowKey(row, index);
+    if (checked) selectedKeys.value.add(key);
+    else selectedKeys.value.delete(key);
+  });
   emitSelection();
 }
 
 const isAllSelected = computed(
   () =>
     filteredData.value.length > 0 &&
-    filteredData.value.every((row) =>
-      selectedKeys.value.has(resolveRowKey(row)),
+    filteredData.value.every((row, index) =>
+      selectedKeys.value.has(resolveRowKey(row, index)),
     ),
 );
 
@@ -706,7 +761,7 @@ function onTableKeydown(event: KeyboardEvent) {
     if (idx < 0 || idx >= source.length) return
     const row = source[idx]
     if (props.selectionMode) {
-      toggleRowSelection(row, event as unknown as MouseEvent)
+      toggleRowSelection(row, idx, event);
     }
   }
   if (key === 'Escape') {
@@ -940,7 +995,7 @@ defineExpose({
                   'vp-datatable__row--striped': striped && index % 2 === 1,
                 }"
                 :style="{ height: `${itemHeight}px` }"
-                @click="handleRowClick(row, $event)"
+                @click="handleRowClick(row, index, $event)"
               >
                 <td
                   v-if="selectionMode"
@@ -949,7 +1004,7 @@ defineExpose({
                   <input
                     type="checkbox"
                     :checked="selectedKeys.has(resolveRowKey(row, index))"
-                    @click.stop="toggleRowSelection(row, $event)"
+                    @click.stop="toggleRowSelection(row, index, $event)"
                   />
                 </td>
                 <td
@@ -1013,7 +1068,7 @@ defineExpose({
                 ),
                 'vp-datatable__row--striped': striped && index % 2 === 1,
               }"
-              @click="handleRowClick(row, $event)"
+              @click="handleRowClick(row, index, $event)"
             >
               <td
                 v-if="selectionMode"
@@ -1022,7 +1077,7 @@ defineExpose({
                 <input
                   type="checkbox"
                   :checked="selectedKeys.has(resolveRowKey(row, index))"
-                  @click.stop="toggleRowSelection(row, $event)"
+                  @click.stop="toggleRowSelection(row, index, $event)"
                 />
               </td>
               <td

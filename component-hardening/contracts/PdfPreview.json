@@ -3,7 +3,7 @@
   "family": "foundation",
   "package": "core",
   "capability": "thin",
-  "maturity": "stable",
+  "maturity": "rc",
   "batch": "B29R",
   "api": {
     "props": "required",
@@ -48,11 +48,13 @@
   },
   "apiFreeze": {
     "version": "1",
-    "frozen": true,
-    "frozenAt": "2026-08-07T15:42:23.457Z"
+    "frozen": false,
+    "frozenAt": "2026-08-07T15:42:23.457Z",
+    "demotedAt": "2026-08-07T17:17:58.585Z",
+    "demoteReason": "STALE mandatory evidence: ssr, visual, a11y"
   },
   "generated": true,
   "generatedAt": "2026-08-07T09:57:01.220Z",
-  "promoteStable": true,
-  "updatedAt": "2026-08-07T15:42:23.457Z"
+  "promoteStable": false,
+  "updatedAt": "2026-08-07T17:17:58.585Z"
 }

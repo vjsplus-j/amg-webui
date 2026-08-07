@@ -1,10 +1,32 @@
 {
-  "status": "FAIL",
-  "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts Tabs interactive surface present (keyboard applicable)\"",
-  "tests": [
-    "tests/unit/hardening/real-mount-remaining.spec.ts"
+  "status": "PASS",
+  "component": "Tabs",
+  "family": "navigation",
+  "testFile": "tests/unit/hardening/keyboard/navigation.spec.ts",
+  "testCases": [
+    {
+      "name": "arrow-right-activates-tab",
+      "key": "ArrowRight",
+      "expected": "ArrowRight activates next tab and emits update:modelValue",
+      "status": "PASS"
+    },
+    {
+      "name": "arrow-left-activates-tab",
+      "key": "ArrowLeft",
+      "expected": "ArrowLeft activates previous tab and emits update:modelValue",
+      "status": "PASS"
+    }
   ],
-  "updatedAt": "2026-08-07T12:42:34.317Z",
-  "invalidatedAt": "2026-08-07T15:18:58.889Z",
-  "previousStatus": "PASS"
+  "keys": [
+    "ArrowRight",
+    "ArrowLeft"
+  ],
+  "runId": "f56c500d-f428-47e6-a3e0-0edf3159243c",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:45.041Z",
+  "detail": "ArrowRight: ArrowRight activates next tab and emits update:modelValue; ArrowLeft: ArrowLeft activates previous tab and emits update:modelValue",
+  "sourceHash": "da35abed63c28c1cdffe00320c7f6cc223adff60b8c31bf8ff2fa3a62373008d",
+  "contractHash": "c0c41054b1116d89cf475dfddfe62b1d0e40a7186fc49776e62b7afb9efde1a8",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:45.114Z"
 }

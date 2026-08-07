@@ -5,9 +5,14 @@ import type { ShowcaseNavItem } from '@showcase/shared/types/nav'
 const appTitle = 'Content CMS'
 
 const navItems: ShowcaseNavItem[] = [
-  { path: '/', label: 'Home' },
-  { path: '/manage', label: 'Articles' },
-  { path: '/about', label: 'About' }
+  { path: '/', label: 'Overview' },
+  { path: '/articles', label: 'Articles' },
+  { path: '/categories', label: 'Categories' },
+  { path: '/tags', label: 'Tags' },
+  { path: '/drafts', label: 'Drafts' },
+  { path: '/publish', label: 'Publish' },
+  { path: '/media', label: 'Media' },
+  { path: '/editor', label: 'Editor' }
 ]
 </script>
 

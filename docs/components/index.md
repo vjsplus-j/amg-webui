@@ -28,7 +28,7 @@ Stable 口径：以 Hardening Dashboard `verifiedStable` 为准（`component-har
 | Image | [image](./image) | `example/demos/Image/` |
 | Tour | [tour](./tour) | `example/demos/Tour/` |
 
-生成脚本：`npm run generate:vitepress-api`（读 `types.ts` 写 stub + 更新 sidebar）。
+生成脚本：`npm run generate:vitepress-api`（读 `generated/component-api` + `types.ts`，写/刷新页面；**组件 sidebar 由脚本 patch `docs/.vitepress/config.ts`**，来源 `V01_PRIORITY` + Hardening Stable 列表。Props 说明由脚本内建词典补全，未覆盖项仍为 `—`。）
 
 ## 本阶段已闭环子集（均 ready）
 

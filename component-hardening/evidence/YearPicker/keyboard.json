@@ -1,6 +1,6 @@
 {
-  "status": "PASS",
-  "detail": "ArrowDown open + Enter select year cell",
+  "status": "FAIL",
+  "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text",
   "tests": [
     "tests/unit/hardening/batch-b06-datetime-lowcode-pickers.spec.ts"
   ],
@@ -8,5 +8,7 @@
     "resolveKeyboardNavAction",
     "moveRovingIndex",
     "getFloatingPanelStyle"
-  ]
+  ],
+  "previousStatus": "PASS",
+  "invalidatedAt": "2026-08-07T16:54:56.722Z"
 }

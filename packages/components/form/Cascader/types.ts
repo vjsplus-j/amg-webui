@@ -15,6 +15,8 @@ export interface CascaderProps extends BaseProps, DisabledProps, InvalidProps {
   modelValue?: unknown
   options?: CascaderOption[]
   placeholder?: string
+  /** Show loading state in the dropdown panel */
+  loading?: boolean
 }
 
 export interface CascaderEmits {

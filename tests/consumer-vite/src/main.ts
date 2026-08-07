@@ -8,12 +8,14 @@ import { createComponentRegistry } from 'amg-webui/lowcode'
 import { isClient } from 'amg-webui/utils/env'
 import { useFocusTrap } from 'amg-webui/hooks/useFocusTrap'
 import { ThemeService as ThemeFromSubpath } from 'amg-webui/theme'
+import { ThemeStudioShell } from 'amg-webui/theme/studio'
 
 const safe = sanitizeHtml('<b>ok</b><script>x</script>')
 const registry = createComponentRegistry()
 void registry
 void ThemeService
 void ThemeFromSubpath
+void ThemeStudioShell
 void useFocusTrap
 void DataTable
 void ButtonOd

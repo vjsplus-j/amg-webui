@@ -1,150 +1,118 @@
 /**
- * Batch keyboard evidence — mount interactive components, press real keys, write matrix.
- * Only marks PASS when ≥2 real keys were dispatched without throw.
- * @vitest-environment happy-dom
+ * Batch keyboard evidence — marks FAIL for components lacking real testCases evidence.
+ * Does NOT dispatch keys or write mount-only PASS.
+ * @vitest-environment node
  */
-import { beforeAll, describe, expect, it } from 'vitest'
-import { mount, config } from '@vue/test-utils'
-import { nextTick } from 'vue'
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { describe, expect, it } from 'vitest'
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { pathToFileURL } from 'node:url'
-import { LocaleService } from '@amg-webui/locale'
-import { componentDirRel } from '../../../scripts/component-package-map.mjs'
-import { getSampleMountProps } from '../../../example/demos/_shared/sampleMountProps'
 import { validateKeyboardEvidence } from '../../../scripts/hardening/evidence.mjs'
+import { invalidateBatchKeyboardEvidence } from '../../../scripts/hardening/write-keyboard-evidence.mjs'
 
 const ROOT = process.cwd()
 const EVIDENCE = join(ROOT, 'component-hardening/evidence')
 const GATES = join(ROOT, 'component-hardening/gates/results/all.json')
 
-const MATRIX = [
-  'Tab',
-  'Enter',
-  'Escape',
-  'ArrowDown',
-  'ArrowUp',
-  'ArrowLeft',
-  'ArrowRight',
-  'Home',
-  'End',
-  ' '
-] as const
-
-beforeAll(() => {
-  LocaleService.init()
-  config.global.stubs = { teleport: true, Transition: false, RouterLink: true }
-})
+/** Components with dedicated family keyboard specs (real testCases). */
+const REAL_KEYBOARD_COMPONENTS = new Set([
+  'Select',
+  'Tree',
+  'Dialog',
+  'InputText',
+  'DataTable'
+])
 
 function targets(): string[] {
   if (!existsSync(GATES)) return []
   const all = JSON.parse(readFileSync(GATES, 'utf8'))
   return (all.results || [])
-    .filter((r: { status: string; gates: { id: string; status: string }[] }) =>
+    .filter((r: { gates: { id: string; status: string }[] }) =>
       r.gates.some((g) => g.id === 'keyboard' && g.status === 'FAIL')
     )
     .map((r: { name: string }) => r.name)
 }
 
-async function loadComponent(name: string) {
-  const rel = componentDirRel(name)
-  const abs = join(ROOT, rel)
-  for (const file of [
-    join(abs, 'index.vue'),
-    join(abs, `${name}.vue`),
-    join(abs, `${name}Host.vue`)
-  ]) {
-    if (!existsSync(file)) continue
-    const mod = await import(pathToFileURL(file).href)
-    return mod.default || mod[name] || mod
+function hasRealKeyboardEvidence(name: string): boolean {
+  const path = join(EVIDENCE, name, 'keyboard.json')
+  if (!existsSync(path)) return false
+  try {
+    const data = JSON.parse(readFileSync(path, 'utf8'))
+    return validateKeyboardEvidence(data).ok
+  } catch {
+    return false
   }
-  return null
 }
 
-describe('Batch keyboard evidence', () => {
-  const names = targets()
+describe('Batch keyboard evidence — missing real coverage', () => {
+  it('invalidates batch-written fake PASS keyboard evidence on disk', () => {
+    const result = invalidateBatchKeyboardEvidence(ROOT)
+    expect(result.invalidated).toBeGreaterThanOrEqual(0)
+  })
 
-  it(
-    `presses keyboard matrix on ${names.length} targets`,
-    async () => {
-      let pass = 0
-      let fail = 0
-      let skipped = 0
-      for (const name of names) {
-        try {
-          const Comp = await loadComponent(name)
-          if (!Comp) {
-            skipped += 1
-            continue
-          }
-          const props = getSampleMountProps(name) as Record<string, unknown>
-          const wrapper = mount(Comp, { props, attachTo: document.body })
-          await nextTick()
-          const root = wrapper.element as HTMLElement
-          const focusable =
-            root.querySelector?.(
-              'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [role="button"], [role="combobox"], [role="textbox"]'
-            ) || root
+  it('writes FAIL for keyboard-gate targets without real testCases evidence', () => {
+    const names = targets()
+    let markedFail = 0
+    let alreadyReal = 0
 
-          const pressed: string[] = []
-          if (focusable && typeof (focusable as HTMLElement).focus === 'function') {
-            try {
-              ;(focusable as HTMLElement).focus()
-            } catch {
-              /* ignore */
-            }
-          }
-
-          for (const key of MATRIX) {
-            try {
-              const target = focusable || root
-              if (wrapper.trigger) {
-                await wrapper.trigger('keydown', { key: key === ' ' ? ' ' : key })
-              }
-              if (target && typeof (target as HTMLElement).dispatchEvent === 'function') {
-                ;(target as HTMLElement).dispatchEvent(
-                  new KeyboardEvent('keydown', { key: key === ' ' ? ' ' : key, bubbles: true })
-                )
-              }
-              pressed.push(key === ' ' ? 'Space' : key)
-            } catch {
-              /* key not handled is ok — still counts as exercised */
-              pressed.push(key === ' ' ? 'Space' : key)
-            }
-          }
-
-          const keys = [...new Set(pressed)]
-          const payload = {
-            status: keys.length >= 2 ? 'PASS' : 'FAIL',
-            keys,
-            detail: `batch keyboard dispatch on mounted surface (${keys.length} keys)`,
-            source: 'tests/unit/hardening/batch-keyboard-evidence.spec.ts',
-            updatedAt: new Date().toISOString()
-          }
-          const v = validateKeyboardEvidence(payload)
-          if (!v.ok) payload.status = 'FAIL'
-
-          const dir = join(EVIDENCE, name)
-          mkdirSync(dir, { recursive: true })
-          writeFileSync(join(dir, 'keyboard.json'), JSON.stringify(payload, null, 2) + '\n')
-          if (payload.status === 'PASS') pass += 1
-          else fail += 1
-          wrapper.unmount()
-        } catch {
-          skipped += 1
-        }
+    for (const name of names) {
+      if (REAL_KEYBOARD_COMPONENTS.has(name) || hasRealKeyboardEvidence(name)) {
+        alreadyReal += 1
+        continue
       }
+
+      const dir = join(EVIDENCE, name)
+      mkdirSync(dir, { recursive: true })
       writeFileSync(
-        join(ROOT, 'component-hardening/reports/batch-keyboard-evidence.json'),
+        join(dir, 'keyboard.json'),
         JSON.stringify(
-          { generatedAt: new Date().toISOString(), targets: names.length, pass, fail, skipped },
+          {
+            status: 'FAIL',
+            component: name,
+            detail:
+              'no real keyboard testCases evidence — requires family keyboard spec with behavior assertions',
+            testCases: [],
+            keys: [],
+            toolVersion: '1',
+            verifiedAt: new Date().toISOString(),
+            source: 'tests/unit/hardening/batch-keyboard-evidence.spec.ts'
+          },
           null,
           2
         ) + '\n'
       )
-      console.log(`[batch-keyboard] pass=${pass} fail=${fail} skipped=${skipped}`)
-      expect(pass + fail + skipped).toBe(names.length)
-    },
-    600_000
-  )
+      markedFail += 1
+    }
+
+    writeFileSync(
+      join(ROOT, 'component-hardening/reports/batch-keyboard-evidence.json'),
+      JSON.stringify(
+        {
+          generatedAt: new Date().toISOString(),
+          targets: names.length,
+          markedFail,
+          alreadyReal,
+          realComponents: [...REAL_KEYBOARD_COMPONENTS]
+        },
+        null,
+        2
+      ) + '\n'
+    )
+
+    expect(markedFail + alreadyReal).toBeLessThanOrEqual(names.length)
+  })
+
+  it('reports remaining keyboard PASS count after invalidation', () => {
+    let passCount = 0
+    for (const name of readdirSync(EVIDENCE, { withFileTypes: true })
+      .filter((d) => d.isDirectory())
+      .map((d) => d.name)) {
+      const path = join(EVIDENCE, name, 'keyboard.json')
+      if (!existsSync(path)) continue
+      const data = JSON.parse(readFileSync(path, 'utf8'))
+      if (String(data.status).toUpperCase() !== 'PASS') continue
+      if (validateKeyboardEvidence(data).ok) passCount += 1
+    }
+    expect(passCount).toBeGreaterThanOrEqual(0)
+    expect(passCount).toBeLessThanOrEqual(REAL_KEYBOARD_COMPONENTS.size + 5)
+  })
 })

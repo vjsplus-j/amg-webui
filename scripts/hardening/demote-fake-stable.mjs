@@ -53,7 +53,7 @@ function main() {
 
     const name = contract.name || file.replace(/\.json$/, '')
     const gate = loadGate(name)
-    const evidence = loadEvidenceManifest(hardening, name)
+    const evidence = loadEvidenceManifest(hardening, name, root)
     const mandatory = Object.entries(contract.gates || {})
       .filter(([, sev]) => sev === 'mandatory')
       .map(([id]) => id)
@@ -64,11 +64,16 @@ function main() {
       )
 
     const evidenceOk = evidenceCompleteForStable(evidence, mandatory)
+    const staleMandatory = mandatory.filter((id) => {
+      const g = evidence.gates?.[id]
+      return g?.stale || g?.status === 'STALE'
+    })
     const verified =
       gate &&
       gate.status === 'PASS' &&
       (gate.verifiedStable === true || gate.stable === true) &&
-      evidenceOk
+      evidenceOk &&
+      staleMandatory.length === 0
 
     if (verified) {
       kept += 1
@@ -76,13 +81,16 @@ function main() {
       continue
     }
 
-    const reason = !gate
-      ? 'no current gate results'
-      : gate.status !== 'PASS'
-        ? `gate ${gate.status}`
-        : !evidenceOk
-          ? 'mandatory evidence FAIL/MISSING or credibility check failed'
-          : 'gate did not report verifiedStable'
+    const reason =
+      staleMandatory.length > 0
+        ? `STALE mandatory evidence: ${staleMandatory.join(', ')}`
+        : !gate
+          ? 'no current gate results'
+          : gate.status !== 'PASS'
+            ? `gate ${gate.status}`
+            : !evidenceOk
+              ? 'mandatory evidence FAIL/MISSING or credibility check failed'
+              : 'gate did not report verifiedStable'
 
     demote(contract, reason)
     writeFileSync(path, JSON.stringify(contract, null, 2) + '\n')

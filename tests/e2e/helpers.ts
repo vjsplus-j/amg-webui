@@ -6,7 +6,20 @@ import { expect, type Page } from '@playwright/test'
  */
 export async function loginAsAdmin(page: Page, query = '') {
   const q = query && !query.startsWith('?') ? `?${query}` : query
+  await page.context().clearCookies()
   await page.goto(`/login${q}`)
+  // Already-authenticated sessions may bounce off /login — force a clean login form.
+  if (!(await page.locator('.biz-login').isVisible().catch(() => false))) {
+    await page.evaluate(() => {
+      try {
+        localStorage.clear()
+        sessionStorage.clear()
+      } catch {
+        /* ignore */
+      }
+    })
+    await page.goto(`/login${q}`)
+  }
   await expect(page.locator('.biz-login')).toBeVisible()
 
   const password = page.locator('.biz-login__form input[type="password"]')

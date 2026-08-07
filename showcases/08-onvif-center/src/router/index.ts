@@ -1,19 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from '../pages/HomePage.vue'
-import ManagePage from '../pages/ManagePage.vue'
-import AboutPage from '../pages/AboutPage.vue'
+import DiscoveryPage from '../pages/DiscoveryPage.vue'
+import DevicesPage from '../pages/DevicesPage.vue'
+import ProfilesPage from '../pages/ProfilesPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', name: 'home', component: HomePage },
-    {
-      path: '/manage',
-      name: 'manage',
-      component: ManagePage,
-      meta: { title: 'ONVIF Devices' }
-    },
-    { path: '/about', name: 'about', component: AboutPage }
+    { path: '/', name: 'discovery', component: DiscoveryPage },
+    { path: '/devices', name: 'devices', component: DevicesPage, meta: { title: 'Devices' } },
+    { path: '/profiles', name: 'profiles', component: ProfilesPage, meta: { title: 'Profiles' } }
   ]
 })
 

@@ -1,5 +1,9 @@
 import { computed, onUnmounted, ref, watch, type Ref } from "vue";
 import {
+  moveRovingIndex,
+  type KeyboardNavAction,
+} from "../engines/keyboardNav";
+import {
   type FlatTreeRow,
   type TreeCheckState,
   type TreeNode,
@@ -251,6 +255,44 @@ export function useTreeState(
     expandedSet.value = new Set();
   }
 
+  function activeRowIndex(): number {
+    const rows = flatRows.value;
+    if (!rows.length) return -1;
+    if (!activeId.value) return 0;
+    const idx = rows.findIndex((r) => r.id === activeId.value);
+    return idx >= 0 ? idx : 0;
+  }
+
+  function ensureActiveRow() {
+    const rows = flatRows.value;
+    if (!rows.length) {
+      activeId.value = null;
+      return null;
+    }
+    if (!activeId.value || !rows.some((r) => r.id === activeId.value)) {
+      activeId.value = rows[0]!.id;
+    }
+    return rows.find((r) => r.id === activeId.value) ?? null;
+  }
+
+  function moveActive(action: KeyboardNavAction) {
+    const rows = flatRows.value;
+    if (!rows.length) return;
+    const idx = activeRowIndex();
+    const nextIdx = moveRovingIndex(idx, action, rows.length, true);
+    activeId.value = rows[nextIdx]?.id ?? null;
+  }
+
+  function expandActive() {
+    const row = ensureActiveRow();
+    if (row?.hasChildren && !row.expanded) toggleExpand(row.id, row.node);
+  }
+
+  function collapseActive() {
+    const row = ensureActiveRow();
+    if (row?.hasChildren && row.expanded) toggleExpand(row.id, row.node);
+  }
+
   return {
     expandedSet,
     searchQuery,
@@ -265,5 +307,9 @@ export function useTreeState(
     selectNode,
     expandAll,
     collapseAll,
+    ensureActiveRow,
+    moveActive,
+    expandActive,
+    collapseActive,
   };
 }

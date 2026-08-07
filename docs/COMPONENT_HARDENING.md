@@ -76,7 +76,7 @@ example：`/lab/hardening`（`lab-hardening`）。
 4. （对外文档）Track C 页面契约完整 —— 见 Example Documentation
 
 **禁止**：用 `hardening:promote --all-passing --ratio-target 90` 批量刷 Stable。  
-当前诚实基线见 `component-hardening/program-status.json` 与 dashboard `stableRatio`。
+当前诚实基线见 `component-hardening/program-status.json`（`npm run hardening:program-status`）与 dashboard `stableRatio`。Docs 组件侧栏由 `npm run generate:docs-sidebar` 从 catalog/maturity 生成，勿手改 `sidebar.components.ts`。
 
 ## 与旧「组件深化波次」关系
 

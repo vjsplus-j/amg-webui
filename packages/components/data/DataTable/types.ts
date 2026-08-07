@@ -4,6 +4,20 @@ export type SortOrder = "asc" | "desc" | null;
 
 export type RowKey = string | number;
 
+/** Pointer or keyboard event that initiated a row interaction */
+export type DataTableRowInteractionEvent = MouseEvent | KeyboardEvent;
+
+export interface DataTableRowSelectEvent<T = any> {
+  originalEvent: DataTableRowInteractionEvent;
+  data: T;
+  checked: boolean;
+}
+
+export interface DataTableRowClickEvent<T = any> {
+  originalEvent: DataTableRowInteractionEvent;
+  data: T;
+}
+
 export interface Column<T = any> {
   field: string;
   header: string;
@@ -72,11 +86,8 @@ export interface DataTableEmits<T = any> {
   (e: "update:first", first: number): void;
   (e: "update:rows", rows: number): void;
   (e: "sort", event: { field: string; order: SortOrder }): void;
-  (
-    e: "row-select",
-    event: { originalEvent: MouseEvent; data: T; checked: boolean },
-  ): void;
-  (e: "row-click", event: { originalEvent: MouseEvent; data: T }): void;
+  (e: "row-select", event: DataTableRowSelectEvent<T>): void;
+  (e: "row-click", event: DataTableRowClickEvent<T>): void;
   (
     e: "page",
     event: { first: number; rows: number; page: number; pageCount: number },

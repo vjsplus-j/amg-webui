@@ -1,48 +1,527 @@
 {
-  "updatedAt": "2026-08-07T16:45:00.000Z",
-  "version": "1.0.0-hardening-credibility",
+  "updatedAt": "2026-08-07T17:44:56.177Z",
+  "version": "0.1.0-honest",
+  "verifiedStable": 0,
+  "gatePass": 287,
+  "gateFail": 0,
+  "gateUnknown": 0,
+  "evidenceFresh": 0,
+  "evidenceStale": 287,
+  "docsPass": 287,
+  "keyboardPass": 23,
+  "keyboardFail": 264,
+  "a11yPass": 7,
+  "a11yFail": 0,
+  "lowcodeGoldenPath": "PASS",
+  "releaseReadiness": {
+    "npmVersion": "0.1.0",
+    "onePointZeroReady": false,
+    "note": "0.1.0 trial — API may change; verifiedStable 0/287"
+  },
   "inventory": {
     "actual": 287,
     "target": 300,
     "ssot": "component-hardening/inventory/component-inventory.json"
   },
-  "repositoryCompletionAudit": {
-    "report": "component-hardening/dashboard/component-dashboard.json",
-    "packagesComplete": true,
-    "exampleComplete": true,
-    "docsComplete": true,
-    "stable": 287,
-    "verifiedStable": 287,
+  "hardening": {
+    "verifiedStable": 0,
+    "total": 287,
+    "stableRatio": 0,
+    "stableTarget": 90,
+    "stableTargetMet": false,
     "gatePass": 287,
     "gateFail": 0,
-    "stableRatio": 100,
-    "docsPages": 287,
-    "note": "1.0 readiness remediation 2026-08-07: P0 hardening credibility + P1 platform (docs demos, showcases, business, Theme Studio, lowcode 19/19, SSR/perf) + P2 Skill SR3 experimental. Bundle: example.doc.* stripped from published locale packs; lowcode off root barrel; consumer export map fixed (form barrel vs form-component)."
+    "gateUnknown": 0,
+    "evidenceFresh": 0,
+    "evidenceStale": 287,
+    "evidenceFiles": {
+      "fresh": 0,
+      "stale": 288,
+      "scanned": 288,
+      "note": "Component-level freshness requires mandatory evidence with valid hashes"
+    },
+    "docsPass": 287,
+    "docsTotal": 287,
+    "keyboardPass": 23,
+    "keyboardFail": 264,
+    "keyboardPassComponents": [
+      "AutoComplete",
+      "Cascader",
+      "Checkbox",
+      "ConfirmDialog",
+      "DataTable",
+      "Dialog",
+      "Drawer",
+      "Dropdown",
+      "EditTree",
+      "InputNumber",
+      "InputText",
+      "LazyTree",
+      "Mention",
+      "Popover",
+      "RadioGroup",
+      "Select",
+      "Switch",
+      "Tabs",
+      "TimePicker",
+      "Tree",
+      "TreeSelect",
+      "Upload",
+      "VirtualTree"
+    ],
+    "keyboardSource": "component-hardening/reports/keyboard-family-evidence.json",
+    "keyboardByFamily": {
+      "selection": [
+        "AutoComplete",
+        "Cascader",
+        "Dropdown",
+        "Mention",
+        "Select",
+        "TreeSelect"
+      ],
+      "input": [
+        "Checkbox",
+        "InputNumber",
+        "InputText",
+        "Switch"
+      ],
+      "overlay": [
+        "ConfirmDialog",
+        "Dialog",
+        "Drawer",
+        "Popover"
+      ],
+      "table": [
+        "DataTable"
+      ],
+      "tree": [
+        "EditTree",
+        "LazyTree",
+        "Tree",
+        "VirtualTree"
+      ],
+      "form": [
+        "RadioGroup"
+      ],
+      "navigation": [
+        "Tabs"
+      ],
+      "datetime": [
+        "TimePicker"
+      ],
+      "upload": [
+        "Upload"
+      ]
+    },
+    "a11yPass": 7,
+    "a11yFail": 0,
+    "a11yFamiliesPass": 7,
+    "a11yThemeMatrixFamilies": 1,
+    "a11yThemeMatrixTotalFamilies": 20,
+    "a11yBrowser": {
+      "generatedAt": "2026-08-07T17:44:36.647Z",
+      "source": "tests/e2e/a11y-core-contrast.spec.ts",
+      "path": "/lab/hardening",
+      "themeMatrixComplete": true,
+      "themeMatrixExpectedCells": 12,
+      "themeMatrixActualCells": 12,
+      "designs": [
+        "mercedes",
+        "linear",
+        "porsche",
+        "lamborghini",
+        "ferrari",
+        "apple",
+        "wechat",
+        "alipay"
+      ],
+      "components": [
+        {
+          "component": "Button",
+          "selector": "[data-testid=\"hf-button\"]",
+          "axe": {
+            "status": "PASS",
+            "blocking": 0,
+            "A11Y_STRUCTURE": {
+              "status": "PASS",
+              "critical": 0,
+              "serious": 0
+            },
+            "A11Y_CONTRAST": {
+              "status": "PASS",
+              "critical": 0,
+              "serious": 0
+            }
+          },
+          "verifiedAt": "2026-08-07T17:43:58.723Z"
+        },
+        {
+          "component": "InputText",
+          "selector": "[data-testid=\"hf-input\"]",
+          "axe": {
+            "status": "PASS",
+            "blocking": 0,
+            "A11Y_STRUCTURE": {
+              "status": "PASS",
+              "critical": 0,
+              "serious": 0
+            },
+            "A11Y_CONTRAST": {
+              "status": "PASS",
+              "critical": 0,
+              "serious": 0
+            }
+          },
+          "verifiedAt": "2026-08-07T17:44:02.076Z"
+        },
+        {
+          "component": "Select",
+          "selector": "[data-testid=\"hf-select\"]",
+          "axe": {
+            "status": "PASS",
+            "blocking": 0,
+            "A11Y_STRUCTURE": {
+              "status": "PASS",
+              "critical": 0,
+              "serious": 0
+            },
+            "A11Y_CONTRAST": {
+              "status": "PASS",
+              "critical": 0,
+              "serious": 0
+            }
+          },
+          "verifiedAt": "2026-08-07T17:44:05.224Z"
+        },
+        {
+          "component": "Checkbox",
+          "selector": "[data-testid=\"hf-checkbox\"]",
+          "axe": {
+            "status": "PASS",
+            "blocking": 0,
+            "A11Y_STRUCTURE": {
+              "status": "PASS",
+              "critical": 0,
+              "serious": 0
+            },
+            "A11Y_CONTRAST": {
+              "status": "PASS",
+              "critical": 0,
+              "serious": 0
+            }
+          },
+          "verifiedAt": "2026-08-07T17:44:09.471Z"
+        },
+        {
+          "component": "DataTable",
+          "selector": "[data-testid=\"hf-datatable\"]",
+          "axe": {
+            "status": "PASS",
+            "blocking": 0,
+            "A11Y_STRUCTURE": {
+              "status": "PASS",
+              "critical": 0,
+              "serious": 0
+            },
+            "A11Y_CONTRAST": {
+              "status": "PASS",
+              "critical": 0,
+              "serious": 0
+            }
+          },
+          "verifiedAt": "2026-08-07T17:44:12.687Z"
+        },
+        {
+          "component": "Dialog",
+          "selector": ".vp-dialog-overlay",
+          "axe": {
+            "status": "PASS",
+            "blocking": 0,
+            "A11Y_STRUCTURE": {
+              "status": "PASS",
+              "critical": 0,
+              "serious": 0
+            },
+            "A11Y_CONTRAST": {
+              "status": "PASS",
+              "critical": 0,
+              "serious": 0
+            }
+          },
+          "verifiedAt": "2026-08-07T17:44:16.011Z"
+        }
+      ],
+      "themeContrastMatrix": [
+        {
+          "design": "mercedes",
+          "scheme": "dark",
+          "selector": "[data-testid=\"hf-button\"]",
+          "A11Y_CONTRAST": {
+            "status": "PASS",
+            "critical": 0,
+            "serious": 0
+          }
+        },
+        {
+          "design": "linear",
+          "scheme": "light",
+          "selector": "[data-testid=\"hf-button\"]",
+          "A11Y_CONTRAST": {
+            "status": "PASS",
+            "critical": 0,
+            "serious": 0
+          }
+        },
+        {
+          "design": "linear",
+          "scheme": "dark",
+          "selector": "[data-testid=\"hf-button\"]",
+          "A11Y_CONTRAST": {
+            "status": "PASS",
+            "critical": 0,
+            "serious": 0
+          }
+        },
+        {
+          "design": "porsche",
+          "scheme": "dark",
+          "selector": "[data-testid=\"hf-button\"]",
+          "A11Y_CONTRAST": {
+            "status": "PASS",
+            "critical": 0,
+            "serious": 0
+          }
+        },
+        {
+          "design": "lamborghini",
+          "scheme": "dark",
+          "selector": "[data-testid=\"hf-button\"]",
+          "A11Y_CONTRAST": {
+            "status": "PASS",
+            "critical": 0,
+            "serious": 0
+          }
+        },
+        {
+          "design": "ferrari",
+          "scheme": "dark",
+          "selector": "[data-testid=\"hf-button\"]",
+          "A11Y_CONTRAST": {
+            "status": "PASS",
+            "critical": 0,
+            "serious": 0
+          }
+        },
+        {
+          "design": "apple",
+          "scheme": "light",
+          "selector": "[data-testid=\"hf-button\"]",
+          "A11Y_CONTRAST": {
+            "status": "PASS",
+            "critical": 0,
+            "serious": 0
+          }
+        },
+        {
+          "design": "apple",
+          "scheme": "dark",
+          "selector": "[data-testid=\"hf-button\"]",
+          "A11Y_CONTRAST": {
+            "status": "PASS",
+            "critical": 0,
+            "serious": 0
+          }
+        },
+        {
+          "design": "wechat",
+          "scheme": "light",
+          "selector": "[data-testid=\"hf-button\"]",
+          "A11Y_CONTRAST": {
+            "status": "PASS",
+            "critical": 0,
+            "serious": 0
+          }
+        },
+        {
+          "design": "wechat",
+          "scheme": "dark",
+          "selector": "[data-testid=\"hf-button\"]",
+          "A11Y_CONTRAST": {
+            "status": "PASS",
+            "critical": 0,
+            "serious": 0
+          }
+        },
+        {
+          "design": "alipay",
+          "scheme": "light",
+          "selector": "[data-testid=\"hf-button\"]",
+          "A11Y_CONTRAST": {
+            "status": "PASS",
+            "critical": 0,
+            "serious": 0
+          }
+        },
+        {
+          "design": "alipay",
+          "scheme": "dark",
+          "selector": "[data-testid=\"hf-button\"]",
+          "A11Y_CONTRAST": {
+            "status": "PASS",
+            "critical": 0,
+            "serious": 0
+          }
+        }
+      ]
+    },
+    "a11ySource": "component-hardening/reports/a11y-report.json",
+    "demoteNote": "All prior Stable demoted: STALE evidence without sourceHash/contractHash. Structural gates PASS; verifiedStable requires fresh evidence.",
+    "dashboard": "component-hardening/dashboard/component-dashboard.json",
+    "gatesReport": "component-hardening/gates/results/all.json",
+    "stableComponents": []
   },
-  "maturityScale": ["draft", "beta", "rc", "stable"],
+  "maturity": {
+    "scale": [
+      "draft",
+      "beta",
+      "rc",
+      "stable"
+    ],
+    "fileSummary": {
+      "stub": 1,
+      "shell": 10,
+      "beta": 264,
+      "rc-candidate": 12,
+      "stable": 0
+    },
+    "claimedStableUnverified": 0
+  },
+  "lowcode": {
+    "studioVersion": "0.1",
+    "maturity": "beta",
+    "exportPath": "amg-webui/lowcode",
+    "exportNote": "experimental Studio — not root barrel; Theme Studio is amg-webui/theme/studio",
+    "goldenPath": {
+      "status": "PASS",
+      "productionReady": false,
+      "goldenPathReady": true,
+      "stepsTotal": 19,
+      "stepsPass": 19,
+      "stepsFail": 0,
+      "report": "component-hardening/reports/lowcode-golden-path.json",
+      "verifiedBy": "tests/e2e/lowcode-golden-path.spec.ts",
+      "note": "LC-012 golden path E2E PASS ≠ Studio product-stable. productionReady stays false until six-dimension Studio Ready."
+    }
+  },
+  "themeStudio": {
+    "exportPath": "amg-webui/theme/studio",
+    "maturity": "experimental",
+    "note": "Theme Studio visual generator — not product-stable"
+  },
+  "showcaseBuilds": {
+    "status": "BUILT",
+    "total": 10,
+    "built": 10,
+    "entries": [
+      {
+        "id": "01-admin",
+        "dist": true,
+        "domainPages": true
+      },
+      {
+        "id": "02-saas",
+        "dist": true,
+        "domainPages": true
+      },
+      {
+        "id": "03-ecommerce",
+        "dist": true,
+        "domainPages": true
+      },
+      {
+        "id": "04-content-management",
+        "dist": true,
+        "domainPages": true
+      },
+      {
+        "id": "05-device-management",
+        "dist": true,
+        "domainPages": true
+      },
+      {
+        "id": "06-video-surveillance",
+        "dist": true,
+        "domainPages": true
+      },
+      {
+        "id": "07-gb28181-center",
+        "dist": true,
+        "domainPages": true
+      },
+      {
+        "id": "08-onvif-center",
+        "dist": true,
+        "domainPages": true
+      },
+      {
+        "id": "09-dashboard",
+        "dist": true,
+        "domainPages": true
+      },
+      {
+        "id": "10-mobile-admin",
+        "dist": true,
+        "domainPages": true
+      }
+    ],
+    "note": "10 domain showcases with domain-specific pages; mock adapters only"
+  },
+  "consumerBuilds": {
+    "status": "CI_WIRED",
+    "fixtures": [
+      "consumer-vite",
+      "consumer-webpack",
+      "consumer-nuxt"
+    ],
+    "command": "npm run test:consumers",
+    "note": "Includes amg-webui/theme/studio resolve smoke"
+  },
+  "ciStatus": {
+    "status": "WIRED",
+    "script": ".github/workflows/ci.yml",
+    "includes": [
+      "verify:component --all --strict",
+      "check:evidence-freshness",
+      "hardening:demote",
+      "test:showcases",
+      "test:lowcode-golden-path",
+      "test:a11y-browser",
+      "test:consumers",
+      "docs:build"
+    ]
+  },
   "done": [
-    "P0-01..04 hardening credibility (slots, strict verify, Stable SSOT, dashboard)",
-    "P0-05 keyboard/a11y evidence validators + family matrices",
-    "verifiedStable 287/287 under strict verify:component --all",
-    "DataTable production keyboard/a11y/scrollTo",
-    "Docs Demo Renderer packages/demos + DocsDemo",
-    "Showcases 01-10 build PASS",
-    "Business adapter/Abort/race productionization",
-    "Theme Studio + visual theme matrix",
-    "Lowcode golden path 19/19 + Vite generated SFC fixture",
-    "SSR hydration + Nuxt consumer surface",
-    "Perf gates DataTable/Tree/Select/VirtualList",
-    "Skill SR3 built-ins + Lab + Inspector + Telemetry bridge",
-    "check:version-consistency + check:dist bundle budget (example.doc out)",
-    "Consumer export fixes: publicizePaths, form barrel, sortRows worker URL"
+    "P0 keyboard evidence rewrite (behavioral testCases + family harness)",
+    "P0 evidence freshness (sourceHash/contractHash; STALE blocks Stable)",
+    "P0 no-backend-dto real static gate",
+    "P0 Stable recalculated — verifiedStable 0/287 after honest demote",
+    "P0 DataTable rowKey + DataTableRowInteractionEvent",
+    "P0 Lowcode golden path Playwright 19/19",
+    "P0 Theme Studio package export amg-webui/theme/studio",
+    "P1 Showcases 01–10 domain pages + build matrix",
+    "P1 Docs dead-link allowlist (not global ignore), API descriptions, sidebar SSOT",
+    "P1 Browser A11Y axe structure+contrast + AutoComplete slots restored",
+    "CI wired: strict verify, freshness, demote, showcases, lowcode, a11y-browser"
   ],
   "todo": [],
   "programBacklog": [],
   "deferred": [],
   "knownGaps": [],
   "notes": [
-    "Skill SR3 / Lowcode Studio / Theme Studio remain experimental — not claimed product-stable.",
-    "Docs full template applied to Button + DataTable; DOCS_DEMOS covers 16 core interactive demos; remaining pages follow generated API + template SSOT.",
-    "Visual matrix baselines are Chromium/Windows; Linux CI may need snapshot refresh once."
+    "Skill SR3 / Lowcode Studio / Theme Studio remain experimental by design.",
+    "gatePass=287 reflects structural verify after demote; evidenceFresh=0 blocks Stable promotion.",
+    "Docs sidebar SSOT: npm run generate:docs-sidebar from catalog + maturity metadata.",
+    "ignoreDeadLinks is a narrow allowlist in docs/.vitepress/config.ts — NOT global true.",
+    "onePointZeroReady=false until fresh evidence promotes a credible Stable set."
   ]
 }

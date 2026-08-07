@@ -1,6 +1,22 @@
 import DataTable from './index.vue'
-import type { DataTableProps, Column, SortOrder, RowKey } from './types'
+import type {
+  DataTableProps,
+  Column,
+  SortOrder,
+  RowKey,
+  DataTableRowInteractionEvent,
+  DataTableRowSelectEvent,
+  DataTableRowClickEvent,
+} from './types'
 
 export { DataTable }
-export type { DataTableProps, Column, SortOrder, RowKey }
+export type {
+  DataTableProps,
+  Column,
+  SortOrder,
+  RowKey,
+  DataTableRowInteractionEvent,
+  DataTableRowSelectEvent,
+  DataTableRowClickEvent,
+}
 export default DataTable

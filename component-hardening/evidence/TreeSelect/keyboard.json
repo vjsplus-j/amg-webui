@@ -1,4 +1,32 @@
 {
   "status": "PASS",
-  "detail": "shared engines ArrowDown/Right/Enter + Escape close"
+  "component": "TreeSelect",
+  "family": "selection",
+  "testFile": "tests/unit/hardening/keyboard/selection.spec.ts",
+  "testCases": [
+    {
+      "name": "arrow-down-active-node",
+      "key": "ArrowDown",
+      "expected": "opens panel and moves highlighted tree node",
+      "status": "PASS"
+    },
+    {
+      "name": "enter-selects-node",
+      "key": "Enter",
+      "expected": "selects focused node and emits update:modelValue",
+      "status": "PASS"
+    }
+  ],
+  "keys": [
+    "ArrowDown",
+    "Enter"
+  ],
+  "runId": "dda0c035-05ce-41b2-994a-d1d56ea3268a",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:55.251Z",
+  "detail": "ArrowDown: opens panel and moves highlighted tree node; Enter: selects focused node and emits update:modelValue",
+  "sourceHash": "2a4373afea280999ec3d2aa87cce28222e5056d044946135f98fb28de72b9c91",
+  "contractHash": "96057231bbc995f5f89351293da5ab3e331654d9693c237d4491cb935231a376",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:55.302Z"
 }

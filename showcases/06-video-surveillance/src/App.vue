@@ -5,9 +5,15 @@ import type { ShowcaseNavItem } from '@showcase/shared/types/nav'
 const appTitle = 'Video Surveillance'
 
 const navItems: ShowcaseNavItem[] = [
-  { path: '/', label: 'Home' },
-  { path: '/manage', label: 'Cameras' },
-  { path: '/about', label: 'About' }
+  { path: '/', label: 'Overview' },
+  { path: '/devices', label: 'Device tree' },
+  { path: '/grid', label: 'Video grid' },
+  { path: '/player', label: 'Player' },
+  { path: '/stream', label: 'Stream' },
+  { path: '/ptz', label: 'PTZ' },
+  { path: '/snapshot', label: 'Snapshot' },
+  { path: '/recording', label: 'Recording' },
+  { path: '/alarms', label: 'Alarms' }
 ]
 </script>
 

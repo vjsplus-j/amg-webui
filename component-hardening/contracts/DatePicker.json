@@ -3,7 +3,7 @@
   "family": "datetime",
   "package": "form",
   "capability": "interaction",
-  "maturity": "stable",
+  "maturity": "rc",
   "batch": "B06",
   "api": {
     "props": "required",
@@ -77,13 +77,15 @@
   },
   "apiFreeze": {
     "version": "1",
-    "frozen": true,
-    "frozenAt": "2026-08-07T15:42:23.457Z"
+    "frozen": false,
+    "frozenAt": "2026-08-07T15:42:23.457Z",
+    "demotedAt": "2026-08-07T17:17:54.178Z",
+    "demoteReason": "STALE mandatory evidence: ssr, a11y, behavior, docs"
   },
   "generated": false,
   "generatedAt": "2026-08-07T09:57:01.123Z",
   "template": true,
-  "updatedAt": "2026-08-07T15:42:23.457Z",
-  "promoteStable": true,
+  "updatedAt": "2026-08-07T17:17:54.178Z",
+  "promoteStable": false,
   "batchTitle": "Date Family"
 }

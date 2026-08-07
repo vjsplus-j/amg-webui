@@ -1,0 +1,73 @@
+{
+  "generatedAt": "2026-08-07T17:44:56.173Z",
+  "pass": 23,
+  "fail": 264,
+  "components": [
+    "AutoComplete",
+    "Cascader",
+    "Checkbox",
+    "ConfirmDialog",
+    "DataTable",
+    "Dialog",
+    "Drawer",
+    "Dropdown",
+    "EditTree",
+    "InputNumber",
+    "InputText",
+    "LazyTree",
+    "Mention",
+    "Popover",
+    "RadioGroup",
+    "Select",
+    "Switch",
+    "Tabs",
+    "TimePicker",
+    "Tree",
+    "TreeSelect",
+    "Upload",
+    "VirtualTree"
+  ],
+  "byFamily": {
+    "selection": [
+      "AutoComplete",
+      "Cascader",
+      "Dropdown",
+      "Mention",
+      "Select",
+      "TreeSelect"
+    ],
+    "input": [
+      "Checkbox",
+      "InputNumber",
+      "InputText",
+      "Switch"
+    ],
+    "overlay": [
+      "ConfirmDialog",
+      "Dialog",
+      "Drawer",
+      "Popover"
+    ],
+    "table": [
+      "DataTable"
+    ],
+    "tree": [
+      "EditTree",
+      "LazyTree",
+      "Tree",
+      "VirtualTree"
+    ],
+    "form": [
+      "RadioGroup"
+    ],
+    "navigation": [
+      "Tabs"
+    ],
+    "datetime": [
+      "TimePicker"
+    ],
+    "upload": [
+      "Upload"
+    ]
+  }
+}

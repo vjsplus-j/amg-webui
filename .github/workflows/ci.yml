@@ -79,10 +79,15 @@ jobs:
       - name: Component hardening gates
         run: |
           npm run hardening:generate
-          npm run verify:component -- --all
+          npm run hardening:demote
+          npm run verify:component -- --all --strict
+          npm run check:evidence-freshness
           npm run hardening:demote
           npm run hardening:dashboard
           npm run check:version-consistency
+          npm run test:showcases
+          npm run test:lowcode-golden-path
+          npm run test:a11y-browser
           node -e "const d=require('./component-hardening/dashboard/component-dashboard.json'); const fake=d.components.filter(c=>c.productMaturity==='stable'&&!c.verifiedStable); if(fake.length){console.error('Fake stable rows', fake.length, fake.slice(0,10).map(c=>c.name)); process.exit(1)} console.log('verifiedStable=', d.stableRatio+'%', 'gatePass=', d.gates?.pass+'/'+d.gates?.total, 'claimedUnverified=', d.honesty?.claimedStableUnverified)"
 
       - name: Build docs
@@ -136,7 +141,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run hardening:generate
-      - run: npm run verify:component -- --all
+      - run: npm run verify:component -- --all --strict
+      - run: npm run check:evidence-freshness
       - run: npm run hardening:ssr
       - run: npm run hardening:visual
       - run: npm run hardening:dashboard

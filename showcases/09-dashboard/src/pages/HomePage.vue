@@ -1,40 +1,118 @@
 <script setup lang="ts">
-import { Card } from '@amg-webui/core'
-import { Message } from '@amg-webui/overlay'
-import { useRouter } from 'vue-router'
+import { computed } from 'vue'
+import { Button, Card, DataTable, PageHeader } from 'amg-webui'
+import type { Column } from 'amg-webui'
+import {
+  mockChartSeries,
+  mockKpis,
+  mockRecentOrders
+} from '@showcase/shared/mock-api/dashboard'
+import type { DashboardOrder } from '@showcase/shared/mock-api/dashboard'
 
-const router = useRouter()
+const chartBars = computed(() => mockChartSeries[0]?.values ?? [])
+
+const orderColumns = computed<Column<DashboardOrder>[]>(() => [
+  { field: 'id', header: 'Order ID' },
+  { field: 'customer', header: 'Customer', sortable: true },
+  { field: 'product', header: 'Product' },
+  {
+    field: 'amount',
+    header: 'Amount',
+    render: (v) => `¥${Number(v).toLocaleString()}`
+  },
+  { field: 'status', header: 'Status', sortable: true },
+  { field: 'date', header: 'Date' }
+])
 </script>
 
 <template>
   <div class="showcase-page">
-    <h1>Analytics Dashboard</h1>
-    <p class="showcase-page__lead">KPI dashboard shell plus widget registry mock CRUD for demo tiles.</p>
-    <Card title="Quick start">
-      <p>
-        This is an application sample built on AMG-WebUI workspace packages
-        (theme, locale, core components). Data is mocked via
-        <code>showcases/_shared/mock-api</code>.
-      </p>
-      <Message severity="info" :closable="false">
-        Open the Widgets route to explore list + dialog CRUD with loading,
-        empty, and error states.
-      </Message>
-      <button type="button" class="showcase-link" @click="router.push('/manage')">
-        Go to Widgets →
-      </button>
+    <PageHeader title="Analytics Dashboard">
+      <template #extra>
+        <Button severity="primary" label="Export report" />
+      </template>
+    </PageHeader>
+
+    <div class="showcase-grid showcase-grid--4">
+      <div
+        v-for="kpi in mockKpis"
+        :key="kpi.id"
+        class="showcase-stat"
+      >
+        <p class="showcase-stat__label">{{ kpi.label }}</p>
+        <p class="showcase-stat__value">{{ kpi.value }}</p>
+        <p
+          class="showcase-stat__delta"
+          :class="{
+            'showcase-stat__delta--up': kpi.trend === 'up',
+            'showcase-stat__delta--down': kpi.trend === 'down'
+          }"
+        >
+          {{ kpi.delta }}
+        </p>
+      </div>
+    </div>
+
+    <div class="showcase-grid showcase-grid--2">
+      <Card title="Revenue trend (placeholder)">
+        <div class="showcase-chart-placeholder" aria-hidden="true">
+          <div
+            v-for="(h, i) in chartBars"
+            :key="i"
+            class="showcase-chart-bar"
+            :style="{ height: `${h}%` }"
+          />
+        </div>
+      </Card>
+
+      <Card title="Channel mix (placeholder)">
+        <div class="showcase-chart-placeholder showcase-chart-placeholder--pie">
+          <div class="showcase-pie-ring" />
+          <ul class="showcase-legend">
+            <li>Direct 42%</li>
+            <li>Organic 31%</li>
+            <li>Paid 27%</li>
+          </ul>
+        </div>
+      </Card>
+    </div>
+
+    <Card title="Recent orders">
+      <DataTable
+        :value="mockRecentOrders"
+        :columns="orderColumns"
+        row-key="id"
+        :virtual="false"
+        striped
+      />
     </Card>
   </div>
 </template>
 
 <style scoped>
-.showcase-link {
-  margin-top: 12px;
+.showcase-chart-placeholder--pie {
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.showcase-pie-ring {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--theme-primary, #2563eb) 0 42%,
+    var(--theme-success, #16a34a) 42% 73%,
+    var(--theme-warning, #d97706) 73% 100%
+  );
+  mask: radial-gradient(farthest-side, transparent 58%, #000 59%);
+}
+
+.showcase-legend {
+  margin: 0;
   padding: 0;
-  border: 0;
-  background: none;
-  color: var(--theme-primary, #2563eb);
-  cursor: pointer;
-  font: inherit;
+  list-style: none;
+  font-size: 0.875rem;
+  color: var(--theme-text-secondary, #64748b);
 }
 </style>

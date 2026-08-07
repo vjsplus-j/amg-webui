@@ -22,6 +22,8 @@ export interface TreeSelectProps extends BaseProps, DisabledProps, InvalidProps 
   /** Show tree checkboxes (implies cascade when multiple). */
   showCheckbox?: boolean
   checkStrictly?: boolean
+  /** Show loading state in the dropdown panel */
+  loading?: boolean
 }
 
 export interface TreeSelectEmits {

@@ -5,9 +5,9 @@ import type { ShowcaseNavItem } from '@showcase/shared/types/nav'
 const appTitle = 'Admin Console'
 
 const navItems: ShowcaseNavItem[] = [
-  { path: '/', label: 'Home' },
-  { path: '/manage', label: 'Users' },
-  { path: '/about', label: 'About' }
+  { path: '/', label: 'Dashboard' },
+  { path: '/users', label: 'Users' },
+  { path: '/settings', label: 'Settings' }
 ]
 </script>
 

@@ -352,7 +352,9 @@ const handleOutsideClick = (event: MouseEvent) => {
           @scroll="useVirtualScroll ? virtual.onScroll : undefined"
         >
           <div v-if="loading || remoteLoading" class="vp-select__loading">
-            {{ t(LocaleKeys.component.select.loading) }}
+            <slot name="loading">
+              {{ t(LocaleKeys.component.select.loading) }}
+            </slot>
           </div>
 
           <div
@@ -360,7 +362,9 @@ const handleOutsideClick = (event: MouseEvent) => {
             class="vp-select__empty"
             role="status"
           >
-            {{ t(LocaleKeys.component.select.empty) }}
+            <slot name="empty">
+              {{ t(LocaleKeys.component.select.empty) }}
+            </slot>
           </div>
 
           <template v-else-if="useVirtualScroll">
@@ -388,7 +392,9 @@ const handleOutsideClick = (event: MouseEvent) => {
                   :style="{ height: `${virtual.itemHeight.value}px` }"
                   @click="handleOptionClick(option, $event)"
                 >
-                  {{ option.label }}
+                  <slot name="option" :option="option">
+                    {{ option.label }}
+                  </slot>
                 </div>
               </div>
             </div>
@@ -410,7 +416,9 @@ const handleOutsideClick = (event: MouseEvent) => {
               :aria-selected="isOptionSelected(option)"
               @click="handleOptionClick(option, $event)"
             >
-              {{ option.label }}
+              <slot name="option" :option="option">
+                {{ option.label }}
+              </slot>
             </div>
           </template>
         </div>

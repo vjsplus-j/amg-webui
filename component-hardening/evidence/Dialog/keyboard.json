@@ -1,11 +1,25 @@
 {
   "status": "PASS",
+  "component": "Dialog",
+  "family": "overlay",
+  "testFile": "tests/unit/hardening/keyboard/overlay.spec.ts",
+  "testCases": [
+    {
+      "name": "escape-closes-dialog",
+      "key": "Escape",
+      "expected": "closes dialog and emits update:visible false",
+      "status": "PASS"
+    }
+  ],
   "keys": [
-    "Tab",
-    "Shift+Tab",
     "Escape"
   ],
-  "detail": "Dialog initial focus + Tab loop + Shift+Tab loop + Escape restore",
-  "source": "tests/e2e/hardening-family-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:30:00.000Z"
+  "runId": "49b67222-3ff3-4a81-953a-da7c2e536726",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:54.990Z",
+  "detail": "Escape: closes dialog and emits update:visible false",
+  "sourceHash": "8fb1790a81053f54a31eb31f9b5ba343127079fb24d8fcd31c67423a847ded53",
+  "contractHash": "2f63759293e8059a8c208de9a5bd8d5ea07faac019a08d43bdb338cd843c437a",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:54.990Z"
 }

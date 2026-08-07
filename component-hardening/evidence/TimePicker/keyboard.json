@@ -1,4 +1,32 @@
 {
   "status": "PASS",
-  "detail": "ENG-004 floating+keyboard + datetime lab Escape"
+  "component": "TimePicker",
+  "family": "datetime",
+  "testFile": "tests/unit/hardening/keyboard/datetime.spec.ts",
+  "testCases": [
+    {
+      "name": "arrow-down-hour-selection",
+      "key": "ArrowDown",
+      "expected": "ArrowDown opens panel and moves hour selection in column",
+      "status": "PASS"
+    },
+    {
+      "name": "escape-closes-panel",
+      "key": "Escape",
+      "expected": "Escape closes TimePicker panel",
+      "status": "PASS"
+    }
+  ],
+  "keys": [
+    "ArrowDown",
+    "Escape"
+  ],
+  "runId": "23c7c95e-9547-4bf2-97c2-825ec1866160",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:54.908Z",
+  "detail": "ArrowDown: ArrowDown opens panel and moves hour selection in column; Escape: Escape closes TimePicker panel",
+  "sourceHash": "99bfd1aa3256f3e8ed7a32c8a29a887f216ce519028a211a0592b435548fa1f2",
+  "contractHash": "b98146da76164c9d52c3095360ad75f6ba43297aaa956bc8a7c069d3416b40fc",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:54.984Z"
 }

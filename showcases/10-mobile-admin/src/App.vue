@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import AppLayout from '@showcase/shared/components/AppLayout.vue'
+import MobileShell from '@showcase/shared/components/MobileShell.vue'
 import type { ShowcaseNavItem } from '@showcase/shared/types/nav'
 
 const appTitle = 'Mobile Admin'
 
 const navItems: ShowcaseNavItem[] = [
   { path: '/', label: 'Home' },
-  { path: '/manage', label: 'Tasks' },
-  { path: '/about', label: 'About' }
+  { path: '/tasks', label: 'Tasks' },
+  { path: '/profile', label: 'Profile' }
 ]
 </script>
 
 <template>
-  <AppLayout :app-title="appTitle" :nav-items="navItems" :mobile="true">
+  <MobileShell :app-title="appTitle" :nav-items="navItems">
     <router-view />
-  </AppLayout>
+  </MobileShell>
 </template>

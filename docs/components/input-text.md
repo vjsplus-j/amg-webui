@@ -41,19 +41,19 @@ Curated demo：`example/demos/InputText/index.vue`
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `string` | — | — |
-| `id` | `string` | — | — |
-| `name` | `string` | — | — |
+| `modelValue` | `string` | — | 绑定值 / Bound value (v-model) |
+| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
+| `name` | `string` | — | 表单字段名 / Form field name |
 | `autocomplete` | `string` | — | — |
-| `ariaLabel` | `string` | — | — |
-| `placeholder` | `string` | — | — |
-| `disabled` | `boolean` | — | — |
-| `readonly` | `boolean` | — | — |
-| `maxlength` | `number` | — | — |
-| `size` | `Size` | — | — |
+| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
+| `placeholder` | `string` | — | 占位提示 / Placeholder text |
+| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
+| `readonly` | `boolean` | — | 是否只读 / Read-only |
+| `maxlength` | `number` | — | 最大长度 / Max length |
+| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
 | `invalid` | `boolean` | — | — |
-| `fluid` | `boolean` | — | — |
-| `type` | `'text' \| 'password' \| 'email' \| 'tel' \| 'url' \| 'search'` | — | — |
+| `fluid` | `boolean` | — | 宽度 100% / Full width |
+| `type` | `'text' \| 'password' \| 'email' \| 'tel' \| 'url' \| 'search'` | — | 输入类型 / Input type |
 | `sanitizeInput` | `boolean \| 'blur' \| 'input' \| 'off'` | — | — |
 | `skipFormItem` | `boolean` | — | — |
 
@@ -87,4 +87,4 @@ Curated demo：`example/demos/InputText/index.vue`
 | apiFreeze | `frozen` |
 | API extract | `generated/component-api/InputText.json` |
 
-> 完整 Demo 见 `example/demos/InputText`。对外 docs 为 API 导向页面；交互预览仅在本地 example（不上线）。
+> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/InputText`。

@@ -59,21 +59,21 @@ Undeclared native attrs (`pattern`, `inputmode`, `minlength`, `aria-labelledby`,
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `model` | `Record<string, unknown>` | — | — |
-| `rules` | `FormRules` | — | — |
-| `disabled` | `boolean` | — | — |
-| `labelWidth` | `string` | — | — |
-| `labelPosition` | `'left' \| 'top'` | — | — |
+| `model` | `Record<string, unknown>` | — | 表单数据对象（响应式）/ Reactive form model |
+| `rules` | `FormRules` | — | 字段校验规则映射 / Field validation rules |
+| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
+| `labelWidth` | `string` | — | 标签宽度 / Label width |
+| `labelPosition` | `'left' \| 'top'` | — | 标签位置 / Label position |
 | `sanitizeOnSubmit` | `boolean` | — | — |
-| `trackId` | `string` | — | — |
-| `telemetry` | `boolean` | — | — |
+| `trackId` | `string` | — | Telemetry 追踪 id / Telemetry track id |
+| `telemetry` | `boolean` | — | 是否上报 Telemetry / Enable telemetry |
 
 ## Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `validate` | `valid: boolean, errors: Record<string, string>` | — |
-| `submit` | `void` | — |
+| `submit` | `void` | 提交 / Submit |
 
 ## Public types
 
@@ -95,4 +95,4 @@ Undeclared native attrs (`pattern`, `inputmode`, `minlength`, `aria-labelledby`,
 | apiFreeze | `frozen` |
 | API extract | `generated/component-api/Form.json` |
 
-> 完整 Demo 见 `example/demos/Form`。对外 docs 为 API 导向页面；交互预览仅在本地 example（不上线）。
+> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/Form`。

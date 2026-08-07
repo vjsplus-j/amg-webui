@@ -4,7 +4,7 @@
 > 适用对象：Cursor、Codex、Claude Code、开发人员、Reviewer  
 > 目的：统一“完成”的定义，禁止以“能运行”“大部分完成”“主要功能完成”代替真正交付。  
 > Cursor：`.cursor/rules/02-verify-before-done.mdc`（alwaysApply）  
-> 关联：[`COMPONENT_HARDENING.md`](../COMPONENT_HARDENING.md) · [`I18N.md`](../../packages/locale/I18N.md) · [`SPEC.md`](../../packages/theme/SPEC.md) · [`APP_WORKFLOW.md`](../APP_WORKFLOW.md) · [`ENGINEERING.md`](../ENGINEERING.md)
+> 关联：[`COMPONENT_HARDENING.md`](../COMPONENT_HARDENING.md) · `packages/locale/I18N.md` · `packages/theme/SPEC.md` · [`APP_WORKFLOW.md`](../APP_WORKFLOW.md) · [`ENGINEERING.md`](../ENGINEERING.md)
 
 验证结果只允许：
 

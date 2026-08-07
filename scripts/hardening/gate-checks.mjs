@@ -3,7 +3,7 @@
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { componentDirRel } from '../component-package-map.mjs'
+import { componentDirRel, componentToPackage, INDUSTRY_PACKAGES } from '../component-package-map.mjs'
 
 const HEX_RE = /#(?:[0-9a-fA-F]{3,8})\b/g
 const HARDCODE_CJK_RE =
@@ -298,5 +298,120 @@ export function checkSlots(src, contract, familyRequiredSlots = []) {
       : 'optional; no slots declared',
     implemented,
     missing: []
+  }
+}
+
+/** Backend DTO / transport types that must not leak into public component props. */
+const BACKEND_DTO_PATTERNS = [
+  { re: /\bAxiosResponse\b/, label: 'AxiosResponse' },
+  { re: /\bHttpResponse\b/, label: 'HttpResponse' },
+  { re: /\bPageResult\b/, label: 'PageResult' },
+  { re: /\bPrisma\b/, label: 'Prisma' },
+  { re: /@Entity\s*\(/, label: 'TypeORM @Entity' },
+  { re: /\bTypeORM\b/, label: 'TypeORM' },
+  { re: /\b\w+RequestDto\b/, label: '*RequestDto' },
+  { re: /\b\w+ResponseDto\b/, label: '*ResponseDto' },
+  { re: /\bResult\s*</, label: 'Result<T>' }
+]
+
+function extractPublicSurface(src) {
+  const chunks = []
+  if (src.types) {
+    const propsMatch = src.types.match(
+      /(?:export\s+)?interface\s+\w*Props\b[\s\S]*?(?=\n(?:export\s+)?(?:interface|type|const|function)\b|$)/g
+    )
+    if (propsMatch) chunks.push(...propsMatch)
+    else chunks.push(src.types)
+  }
+  if (src.vue) {
+    const defineProps = src.vue.match(/defineProps\s*<[\s\S]*?>\s*\(/g) || []
+    chunks.push(...defineProps)
+  }
+  return chunks.join('\n')
+}
+
+function scanBackendDtoLeaks(src) {
+  const surface = extractPublicSurface(src)
+  const hits = []
+  for (const { re, label } of BACKEND_DTO_PATTERNS) {
+    if (re.test(surface)) hits.push(label)
+  }
+  return [...new Set(hits)]
+}
+
+export function isDomainPackageComponent(name) {
+  const pkg = componentToPackage.get(name)
+  return Boolean(pkg && INDUSTRY_PACKAGES.includes(pkg))
+}
+
+/**
+ * Real no-backend-dto gate — static scan of public props + optional evidence file.
+ * Never returns unconditional PASS.
+ */
+export function checkNoBackendDto(root, name, src, evidence, hardeningRoot) {
+  const pkg = componentToPackage.get(name)
+  const domainScoped = isDomainPackageComponent(name)
+  const evidencePath = join(hardeningRoot, 'evidence', name, 'no-backend-dto.json')
+  const evidencePresent = existsSync(evidencePath)
+
+  let evidenceData = null
+  if (evidencePresent) {
+    try {
+      evidenceData = JSON.parse(readFileSync(evidencePath, 'utf8'))
+    } catch {
+      return {
+        ok: false,
+        status: 'FAIL',
+        detail: 'invalid no-backend-dto.json'
+      }
+    }
+  }
+
+  const leaks = scanBackendDtoLeaks(src)
+  if (leaks.length) {
+    return {
+      ok: false,
+      status: 'FAIL',
+      detail: `backend DTO leak in public props: ${leaks.join(', ')}`
+    }
+  }
+
+  if (evidenceData) {
+    const status = String(evidenceData.status || '').toUpperCase()
+    if (status === 'FAIL') {
+      return {
+        ok: false,
+        status: 'FAIL',
+        detail: evidenceData.detail || 'no-backend-dto evidence FAIL'
+      }
+    }
+    if (status === 'PASS') {
+      return {
+        ok: true,
+        status: 'PASS',
+        detail:
+          evidenceData.detail ||
+          `static scan clean (pkg=${pkg || 'unknown'}); evidence/no-backend-dto.json PASS`
+      }
+    }
+    return {
+      ok: false,
+      status: 'FAIL',
+      detail: `no-backend-dto evidence status=${status || 'MISSING'}`
+    }
+  }
+
+  if (domainScoped) {
+    return {
+      ok: true,
+      status: 'PASS',
+      detail: `static scan clean — no backend DTO patterns in Props (${pkg})`
+    }
+  }
+
+  return {
+    ok: true,
+    status: 'N/A',
+    detail: `not domain/industry scoped (pkg=${pkg || 'unknown'})`
   }
 }

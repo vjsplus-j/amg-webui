@@ -1,8 +1,23 @@
 # 自定义主题生成工具 Theme Studio（锁定）
 
+> **状态：Implemented / Experimental**（非 Stable；API 与预览能力仍可能调整）  
 > 参照能力范式：[designmd Build / Custom Remix](https://designmd.santiagoalonso.com/build?cat=Dev+Tools%2CSaaS&sort=popular)  
-> 实现落点：`example/pages/system/ThemeStudioPage.vue`（规划）· `packages/theme/studio/`（规划）  
+> 实现落点：`example/pages/lab/theme-studio.vue` · `packages/theme/studio/`  
 > Agent 记忆：`.cursor/rules/42-theme-runtime.mdc`
+
+---
+
+## 0. 包导入（Experimental）
+
+构建：`npm run build:theme` → `dist/theme/studio.js`（ESM + CJS + d.ts）。
+
+```ts
+import { ThemeStudioShell, useThemeStudio } from 'amg-webui/theme/studio'
+```
+
+- 子路径 **`amg-webui/theme/studio`** 为 opt-in 导出，根入口 `amg-webui` 不包含 Studio。  
+- 预览壳 `ThemeStudioShell` 依赖主题运行时与 base 组件；业务项目需同时引入 `amg-webui/style.css`（或等价 Token 层）。  
+- 单元测试与 example lab 页为当前验收基线；对外 Stable 以 `docs/engineering/definition-of-done.md` 为准。
 
 ---
 
@@ -69,12 +84,12 @@
 
 ---
 
-## 5. 工程位置（规划）
+## 5. 工程位置（Implemented / Experimental）
 
 ```
-packages/theme/studio/              # Token 编辑模型、预设、导出器
-example/pages/theme/ThemeCustomPage.vue # 自定义主题 / Studio 入口（name: theme-custom）
-scripts/export-theme.mjs            # CLI：JSON → scss/css（可选）
+packages/theme/studio/              # Token 编辑模型、预设、导出器（已发包 amg-webui/theme/studio）
+example/pages/lab/theme-studio.vue  # Lab 调试入口（ThemeStudioShell 集成 smoke）
+scripts/export-theme.mjs            # CLI：JSON → scss/css（可选，未实现）
 ```
 
 路由归入 `example/router/routes.ts`，`group: 'theme'`（见七大调试专区 · APP_WORKFLOW.md）。

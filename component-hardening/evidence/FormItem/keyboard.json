@@ -1,5 +1,5 @@
 {
-  "status": "PASS",
+  "status": "FAIL",
   "keys": [
     "Tab",
     "Enter",
@@ -12,7 +12,9 @@
     "End",
     "Space"
   ],
-  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
+  "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text",
   "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.612Z"
+  "updatedAt": "2026-08-07T15:25:09.612Z",
+  "previousStatus": "PASS",
+  "invalidatedAt": "2026-08-07T16:54:56.630Z"
 }

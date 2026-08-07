@@ -1,18 +1,32 @@
 {
   "status": "PASS",
-  "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
-    "Space"
+  "component": "Dropdown",
+  "family": "selection",
+  "testFile": "tests/unit/hardening/keyboard/selection.spec.ts",
+  "testCases": [
+    {
+      "name": "arrow-down-menu-focus",
+      "key": "ArrowDown",
+      "expected": "moves roving focus among open dropdown menuitems",
+      "status": "PASS"
+    },
+    {
+      "name": "escape-closes-menu",
+      "key": "Escape",
+      "expected": "closes dropdown menu and restores trigger focus",
+      "status": "PASS"
+    }
   ],
-  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.574Z"
+  "keys": [
+    "ArrowDown",
+    "Escape"
+  ],
+  "runId": "e8069856-7696-497a-8efe-a15fcff3013e",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:55.373Z",
+  "detail": "ArrowDown: moves roving focus among open dropdown menuitems; Escape: closes dropdown menu and restores trigger focus",
+  "sourceHash": "6e563d2cb0e8a844f30134002cf52848dcaf4ab53e1ad112119837bc30e3e0e0",
+  "contractHash": "b888a4c89eb7dad2cd1226508e5e6d8fba5a1be2008564e67e50c228340f802c",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:55.419Z"
 }

@@ -1,40 +1,60 @@
 <script setup lang="ts">
-import { Card } from '@amg-webui/core'
+import { ref } from 'vue'
+import { Button, PageHeader } from '@amg-webui/core'
 import { Message } from '@amg-webui/overlay'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const alerts = ref(3)
+
+const quickCards = [
+  { title: 'Pending approvals', value: '12', hint: '3 urgent' },
+  { title: 'Field tickets', value: '8', hint: '2 overdue' },
+  { title: 'Inventory alerts', value: '5', hint: 'Low stock' }
+]
 </script>
 
 <template>
-  <div class="showcase-page">
-    <h1>Mobile Admin</h1>
-    <p class="showcase-page__lead">Mobile-first admin layout with compact nav and field mock CRUD.</p>
-    <Card title="Quick start">
-      <p>
-        This is an application sample built on AMG-WebUI workspace packages
-        (theme, locale, core components). Data is mocked via
-        <code>showcases/_shared/mock-api</code>.
-      </p>
-      <Message severity="info" :closable="false">
-        Open the Tasks route to explore list + dialog CRUD with loading,
-        empty, and error states.
-      </Message>
-      <button type="button" class="showcase-link" @click="router.push('/manage')">
-        Go to Tasks →
-      </button>
-    </Card>
+  <div class="showcase-page showcase-page--mobile">
+    <PageHeader title="Mobile Admin">
+      <template #extra>
+        <span class="showcase-status showcase-status--pending">{{ alerts }} alerts</span>
+      </template>
+    </PageHeader>
+
+    <Message severity="info" :closable="false">
+      Use the ☰ drawer for navigation. Card list pattern on Tasks route.
+    </Message>
+
+    <div class="showcase-mobile-cards">
+      <article
+        v-for="card in quickCards"
+        :key="card.title"
+        class="showcase-mobile-card"
+      >
+        <strong>{{ card.title }}</strong>
+        <p class="showcase-mobile-card__meta">{{ card.hint }}</p>
+        <p class="showcase-stat__value">{{ card.value }}</p>
+      </article>
+    </div>
+
+    <Button
+      block
+      severity="primary"
+      label="View task cards"
+      @click="router.push('/tasks')"
+    />
   </div>
 </template>
 
 <style scoped>
-.showcase-link {
-  margin-top: 12px;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--theme-primary, #2563eb);
-  cursor: pointer;
-  font: inherit;
+.showcase-page--mobile {
+  padding-inline: 12px;
+}
+
+.showcase-mobile-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 </style>

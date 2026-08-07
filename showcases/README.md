@@ -2,14 +2,32 @@
 
 Consumer-facing **application samples** (not the library-author `example/` playground).
 
-Each folder is a standalone Vite + Vue 3 app with:
+Each folder is a standalone Vite + Vue 3 app with domain-specific routes and mock data.
 
-- Layout shell + vue-router (3 routes)
-- Mock CRUD page (list + form dialog)
-- Loading / empty / error state toggles
-- Theme + i18n via workspace-linked AMG packages
+Shared mock APIs: [`_shared/mock-api`](./_shared/mock-api/) · list shell: [`DataPageShell`](./_shared/components/DataPageShell.vue).
 
-Shared mock adapter: [`_shared/mock-api`](./_shared/mock-api/adapter.ts).
+## Deepened samples (P1)
+
+| Folder | Routes / pages |
+|--------|----------------|
+| [01-admin](./01-admin/) | Dashboard · Users (CRUD) · Settings (form sections) |
+| [02-saas](./02-saas/) | Overview · Tenants · Organizations · Members · Subscriptions · Plans · Usage · Billing |
+| [03-ecommerce](./03-ecommerce/) | Overview · Products · SKU · Orders · Order detail · Customers · Inventory · Promotions |
+| [04-content-management](./04-content-management/) | Overview · Articles · Categories · Tags · Drafts · Publish · Media · Editor |
+| [05-device-management](./05-device-management/) | Overview · Device list · Detail · Online · Groups · Telemetry · Alarms · Operations |
+| [06-video-surveillance](./06-video-surveillance/) | Overview · Device tree · Video grid · Player · Stream · PTZ · Snapshot · Recording · Alarms |
+| [07-gb28181-center](./07-gb28181-center/) | Overview · Device list · Channel list · SIP status |
+| [08-onvif-center](./08-onvif-center/) | WS-Discovery · Device list · Media profiles |
+| [09-dashboard](./09-dashboard/) | KPI cards · chart placeholders · orders table |
+| [10-mobile-admin](./10-mobile-admin/) | Drawer nav · card list tasks · profile |
+
+All showcases smoke-tested via `npm run test:showcases`.
+
+## Build all showcases
+
+```bash
+npm run test:showcases
+```
 
 ## Samples
 

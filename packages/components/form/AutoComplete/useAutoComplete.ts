@@ -48,15 +48,17 @@ export function useAutoComplete(
       }
       if (onFetch) {
         loading.value = true
+        isOpen.value = true
         onFetch(query, (items) => {
           innerSuggestions.value = items
           loading.value = false
-          isOpen.value = items.length > 0
+          isOpen.value = true
         })
-      } else {
-        innerSuggestions.value = []
-        isOpen.value = false
+        return
       }
+      innerSuggestions.value = []
+      loading.value = false
+      isOpen.value = (props.suggestions ?? []).length > 0
     }, props.debounce ?? 300)
   }
 

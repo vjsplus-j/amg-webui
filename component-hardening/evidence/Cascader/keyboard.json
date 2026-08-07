@@ -1,4 +1,32 @@
 {
   "status": "PASS",
-  "detail": "ENG-003 + B05 ArrowDown/Right/Enter path"
+  "component": "Cascader",
+  "family": "selection",
+  "testFile": "tests/unit/hardening/keyboard/selection.spec.ts",
+  "testCases": [
+    {
+      "name": "arrow-down-active-item",
+      "key": "ArrowDown",
+      "expected": "opens panel and moves highlighted cascader item",
+      "status": "PASS"
+    },
+    {
+      "name": "escape-closes-panel",
+      "key": "Escape",
+      "expected": "closes cascader panel and restores focus",
+      "status": "PASS"
+    }
+  ],
+  "keys": [
+    "ArrowDown",
+    "Escape"
+  ],
+  "runId": "8250e2a5-6135-4f93-b303-db401d632f03",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:55.164Z",
+  "detail": "ArrowDown: opens panel and moves highlighted cascader item; Escape: closes cascader panel and restores focus",
+  "sourceHash": "20bd3032124a3f1837fd2801b79cc22c3cca757084e8f2fb21431ece6a8f5be0",
+  "contractHash": "bff9bfda2ab0f1771b0f8afd16b15afcbd02b5a45652fd796f43e80666287ab5",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:55.234Z"
 }

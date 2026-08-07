@@ -3,12 +3,12 @@
   "family": "selection",
   "package": "form",
   "capability": "interaction",
-  "maturity": "stable",
+  "maturity": "rc",
   "batch": "B05",
   "api": {
     "props": "required",
     "emits": "required",
-    "slots": "not-applicable",
+    "slots": "required",
     "expose": "required",
     "models": "required",
     "instance": "optional",
@@ -22,7 +22,12 @@
     "close",
     "clear"
   ],
-  "requiredSlots": [],
+  "requiredSlots": [
+    "default",
+    "option",
+    "empty",
+    "loading"
+  ],
   "models": [],
   "behavioralContract": {
     "disabled": "Interactive actions no-op when disabled",
@@ -55,12 +60,14 @@
   },
   "apiFreeze": {
     "version": "1",
-    "frozen": true,
-    "frozenAt": "2026-08-07T15:42:23.457Z"
+    "frozen": false,
+    "frozenAt": "2026-08-07T15:42:23.457Z",
+    "demotedAt": "2026-08-07T17:17:53.202Z",
+    "demoteReason": "STALE mandatory evidence: ssr, visual, a11y"
   },
-  "generated": true,
+  "generated": false,
   "generatedAt": "2026-08-07T09:57:01.100Z",
-  "promoteStable": true,
+  "promoteStable": false,
   "batchTitle": "Selection Advanced",
-  "updatedAt": "2026-08-07T15:42:23.457Z"
+  "updatedAt": "2026-08-08T00:00:00.000Z"
 }

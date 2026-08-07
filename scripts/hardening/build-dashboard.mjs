@@ -10,6 +10,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { spawnSync } from 'node:child_process'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 const hardening = join(root, 'component-hardening')
@@ -293,6 +294,15 @@ function main() {
   console.log(
     `[dashboard] verifiedStable=${stableList.length}/${publicRows.length} (${metrics.stableRatio}%) gatePass=${gatePass} gateFail=${gateFail} unknown=${gateUnknown} claimedUnverified=${maturityCounts.claimedStableUnverified}`
   )
+
+  // Chain program-status SSOT (honest metrics from this dashboard)
+  const ps = spawnSync(process.execPath, ['scripts/hardening/build-program-status.mjs'], {
+    cwd: root,
+    stdio: 'inherit'
+  })
+  if (ps.status !== 0) {
+    process.exit(ps.status ?? 1)
+  }
 }
 
 main()

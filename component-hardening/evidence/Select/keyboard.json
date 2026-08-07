@@ -1,14 +1,39 @@
 {
   "status": "PASS",
+  "component": "Select",
+  "family": "selection",
+  "testFile": "tests/unit/hardening/keyboard/selection.spec.ts",
+  "testCases": [
+    {
+      "name": "arrow-down-active-option",
+      "key": "ArrowDown",
+      "expected": "moves highlighted active option in open listbox",
+      "status": "PASS"
+    },
+    {
+      "name": "enter-selects-model",
+      "key": "Enter",
+      "expected": "selects active option and emits update:modelValue",
+      "status": "PASS"
+    },
+    {
+      "name": "escape-closes-popup",
+      "key": "Escape",
+      "expected": "closes listbox and sets aria-expanded false",
+      "status": "PASS"
+    }
+  ],
   "keys": [
-    "Enter",
     "ArrowDown",
-    "ArrowUp",
-    "Home",
-    "End",
+    "Enter",
     "Escape"
   ],
-  "detail": "Select open + arrow nav Home/End + Enter select + Escape close",
-  "source": "tests/e2e/hardening-family-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:30:00.000Z"
+  "runId": "22c5cc9c-f997-480d-8c5b-c0adbe62fbcc",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:55.001Z",
+  "detail": "ArrowDown: moves highlighted active option in open listbox; Enter: selects active option and emits update:modelValue; Escape: closes listbox and sets aria-expanded false",
+  "sourceHash": "60c7f3bdc4c7eb337735c6bb07ae3993488b588aee20541e3b8376364584588b",
+  "contractHash": "1259438e12535aa2525ef86b5876022a40725856f891e4da7f3e821d8111510f",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:55.001Z"
 }

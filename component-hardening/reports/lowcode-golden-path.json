@@ -1,0 +1,109 @@
+{
+  "runId": "lc012-e2e-1786122864271",
+  "verifiedAt": "2026-08-07T17:14:24.271Z",
+  "source": "tests/e2e/lowcode-golden-path.spec.ts",
+  "sourceSha": "ef8663fa80917e7ade4be6412175e19001b4096a674f1252a0c39b44ff6b48d8",
+  "total": 19,
+  "pass": 19,
+  "fail": 0,
+  "status": "PASS",
+  "goldenPathReady": true,
+  "productionReady": false,
+  "steps": [
+    {
+      "id": 1,
+      "label": "Create blank page",
+      "pass": true
+    },
+    {
+      "id": 2,
+      "label": "Drop Container",
+      "pass": true
+    },
+    {
+      "id": 3,
+      "label": "Drop Form",
+      "pass": true
+    },
+    {
+      "id": 4,
+      "label": "Drop InputText",
+      "pass": true
+    },
+    {
+      "id": 5,
+      "label": "Edit label",
+      "pass": true
+    },
+    {
+      "id": 6,
+      "label": "Bind state.keyword",
+      "pass": true
+    },
+    {
+      "id": 7,
+      "label": "Add Button",
+      "pass": true
+    },
+    {
+      "id": 8,
+      "label": "click → call queryUsers",
+      "pass": true
+    },
+    {
+      "id": 9,
+      "label": "Drop DataTable",
+      "pass": true
+    },
+    {
+      "id": 10,
+      "label": "value → data.queryUsers.list",
+      "pass": true
+    },
+    {
+      "id": 11,
+      "label": "Click Preview",
+      "pass": true
+    },
+    {
+      "id": 12,
+      "label": "Page works",
+      "pass": true
+    },
+    {
+      "id": 13,
+      "label": "Save",
+      "pass": true
+    },
+    {
+      "id": 14,
+      "label": "Refresh browser",
+      "pass": true
+    },
+    {
+      "id": 15,
+      "label": "Page restored",
+      "pass": true
+    },
+    {
+      "id": 16,
+      "label": "Export JSON",
+      "pass": true
+    },
+    {
+      "id": 17,
+      "label": "Import JSON",
+      "pass": true
+    },
+    {
+      "id": 18,
+      "label": "Generate Vue",
+      "pass": true
+    },
+    {
+      "id": 19,
+      "label": "Generated Vue builds",
+      "pass": true
+    }
+  ]
+}

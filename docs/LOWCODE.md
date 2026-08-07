@@ -12,7 +12,7 @@
 
 黄金路径：用户管理 CRUD（搜索 + DataTable + Dialog + REST/Mock）。表单页 / Dashboard 仅作物料扩展位。
 
-**状态：Prototype → Studio 0.1 重建中。** 引擎零件可用；设计器产品未 Ready。禁止宣传「生产可用 / Lowcode ready」。
+**状态：Beta / Golden Path PASS（LC-012 E2E 19/19）· Studio 产品仍 experimental。** 引擎零件与黄金路径 E2E 已通过（`component-hardening/reports/lowcode-golden-path.json`）；`productionReady` 保持 `false` 直至六维 Studio Ready。禁止宣传「生产可用 / Lowcode ready」仅因 LC-012 PASS。
 
 组件冻结清单见仓库内 `packages/lowcode/INVENTORY.md`。
 
@@ -90,12 +90,12 @@ interface CanvasSchema {
 
 ## DoD（Studio Ready）
 
-Engine · Interaction · Runtime · Persistence · Production · Test 六维全过。见 [`LOWCODE.md`](./LOWCODE.md) 与 `packages/lowcode/`。
+Engine · Interaction · Runtime · Persistence · Production · Test 六维全过。**LC-012 19 步须 Playwright E2E（`npm run test:lowcode-golden-path`）+ 第 19 步 Vite build 均 PASS**，报告写入 `component-hardening/reports/lowcode-golden-path.json`。单元测试 `tests/unit/lowcode-golden-path.spec.ts` 仅覆盖引擎 API，**不能**替代 Studio E2E。
 
 ## 诚实边界
 
 **当前：Studio 0.1 闭环增强中。** 已补：Action 链可视化、编辑态 `resolveRuntimeRender` 与 Preview 同语义、parentRules Drop、Align UI、DataSource 配置面板、Codegen 结构检查（`assertGeneratedSfcShape` + `@vue/compiler-sfc` parse）、生成 SFC 内嵌 `createPageRuntime` 与 `runActionChain`。
 
-仍未宣称 Ready：无 Playwright E2E 全量签核 19 步；编辑态仍扁平绝对定位（非 SchemaRenderer 树内嵌套 Chrome）；生成页需宿主注入 `fetch` / `onNavigate` 方可对接真实 REST。
+**诚实签核状态：** LC-012 黄金路径 Playwright E2E 19/19 + Vite build PASS（`npm run test:lowcode-golden-path` → `component-hardening/reports/lowcode-golden-path.json`，`goldenPathReady: true`，`productionReady: false`）。**Studio 产品整体仍 experimental / Beta**（六维 DoD 未全过）；不得宣传「Lowcode 生产可用」。程序状态 SSOT：`component-hardening/program-status.json` → `lowcode.goldenPath`。
 
 未交付（勿宣传）：云端版本库、协作、GraphQL/WS、设备管理/Dashboard 完整模板、AI 生成页、文档站拖拽器上线、全量物料自动目录。

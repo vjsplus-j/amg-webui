@@ -3,7 +3,7 @@
   "family": "media",
   "package": "media",
   "capability": "composite",
-  "maturity": "stable",
+  "maturity": "rc",
   "batch": "B20",
   "api": {
     "props": "required",
@@ -52,12 +52,14 @@
   },
   "apiFreeze": {
     "version": "1",
-    "frozen": true,
-    "frozenAt": "2026-08-07T15:42:23.457Z"
+    "frozen": false,
+    "frozenAt": "2026-08-07T15:42:23.457Z",
+    "demotedAt": "2026-08-07T17:17:51.915Z",
+    "demoteReason": "STALE mandatory evidence: ssr"
   },
   "generated": true,
   "generatedAt": "2026-08-07T09:57:01.074Z",
-  "promoteStable": true,
+  "promoteStable": false,
   "batchTitle": "Media Control",
-  "updatedAt": "2026-08-07T15:42:23.457Z"
+  "updatedAt": "2026-08-07T17:17:51.915Z"
 }

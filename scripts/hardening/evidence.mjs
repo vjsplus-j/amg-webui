@@ -16,7 +16,8 @@
  *   - a11y PASS may split A11Y_STRUCTURE vs A11Y_CONTRAST; contrast must not be silently disabled forever
  */
 import { existsSync, readFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
+import { hashComponentSource } from './hash-component-source.mjs'
 
 export const EVIDENCE_GATES = [
   'a11y',
@@ -30,15 +31,153 @@ export const EVIDENCE_GATES = [
   'perf'
 ]
 
-/** Phrases that indicate fake / mount-only keyboard evidence */
-const KEYBOARD_SHALLOW_RE =
-  /\b(mounted|visible|present|exists|render(ed)?|smoke)\b/i
-
-const KEYBOARD_KEY_RE =
-  /\b(Tab|Shift\+Tab|ArrowUp|ArrowDown|ArrowLeft|ArrowRight|Home|End|Enter|Space|Escape|Backspace|Delete|typeahead|focus(?:Trap|Restore)?|IME|composition)\b/i
-
 export function evidenceDir(hardeningRoot, name) {
   return join(hardeningRoot, 'evidence', name)
+}
+
+let _hashCache = null
+
+function currentHashes(hardeningRoot, name, repoRoot) {
+  const key = `${repoRoot}|${hardeningRoot}|${name}`
+  if (!_hashCache) _hashCache = new Map()
+  if (_hashCache.has(key)) return _hashCache.get(key)
+  const h = hashComponentSource(repoRoot, name, hardeningRoot)
+  _hashCache.set(key, h)
+  return h
+}
+
+/** Stamp evidence payloads with source/contract/git metadata. */
+export function stampEvidenceMeta(name, payload, hardeningRoot, repoRoot = resolve(hardeningRoot, '..')) {
+  const { sourceHash, contractHash, gitSha } = currentHashes(hardeningRoot, name, repoRoot)
+  return {
+    ...payload,
+    ...(sourceHash ? { sourceHash } : {}),
+    ...(contractHash ? { contractHash } : {}),
+    ...(gitSha ? { gitSha } : {}),
+    stampedAt: new Date().toISOString()
+  }
+}
+
+function resolveEvidencePath(repoRoot, relPath) {
+  if (!relPath || typeof relPath !== 'string') return null
+  const normalized = relPath.replace(/\\/g, '/')
+  if (normalized.startsWith('/')) return null
+  return resolve(repoRoot, normalized)
+}
+
+function validatePassArtifactPaths(data, repoRoot) {
+  const paths = []
+  if (data.source) paths.push(data.source)
+  if (data.testFile) paths.push(data.testFile)
+  if (Array.isArray(data.tests)) paths.push(...data.tests)
+  const missing = []
+  for (const rel of paths) {
+    const abs = resolveEvidencePath(repoRoot, rel)
+    if (!abs || !existsSync(abs)) missing.push(rel)
+  }
+  if (missing.length) {
+    return {
+      ok: false,
+      detail: `PASS references missing path(s): ${missing.join(', ')}`
+    }
+  }
+  return { ok: true, detail: '' }
+}
+
+/**
+ * Check whether on-disk evidence meta matches current source/contract hashes.
+ * Returns { fresh, stale, hasHash, detail, current, stored }.
+ */
+export function checkEvidenceFreshness(hardeningRoot, name, evidenceFile, repoRoot = resolve(hardeningRoot, '..')) {
+  const filePath = join(evidenceDir(hardeningRoot, name), evidenceFile)
+  if (!existsSync(filePath)) {
+    return {
+      fresh: true,
+      stale: false,
+      hasHash: false,
+      detail: 'evidence file missing',
+      current: null,
+      stored: null
+    }
+  }
+
+  let data
+  try {
+    data = JSON.parse(readFileSync(filePath, 'utf8'))
+  } catch (e) {
+    return {
+      fresh: false,
+      stale: true,
+      hasHash: false,
+      detail: `invalid JSON: ${e.message}`,
+      current: null,
+      stored: null
+    }
+  }
+
+  const current = currentHashes(hardeningRoot, name, repoRoot)
+  const stored = {
+    sourceHash: data.sourceHash || null,
+    contractHash: data.contractHash || null,
+    gitSha: data.gitSha || null
+  }
+  const hasHash = Boolean(stored.sourceHash || stored.contractHash)
+  const mismatches = []
+
+  if (stored.sourceHash && current.sourceHash && stored.sourceHash !== current.sourceHash) {
+    mismatches.push('sourceHash mismatch')
+  }
+  if (stored.contractHash && current.contractHash && stored.contractHash !== current.contractHash) {
+    mismatches.push('contractHash mismatch')
+  }
+
+  if (mismatches.length) {
+    return {
+      fresh: false,
+      stale: true,
+      hasHash,
+      detail: `STALE: ${mismatches.join('; ')}`,
+      current,
+      stored
+    }
+  }
+
+  const status = String(data.status || '').toUpperCase()
+
+  // PASS evidence without sourceHash/contractHash is STALE — forbids yesterday-PASS forever
+  if (status === 'PASS' && !hasHash) {
+    return {
+      fresh: false,
+      stale: true,
+      hasHash: false,
+      detail: 'STALE: PASS evidence missing sourceHash/contractHash',
+      current,
+      stored
+    }
+  }
+
+  if (status === 'PASS') {
+    const paths = validatePassArtifactPaths(data, repoRoot)
+    if (!paths.ok) {
+      return {
+        fresh: false,
+        stale: true,
+        hasHash,
+        detail: paths.detail,
+        current,
+        stored
+      }
+    }
+  }
+
+  return {
+    fresh: true,
+    stale: false,
+    hasHash,
+    detail: hasHash ? 'hashes match' : 'no stored hashes (legacy non-PASS)',
+    current,
+    stored
+  }
 }
 
 /**
@@ -57,57 +196,46 @@ export function validateKeyboardEvidence(data) {
     return { ok: false, detail: data.detail || `keyboard ${status}` }
   }
 
-  const keys = []
-  if (Array.isArray(data.keys)) keys.push(...data.keys)
-  if (Array.isArray(data.matrix)) {
-    for (const row of data.matrix) {
-      if (typeof row === 'string') keys.push(row)
-      else if (row?.key) keys.push(row.key)
-      else if (row?.keys) keys.push(...row.keys)
+  const testCases = Array.isArray(data.testCases) ? data.testCases : []
+  const passCases = testCases.filter(
+    (tc) =>
+      tc &&
+      String(tc.status || '').toUpperCase() === 'PASS' &&
+      String(tc.expected || tc.behavior || '').trim().length > 0
+  )
+  if (testCases.length === 0 || passCases.length === 0) {
+    const keysOnly =
+      (Array.isArray(data.keys) && data.keys.length > 0) ||
+      (Array.isArray(data.matrix) && data.matrix.length > 0) ||
+      (Array.isArray(data.actions) && data.actions.length > 0)
+    if (keysOnly || !Array.isArray(data.testCases)) {
+      return {
+        ok: false,
+        detail:
+          'keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text'
+      }
     }
-  }
-  if (Array.isArray(data.actions)) {
-    for (const a of data.actions) {
-      if (typeof a === 'string') keys.push(a)
-      else if (a?.key) keys.push(a.key)
+    return {
+      ok: false,
+      detail: 'keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text'
     }
   }
 
-  const detail = String(data.detail || data.summary || '')
-  const detailKeys = detail.match(
-    /Tab|Shift\+Tab|ArrowUp|ArrowDown|ArrowLeft|ArrowRight|Home|End|Enter|Space|Escape|Backspace|Delete|typeahead|focus(?:Trap|Restore)?|IME|composition/gi
-  )
-  if (detailKeys) keys.push(...detailKeys)
+  const keys = []
+  for (const tc of passCases) {
+    if (tc.key) keys.push(String(tc.key))
+  }
+  if (Array.isArray(data.keys)) keys.push(...data.keys)
 
   const unique = [...new Set(keys.map((k) => String(k)))]
-  const realKeys = unique.filter((k) => KEYBOARD_KEY_RE.test(k))
-
-  if (realKeys.length >= 2) {
-    return {
-      ok: true,
-      detail: data.detail || `keyboard matrix: [${realKeys.slice(0, 12).join(', ')}]`
-    }
-  }
-
-  // Shallow mount-only PASS is invalid
-  if (KEYBOARD_SHALLOW_RE.test(detail) && realKeys.length < 2) {
-    return {
-      ok: false,
-      detail: `invalid keyboard evidence (mount/visibility only): "${detail.slice(0, 120)}"`
-    }
-  }
-
-  if (realKeys.length === 0) {
-    return {
-      ok: false,
-      detail:
-        'keyboard PASS requires keys[]/matrix/actions or detail listing real keys (Tab/Arrow*/Enter/Escape/…)'
-    }
-  }
+  const caseSummary = passCases
+    .map((tc) => `${tc.key}: ${tc.expected || tc.behavior}`)
+    .slice(0, 8)
+    .join('; ')
 
   return {
-    ok: false,
-    detail: `keyboard matrix too thin (${realKeys.length} key); need ≥2 real keys`
+    ok: true,
+    detail: data.detail || `keyboard testCases PASS (${passCases.length}): ${caseSummary}`
   }
 }
 
@@ -198,13 +326,17 @@ export function validateA11yEvidence(data) {
   return { ok: true, detail: data.detail || 'a11y ok' }
 }
 
-export function loadEvidenceManifest(hardeningRoot, name) {
+export function loadEvidenceManifest(hardeningRoot, name, repoRoot = resolve(hardeningRoot, '..')) {
   const dir = evidenceDir(hardeningRoot, name)
   const manifestPath = join(dir, 'manifest.json')
   if (!existsSync(manifestPath)) {
-    return { exists: false, dir, gates: {}, manifest: null }
+    return { exists: false, dir, gates: {}, manifest: null, freshness: {} }
   }
   const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
+  const freshness = {}
+  const manifestFresh = checkEvidenceFreshness(hardeningRoot, name, 'manifest.json', repoRoot)
+  freshness.manifest = manifestFresh
+
   const gates = {}
   for (const id of EVIDENCE_GATES) {
     const file = join(dir, `${id}.json`)
@@ -218,6 +350,19 @@ export function loadEvidenceManifest(hardeningRoot, name) {
       if (!['PASS', 'FAIL', 'N/A', 'BLOCKED'].includes(status)) status = 'FAIL'
 
       let detail = data.detail || data.summary || ''
+      let stale = false
+      const freshCheck = checkEvidenceFreshness(hardeningRoot, name, `${id}.json`, repoRoot)
+      freshness[id] = freshCheck
+      if (freshCheck.stale) {
+        stale = true
+        if (status === 'PASS' || status === 'N/A') {
+          status = 'STALE'
+          detail = freshCheck.detail
+        } else {
+          detail = `${detail}; ${freshCheck.detail}`.replace(/^;\s*/, '')
+        }
+      }
+
       // Credibility rewrites
       if (id === 'keyboard' && status === 'PASS') {
         const v = validateKeyboardEvidence(data)
@@ -242,17 +387,19 @@ export function loadEvidenceManifest(hardeningRoot, name) {
         present: true,
         status: status === 'BLOCKED' ? 'FAIL' : status,
         detail,
-        data
+        data,
+        stale
       }
     } catch (e) {
       gates[id] = {
         present: true,
         status: 'FAIL',
-        detail: `invalid JSON: ${e.message}`
+        detail: `invalid JSON: ${e.message}`,
+        stale: true
       }
     }
   }
-  return { exists: true, dir, gates, manifest }
+  return { exists: true, dir, gates, manifest, freshness }
 }
 
 /**
@@ -276,6 +423,14 @@ export function resolveEvidenceGate(evidence, gateId, severity) {
       ok: true,
       status: 'N/A',
       detail: 'optional; no evidence yet'
+    }
+  }
+  if (g.stale || g.status === 'STALE') {
+    const staleDetail = g.detail || evidence.freshness?.[gateId]?.detail || 'STALE evidence'
+    return {
+      ok: severity !== 'mandatory',
+      status: 'FAIL',
+      detail: staleDetail
     }
   }
   if (g.status === 'PASS' || g.status === 'N/A') {

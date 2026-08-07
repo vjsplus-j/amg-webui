@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
-import { usePopover } from '@amg-webui/hooks'
+import { useLocale, usePopover } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import {
   getFloatingPanelStyle,
   moveRovingIndex,
@@ -14,10 +15,12 @@ import './style.scss'
 defineOptions({ inheritAttrs: false, name: 'Cascader' })
 
 const props = withDefaults(defineProps<CascaderProps>(), {
-  options: () => []
+  options: () => [],
+  loading: false
 })
 
 const emit = defineEmits<CascaderEmits>()
+const { t } = useLocale()
 
 const {
   inputId,
@@ -243,7 +246,9 @@ watch(menus, () => {
       <span
         :class="['vp-cascader__label', { 'vp-cascader__label--placeholder': isPlaceholder }]"
       >
-        {{ isPlaceholder ? placeholder : displayLabel }}
+        <slot>
+          {{ isPlaceholder ? placeholder : displayLabel }}
+        </slot>
       </span>
       <span class="vp-cascader__icon" aria-hidden="true">•</span>
     </button>
@@ -255,27 +260,48 @@ watch(menus, () => {
       :style="panelMergedStyle"
       @keydown="handlePanelKeydown"
     >
-      <div v-for="(menu, menuIndex) in menus" :key="menuIndex" class="vp-cascader__menu">
-        <div
-          v-for="(option, rowIndex) in menu"
-          :key="String(option.value)"
-          :class="[
-            'vp-cascader__item',
-            {
-              'vp-cascader__item--active':
-                activePath[menuIndex]?.value === option.value ||
-                (menuIndex === focusCol && rowIndex === focusRow),
-              'vp-cascader__item--selected': option.value === modelValue,
-              'vp-cascader__item--disabled': option.disabled
-            }
-          ]"
-          @click="handleItemClick(menuIndex, option)"
-          @mouseenter="handleItemHover(menuIndex, option)"
-        >
-          <span>{{ option.label }}</span>
-          <span v-if="option.children?.length" class="vp-cascader__arrow" aria-hidden="true">›</span>
-        </div>
+      <div v-if="loading" class="vp-cascader__loading" role="status">
+        <slot name="loading">
+          {{ t(LocaleKeys.component.select.loading) }}
+        </slot>
       </div>
+
+      <div
+        v-else-if="!(options?.length)"
+        class="vp-cascader__empty"
+        role="status"
+      >
+        <slot name="empty">
+          {{ t(LocaleKeys.component.select.empty) }}
+        </slot>
+      </div>
+
+      <template v-else>
+        <div v-for="(menu, menuIndex) in menus" :key="menuIndex" class="vp-cascader__menu">
+          <div
+            v-for="(option, rowIndex) in menu"
+            :key="String(option.value)"
+            :class="[
+              'vp-cascader__item',
+              {
+                'vp-cascader__item--active':
+                  activePath[menuIndex]?.value === option.value ||
+                  (menuIndex === focusCol && rowIndex === focusRow),
+                'vp-cascader__item--selected': option.value === modelValue,
+                'vp-cascader__item--disabled': option.disabled
+              }
+            ]"
+            @click="handleItemClick(menuIndex, option)"
+            @mouseenter="handleItemHover(menuIndex, option)"
+          >
+            <slot name="option" :option="option" :menu-index="menuIndex" :row-index="rowIndex">
+              <span>{{ option.label }}</span>
+            </slot>
+            <span v-if="option.children?.length" class="vp-cascader__arrow" aria-hidden="true">›</span>
+          </div>
+        </div>
+      </template>
     </div>
+    <slot />
   </div>
 </template>

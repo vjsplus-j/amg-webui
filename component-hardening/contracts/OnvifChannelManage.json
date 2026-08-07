@@ -3,7 +3,7 @@
   "family": "onvif",
   "package": "onvif",
   "capability": "composite",
-  "maturity": "stable",
+  "maturity": "rc",
   "batch": "B22",
   "api": {
     "props": "required",
@@ -50,12 +50,14 @@
   },
   "apiFreeze": {
     "version": "1",
-    "frozen": true,
-    "frozenAt": "2026-08-07T15:42:23.457Z"
+    "frozen": false,
+    "frozenAt": "2026-08-07T15:42:23.457Z",
+    "demotedAt": "2026-08-07T17:17:58.137Z",
+    "demoteReason": "STALE mandatory evidence: ssr"
   },
   "generated": true,
   "generatedAt": "2026-08-07T09:57:01.209Z",
-  "promoteStable": true,
+  "promoteStable": false,
   "batchTitle": "ONVIF Domain",
-  "updatedAt": "2026-08-07T15:42:23.457Z"
+  "updatedAt": "2026-08-07T17:17:58.137Z"
 }

@@ -43,6 +43,68 @@ describe('ENG-003 AutoComplete / Cascader engines', () => {
     wrapper.unmount()
   })
 
+  it('AutoComplete renders enterprise slots (option / empty / loading)', async () => {
+    const wrapper = mount(AutoComplete, {
+      props: {
+        modelValue: '',
+        suggestions: [],
+        debounce: 0
+      },
+      slots: {
+        option: `<template #option="{ item }"><span class="slot-option">{{ item.label }}</span></template>`,
+        empty: '<span class="slot-empty">EMPTY</span>',
+        loading: '<span class="slot-loading">LOADING</span>',
+        default: '<span class="slot-default">DEFAULT</span>'
+      },
+      attachTo: document.body
+    })
+    await wrapper.find('.vp-autocomplete__input').trigger('focus')
+    await nextTick()
+    expect(wrapper.find('.slot-default').exists()).toBe(true)
+
+    const remote = mount(AutoComplete, {
+      props: {
+        modelValue: 'a',
+        debounce: 0,
+        onFetchSuggestions: (_query: string, cb: (items: string[]) => void) => {
+          cb([])
+        }
+      },
+      slots: {
+        empty: '<span class="slot-empty-remote">EMPTY</span>'
+      },
+      attachTo: document.body
+    })
+    const remoteInput = remote.find('.vp-autocomplete__input')
+    await remoteInput.trigger('focus')
+    await remoteInput.setValue('zzz')
+    await nextTick()
+    await new Promise((r) => setTimeout(r, 30))
+    await nextTick()
+    expect(remote.find('.slot-empty-remote').exists()).toBe(true)
+    remote.unmount()
+
+    const withItems = mount(AutoComplete, {
+      props: {
+        modelValue: '',
+        suggestions: [{ value: 'alpha', label: 'Alpha' }],
+        debounce: 0
+      },
+      slots: {
+        option: '<span class="slot-option">custom-option</span>'
+      },
+      attachTo: document.body
+    })
+    await withItems.find('.vp-autocomplete__input').trigger('focus')
+    await nextTick()
+    await new Promise((r) => setTimeout(r, 20))
+    await nextTick()
+    expect(withItems.find('.slot-option').exists()).toBe(true)
+    expect(withItems.find('.slot-option').text()).toBe('custom-option')
+    withItems.unmount()
+    wrapper.unmount()
+  })
+
   it('Cascader opens and applies floating panel style', async () => {
     const wrapper = mount(Cascader, {
       props: {

@@ -1,28 +1,33 @@
 # Upload
 
-Upload 组件（Stable 文档页，由 Repository Completion Audit 流水线生成）。
+Upload 为 **Stable** 公共组件（API frozen）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
-## Overview
+## 概览
 
-企业组件库公开组件。完整交互与边界用例见本地 example playground（不上线）。
+Upload 已通过 Component Hardening 证据门禁；完整交互演示见本地 example curated demo。
 
-## When To Use
+## 何时使用 / 何时不用
 
-需要 Upload 能力时使用。
+- **适用**：生产可用的 Stable 组件场景。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
-## When Not To Use
+## 相关组件
 
-不需要该交互面时改用更轻量的基础件。
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
-## Import
+## 基础用法
 
-```ts
-import { Upload } from 'amg-webui'
+```vue
+<script setup>
+import { Upload } from '@amg-webui/form'
+</script>
+
+<template>
+  <Upload />
+</template>
 ```
 
-## Demos
-
-运行态 Demo：`example/demos/Upload/index.vue`
+Curated demo：`example/demos/Upload/index.vue`
 
 ## 交互演示
 
@@ -30,46 +35,47 @@ import { Upload } from 'amg-webui'
 
 ## Props
 
-| Prop | Type | Default | Description |
+| Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `UploadFile[]` | — | — |
-| `id` | `string` | — | — |
+| `modelValue` | `UploadFile[]` | — | 绑定值 / Bound value (v-model) |
+| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
 | `invalid` | `boolean` | — | — |
-| `multiple` | `boolean` | — | — |
-| `accept` | `string` | — | — |
+| `multiple` | `boolean` | — | 多选模式 / Multiple selection |
+| `accept` | `string` | — | 接受的文件类型 / Accepted file types |
 | `drag` | `boolean` | — | — |
 | `beforeUpload` | `(file: File) => boolean \| void \| Promise<boolean \| void>` | — | — |
 
 ## Events
 
-| Event | Description |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `update:modelValue` | `value: UploadFile[]` | v-model 更新 / v-model update |
+| `beforeUpload` | `file: File` | — |
+| `change` | `files: UploadFile[]` | 值变更 / Change |
+| `remove` | `file: UploadFile` | 移除文件 / Remove file |
+
+## Models
+
+| Model | 说明 |
 | --- | --- |
-| `update:modelValue` | — |
-| `beforeUpload` | — |
-| `change` | — |
-| `remove` | — |
+| `modelValue` | v-model |
 
-## Slots / Expose / Models
+## Public types
 
-见 `generated/component-api/Upload.json`。
+- `UploadFile`
+- `UploadProps`
+- `UploadEmits`
 
-## Accessibility
+## 无障碍与键盘
 
-见组件实现与 `component-hardening/evidence/Upload/a11y.json`。
+交互行为与键盘路径以 `component-hardening/evidence/Upload/a11y.json` · `keyboard.json` 为准；本地可复现：`example/demos/Upload/`。
 
-## Keyboard
+## 稳定性
 
-见 `component-hardening/evidence/Upload/keyboard.json`。
+| 字段 | 值 |
+| --- | --- |
+| maturity | `stable` |
+| apiFreeze | `frozen` |
+| API extract | `generated/component-api/Upload.json` |
 
-## Design Tokens
-
-使用语义 token（`vp-` / theme CSS variables），禁止硬编码色值。
-
-## Version
-
-- Inventory: public
-- Maturity: see `component-hardening/contracts/Upload.json`
-
-## Known Limitations
-
-以 contract + evidence 为准。
+> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/Upload`。

@@ -195,12 +195,12 @@
     },
     {
       "name": "row-select",
-      "payload": "event: { originalEvent: MouseEvent; data: T; checked: boolean },",
+      "payload": "event: { originalEvent: DataTableRowInteractionEvent; data: T; checked: boolean }",
       "description": ""
     },
     {
       "name": "row-click",
-      "payload": "event: { originalEvent: MouseEvent; data: T }",
+      "payload": "event: { originalEvent: DataTableRowInteractionEvent; data: T }",
       "description": ""
     },
     {

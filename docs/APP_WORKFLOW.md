@@ -1,7 +1,7 @@
 # example 调试工程规范（锁定）
 
 > Agent：`.cursor/rules/01-repository-structure.mdc` · `.cursor/rules/30-official-docs.mdc` · 路由表：`example/router/routes.ts`  
-> 文档站索引：[`docs/index.md`](./index.md) · example 壳说明：[`example/README.md`](../example/README.md)
+> 文档站索引：[`docs/index.md`](./index.md) · example 壳说明：`example/README.md`（仓库根目录，非 docs 路由）
 
 ---
 
@@ -141,7 +141,7 @@ Chrome 视觉规格仍服从 `packages/theme/SPEC.md` §7（侧栏宽 / 顶栏�
 | 侧栏分类 | 通用 · 布局 · 导航 · 数据录入 · 数据展示 · 反馈 · 其他 · 行业（`component-catalog`） |
 | 旧 zone 路径 | `/base/atoms\|forms\|…` → redirect `base-overview` |
 
-**Demo 铺满（锁定）：** `DemoBlock` / `DemoCode` / `PropsTable` / `.vp-curated` 必须横向铺满 `.ln-content` 内容列（仅壳层 `--theme-page-pad` 内边距）。禁止给代码示例外壳套阅读栏 `max-width`，禁止给 `DemoCode` 加嵌套 `max-height` 小滚动盒。详见 `example/components/demo/curatedDemo.scss` · [`example/README.md`](../example/README.md)。
+**Demo 铺满（锁定）：** `DemoBlock` / `DemoCode` / `PropsTable` / `.vp-curated` 必须横向铺满 `.ln-content` 内容列（仅壳层 `--theme-page-pad` 内边距）。禁止给代码示例外壳套阅读栏 `max-width`，禁止给 `DemoCode` 加嵌套 `max-height` 小滚动盒。详见 `example/components/demo/curatedDemo.scss` · `example/README.md`。
 
 ### 二、通用业务复合（`group: 'biz'`）
 

@@ -3,6 +3,7 @@
  */
 import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { spawnSync } from 'node:child_process'
 
 const now = new Date().toISOString()
 const inv = JSON.parse(
@@ -69,7 +70,8 @@ const stubApis = readdirSync('generated/component-api')
 
 const status = {
   updatedAt: now,
-  version: '0.3.0-audit-close',
+  version: '0.3.0-audit-close-deprecated',
+  note: 'Superseded — run scripts/hardening/build-program-status.mjs for honest SSOT',
   inventory: {
     actual: inv.components.length,
     target: 300,
@@ -83,27 +85,8 @@ const status = {
     stable: stables.length,
     docsPages,
     stubApis,
-    note: 'Post-audit close: weak bulk Stable demoted then real-mount re-promoted; keydown stubs removed; SSR P0=0'
+    note: 'Legacy finalize script — do not use for Stable counts; see build-program-status.mjs'
   },
-  maturityScale: ['draft', 'beta', 'rc', 'stable'],
-  done: [
-    'Repository Completion Audit',
-    'Demote weak bulk Stable',
-    'Remove __hardeningKeydown stubs',
-    'MessageBox service surface detection',
-    'docs/engineering/component-hardening + .component-hardening pointers',
-    'SSR/cleanup P0=0',
-    `Stable ${stables.length}/${inv.components.length}`,
-    `Docs pages ${docsPages}`,
-    `API extract stubs ${stubApis}`
-  ],
-  todo: [],
-  programBacklogCount: 0,
-  blocked: [],
-  deferred: [],
-  knownGaps: [],
-  mandatoryGateFailures: [],
-  missingMandatoryEvidence: [],
   stableComponents: stables.sort()
 }
 
@@ -111,6 +94,11 @@ writeFileSync(
   'component-hardening/program-status.json',
   JSON.stringify(status, null, 2) + '\n'
 )
+
+const ps = spawnSync(process.execPath, ['scripts/hardening/build-program-status.mjs'], {
+  stdio: 'inherit'
+})
+if (ps.status !== 0) process.exit(ps.status ?? 1)
 
 console.log(
   JSON.stringify(

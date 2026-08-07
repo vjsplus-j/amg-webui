@@ -15,6 +15,7 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 'node:fs'
 import { resolve, dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { spawnSync } from 'node:child_process'
 import {
   componentDirRel,
   componentToPackage,
@@ -30,9 +31,221 @@ const evidenceRoot = join(root, 'component-hardening/evidence')
 
 const force = process.argv.includes('--force')
 const stableOnly = process.argv.includes('--stable-only')
+const onlyArg = process.argv.find((a) => a.startsWith('--only='))
+const ONLY_COMPONENTS = onlyArg
+  ? onlyArg
+      .slice('--only='.length)
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean)
+  : null
 const updateEvidence =
   process.argv.includes('--update-evidence') ||
   (!process.argv.includes('--no-update-evidence') && stableOnly)
+
+/** Core docs pages — priority for prop descriptions + --only refresh */
+export const CORE_DOCS = [
+  'Button',
+  'InputText',
+  'Select',
+  'Checkbox',
+  'Radio',
+  'Switch',
+  'DatePicker',
+  'Form',
+  'DataTable',
+  'Tree',
+  'Dialog',
+  'Drawer',
+  'Tabs',
+  'Menu',
+  'Pagination',
+  'Upload'
+]
+
+/** Shared prop descriptions (中文 / English) */
+const COMMON_PROP_DESCRIPTIONS = {
+  modelValue: '绑定值 / Bound value (v-model)',
+  value: '表格行数据或绑定值 / Row data or bound value',
+  defaultValue: '非受控初始值 / Uncontrolled initial value',
+  disabled: '是否禁用 / Whether disabled',
+  readonly: '是否只读 / Read-only',
+  required: '是否必填 / Required field',
+  size: '尺寸：`sm` · `md` · `lg` / Size variant',
+  label: '显示文案 / Display label',
+  placeholder: '占位提示 / Placeholder text',
+  name: '表单字段名 / Form field name',
+  id: '元素 id（无障碍）/ Element id for a11y',
+  fluid: '宽度 100% / Full width',
+  loading: '加载中状态 / Loading state',
+  visible: '是否可见 / Visibility (v-model:visible)',
+  tabindex: 'Tab 焦点顺序 / Tab order',
+  ariaLabel: '无障碍标签 / ARIA label',
+  ariaLabelledby: '关联标签 id / aria-labelledby',
+  ariaDescribedby: '关联描述 id / aria-describedby',
+  autofocus: '挂载后自动聚焦 / Autofocus on mount',
+  clearable: '可一键清空 / Show clear button',
+  options: '选项列表 / Option list',
+  optionLabel: '选项显示字段 / Option label field',
+  optionValue: '选项值字段 / Option value field',
+  multiple: '多选模式 / Multiple selection',
+  checkable: '节点可勾选 / Nodes checkable',
+  expandedKeys: '展开的节点 key / Expanded node keys',
+  selectedKeys: '选中的节点 key / Selected node keys',
+  checkedKeys: '勾选的节点 key / Checked node keys',
+  data: '树形数据 / Tree data',
+  fieldNames: '字段映射 / Field name mapping',
+  columns: '列定义 / Column definitions',
+  rowKey: '行唯一键字段 / Unique row key field',
+  selection: '选中行 keys / Selected row keys',
+  selectionMode: '选择模式：`single` · `multiple` / Selection mode',
+  paginator: '是否显示分页 / Show paginator',
+  rows: '每页行数 / Rows per page',
+  first: '分页起始索引 / Pagination offset',
+  totalRecords: '总记录数（远程分页）/ Total records',
+  sortField: '排序字段 / Sort field',
+  sortOrder: '排序方向 / Sort order',
+  striped: '斑马纹 / Striped rows',
+  fixedHeader: '固定表头 / Fixed header',
+  filterGlobal: '全局筛选 / Global filter',
+  lazy: '远程数据模式 / Lazy remote data',
+  filterDebounce: '筛选防抖毫秒 / Filter debounce (ms)',
+  virtual: '虚拟滚动 / Virtual scrolling',
+  virtualHeight: '虚拟视口高度（spacing 倍数）/ Virtual viewport height',
+  rowHeight: '行高（px）/ Row height',
+  virtualColumns: '横向虚拟列 / Virtual columns',
+  virtualColumnThreshold: '自动开启虚拟列的列数阈值 / Column threshold',
+  sortWorkerThreshold: 'Worker 排序行数阈值 / Worker sort threshold',
+  trackId: 'Telemetry 追踪 id / Telemetry track id',
+  telemetry: '是否上报 Telemetry / Enable telemetry',
+  severity: '语义色：`primary` · `secondary` · `danger` 等 / Semantic color',
+  variant: '外观变体：`solid` · `outlined` · `text` / Visual variant',
+  icon: '图标名 / Icon name',
+  iconPos: '图标位置 / Icon position',
+  loadingText: '加载中文案 / Loading text',
+  block: '块级按钮（整行）/ Block-level button',
+  rounded: '圆角按钮 / Rounded shape',
+  title: '标题 / Title',
+  sizeDialog: '对话框尺寸 / Dialog size',
+  closable: '显示关闭按钮 / Show close button',
+  modal: '模态遮罩 / Modal overlay',
+  maskClosable: '点击遮罩关闭 / Close on mask click',
+  destroyOnClose: '关闭后销毁内容 / Destroy on close',
+  placement: '抽屉方向 / Drawer placement',
+  activeKey: '当前激活项 / Active tab key',
+  items: '菜单项 / Menu items',
+  modelValueMenu: '当前选中菜单 key / Selected menu key',
+  accept: '接受的文件类型 / Accepted file types',
+  maxSize: '单文件大小上限 / Max file size',
+  maxCount: '最大文件数 / Max file count',
+  showFileList: '显示文件列表 / Show file list',
+  autoUpload: '选择后自动上传 / Auto upload',
+  type: '输入类型 / Input type',
+  maxlength: '最大长度 / Max length',
+  minlength: '最小长度 / Min length',
+  showCount: '显示字数统计 / Show character count',
+  checked: '是否选中 / Checked state',
+  indeterminate: '半选状态 / Indeterminate',
+  trueValue: '选中时的值 / Value when checked',
+  falseValue: '未选中时的值 / Value when unchecked',
+  format: '日期格式 / Date format',
+  showTime: '显示时间选择 / Show time picker',
+  model: '表单数据对象 / Form model object',
+  rules: '校验规则 / Validation rules',
+  labelPosition: '标签位置 / Label position',
+  labelWidth: '标签宽度 / Label width',
+  inline: '行内表单 / Inline layout',
+  hideRequiredMark: '隐藏必填星号 / Hide required mark',
+  pageSize: '每页条数 / Page size',
+  currentPage: '当前页码 / Current page',
+  total: '总条数 / Total count',
+  showSizeChanger: '可切换每页条数 / Page size changer',
+  simple: '简洁分页 / Simple pagination'
+}
+
+/** Per-component prop overrides */
+const COMPONENT_PROP_DESCRIPTIONS = {
+  Button: {
+    spin: '旋转动画 / Spin animation',
+    pulse: '脉冲动画 / Pulse animation',
+    link: '链接样式 / Link appearance',
+    raised: '浮起阴影 / Raised shadow',
+    shape: '形状：`rectangle` · `pill` · `circle` / Button shape'
+  },
+  DataTable: {
+    value: '行数据源 / Row data source',
+    columns: '列配置数组 / Column config array'
+  },
+  Form: {
+    model: '表单数据对象（响应式）/ Reactive form model',
+    rules: '字段校验规则映射 / Field validation rules'
+  },
+  Tree: {
+    data: '树节点数组 / Tree node array',
+    checkStrictly: '父子勾选不关联 / Decoupled check state'
+  },
+  Dialog: {
+    visible: '是否显示（v-model:visible）/ Visibility'
+  },
+  Drawer: {
+    visible: '是否显示（v-model:visible）/ Visibility'
+  },
+  Upload: {
+    action: '上传地址 / Upload URL',
+    headers: '请求头 / Request headers',
+    data: '附加表单字段 / Extra form data'
+  }
+}
+
+const COMMON_EVENT_DESCRIPTIONS = {
+  'update:modelValue': 'v-model 更新 / v-model update',
+  'update:value': 'value 更新 / value update',
+  'update:visible': 'visible 更新 / visible update',
+  'update:selection': '选中行更新 / selection update',
+  'update:sortField': '排序字段更新 / sortField update',
+  'update:sortOrder': '排序方向更新 / sortOrder update',
+  'update:first': '分页偏移更新 / first update',
+  'update:rows': '每页行数更新 / rows update',
+  click: '点击 / Click',
+  change: '值变更 / Change',
+  input: '输入 / Input',
+  blur: '失焦 / Blur',
+  focus: '聚焦 / Focus',
+  select: '选中 / Select',
+  sort: '排序 / Sort',
+  'row-click': '行点击 / Row click',
+  'row-select': '行选择 / Row select',
+  page: '翻页 / Page change',
+  filter: '筛选 / Filter',
+  close: '关闭 / Close',
+  open: '打开 / Open',
+  submit: '提交 / Submit',
+  upload: '上传 / Upload',
+  remove: '移除文件 / Remove file'
+}
+
+function enrichPropDescriptions(componentName, props) {
+  const overrides = COMPONENT_PROP_DESCRIPTIONS[componentName] || {}
+  return props.map((p) => {
+    if (p.description && p.description !== '—' && p.description.trim()) return p
+    const desc =
+      overrides[p.name] ||
+      COMMON_PROP_DESCRIPTIONS[p.name] ||
+      COMMON_PROP_DESCRIPTIONS[p.name.replace(/^modelValue$/, 'modelValue')] ||
+      ''
+    return { ...p, description: desc || '—' }
+  })
+}
+
+function enrichEventDescriptions(events) {
+  return events.map((e) => {
+    const name = typeof e === 'string' ? e : e.name
+    const existing = typeof e === 'string' ? '' : e.description
+    if (existing && existing !== '—') return e
+    const desc = COMMON_EVENT_DESCRIPTIONS[name] || '—'
+    return typeof e === 'string' ? { name, payload: '—', description: desc } : { ...e, description: desc }
+  })
+}
 
 /** v0.1 core API pages — priority for Release Step 4 */
 export const V01_PRIORITY = [
@@ -264,6 +477,8 @@ function toTitle(name) {
 function loadStableComponents() {
   if (existsSync(programStatusPath)) {
     const ps = JSON.parse(readFileSync(programStatusPath, 'utf8'))
+    const fromHardening = ps.hardening?.stableComponents
+    if (Array.isArray(fromHardening)) return [...fromHardening].sort()
     if (Array.isArray(ps.stableComponents) && ps.stableComponents.length) {
       return [...ps.stableComponents].sort()
     }
@@ -359,8 +574,9 @@ function parseEmitsFromTypes(content, name) {
 
 function resolveApiSurface(name) {
   const extract = loadApiExtract(name)
+  let surface
   if (extract) {
-    return {
+    surface = {
       props: extract.props || [],
       events: extract.events || [],
       slots: extract.slots || [],
@@ -369,17 +585,21 @@ function resolveApiSurface(name) {
       publicTypes: extract.publicTypes || [],
       source: 'generated/component-api'
     }
+  } else {
+    const typesContent = readTypes(name)
+    surface = {
+      props: parsePropsFromTypes(typesContent, name),
+      events: parseEmitsFromTypes(typesContent, name),
+      slots: [],
+      expose: [],
+      models: [],
+      publicTypes: [],
+      source: 'types.ts'
+    }
   }
-  const typesContent = readTypes(name)
-  return {
-    props: parsePropsFromTypes(typesContent, name),
-    events: parseEmitsFromTypes(typesContent, name),
-    slots: [],
-    expose: [],
-    models: [],
-    publicTypes: [],
-    source: 'types.ts'
-  }
+  surface.props = enrichPropDescriptions(name, surface.props)
+  surface.events = enrichEventDescriptions(surface.events)
+  return surface
 }
 
 function resolveDemoPath(name) {
@@ -428,7 +648,8 @@ function eventsTable(events) {
   const rows = events.map((e) => {
     const name = typeof e === 'string' ? e : e.name
     const payload = typeof e === 'string' ? '—' : escPipe(e.payload || '—')
-    return `| \`${name}\` | \`${payload}\` | — |`
+    const desc = typeof e === 'string' ? '—' : escPipe(e.description || '—')
+    return `| \`${name}\` | \`${payload}\` | ${desc} |`
   })
   return ['| 事件 | Payload | 说明 |', '| --- | --- | --- |', ...rows].join('\n')
 }
@@ -474,6 +695,7 @@ function generateMarkdown(name) {
   const demoPath = resolveDemoPath(name)
   const demoDir = demoPath ? demoPath.replace(/\/index\.vue$|\/parts\/Basic\.vue$/, '') : `example/demos/${name}/`
   const stable = isStable(name)
+  const docsDemoId = DOCS_DEMOS[name]
   const intro =
     name === 'MessageBox'
       ? '命令式确认 / 提示 / 输入框：`MessageBox.confirm` · `alert` · `prompt`。'
@@ -489,8 +711,12 @@ function generateMarkdown(name) {
     '## 概览',
     '',
     stable
-      ? `${name} 已通过 Component Hardening 证据门禁；完整交互演示见本地 example curated demo。`
-      : `${name} 对外薄 API 文档；完整交互见本地 example。`,
+      ? docsDemoId
+        ? `${name} 已通过 Component Hardening 证据门禁；下方 **DocsDemo** 提供 docs 站内嵌交互，完整 curated demo 见 example。`
+        : `${name} 已通过 Component Hardening 证据门禁；完整交互演示见本地 example curated demo。`
+      : docsDemoId
+        ? `${name} 对外 API 文档；下方 DocsDemo 提供 docs 站内嵌交互，完整场景见 example。`
+        : `${name} 对外薄 API 文档；完整交互见本地 example。`,
     '',
     '## 何时使用 / 何时不用',
     '',
@@ -509,7 +735,6 @@ function generateMarkdown(name) {
     ''
   ]
 
-  const docsDemoId = DOCS_DEMOS[name]
   if (docsDemoId) {
     sections.push('## 交互演示', '', `<DocsDemo name="${docsDemoId}" />`, '')
   }
@@ -563,18 +788,26 @@ function generateMarkdown(name) {
     )
   }
 
-  sections.push(
-    '',
-    `> 完整 Demo 见 \`${demoDir}\`。对外 docs 为 API 导向页面；交互预览仅在本地 example（不上线）。`
-  )
+  if (docsDemoId) {
+    sections.push(
+      '',
+      `> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 \`${demoDir}\`。`
+    )
+  } else {
+    sections.push(
+      '',
+      `> 完整 Demo 见 \`${demoDir}\`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。`
+    )
+  }
 
   return sections.join('\n') + '\n'
 }
 
-function writeDoc(name) {
+function writeDoc(name, forceWrite = false) {
   const kebab = toKebab(name)
   const outPath = join(docsComponentsDir, `${kebab}.md`)
-  if (existsSync(outPath) && !force) {
+  const shouldWrite = forceWrite || force || !existsSync(outPath)
+  if (!shouldWrite) {
     return { action: 'skip', path: outPath }
   }
   if (!existsSync(join(root, componentDirRel(name)))) {
@@ -612,46 +845,15 @@ function updateDocsEvidence(name) {
   return { action: 'updated', name, payload }
 }
 
-function buildSidebarItems() {
-  const v01 = V01_PRIORITY.map((name) => ({ text: name, link: `/components/${toKebab(name)}` }))
-  const stableExtra = STABLE_COMPONENTS.filter((n) => !V01_PRIORITY.includes(n)).map((name) => ({
-    text: `${name} ★`,
-    link: `/components/${toKebab(name)}`
-  }))
-  const stubs = EXISTING_STUBS.filter(
-    (n) => !V01_PRIORITY.includes(n) && !STABLE_COMPONENTS.includes(n)
-  ).map((name) => ({ text: name, link: `/components/${toKebab(name)}` }))
-
-  return [
-    { text: '概览', link: '/components/' },
-    ...v01,
-    ...(stableExtra.length
-      ? [{ text: '—— Stable ——', link: '/components/' }, ...stableExtra]
-      : []),
-    ...(stubs.length ? [{ text: '—— 其它 stub ——', link: '/components/' }, ...stubs] : [])
-  ]
-}
-
-function updateVitepressConfig() {
-  if (!existsSync(vitepressConfigPath)) {
-    console.warn('[warn] docs/.vitepress/config.ts missing — skip sidebar patch')
+function refreshDocsSidebar() {
+  const ps = spawnSync(process.execPath, ['scripts/generate-docs-sidebar.mjs'], {
+    cwd: root,
+    stdio: 'inherit'
+  })
+  if (ps.status !== 0) {
+    console.warn('[warn] generate-docs-sidebar failed — sidebar may be stale')
     return false
   }
-  const items = buildSidebarItems()
-  const itemsStr = items
-    .map((i) => `          { text: '${i.text.replace(/'/g, "\\'")}', link: '${i.link}' }`)
-    .join(',\n')
-
-  let config = readFileSync(vitepressConfigPath, 'utf8')
-  const blockRe =
-    /(\{\s*\n\s*text:\s*'组件[^']*',\s*\n\s*items:\s*\[)([\s\S]*?)(\n\s*\]\s*\n\s*\})/
-  if (!blockRe.test(config)) {
-    console.warn('[warn] component sidebar block not found — skip patch')
-    return false
-  }
-  config = config.replace(blockRe, `$1\n${itemsStr}$3`)
-  writeFileSync(vitepressConfigPath, config, 'utf8')
-  console.log('[write] docs/.vitepress/config.ts component sidebar patched')
   return true
 }
 
@@ -664,8 +866,10 @@ const report = {
   evidenceSkipped: []
 }
 
-for (const name of ALL_COMPONENTS) {
-  const result = writeDoc(name)
+const TARGET_COMPONENTS = ONLY_COMPONENTS ?? ALL_COMPONENTS
+
+for (const name of TARGET_COMPONENTS) {
+  const result = writeDoc(name, Boolean(ONLY_COMPONENTS))
   if (result.action === 'create') {
     report.created.push(toKebab(name))
     console.log(`[write] docs/components/${toKebab(name)}.md`)
@@ -692,7 +896,7 @@ if (updateEvidence) {
   }
 }
 
-updateVitepressConfig()
+refreshDocsSidebar()
 
 console.log('\n[summary]')
 console.log(`  stable: ${STABLE_COMPONENTS.length} (${STABLE_COMPONENTS.join(', ')})`)

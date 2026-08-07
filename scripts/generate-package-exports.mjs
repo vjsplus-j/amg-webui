@@ -76,6 +76,11 @@ const exportsMap = {
     './dist/theme/core.js',
     './dist/theme/core.cjs'
   ),
+  './theme/studio': subpath(
+    './dist/theme/studio/index.d.ts',
+    './dist/theme/studio.js',
+    './dist/theme/studio.cjs'
+  ),
   './theme/style.css': './dist/theme/style.css',
 
   './skill': subpath(

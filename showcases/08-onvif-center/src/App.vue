@@ -5,9 +5,9 @@ import type { ShowcaseNavItem } from '@showcase/shared/types/nav'
 const appTitle = 'ONVIF Center'
 
 const navItems: ShowcaseNavItem[] = [
-  { path: '/', label: 'Home' },
-  { path: '/manage', label: 'ONVIF Devices' },
-  { path: '/about', label: 'About' }
+  { path: '/', label: 'Discovery' },
+  { path: '/devices', label: 'Devices' },
+  { path: '/profiles', label: 'Profiles' }
 ]
 </script>
 

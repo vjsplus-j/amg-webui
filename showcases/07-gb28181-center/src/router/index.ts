@@ -1,19 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from '../pages/HomePage.vue'
-import ManagePage from '../pages/ManagePage.vue'
-import AboutPage from '../pages/AboutPage.vue'
+import OverviewPage from '../pages/OverviewPage.vue'
+import DevicesPage from '../pages/DevicesPage.vue'
+import ChannelsPage from '../pages/ChannelsPage.vue'
+import SipStatusPage from '../pages/SipStatusPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', name: 'home', component: HomePage },
-    {
-      path: '/manage',
-      name: 'manage',
-      component: ManagePage,
-      meta: { title: 'GB Devices' }
-    },
-    { path: '/about', name: 'about', component: AboutPage }
+    { path: '/', name: 'overview', component: OverviewPage },
+    { path: '/devices', name: 'devices', component: DevicesPage, meta: { title: 'Devices' } },
+    { path: '/channels', name: 'channels', component: ChannelsPage, meta: { title: 'Channels' } },
+    { path: '/sip', name: 'sip', component: SipStatusPage, meta: { title: 'SIP' } }
   ]
 })
 

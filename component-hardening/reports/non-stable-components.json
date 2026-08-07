@@ -1,5 +1,2015 @@
 {
-  "generatedAt": "2026-08-07T16:23:07.128Z",
-  "count": 0,
-  "components": []
+  "generatedAt": "2026-08-07T17:40:14.724Z",
+  "count": 287,
+  "components": [
+    {
+      "name": "AdvancedSearch",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Affix",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Alert",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Anchor",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "AudioPlay",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "AudioTalk",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "AutoComplete",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Avatar",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "AvatarGroup",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "BackTop",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Badge",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "BarChart",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Barcode",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "BatchPanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "BatchUpload",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Block",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Breadcrumb",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "BreadcrumbItem",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "BrowserDetect",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Business404",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Button",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ButtonGroup",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Calendar",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CanvasIo",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CanvasLayer",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CanvasNode",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CanvasPreview",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CanvasShortcut",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Card",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CardGrid",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CardList",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CardNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CardWidgets",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Carousel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Cartoon404",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Cascader",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CategoryNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Center",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Checkbox",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CheckboxGroup",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ChunkUpload",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Clipboard",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CodeEditor",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Col",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Collapse",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ColorInput",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ColorPicker",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ColumnLayout",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ConfigProvider",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Confirm",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ConfirmDialog",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Container",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ContextMenu",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CopyText",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Countdown",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "CryptoBox",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Dashboard",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DataCard",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DataTable",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DatePicker",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DateTimePicker",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Descriptions",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DescriptionsItem",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DetailPanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Dialog",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Divider",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Doodle404",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DragCanvas",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DragMaterial",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DragRuler",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DragSelect",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DragSortNode",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DragVerify",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DragWrapper",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Drawer",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DrillTable",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Dropdown",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "DynamicForm",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "EditTable",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "EditTree",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Ellipsis",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "EmbedLayout",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Empty",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ErrorModal",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ExcelIo",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Exception",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FilePreview",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FilterBar",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FixedLayout",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FloatButton",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FloatNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FlowLayout",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FlowPanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FolderTree",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Footer",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FooterNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Form",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FormGroup",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FormItem",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FormLayout",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FormTabs",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "FreeLayoutDrag",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "GaugeChart",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "GbsAlarmModal",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "GbsCascadePanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "GbsDeviceTree",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "GbsGatewayForm",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "GbsRegisterForm",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "GbsSignMonitor",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "GbsStatusCard",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "GbsTimeSync",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "GraphChart",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "GridLayoutDrag",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "GroupNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Header",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "HeatMap",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Highlight",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Icon",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Image",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ImageCrop",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ImageGroup",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ImageUpload",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ImageViewer",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "IndexNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "InfiniteScroll",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "InfoModal",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Ink404",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "InputCaptcha",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "InputNumber",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "InputOTP",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "InputText",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Layout",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "LazyTree",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "LineChart",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Link",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Loading",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "LoadingTip",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "LoginPanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Machine404",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Main",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Mask",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "MatrixCode",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "MdEditor",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Mention",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Menu",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "MenuBar",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "MergeTable",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Message",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "MessageBox",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "MiniNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "MonthPicker",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "NoticeBar",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Notification",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "OcrScan",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "OnvifAlarmPanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "OnvifChannelManage",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "OnvifDeviceList",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "OnvifGroupTree",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "OnvifRecordPlan",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "OnvifSearch",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "OnvifSettingPanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "OnvifUrlForm",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "PTZControl",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "PageHeader",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "PagerNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Pagination",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Password",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "PdfPreview",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "PermissionPanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "PieChart",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "PivotTable",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Pixel404",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Plant404",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Popconfirm",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Popover",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Preview",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Print",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ProTable",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Progress",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ProgressTip",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "PropPanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Qrcode",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "QuarterPicker",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "QuickNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "RadarChart",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Radio",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "RadioGroup",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "RangeInput",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Ranking",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Rate",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ResizeBox",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Result",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "RichText",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "RouterNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Row",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ScaleLayout",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "SchemaRenderer",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ScrollNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ScrollNotice",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Scrollbar",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Search",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "SearchFilterPanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Segmented",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Select",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "SelectNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "SettingPanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Sider",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Simple404",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Skeleton",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Slider",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "SmsCode",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Space",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Space404",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Spacer",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Spin",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Split",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "SplitVideoWall",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "StackLayout",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Statistic",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "StatusTip",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "StepForm",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "StepItem",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "StepNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Steps",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "StickyTable",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "SuccessModal",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Switch",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TabPane",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TableAction",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TableDrag",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TableExport",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TablePrint",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Tabs",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TabsNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Tag",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TagInput",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Tech404",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TelemetryProvider",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TemplateDrag",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TemplateSelect",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Textarea",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "ThemeProvider",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Thumbnail",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TimePicker",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TimeRangeInput",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TimeSelect",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Timeline",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TimelineItem",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TimelineList",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Toast",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Tooltip",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TopNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Tour",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Transfer",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TransferTree",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Tree",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TreeChart",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TreeForm",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TreeSelect",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TreeTable",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "TreeTransfer",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Typography",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Upload",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "UserInfoCard",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VcrBackupTask",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VcrClipCut",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VcrDownloadPanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VcrMarkPoint",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VcrSearchPanel",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VcrSpeedControl",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VcrStorageDashboard",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VcrTimelinePlayer",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VerticalStepNav",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VideoAdjust",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VideoPlayer",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VideoPreview",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VideoSnapshot",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VideoVolume",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VideoWatermark",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VirtualTable",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "VirtualTree",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "WarnModal",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Waterfall",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "Watermark",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "WeekPicker",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "WordCloud",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    },
+    {
+      "name": "YearPicker",
+      "maturity": "rc",
+      "productMaturity": "rc",
+      "gateStatus": "PASS",
+      "reason": "not_promoted"
+    }
+  ]
 }

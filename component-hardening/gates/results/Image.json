@@ -42,17 +42,17 @@
     {
       "id": "behavior",
       "status": "PASS",
-      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Image mounts and renders public surface"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "visual",
       "status": "PASS",
-      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Image renders DOM for visual gate"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "a11y",
       "status": "PASS",
-      "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "keyboard",
@@ -62,7 +62,7 @@
     {
       "id": "theme",
       "status": "PASS",
-      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Image uses package styles / semantic tokens gate"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash"
     },
     {
       "id": "rtl",
@@ -77,22 +77,22 @@
     {
       "id": "docs",
       "status": "PASS",
-      "detail": "VitePress docs page + generated API extract"
+      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "ssr",
       "status": "PASS",
-      "detail": "structural=PASS; evidence=tests/unit/hardening/real-mount-remaining.spec.ts Image client mount OK; no required browser-only top-level in package gate"
+      "detail": "structural=PASS; evidence=STALE: PASS evidence missing sourceHash/contractHash (non-stable — structural only for verify PASS)"
     }
   ],
   "failCount": 0,
   "status": "PASS",
-  "stable": true,
-  "verifiedStable": true,
-  "productMaturity": "stable",
-  "apiFreeze": true,
-  "evidenceOk": true,
+  "stable": false,
+  "verifiedStable": false,
+  "productMaturity": "rc",
+  "apiFreeze": false,
+  "evidenceOk": false,
   "auditMode": false,
   "strictEvidence": true,
-  "verifiedAt": "2026-08-07T16:15:10.485Z"
+  "verifiedAt": "2026-08-07T17:40:06.210Z"
 }

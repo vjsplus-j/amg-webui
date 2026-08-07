@@ -41,39 +41,39 @@ Curated demo：`example/demos/Select/index.vue`
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `id` | `string` | — | — |
-| `name` | `string` | — | — |
-| `modelValue` | `SelectModelValue` | — | — |
-| `options` | `SelectOption[]` | — | — |
-| `placeholder` | `string` | — | — |
-| `disabled` | `boolean` | — | — |
-| `readonly` | `boolean` | — | — |
+| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
+| `name` | `string` | — | 表单字段名 / Form field name |
+| `modelValue` | `SelectModelValue` | — | 绑定值 / Bound value (v-model) |
+| `options` | `SelectOption[]` | — | 选项列表 / Option list |
+| `placeholder` | `string` | — | 占位提示 / Placeholder text |
+| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
+| `readonly` | `boolean` | — | 是否只读 / Read-only |
 | `filterable` | `boolean` | — | — |
-| `clearable` | `boolean` | — | — |
+| `clearable` | `boolean` | — | 可一键清空 / Show clear button |
 | `invalid` | `boolean` | — | — |
-| `size` | `Size` | — | — |
-| `fluid` | `boolean` | — | — |
+| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `fluid` | `boolean` | — | 宽度 100% / Full width |
 | `width` | `string` | — | — |
 | `panelClass` | `string` | — | — |
 | `panelStyle` | `Record<string, string>` | — | — |
-| `multiple` | `boolean` | — | — |
+| `multiple` | `boolean` | — | 多选模式 / Multiple selection |
 | `collapseTags` | `boolean` | — | — |
 | `maxCollapseTags` | `number` | — | — |
-| `virtual` | `boolean` | — | — |
+| `virtual` | `boolean` | — | 虚拟滚动 / Virtual scrolling |
 | `virtualThreshold` | `number` | — | — |
-| `filterDebounce` | `number` | — | — |
+| `filterDebounce` | `number` | — | 筛选防抖毫秒 / Filter debounce (ms) |
 | `remote` | `boolean` | — | — |
 | `remoteMethod` | `( query: string, context: SelectRemoteContext, ) => void \| SelectOption[] \| Promise<void \| SelectOption[]>` | — | — |
-| `loading` | `boolean` | — | — |
+| `loading` | `boolean` | — | 加载中状态 / Loading state |
 
 ## Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
-| `update:modelValue` | `value: SelectModelValue` | — |
-| `change` | `event: { originalEvent: Event; value: SelectModelValue }` | — |
-| `focus` | `event: FocusEvent` | — |
-| `blur` | `event: FocusEvent` | — |
+| `update:modelValue` | `value: SelectModelValue` | v-model 更新 / v-model update |
+| `change` | `event: { originalEvent: Event; value: SelectModelValue }` | 值变更 / Change |
+| `focus` | `event: FocusEvent` | 聚焦 / Focus |
+| `blur` | `event: FocusEvent` | 失焦 / Blur |
 | `show` | `void` | — |
 | `hide` | `void` | — |
 | `clear` | `void` | — |
@@ -127,4 +127,4 @@ Curated demo：`example/demos/Select/index.vue`
 | apiFreeze | `frozen` |
 | API extract | `generated/component-api/Select.json` |
 
-> 完整 Demo 见 `example/demos/Select`。对外 docs 为 API 导向页面；交互预览仅在本地 example（不上线）。
+> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/Select`。

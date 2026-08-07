@@ -1,0 +1,78 @@
+<script setup lang="ts">
+import { computed, onMounted, reactive, ref } from 'vue'
+import { Button, Dialog, Form, FormItem, InputText, Select } from 'amg-webui'
+import type { Column } from 'amg-webui'
+import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
+import DataPageShell from '@showcase/shared/components/DataPageShell.vue'
+import { useMockList } from '@showcase/shared/composables/useMockList'
+import { mockSaasOrganizations } from '@showcase/shared/mock-api/saas'
+import type { SaasOrganization } from '@showcase/shared/mock-api/saas'
+
+const { t } = useLocale()
+const dialogOpen = ref(false)
+const form = reactive({ name: '', tenant: '', owner: '', status: 'active' as SaasOrganization['status'] })
+
+const list = useMockList<SaasOrganization>({
+  getData: () => mockSaasOrganizations,
+  searchKeys: ['name', 'tenant', 'owner'],
+  filterKey: 'status'
+})
+
+const statusOptions = [
+  { label: 'All statuses', value: 'all' },
+  { label: 'Active', value: 'active' },
+  { label: 'Inactive', value: 'inactive' }
+]
+
+const columns = computed<Column<SaasOrganization>[]>(() => [
+  { field: 'name', header: 'Organization', sortable: true },
+  { field: 'tenant', header: 'Tenant' },
+  { field: 'owner', header: 'Owner' },
+  { field: 'departments', header: 'Departments' },
+  { field: 'status', header: 'Status', sortable: true }
+])
+
+onMounted(list.load)
+</script>
+
+<template>
+  <DataPageShell
+    title="Organizations"
+    :phase="list.phase.value"
+    :error-message="list.errorMessage.value"
+    :columns="columns"
+    :rows="list.pagedRows.value"
+    :total="list.total.value"
+    :page="list.page.value"
+    :page-size="list.pageSize.value"
+    :search="list.search.value"
+    :status-filter="list.statusFilter.value"
+    :status-options="statusOptions"
+    empty-description="No organizations yet"
+    search-placeholder="Search org, tenant, owner…"
+    @update:search="list.search.value = $event"
+    @update:status-filter="list.statusFilter.value = $event"
+    @update:page="list.page.value = $event"
+    @update:page-size="list.pageSize.value = $event"
+    @refresh="list.resetFaults"
+    @create="dialogOpen = true"
+    @simulate-empty="list.simulateEmpty"
+    @simulate-error="list.simulateError"
+  />
+
+  <Dialog v-model:visible="dialogOpen" title="Create organization" size="md">
+    <Form :model="form" label-position="top">
+      <FormItem label="Name" prop="name"><InputText v-model="form.name" fluid /></FormItem>
+      <FormItem label="Tenant" prop="tenant"><InputText v-model="form.tenant" fluid /></FormItem>
+      <FormItem label="Owner" prop="owner"><InputText v-model="form.owner" fluid /></FormItem>
+      <FormItem label="Status" prop="status">
+        <Select v-model="form.status" :options="statusOptions.slice(1)" fluid />
+      </FormItem>
+    </Form>
+    <template #footer>
+      <Button variant="outlined" :label="t(LocaleKeys.button.cancel)" @click="dialogOpen = false" />
+      <Button severity="primary" :label="t(LocaleKeys.button.save)" @click="dialogOpen = false" />
+    </template>
+  </Dialog>
+</template>

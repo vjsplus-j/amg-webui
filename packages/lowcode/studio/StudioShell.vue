@@ -325,25 +325,40 @@ const fileInput = ref<HTMLInputElement | null>(null)
           :disabled="!editor.canRedo.value"
           @click="editor.commands.redo()"
         />
-        <Button
-          :label="preview ? t('lowcode.studio.edit') : t('lowcode.studio.preview')"
-          size="sm"
-          severity="primary"
-          @click="togglePreview"
-        />
-        <Button :label="t('lowcode.studio.save')" size="sm" @click="save" />
-        <Button :label="t('lowcode.studio.export')" size="sm" @click="exportJson" />
-        <Button :label="t('lowcode.studio.import')" size="sm" @click="fileInput?.click()" />
+        <span data-testid="studio-action-preview">
+          <Button
+            :label="preview ? t('lowcode.studio.edit') : t('lowcode.studio.preview')"
+            size="sm"
+            severity="primary"
+            @click="togglePreview"
+          />
+        </span>
+        <span data-testid="studio-action-save">
+          <Button :label="t('lowcode.studio.save')" size="sm" @click="save" />
+        </span>
+        <span data-testid="studio-action-export">
+          <Button :label="t('lowcode.studio.export')" size="sm" @click="exportJson" />
+        </span>
+        <span data-testid="studio-action-import">
+          <Button :label="t('lowcode.studio.import')" size="sm" @click="fileInput?.click()" />
+        </span>
         <input
           ref="fileInput"
           type="file"
           accept="application/json,.json"
           hidden
+          data-testid="studio-import-input"
           @change="onImportChange"
         />
-        <Button :label="t('lowcode.studio.codegen')" size="sm" @click="generateCode" />
-        <Button :label="t('lowcode.studio.template.users')" size="sm" @click="loadTemplate" />
-        <Button :label="t('lowcode.studio.blank')" size="sm" @click="newBlank" />
+        <span data-testid="studio-action-codegen">
+          <Button :label="t('lowcode.studio.codegen')" size="sm" @click="generateCode" />
+        </span>
+        <span data-testid="studio-action-template">
+          <Button :label="t('lowcode.studio.template.users')" size="sm" @click="loadTemplate" />
+        </span>
+        <span data-testid="studio-action-blank">
+          <Button :label="t('lowcode.studio.blank')" size="sm" @click="newBlank" />
+        </span>
       </div>
     </header>
 
@@ -356,6 +371,7 @@ const fileInput = ref<HTMLInputElement | null>(null)
             :key="m.type"
             class="vp-studio-material"
             draggable="true"
+            :data-testid="`material-${m.type}`"
             @dragstart="onMaterialDragStart($event, m)"
           >
             {{ m.title }}
@@ -363,7 +379,13 @@ const fileInput = ref<HTMLInputElement | null>(null)
         </template>
       </div>
       <div class="vp-studio-shell__outline">
-        <div class="vp-studio-material__group">{{ t('lowcode.studio.outline') }}</div>
+        <div
+          class="vp-studio-material__group"
+          data-testid="studio-outline-header"
+          @click="editor.selection.clear()"
+        >
+          {{ t('lowcode.studio.outline') }}
+        </div>
         <button
           v-for="n in editor.nodes.value"
           :key="n.id"
@@ -389,7 +411,7 @@ const fileInput = ref<HTMLInputElement | null>(null)
         :context="runtime.context"
         :handlers="actionHandlers"
       />
-      <div v-if="preview" class="vp-studio-preview-layer">
+      <div v-if="preview" class="vp-studio-preview-layer" data-testid="studio-preview-layer">
         <SchemaRenderer
           :schema="documentToSchema({ ...doc, nodes: editor.nodes.value })"
           :registry="registry"
@@ -414,7 +436,7 @@ const fileInput = ref<HTMLInputElement | null>(null)
       />
       <div v-if="codegenText" class="vp-studio-checklist">
         <div class="vp-studio-material__group">{{ t('lowcode.studio.codegen') }}</div>
-        <pre class="vp-studio-code">{{ codegenText }}</pre>
+        <pre class="vp-studio-code" data-testid="studio-codegen-output">{{ codegenText }}</pre>
       </div>
       <div class="vp-studio-checklist">
         <div class="vp-studio-material__group">{{ t('lowcode.studio.checklist') }}</div>
@@ -431,7 +453,7 @@ const fileInput = ref<HTMLInputElement | null>(null)
       <Button :label="t('lowcode.studio.zoomOut')" size="sm" @click="editor.viewport.zoomBy(-0.1)" />
       <Button :label="t('lowcode.studio.zoomReset')" size="sm" @click="editor.viewport.reset()" />
       <span>{{ selectedLabel }}</span>
-      <span>{{ editor.nodes.value.length }} nodes</span>
+      <span data-testid="studio-node-count">{{ editor.nodes.value.length }} nodes</span>
     </footer>
   </div>
 </template>

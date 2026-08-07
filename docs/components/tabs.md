@@ -1,6 +1,19 @@
-# Tabs 标签页
+# Tabs
 
-基础标签切换：`v-model` 受控、键盘可访问、懒加载面板。
+Tabs 为 **Stable** 公共组件（API frozen）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+
+## 概览
+
+Tabs 已通过 Component Hardening 证据门禁；完整交互演示见本地 example curated demo。
+
+## 何时使用 / 何时不用
+
+- **适用**：生产可用的 Stable 组件场景。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 基础用法
 
@@ -20,37 +33,50 @@ const active = ref('a')
 </template>
 ```
 
+Curated demo：`example/demos/Tabs/index.vue`
+
 ## 交互演示
 
 <DocsDemo name="tabs-basic" />
 
-## 常用 API（Tabs）
+## Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `string \| number` | — | 当前激活面板 |
-| `ariaLabel` | `string` | — | tablist 无障碍名称 |
+| `modelValue` | `string \| number` | — | 绑定值 / Bound value (v-model) |
+| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
 
-| 事件 | 说明 |
+## Events
+
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `update:modelValue` | `value: string \| number` | v-model 更新 / v-model update |
+| `change` | `value: string \| number` | 值变更 / Change |
+| `tabClick` | `value: string \| number, event: MouseEvent \| KeyboardEvent` | — |
+
+## Models
+
+| Model | 说明 |
 | --- | --- |
-| `update:modelValue` / `change` | 激活项变化 |
-| `tabClick` | 点击 / 键盘激活 |
+| `modelValue` | v-model |
 
-## 常用 API（TabPane）
+## Public types
 
-| Prop | 类型 | 默认 | 说明 |
-| --- | --- | --- | --- |
-| `name` | `string \| number` | — | 面板标识（必填） |
-| `label` | `string` | — | 标签文案 |
-| `disabled` | `boolean` | `false` | 禁用 |
-| `lazy` | `boolean` | `false` | 首次激活前不渲染 |
-| `forceRender` | `boolean` | `false` | 始终保持渲染 |
-| `destroyInactive` | `boolean` | `false` | 离开后卸载内容 |
-| `ariaLabel` | `string` | — | 面板无障碍名称 |
-| `tabindex` | `number` | `0` | 激活面板焦点顺序 |
+- `TabsPaneMeta`
+- `TabsProps`
+- `TabsEmits`
+- `TabPaneProps`
 
-| 事件 | 说明 |
+## 无障碍与键盘
+
+交互行为与键盘路径以 `component-hardening/evidence/Tabs/a11y.json` · `keyboard.json` 为准；本地可复现：`example/demos/Tabs/`。
+
+## 稳定性
+
+| 字段 | 值 |
 | --- | --- |
-| `activate` / `deactivate` | 面板激活状态变化 |
+| maturity | `stable` |
+| apiFreeze | `frozen` |
+| API extract | `generated/component-api/Tabs.json` |
 
-> 完整 Demo 见 `example/demos/Tabs/`。
+> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/Tabs`。

@@ -1,4 +1,6 @@
 {
-  "status": "PASS",
-  "detail": "ArrowDown open + Escape close"
+  "status": "FAIL",
+  "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text",
+  "previousStatus": "PASS",
+  "invalidatedAt": "2026-08-07T16:54:56.619Z"
 }

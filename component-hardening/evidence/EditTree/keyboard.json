@@ -1,18 +1,25 @@
 {
   "status": "PASS",
-  "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
-    "Space"
+  "component": "EditTree",
+  "family": "tree",
+  "testFile": "tests/unit/hardening/keyboard/tree.spec.ts",
+  "testCases": [
+    {
+      "name": "enter-commits-edit",
+      "key": "Enter",
+      "expected": "Enter in inline edit input commits node label change",
+      "status": "PASS"
+    }
   ],
-  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.587Z"
+  "keys": [
+    "Enter"
+  ],
+  "runId": "248b5683-4f4b-4868-a14d-e4ff376b66be",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:55.145Z",
+  "detail": "Enter: Enter in inline edit input commits node label change",
+  "sourceHash": "40f292b7e818bc95291e53d3e76306dc631d6b3a2b8706fe4c09a5030d3c3b07",
+  "contractHash": "5eed045ac8a9876c72834146954de1cc47397c04616a66f515b5b6d33f64bb65",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:55.219Z"
 }

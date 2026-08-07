@@ -1,18 +1,31 @@
 {
   "status": "PASS",
+  "component": "RadioGroup",
+  "family": "form",
+  "testFile": "tests/unit/hardening/keyboard/form.spec.ts",
+  "testCases": [
+    {
+      "name": "space-selects-radio",
+      "key": "Space",
+      "expected": "Space on focused radio selects option and emits update:modelValue",
+      "status": "PASS"
+    },
+    {
+      "name": "disabled-no-selection",
+      "key": "Space",
+      "expected": "disabled RadioGroup does not emit update:modelValue on Space",
+      "status": "PASS"
+    }
+  ],
   "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
     "Space"
   ],
-  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.741Z"
+  "runId": "bd3a1bff-3acc-4d39-b68b-365c25ab80dc",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:45.034Z",
+  "detail": "Space: Space on focused radio selects option and emits update:modelValue; Space: disabled RadioGroup does not emit update:modelValue on Space",
+  "sourceHash": "d5e20fd6449ec0f9adcd92fb145deffd89aae05c84f3720780650f8deaddc69f",
+  "contractHash": "3af1df2b6ed741d06a0884a077bde2ecc379f9acea2df99c26d1ef2bbe90eab3",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:45.105Z"
 }

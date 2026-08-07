@@ -1,12 +1,21 @@
 import { describe, expect, it } from 'vitest'
 import {
+  checkNoBackendDto,
   checkSlots,
   extractImplementedSlots
 } from '../../../scripts/hardening/gate-checks.mjs'
 import {
+  checkEvidenceFreshness,
+  stampEvidenceMeta,
   validateA11yEvidence,
   validateKeyboardEvidence
 } from '../../../scripts/hardening/evidence.mjs'
+import { hashComponentSource } from '../../../scripts/hardening/hash-component-source.mjs'
+import { resolve, dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..')
+const hardening = join(root, 'component-hardening')
 
 describe('hardening P0 credibility', () => {
   it('extractImplementedSlots reads named and default slots from template', () => {
@@ -66,11 +75,36 @@ describe('hardening P0 credibility', () => {
     expect(v.ok).toBe(false)
   })
 
-  it('accepts keyboard matrix with real keys', () => {
+  it('rejects keys-only keyboard PASS without testCases', () => {
     const v = validateKeyboardEvidence({
       status: 'PASS',
       keys: ['ArrowUp', 'ArrowDown', 'Home', 'End', 'Enter', 'Escape'],
       detail: 'row navigation + selection'
+    })
+    expect(v.ok).toBe(false)
+  })
+
+  it('accepts keyboard evidence with real testCases', () => {
+    const v = validateKeyboardEvidence({
+      status: 'PASS',
+      component: 'Select',
+      family: 'selection',
+      testFile: 'tests/unit/hardening/keyboard/selection.spec.ts',
+      testCases: [
+        {
+          name: 'arrow-down',
+          key: 'ArrowDown',
+          expected: 'moves highlighted active option',
+          status: 'PASS'
+        },
+        {
+          name: 'enter-select',
+          key: 'Enter',
+          expected: 'selects active option',
+          status: 'PASS'
+        }
+      ],
+      keys: ['ArrowDown', 'Enter']
     })
     expect(v.ok).toBe(true)
   })
@@ -91,5 +125,77 @@ describe('hardening P0 credibility', () => {
       detail: 'structure+contrast'
     })
     expect(v.ok).toBe(true)
+  })
+
+  it('hashComponentSource returns stable sourceHash for Button', () => {
+    const h1 = hashComponentSource(root, 'Button', hardening)
+    const h2 = hashComponentSource(root, 'Button', hardening)
+    expect(h1.sourceHash).toBeTruthy()
+    expect(h1.contractHash).toBeTruthy()
+    expect(h1.sourceHash).toBe(h2.sourceHash)
+  })
+
+  it('stampEvidenceMeta embeds current hashes', () => {
+    const stamped = stampEvidenceMeta('Button', { status: 'PASS' }, hardening, root)
+    expect(stamped.sourceHash).toMatch(/^[a-f0-9]{64}$/)
+    expect(stamped.contractHash).toMatch(/^[a-f0-9]{64}$/)
+    expect(stamped.stampedAt).toBeTruthy()
+  })
+
+  it('checkEvidenceFreshness treats matching stamped hashes as fresh', () => {
+    const current = hashComponentSource(root, 'Button', hardening)
+    const stamped = stampEvidenceMeta(
+      'Button',
+      {
+        status: 'PASS',
+        source: 'tests/e2e/hardening-family-evidence.spec.ts'
+      },
+      hardening,
+      root
+    )
+    expect(stamped.sourceHash).toBe(current.sourceHash)
+    expect(stamped.contractHash).toBe(current.contractHash)
+  })
+
+  it('checkEvidenceFreshness on legacy evidence without hashes is not stale', () => {
+    const r = checkEvidenceFreshness(hardening, 'Button', 'keyboard.json', root)
+    expect(r.stale).toBe(false)
+    expect(r.hasHash).toBe(false)
+  })
+
+  it('detects sourceHash mismatch pattern for stale evidence', () => {
+    const current = hashComponentSource(root, 'Button', hardening)
+    const stored = { sourceHash: '0'.repeat(64), contractHash: current.contractHash }
+    const mismatches = []
+    if (stored.sourceHash && current.sourceHash && stored.sourceHash !== current.sourceHash) {
+      mismatches.push('sourceHash mismatch')
+    }
+    expect(mismatches).toEqual(['sourceHash mismatch'])
+  })
+
+  it('checkNoBackendDto is not unconditional PASS for domain components', () => {
+    const src = {
+      types: `export interface BadProps { payload?: AxiosResponse<unknown> }`,
+      vue: ''
+    }
+    const leak = checkNoBackendDto(root, 'GbsGatewayForm', src, {}, hardening)
+    expect(leak.ok).toBe(false)
+    expect(leak.detail).toMatch(/AxiosResponse/)
+  })
+
+  it('checkNoBackendDto PASS via static scan for clean domain props', () => {
+    const src = {
+      types: `export interface GbsGatewayFormProps { modelValue?: { id: string } }`,
+      vue: ''
+    }
+    const ok = checkNoBackendDto(root, 'GbsGatewayForm', src, {}, hardening)
+    expect(ok.ok).toBe(true)
+    expect(ok.detail).not.toMatch(/policy gate \(manual contract\)/)
+  })
+
+  it('checkNoBackendDto is N/A for foundation components', () => {
+    const src = { types: `export interface ButtonProps { type?: string }`, vue: '' }
+    const r = checkNoBackendDto(root, 'Button', src, {}, hardening)
+    expect(r.status).toBe('N/A')
   })
 })

@@ -76,7 +76,7 @@ import { ConfigProvider } from 'amg-webui/core'
 
 | 文档 | 说明 |
 | --- | --- |
-| [RELEASE.md](../RELEASE.md) | 发布说明 |
+| [RELEASE_0.1.md](../RELEASE_0.1.md) | 发布说明 |
 | [LIBRARY_PLAN.md](../LIBRARY_PLAN.md) | 分期计划 |
 
 子集外组件可能存在于包内，视为 **experimental**，不作 SLA。以 Hardening `verifiedStable` 为准，不以目录数量为准。

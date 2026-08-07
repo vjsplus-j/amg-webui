@@ -65,6 +65,13 @@
     position: relative;
   }
 
+  &__loading,
+  &__empty {
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+  }
+
   &__item {
     display: flex;
     align-items: center;

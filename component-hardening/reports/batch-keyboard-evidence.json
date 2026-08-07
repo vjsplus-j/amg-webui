@@ -1,7 +1,13 @@
 {
-  "generatedAt": "2026-08-07T15:25:09.904Z",
-  "targets": 92,
-  "pass": 92,
-  "fail": 0,
-  "skipped": 0
+  "generatedAt": "2026-08-07T17:04:32.940Z",
+  "targets": 0,
+  "markedFail": 0,
+  "alreadyReal": 0,
+  "realComponents": [
+    "Select",
+    "Tree",
+    "Dialog",
+    "InputText",
+    "DataTable"
+  ]
 }

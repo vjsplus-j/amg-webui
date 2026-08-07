@@ -35,7 +35,9 @@ function assertDist() {
     'dist/utils/env.js',
     'dist/es/components/core/Button/index.js',
     'dist/es/components/core/Button/style.css',
-    'dist/theme/index.js'
+    'dist/theme/index.js',
+    'dist/theme/studio.js',
+    'dist/theme/studio/index.d.ts'
   ]
   const missing = required.filter((p) => !existsSync(resolve(root, p)))
   if (missing.length) {

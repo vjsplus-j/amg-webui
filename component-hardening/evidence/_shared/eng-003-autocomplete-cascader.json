@@ -10,5 +10,5 @@
     "Cascader"
   ],
   "source": "tests/unit/hardening/eng-003-autocomplete-cascader.spec.ts",
-  "verifiedAt": "2026-08-07T12:28:50.926Z"
+  "verifiedAt": "2026-08-07T17:25:26.867Z"
 }

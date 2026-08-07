@@ -22,3 +22,22 @@ export interface AutoCompleteEmits {
   (e: 'focus', event: FocusEvent): void
   (e: 'blur', event: FocusEvent): void
 }
+
+export interface AutoCompleteSlots {
+  /** Trailing auxiliary content beside the control */
+  default?(props: Record<string, never>): unknown
+  /** Custom suggestion row in the dropdown */
+  option?(props: { item: { value: string; label: string }; index: number }): unknown
+  /** Empty state when no suggestions match */
+  empty?(props: Record<string, never>): unknown
+  /** Loading indicator while remote suggestions load */
+  loading?(props: Record<string, never>): unknown
+}
+
+export interface AutoCompleteExpose {
+  focus: () => void
+  blur: () => void
+  open: () => void
+  close: () => void
+  clear: () => void
+}

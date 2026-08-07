@@ -1,18 +1,31 @@
 {
   "status": "PASS",
+  "component": "Switch",
+  "family": "input",
+  "testFile": "tests/unit/hardening/keyboard/input.spec.ts",
+  "testCases": [
+    {
+      "name": "space-toggles-switch",
+      "key": "Space",
+      "expected": "Space on focused switch toggles modelValue",
+      "status": "PASS"
+    },
+    {
+      "name": "disabled-no-toggle",
+      "key": "Space",
+      "expected": "disabled switch does not emit update:modelValue on Space",
+      "status": "PASS"
+    }
+  ],
   "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
     "Space"
   ],
-  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.796Z"
+  "runId": "4b2bccbc-a31f-42f7-bdb6-7796cdec5bda",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:54.933Z",
+  "detail": "Space: Space on focused switch toggles modelValue; Space: disabled switch does not emit update:modelValue on Space",
+  "sourceHash": "f483a622d1dd33c6716141180352544d468168fadb2400cca7399d7b6c84f358",
+  "contractHash": "8951902c4763ffcdc03db653c4998dc6a502de038c1abb4a7bc1e4a10dbae1a8",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:54.996Z"
 }

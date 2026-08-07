@@ -1,18 +1,32 @@
 {
   "status": "PASS",
-  "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
-    "Space"
+  "component": "Mention",
+  "family": "selection",
+  "testFile": "tests/unit/hardening/keyboard/selection.spec.ts",
+  "testCases": [
+    {
+      "name": "arrow-down-active-option",
+      "key": "ArrowDown",
+      "expected": "moves highlighted mention option in popup listbox",
+      "status": "PASS"
+    },
+    {
+      "name": "enter-inserts-mention",
+      "key": "Enter",
+      "expected": "inserts active mention option into modelValue",
+      "status": "PASS"
+    }
   ],
-  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.668Z"
+  "keys": [
+    "ArrowDown",
+    "Enter"
+  ],
+  "runId": "c0217f78-ba18-4637-8db4-aa40c20f9d7a",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:55.310Z",
+  "detail": "ArrowDown: moves highlighted mention option in popup listbox; Enter: inserts active mention option into modelValue",
+  "sourceHash": "6e2d1e8afefa53391d47d3c67f0dc680c8dcc3a6bcbe873e220429f327fc2ff9",
+  "contractHash": "0a8622bc6b8a580bb69f8e835a83f45041ff92551be482f150bf859a1f0983c5",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:55.362Z"
 }

@@ -1,18 +1,31 @@
 {
   "status": "PASS",
+  "component": "Checkbox",
+  "family": "input",
+  "testFile": "tests/unit/hardening/keyboard/input.spec.ts",
+  "testCases": [
+    {
+      "name": "space-toggles-checked",
+      "key": "Space",
+      "expected": "Space on focused checkbox toggles modelValue",
+      "status": "PASS"
+    },
+    {
+      "name": "disabled-no-toggle",
+      "key": "Space",
+      "expected": "disabled checkbox does not emit update:modelValue on Space",
+      "status": "PASS"
+    }
+  ],
   "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
     "Space"
   ],
-  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.520Z"
+  "runId": "62ad7ee0-017c-49a9-b248-ca575fd08583",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T17:38:54.869Z",
+  "detail": "Space: Space on focused checkbox toggles modelValue; Space: disabled checkbox does not emit update:modelValue on Space",
+  "sourceHash": "b58830253cf9ea742f1b8634b484b8fce0ef65cd05bc4a7c1664a32ae1769b5c",
+  "contractHash": "841d539b9fedf21265862a86b8341f941d7daf47acf8960b658bd48746aa1758",
+  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
+  "stampedAt": "2026-08-07T17:38:54.925Z"
 }

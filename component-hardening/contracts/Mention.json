@@ -3,7 +3,7 @@
   "family": "selection",
   "package": "form",
   "capability": "interaction",
-  "maturity": "stable",
+  "maturity": "rc",
   "batch": "B04",
   "api": {
     "props": "required",
@@ -57,12 +57,14 @@
   },
   "apiFreeze": {
     "version": "1",
-    "frozen": true,
-    "frozenAt": "2026-08-07T15:42:23.457Z"
+    "frozen": false,
+    "frozenAt": "2026-08-07T15:42:23.457Z",
+    "demotedAt": "2026-08-07T17:17:57.620Z",
+    "demoteReason": "STALE mandatory evidence: ssr, a11y, behavior, docs"
   },
   "generated": true,
   "generatedAt": "2026-08-07T09:57:01.200Z",
-  "promoteStable": true,
+  "promoteStable": false,
   "batchTitle": "Selection Core",
-  "updatedAt": "2026-08-07T15:42:23.457Z"
+  "updatedAt": "2026-08-07T17:17:57.620Z"
 }

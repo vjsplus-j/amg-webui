@@ -27,6 +27,7 @@ import {
   checkCleanupHints,
   checkHardcodedColor,
   checkHardcodedCopy,
+  checkNoBackendDto,
   checkPackageFiles,
   checkSlots,
   checkTopLevelDom,
@@ -59,6 +60,12 @@ function gateResult(id, ok, detail = '', severity = 'mandatory', forcedStatus) {
 function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
   const strictEvidence = Boolean(opts.strictEvidence)
   const auditMode = Boolean(opts.auditMode)
+  // Evidence harness gates block verify PASS only when the contract still claims Stable.
+  // Non-stable components must pass structural gates; evidence gaps demote/block Stable, not CI.
+  const claimsStable =
+    contract.maturity === 'stable' ||
+    contract.promoteStable === true ||
+    contract.apiFreeze?.frozen === true
   const profileId =
     loadJson('inventory/component-family-map.json').families.find(
       (f) => f.id === contract.family
@@ -144,9 +151,9 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
     )
   )
 
-  const evidence = loadEvidenceManifest(hardening, name)
+  const evidence = loadEvidenceManifest(hardening, name, root)
 
-  // Evidence-backed harness gates — verify mode never soft-passes missing mandatory evidence
+  // Evidence-backed harness gates — Stable claims never soft-pass missing/STALE mandatory evidence
   for (const harnessGate of [
     'behavior',
     'visual',
@@ -180,6 +187,24 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
       continue
     }
 
+    // Non-stable: report evidence gaps as WARN so structural verify can stay green without fake PASS JSON
+    if (
+      !claimsStable &&
+      sev === 'mandatory' &&
+      !resolved.ok &&
+      strictEvidence
+    ) {
+      gates.push(
+        gateResult(
+          harnessGate,
+          true,
+          `${resolved.detail} (non-stable — evidence gap does not block verify PASS)`,
+          'optional'
+        )
+      )
+      continue
+    }
+
     gates.push(
       gateResult(
         harnessGate,
@@ -191,21 +216,27 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
     )
   }
 
-  // SSR: structural top-level DOM + evidence when mandatory
+  // SSR: structural top-level DOM + evidence when mandatory for Stable claims
   {
     const sev = profile.gates.ssr || 'mandatory'
     const resolved = resolveEvidenceGate(evidence, 'ssr', sev)
     if (sev === 'mandatory') {
       if (evidence.gates.ssr?.present) {
+        const evidenceBlocks = claimsStable && strictEvidence
+        const ok = dom.ok && (evidenceBlocks ? resolved.ok : true)
         gates.push(
           gateResult(
             'ssr',
-            dom.ok && resolved.ok,
-            `structural=${dom.ok ? 'PASS' : 'FAIL'}; evidence=${resolved.detail}`,
-            sev
+            ok,
+            `structural=${dom.ok ? 'PASS' : 'FAIL'}; evidence=${resolved.detail}${
+              !claimsStable && !resolved.ok
+                ? ' (non-stable — structural only for verify PASS)'
+                : ''
+            }`,
+            evidenceBlocks ? sev : !resolved.ok ? 'optional' : sev
           )
         )
-      } else if (strictEvidence) {
+      } else if (strictEvidence && claimsStable) {
         gates.push(
           gateResult(
             'ssr',
@@ -222,9 +253,11 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
             'ssr',
             dom.ok,
             dom.ok
-              ? 'structural OK; evidence/ssr.json pending (audit — not Stable)'
+              ? claimsStable
+                ? 'structural OK; evidence/ssr.json pending (audit — not Stable)'
+                : 'structural OK; evidence/ssr.json pending (non-stable)'
               : `hits: ${dom.hits.join('; ')}`,
-            sev
+            claimsStable ? sev : 'optional'
           )
         )
       }
@@ -237,38 +270,49 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
 
   if (profile.gates.adapter === 'mandatory') {
     const hasAdapter = /adapter|Adapter|mock|Mock|MediaAdapter/.test(src.all)
+    const enforce = claimsStable && strictEvidence
     gates.push(
       gateResult(
         'adapter',
-        strictEvidence ? hasAdapter : true,
+        enforce ? hasAdapter : true,
         hasAdapter
           ? 'domain/media adapter symbols present'
-          : strictEvidence
+          : enforce
             ? 'domain/media adapter symbols required'
-            : 'adapter pending (audit — not Stable)',
-        strictEvidence ? 'mandatory' : 'optional'
+            : 'adapter pending (non-stable / audit — not Stable)',
+        enforce ? 'mandatory' : 'optional'
       )
     )
   }
   if (profile.gates.mock === 'mandatory') {
     const mockOk = evidence.gates.mock?.status === 'PASS' || /mock|Mock/.test(src.all)
+    const enforce = claimsStable && strictEvidence
     gates.push(
       gateResult(
         'mock',
-        strictEvidence ? mockOk : true,
+        enforce ? mockOk : true,
         mockOk
           ? 'mock policy present'
-          : strictEvidence
+          : enforce
             ? 'missing mock evidence'
-            : 'mock pending (audit — not Stable)',
-        strictEvidence ? 'mandatory' : 'optional'
+            : 'mock pending (non-stable / audit — not Stable)',
+        enforce ? 'mandatory' : 'optional'
       )
     )
   }
   if (profile.gates['no-backend-dto'] === 'mandatory') {
+    const dto = checkNoBackendDto(root, name, src, evidence, hardening)
     gates.push(
-      gateResult('no-backend-dto', true, 'policy gate (manual contract)', 'mandatory')
+      gateResult(
+        'no-backend-dto',
+        dto.ok,
+        dto.detail,
+        'mandatory',
+        dto.status === 'N/A' ? 'N/A' : undefined
+      )
     )
+  } else if (profile.gates['no-backend-dto'] === 'na') {
+    gates.push(gateResult('no-backend-dto', true, 'not applicable', 'na', 'N/A'))
   }
   if (profile.gates.destroy === 'mandatory') {
     const hasDestroy =

@@ -23,7 +23,8 @@ const props = withDefaults(defineProps<TreeSelectProps>(), {
   clearable: false,
   multiple: false,
   showCheckbox: false,
-  checkStrictly: false
+  checkStrictly: false,
+  loading: false
 })
 
 const emit = defineEmits<TreeSelectEmits>()
@@ -331,7 +332,9 @@ watch([navigableCount, filterText, expanded, checkboxRows], () => {
       <span
         :class="['vp-treeselect__label', { 'vp-treeselect__label--placeholder': isPlaceholder }]"
       >
-        {{ isPlaceholder ? placeholderText : displayLabel }}
+        <slot>
+          {{ isPlaceholder ? placeholderText : displayLabel }}
+        </slot>
       </span>
       <button
         v-if="clearable && !isPlaceholder"
@@ -362,7 +365,13 @@ watch([navigableCount, filterText, expanded, checkboxRows], () => {
         />
       </div>
 
-      <template v-if="checkboxMode">
+      <div v-if="loading" class="vp-treeselect__loading" role="status">
+        <slot name="loading">
+          {{ t(LocaleKeys.component.select.loading) }}
+        </slot>
+      </div>
+
+      <template v-else-if="checkboxMode">
         <div
           v-for="(row, rowIndex) in checkboxRows"
           :key="row.id"
@@ -388,7 +397,11 @@ watch([navigableCount, filterText, expanded, checkboxRows], () => {
             :disabled="isDisabled || row.node.disabled"
             @change="toggleCheck(row.node)"
           />
-          <span class="vp-treeselect__node-label">{{ row.node.label }}</span>
+          <span class="vp-treeselect__node-label">
+            <slot name="option" :node="row.node" :depth="row.depth">
+              {{ row.node.label }}
+            </slot>
+          </span>
         </div>
       </template>
 
@@ -426,13 +439,20 @@ watch([navigableCount, filterText, expanded, checkboxRows], () => {
             ]"
             aria-hidden="true"
           />
-          <span>{{ node.label }}</span>
+          <span>
+            <slot name="option" :node="node" :depth="depth">
+              {{ node.label }}
+            </slot>
+          </span>
         </div>
       </template>
 
-      <p v-if="!hasPanelItems" class="vp-treeselect__empty">
-        {{ t('common.noData') }}
+      <p v-if="!loading && !hasPanelItems" class="vp-treeselect__empty" role="status">
+        <slot name="empty">
+          {{ t('common.noData') }}
+        </slot>
       </p>
     </div>
+    <slot />
   </div>
 </template>

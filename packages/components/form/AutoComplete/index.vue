@@ -12,6 +12,7 @@ import { useVirtualWindow } from '../Transfer/useVirtualWindow'
 import { useFormItem } from '../FormItem/useFormItem'
 import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
 import { useControlAriaLabel } from '../FormItem/useControlAriaLabel'
+import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import './style.scss'
 
@@ -25,6 +26,7 @@ const props = withDefaults(defineProps<AutoCompleteProps>(), {
 })
 
 const emit = defineEmits<AutoCompleteEmits>()
+const { t } = useLocale()
 
 const {
   inputId,
@@ -55,7 +57,7 @@ const panelRef = ref<HTMLElement | null>(null)
 const activeIndex = ref(-1)
 const floatingPanelStyle = ref<Record<string, string>>({})
 
-const { isOpen, suggestions, rootClass, fetchSuggestions } = useAutoComplete(
+const { isOpen, loading, suggestions, rootClass, fetchSuggestions } = useAutoComplete(
   props,
   (query, cb) => emit('fetchSuggestions', query, cb)
 )
@@ -155,6 +157,31 @@ watch(isOpen, (open) => {
 watch(suggestions, () => {
   if (isOpen.value) nextTick(syncFloating)
 })
+
+const focus = () => {
+  inputRef.value?.focus()
+}
+
+const blur = () => {
+  inputRef.value?.blur()
+}
+
+const open = () => {
+  fetchSuggestions(props.modelValue ?? '')
+}
+
+const close = () => {
+  isOpen.value = false
+  floatingPanelStyle.value = {}
+}
+
+const clear = () => {
+  if (isDisabled.value) return
+  emit('update:modelValue', '')
+  void validateOnChange()
+}
+
+defineExpose({ focus, blur, open, close, clear })
 </script>
 
 <template>
@@ -182,12 +209,28 @@ watch(suggestions, () => {
       @keydown="handleKeydown"
     />
     <div
-      v-if="isOpen && suggestions.length"
+      v-if="isOpen"
       ref="panelRef"
       class="vp-autocomplete__panel"
       :style="panelMergedStyle"
     >
-      <div class="vp-autocomplete__list" @scroll="virtual.onScroll">
+      <div v-if="loading" class="vp-autocomplete__loading" role="status">
+        <slot name="loading">
+          {{ t(LocaleKeys.component.select.loading) }}
+        </slot>
+      </div>
+
+      <div
+        v-else-if="!suggestions.length"
+        class="vp-autocomplete__empty"
+        role="status"
+      >
+        <slot name="empty">
+          {{ t(LocaleKeys.component.select.empty) }}
+        </slot>
+      </div>
+
+      <div v-else class="vp-autocomplete__list" @scroll="virtual.onScroll">
         <div :style="{ height: `${virtual.totalHeight.value}px`, position: 'relative' }">
           <div :style="{ transform: `translateY(${virtual.offsetY.value}px)` }">
             <div
@@ -198,11 +241,14 @@ watch(suggestions, () => {
               :style="{ height: `${virtual.ITEM_HEIGHT}px` }"
               @mousedown.prevent="selectItem(item.value)"
             >
-              {{ item.label }}
+              <slot name="option" :item="item" :index="index">
+                {{ item.label }}
+              </slot>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <slot />
   </div>
 </template>

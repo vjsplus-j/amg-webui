@@ -2,6 +2,7 @@
 import { computed, ref, toRef, watch } from "vue";
 import { LocaleKeys } from "@amg-webui/locale";
 import { useLocale } from "@amg-webui/hooks";
+import { resolveKeyboardNavAction } from "@amg-webui/utils";
 import { normalizeTreeNodes } from "@amg-webui/utils/data-display/tree-types";
 import { useTreeState } from "@amg-webui/utils/data-display/useTreeState";
 import { useVirtualList } from "@amg-webui/utils/data-display/useVirtualList";
@@ -39,6 +40,10 @@ const {
   selectNode,
   expandAll,
   collapseAll,
+  ensureActiveRow,
+  moveActive,
+  expandActive,
+  collapseActive,
 } = useTreeState(roots, modelRef, emit, {
   checkable: props.checkable,
   defaultExpandAll: props.defaultExpandAll,
@@ -69,6 +74,41 @@ const titleText = computed(() => props.title ?? t("component.tree.title"));
 const displayRows = computed(() =>
   virtualEnabled.value ? visibleItems.value.map((v) => v.item) : flatRows.value,
 );
+
+function handleTreeKeydown(event: KeyboardEvent) {
+  if (props.disabled || !flatRows.value.length) return;
+  ensureActiveRow();
+
+  const action = resolveKeyboardNavAction(event, { orientation: "vertical" });
+  if (action === "none") {
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      expandActive();
+      return;
+    }
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      collapseActive();
+      return;
+    }
+    return;
+  }
+
+  event.preventDefault();
+  if (
+    action === "next" ||
+    action === "prev" ||
+    action === "first" ||
+    action === "last"
+  ) {
+    moveActive(action);
+    return;
+  }
+  if (action === "select") {
+    const row = ensureActiveRow();
+    if (row) selectNode(row.id, row.node);
+  }
+}
 </script>
 
 <template>
@@ -118,6 +158,8 @@ const displayRows = computed(() =>
         ref="viewportRef"
         class="vp-tree__viewport"
         :aria-busy="loading || undefined"
+        tabindex="0"
+        @keydown="handleTreeKeydown"
         @scroll="virtualEnabled ? onScroll : undefined"
       >
         <template v-if="flatRows.length">

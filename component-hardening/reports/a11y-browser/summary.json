@@ -1,0 +1,256 @@
+{
+  "generatedAt": "2026-08-07T17:44:36.647Z",
+  "source": "tests/e2e/a11y-core-contrast.spec.ts",
+  "path": "/lab/hardening",
+  "themeMatrixComplete": true,
+  "themeMatrixExpectedCells": 12,
+  "themeMatrixActualCells": 12,
+  "designs": [
+    "mercedes",
+    "linear",
+    "porsche",
+    "lamborghini",
+    "ferrari",
+    "apple",
+    "wechat",
+    "alipay"
+  ],
+  "components": [
+    {
+      "component": "Button",
+      "selector": "[data-testid=\"hf-button\"]",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0,
+        "A11Y_STRUCTURE": {
+          "status": "PASS",
+          "critical": 0,
+          "serious": 0
+        },
+        "A11Y_CONTRAST": {
+          "status": "PASS",
+          "critical": 0,
+          "serious": 0
+        }
+      },
+      "verifiedAt": "2026-08-07T17:43:58.723Z"
+    },
+    {
+      "component": "InputText",
+      "selector": "[data-testid=\"hf-input\"]",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0,
+        "A11Y_STRUCTURE": {
+          "status": "PASS",
+          "critical": 0,
+          "serious": 0
+        },
+        "A11Y_CONTRAST": {
+          "status": "PASS",
+          "critical": 0,
+          "serious": 0
+        }
+      },
+      "verifiedAt": "2026-08-07T17:44:02.076Z"
+    },
+    {
+      "component": "Select",
+      "selector": "[data-testid=\"hf-select\"]",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0,
+        "A11Y_STRUCTURE": {
+          "status": "PASS",
+          "critical": 0,
+          "serious": 0
+        },
+        "A11Y_CONTRAST": {
+          "status": "PASS",
+          "critical": 0,
+          "serious": 0
+        }
+      },
+      "verifiedAt": "2026-08-07T17:44:05.224Z"
+    },
+    {
+      "component": "Checkbox",
+      "selector": "[data-testid=\"hf-checkbox\"]",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0,
+        "A11Y_STRUCTURE": {
+          "status": "PASS",
+          "critical": 0,
+          "serious": 0
+        },
+        "A11Y_CONTRAST": {
+          "status": "PASS",
+          "critical": 0,
+          "serious": 0
+        }
+      },
+      "verifiedAt": "2026-08-07T17:44:09.471Z"
+    },
+    {
+      "component": "DataTable",
+      "selector": "[data-testid=\"hf-datatable\"]",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0,
+        "A11Y_STRUCTURE": {
+          "status": "PASS",
+          "critical": 0,
+          "serious": 0
+        },
+        "A11Y_CONTRAST": {
+          "status": "PASS",
+          "critical": 0,
+          "serious": 0
+        }
+      },
+      "verifiedAt": "2026-08-07T17:44:12.687Z"
+    },
+    {
+      "component": "Dialog",
+      "selector": ".vp-dialog-overlay",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0,
+        "A11Y_STRUCTURE": {
+          "status": "PASS",
+          "critical": 0,
+          "serious": 0
+        },
+        "A11Y_CONTRAST": {
+          "status": "PASS",
+          "critical": 0,
+          "serious": 0
+        }
+      },
+      "verifiedAt": "2026-08-07T17:44:16.011Z"
+    }
+  ],
+  "themeContrastMatrix": [
+    {
+      "design": "mercedes",
+      "scheme": "dark",
+      "selector": "[data-testid=\"hf-button\"]",
+      "A11Y_CONTRAST": {
+        "status": "PASS",
+        "critical": 0,
+        "serious": 0
+      }
+    },
+    {
+      "design": "linear",
+      "scheme": "light",
+      "selector": "[data-testid=\"hf-button\"]",
+      "A11Y_CONTRAST": {
+        "status": "PASS",
+        "critical": 0,
+        "serious": 0
+      }
+    },
+    {
+      "design": "linear",
+      "scheme": "dark",
+      "selector": "[data-testid=\"hf-button\"]",
+      "A11Y_CONTRAST": {
+        "status": "PASS",
+        "critical": 0,
+        "serious": 0
+      }
+    },
+    {
+      "design": "porsche",
+      "scheme": "dark",
+      "selector": "[data-testid=\"hf-button\"]",
+      "A11Y_CONTRAST": {
+        "status": "PASS",
+        "critical": 0,
+        "serious": 0
+      }
+    },
+    {
+      "design": "lamborghini",
+      "scheme": "dark",
+      "selector": "[data-testid=\"hf-button\"]",
+      "A11Y_CONTRAST": {
+        "status": "PASS",
+        "critical": 0,
+        "serious": 0
+      }
+    },
+    {
+      "design": "ferrari",
+      "scheme": "dark",
+      "selector": "[data-testid=\"hf-button\"]",
+      "A11Y_CONTRAST": {
+        "status": "PASS",
+        "critical": 0,
+        "serious": 0
+      }
+    },
+    {
+      "design": "apple",
+      "scheme": "light",
+      "selector": "[data-testid=\"hf-button\"]",
+      "A11Y_CONTRAST": {
+        "status": "PASS",
+        "critical": 0,
+        "serious": 0
+      }
+    },
+    {
+      "design": "apple",
+      "scheme": "dark",
+      "selector": "[data-testid=\"hf-button\"]",
+      "A11Y_CONTRAST": {
+        "status": "PASS",
+        "critical": 0,
+        "serious": 0
+      }
+    },
+    {
+      "design": "wechat",
+      "scheme": "light",
+      "selector": "[data-testid=\"hf-button\"]",
+      "A11Y_CONTRAST": {
+        "status": "PASS",
+        "critical": 0,
+        "serious": 0
+      }
+    },
+    {
+      "design": "wechat",
+      "scheme": "dark",
+      "selector": "[data-testid=\"hf-button\"]",
+      "A11Y_CONTRAST": {
+        "status": "PASS",
+        "critical": 0,
+        "serious": 0
+      }
+    },
+    {
+      "design": "alipay",
+      "scheme": "light",
+      "selector": "[data-testid=\"hf-button\"]",
+      "A11Y_CONTRAST": {
+        "status": "PASS",
+        "critical": 0,
+        "serious": 0
+      }
+    },
+    {
+      "design": "alipay",
+      "scheme": "dark",
+      "selector": "[data-testid=\"hf-button\"]",
+      "A11Y_CONTRAST": {
+        "status": "PASS",
+        "critical": 0,
+        "serious": 0
+      }
+    }
+  ]
+}

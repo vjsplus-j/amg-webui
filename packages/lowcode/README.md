@@ -32,5 +32,12 @@ example：`lab/lowcode-studio`（主入口）· `lab/lowcode`（零件 Lab）。
 
 ## Honesty
 
-Studio 0.1 闭环增强中：Action 链 / 同语义 Runtime 渲染 / DS 面板 / Codegen 结构检查已落地。  
-LC-012 19 步仍需人工或 E2E 签核后方可称 Ready。
+| 维度 | 状态 |
+|------|------|
+| 引擎 / Schema / Codegen | Beta — 可用 |
+| LC-012 黄金路径 E2E | **PASS** 19/19（`lowcode-golden-path.json`） |
+| Studio 产品 `productionReady` | **false** — experimental |
+| 六维 Studio Ready DoD | 未全过 |
+
+Studio 0.1 闭环增强中：Action 链 / Runtime 同语义 / DS 面板 / Codegen 结构检查已落地。  
+**LC-012 PASS ≠ Studio 生产可用。** 报告：`component-hardening/reports/lowcode-golden-path.json` · 程序状态：`component-hardening/program-status.json`。

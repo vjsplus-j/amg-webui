@@ -3,6 +3,7 @@
  */
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { spawnSync } from 'node:child_process'
 
 const hardening = 'component-hardening'
 const inv = JSON.parse(
@@ -131,44 +132,6 @@ writeFileSync(
   ) + '\n'
 )
 
-const status = {
-  updatedAt: now,
-  version: '0.2.1-audit',
-  inventory: {
-    actual: inv.components.length,
-    target: 300,
-    ssot: 'component-hardening/inventory/component-inventory.json'
-  },
-  repositoryCompletionAudit: {
-    report: 'component-hardening/reports/repository-completion-audit.json',
-    demoteReport: 'component-hardening/reports/demote-weak-stable.json',
-    packagesComplete: false,
-    exampleComplete: false,
-    docsComplete: false,
-    stableHonest: stable.length,
-    demotedWeak: 259,
-    note: 'Prior 287 Stable claim invalidated by bulk-close weak evidence'
-  },
-  maturityScale: ['draft', 'beta', 'rc', 'stable'],
-  done: [
-    'INV-001 inventory SSOT',
-    'Repository Completion Audit demote weak Stable',
-    `Kept ${stable.length} evidence-backed Stable`
-  ],
-  todo: backlog.map((i) => i.id),
-  programBacklogCount: backlog.length,
-  blocked: [],
-  deferred: [],
-  knownGaps: [
-    'Stable docs coverage incomplete',
-    'API extract stubs remain for beta set',
-    '9 __hardeningKeydown stubs'
-  ],
-  mandatoryGateFailures: [],
-  missingMandatoryEvidence: [],
-  stableComponents: stable
-}
-writeFileSync(join(hardening, 'program-status.json'), JSON.stringify(status, null, 2) + '\n')
 console.log(
   JSON.stringify(
     {
@@ -182,3 +145,8 @@ console.log(
     2
   )
 )
+
+const ps = spawnSync(process.execPath, ['scripts/hardening/build-program-status.mjs'], {
+  stdio: 'inherit'
+})
+if (ps.status !== 0) process.exit(ps.status ?? 1)

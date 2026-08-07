@@ -239,7 +239,7 @@ function removeDataSource(id: string) {
 </script>
 
 <template>
-  <aside class="vp-studio-inspector">
+  <aside class="vp-studio-inspector" data-testid="studio-inspector">
     <!-- Document-level when nothing selected -->
     <template v-if="!selected">
       <header class="vp-studio-inspector__head">
@@ -250,6 +250,7 @@ function removeDataSource(id: string) {
           type="button"
           class="vp-studio-inspector__tab"
           :class="{ 'is-active': docTab === 'sources' }"
+          data-testid="inspector-doc-tab-sources"
           @click="docTab = 'sources'"
         >
           {{ t('lowcode.studio.inspector.dataSources') }}
@@ -258,6 +259,7 @@ function removeDataSource(id: string) {
           type="button"
           class="vp-studio-inspector__tab"
           :class="{ 'is-active': docTab === 'actions' }"
+          data-testid="inspector-doc-tab-actions"
           @click="docTab = 'actions'"
         >
           {{ t('lowcode.studio.inspector.actions') }}
@@ -278,11 +280,16 @@ function removeDataSource(id: string) {
         </ul>
         <div class="vp-studio-field">
           <label>id</label>
-          <InputText v-model="draftDs.id" />
+          <span data-testid="inspector-ds-id"><InputText v-model="draftDs.id" /></span>
         </div>
         <div class="vp-studio-field">
           <label>name</label>
-          <InputText :model-value="draftDs.name ?? ''" @update:model-value="draftDs.name = String($event)" />
+          <span data-testid="inspector-ds-name">
+            <InputText
+              :model-value="draftDs.name ?? ''"
+              @update:model-value="draftDs.name = String($event)"
+            />
+          </span>
         </div>
         <div class="vp-studio-field">
           <label>type</label>
@@ -307,25 +314,29 @@ function removeDataSource(id: string) {
         </div>
         <div v-else class="vp-studio-field">
           <label>static JSON</label>
-          <Textarea
-            :model-value="JSON.stringify(draftDs.staticData ?? {}, null, 2)"
-            :rows="6"
-            @update:model-value="
-              (() => {
-                try {
-                  draftDs.staticData = JSON.parse(String($event))
-                } catch {
-                  /* ignore */
-                }
-              })()
-            "
-          />
+          <span data-testid="inspector-ds-static">
+            <Textarea
+              :model-value="JSON.stringify(draftDs.staticData ?? {}, null, 2)"
+              :rows="6"
+              @update:model-value="
+                (() => {
+                  try {
+                    draftDs.staticData = JSON.parse(String($event))
+                  } catch {
+                    /* ignore */
+                  }
+                })()
+              "
+            />
+          </span>
         </div>
-        <Button
-          severity="primary"
-          :label="t('lowcode.studio.inspector.saveDs')"
-          @click="saveDataSource"
-        />
+        <span data-testid="inspector-save-datasource">
+          <Button
+            severity="primary"
+            :label="t('lowcode.studio.inspector.saveDs')"
+            @click="saveDataSource"
+          />
+        </span>
       </div>
       <div v-show="docTab === 'actions'" class="vp-studio-inspector__body">
         <p class="vp-studio-hint">{{ t('lowcode.studio.inspector.actionsDocHint') }}</p>
@@ -346,6 +357,7 @@ function removeDataSource(id: string) {
           type="button"
           class="vp-studio-inspector__tab"
           :class="{ 'is-active': tab === key }"
+          :data-testid="`inspector-tab-${key}`"
           @click="tab = key"
         >
           {{ t(`lowcode.studio.inspector.tab.${key}`) }}
@@ -463,20 +475,22 @@ function removeDataSource(id: string) {
               :label="t('lowcode.studio.inspector.static')"
               @click="bindingMode = 'static'"
             />
-            <Button
-              :severity="bindingMode === 'binding' ? 'primary' : 'default'"
-              :label="t('lowcode.studio.inspector.binding')"
-              @click="bindingMode = 'binding'"
-            />
+            <span data-testid="inspector-binding-mode">
+              <Button
+                :severity="bindingMode === 'binding' ? 'primary' : 'default'"
+                :label="t('lowcode.studio.inspector.binding')"
+                @click="bindingMode = 'binding'"
+              />
+            </span>
           </div>
         </div>
         <div class="vp-studio-field">
           <label>{{ t('lowcode.studio.inspector.prop') }}</label>
-          <InputText v-model="bindingProp" />
+          <span data-testid="inspector-binding-prop"><InputText v-model="bindingProp" /></span>
         </div>
         <div v-if="bindingMode === 'binding'" class="vp-studio-field">
           <label>{{ t('lowcode.studio.inspector.path') }}</label>
-          <InputText v-model="bindingPath" />
+          <span data-testid="inspector-binding-path"><InputText v-model="bindingPath" /></span>
           <div class="vp-studio-chips">
             <button
               v-for="hint in pathHints"
@@ -489,11 +503,13 @@ function removeDataSource(id: string) {
             </button>
           </div>
         </div>
-        <Button
-          :label="t('lowcode.studio.inspector.applyBinding')"
-          severity="primary"
-          @click="applyBinding"
-        />
+        <span data-testid="inspector-apply-binding">
+          <Button
+            :label="t('lowcode.studio.inspector.applyBinding')"
+            severity="primary"
+            @click="applyBinding"
+          />
+        </span>
         <Divider />
         <pre class="vp-studio-code">{{ JSON.stringify(bindings, null, 2) }}</pre>
       </div>
@@ -501,11 +517,13 @@ function removeDataSource(id: string) {
       <div v-show="tab === 'events'" class="vp-studio-inspector__body">
         <div v-for="ev in meta?.events ?? ['click']" :key="ev" class="vp-studio-field">
           <label>{{ ev }}</label>
-          <InputText
-            :model-value="eventMap[ev] ?? ''"
-            :placeholder="t('lowcode.studio.inspector.handlerName')"
-            @update:model-value="setEventHandler(ev, String($event))"
-          />
+          <span data-testid="inspector-event-handler">
+            <InputText
+              :model-value="eventMap[ev] ?? ''"
+              :placeholder="t('lowcode.studio.inspector.handlerName')"
+              @update:model-value="setEventHandler(ev, String($event))"
+            />
+          </span>
         </div>
 
         <Divider />

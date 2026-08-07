@@ -17,6 +17,7 @@ import {
 } from '@amg-webui/core'
 import {
   Cascader,
+  Checkbox,
   DatePicker,
   Form,
   FormItem,
@@ -49,6 +50,7 @@ const rangeValue = ref<{ min: number | null; max: number | null }>({
 const otpValue = ref('')
 const mentionValue = ref('')
 const selectValue = ref<string | undefined>()
+const checkboxValue = ref(false)
 const cascaderValue = ref<string | undefined>()
 const treeSelectValue = ref<string | undefined>()
 const selectNavValue = ref<string | number>('home')
@@ -137,7 +139,9 @@ const tableColumns = [
       <Card>
         <template #header>{{ t('page.lab.hardening.family.foundation') }}</template>
         <div class="lab-hardening__row" data-visual="foundation-default">
-          <Button data-testid="hf-button">{{ t('page.lab.hardening.sample.primary') }}</Button>
+          <div data-testid="hf-button">
+            <Button>{{ t('page.lab.hardening.sample.primary') }}</Button>
+          </div>
           <Button variant="outlined" :disabled="true" data-testid="hf-button-disabled">
             {{ t('page.lab.hardening.sample.disabled') }}
           </Button>
@@ -306,6 +310,12 @@ const tableColumns = [
               v-model="selectValue"
               :options="selectOptions"
               :placeholder="t('page.lab.hardening.sample.select')"
+            />
+          </div>
+          <div data-testid="hf-checkbox">
+            <Checkbox
+              v-model="checkboxValue"
+              :aria-label="t('page.lab.hardening.sample.placeholder')"
             />
           </div>
           <div data-testid="hf-mention">
