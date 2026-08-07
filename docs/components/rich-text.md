@@ -1,31 +1,70 @@
 # RichText
 
-白名单消毒富文本编辑器。读写 / 粘贴经 `@amg-webui/security` 的 `sanitizeHtml`；排版使用 Selection API（**不使用**已废弃的 `document.execCommand`）；插入链接走 `sanitizeUrl`。
+RichText 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
-详见 [SECURITY.md](../SECURITY.md)。
+## 概览
+
+RichText 当前成熟度为 **RC**；完整交互见本地 example。
+
+## 何时使用 / 何时不用
+
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 基础用法
 
 ```vue
-<script setup lang="ts">
-import { ref } from 'vue'
+<script setup>
 import { RichText } from '@amg-webui/editor'
-
-const html = ref('<p><strong>AMG</strong></p>')
 </script>
 
 <template>
-  <RichText v-model="html" />
+  <RichText />
 </template>
 ```
+
+Curated demo：`example/demos/RichText/index.vue`
 
 ## Props
 
 | Prop | 类型 | 默认 | 说明 |
-|------|------|------|------|
-| modelValue | `string` | `''` | HTML 内容 |
-| sanitize | `boolean` | `true` | 是否消毒 |
-| sanitizeOptions | `SanitizeHtmlOptions` | — | 传给 `sanitizeHtml` |
-| placeholder | `string` | i18n | 空态提示 |
-| historyLimit | `number` | `50` | 撤销栈深度 |
-| disabled | `boolean` | — | 禁用 |
+| --- | --- | --- | --- |
+| `modelValue` | `string` | — | 绑定值 / Bound value (v-model) |
+| `placeholder` | `string` | — | 占位提示 / Placeholder text |
+| `sanitize` | `boolean` | — | — |
+| `sanitizeOptions` | `SanitizeHtmlOptions` | — | — |
+| `historyLimit` | `number` | — | — |
+
+## Events
+
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `update:modelValue` | `value: string` | v-model 更新 / v-model update |
+| `change` | `value: string` | 值变更 / Change |
+
+## Models
+
+| Model | 说明 |
+| --- | --- |
+| `modelValue` | v-model |
+
+## Public types
+
+- `RichTextCommand`
+- `RichTextProps`
+- `RichTextEmits`
+
+
+## 稳定性
+
+| 字段 | 值 |
+| --- | --- |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/RichText.json` |
+
+> 完整 Demo 见 `example/demos/RichText`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

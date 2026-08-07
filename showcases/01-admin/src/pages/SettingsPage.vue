@@ -6,12 +6,15 @@ import {
   Form,
   FormItem,
   InputText,
-  PageHeader,
   Select,
-  Switch
+  Switch,
+  TabPane,
+  Tabs
 } from 'amg-webui'
+import AdminPageChrome from '../components/AdminPageChrome.vue'
 
 const saved = ref(false)
+const activeTab = ref('general')
 
 const general = reactive({
   siteName: 'Admin Console',
@@ -53,59 +56,68 @@ function saveAll() {
 
 <template>
   <div class="showcase-page">
-    <PageHeader title="Settings">
+    <AdminPageChrome title="Settings">
       <template #extra>
         <Button severity="primary" label="Save all" @click="saveAll" />
         <span v-if="saved" class="showcase-status showcase-status--online">Saved</span>
       </template>
-    </PageHeader>
+    </AdminPageChrome>
 
-    <div class="showcase-grid showcase-grid--2">
-      <Card title="General">
-        <Form :model="general" label-position="top">
-          <FormItem label="Site name" prop="siteName">
-            <InputText v-model="general.siteName" fluid />
-          </FormItem>
-          <FormItem label="Support email" prop="supportEmail">
-            <InputText v-model="general.supportEmail" fluid />
-          </FormItem>
-          <FormItem label="Timezone" prop="timezone">
-            <Select v-model="general.timezone" :options="timezoneOptions" fluid />
-          </FormItem>
-        </Form>
-      </Card>
+    <Card>
+      <Tabs v-model="activeTab" aria-label="Settings sections">
+        <TabPane name="general" label="General">
+          <Form :model="general" label-position="top" class="settings-page__form">
+            <FormItem label="Site name" prop="siteName">
+              <InputText v-model="general.siteName" fluid />
+            </FormItem>
+            <FormItem label="Support email" prop="supportEmail">
+              <InputText v-model="general.supportEmail" fluid />
+            </FormItem>
+            <FormItem label="Timezone" prop="timezone">
+              <Select v-model="general.timezone" :options="timezoneOptions" fluid />
+            </FormItem>
+          </Form>
+        </TabPane>
 
-      <Card title="Security">
-        <Form :model="security" label-position="top">
-          <FormItem label="Require MFA" prop="mfaRequired">
-            <Switch v-model="security.mfaRequired" />
-          </FormItem>
-          <FormItem label="Session timeout (minutes)" prop="sessionMinutes">
-            <InputText v-model="security.sessionMinutes" fluid />
-          </FormItem>
-          <FormItem label="IP allowlist" prop="ipAllowlist">
-            <InputText v-model="security.ipAllowlist" fluid />
-          </FormItem>
-        </Form>
-      </Card>
+        <TabPane name="security" label="Security">
+          <Form :model="security" label-position="top" class="settings-page__form">
+            <FormItem label="Require MFA" prop="mfaRequired">
+              <Switch v-model="security.mfaRequired" />
+            </FormItem>
+            <FormItem label="Session timeout (minutes)" prop="sessionMinutes">
+              <InputText v-model="security.sessionMinutes" fluid />
+            </FormItem>
+            <FormItem label="IP allowlist" prop="ipAllowlist">
+              <InputText v-model="security.ipAllowlist" fluid />
+            </FormItem>
+          </Form>
+        </TabPane>
 
-      <Card title="Notifications">
-        <Form :model="notifications" label-position="top">
-          <FormItem label="Email alerts" prop="emailAlerts">
-            <Switch v-model="notifications.emailAlerts" />
-          </FormItem>
-          <FormItem label="Slack webhook" prop="slackWebhook">
-            <InputText
-              v-model="notifications.slackWebhook"
-              fluid
-              placeholder="https://hooks.slack.com/..."
-            />
-          </FormItem>
-          <FormItem label="Digest frequency" prop="digest">
-            <Select v-model="notifications.digest" :options="digestOptions" fluid />
-          </FormItem>
-        </Form>
-      </Card>
-    </div>
+        <TabPane name="notifications" label="Notifications">
+          <Form :model="notifications" label-position="top" class="settings-page__form">
+            <FormItem label="Email alerts" prop="emailAlerts">
+              <Switch v-model="notifications.emailAlerts" />
+            </FormItem>
+            <FormItem label="Slack webhook" prop="slackWebhook">
+              <InputText
+                v-model="notifications.slackWebhook"
+                fluid
+                placeholder="https://hooks.slack.com/..."
+              />
+            </FormItem>
+            <FormItem label="Digest frequency" prop="digest">
+              <Select v-model="notifications.digest" :options="digestOptions" fluid />
+            </FormItem>
+          </Form>
+        </TabPane>
+      </Tabs>
+    </Card>
   </div>
 </template>
+
+<style scoped lang="scss">
+.settings-page__form {
+  max-width: 480px;
+  padding-top: 8px;
+}
+</style>

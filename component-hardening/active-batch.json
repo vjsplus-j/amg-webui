@@ -1,0 +1,23 @@
+{
+  "updatedAt": "2026-08-08T03:05:00.000Z",
+  "hardeningStatus": "CLOSED",
+  "activeBatch": null,
+  "status": "CORE_STABLE_SET_COMPLETE",
+  "next": null,
+  "statusNotes": "Batches 01–04 CLOSED. Enterprise Admin (showcases/01-admin) CLOSED. Hardening architecture FROZEN.",
+  "components": [],
+  "referenceApp": "showcases/01-admin",
+  "scenarios": [],
+  "showcases": {
+    "01-admin": "CLOSED",
+    "02-saas": "BACKLOG",
+    "03-ecommerce": "BACKLOG",
+    "04-content-management": "BACKLOG",
+    "05-device-management": "BACKLOG",
+    "06-video-surveillance": "BACKLOG",
+    "07-gb28181-center": "BACKLOG",
+    "08-onvif-center": "BACKLOG",
+    "09-dashboard": "BACKLOG",
+    "10-mobile-admin": "BACKLOG"
+  }
+}

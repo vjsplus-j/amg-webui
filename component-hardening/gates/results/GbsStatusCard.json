@@ -42,12 +42,12 @@
     {
       "id": "behavior",
       "status": "PASS",
-      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
+      "detail": "STALE: PASS evidence requires both sourceHash and contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "visual",
       "status": "PASS",
-      "detail": "STALE: PASS evidence missing sourceHash/contractHash"
+      "detail": "STALE: PASS evidence requires both sourceHash and contractHash"
     },
     {
       "id": "a11y",
@@ -62,12 +62,12 @@
     {
       "id": "theme",
       "status": "PASS",
-      "detail": "STALE: PASS evidence missing sourceHash/contractHash"
+      "detail": "STALE: PASS evidence requires both sourceHash and contractHash"
     },
     {
       "id": "rtl",
-      "status": "N/A",
-      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsStatusCard RTL covered by theme/dir provider"
+      "status": "PASS",
+      "detail": "STALE: PASS evidence requires both sourceHash and contractHash"
     },
     {
       "id": "perf",
@@ -77,12 +77,12 @@
     {
       "id": "docs",
       "status": "PASS",
-      "detail": "STALE: PASS evidence missing sourceHash/contractHash (non-stable — evidence gap does not block verify PASS)"
+      "detail": "STALE: PASS evidence requires both sourceHash and contractHash (non-stable — evidence gap does not block verify PASS)"
     },
     {
       "id": "ssr",
       "status": "PASS",
-      "detail": "structural=PASS; evidence=STALE: PASS evidence missing sourceHash/contractHash (non-stable — structural only for verify PASS)"
+      "detail": "structural=PASS; evidence=STALE: PASS evidence requires both sourceHash and contractHash (non-stable — structural only for verify PASS)"
     },
     {
       "id": "adapter",
@@ -109,5 +109,5 @@
   "evidenceOk": false,
   "auditMode": false,
   "strictEvidence": true,
-  "verifiedAt": "2026-08-07T17:40:05.757Z"
+  "verifiedAt": "2026-08-07T18:36:34.613Z"
 }

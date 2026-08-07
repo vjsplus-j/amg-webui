@@ -1,20 +1,31 @@
 {
-  "status": "FAIL",
+  "status": "PASS",
+  "component": "Radio",
+  "family": "input",
+  "testFile": "tests/unit/hardening/keyboard/input.spec.ts",
+  "testCases": [
+    {
+      "name": "space-selects-radio",
+      "key": "Space",
+      "expected": "Space on focused Radio selects value and emits update:modelValue",
+      "status": "PASS"
+    },
+    {
+      "name": "disabled-no-selection",
+      "key": "Space",
+      "expected": "disabled Radio does not emit update:modelValue on Space",
+      "status": "PASS"
+    }
+  ],
   "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
     "Space"
   ],
-  "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.735Z",
-  "previousStatus": "PASS",
-  "invalidatedAt": "2026-08-07T16:54:56.671Z"
+  "runId": "2415cc47-09c9-4826-8daa-6885b3b423a2",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T18:36:14.497Z",
+  "detail": "Space: Space on focused Radio selects value and emits update:modelValue; Space: disabled Radio does not emit update:modelValue on Space",
+  "sourceHash": "9391f94afebe35fcc6891a84bda95ecf4632ce4a6aec6a9471e2eed8d2a17eaa",
+  "contractHash": "7976018525aa5b02e63e018fbb3edfd708817fb79fd33102bd3c792548e28f85",
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:14.497Z"
 }

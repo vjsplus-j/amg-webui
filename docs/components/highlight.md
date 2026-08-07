@@ -1,6 +1,19 @@
-# Highlight 文本高亮
+# Highlight
 
-在源文本中按关键词高亮匹配段，支持多关键词、忽略大小写、整词匹配与多种视觉形态。
+Highlight 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+
+## 概览
+
+Highlight 当前成熟度为 **RC**；完整交互见本地 example。
+
+## 何时使用 / 何时不用
+
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 基础用法
 
@@ -10,24 +23,46 @@ import { Highlight } from '@amg-webui/core'
 </script>
 
 <template>
-  <Highlight text="Vue 3 composition API" keyword="Vue" />
+  <Highlight />
 </template>
 ```
 
-## 常用 API
+Curated demo：`example/demos/Highlight/index.vue`
+
+## Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `text` | `string` | — | 源文本 |
-| `keyword` | `string \| string[]` | — | 关键词 |
-| `ignoreCase` | `boolean` | `true` | 忽略大小写 |
-| `matchWholeWord` | `boolean` | `false` | 整词边界 |
-| `variant` | `'mark' \| 'underline' \| 'background'` | `'mark'` | 视觉形态 |
-| `color` / `colorText` | `string` | Token | 高亮色（优先 CSS Token） |
-| `ariaLabel` | `string` | — | 无障碍标签 |
+| `text` | `string` | **必填** | — |
+| `keyword` | `string \| string[]` | **必填** | — |
+| `ignoreCase` | `boolean` | — | — |
+| `matchWholeWord` | `boolean` | — | — |
+| `variant` | `HighlightVariant` | — | 外观变体：`solid` · `outlined` · `text` / Visual variant |
+| `compact` | `boolean` | — | — |
+| `color` | `string` | — | — |
+| `colorText` | `string` | — | — |
+| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
 
-| 事件 | 说明 |
+## Events
+
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `matchChange` | `count: number` | — |
+
+## Public types
+
+- `HighlightVariant`
+- `HighlightProps`
+- `HighlightEmits`
+- `HighlightSegment`
+
+
+## 稳定性
+
+| 字段 | 值 |
 | --- | --- |
-| `matchChange` | 匹配段数量变化 |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/Highlight.json` |
 
-> 完整 Demo 见 `example/demos/Highlight/`。本阶段对外 docs 为薄 API stub。
+> 完整 Demo 见 `example/demos/Highlight`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

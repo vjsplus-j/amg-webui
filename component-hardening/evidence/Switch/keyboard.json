@@ -20,12 +20,12 @@
   "keys": [
     "Space"
   ],
-  "runId": "4b2bccbc-a31f-42f7-bdb6-7796cdec5bda",
+  "runId": "01c7bc10-de7b-4809-8660-102b1524683a",
   "toolVersion": "1",
-  "verifiedAt": "2026-08-07T17:38:54.933Z",
+  "verifiedAt": "2026-08-07T18:36:14.046Z",
   "detail": "Space: Space on focused switch toggles modelValue; Space: disabled switch does not emit update:modelValue on Space",
-  "sourceHash": "f483a622d1dd33c6716141180352544d468168fadb2400cca7399d7b6c84f358",
+  "sourceHash": "987b77dee6c66e5163dff803e9b89f1299a8aa7a1635603af28bc640390312b0",
   "contractHash": "8951902c4763ffcdc03db653c4998dc6a502de038c1abb4a7bc1e4a10dbae1a8",
-  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
-  "stampedAt": "2026-08-07T17:38:54.996Z"
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:14.117Z"
 }

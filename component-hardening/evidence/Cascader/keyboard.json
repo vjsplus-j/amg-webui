@@ -21,12 +21,12 @@
     "ArrowDown",
     "Escape"
   ],
-  "runId": "8250e2a5-6135-4f93-b303-db401d632f03",
+  "runId": "28c352e2-2a2e-4166-a676-4193d99dd51f",
   "toolVersion": "1",
-  "verifiedAt": "2026-08-07T17:38:55.164Z",
+  "verifiedAt": "2026-08-07T18:36:13.950Z",
   "detail": "ArrowDown: opens panel and moves highlighted cascader item; Escape: closes cascader panel and restores focus",
-  "sourceHash": "20bd3032124a3f1837fd2801b79cc22c3cca757084e8f2fb21431ece6a8f5be0",
+  "sourceHash": "8ab4c346ffd84b1149db0c22fd2b56ffd9eaccb58c425b14ce3ae3217b68ea25",
   "contractHash": "bff9bfda2ab0f1771b0f8afd16b15afcbd02b5a45652fd796f43e80666287ab5",
-  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
-  "stampedAt": "2026-08-07T17:38:55.234Z"
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:14.033Z"
 }

@@ -21,12 +21,12 @@
     "ArrowDown",
     "Escape"
   ],
-  "runId": "e8069856-7696-497a-8efe-a15fcff3013e",
+  "runId": "576a1334-38fb-4ee3-905f-88a6e1374aca",
   "toolVersion": "1",
-  "verifiedAt": "2026-08-07T17:38:55.373Z",
+  "verifiedAt": "2026-08-07T18:36:14.233Z",
   "detail": "ArrowDown: moves roving focus among open dropdown menuitems; Escape: closes dropdown menu and restores trigger focus",
-  "sourceHash": "6e563d2cb0e8a844f30134002cf52848dcaf4ab53e1ad112119837bc30e3e0e0",
+  "sourceHash": "026c9fa232a84e2915f0f34cde96d3522900c37494d6c05877388dbe5b57eef0",
   "contractHash": "b888a4c89eb7dad2cd1226508e5e6d8fba5a1be2008564e67e50c228340f802c",
-  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
-  "stampedAt": "2026-08-07T17:38:55.419Z"
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:14.286Z"
 }

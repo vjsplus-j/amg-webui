@@ -20,12 +20,12 @@
   "keys": [
     "Space"
   ],
-  "runId": "bd3a1bff-3acc-4d39-b68b-365c25ab80dc",
+  "runId": "1c46a1b0-9a86-4979-9f19-4b4e3ba8d972",
   "toolVersion": "1",
-  "verifiedAt": "2026-08-07T17:38:45.034Z",
+  "verifiedAt": "2026-08-07T18:36:13.444Z",
   "detail": "Space: Space on focused radio selects option and emits update:modelValue; Space: disabled RadioGroup does not emit update:modelValue on Space",
-  "sourceHash": "d5e20fd6449ec0f9adcd92fb145deffd89aae05c84f3720780650f8deaddc69f",
+  "sourceHash": "235de024f8dd5182acb6a6460c12326f717707fee6e7521fda1f27b70d2d6a89",
   "contractHash": "3af1df2b6ed741d06a0884a077bde2ecc379f9acea2df99c26d1ef2bbe90eab3",
-  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
-  "stampedAt": "2026-08-07T17:38:45.105Z"
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:13.692Z"
 }

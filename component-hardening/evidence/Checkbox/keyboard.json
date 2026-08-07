@@ -20,12 +20,12 @@
   "keys": [
     "Space"
   ],
-  "runId": "62ad7ee0-017c-49a9-b248-ca575fd08583",
+  "runId": "d774fab8-7fbe-4c9e-a247-e417101707e2",
   "toolVersion": "1",
-  "verifiedAt": "2026-08-07T17:38:54.869Z",
+  "verifiedAt": "2026-08-07T18:36:13.945Z",
   "detail": "Space: Space on focused checkbox toggles modelValue; Space: disabled checkbox does not emit update:modelValue on Space",
-  "sourceHash": "b58830253cf9ea742f1b8634b484b8fce0ef65cd05bc4a7c1664a32ae1769b5c",
+  "sourceHash": "9a504240914dd9a823516119cbc180ce666e730b2f6f7b931f84f04911b2772f",
   "contractHash": "841d539b9fedf21265862a86b8341f941d7daf47acf8960b658bd48746aa1758",
-  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
-  "stampedAt": "2026-08-07T17:38:54.925Z"
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:14.030Z"
 }

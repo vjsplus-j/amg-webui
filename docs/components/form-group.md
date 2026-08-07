@@ -1,14 +1,14 @@
 # FormGroup
 
-FormGroup 为 **Stable** 公共组件（API frozen）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+FormGroup 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
 ## 概览
 
-FormGroup 已通过 Component Hardening 证据门禁；完整交互演示见本地 example curated demo。
+FormGroup 当前成熟度为 **RC**；完整交互见本地 example。
 
 ## 何时使用 / 何时不用
 
-- **适用**：生产可用的 Stable 组件场景。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
 - **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
 ## 相关组件
@@ -34,11 +34,11 @@ Curated demo：`example/demos/FormGroup/index.vue`
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `title` | `string` | — | — |
+| `title` | `string` | — | 标题 / Title |
 | `collapsible` | `boolean` | — | — |
 | `collapsed` | `boolean` | — | — |
-| `trackId` | `string` | — | — |
-| `telemetry` | `boolean` | — | — |
+| `trackId` | `string` | — | Telemetry 追踪 id / Telemetry track id |
+| `telemetry` | `boolean` | — | 是否上报 Telemetry / Enable telemetry |
 
 ## Events
 
@@ -52,16 +52,13 @@ Curated demo：`example/demos/FormGroup/index.vue`
 - `FormGroupProps`
 - `FormGroupEmits`
 
-## 无障碍与键盘
-
-交互行为与键盘路径以 `component-hardening/evidence/FormGroup/a11y.json` · `keyboard.json` 为准；本地可复现：`example/demos/FormGroup/`。
 
 ## 稳定性
 
 | 字段 | 值 |
 | --- | --- |
-| maturity | `stable` |
-| apiFreeze | `frozen` |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
 | API extract | `generated/component-api/FormGroup.json` |
 
-> 完整 Demo 见 `example/demos/FormGroup`。对外 docs 为 API 导向页面；交互预览仅在本地 example（不上线）。
+> 完整 Demo 见 `example/demos/FormGroup`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

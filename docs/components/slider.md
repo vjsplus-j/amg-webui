@@ -1,36 +1,41 @@
 # Slider
 
-Slider 组件（Stable 文档页，由 Repository Completion Audit 流水线生成）。
+Slider 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
-## Overview
+## 概览
 
-企业组件库公开组件。完整交互与边界用例见本地 example playground（不上线）。
+Slider 当前成熟度为 **RC**；完整交互见本地 example。
 
-## When To Use
+## 何时使用 / 何时不用
 
-需要 Slider 能力时使用。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
-## When Not To Use
+## 相关组件
 
-不需要该交互面时改用更轻量的基础件。
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
-## Import
+## 基础用法
 
-```ts
-import { Slider } from 'amg-webui'
+```vue
+<script setup>
+import { Slider } from '@amg-webui/form'
+</script>
+
+<template>
+  <Slider />
+</template>
 ```
 
-## Demos
-
-运行态 Demo：`example/demos/Slider/index.vue`
+Curated demo：`example/demos/Slider/index.vue`
 
 ## Props
 
-| Prop | Type | Default | Description |
+| Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `id` | `string` | — | — |
-| `name` | `string` | — | — |
-| `modelValue` | `SliderValue` | — | — |
+| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
+| `name` | `string` | — | 表单字段名 / Form field name |
+| `modelValue` | `SliderValue` | — | 绑定值 / Bound value (v-model) |
 | `min` | `number` | — | — |
 | `max` | `number` | — | — |
 | `step` | `number` | — | — |
@@ -39,32 +44,30 @@ import { Slider } from 'amg-webui'
 
 ## Events
 
-| Event | Description |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `update:modelValue` | `value: SliderValue` | v-model 更新 / v-model update |
+| `change` | `value: SliderValue` | 值变更 / Change |
+
+## Models
+
+| Model | 说明 |
 | --- | --- |
-| `update:modelValue` | — |
-| `change` | — |
+| `modelValue` | v-model |
 
-## Slots / Expose / Models
+## Public types
 
-见 `generated/component-api/Slider.json`。
+- `SliderValue`
+- `SliderProps`
+- `SliderEmits`
 
-## Accessibility
 
-见组件实现与 `component-hardening/evidence/Slider/a11y.json`。
+## 稳定性
 
-## Keyboard
+| 字段 | 值 |
+| --- | --- |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/Slider.json` |
 
-见 `component-hardening/evidence/Slider/keyboard.json`。
-
-## Design Tokens
-
-使用语义 token（`vp-` / theme CSS variables），禁止硬编码色值。
-
-## Version
-
-- Inventory: public
-- Maturity: see `component-hardening/contracts/Slider.json`
-
-## Known Limitations
-
-以 contract + evidence 为准。
+> 完整 Demo 见 `example/demos/Slider`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

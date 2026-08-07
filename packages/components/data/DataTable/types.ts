@@ -35,7 +35,7 @@ export interface Column<T = any> {
 export interface DataTableProps<T = any> extends BaseProps {
   value?: T[];
   columns: Column<T>[];
-  /** Field name used as stable row identity (default `id`) */
+  /** Field name used as stable row identity (default `id`). Required when selection or virtual scroll is enabled. */
   rowKey?: string;
   /** Selected row keys — use with v-model:selection */
   selection?: RowKey[];

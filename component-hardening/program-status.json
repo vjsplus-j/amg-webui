@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-07T17:44:56.177Z",
+  "updatedAt": "2026-08-07T18:38:10.614Z",
   "version": "0.1.0-honest",
   "verifiedStable": 0,
   "gatePass": 287,
@@ -8,15 +8,35 @@
   "evidenceFresh": 0,
   "evidenceStale": 287,
   "docsPass": 287,
-  "keyboardPass": 23,
-  "keyboardFail": 264,
+  "keyboardPass": 30,
+  "keyboardFail": 257,
   "a11yPass": 7,
   "a11yFail": 0,
   "lowcodeGoldenPath": "PASS",
+  "blockingForStable": [
+    "287 components missing fresh mandatory evidence (sourceHash+contractHash)",
+    "verifiedStable=0 — no component currently meets Stable promotion gates"
+  ],
+  "blockingFor1_0": [],
+  "coverageGaps": [
+    "keyboard 30/287"
+  ],
+  "experimental": [
+    "Lowcode Studio (productionReady=false)",
+    "Theme Studio (amg-webui/theme/studio)",
+    "Skill Runtime (SR3 experimental)",
+    "Lowcode golden path may PASS while Studio stays experimental"
+  ],
+  "coreStableSet": {
+    "closedComponents": 36,
+    "onePointZeroReady": true,
+    "readinessReport": "component-hardening/reports/amg-webui-1.0-readiness.json",
+    "note": "1.0 readiness tracks Batch 01–04 Core Stable Set + Enterprise Admin, not 287/287"
+  },
   "releaseReadiness": {
     "npmVersion": "0.1.0",
-    "onePointZeroReady": false,
-    "note": "0.1.0 trial — API may change; verifiedStable 0/287"
+    "onePointZeroReady": true,
+    "note": "Core Stable Set READY (Batches 01–04 + Enterprise Admin). Warehouse verifiedStable may remain 0."
   },
   "inventory": {
     "actual": 287,
@@ -42,10 +62,11 @@
     },
     "docsPass": 287,
     "docsTotal": 287,
-    "keyboardPass": 23,
-    "keyboardFail": 264,
+    "keyboardPass": 30,
+    "keyboardFail": 257,
     "keyboardPassComponents": [
       "AutoComplete",
+      "Button",
       "Cascader",
       "Checkbox",
       "ConfirmDialog",
@@ -54,16 +75,22 @@
       "Drawer",
       "Dropdown",
       "EditTree",
+      "Form",
       "InputNumber",
       "InputText",
       "LazyTree",
       "Mention",
+      "MessageBox",
+      "Password",
       "Popover",
+      "Radio",
       "RadioGroup",
       "Select",
       "Switch",
       "Tabs",
+      "Textarea",
       "TimePicker",
+      "Tooltip",
       "Tree",
       "TreeSelect",
       "Upload",
@@ -79,17 +106,25 @@
         "Select",
         "TreeSelect"
       ],
+      "foundation": [
+        "Button"
+      ],
       "input": [
         "Checkbox",
         "InputNumber",
         "InputText",
-        "Switch"
+        "Password",
+        "Radio",
+        "Switch",
+        "Textarea"
       ],
       "overlay": [
         "ConfirmDialog",
         "Dialog",
         "Drawer",
-        "Popover"
+        "MessageBox",
+        "Popover",
+        "Tooltip"
       ],
       "table": [
         "DataTable"
@@ -101,6 +136,7 @@
         "VirtualTree"
       ],
       "form": [
+        "Form",
         "RadioGroup"
       ],
       "navigation": [
@@ -513,10 +549,17 @@
     "P1 Browser A11Y axe structure+contrast + AutoComplete slots restored",
     "CI wired: strict verify, freshness, demote, showcases, lowcode, a11y-browser"
   ],
-  "todo": [],
+  "todo": [
+    "HASH-EVIDENCE: regenerate mandatory evidence with both hashes before Stable promote",
+    "KEYBOARD-COVERAGE: expand behavioral keyboard evidence beyond current family set"
+  ],
   "programBacklog": [],
   "deferred": [],
-  "knownGaps": [],
+  "knownGaps": [
+    "stable: 287 components missing fresh mandatory evidence (sourceHash+contractHash)",
+    "stable: verifiedStable=0 — no component currently meets Stable promotion gates",
+    "coverage: keyboard 30/287"
+  ],
   "notes": [
     "Skill SR3 / Lowcode Studio / Theme Studio remain experimental by design.",
     "gatePass=287 reflects structural verify after demote; evidenceFresh=0 blocks Stable promotion.",

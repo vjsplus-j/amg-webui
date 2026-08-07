@@ -1,6 +1,6 @@
 # Component Hardening Dashboard
 
-- Generated: 2026-08-07T17:40:14.721Z
+- Generated: 2026-08-07T18:36:43.607Z
 - Inventory: 287 public / 287 total (target 300)
 - Verified Stable: 0/287 (0%) — target ≥ 90% — NOT MET
 - Gate: pass=287 fail=0 unknown=0

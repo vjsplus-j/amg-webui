@@ -74,7 +74,7 @@ export function writeGoldenPathReport(stepResults, meta = {}) {
     total: steps.length,
     pass,
     fail,
-    status: pass === steps.length ? 'PASS' : fail === steps.length ? 'FAIL' : 'PARTIAL',
+    status: pass === steps.length ? 'PASS' : 'FAIL',
     goldenPathReady: pass === steps.length,
     productionReady: false,
     steps

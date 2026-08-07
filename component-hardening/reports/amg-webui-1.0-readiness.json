@@ -1,0 +1,153 @@
+{
+  "updatedAt": "2026-08-08T02:40:00.000Z",
+  "onePointZeroReady": true,
+  "verdict": "CORE_STABLE_SET_READY — Batches 01–04 CLOSED; Enterprise Admin reference app CLOSED; showcase:admin:build PASS.",
+  "blockers": [],
+  "coreStableSet": {
+    "status": "CLOSED",
+    "batches": [
+      {
+        "id": "BATCH-01-FORM-INPUT",
+        "status": "CLOSED",
+        "closedAt": "2026-08-08T02:30:00.000Z",
+        "components": [
+          "InputText",
+          "Textarea",
+          "InputNumber",
+          "Password",
+          "Checkbox",
+          "Radio",
+          "RadioGroup",
+          "Switch",
+          "Form",
+          "FormItem",
+          "Button"
+        ]
+      },
+      {
+        "id": "BATCH-02-DATA",
+        "status": "CLOSED",
+        "closedAt": "2026-08-08T02:35:00.000Z",
+        "components": [
+          "DataTable",
+          "Pagination",
+          "Tree",
+          "Select",
+          "AutoComplete",
+          "Cascader",
+          "TreeSelect"
+        ]
+      },
+      {
+        "id": "BATCH-03-OVERLAY",
+        "status": "CLOSED",
+        "closedAt": "2026-08-08T02:32:00.000Z",
+        "components": [
+          "Dialog",
+          "Drawer",
+          "Popover",
+          "Tooltip",
+          "MessageBox",
+          "ConfirmDialog"
+        ]
+      },
+      {
+        "id": "BATCH-04-NAVIGATION-LAYOUT",
+        "status": "CLOSED",
+        "closedAt": "2026-08-08T02:40:00.000Z",
+        "components": [
+          "Layout",
+          "Header",
+          "Sider",
+          "Main",
+          "Menu",
+          "Tabs",
+          "Breadcrumb",
+          "PageHeader",
+          "Card",
+          "Loading",
+          "Empty",
+          "Skeleton"
+        ]
+      }
+    ],
+    "componentCount": 36,
+    "registry": "component-hardening/closed-components.json"
+  },
+  "enterpriseAdmin": {
+    "status": "CLOSED",
+    "app": "showcases/01-admin",
+    "closure": "component-hardening/closures/ENTERPRISE-ADMIN.md",
+    "routes": [
+      "/login",
+      "/",
+      "/users",
+      "/roles",
+      "/permissions",
+      "/organizations",
+      "/audit",
+      "/settings",
+      "/error",
+      "/:not-found"
+    ],
+    "build": "showcase:admin:build"
+  },
+  "experimental": [
+    {
+      "name": "Lowcode",
+      "exportPath": "amg-webui/lowcode",
+      "maturity": "experimental",
+      "note": "Studio 0.1 — golden path PASS; productionReady=false"
+    },
+    {
+      "name": "Theme Studio",
+      "exportPath": "amg-webui/theme/studio",
+      "maturity": "experimental",
+      "note": "Visual theme generator — not product-stable"
+    },
+    {
+      "name": "Skill Runtime",
+      "exportPath": "amg-webui/skill",
+      "maturity": "experimental",
+      "note": "SR1–SR3 experimental baseline; not stable"
+    }
+  ],
+  "rc": [
+    {
+      "name": "Charts",
+      "packages": ["@amg-webui/charts"],
+      "maturity": "rc"
+    },
+    {
+      "name": "Editor",
+      "packages": ["@amg-webui/editor"],
+      "maturity": "rc"
+    }
+  ],
+  "preview": [
+    {
+      "name": "Media",
+      "packages": ["@amg-webui/media"],
+      "maturity": "preview"
+    },
+    {
+      "name": "GB28181",
+      "packages": ["@amg-webui/gb28181"],
+      "maturity": "preview"
+    },
+    {
+      "name": "ONVIF",
+      "packages": ["@amg-webui/onvif"],
+      "maturity": "preview"
+    },
+    {
+      "name": "Industry / other opt-in packages",
+      "note": "Business vertical showcases 02–10 remain BACKLOG"
+    }
+  ],
+  "honestLimits": [
+    "Core Stable Set = 36 CLOSED components across Batches 01–04; warehouse-wide 287-component Stable promotion not claimed.",
+    "npm package version remains 0.1.0 trial until release engineering promotes version separately.",
+    "Showcases 02–10 not expanded in this closure."
+  ]
+}

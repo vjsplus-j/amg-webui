@@ -1,36 +1,41 @@
 # Countdown
 
-Countdown 组件（Stable 文档页，由 Repository Completion Audit 流水线生成）。
+Countdown 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
-## Overview
+## 概览
 
-企业组件库公开组件。完整交互与边界用例见本地 example playground（不上线）。
+Countdown 当前成熟度为 **RC**；完整交互见本地 example。
 
-## When To Use
+## 何时使用 / 何时不用
 
-需要 Countdown 能力时使用。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
-## When Not To Use
+## 相关组件
 
-不需要该交互面时改用更轻量的基础件。
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
-## Import
+## 基础用法
 
-```ts
-import { Countdown } from 'amg-webui'
+```vue
+<script setup>
+import { Countdown } from '@amg-webui/core'
+</script>
+
+<template>
+  <Countdown />
+</template>
 ```
 
-## Demos
-
-运行态 Demo：`example/demos/Countdown/index.vue`
+Curated demo：`example/demos/Countdown/index.vue`
 
 ## Props
 
-| Prop | Type | Default | Description |
+| Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `number` | — | — |
-| `value` | `number \| Date` | — | — |
-| `format` | `string` | — | — |
+| `modelValue` | `number` | — | 绑定值 / Bound value (v-model) |
+| `value` | `number \| Date` | **必填** | 表格行数据或绑定值 / Row data or bound value |
+| `format` | `string` | — | 日期格式 / Date format |
 | `millisecond` | `boolean` | — | — |
 | `autoStart` | `boolean` | — | — |
 | `paused` | `boolean` | — | — |
@@ -41,37 +46,34 @@ import { Countdown } from 'amg-webui'
 
 ## Events
 
-| Event | Description |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `update:modelValue` | `remainingMs: number` | v-model 更新 / v-model update |
+| `finish` | `void` | — |
+| `tick` | `remainingMs: number` | — |
+| `start` | `remainingMs: number` | — |
+| `pause` | `remainingMs: number` | — |
+| `resume` | `remainingMs: number` | — |
+| `reset` | `remainingMs: number` | — |
+
+## Models
+
+| Model | 说明 |
 | --- | --- |
-| `update:modelValue` | — |
-| `finish` | — |
-| `tick` | — |
-| `start` | — |
-| `pause` | — |
-| `resume` | — |
-| `reset` | — |
+| `modelValue` | v-model |
 
-## Slots / Expose / Models
+## Public types
 
-见 `generated/component-api/Countdown.json`。
+- `CountdownProps`
+- `CountdownEmits`
 
-## Accessibility
 
-见组件实现与 `component-hardening/evidence/Countdown/a11y.json`。
+## 稳定性
 
-## Keyboard
+| 字段 | 值 |
+| --- | --- |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/Countdown.json` |
 
-见 `component-hardening/evidence/Countdown/keyboard.json`。
-
-## Design Tokens
-
-使用语义 token（`vp-` / theme CSS variables），禁止硬编码色值。
-
-## Version
-
-- Inventory: public
-- Maturity: see `component-hardening/contracts/Countdown.json`
-
-## Known Limitations
-
-以 contract + evidence 为准。
+> 完整 Demo 见 `example/demos/Countdown`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

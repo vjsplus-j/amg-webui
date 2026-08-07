@@ -2378,6 +2378,8 @@
     "check:boundaries": "node scripts/check-package-boundaries.mjs",
     "check:version-consistency": "node scripts/check-version-consistency.mjs",
     "check:evidence-freshness": "node scripts/hardening/check-evidence-freshness.mjs",
+    "check:docs-drift": "node scripts/check-docs-drift.mjs",
+    "check:closed-components": "node scripts/check-closed-components.mjs",
     "hardening:generate": "node scripts/hardening/generate-governance.mjs",
     "audit:api": "node scripts/hardening/audit-api.mjs",
     "verify:component": "node scripts/hardening/verify-component.mjs",

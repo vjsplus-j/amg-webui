@@ -1,13 +1,31 @@
 {
-  "status": "FAIL",
-  "keys": [
-    "Tab",
-    "Enter",
-    "Escape"
+  "status": "PASS",
+  "component": "Button",
+  "family": "foundation",
+  "testFile": "tests/unit/hardening/keyboard/foundation.spec.ts",
+  "testCases": [
+    {
+      "name": "space-activates-anchor",
+      "key": "Space",
+      "expected": "Space on focused anchor Button synthesizes click and emits click",
+      "status": "PASS"
+    },
+    {
+      "name": "disabled-no-click",
+      "key": "Space",
+      "expected": "disabled Button does not emit click on Space",
+      "status": "PASS"
+    }
   ],
-  "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text",
-  "source": "tests/e2e/hardening-family-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:30:00.000Z",
-  "previousStatus": "PASS",
-  "invalidatedAt": "2026-08-07T16:54:56.606Z"
+  "keys": [
+    "Space"
+  ],
+  "runId": "4d4389ff-c0af-4ab9-a24c-2d80d994fbc8",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T18:36:13.698Z",
+  "detail": "Space: Space on focused anchor Button synthesizes click and emits click; Space: disabled Button does not emit click on Space",
+  "sourceHash": "3fec777e39fdd7bcbf42cfa94d179d8e192793163f1ee6d4e167bcda9b95009c",
+  "contractHash": "91372ea6ea8245efe8373220031c9a0e5bd524b985cebd47153f57d01088d73f",
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:13.698Z"
 }

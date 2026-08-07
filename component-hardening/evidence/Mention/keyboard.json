@@ -21,12 +21,12 @@
     "ArrowDown",
     "Enter"
   ],
-  "runId": "c0217f78-ba18-4637-8db4-aa40c20f9d7a",
+  "runId": "3a4b9305-75ae-4ffb-8f13-855fba8c5f4b",
   "toolVersion": "1",
-  "verifiedAt": "2026-08-07T17:38:55.310Z",
+  "verifiedAt": "2026-08-07T18:36:14.150Z",
   "detail": "ArrowDown: moves highlighted mention option in popup listbox; Enter: inserts active mention option into modelValue",
-  "sourceHash": "6e2d1e8afefa53391d47d3c67f0dc680c8dcc3a6bcbe873e220429f327fc2ff9",
+  "sourceHash": "a0e81e869e88636a89a9e39ab4707d0f230a353b4fa4db056df9e778c3b746e4",
   "contractHash": "0a8622bc6b8a580bb69f8e835a83f45041ff92551be482f150bf859a1f0983c5",
-  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
-  "stampedAt": "2026-08-07T17:38:55.362Z"
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:14.211Z"
 }

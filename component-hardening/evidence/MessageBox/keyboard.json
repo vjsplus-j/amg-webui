@@ -1,20 +1,25 @@
 {
-  "status": "FAIL",
-  "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
-    "Space"
+  "status": "PASS",
+  "component": "MessageBox",
+  "family": "overlay",
+  "testFile": "tests/unit/hardening/keyboard/overlay.spec.ts",
+  "testCases": [
+    {
+      "name": "escape-dismisses-message-box",
+      "key": "Escape",
+      "expected": "Escape dismisses message box and emits cancel",
+      "status": "PASS"
+    }
   ],
-  "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.684Z",
-  "previousStatus": "PASS",
-  "invalidatedAt": "2026-08-07T16:54:56.643Z"
+  "keys": [
+    "Escape"
+  ],
+  "runId": "711baaf9-ec27-4f9a-9394-99fb46f23034",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T18:36:14.153Z",
+  "detail": "Escape: Escape dismisses message box and emits cancel",
+  "sourceHash": "b47b5c2d3b612b00fa9508f0ee0027d991bc180f3021495744c63db081bcf492",
+  "contractHash": "43f7f72e0fd7a4c2e22c2e9db5d9e09f0829794fa115040787440e7101b8d147",
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:14.214Z"
 }

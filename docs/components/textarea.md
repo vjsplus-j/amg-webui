@@ -1,14 +1,14 @@
 # Textarea
 
-Textarea 为 **Stable** 公共组件（API frozen）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Textarea 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
 ## 概览
 
-Textarea 已通过 Component Hardening 证据门禁；完整交互演示见本地 example curated demo。
+Textarea 当前成熟度为 **RC**；完整交互见本地 example。
 
 ## 何时使用 / 何时不用
 
-- **适用**：生产可用的 Stable 组件场景。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
 - **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
 ## 相关组件
@@ -35,20 +35,20 @@ Curated demo：`example/demos/Textarea/index.vue`
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `string` | — | — |
-| `id` | `string` | — | — |
-| `name` | `string` | — | — |
+| `modelValue` | `string` | — | 绑定值 / Bound value (v-model) |
+| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
+| `name` | `string` | — | 表单字段名 / Form field name |
 | `autocomplete` | `string` | — | — |
-| `ariaLabel` | `string` | — | — |
-| `placeholder` | `string` | — | — |
-| `disabled` | `boolean` | — | — |
-| `readonly` | `boolean` | — | — |
-| `maxlength` | `number` | — | — |
-| `rows` | `number` | — | — |
+| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
+| `placeholder` | `string` | — | 占位提示 / Placeholder text |
+| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
+| `readonly` | `boolean` | — | 是否只读 / Read-only |
+| `maxlength` | `number` | — | 最大长度 / Max length |
+| `rows` | `number` | — | 每页行数 / Rows per page |
 | `cols` | `number` | — | — |
-| `size` | `Size` | — | — |
+| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
 | `invalid` | `boolean` | — | — |
-| `fluid` | `boolean` | — | — |
+| `fluid` | `boolean` | — | 宽度 100% / Full width |
 | `autoResize` | `boolean` | — | — |
 | `showCounter` | `boolean` | — | — |
 | `sanitizeInput` | `boolean \| 'blur' \| 'input' \| 'off'` | — | — |
@@ -71,16 +71,13 @@ Curated demo：`example/demos/Textarea/index.vue`
 - `TextareaProps`
 - `TextareaEmits`
 
-## 无障碍与键盘
-
-交互行为与键盘路径以 `component-hardening/evidence/Textarea/a11y.json` · `keyboard.json` 为准；本地可复现：`example/demos/Textarea/`。
 
 ## 稳定性
 
 | 字段 | 值 |
 | --- | --- |
-| maturity | `stable` |
-| apiFreeze | `frozen` |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
 | API extract | `generated/component-api/Textarea.json` |
 
-> 完整 Demo 见 `example/demos/Textarea`。对外 docs 为 API 导向页面；交互预览仅在本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Textarea`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

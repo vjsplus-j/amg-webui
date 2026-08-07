@@ -1,40 +1,45 @@
 # Spacer
 
-Spacer 组件（Stable 文档页，由 Repository Completion Audit 流水线生成）。
+Spacer 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
-## Overview
+## 概览
 
-企业组件库公开组件。完整交互与边界用例见本地 example playground（不上线）。
+Spacer 当前成熟度为 **RC**；完整交互见本地 example。
 
-## When To Use
+## 何时使用 / 何时不用
 
-需要 Spacer 能力时使用。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
-## When Not To Use
+## 相关组件
 
-不需要该交互面时改用更轻量的基础件。
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
-## Import
+## 基础用法
 
-```ts
-import { Spacer } from 'amg-webui'
+```vue
+<script setup>
+import { Spacer } from '@amg-webui/core'
+</script>
+
+<template>
+  <Spacer />
+</template>
 ```
 
-## Demos
-
-运行态 Demo：`example/demos/Spacer/index.vue`
+Curated demo：`example/demos/Spacer/index.vue`
 
 ## Props
 
-| Prop | Type | Default | Description |
+| Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
 | `flex` | `boolean` | — | — |
 | `grow` | `number` | — | — |
 | `shrink` | `number` | — | — |
-| `size` | `SpacerSize` | — | — |
+| `size` | `SpacerSize` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
 | `axis` | `SpacerAxis` | — | — |
 | `minSize` | `SpacerSize` | — | — |
-| `inline` | `boolean` | — | — |
+| `inline` | `boolean` | — | 行内表单 / Inline layout |
 | `basis` | `string` | — | — |
 | `ariaHidden` | `boolean` | — | — |
 | `tabIndex` | `number` | — | — |
@@ -42,33 +47,27 @@ import { Spacer } from 'amg-webui'
 
 ## Events
 
-| Event | Description |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `resize` | `payload: SpacerResizePayload` | — |
+| `focus` | `event: FocusEvent` | 聚焦 / Focus |
+| `blur` | `event: FocusEvent` | 失焦 / Blur |
+
+## Public types
+
+- `SpacerSize`
+- `SpacerAxis`
+- `SpacerProps`
+- `SpacerResizePayload`
+- `SpacerEmits`
+
+
+## 稳定性
+
+| 字段 | 值 |
 | --- | --- |
-| `resize` | — |
-| `focus` | — |
-| `blur` | — |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/Spacer.json` |
 
-## Slots / Expose / Models
-
-见 `generated/component-api/Spacer.json`。
-
-## Accessibility
-
-见组件实现与 `component-hardening/evidence/Spacer/a11y.json`。
-
-## Keyboard
-
-见 `component-hardening/evidence/Spacer/keyboard.json`。
-
-## Design Tokens
-
-使用语义 token（`vp-` / theme CSS variables），禁止硬编码色值。
-
-## Version
-
-- Inventory: public
-- Maturity: see `component-hardening/contracts/Spacer.json`
-
-## Known Limitations
-
-以 contract + evidence 为准。
+> 完整 Demo 见 `example/demos/Spacer`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

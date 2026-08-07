@@ -1,6 +1,19 @@
-# Divider 分割线
+# Divider
 
-区块 / 行内内容分割：水平 / 垂直、虚线、文案位、装饰性分隔。
+Divider 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+
+## 概览
+
+Divider 当前成熟度为 **RC**；完整交互见本地 example。
+
+## 何时使用 / 何时不用
+
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 基础用法
 
@@ -11,25 +24,39 @@ import { Divider } from '@amg-webui/core'
 
 <template>
   <Divider />
-  <Divider content-position="left">Section</Divider>
-  <Divider direction="vertical" />
 </template>
 ```
 
-## 常用 API
+Curated demo：`example/demos/Divider/index.vue`
+
+## Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `direction` / `type` | `'horizontal' \| 'vertical'` | `'horizontal'` | 布局轴（`type` 为别名） |
-| `contentPosition` | `'left' \| 'center' \| 'right'` | `'center'` | 插槽文案位置 |
-| `dashed` | `boolean` | `false` | 虚线 |
-| `plain` | `boolean` | `false` | 更轻视觉权重 |
-| `margin` | `'none' \| 'sm' \| 'md' \| 'lg'` | — | 主轴外边距（Token） |
-| `decorative` | `boolean` | `false` | 纯装饰：`aria-hidden`，无 `role="separator"` |
-| `ariaLabel` | `string` | — | 地标分隔时的无障碍名称 |
+| `direction` | `DividerDirection` | — | — |
+| `type` | `DividerDirection` | — | 输入类型 / Input type |
+| `contentPosition` | `DividerContentPosition` | — | — |
+| `dashed` | `boolean` | — | — |
+| `borderStyle` | `string` | — | — |
+| `plain` | `boolean` | — | — |
+| `margin` | `DividerMargin` | — | — |
+| `decorative` | `boolean` | — | — |
+| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
 
-| 插槽 | 说明 |
+## Public types
+
+- `DividerDirection`
+- `DividerContentPosition`
+- `DividerMargin`
+- `DividerProps`
+
+
+## 稳定性
+
+| 字段 | 值 |
 | --- | --- |
-| `default` | 分割线中间文案 |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/Divider.json` |
 
-> 完整 Demo 见 `example/demos/Divider/`。本阶段对外 docs 为薄 API stub；无 Telemetry（纯展示件）。
+> 完整 Demo 见 `example/demos/Divider`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

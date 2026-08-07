@@ -1,20 +1,13 @@
 {
-  "status": "FAIL",
-  "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
-    "Space"
-  ],
-  "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.612Z",
-  "previousStatus": "PASS",
-  "invalidatedAt": "2026-08-07T16:54:56.630Z"
+  "status": "N/A",
+  "component": "FormItem",
+  "family": "form",
+  "testFile": "tests/unit/hardening/keyboard/form.spec.ts",
+  "detail": "FormItem is a label/layout wrapper; keyboard interaction is delegated to slotted controls — no standalone keyboard contract",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T18:36:13.998Z",
+  "sourceHash": "89248e0033700cd86eced2135df825a5b4d80d17d8d7bd3074128043cf0a2129",
+  "contractHash": "0304a4e8541c9d37f64886c69137fe2651fc3902a7790467d26b59f375de05cb",
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:13.998Z"
 }

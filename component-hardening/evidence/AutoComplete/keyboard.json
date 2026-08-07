@@ -28,12 +28,12 @@
     "Enter",
     "Escape"
   ],
-  "runId": "59f5b5f6-3dd5-401d-89ec-a75f48e9ccf3",
+  "runId": "79132da2-ba22-44df-a211-ae55c0176e22",
   "toolVersion": "1",
-  "verifiedAt": "2026-08-07T17:38:55.081Z",
+  "verifiedAt": "2026-08-07T18:36:13.791Z",
   "detail": "ArrowDown: moves highlighted suggestion in open panel; Enter: selects active suggestion and emits update:modelValue; Escape: closes autocomplete suggestion panel",
-  "sourceHash": "e35af94b8d63b1a902695dc415e8053f159b50c68397709fa5c79c67a6a87c4b",
+  "sourceHash": "44de3afcfe13d34d5590efda1818283d69efdd0756dfa58cb4061679ad5a2548",
   "contractHash": "ee048bd1fb9fa61e449b79397b7de47614c1f2c35e6444d5227eb7086a61a347",
-  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
-  "stampedAt": "2026-08-07T17:38:55.150Z"
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:13.904Z"
 }

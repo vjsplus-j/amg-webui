@@ -1,20 +1,31 @@
 {
-  "status": "FAIL",
-  "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
-    "Space"
+  "status": "PASS",
+  "component": "Form",
+  "family": "form",
+  "testFile": "tests/unit/hardening/keyboard/form.spec.ts",
+  "testCases": [
+    {
+      "name": "enter-submits-valid-form",
+      "key": "Enter",
+      "expected": "Enter in field triggers native form submission and Form emits submit when valid",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid-form-blocks-submit",
+      "key": "Enter",
+      "expected": "invalid Form emits validate(false) and does not emit submit",
+      "status": "PASS"
+    }
   ],
-  "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.606Z",
-  "previousStatus": "PASS",
-  "invalidatedAt": "2026-08-07T16:54:56.629Z"
+  "keys": [
+    "Enter"
+  ],
+  "runId": "f36d9d6d-d692-49b7-9be4-e1acf1a6a15f",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T18:36:13.851Z",
+  "detail": "Enter: Enter in field triggers native form submission and Form emits submit when valid; Enter: invalid Form emits validate(false) and does not emit submit",
+  "sourceHash": "821ebb7aed5fec1d1fb2e6fac3d38f9cc692477ec601d728a675b04300a63988",
+  "contractHash": "bc126511133eb70830b08ff4d823913d93c9f4d38d7dd3d65803f8af6fc526e3",
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:13.851Z"
 }

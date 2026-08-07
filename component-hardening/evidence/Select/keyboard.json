@@ -28,12 +28,12 @@
     "Enter",
     "Escape"
   ],
-  "runId": "22c5cc9c-f997-480d-8c5b-c0adbe62fbcc",
+  "runId": "6a905e57-5ae1-4008-ac11-43eacf4ab9c4",
   "toolVersion": "1",
-  "verifiedAt": "2026-08-07T17:38:55.001Z",
+  "verifiedAt": "2026-08-07T18:36:13.698Z",
   "detail": "ArrowDown: moves highlighted active option in open listbox; Enter: selects active option and emits update:modelValue; Escape: closes listbox and sets aria-expanded false",
-  "sourceHash": "60c7f3bdc4c7eb337735c6bb07ae3993488b588aee20541e3b8376364584588b",
+  "sourceHash": "a12fe8d9634ee595c6356699e0a50695f4ed2666c7ef15c82b43b1e473315658",
   "contractHash": "1259438e12535aa2525ef86b5876022a40725856f891e4da7f3e821d8111510f",
-  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
-  "stampedAt": "2026-08-07T17:38:55.001Z"
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:13.698Z"
 }

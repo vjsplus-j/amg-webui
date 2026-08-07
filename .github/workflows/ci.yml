@@ -85,13 +85,49 @@ jobs:
           npm run hardening:demote
           npm run hardening:dashboard
           npm run check:version-consistency
+          npm run check:docs-drift
+          npm run check:closed-components
           npm run test:showcases
-          npm run test:lowcode-golden-path
-          npm run test:a11y-browser
           node -e "const d=require('./component-hardening/dashboard/component-dashboard.json'); const fake=d.components.filter(c=>c.productMaturity==='stable'&&!c.verifiedStable); if(fake.length){console.error('Fake stable rows', fake.length, fake.slice(0,10).map(c=>c.name)); process.exit(1)} console.log('verifiedStable=', d.stableRatio+'%', 'gatePass=', d.gates?.pass+'/'+d.gates?.total, 'claimedUnverified=', d.honesty?.claimedStableUnverified)"
 
       - name: Build docs
         run: npm run docs:build
+
+  browser-verify:
+    name: Browser verify (Playwright Chromium)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: verify
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build example shell
+        run: npm run build:example
+
+      - name: Lowcode golden path
+        env:
+          CI: true
+          PLAYWRIGHT_BASE_URL: http://127.0.0.1:4173
+        run: npx playwright test tests/e2e/lowcode-golden-path.spec.ts --project=chromium
+
+      - name: Browser A11Y + theme contrast
+        env:
+          CI: true
+          PLAYWRIGHT_BASE_URL: http://127.0.0.1:4173
+        run: npx playwright test tests/e2e/a11y-core-contrast.spec.ts --project=chromium
 
   hardening-changed:
     name: Changed component gates (PR)

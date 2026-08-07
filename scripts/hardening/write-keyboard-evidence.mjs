@@ -60,14 +60,32 @@ export function buildKeyboardEvidence(opts) {
 export function writeKeyboardEvidence(opts) {
   const root = opts.root || process.cwd()
   const hardening = join(root, 'component-hardening')
-  let payload = buildKeyboardEvidence(opts)
-  if (payload.status === 'PASS') {
+  const isNa = String(opts.status || '').toUpperCase() === 'N/A'
+
+  let payload
+  if (isNa) {
+    payload = {
+      status: 'N/A',
+      component: opts.component,
+      family: opts.family,
+      testFile: opts.testFile,
+      detail:
+        opts.detail ||
+        'keyboard N/A — no component-level keyboard contract',
+      toolVersion: KEYBOARD_EVIDENCE_TOOL_VERSION,
+      verifiedAt: new Date().toISOString()
+    }
     payload = stampEvidenceMeta(opts.component, payload, hardening, root)
-  }
-  const v = validateKeyboardEvidence(payload)
-  if (payload.status === 'PASS' && !v.ok) {
-    payload.status = 'FAIL'
-    payload.detail = v.detail
+  } else {
+    payload = buildKeyboardEvidence(opts)
+    if (payload.status === 'PASS') {
+      payload = stampEvidenceMeta(opts.component, payload, hardening, root)
+    }
+    const v = validateKeyboardEvidence(payload)
+    if (payload.status === 'PASS' && !v.ok) {
+      payload.status = 'FAIL'
+      payload.detail = v.detail
+    }
   }
   const dir = join(hardening, 'evidence', opts.component)
   mkdirSync(dir, { recursive: true })

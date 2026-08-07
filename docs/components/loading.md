@@ -1,37 +1,42 @@
 # Loading
 
-Loading 组件（Stable 文档页，由 Repository Completion Audit 流水线生成）。
+Loading 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
-## Overview
+## 概览
 
-企业组件库公开组件。完整交互与边界用例见本地 example playground（不上线）。
+Loading 当前成熟度为 **RC**；完整交互见本地 example。
 
-## When To Use
+## 何时使用 / 何时不用
 
-需要 Loading 能力时使用。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
-## When Not To Use
+## 相关组件
 
-不需要该交互面时改用更轻量的基础件。
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
-## Import
+## 基础用法
 
-```ts
-import { Loading } from 'amg-webui'
+```vue
+<script setup>
+import { Loading } from '@amg-webui/core'
+</script>
+
+<template>
+  <Loading />
+</template>
 ```
 
-## Demos
-
-运行态 Demo：`example/demos/Loading/index.vue`
+Curated demo：`example/demos/Loading/index.vue`
 
 ## Props
 
-| Prop | Type | Default | Description |
+| Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `visible` | `boolean` | — | — |
+| `visible` | `boolean` | — | 是否可见 / Visibility (v-model:visible) |
 | `text` | `string` | — | — |
 | `fullscreen` | `boolean` | — | — |
-| `size` | `LoadingSize` | — | — |
+| `size` | `LoadingSize` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
 | `indicator` | `LoadingIndicator` | — | — |
 | `lockScroll` | `boolean` | — | — |
 | `backdrop` | `boolean` | — | — |
@@ -44,35 +49,28 @@ import { Loading } from 'amg-webui'
 
 ## Events
 
-| Event | Description |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `update:visible` | `value: boolean` | visible 更新 / visible update |
+| `visibleChange` | `value: boolean` | — |
+| `cancel` | `event: MouseEvent` | — |
+| `after-enter` | `void` | — |
+| `after-leave` | `void` | — |
+
+## Public types
+
+- `LoadingSize`
+- `LoadingIndicator`
+- `LoadingProps`
+- `LoadingEmits`
+
+
+## 稳定性
+
+| 字段 | 值 |
 | --- | --- |
-| `update:visible` | — |
-| `visibleChange` | — |
-| `cancel` | — |
-| `after-enter` | — |
-| `after-leave` | — |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/Loading.json` |
 
-## Slots / Expose / Models
-
-见 `generated/component-api/Loading.json`。
-
-## Accessibility
-
-见组件实现与 `component-hardening/evidence/Loading/a11y.json`。
-
-## Keyboard
-
-见 `component-hardening/evidence/Loading/keyboard.json`。
-
-## Design Tokens
-
-使用语义 token（`vp-` / theme CSS variables），禁止硬编码色值。
-
-## Version
-
-- Inventory: public
-- Maturity: see `component-hardening/contracts/Loading.json`
-
-## Known Limitations
-
-以 contract + evidence 为准。
+> 完整 Demo 见 `example/demos/Loading`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

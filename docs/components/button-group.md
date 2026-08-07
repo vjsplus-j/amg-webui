@@ -1,36 +1,58 @@
 # ButtonGroup 按钮组
 
-将多个 `Button` 编组：统一尺寸 / 语义 / 变体，支持方向与禁用 / 加载级联。
+ButtonGroup 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+
+## 概览
+
+ButtonGroup 当前成熟度为 **RC**；完整交互见本地 example。
+
+## 何时使用 / 何时不用
+
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 基础用法
 
 ```vue
 <script setup>
-import { Button, ButtonGroup } from '@amg-webui/core'
+import { ButtonGroup } from '@amg-webui/core'
 </script>
 
 <template>
-  <ButtonGroup size="md" severity="primary">
-    <Button label="One" />
-    <Button label="Two" />
-    <Button label="Three" />
-  </ButtonGroup>
+  <ButtonGroup />
 </template>
 ```
 
-## 常用 API
+Curated demo：`example/demos/ButtonGroup/index.vue`
+
+## Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `size` | `Size` | — | 级联子按钮尺寸 |
-| `severity` / `variant` | 与 Button 同 | — | 级联语义 / 变体 |
-| `block` | `boolean` | `false` | 组拉伸满宽 |
-| `direction` | `'horizontal' \| 'vertical'` | `'horizontal'` | 布局轴 |
-| `disabled` / `loading` | `boolean` | `false` | 级联禁用 / 加载 |
-| `ariaLabel` | `string` | — | 组无障碍名称 |
+| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `severity` | `ButtonSeverity` | — | 语义色：`primary` · `secondary` · `danger` 等 / Semantic color |
+| `variant` | `ButtonVariant` | — | 外观变体：`solid` · `outlined` · `text` / Visual variant |
+| `block` | `boolean` | — | 块级按钮（整行）/ Block-level button |
+| `direction` | `'horizontal' \| 'vertical'` | — | — |
+| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
+| `loading` | `boolean` | — | 加载中状态 / Loading state |
+| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
 
-| 插槽 | 说明 |
+## Public types
+
+- `ButtonGroupProps`
+
+
+## 稳定性
+
+| 字段 | 值 |
 | --- | --- |
-| `default` | 子 `Button`（及兼容子项） |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/ButtonGroup.json` |
 
-> 完整 Demo 见 `example/demos/ButtonGroup/`。本阶段对外 docs 为薄 API stub。
+> 完整 Demo 见 `example/demos/ButtonGroup`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

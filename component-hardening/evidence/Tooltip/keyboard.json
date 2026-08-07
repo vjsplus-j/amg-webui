@@ -1,20 +1,25 @@
 {
-  "status": "FAIL",
-  "keys": [
-    "Tab",
-    "Enter",
-    "Escape",
-    "ArrowDown",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "Home",
-    "End",
-    "Space"
+  "status": "PASS",
+  "component": "Tooltip",
+  "family": "overlay",
+  "testFile": "tests/unit/hardening/keyboard/overlay.spec.ts",
+  "testCases": [
+    {
+      "name": "focus-opens-tooltip",
+      "key": "Tab",
+      "expected": "Focus on trigger opens tooltip panel",
+      "status": "PASS"
+    }
   ],
-  "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text",
-  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
-  "updatedAt": "2026-08-07T15:25:09.865Z",
-  "previousStatus": "PASS",
-  "invalidatedAt": "2026-08-07T16:54:56.699Z"
+  "keys": [
+    "Tab"
+  ],
+  "runId": "6814b8e3-26f2-4dc9-aab3-23eeabaaa673",
+  "toolVersion": "1",
+  "verifiedAt": "2026-08-07T18:36:14.225Z",
+  "detail": "Tab: Focus on trigger opens tooltip panel",
+  "sourceHash": "9085a93bbff7d484ab870e7fd0e33f71cfe1b87a88884a189baa21fa077400c9",
+  "contractHash": "fab12b54e869b8f92327f718c68f9057e5c65dbc2af1179088e2c75cba4a7b10",
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:14.282Z"
 }

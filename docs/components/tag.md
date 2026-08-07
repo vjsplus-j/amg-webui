@@ -1,32 +1,37 @@
 # Tag
 
-Tag 组件（Stable 文档页，由 Repository Completion Audit 流水线生成）。
+Tag 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
-## Overview
+## 概览
 
-企业组件库公开组件。完整交互与边界用例见本地 example playground（不上线）。
+Tag 当前成熟度为 **RC**；完整交互见本地 example。
 
-## When To Use
+## 何时使用 / 何时不用
 
-需要 Tag 能力时使用。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
-## When Not To Use
+## 相关组件
 
-不需要该交互面时改用更轻量的基础件。
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
-## Import
+## 基础用法
 
-```ts
-import { Tag } from 'amg-webui'
+```vue
+<script setup>
+import { Tag } from '@amg-webui/core'
+</script>
+
+<template>
+  <Tag />
+</template>
 ```
 
-## Demos
-
-运行态 Demo：`example/demos/Tag/index.vue`
+Curated demo：`example/demos/Tag/index.vue`
 
 ## Props
 
-| Prop | Type | Default | Description |
+| Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
 | `spin` | `boolean` | — | — |
 | `pulse` | `boolean` | — | — |
@@ -41,18 +46,18 @@ import { Tag } from 'amg-webui'
 | `scrollDown` | `boolean` | — | — |
 | `dampOut` | `boolean` | — | — |
 | `animationDuration` | `number \| string` | — | — |
-| `label` | `string` | — | — |
-| `type` | `TagSeverity` | — | — |
-| `severity` | `TagSeverity` | — | — |
+| `label` | `string` | — | 显示文案 / Display label |
+| `type` | `TagSeverity` | — | 输入类型 / Input type |
+| `severity` | `TagSeverity` | — | 语义色：`primary` · `secondary` · `danger` 等 / Semantic color |
 | `effect` | `TagEffect` | — | — |
-| `size` | `TagSize` | — | — |
-| `icon` | `string` | — | — |
+| `size` | `TagSize` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `icon` | `string` | — | 图标名 / Icon name |
 | `iconSize` | `Size` | — | — |
-| `closable` | `boolean` | — | — |
+| `closable` | `boolean` | — | 显示关闭按钮 / Show close button |
 | `round` | `boolean` | — | — |
-| `rounded` | `boolean` | — | — |
+| `rounded` | `boolean` | — | 圆角按钮 / Rounded shape |
 | `borderRadius` | `string` | — | — |
-| `disabled` | `boolean` | — | — |
+| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
 | `clickable` | `boolean` | — | — |
 | `wait` | `number` | — | — |
 | `beforeClose` | `(event: MouseEvent) => boolean \| void \| Promise<boolean \| void>` | — | — |
@@ -63,32 +68,35 @@ import { Tag } from 'amg-webui'
 
 ## Events
 
-| Event | Description |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `close` | `event: MouseEvent` | 关闭 / Close |
+| `click` | `event: MouseEvent` | 点击 / Click |
+
+## Slots
+
+| Slot | Props | 说明 |
+| --- | --- | --- |
+| `default` | `props: Record<string, never>` | — |
+| `icon` | `props: Record<string, never>` | — |
+| `closeIcon` | `props: Record<string, never>` | — |
+
+## Public types
+
+- `TagEffect`
+- `TagSeverity`
+- `TagSize`
+- `TagProps`
+- `TagEmits`
+- `TagSlots`
+
+
+## 稳定性
+
+| 字段 | 值 |
 | --- | --- |
-| `close` | — |
-| `click` | — |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/Tag.json` |
 
-## Slots / Expose / Models
-
-见 `generated/component-api/Tag.json`。
-
-## Accessibility
-
-见组件实现与 `component-hardening/evidence/Tag/a11y.json`。
-
-## Keyboard
-
-见 `component-hardening/evidence/Tag/keyboard.json`。
-
-## Design Tokens
-
-使用语义 token（`vp-` / theme CSS variables），禁止硬编码色值。
-
-## Version
-
-- Inventory: public
-- Maturity: see `component-hardening/contracts/Tag.json`
-
-## Known Limitations
-
-以 contract + evidence 为准。
+> 完整 Demo 见 `example/demos/Tag`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

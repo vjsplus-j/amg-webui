@@ -151,29 +151,59 @@ function buildLowcodeSection(golden) {
   }
 }
 
-function buildKnownGaps(ctx) {
-  const gaps = []
-  if (ctx.keyboardPass < 20) {
-    gaps.push(
-      `Keyboard behavioral PASS coverage ${ctx.keyboardPass} components — expand remaining interactive families`
+function buildBlockingLists(ctx) {
+  const blockingForStable = []
+  const blockingFor1_0 = []
+  const coverageGaps = []
+  const experimental = [
+    'Lowcode Studio (productionReady=false)',
+    'Theme Studio (amg-webui/theme/studio)',
+    'Skill Runtime (SR3 experimental)'
+  ]
+
+  const staleCount = Math.max(0, ctx.publicTotal - ctx.evidenceFresh)
+  if (staleCount > 0) {
+    blockingForStable.push(
+      `${staleCount} components missing fresh mandatory evidence (sourceHash+contractHash)`
     )
   }
-  if (ctx.a11yThemeIncomplete) {
-    gaps.push('Browser A11Y theme contrast matrix incomplete vs 8 official designs')
+  if (ctx.verifiedStable === 0) {
+    blockingForStable.push('verifiedStable=0 — no component currently meets Stable promotion gates')
   }
-  return gaps
-}
+  if (ctx.keyboardFail > 0) {
+    coverageGaps.push(`keyboard ${ctx.keyboardPass}/${ctx.publicTotal}`)
+  }
+  if (ctx.a11yThemeIncomplete) {
+    coverageGaps.push('browser a11y theme matrix incomplete')
+  } else if (ctx.a11yPass < 7) {
+    coverageGaps.push(`browser/family a11y coverage incomplete (${ctx.a11yPass} families)`)
+  }
+  if (!ctx.onePointZeroReady) {
+    if (!ctx.coreSetReady) {
+      blockingFor1_0.push('Enterprise Admin Core Stable Set (Batch 01–04) not all CLOSED')
+    }
+    blockingFor1_0.push('npm version remains 0.1.0 trial — publish policy separate from Core Set readiness')
+  }
+  if (ctx.lowcodeNotProductReady) {
+    experimental.push('Lowcode golden path may PASS while Studio stays experimental')
+  }
 
-function buildTodo(ctx) {
-  const todo = []
-  if (ctx.keyboardPass < 20) {
-    todo.push('KEYBOARD-FAMILY: continue behavioral matrices for remaining interactive components')
-  }
-  if (ctx.a11yThemeIncomplete) {
-    todo.push('A11Y-THEME-MATRIX: expand Playwright axe contrast across remaining themes')
-  }
-  // Stable promotion is a follow-on program, not an open remediation defect
-  return todo
+  const knownGaps = [
+    ...blockingForStable.map((x) => `stable: ${x}`),
+    ...blockingFor1_0.map((x) => `1.0: ${x}`),
+    ...coverageGaps.map((x) => `coverage: ${x}`)
+  ]
+  const todo = [
+    ...(staleCount > 0
+      ? ['HASH-EVIDENCE: regenerate mandatory evidence with both hashes before Stable promote']
+      : []),
+    ...(ctx.keyboardFail > 0
+      ? ['KEYBOARD-COVERAGE: expand behavioral keyboard evidence beyond current family set']
+      : []),
+    'CLOSURE: complete Batch 01–04 Core Stable Set for 1.0 readiness'
+  ]
+
+  return { blockingForStable, blockingFor1_0, coverageGaps, experimental, knownGaps, todo }
 }
 
 function main() {
@@ -231,14 +261,33 @@ function main() {
   const showcaseBuilds = scanShowcaseBuilds()
   const npmVersion = loadPkgVersion()
 
-  const ctx = {
+  const readiness = load('reports/amg-webui-1.0-readiness.json')
+  const closedRegistry = load('closed-components.json')
+  const closedCount = Object.keys(closedRegistry?.components || {}).filter(
+    (n) => closedRegistry.components[n]?.status === 'CLOSED'
+  ).length
+  const coreReady = readiness?.onePointZeroReady === true
+
+  const lists = buildBlockingLists({
     publicTotal,
     evidenceFresh,
+    verifiedStable,
     keyboardPass,
-    a11yThemeIncomplete: !browserA11y?.themeMatrixComplete
+    keyboardFail,
+    a11yPass,
+    a11yThemeIncomplete: !browserA11y?.themeMatrixComplete,
+    onePointZeroReady: coreReady,
+    lowcodeNotProductReady: golden?.productionReady !== true
+  })
+  // Core Stable Set may be ready while warehouse Stable remains 0
+  if (coreReady) {
+    lists.blockingFor1_0 = lists.blockingFor1_0.filter(
+      (x) => !/Enterprise Admin|Core Stable Set not yet CLOSED/i.test(x)
+    )
+    lists.todo = lists.todo.filter((t) => !t.startsWith('CLOSURE:'))
+    lists.knownGaps = lists.knownGaps.filter((g) => !g.startsWith('1.0: Enterprise') && !g.includes('Core Stable Set not yet CLOSED'))
   }
-  const knownGaps = buildKnownGaps(ctx)
-  const todo = buildTodo(ctx)
+  const { knownGaps, todo, blockingForStable, blockingFor1_0, coverageGaps, experimental } = lists
 
   const status = {
     updatedAt: new Date().toISOString(),
@@ -255,10 +304,22 @@ function main() {
     a11yPass,
     a11yFail,
     lowcodeGoldenPath: golden?.status ?? 'UNKNOWN',
+    blockingForStable,
+    blockingFor1_0,
+    coverageGaps,
+    experimental,
+    coreStableSet: {
+      closedComponents: closedCount,
+      onePointZeroReady: coreReady,
+      readinessReport: 'component-hardening/reports/amg-webui-1.0-readiness.json',
+      note: '1.0 readiness tracks Batch 01–04 Core Stable Set + Enterprise Admin, not 287/287'
+    },
     releaseReadiness: {
       npmVersion,
-      onePointZeroReady: false,
-      note: '0.1.0 trial — API may change; verifiedStable 0/287'
+      onePointZeroReady: coreReady,
+      note: coreReady
+        ? 'Core Stable Set READY (Batches 01–04 + Enterprise Admin). Warehouse verifiedStable may remain 0.'
+        : '0.1.0 trial — Core Stable Set via Batch 01–04 closure; not 287/287'
     },
     inventory: {
       actual: publicTotal,

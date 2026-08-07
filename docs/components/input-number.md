@@ -1,14 +1,14 @@
 # InputNumber
 
-InputNumber 为 **Stable** 公共组件（API frozen）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+InputNumber 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
 ## 概览
 
-InputNumber 已通过 Component Hardening 证据门禁；完整交互演示见本地 example curated demo。
+InputNumber 当前成熟度为 **RC**；完整交互见本地 example。
 
 ## 何时使用 / 何时不用
 
-- **适用**：生产可用的 Stable 组件场景。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
 - **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
 ## 相关组件
@@ -35,31 +35,31 @@ Curated demo：`example/demos/InputNumber/index.vue`
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `number \| null` | — | — |
-| `id` | `string` | — | — |
-| `name` | `string` | — | — |
+| `modelValue` | `number \| null` | — | 绑定值 / Bound value (v-model) |
+| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
+| `name` | `string` | — | 表单字段名 / Form field name |
 | `autocomplete` | `string` | — | — |
 | `min` | `number` | — | — |
 | `max` | `number` | — | — |
 | `step` | `number` | — | — |
 | `precision` | `number` | — | — |
 | `controls` | `boolean` | — | — |
-| `size` | `Size` | — | — |
-| `fluid` | `boolean` | — | — |
+| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `fluid` | `boolean` | — | 宽度 100% / Full width |
 | `invalid` | `boolean` | — | — |
-| `readonly` | `boolean` | — | — |
-| `placeholder` | `string` | — | — |
-| `ariaLabel` | `string` | — | — |
+| `readonly` | `boolean` | — | 是否只读 / Read-only |
+| `placeholder` | `string` | — | 占位提示 / Placeholder text |
+| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
 | `skipFormItem` | `boolean` | — | — |
 
 ## Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
-| `update:modelValue` | `value: number \| null` | — |
-| `change` | `value: number \| null` | — |
-| `focus` | `event: FocusEvent` | — |
-| `blur` | `event: FocusEvent` | — |
+| `update:modelValue` | `value: number \| null` | v-model 更新 / v-model update |
+| `change` | `value: number \| null` | 值变更 / Change |
+| `focus` | `event: FocusEvent` | 聚焦 / Focus |
+| `blur` | `event: FocusEvent` | 失焦 / Blur |
 
 ## Models
 
@@ -72,16 +72,13 @@ Curated demo：`example/demos/InputNumber/index.vue`
 - `InputNumberProps`
 - `InputNumberEmits`
 
-## 无障碍与键盘
-
-交互行为与键盘路径以 `component-hardening/evidence/InputNumber/a11y.json` · `keyboard.json` 为准；本地可复现：`example/demos/InputNumber/`。
 
 ## 稳定性
 
 | 字段 | 值 |
 | --- | --- |
-| maturity | `stable` |
-| apiFreeze | `frozen` |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
 | API extract | `generated/component-api/InputNumber.json` |
 
-> 完整 Demo 见 `example/demos/InputNumber`。对外 docs 为 API 导向页面；交互预览仅在本地 example（不上线）。
+> 完整 Demo 见 `example/demos/InputNumber`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

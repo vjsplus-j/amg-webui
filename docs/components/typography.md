@@ -1,32 +1,37 @@
 # Typography
 
-Typography 组件（Stable 文档页，由 Repository Completion Audit 流水线生成）。
+Typography 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
-## Overview
+## 概览
 
-企业组件库公开组件。完整交互与边界用例见本地 example playground（不上线）。
+Typography 当前成熟度为 **RC**；完整交互见本地 example。
 
-## When To Use
+## 何时使用 / 何时不用
 
-需要 Typography 能力时使用。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
-## When Not To Use
+## 相关组件
 
-不需要该交互面时改用更轻量的基础件。
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
-## Import
+## 基础用法
 
-```ts
-import { Typography } from 'amg-webui'
+```vue
+<script setup>
+import { Typography } from '@amg-webui/core'
+</script>
+
+<template>
+  <Typography />
+</template>
 ```
 
-## Demos
-
-运行态 Demo：`example/demos/Typography/index.vue`
+Curated demo：`example/demos/Typography/index.vue`
 
 ## Props
 
-| Prop | Type | Default | Description |
+| Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
 | `spin` | `boolean` | — | — |
 | `pulse` | `boolean` | — | — |
@@ -41,7 +46,7 @@ import { Typography } from 'amg-webui'
 | `scrollDown` | `boolean` | — | — |
 | `dampOut` | `boolean` | — | — |
 | `animationDuration` | `number \| string` | — | — |
-| `type` | `TypographyType` | — | — |
+| `type` | `TypographyType` | — | 输入类型 / Input type |
 | `typeColor` | `Severity` | — | — |
 | `color` | `Severity` | — | — |
 | `copyable` | `TypographyCopyable` | — | — |
@@ -52,8 +57,8 @@ import { Typography } from 'amg-webui'
 | `delete` | `boolean` | — | — |
 | `mark` | `boolean` | — | — |
 | `code` | `boolean` | — | — |
-| `disabled` | `boolean` | — | — |
-| `loading` | `boolean` | — | — |
+| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
+| `loading` | `boolean` | — | 加载中状态 / Loading state |
 | `shimmer` | `boolean` | — | — |
 | `clickable` | `boolean` | — | — |
 | `fontFamily` | `TypographyFontFamily` | — | — |
@@ -62,33 +67,30 @@ import { Typography } from 'amg-webui'
 
 ## Events
 
-| Event | Description |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `copy` | `text: string` | — |
+| `copyError` | `error: Error` | — |
+| `click` | `event: MouseEvent` | 点击 / Click |
+
+## Public types
+
+- `TypographyType`
+- `TypographyFontFamily`
+- `TypographyEllipsis`
+- `TypographyCopyable`
+- `TypographyEllipsisConfig`
+- `TypographyCopyableConfig`
+- `TypographyProps`
+- `TypographyEmits`
+
+
+## 稳定性
+
+| 字段 | 值 |
 | --- | --- |
-| `copy` | — |
-| `copyError` | — |
-| `click` | — |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/Typography.json` |
 
-## Slots / Expose / Models
-
-见 `generated/component-api/Typography.json`。
-
-## Accessibility
-
-见组件实现与 `component-hardening/evidence/Typography/a11y.json`。
-
-## Keyboard
-
-见 `component-hardening/evidence/Typography/keyboard.json`。
-
-## Design Tokens
-
-使用语义 token（`vp-` / theme CSS variables），禁止硬编码色值。
-
-## Version
-
-- Inventory: public
-- Maturity: see `component-hardening/contracts/Typography.json`
-
-## Known Limitations
-
-以 contract + evidence 为准。
+> 完整 Demo 见 `example/demos/Typography`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

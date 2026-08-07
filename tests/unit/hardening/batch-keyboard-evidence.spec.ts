@@ -19,7 +19,18 @@ const REAL_KEYBOARD_COMPONENTS = new Set([
   'Tree',
   'Dialog',
   'InputText',
-  'DataTable'
+  'DataTable',
+  'Textarea',
+  'Password',
+  'Radio',
+  'RadioGroup',
+  'Checkbox',
+  'Switch',
+  'InputNumber',
+  'Button',
+  'Form',
+  'FormItem',
+  'Tabs'
 ])
 
 function targets(): string[] {

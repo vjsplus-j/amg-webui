@@ -1,66 +1,64 @@
 # FormLayout
 
-FormLayout 组件（Stable 文档页，由 Repository Completion Audit 流水线生成）。
+FormLayout 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
-## Overview
+## 概览
 
-企业组件库公开组件。完整交互与边界用例见本地 example playground（不上线）。
+FormLayout 当前成熟度为 **RC**；完整交互见本地 example。
 
-## When To Use
+## 何时使用 / 何时不用
 
-需要 FormLayout 能力时使用。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
-## When Not To Use
+## 相关组件
 
-不需要该交互面时改用更轻量的基础件。
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
-## Import
+## 基础用法
 
-```ts
-import { FormLayout } from 'amg-webui'
+```vue
+<script setup>
+import { FormLayout } from '@amg-webui/core'
+</script>
+
+<template>
+  <FormLayout />
+</template>
 ```
 
-## Demos
-
-运行态 Demo：`example/demos/FormLayout/index.vue`
+Curated demo：`example/demos/FormLayout/index.vue`
 
 ## Props
 
-| Prop | Type | Default | Description |
+| Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
 | `layout` | `FormLayoutMode` | — | — |
-| `columns` | `FormLayoutColumns` | — | — |
+| `columns` | `FormLayoutColumns` | — | 列定义 / Column definitions |
 | `colon` | `boolean` | — | — |
-| `labelWidth` | `"sm" \| "md" \| "lg" \| "auto"` | — | — |
+| `labelWidth` | `"sm" \| "md" \| "lg" \| "auto"` | — | 标签宽度 / Label width |
 | `gap` | `"sm" \| "md" \| "lg"` | — | — |
 
 ## Events
 
-| Event | Description |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `layout-change` | `layout: FormLayoutMode` | — |
+
+## Public types
+
+- `FormLayoutMode`
+- `FormLayoutColumns`
+- `FormLayoutProps`
+- `FormLayoutEmits`
+
+
+## 稳定性
+
+| 字段 | 值 |
 | --- | --- |
-| `layout-change` | — |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/FormLayout.json` |
 
-## Slots / Expose / Models
-
-见 `generated/component-api/FormLayout.json`。
-
-## Accessibility
-
-见组件实现与 `component-hardening/evidence/FormLayout/a11y.json`。
-
-## Keyboard
-
-见 `component-hardening/evidence/FormLayout/keyboard.json`。
-
-## Design Tokens
-
-使用语义 token（`vp-` / theme CSS variables），禁止硬编码色值。
-
-## Version
-
-- Inventory: public
-- Maturity: see `component-hardening/contracts/FormLayout.json`
-
-## Known Limitations
-
-以 contract + evidence 为准。
+> 完整 Demo 见 `example/demos/FormLayout`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

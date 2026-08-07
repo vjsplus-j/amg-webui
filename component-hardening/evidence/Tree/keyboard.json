@@ -28,12 +28,12 @@
     "ArrowUp",
     "ArrowRight"
   ],
-  "runId": "836e1c55-1f5b-436c-b5c5-cd50af2dc5b7",
+  "runId": "e6547c1d-37f7-45f6-9b67-5e152e2a8e46",
   "toolVersion": "1",
-  "verifiedAt": "2026-08-07T17:38:54.978Z",
+  "verifiedAt": "2026-08-07T18:36:13.586Z",
   "detail": "ArrowDown: moves active tree row highlight; ArrowUp: moves active tree row highlight upward; ArrowRight: expands active parent node and sets aria-expanded true",
-  "sourceHash": "2d02376b13fce0522dc1a4310b777a016744452a03c612044b37fdb0640bc9a0",
+  "sourceHash": "cf8ee3f5d9e444fb7d77346489d1196401a69f6b83b88e6f61723afe080edbb7",
   "contractHash": "ccce0d148a0052bb7298e0b648c3bf5c41279c3c92813e3c3e2df36fd1fabb3d",
-  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
-  "stampedAt": "2026-08-07T17:38:54.978Z"
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:13.586Z"
 }

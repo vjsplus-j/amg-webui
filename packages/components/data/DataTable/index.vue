@@ -197,28 +197,44 @@ onUnmounted(() => {
   disposeSortWorker();
 });
 
-function resolveRowKey(row: any, index: number): RowKey {
+function needsStableRowKeysNow() {
+  return Boolean(props.selectionMode) || props.virtual !== false;
+}
+
+function readRowFieldKey(row: any): RowKey | null {
   const fieldKey = row?.[props.rowKey];
-  if (fieldKey !== undefined && fieldKey !== null) return fieldKey as RowKey;
+  if (fieldKey === undefined || fieldKey === null || fieldKey === "") return null;
+  return fieldKey as RowKey;
+}
+
+function resolveRowKey(row: any, index: number): RowKey | null {
+  const fieldKey = readRowFieldKey(row);
+  if (fieldKey !== null) return fieldKey;
+  if (needsStableRowKeysNow()) return null;
   return index;
+}
+
+function resolveDomRowKey(row: any, index: number): RowKey {
+  return resolveRowKey(row, index) ?? `__amg-unstable-row-${index}`;
 }
 
 const rowKeyIssueWarned = ref(false);
 
 function warnRowKeyIssues(source: any[]) {
   if (!import.meta.env.DEV || rowKeyIssueWarned.value) return;
-  const needsStableKeys = Boolean(props.selectionMode) || useVirtual.value;
-  if (!needsStableKeys || !source.length) return;
+  if (!needsStableRowKeysNow() || !source.length) return;
 
   const seen = new Map<RowKey, number>();
-  let missingField = false;
+  let missingField = 0;
 
   for (let i = 0; i < source.length; i += 1) {
     const row = source[i];
-    const fieldKey = row?.[props.rowKey];
-    if (fieldKey === undefined || fieldKey === null) missingField = true;
-    const key = resolveRowKey(row, i);
-    seen.set(key, (seen.get(key) ?? 0) + 1);
+    const fieldKey = readRowFieldKey(row);
+    if (fieldKey === null) {
+      missingField += 1;
+      continue;
+    }
+    seen.set(fieldKey, (seen.get(fieldKey) ?? 0) + 1);
   }
 
   const duplicates = [...seen.entries()].filter(([, count]) => count > 1);
@@ -226,12 +242,12 @@ function warnRowKeyIssues(source: any[]) {
 
   rowKeyIssueWarned.value = true;
   if (missingField) {
-    console.warn(
-      `[DataTable] Rows missing unique "${props.rowKey}" values; using row index as fallback. Provide stable rowKey values when selection or virtual scroll is enabled.`,
+    console.error(
+      `[DataTable] ${missingField} row(s) missing unique "${props.rowKey}" values while selection or virtual scroll is enabled. Provide stable rowKey values — index fallback is disabled for identity-sensitive paths.`,
     );
   }
   if (duplicates.length) {
-    console.warn(
+    console.error(
       "[DataTable] Duplicate row keys detected:",
       duplicates.map(([key]) => key),
     );
@@ -385,7 +401,7 @@ watch(
       rowMeasureRef.value = null;
       return;
     }
-    const key = String(resolveRowKey(first.row, first.index));
+    const key = String(resolveDomRowKey(first.row, first.index));
     const nodes = bodyRef.value.querySelectorAll<HTMLElement>("tr[data-row-key]");
     rowMeasureRef.value =
       Array.from(nodes).find((node) => node.dataset.rowKey === key) ?? null;
@@ -598,6 +614,7 @@ function toggleRowSelection(
 ) {
   if (!props.selectionMode) return;
   const key = resolveRowKey(row, index);
+  if (key === null) return;
   const checked = !selectedKeys.value.has(key);
   if (checked) {
     if (props.selectionMode === "single") selectedKeys.value.clear();
@@ -620,6 +637,7 @@ function toggleSelectAll(event: Event) {
   const checked = (event.target as HTMLInputElement).checked;
   filteredData.value.forEach((row, index) => {
     const key = resolveRowKey(row, index);
+    if (key === null) return;
     if (checked) selectedKeys.value.add(key);
     else selectedKeys.value.delete(key);
   });
@@ -629,9 +647,10 @@ function toggleSelectAll(event: Event) {
 const isAllSelected = computed(
   () =>
     filteredData.value.length > 0 &&
-    filteredData.value.every((row, index) =>
-      selectedKeys.value.has(resolveRowKey(row, index)),
-    ),
+    filteredData.value.every((row, index) => {
+      const key = resolveRowKey(row, index);
+      return key !== null && selectedKeys.value.has(key);
+    }),
 );
 
 function handlePageChange(page: number) {
@@ -696,7 +715,7 @@ function scrollTo(options: { rowIndex?: number; key?: RowKey } = {}) {
   } else if (scrollRef.value || bodyRef.value) {
     const host = bodyRef.value || scrollRef.value
     const rowEl = host?.querySelector(
-      `[data-row-key="${String(resolveRowKey(source[index], index)).replace(/"/g, '\\"')}"]`,
+      `[data-row-key="${String(resolveDomRowKey(source[index], index)).replace(/"/g, '\\"')}"]`,
     ) as HTMLElement | null
     rowEl?.scrollIntoView({ block: 'nearest' })
   }
@@ -986,12 +1005,12 @@ defineExpose({
               </tr>
               <tr
                 v-for="{ row, index } in displayRows"
-                :key="resolveRowKey(row, index)"
-                :data-row-key="resolveRowKey(row, index)"
+                :key="resolveDomRowKey(row, index)"
+                :data-row-key="resolveDomRowKey(row, index)"
                 :class="{
-                  'vp-datatable__row--selected': selectedKeys.has(
-                    resolveRowKey(row, index),
-                  ),
+                  'vp-datatable__row--selected':
+                    resolveRowKey(row, index) !== null &&
+                    selectedKeys.has(resolveRowKey(row, index)!),
                   'vp-datatable__row--striped': striped && index % 2 === 1,
                 }"
                 :style="{ height: `${itemHeight}px` }"
@@ -1003,7 +1022,10 @@ defineExpose({
                 >
                   <input
                     type="checkbox"
-                    :checked="selectedKeys.has(resolveRowKey(row, index))"
+                    :checked="
+                      resolveRowKey(row, index) !== null &&
+                      selectedKeys.has(resolveRowKey(row, index)!)
+                    "
                     @click.stop="toggleRowSelection(row, index, $event)"
                   />
                 </td>
@@ -1060,12 +1082,12 @@ defineExpose({
             </tr>
             <tr
               v-for="{ row, index } in displayRows"
-              :key="resolveRowKey(row, index)"
-              :data-row-key="resolveRowKey(row, index)"
+              :key="resolveDomRowKey(row, index)"
+              :data-row-key="resolveDomRowKey(row, index)"
               :class="{
-                'vp-datatable__row--selected': selectedKeys.has(
-                  resolveRowKey(row, index),
-                ),
+                'vp-datatable__row--selected':
+                  resolveRowKey(row, index) !== null &&
+                  selectedKeys.has(resolveRowKey(row, index)!),
                 'vp-datatable__row--striped': striped && index % 2 === 1,
               }"
               @click="handleRowClick(row, index, $event)"
@@ -1076,7 +1098,10 @@ defineExpose({
               >
                 <input
                   type="checkbox"
-                  :checked="selectedKeys.has(resolveRowKey(row, index))"
+                  :checked="
+                    resolveRowKey(row, index) !== null &&
+                    selectedKeys.has(resolveRowKey(row, index)!)
+                  "
                   @click.stop="toggleRowSelection(row, index, $event)"
                 />
               </td>

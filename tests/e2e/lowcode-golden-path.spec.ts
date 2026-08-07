@@ -274,11 +274,22 @@ test.describe('LC-012 lowcode golden path (Studio E2E)', () => {
 
     const passed = stepResults.filter((s) => s.pass).length
     const failed = stepResults.filter((s) => !s.pass).map((s) => s.id)
+    const ids = stepResults.map((s) => s.id).sort((a, b) => a - b)
+    const uniqueIds = [...new Set(ids)]
     test.info().annotations.push({
       type: 'lc012-summary',
       description: `${passed}/19 pass; failed steps: ${failed.join(', ') || 'none'}`
     })
 
-    expect(passed, `LC-012 steps failed: ${failed.join(', ')}`).toBeGreaterThan(0)
+    expect(stepResults, 'LC-012 must record exactly 19 steps').toHaveLength(19)
+    expect(uniqueIds, 'LC-012 step IDs must be unique').toHaveLength(19)
+    expect(ids, 'LC-012 must include step IDs 1..19').toEqual([
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+    ])
+    expect(failed, `LC-012 failed steps: ${failed.join(', ')}`).toEqual([])
+    expect(passed, 'LC-012 requires 19/19').toBe(19)
+    for (const step of stepResults) {
+      expect(step.pass, `LC-012 step ${step.id} must pass`).toBe(true)
+    }
   })
 })

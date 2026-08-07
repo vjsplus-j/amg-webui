@@ -9,6 +9,8 @@ import Dialog from '@amg-webui/overlay/Dialog/index.vue'
 import Drawer from '@amg-webui/overlay/Drawer/index.vue'
 import Popover from '@amg-webui/overlay/Popover/index.vue'
 import ConfirmDialog from '@amg-webui/overlay/ConfirmDialog/index.vue'
+import MessageBoxHost from '@amg-webui/overlay/MessageBox/MessageBoxHost.vue'
+import Tooltip from '@amg-webui/core/Tooltip/index.vue'
 import {
   createOverlayRuntime,
   getDefaultOverlayRuntime,
@@ -293,6 +295,94 @@ describe('Overlay family keyboard — ConfirmDialog', () => {
       name: 'escape-dismisses-dialog',
       key: 'Escape',
       expected: 'Escape dismisses confirm dialog and emits update:visible false',
+      status: 'PASS'
+    })
+    wrapper.unmount()
+  })
+})
+
+describe('Overlay family keyboard — MessageBox', () => {
+  const testCases: KeyboardTestCase[] = []
+
+  function flushEvidence() {
+    writeKeyboardEvidence({
+      component: 'MessageBox',
+      family: 'overlay',
+      testFile: TEST_FILE,
+      testCases
+    })
+  }
+
+  afterAll(() => flushEvidence())
+
+  it('Escape dismisses message box host', async () => {
+    resetDefaultOverlayRuntime()
+    resetDocumentOverlayCoordinator()
+    resetSharedScrollLockManager()
+
+    const wrapper = mount(MessageBoxHost, {
+      props: { visible: true, message: 'Delete item?', mode: 'confirm' },
+      attachTo: document.body,
+      global: { stubs: { teleport: false, Transition: false } }
+    })
+    await flushPromises()
+    await nextTick()
+
+    document.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true })
+    )
+    await flushPromises()
+    await nextTick()
+
+    expect(wrapper.emitted('update:visible')?.some((args) => args[0] === false)).toBe(true)
+    expect(wrapper.emitted('cancel')?.length).toBeGreaterThan(0)
+
+    testCases.push({
+      name: 'escape-dismisses-message-box',
+      key: 'Escape',
+      expected: 'Escape dismisses message box and emits cancel',
+      status: 'PASS'
+    })
+    wrapper.unmount()
+  })
+})
+
+describe('Overlay family keyboard — Tooltip', () => {
+  const testCases: KeyboardTestCase[] = []
+
+  function flushEvidence() {
+    writeKeyboardEvidence({
+      component: 'Tooltip',
+      family: 'overlay',
+      testFile: TEST_FILE,
+      testCases
+    })
+  }
+
+  afterAll(() => flushEvidence())
+
+  it('focus opens tooltip panel', async () => {
+    resetDefaultOverlayRuntime()
+    resetDocumentOverlayCoordinator()
+
+    const wrapper = mount(Tooltip, {
+      props: { content: 'Keyboard hint', trigger: 'focus' },
+      slots: { default: '<button type="button">Help</button>' },
+      attachTo: document.body,
+      global: { stubs: { teleport: false, Transition: false } }
+    })
+    await nextTick()
+
+    await wrapper.get('.vp-tooltip-trigger__target').trigger('focusin')
+    await flushPromises()
+    await nextTick()
+
+    expect(document.querySelector('.vp-tooltip')).toBeTruthy()
+
+    testCases.push({
+      name: 'focus-opens-tooltip',
+      key: 'Tab',
+      expected: 'Focus on trigger opens tooltip panel',
       status: 'PASS'
     })
     wrapper.unmount()

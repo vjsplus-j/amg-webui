@@ -1,0 +1,84 @@
+{
+  "generatedAt": "2026-08-08T03:00:00.000Z",
+  "report": "1.0-core-readiness",
+  "npmVersion": "0.1.0",
+  "hardeningStatus": "CLOSED",
+  "batches": {
+    "BATCH-01-FORM-INPUT": "CLOSED",
+    "BATCH-02-DATA": "CLOSED",
+    "BATCH-03-OVERLAY": "CLOSED",
+    "BATCH-04-NAVIGATION-LAYOUT": "CLOSED"
+  },
+  "referenceApp": {
+    "showcase": "showcases/01-admin",
+    "status": "CLOSED",
+    "buildGate": "showcase:admin:build",
+    "buildResult": "PASS"
+  },
+  "stableCoreSet": {
+    "count": 36,
+    "onePointZeroCoreReady": true,
+    "components": [
+      "InputText",
+      "Textarea",
+      "InputNumber",
+      "Password",
+      "Checkbox",
+      "Radio",
+      "RadioGroup",
+      "Switch",
+      "Form",
+      "FormItem",
+      "Button",
+      "DataTable",
+      "Pagination",
+      "Tree",
+      "Select",
+      "AutoComplete",
+      "Cascader",
+      "TreeSelect",
+      "Dialog",
+      "Drawer",
+      "Popover",
+      "Tooltip",
+      "MessageBox",
+      "ConfirmDialog",
+      "Layout",
+      "Header",
+      "Sider",
+      "Main",
+      "Menu",
+      "Tabs",
+      "Breadcrumb",
+      "PageHeader",
+      "Card",
+      "Loading",
+      "Empty",
+      "Skeleton"
+    ],
+    "layoutPrimitives": {
+      "desktopShell": "showcases/_shared/components/AppLayout.vue",
+      "mobileShell": "showcases/_shared/components/MobileShell.vue",
+      "pageChrome": "showcases/01-admin/src/components/AdminPageChrome.vue"
+    }
+  },
+  "tracks": {
+    "experimental": ["Lowcode", "Theme Studio", "Skill Runtime"],
+    "releaseCandidate": ["charts", "editor"],
+    "preview": ["media", "gb28181", "onvif", "other industry packages"]
+  },
+  "showcases": {
+    "01-admin": "CLOSED",
+    "02-saas": "BACKLOG",
+    "03-ecommerce": "BACKLOG",
+    "04-content-management": "BACKLOG",
+    "05-device-management": "BACKLOG",
+    "06-video-surveillance": "BACKLOG",
+    "07-gb28181-center": "BACKLOG",
+    "08-onvif-center": "BACKLOG",
+    "09-dashboard": "BACKLOG",
+    "10-mobile-admin": "BACKLOG"
+  },
+  "remainingBlockers": "NONE",
+  "notes": "Core Set closure is batch-gated (01–04), not inventory-wide Stable (287). npm remains 0.1.0 until separate release promotion."
+}

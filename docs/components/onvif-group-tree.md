@@ -1,75 +1,78 @@
 # OnvifGroupTree
 
-OnvifGroupTree 组件（Stable 文档页，由 Repository Completion Audit 流水线生成）。
+OnvifGroupTree 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
-## Overview
+## 概览
 
-企业组件库公开组件。完整交互与边界用例见本地 example playground（不上线）。
+OnvifGroupTree 当前成熟度为 **RC**；完整交互见本地 example。
 
-## When To Use
+## 何时使用 / 何时不用
 
-需要 OnvifGroupTree 能力时使用。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
-## When Not To Use
+## 相关组件
 
-不需要该交互面时改用更轻量的基础件。
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
-## Import
+## 基础用法
 
-```ts
-import { OnvifGroupTree } from 'amg-webui'
+```vue
+<script setup>
+import { OnvifGroupTree } from '@amg-webui/onvif'
+</script>
+
+<template>
+  <OnvifGroupTree />
+</template>
 ```
 
-## Demos
-
-运行态 Demo：`example/demos/OnvifGroupTree/index.vue`
+Curated demo：`example/demos/OnvifGroupTree/index.vue`
 
 ## Props
 
-| Prop | Type | Default | Description |
+| Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `title` | `string` | — | — |
+| `title` | `string` | — | 标题 / Title |
 | `description` | `string` | — | — |
-| `data` | `OnvifGroupNode[]` | — | — |
-| `options` | `OnvifGroupNode[]` | — | — |
-| `modelValue` | `Array<string \| number>` | — | — |
-| `expandedKeys` | `Array<string \| number>` | — | — |
+| `data` | `OnvifGroupNode[]` | — | 树形数据 / Tree data |
+| `options` | `OnvifGroupNode[]` | — | 选项列表 / Option list |
+| `modelValue` | `Array<string \| number>` | — | 绑定值 / Bound value (v-model) |
+| `expandedKeys` | `Array<string \| number>` | — | 展开的节点 key / Expanded node keys |
 | `filter` | `string` | — | — |
-| `disabled` | `boolean` | — | — |
-| `loading` | `boolean` | — | — |
+| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
+| `loading` | `boolean` | — | 加载中状态 / Loading state |
 | `checkStrategy` | `"all" \| "leaf"` | — | — |
 
 ## Events
 
-| Event | Description |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `update:modelValue` | `value: Array<string \| number>` | v-model 更新 / v-model update |
+| `update:expandedKeys` | `value: Array<string \| number>` | — |
+| `change` | `value: Array<string \| number>` | 值变更 / Change |
+| `check` | `node: OnvifGroupNode, checked: boolean` | — |
+| `expand` | `node: OnvifGroupNode, expanded: boolean` | — |
+
+## Models
+
+| Model | 说明 |
 | --- | --- |
-| `update:modelValue` | — |
-| `update:expandedKeys` | — |
-| `change` | — |
-| `check` | — |
-| `expand` | — |
+| `modelValue` | v-model |
 
-## Slots / Expose / Models
+## Public types
 
-见 `generated/component-api/OnvifGroupTree.json`。
+- `OnvifGroupNode`
+- `OnvifGroupTreeProps`
+- `OnvifGroupTreeEmits`
 
-## Accessibility
 
-见组件实现与 `component-hardening/evidence/OnvifGroupTree/a11y.json`。
+## 稳定性
 
-## Keyboard
+| 字段 | 值 |
+| --- | --- |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/OnvifGroupTree.json` |
 
-见 `component-hardening/evidence/OnvifGroupTree/keyboard.json`。
-
-## Design Tokens
-
-使用语义 token（`vp-` / theme CSS variables），禁止硬编码色值。
-
-## Version
-
-- Inventory: public
-- Maturity: see `component-hardening/contracts/OnvifGroupTree.json`
-
-## Known Limitations
-
-以 contract + evidence 为准。
+> 完整 Demo 见 `example/demos/OnvifGroupTree`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

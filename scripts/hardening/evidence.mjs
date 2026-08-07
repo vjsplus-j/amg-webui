@@ -121,36 +121,37 @@ export function checkEvidenceFreshness(hardeningRoot, name, evidenceFile, repoRo
     contractHash: data.contractHash || null,
     gitSha: data.gitSha || null
   }
-  const hasHash = Boolean(stored.sourceHash || stored.contractHash)
-  const mismatches = []
+  const hasBothHashes = Boolean(stored.sourceHash && stored.contractHash)
+  const status = String(data.status || '').toUpperCase()
 
-  if (stored.sourceHash && current.sourceHash && stored.sourceHash !== current.sourceHash) {
-    mismatches.push('sourceHash mismatch')
+  // H02: PASS / N/A evidence must carry BOTH hashes; either missing → STALE
+  if ((status === 'PASS' || status === 'N/A') && !hasBothHashes) {
+    return {
+      fresh: false,
+      stale: true,
+      hasHash: hasBothHashes,
+      detail: 'STALE: PASS evidence requires both sourceHash and contractHash',
+      current,
+      stored
+    }
   }
-  if (stored.contractHash && current.contractHash && stored.contractHash !== current.contractHash) {
-    mismatches.push('contractHash mismatch')
+
+  const mismatches = []
+  if (hasBothHashes) {
+    if (!current.sourceHash || stored.sourceHash !== current.sourceHash) {
+      mismatches.push('sourceHash mismatch')
+    }
+    if (!current.contractHash || stored.contractHash !== current.contractHash) {
+      mismatches.push('contractHash mismatch')
+    }
   }
 
   if (mismatches.length) {
     return {
       fresh: false,
       stale: true,
-      hasHash,
+      hasHash: hasBothHashes,
       detail: `STALE: ${mismatches.join('; ')}`,
-      current,
-      stored
-    }
-  }
-
-  const status = String(data.status || '').toUpperCase()
-
-  // PASS evidence without sourceHash/contractHash is STALE — forbids yesterday-PASS forever
-  if (status === 'PASS' && !hasHash) {
-    return {
-      fresh: false,
-      stale: true,
-      hasHash: false,
-      detail: 'STALE: PASS evidence missing sourceHash/contractHash',
       current,
       stored
     }
@@ -162,7 +163,7 @@ export function checkEvidenceFreshness(hardeningRoot, name, evidenceFile, repoRo
       return {
         fresh: false,
         stale: true,
-        hasHash,
+        hasHash: hasBothHashes,
         detail: paths.detail,
         current,
         stored
@@ -173,8 +174,8 @@ export function checkEvidenceFreshness(hardeningRoot, name, evidenceFile, repoRo
   return {
     fresh: true,
     stale: false,
-    hasHash,
-    detail: hasHash ? 'hashes match' : 'no stored hashes (legacy non-PASS)',
+    hasHash: hasBothHashes,
+    detail: hasBothHashes ? 'hashes match' : 'no stored hashes (legacy non-PASS)',
     current,
     stored
   }

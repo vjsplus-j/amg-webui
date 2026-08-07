@@ -1,44 +1,49 @@
 # ProgressTip
 
-ProgressTip 组件（Stable 文档页，由 Repository Completion Audit 流水线生成）。
+ProgressTip 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
-## Overview
+## 概览
 
-企业组件库公开组件。完整交互与边界用例见本地 example playground（不上线）。
+ProgressTip 当前成熟度为 **RC**；完整交互见本地 example。
 
-## When To Use
+## 何时使用 / 何时不用
 
-需要 ProgressTip 能力时使用。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
-## When Not To Use
+## 相关组件
 
-不需要该交互面时改用更轻量的基础件。
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
-## Import
+## 基础用法
 
-```ts
-import { ProgressTip } from 'amg-webui'
+```vue
+<script setup>
+import { ProgressTip } from '@amg-webui/core'
+</script>
+
+<template>
+  <ProgressTip />
+</template>
 ```
 
-## Demos
-
-运行态 Demo：`example/demos/ProgressTip/index.vue`
+Curated demo：`example/demos/ProgressTip/index.vue`
 
 ## Props
 
-| Prop | Type | Default | Description |
+| Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `number` | — | — |
-| `title` | `string` | — | — |
+| `modelValue` | `number` | — | 绑定值 / Bound value (v-model) |
+| `title` | `string` | — | 标题 / Title |
 | `description` | `string` | — | — |
 | `message` | `string` | — | — |
 | `percentage` | `number` | — | — |
-| `severity` | `Severity` | — | — |
-| `size` | `ProgressTipSize` | — | — |
+| `severity` | `Severity` | — | 语义色：`primary` · `secondary` · `danger` 等 / Semantic color |
+| `size` | `ProgressTipSize` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
 | `showText` | `boolean` | — | — |
-| `striped` | `boolean` | — | — |
-| `indeterminate` | `boolean` | — | — |
-| `closable` | `boolean` | — | — |
+| `striped` | `boolean` | — | 斑马纹 / Striped rows |
+| `indeterminate` | `boolean` | — | 半选状态 / Indeterminate |
+| `closable` | `boolean` | — | 显示关闭按钮 / Show close button |
 | `currentStep` | `number` | — | — |
 | `totalSteps` | `number` | — | — |
 | `actionText` | `string` | — | — |
@@ -47,43 +52,42 @@ import { ProgressTip } from 'amg-webui'
 | `cancelText` | `string` | — | — |
 | `retryable` | `boolean` | — | — |
 | `retryText` | `string` | — | — |
-| `trackId` | `string` | — | — |
-| `telemetry` | `boolean` | — | — |
+| `trackId` | `string` | — | Telemetry 追踪 id / Telemetry track id |
+| `telemetry` | `boolean` | — | 是否上报 Telemetry / Enable telemetry |
 
 ## Events
 
-| Event | Description |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `update:modelValue` | `value: number` | v-model 更新 / v-model update |
+| `complete` | `void` | — |
+| `close` | `void` | 关闭 / Close |
+| `action` | `event: MouseEvent` | — |
+| `cancel` | `event: MouseEvent` | — |
+| `retry` | `event: MouseEvent` | — |
+| `pause` | `event: MouseEvent` | — |
+| `resume` | `event: MouseEvent` | — |
+
+## Models
+
+| Model | 说明 |
 | --- | --- |
-| `update:modelValue` | — |
-| `complete` | — |
-| `close` | — |
-| `action` | — |
-| `cancel` | — |
-| `retry` | — |
-| `pause` | — |
-| `resume` | — |
+| `modelValue` | v-model |
 
-## Slots / Expose / Models
+## Public types
 
-见 `generated/component-api/ProgressTip.json`。
+- `ProgressTipSize`
+- `ProgressTipState`
+- `ProgressTipProps`
+- `ProgressTipEmits`
 
-## Accessibility
 
-见组件实现与 `component-hardening/evidence/ProgressTip/a11y.json`。
+## 稳定性
 
-## Keyboard
+| 字段 | 值 |
+| --- | --- |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/ProgressTip.json` |
 
-见 `component-hardening/evidence/ProgressTip/keyboard.json`。
-
-## Design Tokens
-
-使用语义 token（`vp-` / theme CSS variables），禁止硬编码色值。
-
-## Version
-
-- Inventory: public
-- Maturity: see `component-hardening/contracts/ProgressTip.json`
-
-## Known Limitations
-
-以 contract + evidence 为准。
+> 完整 Demo 见 `example/demos/ProgressTip`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

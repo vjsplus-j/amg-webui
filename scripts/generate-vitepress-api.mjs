@@ -497,9 +497,31 @@ function loadStableComponents() {
 
 const STABLE_COMPONENTS = loadStableComponents()
 
-const ALL_COMPONENTS = stableOnly
-  ? STABLE_COMPONENTS
-  : [...new Set([...V01_PRIORITY, ...EXISTING_STUBS, ...STABLE_COMPONENTS])].sort()
+function loadAllPublicComponentNames() {
+  const contractsDir = join(root, 'component-hardening/contracts')
+  if (!existsSync(contractsDir)) return []
+  return readdirSync(contractsDir)
+    .filter((f) => f.endsWith('.json') && !['schema.json', 'family-api-profiles.json'].includes(f))
+    .map((f) => {
+      try {
+        const c = JSON.parse(readFileSync(join(contractsDir, f), 'utf8'))
+        return c.name || f.replace(/\.json$/, '')
+      } catch {
+        return f.replace(/\.json$/, '')
+      }
+    })
+    .sort()
+}
+
+const ALL_COMPONENTS = (() => {
+  if (stableOnly) return STABLE_COMPONENTS
+  const fromPriority = [...new Set([...V01_PRIORITY, ...EXISTING_STUBS, ...STABLE_COMPONENTS])]
+  // --force / drift gate: regenerate maturity for every public contract page
+  if (force) {
+    return [...new Set([...fromPriority, ...loadAllPublicComponentNames()])].sort()
+  }
+  return fromPriority.sort()
+})()
 
 function readTypes(name) {
   const p = join(root, componentDirRel(name), 'types.ts')
@@ -685,8 +707,32 @@ function relatedSection(name) {
   return related.map((r) => `- [${r}](./${toKebab(r)})`).join('\n')
 }
 
+function loadContractMaturity(name) {
+  const p = join(root, 'component-hardening/contracts', `${name}.json`)
+  if (!existsSync(p)) return { maturity: 'beta', frozen: false }
+  try {
+    const c = JSON.parse(readFileSync(p, 'utf8'))
+    return {
+      maturity: String(c.maturity || 'beta').toLowerCase(),
+      frozen: Boolean(c.apiFreeze?.frozen)
+    }
+  } catch {
+    return { maturity: 'beta', frozen: false }
+  }
+}
+
 function isStable(name) {
-  return STABLE_COMPONENTS.includes(name)
+  const { maturity, frozen } = loadContractMaturity(name)
+  return maturity === 'stable' && frozen
+}
+
+function maturityLabel(name) {
+  const { maturity, frozen } = loadContractMaturity(name)
+  if (maturity === 'stable' && frozen) return 'Stable'
+  if (maturity === 'rc') return 'RC'
+  if (maturity === 'beta') return 'Beta'
+  if (maturity === 'draft') return 'Draft'
+  return maturity
 }
 
 function generateMarkdown(name) {
@@ -695,13 +741,14 @@ function generateMarkdown(name) {
   const demoPath = resolveDemoPath(name)
   const demoDir = demoPath ? demoPath.replace(/\/index\.vue$|\/parts\/Basic\.vue$/, '') : `example/demos/${name}/`
   const stable = isStable(name)
+  const maturity = maturityLabel(name)
   const docsDemoId = DOCS_DEMOS[name]
   const intro =
     name === 'MessageBox'
       ? '命令式确认 / 提示 / 输入框：`MessageBox.confirm` · `alert` · `prompt`。'
       : stable
         ? `${name} 为 **Stable** 公共组件（API frozen）。本文档由 \`generate-vitepress-api.mjs\` 从 \`${api.source}\` 生成。`
-        : `${name} 组件 API（v0.1 子集）。`
+        : `${name} 为 **${maturity}** 公共组件（Contract maturity=\`${loadContractMaturity(name).maturity}\`）。本文档由 \`generate-vitepress-api.mjs\` 从 \`${api.source}\` 生成。`
 
   const sections = [
     `# ${title}`,
@@ -715,12 +762,12 @@ function generateMarkdown(name) {
         ? `${name} 已通过 Component Hardening 证据门禁；下方 **DocsDemo** 提供 docs 站内嵌交互，完整 curated demo 见 example。`
         : `${name} 已通过 Component Hardening 证据门禁；完整交互演示见本地 example curated demo。`
       : docsDemoId
-        ? `${name} 对外 API 文档；下方 DocsDemo 提供 docs 站内嵌交互，完整场景见 example。`
-        : `${name} 对外薄 API 文档；完整交互见本地 example。`,
+        ? `${name} 当前成熟度为 **${maturity}**；下方 DocsDemo 提供 docs 站内嵌交互，完整场景见 example。`
+        : `${name} 当前成熟度为 **${maturity}**；完整交互见本地 example。`,
     '',
     '## 何时使用 / 何时不用',
     '',
-    `- **适用**：${stable ? '生产可用的 Stable 组件场景' : 'v0.1 子集内的标准 UI 场景'}。`,
+    `- **适用**：${stable ? '生产可用的 Stable 组件场景' : `${maturity} 阶段的标准 UI 场景（未宣称 Stable）`}。`,
     '- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。',
     '',
     '## 相关组件',
@@ -766,8 +813,23 @@ function generateMarkdown(name) {
     sections.push(publicTypesSection(api.publicTypes).trim(), '')
   }
 
+  {
+    const { maturity: m, frozen } = loadContractMaturity(name)
+    sections.push(
+      '',
+      '## 稳定性',
+      '',
+      '| 字段 | 值 |',
+      '| --- | --- |',
+      `| maturity | \`${m}\` |`,
+      `| apiFreeze | \`${frozen ? 'frozen' : 'unfrozen'}\` |`,
+      `| API extract | \`generated/component-api/${name}.json\` |`
+    )
+  }
+
   if (stable) {
     sections.push(
+      '',
       '## 无障碍与键盘',
       '',
       '交互行为与键盘路径以 `component-hardening/evidence/' +
@@ -775,16 +837,6 @@ function generateMarkdown(name) {
         '/a11y.json` · `keyboard.json` 为准；本地可复现：`example/demos/' +
         name +
         '/`。'
-    )
-    sections.push(
-      '',
-      '## 稳定性',
-      '',
-      '| 字段 | 值 |',
-      '| --- | --- |',
-      '| maturity | `stable` |',
-      '| apiFreeze | `frozen` |',
-      `| API extract | \`generated/component-api/${name}.json\` |`
     )
   }
 

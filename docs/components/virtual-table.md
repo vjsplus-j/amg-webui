@@ -1,76 +1,87 @@
 # VirtualTable
 
-VirtualTable 组件（Stable 文档页，由 Repository Completion Audit 流水线生成）。
+VirtualTable 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
 
-## Overview
+## 概览
 
-企业组件库公开组件。完整交互与边界用例见本地 example playground（不上线）。
+VirtualTable 当前成熟度为 **RC**；完整交互见本地 example。
 
-## When To Use
+## 何时使用 / 何时不用
 
-需要 VirtualTable 能力时使用。
+- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
 
-## When Not To Use
+## 相关组件
 
-不需要该交互面时改用更轻量的基础件。
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
-## Import
+## 基础用法
 
-```ts
-import { VirtualTable } from 'amg-webui'
+```vue
+<script setup>
+import { VirtualTable } from '@amg-webui/data'
+</script>
+
+<template>
+  <VirtualTable />
+</template>
 ```
 
-## Demos
-
-运行态 Demo：`example/demos/VirtualTable/index.vue`
+Curated demo：`example/demos/VirtualTable/index.vue`
 
 ## Props
 
-| Prop | Type | Default | Description |
+| Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `title` | `string` | — | — |
+| `title` | `string` | — | 标题 / Title |
 | `description` | `string` | — | — |
-| `data` | `Record<string, unknown>[]` | — | — |
-| `rows` | `Record<string, unknown>[]` | — | — |
-| `columns` | `TableColumn[]` | — | — |
-| `virtual` | `boolean` | — | — |
-| `rowKey` | `string` | — | — |
-| `filterDebounce` | `number` | — | — |
-| `modelValue` | `Record<string, unknown> \| null` | — | — |
-| `disabled` | `boolean` | — | — |
-| `loading` | `boolean` | — | — |
-| `trackId` | `string` | — | — |
-| `telemetry` | `boolean` | — | — |
+| `data` | `Record<string, unknown>[]` | — | 树形数据 / Tree data |
+| `rows` | `Record<string, unknown>[]` | — | 每页行数 / Rows per page |
+| `columns` | `TableColumn[]` | — | 列定义 / Column definitions |
+| `virtual` | `boolean` | — | 虚拟滚动 / Virtual scrolling |
+| `rowKey` | `string` | — | 行唯一键字段 / Unique row key field |
+| `filterDebounce` | `number` | — | 筛选防抖毫秒 / Filter debounce (ms) |
+| `modelValue` | `Record<string, unknown> \| null` | — | 绑定值 / Bound value (v-model) |
+| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
+| `loading` | `boolean` | — | 加载中状态 / Loading state |
+| `trackId` | `string` | — | Telemetry 追踪 id / Telemetry track id |
+| `telemetry` | `boolean` | — | 是否上报 Telemetry / Enable telemetry |
 
 ## Events
 
-| Event | Description |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `update:modelValue` | `value: Record<string, unknown>` | v-model 更新 / v-model update |
+| `change` | `value: Record<string, unknown>` | 值变更 / Change |
+| `click` | `event: MouseEvent` | 点击 / Click |
+
+## Slots
+
+| Slot | Props | 说明 |
+| --- | --- | --- |
+| `default` | `—` | — |
+| `loading` | `—` | — |
+| `empty` | `—` | — |
+
+## Models
+
+| Model | 说明 |
 | --- | --- |
-| `update:modelValue` | — |
-| `change` | — |
-| `click` | — |
+| `modelValue` | v-model |
 
-## Slots / Expose / Models
+## Public types
 
-见 `generated/component-api/VirtualTable.json`。
+- `VirtualTableProps`
+- `VirtualTableEmits`
+- `VirtualTableSlots`
 
-## Accessibility
 
-见组件实现与 `component-hardening/evidence/VirtualTable/a11y.json`。
+## 稳定性
 
-## Keyboard
+| 字段 | 值 |
+| --- | --- |
+| maturity | `rc` |
+| apiFreeze | `unfrozen` |
+| API extract | `generated/component-api/VirtualTable.json` |
 
-见 `component-hardening/evidence/VirtualTable/keyboard.json`。
-
-## Design Tokens
-
-使用语义 token（`vp-` / theme CSS variables），禁止硬编码色值。
-
-## Version
-
-- Inventory: public
-- Maturity: see `component-hardening/contracts/VirtualTable.json`
-
-## Known Limitations
-
-以 contract + evidence 为准。
+> 完整 Demo 见 `example/demos/VirtualTable`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。

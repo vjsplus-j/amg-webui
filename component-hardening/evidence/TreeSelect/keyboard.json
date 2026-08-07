@@ -21,12 +21,12 @@
     "ArrowDown",
     "Enter"
   ],
-  "runId": "dda0c035-05ce-41b2-994a-d1d56ea3268a",
+  "runId": "2b7c8ff4-1450-4820-9cfb-ce575bd77f03",
   "toolVersion": "1",
-  "verifiedAt": "2026-08-07T17:38:55.251Z",
+  "verifiedAt": "2026-08-07T18:36:14.061Z",
   "detail": "ArrowDown: opens panel and moves highlighted tree node; Enter: selects focused node and emits update:modelValue",
-  "sourceHash": "2a4373afea280999ec3d2aa87cce28222e5056d044946135f98fb28de72b9c91",
+  "sourceHash": "5a15cd20a8ba2e92ee83771bbad855a2b76931fc26bad6d1aad7f179ed26b076",
   "contractHash": "96057231bbc995f5f89351293da5ab3e331654d9693c237d4491cb935231a376",
-  "gitSha": "418993adf62e516a2056cc587bd0cd0eb54d928a",
-  "stampedAt": "2026-08-07T17:38:55.302Z"
+  "gitSha": "fc90592e7166493f7f79d8362a3be13e48e2d545",
+  "stampedAt": "2026-08-07T18:36:14.134Z"
 }

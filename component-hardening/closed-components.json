@@ -1,0 +1,294 @@
+{
+  "updatedAt": "2026-08-08T02:40:00.000Z",
+  "note": "CLOSED components require reopen reason (bug|regression|security|dependency-breaking) to modify",
+  "components": {
+    "InputText": {
+      "status": "CLOSED",
+      "batch": "BATCH-01-FORM-INPUT",
+      "closedAt": "2026-08-08T02:30:00.000Z",
+      "sourceHash": "b9c09fd473a6338d39e800be7ff8b7dabb3029c4e8ff896c93b17e5e313d2276",
+      "contractHash": "fe094f4897d47d24736381732090bd4b40b6b6c36965905a7d07dd81171a6066",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Login", "01-admin:UserCreate", "01-admin:UserEdit"]
+    },
+    "Textarea": {
+      "status": "CLOSED",
+      "batch": "BATCH-01-FORM-INPUT",
+      "closedAt": "2026-08-08T02:30:00.000Z",
+      "sourceHash": "128dd415c707893c8ee7eb04eb6791fdac57efa3430c816435a6a34f93756d6b",
+      "contractHash": "f67f9f25666bf5569089f72c05ec8d6175b36b084e37f460207729bbb0c423b3",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:UserCreate", "01-admin:UserEdit"]
+    },
+    "InputNumber": {
+      "status": "CLOSED",
+      "batch": "BATCH-01-FORM-INPUT",
+      "closedAt": "2026-08-08T02:30:00.000Z",
+      "sourceHash": "3ccf582e388a87308508592de4718f073a8aabba839d9add417278c012853c87",
+      "contractHash": "7df2ce665e68e8db3172872b3bb2da968b3887e0fd642ced607d898391950a16",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:UserCreate", "01-admin:UserEdit"]
+    },
+    "Password": {
+      "status": "CLOSED",
+      "batch": "BATCH-01-FORM-INPUT",
+      "closedAt": "2026-08-08T02:30:00.000Z",
+      "sourceHash": "6924069f5b2b5d518c4e6ef0b0c43c5c14d99edc6f185d6c522c9cf422b190bd",
+      "contractHash": "9a3ec9c8145fe7a703c4e8d4d2abd5ce24c0f4a1ce9ba4772243a660dc7fb685",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Login"]
+    },
+    "Checkbox": {
+      "status": "CLOSED",
+      "batch": "BATCH-01-FORM-INPUT",
+      "closedAt": "2026-08-08T02:30:00.000Z",
+      "sourceHash": "9a504240914dd9a823516119cbc180ce666e730b2f6f7b931f84f04911b2772f",
+      "contractHash": "841d539b9fedf21265862a86b8341f941d7daf47acf8960b658bd48746aa1758",
+      "validatedBy": ["showcase:admin:build", "verify:component"]
+    },
+    "Radio": {
+      "status": "CLOSED",
+      "batch": "BATCH-01-FORM-INPUT",
+      "closedAt": "2026-08-08T02:30:00.000Z",
+      "sourceHash": "9391f94afebe35fcc6891a84bda95ecf4632ce4a6aec6a9471e2eed8d2a17eaa",
+      "contractHash": "7976018525aa5b02e63e018fbb3edfd708817fb79fd33102bd3c792548e28f85",
+      "validatedBy": ["showcase:admin:build", "verify:component"]
+    },
+    "RadioGroup": {
+      "status": "CLOSED",
+      "batch": "BATCH-01-FORM-INPUT",
+      "closedAt": "2026-08-08T02:30:00.000Z",
+      "sourceHash": "235de024f8dd5182acb6a6460c12326f717707fee6e7521fda1f27b70d2d6a89",
+      "contractHash": "3af1df2b6ed741d06a0884a077bde2ecc379f9acea2df99c26d1ef2bbe90eab3",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:UserCreate", "01-admin:UserEdit"]
+    },
+    "Switch": {
+      "status": "CLOSED",
+      "batch": "BATCH-01-FORM-INPUT",
+      "closedAt": "2026-08-08T02:30:00.000Z",
+      "sourceHash": "987b77dee6c66e5163dff803e9b89f1299a8aa7a1635603af28bc640390312b0",
+      "contractHash": "8951902c4763ffcdc03db653c4998dc6a502de038c1abb4a7bc1e4a10dbae1a8",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:UserCreate", "01-admin:UserEdit"]
+    },
+    "Form": {
+      "status": "CLOSED",
+      "batch": "BATCH-01-FORM-INPUT",
+      "closedAt": "2026-08-08T02:30:00.000Z",
+      "sourceHash": "821ebb7aed5fec1d1fb2e6fac3d38f9cc692477ec601d728a675b04300a63988",
+      "contractHash": "bc126511133eb70830b08ff4d823913d93c9f4d38d7dd3d65803f8af6fc526e3",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Login", "01-admin:UserCreate", "01-admin:UserEdit"]
+    },
+    "FormItem": {
+      "status": "CLOSED",
+      "batch": "BATCH-01-FORM-INPUT",
+      "closedAt": "2026-08-08T02:30:00.000Z",
+      "sourceHash": "89248e0033700cd86eced2135df825a5b4d80d17d8d7bd3074128043cf0a2129",
+      "contractHash": "0304a4e8541c9d37f64886c69137fe2651fc3902a7790467d26b59f375de05cb",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Login", "01-admin:UserCreate", "01-admin:UserEdit"]
+    },
+    "Button": {
+      "status": "CLOSED",
+      "batch": "BATCH-01-FORM-INPUT",
+      "closedAt": "2026-08-08T02:30:00.000Z",
+      "sourceHash": "3fec777e39fdd7bcbf42cfa94d179d8e192793163f1ee6d4e167bcda9b95009c",
+      "contractHash": "91372ea6ea8245efe8373220031c9a0e5bd524b985cebd47153f57d01088d73f",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Login", "01-admin:UserCreate", "01-admin:UserEdit"]
+    },
+    "DataTable": {
+      "status": "CLOSED",
+      "batch": "BATCH-02-DATA",
+      "closedAt": "2026-08-08T02:35:00.000Z",
+      "sourceHash": "3f7c1f8393b3f00472406bd7713c0306d12751b509e228e25bc1ec521a863ba5",
+      "contractHash": "ca4662242d40c6edf25ba1d68b79b26b277b777e1189c6e3dd6be8e3a7af98aa",
+      "validatedBy": ["showcase:admin:build", "verify:component", "datatable-rowkey.spec.ts", "01-admin:Users", "01-admin:Roles", "01-admin:Organizations"]
+    },
+    "Pagination": {
+      "status": "CLOSED",
+      "batch": "BATCH-02-DATA",
+      "closedAt": "2026-08-08T02:35:00.000Z",
+      "sourceHash": "2d13196ade9fb09b25289243a48d12c078bf121c6c55e05ea962acc0c12afec4",
+      "contractHash": "6547bdc3ce8959b2d0f661714a1b1e19946cc9c2f9b8c5256097c4766a63a10d",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Users", "01-admin:Roles"]
+    },
+    "Tree": {
+      "status": "CLOSED",
+      "batch": "BATCH-02-DATA",
+      "closedAt": "2026-08-08T02:35:00.000Z",
+      "sourceHash": "cf8ee3f5d9e444fb7d77346489d1196401a69f6b83b88e6f61723afe080edbb7",
+      "contractHash": "ccce0d148a0052bb7298e0b648c3bf5c41279c3c92813e3c3e2df36fd1fabb3d",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Organizations"]
+    },
+    "Select": {
+      "status": "CLOSED",
+      "batch": "BATCH-02-DATA",
+      "closedAt": "2026-08-08T02:35:00.000Z",
+      "sourceHash": "a12fe8d9634ee595c6356699e0a50695f4ed2666c7ef15c82b43b1e473315658",
+      "contractHash": "1259438e12535aa2525ef86b5876022a40725856f891e4da7f3e821d8111510f",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Users", "01-admin:Roles", "01-admin:Organizations"]
+    },
+    "AutoComplete": {
+      "status": "CLOSED",
+      "batch": "BATCH-02-DATA",
+      "closedAt": "2026-08-08T02:35:00.000Z",
+      "sourceHash": "44de3afcfe13d34d5590efda1818283d69efdd0756dfa58cb4061679ad5a2548",
+      "contractHash": "ee048bd1fb9fa61e449b79397b7de47614c1f2c35e6444d5227eb7086a61a347",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Users", "01-admin:Roles"]
+    },
+    "Cascader": {
+      "status": "CLOSED",
+      "batch": "BATCH-02-DATA",
+      "closedAt": "2026-08-08T02:35:00.000Z",
+      "sourceHash": "8ab4c346ffd84b1149db0c22fd2b56ffd9eaccb58c425b14ce3ae3217b68ea25",
+      "contractHash": "bff9bfda2ab0f1771b0f8afd16b15afcbd02b5a45652fd796f43e80666287ab5",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Users", "01-admin:Organizations"]
+    },
+    "TreeSelect": {
+      "status": "CLOSED",
+      "batch": "BATCH-02-DATA",
+      "closedAt": "2026-08-08T02:35:00.000Z",
+      "sourceHash": "5a15cd20a8ba2e92ee83771bbad855a2b76931fc26bad6d1aad7f179ed26b076",
+      "contractHash": "96057231bbc995f5f89351293da5ab3e331654d9693c237d4491cb935231a376",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Organizations"]
+    },
+    "Dialog": {
+      "status": "CLOSED",
+      "batch": "BATCH-03-OVERLAY",
+      "closedAt": "2026-08-08T02:32:00.000Z",
+      "sourceHash": "e4719c30c9655c533533954dbc398f41fc226dce18c59ff0e920b23cf9b6eb04",
+      "contractHash": "2f63759293e8059a8c208de9a5bd8d5ea07faac019a08d43bdb338cd843c437a",
+      "validatedBy": ["showcase:admin:build", "verify:component", "overlay.spec.ts", "01-admin:Users", "01-admin:Roles", "01-admin:UserCreate", "01-admin:UserEdit"]
+    },
+    "Drawer": {
+      "status": "CLOSED",
+      "batch": "BATCH-03-OVERLAY",
+      "closedAt": "2026-08-08T02:32:00.000Z",
+      "sourceHash": "eccf8bfdf525db35e5b21b161e2659c5b0cd7bc72c1e4c184da4857a8f29c3b5",
+      "contractHash": "281ae44e5c634200a85c2b0c84f8bb5bb2c001740aa3c1400571ec4b7686c6f6",
+      "validatedBy": ["showcase:admin:build", "verify:component", "overlay.spec.ts", "01-admin:Users"]
+    },
+    "Popover": {
+      "status": "CLOSED",
+      "batch": "BATCH-03-OVERLAY",
+      "closedAt": "2026-08-08T02:32:00.000Z",
+      "sourceHash": "d6c679fa1e855b8b124a15de3ee446f672753f2b2ae2e8301d14eba2771e9987",
+      "contractHash": "8b7b8fd30ab3fa4b9d95be9651ded80be059c9df87c5d936f315c18336758fac",
+      "validatedBy": ["showcase:admin:build", "verify:component", "overlay.spec.ts", "01-admin:Users", "01-admin:Permissions"]
+    },
+    "Tooltip": {
+      "status": "CLOSED",
+      "batch": "BATCH-03-OVERLAY",
+      "closedAt": "2026-08-08T02:32:00.000Z",
+      "sourceHash": "9085a93bbff7d484ab870e7fd0e33f71cfe1b87a88884a189baa21fa077400c9",
+      "contractHash": "fab12b54e869b8f92327f718c68f9057e5c65dbc2af1179088e2c75cba4a7b10",
+      "validatedBy": ["showcase:admin:build", "verify:component", "overlay.spec.ts", "01-admin:Users", "01-admin:Roles", "01-admin:Permissions"]
+    },
+    "MessageBox": {
+      "status": "CLOSED",
+      "batch": "BATCH-03-OVERLAY",
+      "closedAt": "2026-08-08T02:32:00.000Z",
+      "sourceHash": "b47b5c2d3b612b00fa9508f0ee0027d991bc180f3021495744c63db081bcf492",
+      "contractHash": "43f7f72e0fd7a4c2e22c2e9db5d9e09f0829794fa115040787440e7101b8d147",
+      "validatedBy": ["showcase:admin:build", "verify:component", "overlay.spec.ts", "01-admin:Users", "01-admin:Roles"]
+    },
+    "ConfirmDialog": {
+      "status": "CLOSED",
+      "batch": "BATCH-03-OVERLAY",
+      "closedAt": "2026-08-08T02:32:00.000Z",
+      "sourceHash": "f9c86198bf683fbb285b0ee43da681b9065b8634bd2e430bdd572bbb75911cb5",
+      "contractHash": "a4b41bd777719445de4ee8344fa55c8e95b1da2cacaa3589ac43223b6bd58d84",
+      "validatedBy": ["showcase:admin:build", "verify:component", "overlay.spec.ts", "01-admin:Users", "01-admin:Roles"]
+    },
+    "Layout": {
+      "status": "CLOSED",
+      "batch": "BATCH-04-NAVIGATION-LAYOUT",
+      "closedAt": "2026-08-08T03:00:00.000Z",
+      "sourceHash": "694c76eac4477fb147c7837c88074d7a14058d783868f077417defaa383a9a60",
+      "contractHash": "388b8007fb0d2c4cbae2bb56baaa40f1daaf319a76cd5bb7e58b6aaaa9dd6c90",
+      "validatedBy": ["showcase:admin:build", "verify:component", "showcases/_shared/AppLayout", "showcases/_shared/MobileShell"]
+    },
+    "Header": {
+      "status": "CLOSED",
+      "batch": "BATCH-04-NAVIGATION-LAYOUT",
+      "closedAt": "2026-08-08T03:00:00.000Z",
+      "sourceHash": "4846d8b46f35f24fcb697463cd3c2d0a09e9769d14e91e1c94190c119a4f3aca",
+      "contractHash": "5f0dad26ff2552b571ebc4c7eefc2447b0b5a54eb126480ffb5bddc7aeb6b4a8",
+      "validatedBy": ["showcase:admin:build", "verify:component", "showcases/_shared/AppLayout", "showcases/_shared/MobileShell"]
+    },
+    "Sider": {
+      "status": "CLOSED",
+      "batch": "BATCH-04-NAVIGATION-LAYOUT",
+      "closedAt": "2026-08-08T03:00:00.000Z",
+      "sourceHash": "f7c85707fb3c280f49ad374fc3444f493e61804c5d2859950db558d5c9a28bed",
+      "contractHash": "3b40ceaac3f95034564dab8a7258a7f65b2f7ef685e889e30ff5b5a7074559bc",
+      "validatedBy": ["showcase:admin:build", "verify:component", "showcases/_shared/AppLayout"]
+    },
+    "Main": {
+      "status": "CLOSED",
+      "batch": "BATCH-04-NAVIGATION-LAYOUT",
+      "closedAt": "2026-08-08T03:00:00.000Z",
+      "sourceHash": "465606f21111cfd32918f23507b057a94c4de9f530b316ab483beaa44d3e29d4",
+      "contractHash": "dd3ae1dc7b4a39a4a253ecfebee91a2a797ca2ba14b82f3fdfdcef2b67b3fc4e",
+      "validatedBy": ["showcase:admin:build", "verify:component", "showcases/_shared/AppLayout", "showcases/_shared/MobileShell"]
+    },
+    "Menu": {
+      "status": "CLOSED",
+      "batch": "BATCH-04-NAVIGATION-LAYOUT",
+      "closedAt": "2026-08-08T03:00:00.000Z",
+      "sourceHash": "a547ff5fa2ce9ffe87d56e73ae7e095d8d7631273105652372a70efef1a42d26",
+      "contractHash": "c7fdec8fda4b54930eecdb11e9422d26f00ba9753952b0cde74d62faddd2edc1",
+      "validatedBy": ["showcase:admin:build", "verify:component", "showcases/_shared/AppLayout"]
+    },
+    "Tabs": {
+      "status": "CLOSED",
+      "batch": "BATCH-04-NAVIGATION-LAYOUT",
+      "closedAt": "2026-08-08T03:00:00.000Z",
+      "sourceHash": "c62931ed70401042fc6d8442215c66718f01d7734854af3cc37b21e3bb09b895",
+      "contractHash": "c0c41054b1116d89cf475dfddfe62b1d0e40a7186fc49776e62b7afb9efde1a8",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Settings"]
+    },
+    "Breadcrumb": {
+      "status": "CLOSED",
+      "batch": "BATCH-04-NAVIGATION-LAYOUT",
+      "closedAt": "2026-08-08T03:00:00.000Z",
+      "sourceHash": "603e97c9c6b4f5585c7c29c7746b137cc196066cdae6f99f4a7490b9ab4e485b",
+      "contractHash": "68086b2ffddae02db4a70ee5481e4a607614780f5e6d27ae77823de25dc4f079",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:AdminPageChrome", "01-admin:Audit", "01-admin:UserCreate", "01-admin:UserEdit", "01-admin:NotFound"]
+    },
+    "PageHeader": {
+      "status": "CLOSED",
+      "batch": "BATCH-04-NAVIGATION-LAYOUT",
+      "closedAt": "2026-08-08T03:00:00.000Z",
+      "sourceHash": "33266f2173ca9ff5fc80c316d457bdbf2000a682278b1ddf5836b98cc338ea32",
+      "contractHash": "728f75f7d773988c681390f9bf28a334ae3b5648ea32d5b8c630fb0cfeb76c43",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:AdminPageChrome", "01-admin:Users", "01-admin:Roles", "01-admin:Dashboard"]
+    },
+    "Card": {
+      "status": "CLOSED",
+      "batch": "BATCH-04-NAVIGATION-LAYOUT",
+      "closedAt": "2026-08-08T03:00:00.000Z",
+      "sourceHash": "78bcb89c473ae72da2f91d1c5b519db24f09ee61756e4d0e110143f5f6b025ae",
+      "contractHash": "f0b0f4c15c0c58134c0a099710619fa25fd56fe9e51c51ba614e9e8b75047333",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Dashboard", "01-admin:Settings", "01-admin:Audit", "01-admin:Users"]
+    },
+    "Loading": {
+      "status": "CLOSED",
+      "batch": "BATCH-04-NAVIGATION-LAYOUT",
+      "closedAt": "2026-08-08T03:00:00.000Z",
+      "sourceHash": "c81f84692fc07b0a417920c4430e01dbab28c57b62bdc2323e064c25be70e7e4",
+      "contractHash": "24665015d2f8f15e6d000a65f5a346e817ce3653cc3fbad608d0e135469a989f",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Audit"]
+    },
+    "Empty": {
+      "status": "CLOSED",
+      "batch": "BATCH-04-NAVIGATION-LAYOUT",
+      "closedAt": "2026-08-08T03:00:00.000Z",
+      "sourceHash": "73b1978da0bb72bb78bab2480a61355f0742352a6b8e2647cc8937cf7a44082d",
+      "contractHash": "31470872ed4c78534397a7ecd6b6cfcc938055c64bf448884ba28e210ba3be3f",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Audit", "01-admin:Users", "01-admin:Roles"]
+    },
+    "Skeleton": {
+      "status": "CLOSED",
+      "batch": "BATCH-04-NAVIGATION-LAYOUT",
+      "closedAt": "2026-08-08T03:00:00.000Z",
+      "sourceHash": "0c133b8bb7466aeb54ee36e686a72e00788b78e165350ea6c41066df147c3435",
+      "contractHash": "0a0b2abf91591dee823058dfa24d41c0f53c758730e75e70bb5e0e279f7a6e2d",
+      "validatedBy": ["showcase:admin:build", "verify:component", "01-admin:Dashboard", "01-admin:UserEdit"]
+    }
+  }
+}
