@@ -23,6 +23,6 @@ const zhCN = {
   ...component,
   ...industry,
   ...exampleDoc
-} as LocaleMessages
+} satisfies LocaleMessages
 
 export default zhCN

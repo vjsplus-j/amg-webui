@@ -16,7 +16,7 @@
 | `npm run create:component -- business bar` | 一键新建 business 模块骨架 |
 | `npm run generate:entry` | 扫描 `packages/components/**` 自动生成 / 刷新 `index.ts` 导出 |
 | `npm run generate:locale-types` | 从 zh-CN 生成 `LocaleKey` / `LocaleMessages`（`message-schema.ts`） |
-| `npm run extract:i18n` | 重生 schema + 校验全部语种 key 对齐 + `LocaleKeys` 叶子 ⊆ zh-CN（缺 key / 不对齐 = 失败） |
+| `npm run extract:i18n` | 重生 schema + 校验全部语种 key 对齐 + `LocaleKeys` 叶子 ⊆ zh-CN（缺 key / 不对齐 = 失败；**CI 已门禁** + `message-schema.ts` 无 diff） |
 | `npm run generate:icons` | 刷新图标目录 / 解析表 |
 | `npm run validate:catalog` | 校验 `example/component-catalog.json` ↔ base+industry 目录覆盖 |
 | `npm run validate:styles` | 校验每个 leaf 存在稳定 `dist/es/components/**/style.css` side-entry |

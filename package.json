@@ -2777,7 +2777,7 @@
     "test:consumers": "node scripts/test-consumers.mjs",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "ci": "vue-tsc --noEmit && npm run validate:catalog && npm run validate:v01 && npm run validate:maturity && npm run test:ssr && npm run test && npm run build:lib && npm run validate:styles && npm run test:consumers",
+    "ci": "vue-tsc --noEmit && npm run extract:i18n && git diff --exit-code packages/locale/message-schema.ts && npm run validate:catalog && npm run validate:v01 && npm run validate:maturity && npm run test:ssr && npm run test && npm run build:lib && npm run validate:styles && npm run test:consumers",
     "generate:vitepress-api": "node scripts/generate-vitepress-api.mjs",
     "docs:dev": "vitepress dev docs --config vitepress.config.ts",
     "docs:build": "vitepress build docs --config vitepress.config.ts",

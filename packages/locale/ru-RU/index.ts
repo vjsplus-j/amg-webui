@@ -23,6 +23,6 @@ const messages = {
   ...component,
   ...industry,
   ...exampleDoc
-} as LocaleMessages
+} satisfies LocaleMessages
 
 export default messages

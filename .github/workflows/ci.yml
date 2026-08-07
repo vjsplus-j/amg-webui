@@ -31,6 +31,12 @@ jobs:
       - name: Typecheck
         run: npx vue-tsc --noEmit
 
+      - name: Extract i18n schema + pack key alignment
+        run: npm run extract:i18n
+
+      - name: Assert message-schema.ts is committed
+        run: git diff --exit-code packages/locale/message-schema.ts
+
       - name: Validate component catalog
         run: npm run validate:catalog
 

@@ -4,6 +4,13 @@
 
 ---
 
+## 2026-08-07 — 强类型 i18n：`satisfies` + CI 门禁
+
+- 八语种 `packages/locale/*/index.ts`：`as LocaleMessages` → `satisfies LocaleMessages`（缺 key 编译失败，兑现 I18N 契约）。
+- CI / `npm run ci`：`npm run extract:i18n` + `git diff --exit-code packages/locale/message-schema.ts`。
+
+---
+
 ## 2026-08-07 — 一口气收口：码制进 industry · 成熟度 v3 · SSR 矩阵
 
 - Barcode / Qrcode / MatrixCode / OcrScan：物理层 + catalog + example zone 全部迁入 `industry`（**47**）；base **240**。

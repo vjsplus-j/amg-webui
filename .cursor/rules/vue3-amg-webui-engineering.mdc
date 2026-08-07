@@ -14,7 +14,7 @@ Skill Runtime: `docs/SKILL_RUNTIME.md` · locked rule: `vue3-amg-webui-skill-run
 |-----|---------|
 | `create:component` | scaffold base/industry/business (`vp-` class, types, style, stubs) |
 | `generate:entry` | scan & rewrite component barrel `index.ts` — no manual mega-exports |
-| `extract:i18n` | scan copy → regenerate `LocaleKey` schema + align **all** locale packs; missing key = bug/CI |
+| `extract:i18n` | regenerate `LocaleKey` schema + align **all** locale packs; CI runs it + `git diff --exit-code packages/locale/message-schema.ts` |
 | `generate:locale-types` | emit `message-schema.ts` (`LocaleKey` / `LocaleMessages`) from zh-CN |
 | `validate:catalog` | catalog ↔ base+industry coverage |
 | `validate:styles` | every leaf has stable `dist/es/components/**/style.css` |
