@@ -7,7 +7,9 @@ import {
   Tech404,
   VcrTimelinePlayer,
   GbsStatusCard,
-  OnvifSearch
+  OnvifSearch,
+  Barcode,
+  Qrcode
 } from '@amg-webui/components/industry'
 import ComponentGallery from '../../components/ComponentGallery.vue'
 </script>
@@ -28,6 +30,8 @@ import ComponentGallery from '../../components/ComponentGallery.vue'
         <OnvifSearch />
         <GbsStatusCard />
         <VcrTimelinePlayer />
+        <Barcode model-value="6901234567892" format="ean13" :editable="false" />
+        <Qrcode model-value="AMG-WebUI" standard="iso" />
       </div>
     </template>
   </ComponentGallery>

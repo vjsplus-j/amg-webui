@@ -25,8 +25,8 @@ Run codemods / search-replace on app templates and global overrides before upgra
 
 ### SSR / Nuxt
 
-- **0.1 Step 5:** `isClient` / `getDocument` / `getWindow` helpers; overlay listeners guarded — **best-effort**, not full Nuxt module yet.
-- **1.0:** Official SSR/Nuxt adapter, `ClientOnly` patterns documented, service APIs (Toast / MessageBox / Confirm) split into SSR-safe stubs.
+- **0.1 Step 5 (matrix gated):** `isClient` / `getDocument` / `getWindow`; overlay listeners guarded; `npm run test:ssr` covers env + import + `renderToString` matrix (core / symbology / MessageBox SSR stub); Nuxt consumer renders Button without `ClientOnly` and asserts SSR output.
+- **1.0:** Official SSR/Nuxt adapter module; broader service API surface beyond MessageBox stub; local `example/` SSR debug app.
 
 ### Theming & tokens
 

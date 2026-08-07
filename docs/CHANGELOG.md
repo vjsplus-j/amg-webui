@@ -4,6 +4,15 @@
 
 ---
 
+## 2026-08-07 — 一口气收口：码制进 industry · 成熟度 v3 · SSR 矩阵
+
+- Barcode / Qrcode / MatrixCode / OcrScan：物理层 + catalog + example zone 全部迁入 `industry`（**47**）；base **240**。
+- 成熟度启发式 v3：`curated-demo` / `docs-stub` / `industry-layer` / `symbology-util` / `v01-subset`；`validate:maturity` · `validate:v01` 入 CI；RELEASE Step 3 勾选。
+- 生产 SSR 矩阵：`ssr-render-matrix.spec.ts`（`renderToString` + MessageBox SSR stub）；`test:ssr` 入 CI；Nuxt consumer 真 SSR（无 ClientOnly Button）+ `.output` 断言。
+- Gallery / Catalog / DemoSafeHost 同时 glob `base` + `industry`。
+
+---
+
 ## 2026-08-07 — 剩余债一口气收口：PropPanel · E2E · CSS side-entry
 
 - PropPanel：显式 `fields` 时以独立属性编辑器渲染（不再误进「选中节点」空态）。
@@ -15,11 +24,9 @@
 
 ## 2026-08-07 — industry：catalog 行业件全部迁出 base
 
-
 - 一次性迁完剩余 **27** 件：`Vcr*` · `Video*` · `PTZControl` · `AudioTalk` · `SplitVideoWall` · `*404`。
-- `packages/components/industry/` 现 **43** 件 = catalog `industry` 全集；base **244** 纯 UI。
+- 当时 `industry` **43** 件；码制 4 件续迁见上条（现 **47**）。
 - demos / IndustryPage / 相关单测 / entry·exports·catalog 同步；kebab 路径稳定指向 `dist/es/components/industry/...`。
-- **未宣称完成**：行业件成熟度与深 E2E 仍不足；Barcode/Qrcode/MatrixCode 仍在 `other`（未归 industry）。
 
 ---
 

@@ -32,8 +32,8 @@ const dataRe =
 const fbNavLayRe =
   /Modal|Toast|Popconfirm|Popover|Mask|Notice|Exception|StatusTip|ProgressTip|LoadingTip|Confirm|Notification|Menu|Dropdown|Nav|Anchor|Pager|Layout|Header|Sider|Main|Footer|Row|Col|Space|Center|Container|CardGrid|Column|Block|Spacer|FixedLayout|FlowLayout|StackLayout|ScaleLayout|EmbedLayout|FormLayout|Result|Alert|Drawer/
 const thirdLowRe =
-  /Preview|Print|Excel|Pdf|VideoPreview|AudioPlay|Ocr|Crypto|Clipboard|Browser|DragCanvas|DragMaterial|Canvas|PropPanel|TemplateDrag|FreeLayout|GridLayout|DragVerify|CanvasIo|CanvasPreview|DragWrapper|DragRuler|DragSort|Qrcode|Barcode|FilePreview|ImageCrop/
-const industryRe = /404|Video|PTZ|AudioTalk|Onvif|Gbs|Vcr|SplitVideo/
+  /Preview|Print|Excel|Pdf|VideoPreview|AudioPlay|Crypto|Clipboard|Browser|DragCanvas|DragMaterial|Canvas|PropPanel|TemplateDrag|FreeLayout|GridLayout|DragVerify|CanvasIo|CanvasPreview|DragWrapper|DragRuler|DragSort|FilePreview|ImageCrop/
+const industryRe = /404|Video|PTZ|AudioTalk|Onvif|Gbs|Vcr|SplitVideo|Barcode|Qrcode|MatrixCode|OcrScan/
 
 function isMvp(vue) {
   // Only treat as MVP if it still matches the original generic scaffold pattern

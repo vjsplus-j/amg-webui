@@ -3,7 +3,14 @@
  * Requires `npm run build:lib` first.
  */
 import { spawnSync } from 'node:child_process'
-import { existsSync, mkdtempSync, readdirSync, rmSync, copyFileSync } from 'node:fs'
+import {
+  existsSync,
+  mkdtempSync,
+  readdirSync,
+  rmSync,
+  copyFileSync,
+  readFileSync
+} from 'node:fs'
 import { resolve, dirname, join } from 'node:path'
 import { tmpdir } from 'node:os'
 import { fileURLToPath } from 'node:url'
@@ -68,6 +75,45 @@ try {
     run('npm', ['install', '--no-fund', '--no-audit'], dir)
     run('npm', ['install', '--no-fund', '--no-audit', './amg-webui-packed.tgz'], dir)
     run('npm', ['run', 'build'], dir)
+
+    if (name === 'consumer-nuxt') {
+      // Nuxt SSR payload / nitro output must include true SSR Button markup
+      // (app.vue renders AmgButton outside ClientOnly).
+      const outDir = resolve(dir, '.output')
+      if (!existsSync(outDir)) {
+        console.error('[test:consumers] nuxt missing .output after build')
+        process.exit(1)
+      }
+      const haystack = []
+      const walk = (d) => {
+        for (const entry of readdirSync(d, { withFileTypes: true })) {
+          const p = join(d, entry.name)
+          if (entry.isDirectory()) walk(p)
+          else if (/\.(js|mjs|json|html)$/.test(entry.name)) {
+            try {
+              haystack.push(readFileSync(p, 'utf8'))
+            } catch {
+              /* ignore unreadable */
+            }
+          }
+        }
+      }
+      walk(outDir)
+      const blob = haystack.join('\n')
+      if (!blob.includes('amg-nuxt-ssr-matrix')) {
+        console.error(
+          '[test:consumers] nuxt SSR output missing ssr marker from app.vue'
+        )
+        process.exit(1)
+      }
+      if (!/vp-button|AmgButton|consumer-nuxt__btn/.test(blob)) {
+        console.error(
+          '[test:consumers] nuxt SSR output missing Button SSR footprint'
+        )
+        process.exit(1)
+      }
+      console.log('[test:consumers] nuxt SSR matrix marker + Button footprint OK')
+    }
   }
 
   console.log('\n[test:consumers] all fixtures built OK')

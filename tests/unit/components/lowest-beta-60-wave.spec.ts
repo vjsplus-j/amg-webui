@@ -3,7 +3,7 @@ import { mount } from "@vue/test-utils";
 import { afterEach, describe, expect, it } from "vitest";
 import DragMaterial from "../../../packages/components/base/DragMaterial/index.vue";
 import Loading from "../../../packages/components/base/Loading/index.vue";
-import OcrScan from "../../../packages/components/base/OcrScan/index.vue";
+import OcrScan from "../../../packages/components/industry/OcrScan/index.vue";
 import Rate from "../../../packages/components/base/Rate/index.vue";
 import StackLayout from "../../../packages/components/base/StackLayout/index.vue";
 import Waterfall from "../../../packages/components/base/Waterfall/index.vue";

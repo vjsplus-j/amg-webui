@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import {
-  Barcode,
   Card,
   CardGrid,
   InputText,
@@ -10,7 +9,7 @@ import {
   Tag,
   Typography
 } from '@amg-webui/components/base'
-import type { BarcodeFormat } from '@amg-webui/components/base/Barcode'
+import { Barcode, type BarcodeFormat } from '@amg-webui/components/industry/Barcode'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -71,7 +70,7 @@ const groups = computed(() => [
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Barcode } from '@amg-webui/components/base'`
+    `import { Barcode } from '@amg-webui/components/industry'`
   ],
   script: [
     `const format = ref('ean13')`,

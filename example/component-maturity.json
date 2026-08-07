@@ -1,13 +1,13 @@
 {
-  "version": 2,
-  "generatedAt": "2026-08-06T03:45:14.246Z",
+  "version": 3,
+  "generatedAt": "2026-08-07T01:00:04.785Z",
   "total": 287,
   "disclaimer": "total is directory inventory. Maturity is by capability tier + depth level. Not 1.0-ready.",
   "summary": {
     "stub": 0,
-    "shell": 56,
-    "beta": 199,
-    "ready": 32
+    "shell": 38,
+    "beta": 215,
+    "ready": 34
   },
   "byCapability": {
     "thin": 240,
@@ -32,12 +32,14 @@
     "AdvancedSearch": {
       "level": "shell",
       "capability": "thin",
-      "score": 64,
+      "score": 70,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate"
       ],
       "vueLines": 111,
@@ -49,7 +51,7 @@
     "Affix": {
       "level": "beta",
       "capability": "thin",
-      "score": 67,
+      "score": 76,
       "signals": [
         "emits",
         "composable",
@@ -57,6 +59,9 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 82,
@@ -68,13 +73,16 @@
     "Alert": {
       "level": "beta",
       "capability": "thin",
-      "score": 56,
+      "score": 65,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 61,
@@ -86,13 +94,15 @@
     "Anchor": {
       "level": "beta",
       "capability": "thin",
-      "score": 70,
+      "score": 76,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -105,12 +115,13 @@
     "AudioPlay": {
       "level": "beta",
       "capability": "thin",
-      "score": 60,
+      "score": 64,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -123,12 +134,14 @@
     "AudioTalk": {
       "level": "beta",
       "capability": "thin",
-      "score": 59,
+      "score": 65,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -141,17 +154,19 @@
     "AutoComplete": {
       "level": "ready",
       "capability": "composite",
-      "score": 75,
+      "score": 83,
       "signals": [
         "emits",
         "composable",
         "v-model",
         "handlers:5",
         "a11y",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset"
       ],
-      "vueLines": 110,
-      "styleLines": 84,
+      "vueLines": 127,
+      "styleLines": 81,
       "propCount": 6,
       "formIntegrated": false,
       "nativeAttrs": false
@@ -159,13 +174,15 @@
     "Avatar": {
       "level": "beta",
       "capability": "composite",
-      "score": 77,
+      "score": 83,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:2",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry"
       ],
@@ -178,13 +195,15 @@
     "AvatarGroup": {
       "level": "beta",
       "capability": "composite",
-      "score": 72,
+      "score": 78,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry"
       ],
@@ -197,13 +216,15 @@
     "BackTop": {
       "level": "beta",
       "capability": "thin",
-      "score": 57,
+      "score": 63,
       "signals": [
         "emits",
         "composable",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -216,13 +237,15 @@
     "Badge": {
       "level": "beta",
       "capability": "composite",
-      "score": 75,
+      "score": 81,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry"
       ],
@@ -235,7 +258,7 @@
     "BarChart": {
       "level": "ready",
       "capability": "composite",
-      "score": 80,
+      "score": 84,
       "signals": [
         "emits",
         "composable",
@@ -243,7 +266,8 @@
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "curated-demo"
       ],
       "vueLines": 100,
       "styleLines": 75,
@@ -254,7 +278,7 @@
     "Barcode": {
       "level": "beta",
       "capability": "thin",
-      "score": 69,
+      "score": 81,
       "signals": [
         "emits",
         "v-model",
@@ -262,6 +286,9 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
+        "symbology-util",
         "thin-cap:no-ready"
       ],
       "vueLines": 100,
@@ -273,11 +300,12 @@
     "BatchPanel": {
       "level": "shell",
       "capability": "thin",
-      "score": 53,
+      "score": 57,
       "signals": [
         "emits",
         "handlers:1",
         "tokens",
+        "curated-demo",
         "delegate",
         "telemetry"
       ],
@@ -290,12 +318,13 @@
     "BatchUpload": {
       "level": "shell",
       "capability": "thin",
-      "score": 65,
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "tokens",
+        "curated-demo",
         "delegate"
       ],
       "vueLines": 145,
@@ -307,9 +336,11 @@
     "Block": {
       "level": "shell",
       "capability": "thin",
-      "score": 47,
+      "score": 53,
       "signals": [
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset"
       ],
       "vueLines": 119,
       "styleLines": 101,
@@ -320,13 +351,15 @@
     "Breadcrumb": {
       "level": "beta",
       "capability": "composite",
-      "score": 66,
+      "score": 72,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry"
       ],
@@ -358,13 +391,14 @@
     "BrowserDetect": {
       "level": "beta",
       "capability": "thin",
-      "score": 63,
+      "score": 67,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -377,7 +411,7 @@
     "Business404": {
       "level": "beta",
       "capability": "thin",
-      "score": 73,
+      "score": 79,
       "signals": [
         "emits",
         "v-model",
@@ -385,6 +419,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 95,
@@ -405,6 +441,9 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "delegate",
         "telemetry",
         "permission",
@@ -418,14 +457,17 @@
       "nativeAttrs": false
     },
     "ButtonGroup": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 35,
+      "score": 63,
       "signals": [
         "provide-inject",
         "a11y",
         "tokens",
-        "slot-shell"
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
+        "thin-cap:no-ready"
       ],
       "vueLines": 92,
       "styleLines": 149,
@@ -436,7 +478,7 @@
     "Calendar": {
       "level": "beta",
       "capability": "thin",
-      "score": 88,
+      "score": 94,
       "signals": [
         "emits",
         "v-model",
@@ -444,6 +486,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -457,13 +501,14 @@
     "CanvasIo": {
       "level": "beta",
       "capability": "thin",
-      "score": 58,
+      "score": 62,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 98,
@@ -475,12 +520,13 @@
     "CanvasLayer": {
       "level": "beta",
       "capability": "thin",
-      "score": 55,
+      "score": 59,
       "signals": [
         "emits",
         "handlers:5",
         "a11y",
         "tokens",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 104,
@@ -492,12 +538,13 @@
     "CanvasNode": {
       "level": "beta",
       "capability": "thin",
-      "score": 61,
+      "score": 65,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -510,7 +557,7 @@
     "CanvasPreview": {
       "level": "beta",
       "capability": "thin",
-      "score": 80,
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
@@ -518,6 +565,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -530,12 +578,13 @@
     "CanvasShortcut": {
       "level": "beta",
       "capability": "thin",
-      "score": 68,
+      "score": 72,
       "signals": [
         "emits",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -548,12 +597,14 @@
     "Card": {
       "level": "beta",
       "capability": "thin",
-      "score": 71,
+      "score": 77,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -567,13 +618,15 @@
     "CardGrid": {
       "level": "beta",
       "capability": "thin",
-      "score": 64,
+      "score": 70,
       "signals": [
         "emits",
         "composable",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 59,
@@ -585,12 +638,13 @@
     "CardList": {
       "level": "shell",
       "capability": "thin",
-      "score": 55,
+      "score": 59,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
-        "tokens"
+        "tokens",
+        "curated-demo"
       ],
       "vueLines": 103,
       "styleLines": 49,
@@ -601,13 +655,14 @@
     "CardNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 60,
+      "score": 64,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 66,
@@ -619,12 +674,14 @@
     "CardWidgets": {
       "level": "beta",
       "capability": "thin",
-      "score": 68,
+      "score": 74,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -638,13 +695,15 @@
     "Carousel": {
       "level": "beta",
       "capability": "thin",
-      "score": 67,
+      "score": 73,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 172,
@@ -656,7 +715,7 @@
     "Cartoon404": {
       "level": "beta",
       "capability": "thin",
-      "score": 73,
+      "score": 79,
       "signals": [
         "emits",
         "v-model",
@@ -664,6 +723,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 91,
@@ -675,18 +736,20 @@
     "Cascader": {
       "level": "ready",
       "capability": "form",
-      "score": 84,
+      "score": 90,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "form-item",
         "native-attrs"
       ],
-      "vueLines": 147,
-      "styleLines": 112,
+      "vueLines": 149,
+      "styleLines": 108,
       "propCount": 5,
       "formIntegrated": true,
       "nativeAttrs": true
@@ -694,13 +757,14 @@
     "CategoryNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 67,
+      "score": 71,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -711,13 +775,16 @@
       "nativeAttrs": false
     },
     "Center": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 53,
+      "score": 59,
       "signals": [
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "curated-demo",
+        "v01-subset",
+        "thin-cap:no-ready"
       ],
       "vueLines": 76,
       "styleLines": 135,
@@ -737,6 +804,9 @@
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "form-item",
         "native-attrs",
         "telemetry"
@@ -750,7 +820,7 @@
     "CheckboxGroup": {
       "level": "beta",
       "capability": "thin",
-      "score": 72,
+      "score": 78,
       "signals": [
         "emits",
         "composable",
@@ -758,6 +828,8 @@
         "v-model",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -770,12 +842,13 @@
     "ChunkUpload": {
       "level": "shell",
       "capability": "thin",
-      "score": 65,
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "tokens",
+        "curated-demo",
         "delegate"
       ],
       "vueLines": 157,
@@ -785,15 +858,17 @@
       "nativeAttrs": false
     },
     "Clipboard": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 54,
+      "score": 58,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "thin-cap:no-ready"
       ],
       "vueLines": 82,
       "styleLines": 54,
@@ -804,13 +879,14 @@
     "CodeEditor": {
       "level": "beta",
       "capability": "thin",
-      "score": 66,
+      "score": 70,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -823,12 +899,14 @@
     "Col": {
       "level": "shell",
       "capability": "thin",
-      "score": 55,
+      "score": 61,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "behavior-test"
+        "behavior-test",
+        "curated-demo",
+        "v01-subset"
       ],
       "vueLines": 92,
       "styleLines": 30,
@@ -839,13 +917,15 @@
     "Collapse": {
       "level": "beta",
       "capability": "thin",
-      "score": 73,
+      "score": 79,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -859,13 +939,15 @@
     "ColorInput": {
       "level": "beta",
       "capability": "thin",
-      "score": 69,
+      "score": 75,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -879,31 +961,35 @@
     "ColorPicker": {
       "level": "ready",
       "capability": "form",
-      "score": 84,
+      "score": 90,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "form-item",
         "native-attrs"
       ],
-      "vueLines": 122,
-      "styleLines": 108,
+      "vueLines": 129,
+      "styleLines": 105,
       "propCount": 4,
       "formIntegrated": true,
       "nativeAttrs": true
     },
     "ColumnLayout": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 53,
+      "score": 57,
       "signals": [
         "emits",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "curated-demo",
+        "thin-cap:no-ready"
       ],
       "vueLines": 72,
       "styleLines": 35,
@@ -912,17 +998,20 @@
       "nativeAttrs": false
     },
     "ConfigProvider": {
-      "level": "beta",
+      "level": "ready",
       "capability": "composite",
-      "score": 72,
+      "score": 81,
       "signals": [
         "emits",
         "composable",
         "provide-inject",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset"
       ],
-      "vueLines": 182,
+      "vueLines": 191,
       "styleLines": 37,
       "propCount": 23,
       "formIntegrated": false,
@@ -931,16 +1020,18 @@
     "Confirm": {
       "level": "beta",
       "capability": "thin",
-      "score": 71,
+      "score": 77,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
-      "vueLines": 175,
+      "vueLines": 178,
       "styleLines": 195,
       "propCount": 8,
       "formIntegrated": false,
@@ -949,12 +1040,14 @@
     "ConfirmDialog": {
       "level": "beta",
       "capability": "thin",
-      "score": 69,
+      "score": 75,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -967,12 +1060,14 @@
     "Container": {
       "level": "beta",
       "capability": "thin",
-      "score": 57,
+      "score": 63,
       "signals": [
         "emits",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 70,
@@ -984,13 +1079,15 @@
     "ContextMenu": {
       "level": "beta",
       "capability": "thin",
-      "score": 65,
+      "score": 71,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1003,12 +1100,14 @@
     "CopyText": {
       "level": "beta",
       "capability": "thin",
-      "score": 68,
+      "score": 74,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -1022,7 +1121,7 @@
     "Countdown": {
       "level": "beta",
       "capability": "thin",
-      "score": 73,
+      "score": 79,
       "signals": [
         "emits",
         "v-model",
@@ -1030,6 +1129,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 159,
@@ -1041,13 +1142,14 @@
     "CryptoBox": {
       "level": "beta",
       "capability": "thin",
-      "score": 65,
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "handlers:5",
         "a11y",
         "tokens",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 118,
@@ -1059,11 +1161,12 @@
     "Dashboard": {
       "level": "shell",
       "capability": "thin",
-      "score": 60,
+      "score": 64,
       "signals": [
         "emits",
         "handlers:2",
         "tokens",
+        "curated-demo",
         "delegate",
         "telemetry"
       ],
@@ -1076,13 +1179,14 @@
     "DataCard": {
       "level": "beta",
       "capability": "thin",
-      "score": 77,
+      "score": 81,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -1096,13 +1200,16 @@
     "DataTable": {
       "level": "beta",
       "capability": "thin",
-      "score": 79,
+      "score": 88,
       "signals": [
         "emits",
         "handlers:10",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1115,18 +1222,21 @@
     "DatePicker": {
       "level": "ready",
       "capability": "form",
-      "score": 86,
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
         "handlers:5",
         "a11y",
         "tokens",
+        "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "form-item",
         "native-attrs"
       ],
-      "vueLines": 181,
-      "styleLines": 244,
+      "vueLines": 188,
+      "styleLines": 241,
       "propCount": 5,
       "formIntegrated": true,
       "nativeAttrs": true
@@ -1134,29 +1244,34 @@
     "DateTimePicker": {
       "level": "beta",
       "capability": "form",
-      "score": 73,
+      "score": 79,
       "signals": [
         "emits",
         "v-model",
         "handlers:8",
         "a11y",
+        "curated-demo",
+        "v01-subset",
         "form-item",
         "native-attrs"
       ],
-      "vueLines": 284,
+      "vueLines": 291,
       "styleLines": 2,
       "propCount": 6,
       "formIntegrated": true,
       "nativeAttrs": true
     },
     "Descriptions": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 50,
+      "score": 56,
       "signals": [
         "provide-inject",
         "a11y",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset",
+        "thin-cap:no-ready"
       ],
       "vueLines": 119,
       "styleLines": 41,
@@ -1165,15 +1280,16 @@
       "nativeAttrs": false
     },
     "DescriptionsItem": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 35,
+      "score": 58,
       "signals": [
         "provide-inject",
         "a11y",
         "tokens",
         "behavior-test",
-        "sub-primitive"
+        "curated-demo",
+        "thin-cap:no-ready"
       ],
       "vueLines": 72,
       "styleLines": 56,
@@ -1184,12 +1300,13 @@
     "DetailPanel": {
       "level": "beta",
       "capability": "thin",
-      "score": 64,
+      "score": 68,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -1202,17 +1319,20 @@
     "Dialog": {
       "level": "beta",
       "capability": "thin",
-      "score": 73,
+      "score": 82,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
-      "vueLines": 216,
+      "vueLines": 214,
       "styleLines": 188,
       "propCount": 11,
       "formIntegrated": false,
@@ -1221,11 +1341,14 @@
     "Divider": {
       "level": "beta",
       "capability": "thin",
-      "score": 57,
+      "score": 66,
       "signals": [
         "composable",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 96,
@@ -1237,7 +1360,7 @@
     "Doodle404": {
       "level": "beta",
       "capability": "thin",
-      "score": 72,
+      "score": 78,
       "signals": [
         "emits",
         "v-model",
@@ -1245,6 +1368,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 89,
@@ -1256,11 +1381,12 @@
     "DragCanvas": {
       "level": "shell",
       "capability": "thin",
-      "score": 58,
+      "score": 62,
       "signals": [
         "emits",
         "v-model",
         "tokens",
+        "curated-demo",
         "delegate"
       ],
       "vueLines": 122,
@@ -1272,13 +1398,14 @@
     "DragMaterial": {
       "level": "beta",
       "capability": "thin",
-      "score": 75,
+      "score": 79,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1291,12 +1418,13 @@
     "DragRuler": {
       "level": "beta",
       "capability": "thin",
-      "score": 58,
+      "score": 62,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1309,13 +1437,15 @@
     "DragSelect": {
       "level": "beta",
       "capability": "thin",
-      "score": 71,
+      "score": 77,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -1329,7 +1459,7 @@
     "DragSortNode": {
       "level": "beta",
       "capability": "thin",
-      "score": 82,
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
@@ -1337,6 +1467,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1349,7 +1480,7 @@
     "DragVerify": {
       "level": "beta",
       "capability": "thin",
-      "score": 74,
+      "score": 78,
       "signals": [
         "emits",
         "v-model",
@@ -1357,6 +1488,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 139,
@@ -1368,12 +1500,13 @@
     "DragWrapper": {
       "level": "beta",
       "capability": "thin",
-      "score": 64,
+      "score": 68,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1386,18 +1519,20 @@
     "Drawer": {
       "level": "beta",
       "capability": "thin",
-      "score": 81,
+      "score": 85,
       "signals": [
         "emits",
-        "handlers:3",
+        "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 189,
+      "vueLines": 191,
       "styleLines": 151,
       "propCount": 20,
       "formIntegrated": false,
@@ -1406,11 +1541,12 @@
     "DrillTable": {
       "level": "shell",
       "capability": "thin",
-      "score": 55,
+      "score": 59,
       "signals": [
         "emits",
         "handlers:3",
-        "tokens"
+        "tokens",
+        "curated-demo"
       ],
       "vueLines": 154,
       "styleLines": 49,
@@ -1421,17 +1557,20 @@
     "Dropdown": {
       "level": "beta",
       "capability": "thin",
-      "score": 72,
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
         "tokens",
+        "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
-      "vueLines": 360,
+      "vueLines": 340,
       "styleLines": 151,
       "propCount": 5,
       "formIntegrated": false,
@@ -1440,12 +1579,13 @@
     "DynamicForm": {
       "level": "shell",
       "capability": "thin",
-      "score": 57,
+      "score": 61,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "tokens",
+        "curated-demo",
         "delegate"
       ],
       "vueLines": 132,
@@ -1457,11 +1597,13 @@
     "EditTable": {
       "level": "shell",
       "capability": "thin",
-      "score": 55,
+      "score": 61,
       "signals": [
         "emits",
         "handlers:3",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset"
       ],
       "vueLines": 138,
       "styleLines": 49,
@@ -1472,12 +1614,13 @@
     "EditTree": {
       "level": "shell",
       "capability": "thin",
-      "score": 62,
+      "score": 66,
       "signals": [
         "emits",
         "v-model",
         "handlers:8",
-        "tokens"
+        "tokens",
+        "curated-demo"
       ],
       "vueLines": 153,
       "styleLines": 49,
@@ -1488,11 +1631,14 @@
     "Ellipsis": {
       "level": "beta",
       "capability": "thin",
-      "score": 60,
+      "score": 69,
       "signals": [
         "emits",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -1506,13 +1652,15 @@
     "EmbedLayout": {
       "level": "beta",
       "capability": "thin",
-      "score": 67,
+      "score": 73,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1525,11 +1673,14 @@
     "Empty": {
       "level": "beta",
       "capability": "thin",
-      "score": 60,
+      "score": 69,
       "signals": [
         "emits",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1542,10 +1693,11 @@
     "ErrorModal": {
       "level": "shell",
       "capability": "thin",
-      "score": 21,
+      "score": 25,
       "signals": [
         "emits",
         "behavior-test",
+        "curated-demo",
         "thin"
       ],
       "vueLines": 30,
@@ -1557,12 +1709,13 @@
     "ExcelIo": {
       "level": "beta",
       "capability": "thin",
-      "score": 69,
+      "score": 73,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1575,13 +1728,15 @@
     "Exception": {
       "level": "beta",
       "capability": "thin",
-      "score": 78,
+      "score": 84,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -1595,12 +1750,13 @@
     "FilePreview": {
       "level": "beta",
       "capability": "thin",
-      "score": 55,
+      "score": 59,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1613,12 +1769,14 @@
     "FilterBar": {
       "level": "shell",
       "capability": "thin",
-      "score": 64,
+      "score": 70,
       "signals": [
         "emits",
         "v-model",
         "handlers:5",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate"
       ],
       "vueLines": 125,
@@ -1630,12 +1788,14 @@
     "FixedLayout": {
       "level": "beta",
       "capability": "thin",
-      "score": 59,
+      "score": 65,
       "signals": [
         "emits",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 149,
@@ -1647,12 +1807,14 @@
     "FloatButton": {
       "level": "beta",
       "capability": "thin",
-      "score": 64,
+      "score": 70,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1665,12 +1827,14 @@
     "FloatNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 67,
+      "score": 73,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -1683,11 +1847,13 @@
     "FlowLayout": {
       "level": "beta",
       "capability": "thin",
-      "score": 55,
+      "score": 61,
       "signals": [
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 85,
@@ -1699,12 +1865,13 @@
     "FlowPanel": {
       "level": "beta",
       "capability": "thin",
-      "score": 69,
+      "score": 73,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -1718,13 +1885,14 @@
     "FolderTree": {
       "level": "beta",
       "capability": "thin",
-      "score": 67,
+      "score": 71,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 126,
@@ -1734,14 +1902,17 @@
       "nativeAttrs": false
     },
     "Footer": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 50,
+      "score": 56,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset",
+        "thin-cap:no-ready"
       ],
       "vueLines": 72,
       "styleLines": 100,
@@ -1752,13 +1923,14 @@
     "FooterNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 66,
+      "score": 70,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -1771,7 +1943,7 @@
     "Form": {
       "level": "ready",
       "capability": "composite",
-      "score": 75,
+      "score": 84,
       "signals": [
         "emits",
         "composable",
@@ -1779,6 +1951,9 @@
         "handlers:1",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "telemetry"
       ],
       "vueLines": 141,
@@ -1790,12 +1965,14 @@
     "FormGroup": {
       "level": "beta",
       "capability": "thin",
-      "score": 64,
+      "score": 70,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -1809,7 +1986,7 @@
     "FormItem": {
       "level": "ready",
       "capability": "composite",
-      "score": 90,
+      "score": 96,
       "signals": [
         "emits",
         "composable",
@@ -1817,6 +1994,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "form-item",
         "native-attrs"
       ],
@@ -1827,14 +2006,17 @@
       "nativeAttrs": true
     },
     "FormLayout": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 54,
+      "score": 60,
       "signals": [
         "emits",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "curated-demo",
+        "v01-subset",
+        "thin-cap:no-ready"
       ],
       "vueLines": 67,
       "styleLines": 157,
@@ -1845,12 +2027,14 @@
     "FormTabs": {
       "level": "beta",
       "capability": "thin",
-      "score": 63,
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -1864,7 +2048,7 @@
     "FreeLayoutDrag": {
       "level": "beta",
       "capability": "thin",
-      "score": 78,
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
@@ -1872,6 +2056,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1884,7 +2069,7 @@
     "GaugeChart": {
       "level": "beta",
       "capability": "thin",
-      "score": 79,
+      "score": 83,
       "signals": [
         "emits",
         "composable",
@@ -1893,6 +2078,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 95,
@@ -1904,13 +2090,15 @@
     "GbsAlarmModal": {
       "level": "beta",
       "capability": "thin",
-      "score": 79,
+      "score": 85,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1923,12 +2111,14 @@
     "GbsCascadePanel": {
       "level": "beta",
       "capability": "thin",
-      "score": 61,
+      "score": 67,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1941,13 +2131,15 @@
     "GbsDeviceTree": {
       "level": "beta",
       "capability": "thin",
-      "score": 76,
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -1960,13 +2152,15 @@
     "GbsGatewayForm": {
       "level": "beta",
       "capability": "thin",
-      "score": 63,
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "handlers:6",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 161,
@@ -1978,13 +2172,15 @@
     "GbsRegisterForm": {
       "level": "beta",
       "capability": "thin",
-      "score": 63,
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "handlers:5",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 150,
@@ -1996,13 +2192,15 @@
     "GbsSignMonitor": {
       "level": "beta",
       "capability": "thin",
-      "score": 79,
+      "score": 85,
       "signals": [
         "emits",
         "handlers:5",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2015,12 +2213,15 @@
     "GbsStatusCard": {
       "level": "beta",
       "capability": "thin",
-      "score": 56,
+      "score": 70,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
+        "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2033,12 +2234,14 @@
     "GbsTimeSync": {
       "level": "beta",
       "capability": "thin",
-      "score": 59,
+      "score": 65,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2051,7 +2254,7 @@
     "GraphChart": {
       "level": "beta",
       "capability": "thin",
-      "score": 69,
+      "score": 73,
       "signals": [
         "emits",
         "v-model",
@@ -2059,6 +2262,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 92,
@@ -2070,12 +2274,13 @@
     "GridLayoutDrag": {
       "level": "beta",
       "capability": "thin",
-      "score": 58,
+      "score": 62,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2086,15 +2291,17 @@
       "nativeAttrs": false
     },
     "GroupNav": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 53,
+      "score": 57,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "thin-cap:no-ready"
       ],
       "vueLines": 60,
       "styleLines": 68,
@@ -2105,11 +2312,13 @@
     "Header": {
       "level": "beta",
       "capability": "thin",
-      "score": 55,
+      "score": 61,
       "signals": [
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 86,
@@ -2121,7 +2330,7 @@
     "HeatMap": {
       "level": "ready",
       "capability": "composite",
-      "score": 81,
+      "score": 85,
       "signals": [
         "emits",
         "composable",
@@ -2129,7 +2338,8 @@
         "handlers:2",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "curated-demo"
       ],
       "vueLines": 102,
       "styleLines": 73,
@@ -2140,11 +2350,14 @@
     "Highlight": {
       "level": "beta",
       "capability": "thin",
-      "score": 56,
+      "score": 65,
       "signals": [
         "emits",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 104,
@@ -2156,14 +2369,17 @@
     "Icon": {
       "level": "ready",
       "capability": "composite",
-      "score": 83,
+      "score": 92,
       "signals": [
         "emits",
         "composable",
         "handlers:4",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset"
       ],
       "vueLines": 223,
       "styleLines": 98,
@@ -2174,11 +2390,14 @@
     "Image": {
       "level": "shell",
       "capability": "thin",
-      "score": 62,
+      "score": 71,
       "signals": [
         "emits",
         "handlers:1",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "delegate",
         "telemetry"
       ],
@@ -2191,11 +2410,12 @@
     "ImageCrop": {
       "level": "shell",
       "capability": "thin",
-      "score": 50,
+      "score": 54,
       "signals": [
         "emits",
         "handlers:2",
-        "tokens"
+        "tokens",
+        "curated-demo"
       ],
       "vueLines": 137,
       "styleLines": 58,
@@ -2206,12 +2426,13 @@
     "ImageGroup": {
       "level": "beta",
       "capability": "thin",
-      "score": 62,
+      "score": 66,
       "signals": [
         "emits",
         "handlers:5",
         "a11y",
         "tokens",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 125,
@@ -2223,12 +2444,14 @@
     "ImageUpload": {
       "level": "shell",
       "capability": "thin",
-      "score": 57,
+      "score": 63,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate"
       ],
       "vueLines": 92,
@@ -2240,12 +2463,14 @@
     "ImageViewer": {
       "level": "beta",
       "capability": "thin",
-      "score": 71,
+      "score": 77,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -2258,13 +2483,14 @@
     "IndexNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 66,
+      "score": 70,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 95,
@@ -2276,12 +2502,14 @@
     "InfiniteScroll": {
       "level": "beta",
       "capability": "composite",
-      "score": 53,
+      "score": 59,
       "signals": [
         "emits",
         "composable",
         "a11y",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset"
       ],
       "vueLines": 101,
       "styleLines": 23,
@@ -2292,9 +2520,10 @@
     "InfoModal": {
       "level": "shell",
       "capability": "thin",
-      "score": 12,
+      "score": 16,
       "signals": [
         "emits",
+        "curated-demo",
         "thin"
       ],
       "vueLines": 28,
@@ -2306,7 +2535,7 @@
     "Ink404": {
       "level": "beta",
       "capability": "thin",
-      "score": 71,
+      "score": 77,
       "signals": [
         "emits",
         "v-model",
@@ -2314,6 +2543,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2326,7 +2557,7 @@
     "InputCaptcha": {
       "level": "ready",
       "capability": "form",
-      "score": 87,
+      "score": 91,
       "signals": [
         "emits",
         "v-model",
@@ -2334,6 +2565,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "form-item"
       ],
@@ -2355,6 +2587,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "form-item",
         "native-attrs",
@@ -2369,13 +2603,15 @@
     "InputOTP": {
       "level": "ready",
       "capability": "form",
-      "score": 86,
+      "score": 92,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "form-item",
         "telemetry"
       ],
@@ -2397,6 +2633,9 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "form-item",
         "native-attrs",
         "telemetry"
@@ -2408,14 +2647,18 @@
       "nativeAttrs": true
     },
     "Layout": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 54,
+      "score": 63,
       "signals": [
         "provide-inject",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
+        "thin-cap:no-ready"
       ],
       "vueLines": 64,
       "styleLines": 80,
@@ -2426,7 +2669,7 @@
     "LazyTree": {
       "level": "beta",
       "capability": "thin",
-      "score": 70,
+      "score": 76,
       "signals": [
         "emits",
         "v-model",
@@ -2434,6 +2677,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -2446,7 +2691,7 @@
     "LineChart": {
       "level": "beta",
       "capability": "thin",
-      "score": 78,
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
@@ -2454,6 +2699,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2466,13 +2712,15 @@
     "Link": {
       "level": "ready",
       "capability": "interaction",
-      "score": 93,
+      "score": 99,
       "signals": [
         "emits",
         "composable",
         "handlers:7",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "permission",
@@ -2487,13 +2735,15 @@
     "Loading": {
       "level": "beta",
       "capability": "thin",
-      "score": 73,
+      "score": 79,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2506,13 +2756,14 @@
     "LoadingTip": {
       "level": "beta",
       "capability": "thin",
-      "score": 73,
+      "score": 77,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2525,13 +2776,14 @@
     "LoginPanel": {
       "level": "beta",
       "capability": "thin",
-      "score": 77,
+      "score": 81,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -2545,13 +2797,15 @@
     "Machine404": {
       "level": "beta",
       "capability": "thin",
-      "score": 67,
+      "score": 73,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 85,
@@ -2561,15 +2815,18 @@
       "nativeAttrs": false
     },
     "Main": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 54,
+      "score": 60,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "curated-demo",
+        "v01-subset",
+        "thin-cap:no-ready"
       ],
       "vueLines": 79,
       "styleLines": 38,
@@ -2580,16 +2837,18 @@
     "Mask": {
       "level": "beta",
       "capability": "thin",
-      "score": 66,
+      "score": 70,
       "signals": [
         "emits",
-        "handlers:2",
+        "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 123,
+      "vueLines": 125,
       "styleLines": 57,
       "propCount": 15,
       "formIntegrated": false,
@@ -2598,7 +2857,7 @@
     "MatrixCode": {
       "level": "beta",
       "capability": "thin",
-      "score": 70,
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
@@ -2606,6 +2865,9 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
+        "symbology-util",
         "thin-cap:no-ready"
       ],
       "vueLines": 98,
@@ -2617,13 +2879,14 @@
     "MdEditor": {
       "level": "beta",
       "capability": "thin",
-      "score": 60,
+      "score": 64,
       "signals": [
         "emits",
         "v-model",
         "handlers:8",
         "a11y",
         "tokens",
+        "curated-demo",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -2636,19 +2899,21 @@
     "Mention": {
       "level": "ready",
       "capability": "form",
-      "score": 94,
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "form-item",
         "native-attrs",
         "telemetry"
       ],
-      "vueLines": 259,
-      "styleLines": 114,
+      "vueLines": 265,
+      "styleLines": 110,
       "propCount": 8,
       "formIntegrated": true,
       "nativeAttrs": true
@@ -2656,7 +2921,7 @@
     "Menu": {
       "level": "beta",
       "capability": "thin",
-      "score": 88,
+      "score": 97,
       "signals": [
         "emits",
         "v-model",
@@ -2664,6 +2929,9 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -2677,13 +2945,15 @@
     "MenuBar": {
       "level": "beta",
       "capability": "thin",
-      "score": 63,
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -2697,7 +2967,7 @@
     "MergeTable": {
       "level": "beta",
       "capability": "thin",
-      "score": 80,
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
@@ -2705,6 +2975,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2717,13 +2988,15 @@
     "Message": {
       "level": "beta",
       "capability": "thin",
-      "score": 79,
+      "score": 85,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -2737,17 +3010,20 @@
     "MessageBox": {
       "level": "beta",
       "capability": "thin",
-      "score": 69,
+      "score": 78,
       "signals": [
         "emits",
-        "handlers:4",
+        "handlers:5",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 370,
+      "vueLines": 364,
       "styleLines": 246,
       "propCount": 4,
       "formIntegrated": false,
@@ -2756,13 +3032,14 @@
     "MiniNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 62,
+      "score": 66,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -2775,7 +3052,7 @@
     "MonthPicker": {
       "level": "beta",
       "capability": "thin",
-      "score": 80,
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
@@ -2783,10 +3060,12 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 234,
+      "vueLines": 237,
       "styleLines": 40,
       "propCount": 8,
       "formIntegrated": false,
@@ -2795,7 +3074,7 @@
     "NoticeBar": {
       "level": "beta",
       "capability": "thin",
-      "score": 84,
+      "score": 90,
       "signals": [
         "emits",
         "v-model",
@@ -2803,6 +3082,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -2816,10 +3097,12 @@
     "Notification": {
       "level": "shell",
       "capability": "thin",
-      "score": 16,
+      "score": 22,
       "signals": [
         "emits",
         "handlers:1",
+        "curated-demo",
+        "v01-subset",
         "thin"
       ],
       "vueLines": 41,
@@ -2831,7 +3114,7 @@
     "OcrScan": {
       "level": "beta",
       "capability": "thin",
-      "score": 82,
+      "score": 88,
       "signals": [
         "emits",
         "v-model",
@@ -2839,6 +3122,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2851,12 +3136,14 @@
     "OnvifAlarmPanel": {
       "level": "beta",
       "capability": "thin",
-      "score": 55,
+      "score": 61,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2869,12 +3156,14 @@
     "OnvifChannelManage": {
       "level": "beta",
       "capability": "thin",
-      "score": 55,
+      "score": 61,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2887,12 +3176,14 @@
     "OnvifDeviceList": {
       "level": "beta",
       "capability": "thin",
-      "score": 57,
+      "score": 63,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2905,13 +3196,15 @@
     "OnvifGroupTree": {
       "level": "beta",
       "capability": "thin",
-      "score": 76,
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2924,12 +3217,14 @@
     "OnvifRecordPlan": {
       "level": "beta",
       "capability": "thin",
-      "score": 56,
+      "score": 62,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2942,12 +3237,14 @@
     "OnvifSearch": {
       "level": "beta",
       "capability": "thin",
-      "score": 61,
+      "score": 67,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 119,
@@ -2959,13 +3256,15 @@
     "OnvifSettingPanel": {
       "level": "beta",
       "capability": "thin",
-      "score": 63,
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2978,13 +3277,15 @@
     "OnvifUrlForm": {
       "level": "beta",
       "capability": "thin",
-      "score": 59,
+      "score": 65,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -2997,7 +3298,7 @@
     "PTZControl": {
       "level": "beta",
       "capability": "thin",
-      "score": 80,
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
@@ -3005,6 +3306,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 137,
@@ -3014,15 +3317,18 @@
       "nativeAttrs": false
     },
     "PageHeader": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 50,
+      "score": 56,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
-        "delegate"
+        "curated-demo",
+        "v01-subset",
+        "delegate",
+        "thin-cap:no-ready"
       ],
       "vueLines": 71,
       "styleLines": 107,
@@ -3033,13 +3339,14 @@
     "PagerNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 71,
+      "score": 75,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -3053,13 +3360,16 @@
     "Pagination": {
       "level": "beta",
       "capability": "thin",
-      "score": 71,
+      "score": 80,
       "signals": [
         "emits",
         "composable",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -3080,6 +3390,8 @@
         "handlers:5",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "form-item",
         "native-attrs",
         "telemetry"
@@ -3091,15 +3403,17 @@
       "nativeAttrs": true
     },
     "PdfPreview": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 54,
+      "score": 58,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
-        "telemetry"
+        "curated-demo",
+        "telemetry",
+        "thin-cap:no-ready"
       ],
       "vueLines": 64,
       "styleLines": 371,
@@ -3110,13 +3424,14 @@
     "PermissionPanel": {
       "level": "beta",
       "capability": "thin",
-      "score": 73,
+      "score": 77,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
         "delegate",
         "permission",
         "thin-cap:no-ready"
@@ -3130,7 +3445,7 @@
     "PieChart": {
       "level": "beta",
       "capability": "thin",
-      "score": 82,
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
@@ -3138,6 +3453,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -3150,7 +3466,7 @@
     "PivotTable": {
       "level": "beta",
       "capability": "thin",
-      "score": 80,
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
@@ -3158,6 +3474,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -3170,13 +3487,15 @@
     "Pixel404": {
       "level": "beta",
       "capability": "thin",
-      "score": 68,
+      "score": 74,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 95,
@@ -3188,13 +3507,15 @@
     "Plant404": {
       "level": "beta",
       "capability": "thin",
-      "score": 67,
+      "score": 73,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 85,
@@ -3206,18 +3527,20 @@
     "Popconfirm": {
       "level": "ready",
       "capability": "interaction",
-      "score": 89,
+      "score": 95,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "confirm"
       ],
-      "vueLines": 307,
+      "vueLines": 294,
       "styleLines": 96,
       "propCount": 20,
       "formIntegrated": false,
@@ -3226,18 +3549,20 @@
     "Popover": {
       "level": "beta",
       "capability": "thin",
-      "score": 81,
+      "score": 87,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 238,
+      "vueLines": 228,
       "styleLines": 123,
       "propCount": 16,
       "formIntegrated": false,
@@ -3246,7 +3571,7 @@
     "Preview": {
       "level": "beta",
       "capability": "thin",
-      "score": 80,
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
@@ -3254,6 +3579,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 207,
@@ -3265,7 +3591,7 @@
     "Print": {
       "level": "beta",
       "capability": "thin",
-      "score": 67,
+      "score": 71,
       "signals": [
         "emits",
         "v-model",
@@ -3273,6 +3599,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 90,
@@ -3284,12 +3611,14 @@
     "ProTable": {
       "level": "shell",
       "capability": "thin",
-      "score": 62,
+      "score": 68,
       "signals": [
         "emits",
         "v-model",
         "handlers:6",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset"
       ],
       "vueLines": 228,
       "styleLines": 49,
@@ -3300,11 +3629,13 @@
     "Progress": {
       "level": "beta",
       "capability": "thin",
-      "score": 59,
+      "score": 65,
       "signals": [
         "emits",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -3317,7 +3648,7 @@
     "ProgressTip": {
       "level": "beta",
       "capability": "thin",
-      "score": 88,
+      "score": 92,
       "signals": [
         "emits",
         "v-model",
@@ -3325,6 +3656,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -3338,7 +3670,7 @@
     "PropPanel": {
       "level": "beta",
       "capability": "thin",
-      "score": 80,
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
@@ -3346,10 +3678,11 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 192,
+      "vueLines": 195,
       "styleLines": 56,
       "propCount": 6,
       "formIntegrated": false,
@@ -3358,7 +3691,7 @@
     "Qrcode": {
       "level": "beta",
       "capability": "thin",
-      "score": 70,
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
@@ -3366,6 +3699,10 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
+        "symbology-util",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 99,
@@ -3377,12 +3714,14 @@
     "QuarterPicker": {
       "level": "shell",
       "capability": "thin",
-      "score": 53,
+      "score": 59,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset"
       ],
       "vueLines": 94,
       "styleLines": 74,
@@ -3393,13 +3732,14 @@
     "QuickNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 63,
+      "score": 67,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -3412,7 +3752,7 @@
     "RadarChart": {
       "level": "beta",
       "capability": "thin",
-      "score": 79,
+      "score": 83,
       "signals": [
         "emits",
         "composable",
@@ -3421,6 +3761,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 94,
@@ -3432,7 +3773,7 @@
     "Radio": {
       "level": "ready",
       "capability": "form",
-      "score": 96,
+      "score": 100,
       "signals": [
         "emits",
         "composable",
@@ -3441,6 +3782,9 @@
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "form-item",
         "native-attrs",
         "telemetry"
@@ -3454,7 +3798,7 @@
     "RadioGroup": {
       "level": "beta",
       "capability": "thin",
-      "score": 68,
+      "score": 74,
       "signals": [
         "emits",
         "composable",
@@ -3462,6 +3806,8 @@
         "v-model",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -3474,13 +3820,15 @@
     "RangeInput": {
       "level": "beta",
       "capability": "thin",
-      "score": 66,
+      "score": 72,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -3494,11 +3842,12 @@
     "Ranking": {
       "level": "shell",
       "capability": "thin",
-      "score": 53,
+      "score": 57,
       "signals": [
         "emits",
         "handlers:2",
-        "tokens"
+        "tokens",
+        "curated-demo"
       ],
       "vueLines": 121,
       "styleLines": 49,
@@ -3509,7 +3858,7 @@
     "Rate": {
       "level": "ready",
       "capability": "form",
-      "score": 96,
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
@@ -3517,6 +3866,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "form-item",
         "telemetry"
       ],
@@ -3529,10 +3880,12 @@
     "ResizeBox": {
       "level": "shell",
       "capability": "thin",
-      "score": 53,
+      "score": 59,
       "signals": [
         "emits",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset"
       ],
       "vueLines": 145,
       "styleLines": 160,
@@ -3543,13 +3896,15 @@
     "Result": {
       "level": "beta",
       "capability": "thin",
-      "score": 77,
+      "score": 83,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -3563,7 +3918,7 @@
     "RichText": {
       "level": "ready",
       "capability": "interaction",
-      "score": 89,
+      "score": 96,
       "signals": [
         "emits",
         "composable",
@@ -3571,6 +3926,8 @@
         "handlers:14",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
         "delegate",
         "telemetry",
         "permission"
@@ -3584,13 +3941,14 @@
     "RouterNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 68,
+      "score": 72,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -3603,12 +3961,14 @@
     "Row": {
       "level": "beta",
       "capability": "thin",
-      "score": 55,
+      "score": 61,
       "signals": [
         "provide-inject",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 92,
@@ -3620,12 +3980,14 @@
     "ScaleLayout": {
       "level": "beta",
       "capability": "thin",
-      "score": 63,
+      "score": 69,
       "signals": [
         "emits",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 178,
@@ -3637,11 +3999,12 @@
     "SchemaRenderer": {
       "level": "beta",
       "capability": "thin",
-      "score": 63,
+      "score": 66,
       "signals": [
         "emits",
         "a11y",
         "tokens",
+        "docs-stub",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -3652,15 +4015,18 @@
       "nativeAttrs": false
     },
     "ScrollNav": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 55,
+      "score": 61,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset",
+        "thin-cap:no-ready"
       ],
       "vueLines": 61,
       "styleLines": 81,
@@ -3671,13 +4037,14 @@
     "ScrollNotice": {
       "level": "beta",
       "capability": "thin",
-      "score": 73,
+      "score": 77,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -3691,13 +4058,15 @@
     "Scrollbar": {
       "level": "beta",
       "capability": "thin",
-      "score": 70,
+      "score": 76,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -3710,7 +4079,7 @@
     "Search": {
       "level": "beta",
       "capability": "thin",
-      "score": 70,
+      "score": 76,
       "signals": [
         "emits",
         "composable",
@@ -3718,6 +4087,8 @@
         "handlers:6",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 88,
@@ -3729,7 +4100,7 @@
     "SearchFilterPanel": {
       "level": "beta",
       "capability": "thin",
-      "score": 77,
+      "score": 81,
       "signals": [
         "emits",
         "v-model",
@@ -3737,6 +4108,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -3750,13 +4122,16 @@
     "Segmented": {
       "level": "beta",
       "capability": "thin",
-      "score": 75,
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -3779,24 +4154,28 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "form-item",
         "native-attrs"
       ],
-      "vueLines": 360,
-      "styleLines": 273,
-      "propCount": 26,
+      "vueLines": 373,
+      "styleLines": 268,
+      "propCount": 27,
       "formIntegrated": true,
       "nativeAttrs": true
     },
     "SelectNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 56,
+      "score": 60,
       "signals": [
         "emits",
         "v-model",
         "a11y",
         "tokens",
+        "curated-demo",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -3810,12 +4189,13 @@
     "SettingPanel": {
       "level": "shell",
       "capability": "thin",
-      "score": 65,
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "tokens",
+        "curated-demo",
         "delegate",
         "telemetry"
       ],
@@ -3828,13 +4208,15 @@
     "Sider": {
       "level": "beta",
       "capability": "composite",
-      "score": 75,
+      "score": 81,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry"
       ],
@@ -3847,7 +4229,7 @@
     "Simple404": {
       "level": "beta",
       "capability": "thin",
-      "score": 72,
+      "score": 78,
       "signals": [
         "emits",
         "v-model",
@@ -3855,6 +4237,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 88,
@@ -3864,12 +4248,15 @@
       "nativeAttrs": false
     },
     "Skeleton": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 53,
+      "score": 59,
       "signals": [
         "a11y",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset",
+        "thin-cap:no-ready"
       ],
       "vueLines": 440,
       "styleLines": 555,
@@ -3880,7 +4267,7 @@
     "Slider": {
       "level": "ready",
       "capability": "form",
-      "score": 86,
+      "score": 92,
       "signals": [
         "emits",
         "composable",
@@ -3888,6 +4275,8 @@
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "form-item"
       ],
       "vueLines": 173,
@@ -3899,7 +4288,7 @@
     "SmsCode": {
       "level": "beta",
       "capability": "thin",
-      "score": 76,
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
@@ -3907,6 +4296,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -3918,12 +4309,16 @@
       "nativeAttrs": false
     },
     "Space": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 53,
+      "score": 62,
       "signals": [
         "a11y",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
+        "thin-cap:no-ready"
       ],
       "vueLines": 148,
       "styleLines": 84,
@@ -3934,13 +4329,15 @@
     "Space404": {
       "level": "beta",
       "capability": "thin",
-      "score": 67,
+      "score": 73,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 85,
@@ -3952,7 +4349,7 @@
     "Spacer": {
       "level": "beta",
       "capability": "thin",
-      "score": 68,
+      "score": 74,
       "signals": [
         "emits",
         "composable",
@@ -3960,6 +4357,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 56,
@@ -3971,12 +4370,15 @@
     "Spin": {
       "level": "beta",
       "capability": "thin",
-      "score": 59,
+      "score": 68,
       "signals": [
         "emits",
         "composable",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 92,
@@ -3986,13 +4388,16 @@
       "nativeAttrs": false
     },
     "Split": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 51,
+      "score": 57,
       "signals": [
         "emits",
         "a11y",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset",
+        "thin-cap:no-ready"
       ],
       "vueLines": 118,
       "styleLines": 54,
@@ -4003,7 +4408,7 @@
     "SplitVideoWall": {
       "level": "beta",
       "capability": "thin",
-      "score": 78,
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
@@ -4011,6 +4416,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 125,
@@ -4020,13 +4427,16 @@
       "nativeAttrs": false
     },
     "StackLayout": {
-      "level": "shell",
+      "level": "beta",
       "capability": "thin",
-      "score": 54,
+      "score": 60,
       "signals": [
         "a11y",
         "tokens",
-        "behavior-test"
+        "behavior-test",
+        "curated-demo",
+        "v01-subset",
+        "thin-cap:no-ready"
       ],
       "vueLines": 81,
       "styleLines": 93,
@@ -4037,11 +4447,13 @@
     "Statistic": {
       "level": "beta",
       "capability": "thin",
-      "score": 66,
+      "score": 72,
       "signals": [
         "emits",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -4055,13 +4467,14 @@
     "StatusTip": {
       "level": "beta",
       "capability": "thin",
-      "score": 76,
+      "score": 80,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -4075,13 +4488,15 @@
     "StepForm": {
       "level": "beta",
       "capability": "thin",
-      "score": 63,
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -4113,13 +4528,14 @@
     "StepNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 62,
+      "score": 66,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -4132,13 +4548,15 @@
     "Steps": {
       "level": "beta",
       "capability": "thin",
-      "score": 57,
+      "score": 63,
       "signals": [
         "emits",
         "provide-inject",
         "v-model",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -4151,11 +4569,12 @@
     "StickyTable": {
       "level": "shell",
       "capability": "thin",
-      "score": 52,
+      "score": 56,
       "signals": [
         "emits",
         "handlers:2",
-        "tokens"
+        "tokens",
+        "curated-demo"
       ],
       "vueLines": 114,
       "styleLines": 49,
@@ -4166,9 +4585,10 @@
     "SuccessModal": {
       "level": "shell",
       "capability": "thin",
-      "score": 13,
+      "score": 17,
       "signals": [
         "emits",
+        "curated-demo",
         "thin"
       ],
       "vueLines": 30,
@@ -4180,7 +4600,7 @@
     "Switch": {
       "level": "ready",
       "capability": "form",
-      "score": 95,
+      "score": 100,
       "signals": [
         "emits",
         "composable",
@@ -4188,6 +4608,9 @@
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "form-item",
         "native-attrs",
         "telemetry"
@@ -4219,11 +4642,12 @@
     "TableAction": {
       "level": "shell",
       "capability": "thin",
-      "score": 49,
+      "score": 53,
       "signals": [
         "emits",
         "handlers:1",
-        "tokens"
+        "tokens",
+        "curated-demo"
       ],
       "vueLines": 113,
       "styleLines": 49,
@@ -4234,7 +4658,7 @@
     "TableDrag": {
       "level": "beta",
       "capability": "thin",
-      "score": 80,
+      "score": 84,
       "signals": [
         "emits",
         "v-model",
@@ -4242,6 +4666,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -4254,11 +4679,12 @@
     "TableExport": {
       "level": "shell",
       "capability": "thin",
-      "score": 55,
+      "score": 59,
       "signals": [
         "emits",
         "handlers:3",
-        "tokens"
+        "tokens",
+        "curated-demo"
       ],
       "vueLines": 124,
       "styleLines": 49,
@@ -4269,13 +4695,14 @@
     "TablePrint": {
       "level": "beta",
       "capability": "thin",
-      "score": 67,
+      "score": 71,
       "signals": [
         "emits",
         "handlers:1",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 132,
@@ -4287,7 +4714,7 @@
     "Tabs": {
       "level": "ready",
       "capability": "composite",
-      "score": 77,
+      "score": 86,
       "signals": [
         "emits",
         "provide-inject",
@@ -4296,6 +4723,9 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "telemetry"
       ],
       "vueLines": 177,
@@ -4307,33 +4737,38 @@
     "TabsNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 80,
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
         "handlers:7",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 391,
+      "vueLines": 363,
       "styleLines": 229,
       "propCount": 8,
       "formIntegrated": false,
       "nativeAttrs": false
     },
     "Tag": {
-      "level": "beta",
+      "level": "ready",
       "capability": "composite",
-      "score": 83,
+      "score": 97,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:3",
         "a11y",
         "tokens",
+        "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "throttle-wait"
@@ -4347,13 +4782,15 @@
     "TagInput": {
       "level": "beta",
       "capability": "thin",
-      "score": 62,
+      "score": 68,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 90,
@@ -4365,7 +4802,7 @@
     "Tech404": {
       "level": "beta",
       "capability": "thin",
-      "score": 72,
+      "score": 78,
       "signals": [
         "emits",
         "v-model",
@@ -4373,6 +4810,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "thin-cap:no-ready"
       ],
       "vueLines": 85,
@@ -4401,13 +4840,14 @@
     "TemplateDrag": {
       "level": "beta",
       "capability": "thin",
-      "score": 74,
+      "score": 78,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -4421,13 +4861,14 @@
     "TemplateSelect": {
       "level": "beta",
       "capability": "thin",
-      "score": 72,
+      "score": 76,
       "signals": [
         "emits",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
+        "curated-demo",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -4449,6 +4890,8 @@
         "handlers:5",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "form-item",
         "native-attrs",
         "telemetry"
@@ -4478,12 +4921,13 @@
     "Thumbnail": {
       "level": "beta",
       "capability": "thin",
-      "score": 56,
+      "score": 60,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 112,
@@ -4503,12 +4947,14 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "form-item",
         "native-attrs"
       ],
-      "vueLines": 197,
-      "styleLines": 64,
+      "vueLines": 205,
+      "styleLines": 62,
       "propCount": 11,
       "formIntegrated": true,
       "nativeAttrs": true
@@ -4516,13 +4962,15 @@
     "TimeRangeInput": {
       "level": "beta",
       "capability": "thin",
-      "score": 64,
+      "score": 70,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -4536,19 +4984,21 @@
     "TimeSelect": {
       "level": "ready",
       "capability": "form",
-      "score": 94,
+      "score": 100,
       "signals": [
         "emits",
         "v-model",
         "handlers:5",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "form-item",
         "native-attrs",
         "telemetry"
       ],
-      "vueLines": 274,
-      "styleLines": 144,
+      "vueLines": 256,
+      "styleLines": 140,
       "propCount": 9,
       "formIntegrated": true,
       "nativeAttrs": true
@@ -4556,7 +5006,7 @@
     "Timeline": {
       "level": "ready",
       "capability": "composite",
-      "score": 83,
+      "score": 89,
       "signals": [
         "emits",
         "provide-inject",
@@ -4564,6 +5014,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "telemetry"
       ],
@@ -4596,7 +5048,7 @@
     "TimelineList": {
       "level": "beta",
       "capability": "thin",
-      "score": 82,
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
@@ -4604,6 +5056,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -4616,11 +5069,13 @@
     "Toast": {
       "level": "shell",
       "capability": "thin",
-      "score": 24,
+      "score": 30,
       "signals": [
         "emits",
         "handlers:1",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "thin"
       ],
       "vueLines": 41,
@@ -4632,7 +5087,7 @@
     "Tooltip": {
       "level": "beta",
       "capability": "interaction",
-      "score": 83,
+      "score": 89,
       "signals": [
         "emits",
         "composable",
@@ -4640,9 +5095,11 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "telemetry"
       ],
-      "vueLines": 182,
+      "vueLines": 183,
       "styleLines": 104,
       "propCount": 14,
       "formIntegrated": false,
@@ -4651,13 +5108,14 @@
     "TopNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 61,
+      "score": 65,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -4670,13 +5128,16 @@
     "Tour": {
       "level": "beta",
       "capability": "thin",
-      "score": 73,
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -4698,6 +5159,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "form-item",
         "telemetry"
@@ -4711,12 +5174,13 @@
     "TransferTree": {
       "level": "shell",
       "capability": "thin",
-      "score": 62,
+      "score": 66,
       "signals": [
         "emits",
         "v-model",
         "handlers:5",
-        "tokens"
+        "tokens",
+        "curated-demo"
       ],
       "vueLines": 134,
       "styleLines": 49,
@@ -4727,7 +5191,7 @@
     "Tree": {
       "level": "beta",
       "capability": "thin",
-      "score": 83,
+      "score": 92,
       "signals": [
         "emits",
         "v-model",
@@ -4735,6 +5199,9 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "docs-stub",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -4747,7 +5214,7 @@
     "TreeChart": {
       "level": "beta",
       "capability": "thin",
-      "score": 71,
+      "score": 75,
       "signals": [
         "emits",
         "v-model",
@@ -4755,6 +5222,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 103,
@@ -4766,12 +5234,13 @@
     "TreeForm": {
       "level": "shell",
       "capability": "thin",
-      "score": 62,
+      "score": 66,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
-        "tokens"
+        "tokens",
+        "curated-demo"
       ],
       "vueLines": 127,
       "styleLines": 49,
@@ -4782,18 +5251,20 @@
     "TreeSelect": {
       "level": "ready",
       "capability": "form",
-      "score": 90,
+      "score": 96,
       "signals": [
         "emits",
         "v-model",
         "handlers:7",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "form-item",
         "native-attrs"
       ],
-      "vueLines": 293,
-      "styleLines": 165,
+      "vueLines": 301,
+      "styleLines": 162,
       "propCount": 10,
       "formIntegrated": true,
       "nativeAttrs": true
@@ -4801,12 +5272,14 @@
     "TreeTable": {
       "level": "shell",
       "capability": "thin",
-      "score": 56,
+      "score": 62,
       "signals": [
         "emits",
         "v-model",
         "handlers:1",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "v01-subset"
       ],
       "vueLines": 134,
       "styleLines": 49,
@@ -4817,12 +5290,13 @@
     "TreeTransfer": {
       "level": "shell",
       "capability": "thin",
-      "score": 62,
+      "score": 66,
       "signals": [
         "emits",
         "v-model",
         "handlers:7",
-        "tokens"
+        "tokens",
+        "curated-demo"
       ],
       "vueLines": 168,
       "styleLines": 49,
@@ -4833,13 +5307,15 @@
     "Typography": {
       "level": "beta",
       "capability": "composite",
-      "score": 77,
+      "score": 83,
       "signals": [
         "emits",
         "provide-inject",
         "handlers:2",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "telemetry",
         "throttle-wait"
       ],
@@ -4852,13 +5328,15 @@
     "Upload": {
       "level": "beta",
       "capability": "thin",
-      "score": 68,
+      "score": 74,
       "signals": [
         "emits",
         "v-model",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 139,
@@ -4870,11 +5348,12 @@
     "UserInfoCard": {
       "level": "shell",
       "capability": "thin",
-      "score": 51,
+      "score": 55,
       "signals": [
         "emits",
         "handlers:2",
         "tokens",
+        "curated-demo",
         "delegate"
       ],
       "vueLines": 73,
@@ -4886,12 +5365,14 @@
     "VcrBackupTask": {
       "level": "beta",
       "capability": "thin",
-      "score": 56,
+      "score": 62,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -4904,12 +5385,14 @@
     "VcrClipCut": {
       "level": "beta",
       "capability": "thin",
-      "score": 61,
+      "score": 67,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -4922,12 +5405,14 @@
     "VcrDownloadPanel": {
       "level": "beta",
       "capability": "thin",
-      "score": 55,
+      "score": 61,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -4940,12 +5425,14 @@
     "VcrMarkPoint": {
       "level": "beta",
       "capability": "thin",
-      "score": 59,
+      "score": 65,
       "signals": [
         "emits",
         "handlers:4",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -4958,12 +5445,14 @@
     "VcrSearchPanel": {
       "level": "beta",
       "capability": "thin",
-      "score": 57,
+      "score": 63,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -4976,13 +5465,15 @@
     "VcrSpeedControl": {
       "level": "beta",
       "capability": "thin",
-      "score": 60,
+      "score": 66,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -4995,13 +5486,15 @@
     "VcrStorageDashboard": {
       "level": "beta",
       "capability": "thin",
-      "score": 77,
+      "score": 83,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -5014,12 +5507,14 @@
     "VcrTimelinePlayer": {
       "level": "beta",
       "capability": "thin",
-      "score": 60,
+      "score": 66,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -5032,7 +5527,7 @@
     "VerticalStepNav": {
       "level": "beta",
       "capability": "thin",
-      "score": 82,
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
@@ -5040,6 +5535,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
@@ -5053,12 +5549,14 @@
     "VideoAdjust": {
       "level": "beta",
       "capability": "thin",
-      "score": 63,
+      "score": 69,
       "signals": [
         "emits",
         "handlers:5",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -5071,11 +5569,13 @@
     "VideoPlayer": {
       "level": "shell",
       "capability": "thin",
-      "score": 52,
+      "score": 58,
       "signals": [
         "emits",
         "handlers:4",
-        "tokens"
+        "tokens",
+        "curated-demo",
+        "industry-layer"
       ],
       "vueLines": 80,
       "styleLines": 164,
@@ -5086,12 +5586,14 @@
     "VideoPreview": {
       "level": "beta",
       "capability": "thin",
-      "score": 66,
+      "score": 72,
       "signals": [
         "emits",
         "handlers:2",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -5104,13 +5606,15 @@
     "VideoSnapshot": {
       "level": "beta",
       "capability": "thin",
-      "score": 77,
+      "score": 83,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -5123,13 +5627,15 @@
     "VideoVolume": {
       "level": "beta",
       "capability": "thin",
-      "score": 64,
+      "score": 70,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -5142,12 +5648,14 @@
     "VideoWatermark": {
       "level": "beta",
       "capability": "thin",
-      "score": 57,
+      "score": 63,
       "signals": [
         "emits",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "industry-layer",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -5160,7 +5668,7 @@
     "VirtualTable": {
       "level": "beta",
       "capability": "thin",
-      "score": 80,
+      "score": 86,
       "signals": [
         "emits",
         "v-model",
@@ -5168,6 +5676,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 266,
@@ -5179,7 +5689,7 @@
     "VirtualTree": {
       "level": "beta",
       "capability": "thin",
-      "score": 70,
+      "score": 76,
       "signals": [
         "emits",
         "v-model",
@@ -5187,6 +5697,8 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "delegate",
         "thin-cap:no-ready"
       ],
@@ -5199,9 +5711,10 @@
     "WarnModal": {
       "level": "shell",
       "capability": "thin",
-      "score": 13,
+      "score": 17,
       "signals": [
         "emits",
+        "curated-demo",
         "thin"
       ],
       "vueLines": 30,
@@ -5213,7 +5726,7 @@
     "Waterfall": {
       "level": "beta",
       "capability": "thin",
-      "score": 78,
+      "score": 82,
       "signals": [
         "emits",
         "v-model",
@@ -5221,6 +5734,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "telemetry",
         "thin-cap:no-ready"
       ],
@@ -5233,11 +5747,13 @@
     "Watermark": {
       "level": "shell",
       "capability": "thin",
-      "score": 60,
+      "score": 66,
       "signals": [
         "emits",
         "a11y",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "telemetry"
       ],
       "vueLines": 262,
@@ -5249,13 +5765,15 @@
     "WeekPicker": {
       "level": "beta",
       "capability": "thin",
-      "score": 63,
+      "score": 69,
       "signals": [
         "emits",
         "v-model",
         "handlers:3",
         "a11y",
         "tokens",
+        "curated-demo",
+        "v01-subset",
         "thin-cap:no-ready"
       ],
       "vueLines": 124,
@@ -5267,7 +5785,7 @@
     "WordCloud": {
       "level": "beta",
       "capability": "thin",
-      "score": 77,
+      "score": 81,
       "signals": [
         "emits",
         "composable",
@@ -5276,6 +5794,7 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
         "thin-cap:no-ready"
       ],
       "vueLines": 81,
@@ -5287,7 +5806,7 @@
     "YearPicker": {
       "level": "beta",
       "capability": "thin",
-      "score": 81,
+      "score": 87,
       "signals": [
         "emits",
         "v-model",
@@ -5295,10 +5814,12 @@
         "a11y",
         "tokens",
         "behavior-test",
+        "curated-demo",
+        "v01-subset",
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 214,
+      "vueLines": 217,
       "styleLines": 44,
       "propCount": 9,
       "formIntegrated": false,

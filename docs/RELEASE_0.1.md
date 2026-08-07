@@ -68,8 +68,8 @@ npm run test:consumers # → npm pack 后在 vite / webpack / nuxt fixture 中�
 
 ### Step 3 — 子集 & Gallery 对齐
 
-- [ ] v0.1 子集路由 / catalog / maturity 与 `example/v0.1-subset.ts` 一致
-- [ ] Gallery 仅对子集显示「承诺」标记
+- [x] v0.1 子集路由 / catalog / maturity 与 `example/v0.1-subset.ts` 一致（`npm run validate:v01`）
+- [x] Gallery / Catalog / DocPage 仅对子集显示「承诺」标记（`isV01Component` → `page.gallery.v01.badge`）
 
 ### Step 4 — 构建 & 按需
 
@@ -77,14 +77,15 @@ npm run test:consumers # → npm pack 后在 vite / webpack / nuxt fixture 中�
 - [x] 按需入口 `amg-webui/<kebab>` + 深路径经 consumer fixture 冒烟
 - [x] 按需 CSS side-entry：`amg-webui/<kebab>/style.css` → `dist/es/components/{base\|industry}/<Name>/style.css`（`build:styles` / `validate:styles`）
 
-### Step 5 — SSR 基础（本步）
+### Step 5 — SSR 基础 + 生产矩阵（本步）
 
 - [x] `packages/utils/env.ts` — `isClient` · `isServer` · `getDocument` · `getWindow`
 - [x] `packages/utils/dom.ts` — env 守卫，无 bare `window`/`document` 抛错
 - [x]  overlay 最小守卫：Select · Dialog · Dropdown · MessageBox · Affix · Tour · ImageViewer · InfiniteScroll
 - [x] `tests/unit/ssr-env.spec.ts` · `tests/unit/ssr-import.spec.ts`
-- [x] `npm run test:ssr`
-- [x] Nuxt consumer fixture（构建冒烟；≠ 生产 SSR 全矩阵）
+- [x] `tests/unit/ssr-render-matrix.spec.ts` — Node `renderToString`（Button / Alert / Tag / Barcode / Qrcode / MatrixCode）+ MessageBox SSR stub
+- [x] `npm run test:ssr`（已入 CI / `npm run ci`）
+- [x] Nuxt consumer：Button **无** `ClientOnly` 真 SSR；`test:consumers` 校验 `.output` SSR marker + Button footprint
 
 ### Step 6 — 合规 & 1.0 预备
 
@@ -96,7 +97,7 @@ npm run test:consumers # → npm pack 后在 vite / webpack / nuxt fixture 中�
 
 已闭环：源码子路径导出 → dist 导出；ondemand 改写 `amg-webui/*`；consumer 三套安装构建；CI `test:consumers`。
 
-仍属其他架构债（不在「完全解决」宣称内）：成熟度启发式深化、Barcode/Qrcode 等 `other` 域归类、生产级 SSR 全矩阵。
+本轮已闭环：成熟度 v3 + `validate:maturity` / `validate:v01`；Barcode/Qrcode/MatrixCode/OcrScan → industry；SSR render 矩阵 + Nuxt 真 SSR 门禁。
 
 ## Overlay 内核（本轮深度续做）
 

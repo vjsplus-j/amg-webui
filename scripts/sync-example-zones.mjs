@@ -29,9 +29,9 @@ const zones = {
 }
 
 const re = {
-  industry: /404$|Video|PTZ|AudioTalk|Onvif|Gbs|Vcr|SplitVideo/,
+  industry: /404$|Video|PTZ|AudioTalk|Onvif|Gbs|Vcr|SplitVideo|Barcode|Qrcode|MatrixCode|OcrScan/,
   third:
-    /Preview|Print|Excel|Pdf|AudioPlay|Ocr|Crypto|Clipboard|Browser|DragCanvas|DragMaterial|Canvas|PropPanel|TemplateDrag|FreeLayout|GridLayout|DragVerify|CanvasIo|DragWrapper|DragRuler|DragSort|Qrcode|Barcode|MatrixCode|FilePreview|ImageCrop/,
+    /Preview|Print|Excel|Pdf|AudioPlay|Crypto|Clipboard|Browser|DragCanvas|DragMaterial|Canvas|PropPanel|TemplateDrag|FreeLayout|GridLayout|DragVerify|CanvasIo|DragWrapper|DragRuler|DragSort|FilePreview|ImageCrop/,
   data: /Table|Tree|Chart|HeatMap|WordCloud|Ranking|Carousel|Collapse|Waterfall|CardList|TimelineList|Thumbnail|ImageGroup|ScrollNotice|DataCard|Pivot|Drill|Virtual|ProTable|Merge|EditTable|Sticky|TableDrag|TableExport|Calendar|Timeline$/,
   forms:
     /Picker|Form|Upload|Search|Select|Captcha|Sms|Editor|Range|Color|Filter|Transfer|Crop|Template|Password|Checkbox|Radio|Switch|Rate|Slider|AutoComplete|TagInput|Input|Textarea|Cascader|TreeSelect|DragSelect|Quarter|Week|RichText|MdEditor|CodeEditor|Chunk|Batch|Dynamic|StepForm|FormTabs|FormGroup|TimeRange|AdvancedSearch|LoginPanel|UserInfoCard|PermissionPanel|SettingPanel|DetailPanel|FlowPanel|BatchPanel|Dashboard|SearchFilter/,

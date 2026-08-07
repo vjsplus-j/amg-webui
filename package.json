@@ -1072,11 +1072,11 @@
     },
     "./bar-chart/style.css": "./dist/es/components/base/BarChart/style.css",
     "./barcode": {
-      "import": "./dist/es/components/base/Barcode/index.js",
-      "types": "./dist/components/base/Barcode/index.d.ts",
-      "default": "./dist/es/components/base/Barcode/index.js"
+      "import": "./dist/es/components/industry/Barcode/index.js",
+      "types": "./dist/components/industry/Barcode/index.d.ts",
+      "default": "./dist/es/components/industry/Barcode/index.js"
     },
-    "./barcode/style.css": "./dist/es/components/base/Barcode/style.css",
+    "./barcode/style.css": "./dist/es/components/industry/Barcode/style.css",
     "./batch-panel": {
       "import": "./dist/es/components/base/BatchPanel/index.js",
       "types": "./dist/components/base/BatchPanel/index.d.ts",
@@ -1846,11 +1846,11 @@
     },
     "./mask/style.css": "./dist/es/components/base/Mask/style.css",
     "./matrix-code": {
-      "import": "./dist/es/components/base/MatrixCode/index.js",
-      "types": "./dist/components/base/MatrixCode/index.d.ts",
-      "default": "./dist/es/components/base/MatrixCode/index.js"
+      "import": "./dist/es/components/industry/MatrixCode/index.js",
+      "types": "./dist/components/industry/MatrixCode/index.d.ts",
+      "default": "./dist/es/components/industry/MatrixCode/index.js"
     },
-    "./matrix-code/style.css": "./dist/es/components/base/MatrixCode/style.css",
+    "./matrix-code/style.css": "./dist/es/components/industry/MatrixCode/style.css",
     "./md-editor": {
       "import": "./dist/es/components/base/MdEditor/index.js",
       "types": "./dist/components/base/MdEditor/index.d.ts",
@@ -1918,11 +1918,11 @@
     },
     "./notification/style.css": "./dist/es/components/base/Notification/style.css",
     "./ocr-scan": {
-      "import": "./dist/es/components/base/OcrScan/index.js",
-      "types": "./dist/components/base/OcrScan/index.d.ts",
-      "default": "./dist/es/components/base/OcrScan/index.js"
+      "import": "./dist/es/components/industry/OcrScan/index.js",
+      "types": "./dist/components/industry/OcrScan/index.d.ts",
+      "default": "./dist/es/components/industry/OcrScan/index.js"
     },
-    "./ocr-scan/style.css": "./dist/es/components/base/OcrScan/style.css",
+    "./ocr-scan/style.css": "./dist/es/components/industry/OcrScan/style.css",
     "./onvif-alarm-panel": {
       "import": "./dist/es/components/industry/OnvifAlarmPanel/index.js",
       "types": "./dist/components/industry/OnvifAlarmPanel/index.d.ts",
@@ -2086,11 +2086,11 @@
     },
     "./prop-panel/style.css": "./dist/es/components/base/PropPanel/style.css",
     "./qrcode": {
-      "import": "./dist/es/components/base/Qrcode/index.js",
-      "types": "./dist/components/base/Qrcode/index.d.ts",
-      "default": "./dist/es/components/base/Qrcode/index.js"
+      "import": "./dist/es/components/industry/Qrcode/index.js",
+      "types": "./dist/components/industry/Qrcode/index.d.ts",
+      "default": "./dist/es/components/industry/Qrcode/index.js"
     },
-    "./qrcode/style.css": "./dist/es/components/base/Qrcode/style.css",
+    "./qrcode/style.css": "./dist/es/components/industry/Qrcode/style.css",
     "./quarter-picker": {
       "import": "./dist/es/components/base/QuarterPicker/index.js",
       "types": "./dist/components/base/QuarterPicker/index.d.ts",
@@ -2768,14 +2768,16 @@
     "score:maturity": "node scripts/score-component-maturity.mjs",
     "validate:catalog": "node scripts/validate-component-catalog.mjs",
     "validate:styles": "node scripts/validate-component-styles.mjs",
+    "validate:maturity": "node scripts/validate-component-maturity.mjs",
+    "validate:v01": "node scripts/validate-v01-subset.mjs",
     "generate:locale-types": "node scripts/generate-locale-types.mjs",
     "extract:i18n": "node scripts/extract-i18n.mjs",
     "test": "vitest run",
-    "test:ssr": "vitest run tests/unit/ssr-env.spec.ts tests/unit/ssr-import.spec.ts tests/unit/theme-core.spec.ts",
+    "test:ssr": "vitest run tests/unit/ssr-env.spec.ts tests/unit/ssr-import.spec.ts tests/unit/ssr-render-matrix.spec.ts tests/unit/theme-core.spec.ts",
     "test:consumers": "node scripts/test-consumers.mjs",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "ci": "vue-tsc --noEmit && npm run validate:catalog && npm run test && npm run build:lib && npm run validate:styles && npm run test:consumers",
+    "ci": "vue-tsc --noEmit && npm run validate:catalog && npm run validate:v01 && npm run validate:maturity && npm run test:ssr && npm run test && npm run build:lib && npm run validate:styles && npm run test:consumers",
     "generate:vitepress-api": "node scripts/generate-vitepress-api.mjs",
     "docs:dev": "vitepress dev docs --config vitepress.config.ts",
     "docs:build": "vitepress build docs --config vitepress.config.ts",

@@ -24,7 +24,7 @@ components/
 - **禁止**依赖 business；base **禁止**反向依赖 industry
 - 根 kebab 子路径保持稳定（如 `amg-webui/gbs-alarm-modal` → `dist/es/components/industry/...`）
 - 新组件：`npm run create:component -- industry Name`
-- 首批已迁：catalog `industry` **全部 43 件**（`Gbs*` · `Onvif*` · `Vcr*` · `Video*` · `PTZControl` · `AudioTalk` · `SplitVideoWall` · `*404`）
+- catalog `industry` **全部 47 件**（`Gbs*` · `Onvif*` · `Vcr*` · `Video*` · `PTZControl` · `AudioTalk` · `SplitVideoWall` · `*404` · `Barcode` · `Qrcode` · `MatrixCode` · `OcrScan`）
 - base 不再存放行业套件目录；新增行业件一律进 `industry/`
 
 ## business

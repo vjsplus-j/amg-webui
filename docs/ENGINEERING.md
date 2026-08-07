@@ -20,7 +20,10 @@
 | `npm run generate:icons` | 刷新图标目录 / 解析表 |
 | `npm run validate:catalog` | 校验 `example/component-catalog.json` ↔ base+industry 目录覆盖 |
 | `npm run validate:styles` | 校验每个 leaf 存在稳定 `dist/es/components/**/style.css` side-entry |
-| `npm run score:maturity` | 组件成熟度评分（**能力档** thin/form/interaction/composite + 深度 stub→ready；目录数≠成熟度） |
+| `npm run validate:maturity` | 成熟度 JSON 与重生结果一致（v3；`thinFormGaps` 空） |
+| `npm run validate:v01` | v0.1 子集 ↔ catalog ↔ maturity；Gallery「承诺」徽章仅子集 |
+| `npm run score:maturity` | 组件成熟度评分 v3（能力档 + 深度；目录数≠成熟度） |
+| `npm run test:ssr` | SSR env · import · `renderToString` 矩阵 |
 | `npm run sync:example-zones` | 同步 example 专区侧栏 / 区域元数据 |
 | `npm run generate:vitepress-api` | 根据 `types.ts` 生成 / 刷新 docs 组件 API stub |
 | `node scripts/classify-mvp.mjs` | 深化波次清单 → `scripts/.component-waves.json` |
@@ -154,15 +157,17 @@ scripts/
 
 ---
 
-## 组件成熟度评分契约（`score:maturity` v2）
+## 组件成熟度评分契约（`score:maturity` v3）
 
-产物：`example/component-maturity.json`（example 调试用启发式，**非**对外 1.0 宣称）。
+产物：`example/component-maturity.json`（example 调试用启发式，**非**对外 1.0 宣称）。  
+门禁：`npm run validate:maturity`（重生比对、忽略 `generatedAt`；`thinFormGaps` 必须为空；契约 version ≥ 3）。
 
 | 轴 | 含义 |
 |----|------|
-| `total` | **仅目录库存**（base 文件夹数）。禁止把它读成「已成熟组件数」或 1.0 就绪度。 |
+| `total` | **仅目录库存**（base+industry）。禁止把它读成「已成熟组件数」或 1.0 就绪度。 |
 | `byCapability` | **主轴**：`thin`（薄封装）· `form`（FormItem 自动接线）· `interaction`（权限/确认/节流等完整交互）· `composite`（复合面） |
 | `summary` / `level` | **深度副轴**：`stub` → `shell` → `beta` → `ready`（`ready` = 该能力档基线，**≠** 库整体 1.0） |
+| v3 信号 | `curated-demo` · `docs-stub` · `industry-layer` · `symbology-util` · `v01-subset`（加权，不单独刷 ready） |
 
 硬规则：
 
@@ -170,5 +175,6 @@ scripts/
 - 原生文本控件还须 `useNativeInputAttrs`（`inheritAttrs: false` + 落到真实 input）才可进 form 档 `ready`。
 - `thin` **永不**标 `ready`；行数/props 堆高不能单独刷成熟度。
 - 强组件参照：`Button`（interaction）；表单参照：已接线的 `InputText`（form）。
+- v0.1 子集与 catalog / maturity 对齐：`npm run validate:v01`（Gallery / DocPage / Catalog 仅对子集显示 v0.1「承诺」徽章）。
 
 控制台会打印 `byCapability` 与 `thinFormGaps`。Gallery 仍可按 depth level 筛选；读报告时先看能力档。

@@ -43,10 +43,10 @@ const keyword = ref('')
 const maturityFilter = ref<MaturityLevel | 'all' | 'v01'>('all')
 const v01Count = computed(() => names.value.filter((n) => isV01Component(n)).length)
 
-const modules = import.meta.glob('../../../packages/components/base/*/index.vue') as Record<
-  string,
-  () => Promise<Component>
->
+const modules = {
+  ...import.meta.glob('../../../packages/components/base/*/index.vue'),
+  ...import.meta.glob('../../../packages/components/industry/*/index.vue')
+} as Record<string, () => Promise<Component>>
 
 const names = computed(() => {
   void locale.value
@@ -132,7 +132,9 @@ function galleryModel(name: string) {
 }
 
 function load(name: string) {
-  const key = Object.keys(modules).find((p) => p.includes(`/base/${name}/`))
+  const key = Object.keys(modules).find(
+    (p) => p.includes(`/base/${name}/`) || p.includes(`/industry/${name}/`)
+  )
   if (!key) return null
   return defineAsyncComponent(modules[key])
 }

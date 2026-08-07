@@ -13,6 +13,7 @@ import {
   type CatalogCategoryId
 } from '../../component-catalog'
 import { componentMaturity, type MaturityLevel } from '../../component-zones'
+import { isV01Component } from '../../v0.1-subset'
 
 const router = useRouter()
 const { t, locale } = useLocale()
@@ -90,6 +91,12 @@ function openDoc(name: string) {
           @click="openDoc(name)"
         >
           <span class="vp-catalog__name">{{ name }}</span>
+          <Tag
+            v-if="isV01Component(name)"
+            size="sm"
+            severity="success"
+            :label="t(LocaleKeys.page.gallery.v01.badge)"
+          />
           <Tag
             size="sm"
             :severity="levelSeverity(componentMaturity(name).level)"

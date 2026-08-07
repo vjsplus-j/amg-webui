@@ -34,6 +34,12 @@ jobs:
       - name: Validate component catalog
         run: npm run validate:catalog
 
+      - name: Validate v0.1 subset ↔ catalog ↔ maturity
+        run: npm run validate:v01
+
+      - name: Validate maturity scores (committed JSON in sync)
+        run: npm run validate:maturity
+
       - name: Verify component barrels are in sync
         run: |
           npm run generate:entry
@@ -43,13 +49,19 @@ jobs:
             exit 1
           fi
 
+      - name: SSR matrix (env · import · renderToString)
+        run: npm run test:ssr
+
       - name: Unit tests
         run: npm run test
 
       - name: Build library
         run: npm run build:lib
 
-      - name: Consumer fixtures (vite · webpack · nuxt)
+      - name: Validate per-component CSS side-entries
+        run: npm run validate:styles
+
+      - name: Consumer fixtures (vite · webpack · nuxt SSR)
         run: npm run test:consumers
 
       - name: Build docs

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-06T03:25:03.474Z",
+  "generatedAt": "2026-08-07T01:00:04.277Z",
   "total": 287,
   "categories": [
     "general",
@@ -238,7 +238,6 @@
     ],
     "other": [
       "AudioPlay",
-      "Barcode",
       "BrowserDetect",
       "CanvasIo",
       "CanvasLayer",
@@ -258,13 +257,10 @@
       "FreeLayoutDrag",
       "GridLayoutDrag",
       "ImageCrop",
-      "MatrixCode",
-      "OcrScan",
       "PdfPreview",
       "Preview",
       "Print",
       "PropPanel",
-      "Qrcode",
       "SchemaRenderer",
       "TablePrint",
       "TelemetryProvider",
@@ -273,6 +269,7 @@
     ],
     "industry": [
       "AudioTalk",
+      "Barcode",
       "Business404",
       "Cartoon404",
       "Doodle404",
@@ -286,6 +283,8 @@
       "GbsTimeSync",
       "Ink404",
       "Machine404",
+      "MatrixCode",
+      "OcrScan",
       "OnvifAlarmPanel",
       "OnvifChannelManage",
       "OnvifDeviceList",
@@ -297,6 +296,7 @@
       "Pixel404",
       "Plant404",
       "PTZControl",
+      "Qrcode",
       "Simple404",
       "Space404",
       "SplitVideoWall",
@@ -379,7 +379,7 @@
       "leadKey": "component.bar-chart.lead"
     },
     "Barcode": {
-      "category": "other",
+      "category": "industry",
       "titleKey": "component.barcode.title",
       "leadKey": "component.barcode.lead"
     },
@@ -1024,7 +1024,7 @@
       "leadKey": "component.mask.lead"
     },
     "MatrixCode": {
-      "category": "other",
+      "category": "industry",
       "titleKey": "component.matrix-code.title",
       "leadKey": "component.matrix-code.lead"
     },
@@ -1084,7 +1084,7 @@
       "leadKey": "component.notification.lead"
     },
     "OcrScan": {
-      "category": "other",
+      "category": "industry",
       "titleKey": "component.ocr-scan.title",
       "leadKey": "component.ocr-scan.lead"
     },
@@ -1224,7 +1224,7 @@
       "leadKey": "component.prop-panel.lead"
     },
     "Qrcode": {
-      "category": "other",
+      "category": "industry",
       "titleKey": "component.qrcode.title",
       "leadKey": "component.qrcode.lead"
     },

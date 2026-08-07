@@ -10,9 +10,9 @@ import Dialog from '../../../packages/components/base/Dialog/index.vue'
 import Form from '../../../packages/components/base/Form/index.vue'
 import FormItem from '../../../packages/components/base/FormItem/index.vue'
 import InputText from '../../../packages/components/base/InputText/index.vue'
-import Barcode from '../../../packages/components/base/Barcode/index.vue'
-import Qrcode from '../../../packages/components/base/Qrcode/index.vue'
-import MatrixCode from '../../../packages/components/base/MatrixCode/index.vue'
+import Barcode from '../../../packages/components/industry/Barcode/index.vue'
+import Qrcode from '../../../packages/components/industry/Qrcode/index.vue'
+import MatrixCode from '../../../packages/components/industry/MatrixCode/index.vue'
 import { getSampleMountProps } from '../../../example/demos/_shared/sampleMountProps'
 
 beforeAll(() => {

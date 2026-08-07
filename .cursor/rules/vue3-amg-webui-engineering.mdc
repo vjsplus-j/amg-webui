@@ -18,7 +18,10 @@ Skill Runtime: `docs/SKILL_RUNTIME.md` · locked rule: `vue3-amg-webui-skill-run
 | `generate:locale-types` | emit `message-schema.ts` (`LocaleKey` / `LocaleMessages`) from zh-CN |
 | `validate:catalog` | catalog ↔ base+industry coverage |
 | `validate:styles` | every leaf has stable `dist/es/components/**/style.css` |
-| `score:maturity` | component depth score |
+| `validate:maturity` | maturity JSON in sync (v3 signals; thinFormGaps empty) |
+| `validate:v01` | v0.1 subset ↔ catalog ↔ maturity; Gallery badge subset-only |
+| `score:maturity` | component depth score (v3) |
+| `test:ssr` | SSR env + import + renderToString matrix |
 | `generate:icons` | refresh icon catalog |
 | `generate:vitepress-api` | regenerate docs component API stubs |
 | `sync:example-zones` | sync example zone metadata |
