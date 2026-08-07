@@ -1770,44 +1770,44 @@
       "default": "./dist/es/components/base/OcrScan/index.js"
     },
     "./onvif-alarm-panel": {
-      "import": "./dist/es/components/base/OnvifAlarmPanel/index.js",
-      "types": "./dist/components/base/OnvifAlarmPanel/index.d.ts",
-      "default": "./dist/es/components/base/OnvifAlarmPanel/index.js"
+      "import": "./dist/es/components/industry/OnvifAlarmPanel/index.js",
+      "types": "./dist/components/industry/OnvifAlarmPanel/index.d.ts",
+      "default": "./dist/es/components/industry/OnvifAlarmPanel/index.js"
     },
     "./onvif-channel-manage": {
-      "import": "./dist/es/components/base/OnvifChannelManage/index.js",
-      "types": "./dist/components/base/OnvifChannelManage/index.d.ts",
-      "default": "./dist/es/components/base/OnvifChannelManage/index.js"
+      "import": "./dist/es/components/industry/OnvifChannelManage/index.js",
+      "types": "./dist/components/industry/OnvifChannelManage/index.d.ts",
+      "default": "./dist/es/components/industry/OnvifChannelManage/index.js"
     },
     "./onvif-device-list": {
-      "import": "./dist/es/components/base/OnvifDeviceList/index.js",
-      "types": "./dist/components/base/OnvifDeviceList/index.d.ts",
-      "default": "./dist/es/components/base/OnvifDeviceList/index.js"
+      "import": "./dist/es/components/industry/OnvifDeviceList/index.js",
+      "types": "./dist/components/industry/OnvifDeviceList/index.d.ts",
+      "default": "./dist/es/components/industry/OnvifDeviceList/index.js"
     },
     "./onvif-group-tree": {
-      "import": "./dist/es/components/base/OnvifGroupTree/index.js",
-      "types": "./dist/components/base/OnvifGroupTree/index.d.ts",
-      "default": "./dist/es/components/base/OnvifGroupTree/index.js"
+      "import": "./dist/es/components/industry/OnvifGroupTree/index.js",
+      "types": "./dist/components/industry/OnvifGroupTree/index.d.ts",
+      "default": "./dist/es/components/industry/OnvifGroupTree/index.js"
     },
     "./onvif-record-plan": {
-      "import": "./dist/es/components/base/OnvifRecordPlan/index.js",
-      "types": "./dist/components/base/OnvifRecordPlan/index.d.ts",
-      "default": "./dist/es/components/base/OnvifRecordPlan/index.js"
+      "import": "./dist/es/components/industry/OnvifRecordPlan/index.js",
+      "types": "./dist/components/industry/OnvifRecordPlan/index.d.ts",
+      "default": "./dist/es/components/industry/OnvifRecordPlan/index.js"
     },
     "./onvif-search": {
-      "import": "./dist/es/components/base/OnvifSearch/index.js",
-      "types": "./dist/components/base/OnvifSearch/index.d.ts",
-      "default": "./dist/es/components/base/OnvifSearch/index.js"
+      "import": "./dist/es/components/industry/OnvifSearch/index.js",
+      "types": "./dist/components/industry/OnvifSearch/index.d.ts",
+      "default": "./dist/es/components/industry/OnvifSearch/index.js"
     },
     "./onvif-setting-panel": {
-      "import": "./dist/es/components/base/OnvifSettingPanel/index.js",
-      "types": "./dist/components/base/OnvifSettingPanel/index.d.ts",
-      "default": "./dist/es/components/base/OnvifSettingPanel/index.js"
+      "import": "./dist/es/components/industry/OnvifSettingPanel/index.js",
+      "types": "./dist/components/industry/OnvifSettingPanel/index.d.ts",
+      "default": "./dist/es/components/industry/OnvifSettingPanel/index.js"
     },
     "./onvif-url-form": {
-      "import": "./dist/es/components/base/OnvifUrlForm/index.js",
-      "types": "./dist/components/base/OnvifUrlForm/index.d.ts",
-      "default": "./dist/es/components/base/OnvifUrlForm/index.js"
+      "import": "./dist/es/components/industry/OnvifUrlForm/index.js",
+      "types": "./dist/components/industry/OnvifUrlForm/index.d.ts",
+      "default": "./dist/es/components/industry/OnvifUrlForm/index.js"
     },
     "./ptz-control": {
       "import": "./dist/es/components/base/PTZControl/index.js",

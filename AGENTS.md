@@ -84,7 +84,7 @@ Cursor：`vue3-amg-webui-design-specs.mdc` · `vue3-amg-webui-tokens.mdc`。
 0. **口号**：对标并超越 Element Plus —— 最强国产 WebUI；迭代走 `OVERTAKE_ELEMENT_PLUS.md` 独家赛道，禁止「EP 换皮」。
 1. 源码主战场是 `packages/`；**example 仅本地调试不上线**；**docs 才是对外文档站**；禁止再加 `src/` / 根级 `demo/` 遗留层；npm 发包只出 `dist/`。
 2. base ↔ industry ↔ business 隔离；business 只吃 base / hooks / theme / utils；industry 可吃 base，禁止互相污染 business。
-3. 五大业务模块：`login` · `users` · `orders` · `content` · `settings`；biz 调试页在 `example/pages/biz/`。行业套件在 `packages/components/industry/`（首批 `Gbs*`）。
+3. 五大业务模块：`login` · `users` · `orders` · `content` · `settings`；biz 调试页在 `example/pages/biz/`。行业套件在 `packages/components/industry/`（已迁 `Gbs*` · `Onvif*`）。
 4. example 用 **vue-router**（禁止 `currentPage` 字符串导航）。
 5. 主题六套锁定于 `packages/theme`（designmd）。
 6. UI 只消费语义 token；用户可见文案只走 i18n key。**禁止硬编码**文案 / 色值 / 尺寸（含 example）：见 `.cursor/rules/vue3-amg-webui-no-hardcode.mdc` · `I18N.md` · `TOKENS.md`。

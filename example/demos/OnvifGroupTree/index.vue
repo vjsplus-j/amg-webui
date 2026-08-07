@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { OnvifGroupTree } from '@amg-webui/components/base'
+import { OnvifGroupTree } from '@amg-webui/components/industry'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('OnvifGroupTree'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { OnvifGroupTree } from '@amg-webui/components/base'`,
+    `import { OnvifGroupTree } from '@amg-webui/components/industry'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('OnvifGroupTree')`],

@@ -24,8 +24,8 @@ components/
 - **禁止**依赖 business；base **禁止**反向依赖 industry
 - 根 kebab 子路径保持稳定（如 `amg-webui/gbs-alarm-modal` → `dist/es/components/industry/...`）
 - 新组件：`npm run create:component -- industry Name`
-- 首批已迁：`GbsAlarmModal` · `GbsCascadePanel` · `GbsDeviceTree` · `GbsGatewayForm` · `GbsRegisterForm` · `GbsSignMonitor` · `GbsStatusCard` · `GbsTimeSync`
-- 仍在 base 的 industry 目录库存（Onvif / VCR / Video / 404 等）按同路径续迁
+- 首批已迁：`Gbs*`（8）· `Onvif*`（8）
+- 仍在 base 的 industry 目录库存（VCR / Video / 404 等）按同路径续迁
 
 ## business
 

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { mount } from "@vue/test-utils";
 import GbsDeviceTree from "../../../packages/components/industry/GbsDeviceTree/index.vue";
-import OnvifGroupTree from "../../../packages/components/base/OnvifGroupTree/index.vue";
+import OnvifGroupTree from "../../../packages/components/industry/OnvifGroupTree/index.vue";
 import TemplateDrag from "../../../packages/components/base/TemplateDrag/index.vue";
 import TopNav from "../../../packages/components/base/TopNav/index.vue";
 import ScrollNotice from "../../../packages/components/base/ScrollNotice/index.vue";

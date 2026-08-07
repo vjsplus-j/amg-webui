@@ -3,12 +3,11 @@ import {
   VideoPlayer,
   SplitVideoWall,
   PTZControl,
-  OnvifSearch,
   Simple404,
   Tech404,
   VcrTimelinePlayer
 } from '@amg-webui/components/base'
-import { GbsStatusCard } from '@amg-webui/components/industry'
+import { GbsStatusCard, OnvifSearch } from '@amg-webui/components/industry'
 import ComponentGallery from '../../components/ComponentGallery.vue'
 </script>
 

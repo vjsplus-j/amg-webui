@@ -4,6 +4,15 @@
 
 ---
 
+## 2026-08-07 — industry：Onvif* 迁出 base
+
+- `Onvif*` 八件迁入 `packages/components/industry/`（与 `Gbs*` 同层）。
+- kebab 子路径保持（`amg-webui/onvif-*` → `dist/es/components/industry/...`）。
+- example demos / IndustryPage / 相关单测导入同步。
+- **未完成**：VCR / Video / PTZ / AudioTalk / 404 仍在 base。
+
+---
+
 ## 2026-08-06 — Overlay 浮动统一 + industry 首批迁出（深度推进）
 
 - `usePopover` / Teleport floating pickers；Popover/Tooltip/Popconfirm 经 `useOverlay` 收口（见上条细节）。
