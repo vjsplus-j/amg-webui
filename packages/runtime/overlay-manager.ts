@@ -1,10 +1,11 @@
 import { createAppContext } from './app-context'
 import { createZIndexManager } from './z-index-manager'
-import { getSharedScrollLockManager } from './scroll-lock-manager'
+import {
+  getDocumentOverlayCoordinator,
+  type DocumentOverlayEntry
+} from './document-overlay-coordinator'
 import { createFocusManager } from './focus-manager'
-import { createEscapeStack } from './escape-stack'
 import { createTeleportManager } from './teleport-manager'
-import { createClickOutsideManager } from './click-outside'
 import type {
   OverlayAppContextConfig,
   OverlayHandle,
@@ -16,10 +17,16 @@ import type {
 } from './types'
 
 let idSeq = 0
+let runtimeSeq = 0
 
 function nextId(): string {
   idSeq += 1
   return `vp-overlay-${idSeq}`
+}
+
+function nextRuntimeId(): string {
+  runtimeSeq += 1
+  return `vp-runtime-${runtimeSeq}`
 }
 
 function defaultModal(kind: OverlayKind): boolean {
@@ -27,7 +34,7 @@ function defaultModal(kind: OverlayKind): boolean {
 }
 
 function defaultLockScroll(kind: OverlayKind, modal: boolean): boolean {
-  return modal && (kind === 'modal' || kind === 'drawer' || kind === 'message' || kind === 'tour')
+  return modal && (kind === 'modal' || kind === 'drawer' || kind === 'message')
 }
 
 function defaultTrapFocus(kind: OverlayKind, modal: boolean): boolean {
@@ -41,41 +48,40 @@ function defaultCloseOnEscape(kind: OverlayKind): boolean {
 export function createOverlayRuntime(
   initial?: OverlayAppContextConfig
 ): OverlayRuntimeApi {
+  const runtimeId = nextRuntimeId()
   const appContext = createAppContext(initial)
   const zIndex = createZIndexManager(() => appContext.get().zIndexBase)
-  const scrollLock = getSharedScrollLockManager()
+  const coordinator = getDocumentOverlayCoordinator()
   const focus = createFocusManager()
-  const escape = createEscapeStack()
   const teleport = createTeleportManager(() => appContext.get().teleportTo)
-  const clickOutside = createClickOutsideManager()
   const stack: OverlayLayer[] = []
 
-  function syncTopFocusTrap(): void {
-    const top = stack[stack.length - 1]
-    if (top?.trapFocus && top.container) {
-      focus.activateTrap(top.container)
-    } else {
-      focus.deactivateTrap()
+  function toEntry(layer: OverlayLayer): DocumentOverlayEntry {
+    return {
+      runtimeId,
+      layerId: layer.id,
+      zIndex: layer.zIndex,
+      closeOnEscape: layer.closeOnEscape,
+      onEscape: layer.onEscape,
+      trapFocus: layer.trapFocus,
+      container: layer.container,
+      lockScroll: layer.lockScroll,
+      onClickOutside: layer.onClickOutside,
+      contains: layer.onClickOutside
+        ? (target) => {
+            if (!(target instanceof Node)) return false
+            if (layer.container?.contains(target)) return true
+            for (const el of layer.exclude) {
+              if (el?.contains(target)) return true
+            }
+            return false
+          }
+        : undefined
     }
   }
 
-  function syncClickOutside(layer: OverlayLayer): void {
-    if (!layer.onClickOutside) {
-      clickOutside.remove(layer.id)
-      return
-    }
-    clickOutside.push({
-      id: layer.id,
-      contains: (target) => {
-        if (!(target instanceof Node)) return false
-        if (layer.container?.contains(target)) return true
-        for (const el of layer.exclude) {
-          if (el?.contains(target)) return true
-        }
-        return false
-      },
-      onOutside: layer.onClickOutside
-    })
+  function syncCoordinator(layer: OverlayLayer): void {
+    coordinator.upsert(toEntry(layer))
   }
 
   function removeLayer(id: string, restoreFocus: boolean): void {
@@ -83,14 +89,17 @@ export function createOverlayRuntime(
     if (idx < 0) return
     const [layer] = stack.splice(idx, 1)
     zIndex.release(id)
-    if (layer.lockScroll) scrollLock.release(id)
-    escape.remove(id)
-    clickOutside.remove(id)
-    syncTopFocusTrap()
-    if (restoreFocus && layer.restoreFocus) {
-      // Only restore if no other trap layer remains on top
+    coordinator.remove(runtimeId, id)
+
+    if (restoreFocus && layer.restoreFocus && layer.previouslyFocused) {
       const top = stack[stack.length - 1]
-      if (!top?.trapFocus) focus.restore(layer.previouslyFocused)
+      // Nested modal: restore into parent trap container when the trigger still lives there
+      if (
+        !top?.trapFocus ||
+        (top.container != null && top.container.contains(layer.previouslyFocused))
+      ) {
+        focus.restore(layer.previouslyFocused)
+      }
     }
   }
 
@@ -120,13 +129,7 @@ export function createOverlayRuntime(
     }
 
     stack.push(layer)
-
-    if (lockScroll) scrollLock.acquire(id)
-    if (closeOnEscape && options.onEscape) {
-      escape.push(id, options.onEscape)
-    }
-    syncClickOutside(layer)
-    syncTopFocusTrap()
+    syncCoordinator(layer)
 
     return {
       id,
@@ -140,26 +143,12 @@ export function createOverlayRuntime(
         if (patch.container !== undefined) current.container = patch.container ?? null
         if (patch.exclude !== undefined) current.exclude = patch.exclude
         if (patch.modal !== undefined) current.modal = patch.modal
-        if (patch.lockScroll !== undefined && patch.lockScroll !== current.lockScroll) {
-          if (patch.lockScroll) scrollLock.acquire(id)
-          else scrollLock.release(id)
-          current.lockScroll = patch.lockScroll
-        }
+        if (patch.lockScroll !== undefined) current.lockScroll = patch.lockScroll
         if (patch.trapFocus !== undefined) current.trapFocus = patch.trapFocus
         if (patch.closeOnEscape !== undefined) current.closeOnEscape = patch.closeOnEscape
         if (patch.onEscape !== undefined) current.onEscape = patch.onEscape
-        if (
-          patch.onEscape !== undefined ||
-          patch.closeOnEscape !== undefined
-        ) {
-          if (current.closeOnEscape && current.onEscape) escape.push(id, current.onEscape)
-          else escape.remove(id)
-        }
-        if (patch.onClickOutside !== undefined) {
-          current.onClickOutside = patch.onClickOutside
-          syncClickOutside(current)
-        }
-        syncTopFocusTrap()
+        if (patch.onClickOutside !== undefined) current.onClickOutside = patch.onClickOutside
+        syncCoordinator(current)
       }
     }
   }
@@ -197,10 +186,8 @@ export function createOverlayRuntime(
         removeLayer(top.id, false)
       }
       zIndex.reset()
-      scrollLock.reset()
-      escape.reset()
-      clickOutside.reset()
-      focus.deactivateTrap()
+      // Only release this runtime's document registrations — never global reset
+      coordinator.releaseRuntime(runtimeId)
     }
   }
 }

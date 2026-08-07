@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { computed, inject, onUnmounted, provide, reactive, ref, watch } from 'vue'
+import { computed, inject, onUnmounted, provide, reactive, ref, unref, watch } from 'vue'
 import { LocaleService } from '@amg-webui/locale'
 import { THEME_RUNTIME_KEY } from '@amg-webui/theme'
 import {
   configureDefaultOverlayRuntime,
-  OVERLAY_RUNTIME_KEY
+  OVERLAY_RUNTIME_KEY,
+  type OverlayRuntimeApi
 } from '@amg-webui/runtime'
 import { createThemeScope } from '@amg-webui/hooks'
 import { BUTTON_CONFIG_KEY } from '@amg-webui/core/Button/config'
@@ -36,12 +37,11 @@ onUnmounted(() => {
   unsubDir()
 })
 
-const resolvedDesign = computed(() => props.design ?? props.theme ?? parentConfig?.value?.design ?? parentConfig?.value?.theme)
-
+/** ThemeScope only accepts this layer's local axes — never re-interpret parent design as local. */
 const themeScope = createThemeScope(() => ({
   forceLocal: false,
   runtime: props.themeRuntime,
-  design: resolvedDesign.value,
+  design: props.design ?? props.theme,
   scheme: props.scheme,
   font: props.font,
   iconStyle: props.iconStyle,
@@ -51,20 +51,8 @@ const themeScope = createThemeScope(() => ({
   storageNamespace: props.themeStorageNamespace
 }))
 
-const hasLocalTheme = Boolean(
-  props.themeRuntime ||
-    props.design ||
-    props.theme ||
-    props.scheme ||
-    props.font ||
-    props.iconStyle ||
-    props.primary ||
-    (props.tokens && Object.keys(props.tokens).length > 0)
-)
-
-if (hasLocalTheme) {
-  provide(THEME_RUNTIME_KEY, themeScope.runtime)
-}
+/** Always provide the runtime Ref so dynamic axes / inheritance stay in sync for inject consumers. */
+provide(THEME_RUNTIME_KEY, themeScope.runtime)
 
 const mergedConfig = computed<ConfigProviderResolvedConfig>(() => {
   void localeEpoch.value
@@ -152,10 +140,11 @@ const hostStyle = computed(() => ({
 }))
 
 const parentOverlayRuntime = inject(OVERLAY_RUNTIME_KEY, undefined)
-const scopedOverlayRuntime = props.overlayRuntime ?? parentOverlayRuntime
-if (scopedOverlayRuntime) {
-  provide(OVERLAY_RUNTIME_KEY, scopedOverlayRuntime)
-}
+const scopedOverlayRuntime = computed<OverlayRuntimeApi | undefined>(() => {
+  if (props.overlayRuntime) return props.overlayRuntime
+  return unref(parentOverlayRuntime) ?? undefined
+})
+provide(OVERLAY_RUNTIME_KEY, scopedOverlayRuntime)
 
 watch(
   mergedConfig,
@@ -172,7 +161,7 @@ watch(
       patch.teleportTo = config.overlayTeleportTo
     }
     if (Object.keys(patch).length > 0) {
-      const target = config.overlayRuntime ?? undefined
+      const target = config.overlayRuntime ?? unref(scopedOverlayRuntime) ?? undefined
       if (target) target.configure(patch)
       else configureDefaultOverlayRuntime(patch)
     }

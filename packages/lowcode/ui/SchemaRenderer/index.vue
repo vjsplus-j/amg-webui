@@ -33,6 +33,11 @@ const emit = defineEmits<SchemaRendererEmits>()
 const { t } = useLocale()
 const slots = useSlots()
 
+function resolveNodeSlot(): Slot<SchemaNodeSlotProps> | undefined {
+  const node = Reflect.get(slots, 'node')
+  return typeof node === 'function' ? (node as Slot<SchemaNodeSlotProps>) : undefined
+}
+
 const flatNodes = computed(() => {
   if (props.schema && !Array.isArray(props.schema)) {
     return (props.schema as CanvasSchema).nodes.filter((n) => !n.hidden)
@@ -144,7 +149,7 @@ const rendererCtx = reactive({
     return props.telemetry
   },
   get nodeSlot() {
-    return slots.node as Slot<SchemaNodeSlotProps> | undefined
+    return resolveNodeSlot()
   },
   nodeStyle,
   activate,

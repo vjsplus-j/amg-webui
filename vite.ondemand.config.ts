@@ -17,6 +17,7 @@ import {
   componentDirRel
 } from './build/shared.mjs'
 import { componentToPackage } from './scripts/component-package-map.mjs'
+import { stableComponentCssPlugin } from './build/stable-component-css-plugin.mjs'
 
 function collectEntries() {
   const entries = {}
@@ -43,7 +44,7 @@ function collectEntries() {
 const entries = collectEntries()
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), stableComponentCssPlugin()],
   resolve: { alias: packageAlias },
   build: {
     lib: {

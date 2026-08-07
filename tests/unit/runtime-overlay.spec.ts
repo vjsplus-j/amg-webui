@@ -5,6 +5,7 @@ import {
   getDefaultOverlayRuntime,
   getSharedScrollLockManager,
   resetDefaultOverlayRuntime,
+  resetDocumentOverlayCoordinator,
   resetSharedScrollLockManager,
   resolveTeleportTarget
 } from '@amg-webui/runtime'
@@ -12,6 +13,7 @@ import {
 describe('Overlay runtime', () => {
   afterEach(() => {
     resetDefaultOverlayRuntime()
+    resetDocumentOverlayCoordinator()
     resetSharedScrollLockManager()
     vi.unstubAllGlobals()
   })
@@ -83,6 +85,42 @@ describe('Overlay runtime', () => {
 
     trigger.remove()
     panel.remove()
+    rt.dispose()
+  })
+
+  it('restores focus into parent trap when nested modal closes', () => {
+    const outerPanel = document.createElement('div')
+    const openInner = document.createElement('button')
+    openInner.textContent = 'open detail'
+    outerPanel.appendChild(openInner)
+    document.body.appendChild(outerPanel)
+
+    const innerPanel = document.createElement('div')
+    const innerBtn = document.createElement('button')
+    innerBtn.textContent = 'close'
+    innerPanel.appendChild(innerBtn)
+    document.body.appendChild(innerPanel)
+
+    const rt = createOverlayRuntime()
+    rt.open({
+      kind: 'modal',
+      trapFocus: true,
+      restoreFocus: true,
+      container: outerPanel
+    })
+    openInner.focus()
+    const nested = rt.open({
+      kind: 'modal',
+      trapFocus: true,
+      restoreFocus: true,
+      container: innerPanel
+    })
+    innerBtn.focus()
+    nested.close()
+    expect(document.activeElement).toBe(openInner)
+
+    outerPanel.remove()
+    innerPanel.remove()
     rt.dispose()
   })
 
@@ -183,5 +221,40 @@ describe('Overlay runtime', () => {
     layer.update({ lockScroll: true })
     expect(lock.isLocked()).toBe(true)
     layer.close()
+  })
+
+  it('disposing runtime A does not unlock runtime B scroll', () => {
+    const lock = getSharedScrollLockManager()
+    const a = createOverlayRuntime({ zIndexBase: 3000, namespace: 'mfe-a' })
+    const b = createOverlayRuntime({ zIndexBase: 5000, namespace: 'mfe-b' })
+    a.open({ kind: 'modal', lockScroll: true })
+    b.open({ kind: 'modal', lockScroll: true })
+    expect(lock.isLocked()).toBe(true)
+    a.dispose()
+    expect(lock.isLocked()).toBe(true)
+    b.dispose()
+    expect(lock.isLocked()).toBe(false)
+  })
+
+  it('Escape only closes the globally highest z-index layer across runtimes', () => {
+    const low = createOverlayRuntime({ zIndexBase: 1000 })
+    const high = createOverlayRuntime({ zIndexBase: 5000 })
+    const order: string[] = []
+    low.open({
+      kind: 'modal',
+      closeOnEscape: true,
+      onEscape: () => order.push('low')
+    })
+    high.open({
+      kind: 'modal',
+      closeOnEscape: true,
+      onEscape: () => order.push('high')
+    })
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))
+    expect(order).toEqual(['high'])
+    high.dispose()
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))
+    expect(order).toEqual(['high', 'low'])
+    low.dispose()
   })
 })

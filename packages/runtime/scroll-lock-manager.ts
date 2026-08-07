@@ -54,6 +54,13 @@ function release(doc: Document): void {
 export function createScrollLockManager() {
   const owners = new Set<string>()
 
+  function releaseOwner(ownerId: string): void {
+    if (!owners.has(ownerId)) return
+    const doc = getDocument()
+    if (doc) release(doc)
+    owners.delete(ownerId)
+  }
+
   return {
     acquire(ownerId: string): void {
       if (owners.has(ownerId)) return
@@ -63,19 +70,21 @@ export function createScrollLockManager() {
       owners.add(ownerId)
     },
     release(ownerId: string): void {
-      if (!owners.has(ownerId)) return
-      const doc = getDocument()
-      if (doc) release(doc)
-      owners.delete(ownerId)
+      releaseOwner(ownerId)
     },
     isLocked(): boolean {
       return owners.size > 0
     },
-    reset(): void {
-      const doc = getDocument()
+    /** Release owners whose id starts with `prefix` (e.g. `runtime-a:`). */
+    releaseByPrefix(prefix: string): void {
       for (const id of [...owners]) {
-        if (doc) release(doc)
-        owners.delete(id)
+        if (!id.startsWith(prefix)) continue
+        releaseOwner(id)
+      }
+    },
+    reset(): void {
+      for (const id of [...owners]) {
+        releaseOwner(id)
       }
     }
   }

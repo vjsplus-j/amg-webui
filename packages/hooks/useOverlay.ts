@@ -53,9 +53,13 @@ export interface UseOverlayResult {
 
 function resolveRuntime(
   options: UseOverlayOptions,
-  injected: OverlayRuntimeApi | undefined
+  injected: OverlayRuntimeApi | Ref<OverlayRuntimeApi | null | undefined> | undefined
 ): OverlayRuntimeApi {
-  return toValue(options.runtime) ?? injected ?? getDefaultOverlayRuntime()
+  return (
+    toValue(options.runtime) ??
+    toValue(injected) ??
+    getDefaultOverlayRuntime()
+  )
 }
 
 /**

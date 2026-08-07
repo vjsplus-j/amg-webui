@@ -32,7 +32,8 @@
 | `npm run build:dts` | **dts**：仅刷新类型 → `dist/**/*.d.ts`（不重打 JS/CSS） |
 | `npm run build:skill` | 仅构建独立 Skill Runtime → `dist/skill/`（ESM + CJS + `.d.ts`） |
 | `npm run build:theme` | 仅构建主题运行时包 → `dist/theme/`（`index` / `core` + `style.css`） |
-| `npm run generate:exports` | 扫描组件 + runtime 树，重写 `package.json` `exports` / `files`（**仅 dist**） |
+| `npm run generate:exports` | 按 **allowlist** 重写 `package.json` `exports` / `files`（包入口 + 组件 kebab + `/style.css` + 白名单深路径；禁止内部 `.ts` 永生 API） |
+| `npm run check:boundaries` | foundation↛industry + **组件包依赖 DAG**（core↛form/data/overlay；Popconfirm 留 core） |
 | `npm run test:consumers` | `npm pack` → 安装进 `tests/consumer-{vite,webpack,nuxt}` 并 `build` |
 | `npm run build:example` | example 本地冒烟 → `example-dist/`（**不上线**） |
 | `npm run docs:dev` / `docs:build` | 官方文档站本地编写 / **可部署**构建 |
@@ -66,9 +67,11 @@
 
 **根 barrel 不导出行业三包**（`media` / `gb28181` / `onvif`）与 `charts` / `editor` — 须显式子路径导入。归属 SSOT：`scripts/component-package-map.mjs`；CI 含 `check:boundaries`。
 
-**全部公共子路径必须指向 `dist/**` 编译产物**（JS + `.d.ts`；样式走 `style.css` / `theme/style.css`）。禁止再把 `packages/**/*.ts` 写进 `exports`。`files` 仅含 `dist` + 合同文档。
+**全部公共子路径必须指向 `dist/**` 编译产物**（JS + `.d.ts`；样式走 `style.css` / `theme/style.css` / 按需 `amg-webui/<comp>/style.css`）。禁止再把 `packages/**/*.ts` 写进 `exports`。`files` 仅含 `dist` + 合同文档。
 
 On-demand / runtime 构建把内部 `@amg-webui/*` **改写**为消费者可解析的 `amg-webui/*`，并 external peers（`vue` · `@lucide/vue`）与已发布子路径；不再把「只有 monorepo alias 才能解析」的 import 留在产物里。
+
+按需组件 CSS：`build:ondemand` 经 `stableComponentCssPlugin` 把入口样式落到 `dist/es/components/<pkg>/<Name>/style.css`，并暴露 `amg-webui/<kebab>/style.css`（无需根 `amg-webui/style.css`）。`check:dist` 校验 Button/Tag 代表路径；`consumer-vite` 含 `ondemand-css` 入口冒烟。
 
 Skill / Theme 的 subpath 指向 `dist/skill/` · `dist/theme/` 独立产物；根入口 `packages/index.ts` **禁止** re-export Skill。Theme 根入口可再导出服务，但 SSR / 微前端应优先 `theme/core`。
 
@@ -96,7 +99,7 @@ Workflow：`.github/workflows/ci.yml`。
 - 全组件键盘矩阵 / 读屏人工认证
 - Nuxt / 通用框架 **hydration** 端到端
 - Lighthouse / 交互性能基准入门禁（`check:dist` 只挡异常膨胀）
-- 按需 **独立 CSS side-entry** 完备性
+- 部分无样式组件可能无 `style.css` export（有样式的组件已具备稳定 side-entry）
 
 本地：默认 Playwright 仅 Chromium；设 `CI=1` 或 `PLAYWRIGHT_FULL=1` 跑浏览器矩阵。
 

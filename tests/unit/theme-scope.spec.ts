@@ -68,6 +68,89 @@ describe('Theme Scope (ThemeProvider / ConfigProvider)', () => {
     wrapper.unmount()
   })
 
+  it('nested ConfigProvider without local theme inherits outer runtime (no context split)', async () => {
+    let outerRuntime: ThemeRuntime | null = null
+    let innerRuntime: ThemeRuntime | null = null
+
+    const OuterProbe = defineComponent({
+      setup() {
+        const injected = inject(THEME_RUNTIME_KEY, null) as { value: ThemeRuntime | null } | null
+        outerRuntime = injected ? unref(injected) : null
+        return () => h('span', { class: 'outer-probe' })
+      }
+    })
+
+    const InnerProbe = defineComponent({
+      setup() {
+        const injected = inject(THEME_RUNTIME_KEY, null) as { value: ThemeRuntime | null } | null
+        innerRuntime = injected ? unref(injected) : null
+        return () => h('span', { class: 'inner-probe' })
+      }
+    })
+
+    const wrapper = mount(
+      defineComponent({
+        components: { ConfigProvider, OuterProbe, InnerProbe },
+        setup() {
+          return () =>
+            h(ConfigProvider, { design: 'linear' }, () => [
+              h(OuterProbe),
+              h(ConfigProvider, {}, () => h(InnerProbe))
+            ])
+        }
+      })
+    )
+    await flushPromises()
+
+    const hosts = wrapper.findAll('.vp-config-provider')
+    expect(hosts[0].element.getAttribute('data-design')).toBe('linear')
+    expect(hosts[1].element.getAttribute('data-design')).toBeNull()
+    expect(outerRuntime).not.toBeNull()
+    expect(innerRuntime).toBe(outerRuntime)
+    expect(innerRuntime?.getState().design).toBe('linear')
+    wrapper.unmount()
+  })
+
+  it('ConfigProvider dynamic design prop starts providing and painting after undefined → set', async () => {
+    const designs: Array<string | null> = []
+
+    const Probe = defineComponent({
+      setup() {
+        const injected = inject(THEME_RUNTIME_KEY, null) as { value: ThemeRuntime | null } | null
+        return () => {
+          const rt = injected ? unref(injected) : null
+          designs.push(rt?.getState().design ?? null)
+          return h('span', { class: 'probe' })
+        }
+      }
+    })
+
+    const wrapper = mount(
+      defineComponent({
+        components: { ConfigProvider, Probe },
+        props: {
+          design: { type: String, default: undefined }
+        },
+        setup(p) {
+          return () => h(ConfigProvider, { design: (p as { design?: string }).design }, () => h(Probe))
+        }
+      }),
+      { props: { design: undefined } }
+    )
+    await flushPromises()
+
+    const host = wrapper.find('.vp-config-provider').element
+    expect(host.getAttribute('data-design')).toBeNull()
+
+    await wrapper.setProps({ design: 'linear' })
+    await flushPromises()
+    await nextTick()
+
+    expect(host.getAttribute('data-design')).toBe('linear')
+    expect(designs.some((d) => d === 'linear')).toBe(true)
+    wrapper.unmount()
+  })
+
   it('nested ThemeProviders stay isolated on separate hosts', async () => {
     const wrapper = mount(
       defineComponent({

@@ -31,6 +31,8 @@ const requiredPaths = [
 ]
 
 const onDemandButtonPath = 'dist/es/components/core/Button/index.js'
+const onDemandButtonStylePath = 'dist/es/components/core/Button/style.css'
+const onDemandDataTableStylePath = 'dist/es/components/data/DataTable/style.css'
 
 let failed = false
 
@@ -59,6 +61,20 @@ if (!existsSync(resolve(root, buttonJsRel))) {
   const src = readFileSync(buttonJs, 'utf8')
   if (src.includes('@amg-webui/')) {
     fail(`on-demand Button (${buttonJsRel}) still imports @amg-webui/* (expected amg-webui/* rewrite)`)
+  }
+  if (!src.includes('./style.css') && !src.includes('"./style.css"') && !src.includes("'./style.css'")) {
+    // Soft: Button should pull stable local CSS when the SFC has styles
+    fail(`on-demand Button (${buttonJsRel}) missing import "./style.css"`)
+  }
+}
+
+for (const styleRel of [onDemandButtonStylePath, onDemandDataTableStylePath]) {
+  if (!existsSync(resolve(root, styleRel))) {
+    fail(`missing on-demand component CSS (${styleRel})`)
+  } else if (statSync(resolve(root, styleRel)).size <= 0) {
+    fail(`empty ${styleRel}`)
+  } else {
+    console.log(`[check:dist] OK ${styleRel}`)
   }
 }
 

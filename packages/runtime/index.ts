@@ -15,6 +15,11 @@ export { createAppContext } from './app-context'
 export { createZIndexManager } from './z-index-manager'
 export { createScrollLockManager, getSharedScrollLockManager, resetSharedScrollLockManager } from './scroll-lock-manager'
 export {
+  createDocumentOverlayCoordinator,
+  getDocumentOverlayCoordinator,
+  resetDocumentOverlayCoordinator
+} from './document-overlay-coordinator'
+export {
   createFocusManager,
   createFocusTrap,
   focusInitial,

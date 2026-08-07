@@ -9,7 +9,7 @@
  *   amg-webui/theme · security · lowcode · telemetry · icons · hooks · utils · …
  *   amg-webui/utils/env · amg-webui/hooks/useFocusTrap · …
  */
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
   root,
@@ -17,11 +17,13 @@ import {
   listBaseComponentNames,
   BIZ_DOMAINS,
   componentEsImportPath,
+  componentStyleImportPath,
   componentTypesPath,
   bizEsImportPath,
   bizTypesPath,
   collectTsEntries
 } from '../build/shared.mjs'
+import { isPublicExportEntryKey } from './public-export-allowlist.mjs'
 
 function subpath(types, imp, req) {
   const out = {
@@ -33,16 +35,24 @@ function subpath(types, imp, req) {
   return out
 }
 
-/** Emit explicit `./pkg` + `./pkg/deep/...` for preserveModules runtime trees */
+/** Emit allowlisted `./pkg` + `./pkg/deep/...` for preserveModules runtime trees */
 function addRuntimeTree(exportsMap, pkgDir) {
   const entries = collectTsEntries(pkgDir)
+  let added = 0
+  let skipped = 0
   for (const key of Object.keys(entries)) {
+    if (!isPublicExportEntryKey(key)) {
+      skipped += 1
+      continue
+    }
     // key: `utils/env` | `hooks/useFocusTrap` | `utils/index` | `locale/zh-CN/index`
     const exportKey = key.endsWith('/index')
       ? `./${key.slice(0, -'/index'.length)}`
       : `./${key}`
     exportsMap[exportKey] = subpath(`./dist/${key}.d.ts`, `./dist/${key}.js`)
+    added += 1
   }
+  return { added, skipped }
 }
 
 const exportsMap = {
@@ -132,6 +142,8 @@ const exportsMap = {
   './es/*': './dist/es/*'
 }
 
+let runtimeAdded = 0
+let runtimeSkipped = 0
 for (const pkgDir of [
   'telemetry',
   'security',
@@ -145,12 +157,18 @@ for (const pkgDir of [
   'constants',
   'animations'
 ]) {
-  addRuntimeTree(exportsMap, pkgDir)
+  const { added, skipped } = addRuntimeTree(exportsMap, pkgDir)
+  runtimeAdded += added
+  runtimeSkipped += skipped
 }
 
 for (const name of listBaseComponentNames()) {
   const kebab = toKebab(name)
   exportsMap[`./${kebab}`] = subpath(componentTypesPath(name), componentEsImportPath(name))
+  const styleRel = componentStyleImportPath(name)
+  if (existsSync(resolve(root, styleRel))) {
+    exportsMap[`./${kebab}/style.css`] = styleRel
+  }
 }
 
 for (const domain of BIZ_DOMAINS) {
@@ -176,8 +194,18 @@ console.log(
   `[generate:exports] wrote ${Object.keys(exportsMap).length} export entries (dist-only files[])`
 )
 console.log(
+  `[generate:exports] runtime tree allowlist: +${runtimeAdded} public, skipped ${runtimeSkipped} internal`
+)
+console.log(
   `[generate:exports] sample ./utils/env → ${JSON.stringify(exportsMap['./utils/env'])}`
 )
 console.log(
   `[generate:exports] sample ./hooks/useFocusTrap → ${JSON.stringify(exportsMap['./hooks/useFocusTrap'])}`
 )
+console.log(
+  `[generate:exports] sample ./runtime (barrel only) → ${JSON.stringify(exportsMap['./runtime'])}`
+)
+if (exportsMap['./runtime/escape-stack']) {
+  console.error('[generate:exports] FAIL: internal ./runtime/escape-stack must not be exported')
+  process.exit(1)
+}

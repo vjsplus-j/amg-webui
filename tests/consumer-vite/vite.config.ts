@@ -8,7 +8,10 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {
-      input: resolve(__dirname, 'index.html')
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        'ondemand-css': resolve(__dirname, 'ondemand-css.html')
+      }
     }
   }
 })

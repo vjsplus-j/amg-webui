@@ -141,6 +141,7 @@ export function useBizAsync<T, TCreate = Partial<T>, TUpdate = T>(
   const cache = new Map<string, CacheEntry<T>>()
   let listSeq = 0
   let listController: AbortController | null = null
+  const mutationControllers = new Set<AbortController>()
   let keywordTimer: ReturnType<typeof setTimeout> | null = null
   let disposed = false
 
@@ -170,11 +171,23 @@ export function useBizAsync<T, TCreate = Partial<T>, TUpdate = T>(
     }
   }
 
-  function abort() {
+  function abortList() {
     if (listController) {
       listController.abort()
       listController = null
     }
+  }
+
+  function abortMutations() {
+    for (const controller of mutationControllers) {
+      controller.abort()
+    }
+    mutationControllers.clear()
+  }
+
+  function abort() {
+    abortList()
+    abortMutations()
   }
 
   function clearKeywordTimer() {
@@ -330,11 +343,13 @@ export function useBizAsync<T, TCreate = Partial<T>, TUpdate = T>(
     if (disposed) return undefined
     syncMutation({ pending: true, error: null, type })
     const controller = typeof AbortController !== 'undefined' ? new AbortController() : null
+    if (controller) mutationControllers.add(controller)
     const reqOpts: BizRequestOptions | undefined = controller
       ? { signal: controller.signal }
       : undefined
     try {
       const result = await run(reqOpts)
+      if (disposed) return undefined
       invalidateCache()
       await load({ force: true })
       syncMutation({ pending: false, error: null, type: null })
@@ -347,6 +362,8 @@ export function useBizAsync<T, TCreate = Partial<T>, TUpdate = T>(
         syncMutation({ pending: false, error: null, type: null })
       }
       return undefined
+    } finally {
+      if (controller) mutationControllers.delete(controller)
     }
   }
 

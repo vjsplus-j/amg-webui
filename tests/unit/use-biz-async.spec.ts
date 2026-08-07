@@ -240,6 +240,42 @@ describe('useBizAsync', () => {
     dispose()
   })
 
+  it('aborts in-flight mutation when scope disposes', async () => {
+    let seenSignal: AbortSignal | undefined
+    const adapter: BizCrudAdapter<Row> = {
+      async list() {
+        return { list: [{ id: 1, name: 'a' }], total: 1 }
+      },
+      remove(_id, req) {
+        seenSignal = req?.signal
+        return new Promise<void>((_resolve, reject) => {
+          req?.signal?.addEventListener('abort', () => {
+            const err = new Error('aborted')
+            err.name = 'AbortError'
+            reject(err)
+          })
+        })
+      }
+    }
+    const { api, dispose } = withHook(() =>
+      useBizAsync({
+        adapter,
+        immediate: false,
+        keywordDebounceMs: 0,
+        getItemId: (row) => row.id
+      })
+    )
+
+    await api.load()
+    const pending = api.remove(1)
+    expect(seenSignal).toBeTruthy()
+    expect(seenSignal?.aborted).toBe(false)
+    dispose()
+    expect(seenSignal?.aborted).toBe(true)
+    await pending
+    expect(api.mutating.value).toBe(false)
+  })
+
   it('reloads when adapter identity changes', async () => {
     const a: BizCrudAdapter<Row> = {
       async list() {

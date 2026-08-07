@@ -145,6 +145,14 @@ export function componentEsImportPath(pascalName) {
   return `./dist/es/components/${pkg}/${pascalName}/index.js`
 }
 
+export function componentStyleImportPath(pascalName) {
+  const pkg = componentToPackage.get(pascalName)
+  if (pkg === 'lowcode') {
+    return `./dist/es/lowcode/ui/${pascalName}/style.css`
+  }
+  return `./dist/es/components/${pkg}/${pascalName}/style.css`
+}
+
 export function componentTypesPath(pascalName) {
   const pkg = componentToPackage.get(pascalName)
   if (pkg === 'lowcode') {
