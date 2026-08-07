@@ -4,6 +4,15 @@
 
 ---
 
+## 2026-08-07 — industry：catalog 行业件全部迁出 base
+
+- 一次性迁完剩余 **27** 件：`Vcr*` · `Video*` · `PTZControl` · `AudioTalk` · `SplitVideoWall` · `*404`。
+- `packages/components/industry/` 现 **43** 件 = catalog `industry` 全集；base **244** 纯 UI。
+- demos / IndustryPage / 相关单测 / entry·exports·catalog 同步；kebab 路径稳定指向 `dist/es/components/industry/...`。
+- **未宣称完成**：行业件成熟度与深 E2E 仍不足；Barcode/Qrcode/MatrixCode 仍在 `other`（未归 industry）。
+
+---
+
 ## 2026-08-07 — industry：Onvif* 迁出 base
 
 - `Onvif*` 八件迁入 `packages/components/industry/`（与 `Gbs*` 同层）。

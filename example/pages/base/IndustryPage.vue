@@ -5,9 +5,10 @@ import {
   PTZControl,
   Simple404,
   Tech404,
-  VcrTimelinePlayer
-} from '@amg-webui/components/base'
-import { GbsStatusCard, OnvifSearch } from '@amg-webui/components/industry'
+  VcrTimelinePlayer,
+  GbsStatusCard,
+  OnvifSearch
+} from '@amg-webui/components/industry'
 import ComponentGallery from '../../components/ComponentGallery.vue'
 </script>
 

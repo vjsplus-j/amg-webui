@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Plant404 } from '@amg-webui/components/base'
+import { Plant404 } from '@amg-webui/components/industry'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('Plant404'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { Plant404 } from '@amg-webui/components/base'`,
+    `import { Plant404 } from '@amg-webui/components/industry'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('Plant404')`],

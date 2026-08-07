@@ -35,7 +35,7 @@ VUE3-AMG-WEBUI/
 # Component isolation (mandatory)
 
 - **Base** (`packages/components/base/`): 纯 UI 原语（Button、Input、Dialog…）。**禁止**依赖 business / industry。
-- **Industry** (`packages/components/industry/`): 行业套件（已迁 GB28181 `Gbs*` / ONVIF `Onvif*`；其余 VCR / Video / 404 续迁）。可消费 base + hooks + theme + utils；**禁止**依赖 business；根 kebab 导出保留（如 `amg-webui/gbs-status-card`）。
+- **Industry** (`packages/components/industry/`): 行业套件（catalog `industry` 全量已迁：GB28181 / ONVIF / VCR / Video / PTZ / AudioTalk / 404）。可消费 base + hooks + theme + utils；**禁止**依赖 business；根 kebab 导出保留。
 - **Business** (`packages/components/business/`): 五大业务复合模块 — `login` / `users` / `orders` / `content` / `settings`。只消费 base + hooks + theme + utils（不依赖 industry）。
 - **Skill** (`packages/skill/`): 独立可选逻辑运行时；Core 不依赖 Vue 组件或 Telemetry，Vue 集成只负责 Scope / directive / plugin。
 - 路径别名：`@amg-webui/*` → `packages/*`；业务内用 `@amg-webui/components/base`，行业件用 `@amg-webui/components/industry`，不要相对路径穿到 base 源码深处。

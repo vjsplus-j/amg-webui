@@ -8,7 +8,7 @@ import CanvasPreview from "../../../packages/components/base/CanvasPreview/index
 import MonthPicker from "../../../packages/components/base/MonthPicker/index.vue";
 import YearPicker from "../../../packages/components/base/YearPicker/index.vue";
 import GbsSignMonitor from "../../../packages/components/industry/GbsSignMonitor/index.vue";
-import VcrStorageDashboard from "../../../packages/components/base/VcrStorageDashboard/index.vue";
+import VcrStorageDashboard from "../../../packages/components/industry/VcrStorageDashboard/index.vue";
 
 const node = (id: string, locked = false) => ({
   id,

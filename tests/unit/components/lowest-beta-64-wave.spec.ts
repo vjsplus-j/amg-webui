@@ -5,7 +5,7 @@ import GbsAlarmModal from "../../../packages/components/industry/GbsAlarmModal/i
 import PieChart from "../../../packages/components/base/PieChart/index.vue";
 import TableDrag from "../../../packages/components/base/TableDrag/index.vue";
 import TimelineList from "../../../packages/components/base/TimelineList/index.vue";
-import VideoSnapshot from "../../../packages/components/base/VideoSnapshot/index.vue";
+import VideoSnapshot from "../../../packages/components/industry/VideoSnapshot/index.vue";
 import Watermark from "../../../packages/components/base/Watermark/index.vue";
 
 describe("lowest beta score-64 wave behavior", () => {

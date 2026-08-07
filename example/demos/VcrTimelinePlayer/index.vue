@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { VcrTimelinePlayer } from '@amg-webui/components/base'
+import { VcrTimelinePlayer } from '@amg-webui/components/industry'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('VcrTimelinePlayer'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { VcrTimelinePlayer } from '@amg-webui/components/base'`,
+    `import { VcrTimelinePlayer } from '@amg-webui/components/industry'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('VcrTimelinePlayer')`],
