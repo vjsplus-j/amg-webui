@@ -18,15 +18,17 @@
 | `npm run generate:locale-types` | 从 zh-CN 生成 `LocaleKey` / `LocaleMessages`（`message-schema.ts`） |
 | `npm run extract:i18n` | 重生 schema + 校验全部语种 key 对齐 + `LocaleKeys` 叶子 ⊆ zh-CN（缺 key / 不对齐 = 失败） |
 | `npm run generate:icons` | 刷新图标目录 / 解析表 |
-| `npm run validate:catalog` | 校验 `example/component-catalog.json` ↔ base 目录覆盖 |
+| `npm run validate:catalog` | 校验 `example/component-catalog.json` ↔ base+industry 目录覆盖 |
+| `npm run validate:styles` | 校验每个 leaf 存在稳定 `dist/es/components/**/style.css` side-entry |
 | `npm run score:maturity` | 组件成熟度评分（**能力档** thin/form/interaction/composite + 深度 stub→ready；目录数≠成熟度） |
 | `npm run sync:example-zones` | 同步 example 专区侧栏 / 区域元数据 |
 | `npm run generate:vitepress-api` | 根据 `types.ts` 生成 / 刷新 docs 组件 API stub |
 | `node scripts/classify-mvp.mjs` | 深化波次清单 → `scripts/.component-waves.json` |
 | `node scripts/check-coverage.mjs` | catalog / base 目录覆盖核对 |
-| `npm run build` / `build:lib` | **full**：主库 → runtime 分包 → on-demand → skill → theme → `generate:exports` |
+| `npm run build` / `build:lib` | **full**：主库 → runtime → on-demand → **component styles** → skill → theme → `generate:exports` |
 | `npm run build:runtime` | **runtime**：`security` / `telemetry` / `lowcode` / `icons` / `hooks` / `utils` / `locale` / … → `dist/<pkg>/` |
-| `npm run build:ondemand` | **on-demand**：多入口 ESM → `dist/es/**`；`@amg-webui/*` 改写为 `amg-webui/*` |
+| `npm run build:ondemand` | **on-demand**：多入口 ESM → `dist/es/**`；并打 leaf CSS side-entry |
+| `npm run build:styles` | **styles**：sass 编译 leaf `style.css` → `dist/es/components/{base\|industry}/<Name>/style.css` |
 | `npm run build:themes` | **multi-theme**：六品牌 CSS → `dist/themes/<brand>.css` |
 | `npm run build:dts` | **dts**：仅刷新类型 → `dist/**/*.d.ts`（不重打 JS/CSS） |
 | `npm run build:skill` | 仅构建独立 Skill Runtime → `dist/skill/`（ESM + CJS + `.d.ts`） |

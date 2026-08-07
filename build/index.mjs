@@ -13,8 +13,9 @@ const viteCli = resolve(root, 'node_modules', 'vite', 'bin', 'vite.js')
 const USAGE = `Usage: node build/index.mjs <mode>
 
 Modes:
-  full         Main lib + runtime packages + on-demand + skill + theme + exports
+  full         Main lib + runtime + on-demand + component styles + skill + theme + exports
   on-demand    Multi-entry ESM → dist/es/**
+  styles       Per-component CSS side-entries (sass) → dist/es/components/**/style.css
   multi-theme  Per-brand CSS → dist/themes/<brand>.css
   dts          Types only → dist/**/*.d.ts
   skill        Optional Skill Runtime → dist/skill/
@@ -48,6 +49,7 @@ switch (mode) {
     runVite('vite.runtime.config.ts')
     runVite('vite.ondemand.config.ts')
     runNode('build/write-component-barrels.mjs')
+    runNode('build/compile-component-styles.mjs')
     runVite('vite.skill.config.ts')
     runVite('vite.theme.config.ts')
     runNode('scripts/generate-package-exports.mjs')
@@ -55,6 +57,11 @@ switch (mode) {
   case 'on-demand':
     runVite('vite.ondemand.config.ts')
     runNode('build/write-component-barrels.mjs')
+    runNode('build/compile-component-styles.mjs')
+    runNode('scripts/generate-package-exports.mjs')
+    break
+  case 'styles':
+    runNode('build/compile-component-styles.mjs')
     runNode('scripts/generate-package-exports.mjs')
     break
   case 'multi-theme':

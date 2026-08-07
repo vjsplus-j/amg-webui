@@ -4,7 +4,17 @@
 
 ---
 
+## 2026-08-07 — 剩余债一口气收口：PropPanel · E2E · CSS side-entry
+
+- PropPanel：显式 `fields` 时以独立属性编辑器渲染（不再误进「选中节点」空态）。
+- E2E：`tests/e2e/floating-teleport.spec.ts` — Select / DatePicker 面板 Teleport 到 `body` + `position:fixed` + Escape。
+- 逐组件 CSS side-entry：`build/compile-component-styles.mjs`（sass）→ `dist/es/components/{base|industry}/<Name>/style.css`；`exports` 增加 `amg-webui/<kebab>/style.css`；`npm run build:styles` / `validate:styles`；接入 `build:lib` / `build:ondemand`。
+- 文档：`ENGINEERING.md` · `RELEASE_0.1.md` Step 4 勾选 side-entry；CI 增加 `validate:styles`。
+
+---
+
 ## 2026-08-07 — industry：catalog 行业件全部迁出 base
+
 
 - 一次性迁完剩余 **27** 件：`Vcr*` · `Video*` · `PTZControl` · `AudioTalk` · `SplitVideoWall` · `*404`。
 - `packages/components/industry/` 现 **43** 件 = catalog `industry` 全集；base **244** 纯 UI。

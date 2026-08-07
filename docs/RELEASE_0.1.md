@@ -32,7 +32,8 @@ import { Button, ThemeService } from 'amg-webui'
 | 路径 | 用途 |
 |------|------|
 | `amg-webui` | 主入口（`dist` ESM/UMD + types） |
-| `amg-webui/style.css` | 全量样式 |
+| `amg-webui/style.css` | 全量样式（仍可用） |
+| `amg-webui/<kebab>/style.css` | 单组件 CSS side-entry（需另引 `theme/style.css`） |
 | `amg-webui/button` · `amg-webui/data-table` · … | 按需组件（kebab → `dist/es` 编译产物） |
 | `amg-webui/theme` · `theme/core` · `theme/style.css` | 主题运行时（`dist/theme/`） |
 | `amg-webui/security` · `telemetry` · `lowcode` · `icons` | 子系统（**编译后的** `dist/<pkg>/`） |
@@ -74,7 +75,7 @@ npm run test:consumers # → npm pack 后在 vite / webpack / nuxt fixture 中�
 
 - [ ] `build:lib` 产物体积基线记录
 - [x] 按需入口 `amg-webui/<kebab>` + 深路径经 consumer fixture 冒烟
-- [ ] 按需 chunk CSS 独立入口稳定化（当前可先用根 `style.css`）
+- [x] 按需 CSS side-entry：`amg-webui/<kebab>/style.css` → `dist/es/components/{base\|industry}/<Name>/style.css`（`build:styles` / `validate:styles`）
 
 ### Step 5 — SSR 基础（本步）
 
@@ -95,7 +96,7 @@ npm run test:consumers # → npm pack 后在 vite / webpack / nuxt fixture 中�
 
 已闭环：源码子路径导出 → dist 导出；ondemand 改写 `amg-webui/*`；consumer 三套安装构建；CI `test:consumers`。
 
-仍属其他架构债（不在本轮「完全解决」宣称内）：Select 等浮层 Teleport/`useFloatingPanel` 全量迁移、行业件出 base、成熟度启发式、E2E 深度、按需 CSS 独立 side-entry。
+仍属其他架构债（不在「完全解决」宣称内）：成熟度启发式深化、Barcode/Qrcode 等 `other` 域归类、生产级 SSR 全矩阵。
 
 ## Overlay 内核（本轮深度续做）
 

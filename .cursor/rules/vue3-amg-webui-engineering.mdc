@@ -16,7 +16,8 @@ Skill Runtime: `docs/SKILL_RUNTIME.md` · locked rule: `vue3-amg-webui-skill-run
 | `generate:entry` | scan & rewrite component barrel `index.ts` — no manual mega-exports |
 | `extract:i18n` | scan copy → regenerate `LocaleKey` schema + align **all** locale packs; missing key = bug/CI |
 | `generate:locale-types` | emit `message-schema.ts` (`LocaleKey` / `LocaleMessages`) from zh-CN |
-| `validate:catalog` | catalog ↔ base coverage |
+| `validate:catalog` | catalog ↔ base+industry coverage |
+| `validate:styles` | every leaf has stable `dist/es/components/**/style.css` |
 | `score:maturity` | component depth score |
 | `generate:icons` | refresh icon catalog |
 | `generate:vitepress-api` | regenerate docs component API stubs |
@@ -24,10 +25,11 @@ Skill Runtime: `docs/SKILL_RUNTIME.md` · locked rule: `vue3-amg-webui-skill-run
 | `build:skill` | build optional `amg-webui/skill` + `amg-webui/skill/core` entries |
 | `build:theme` | build `amg-webui/theme` + `amg-webui/theme/core` + `theme/style.css` |
 | `build:runtime` | runtime subpackages → `dist/{security,telemetry,lowcode,hooks,utils,…}/` |
-| `build:ondemand` | multi-entry ESM → `dist/es/**`; rewrite `@amg-webui/*` → `amg-webui/*` |
+| `build:ondemand` | multi-entry ESM → `dist/es/**` + leaf CSS side-entries |
+| `build:styles` | leaf `style.css` only → `dist/es/components/{base\|industry}/<Name>/style.css` |
 | `build:themes` | per-brand CSS → `dist/themes/<brand>.css` (`multi-theme` mode) |
 | `build:dts` | types-only emit (`dts` mode) |
-| `build:lib` | full: main + runtime + ondemand + skill + theme + `generate:exports` |
+| `build:lib` | full: main + runtime + ondemand + styles + skill + theme + `generate:exports` |
 | `generate:exports` | rewrite `package.json` `exports`/`files` to **dist-only** |
 | `test:consumers` | `npm pack` + build `tests/consumer-{vite,webpack,nuxt}` |
 

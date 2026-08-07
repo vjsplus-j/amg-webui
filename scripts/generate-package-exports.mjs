@@ -8,6 +8,7 @@ import {
   root,
   toKebab,
   listLeafComponentNames,
+  resolveComponentLayer,
   BIZ_DOMAINS,
   componentEsImportPath,
   componentTypesPath,
@@ -104,7 +105,10 @@ for (const pkgDir of [
 
 for (const name of listLeafComponentNames()) {
   const kebab = toKebab(name)
+  const layer = resolveComponentLayer(name)
   exportsMap[`./${kebab}`] = subpath(componentTypesPath(name), componentEsImportPath(name))
+  exportsMap[`./${kebab}/style.css`] =
+    `./dist/es/components/${layer}/${name}/style.css`
 }
 
 for (const domain of BIZ_DOMAINS) {
