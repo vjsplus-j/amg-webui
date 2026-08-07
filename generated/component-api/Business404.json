@@ -1,6 +1,12 @@
 {
   "name": "Business404",
-  "generatedAt": "2026-08-07T12:39:09.869Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/business404"
+  ],
+  "sourceHash": "8648f91f0c20b8bf93b0d607720c2af71aabd89bf827d8ccb400111ae915289d",
+  "generatedAt": "2026-08-07T18:45:10.902Z",
   "source": {
     "types": "packages/components/core/Business404/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "code",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": 404
     },
     {
       "name": "actions",
       "optional": true,
       "type": "NotFoundAction[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "retryable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "homeHref",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "homeText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,0 +1,53 @@
+{
+  "name": "FloatButton",
+  "title": "FloatButton",
+  "summary": "FloatButton：面向企业场景的 Foundation 组件（成熟度 rc）。",
+  "description": "FloatButton：面向企业场景的 Foundation 组件（成熟度 rc）。",
+  "family": "foundation",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/float-button"
+  ],
+  "features": [
+    "Foundation 家族组件",
+    "语义色变体",
+    "事件回调"
+  ],
+  "useCases": [
+    "基础 UI 交互与页面操作",
+    "按钮、标签、图标等原子组件"
+  ],
+  "avoidWhen": [
+    "需要复杂业务编排时优先业务组件或组合模式"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts FloatButton interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts FloatButton uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts FloatButton RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts FloatButton client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.423Z",
+  "sourceHash": "b448b926aea070457ee2a22ae96f6a12fd16bac2eb009fe5e6b29d33b94bdd1a"
+}

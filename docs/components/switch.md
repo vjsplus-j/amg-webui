@@ -1,25 +1,36 @@
-# Switch
+# Switch 开关
 
-Switch 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Switch 开关：面向企业场景的 Input 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Switch 当前成熟度为 **RC**；下方 DocsDemo 提供 docs 站内嵌交互，完整场景见 example。
+Switch 开关：面向企业场景的 Input 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Input 家族组件
+- v-model 双向绑定
+- 多尺寸规格
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 表单文本/数值输入
+- 受控与非受控输入场景
+
+**不适用**
+
+- 极复杂富文本编辑请使用 RichText / MdEditor
 
 ## 基础用法
 
+> `import { Switch } from 'amg-webui/form'`
+
 ```vue
 <script setup>
-import { Switch } from '@amg-webui/form'
+import { Switch } from 'amg-webui/form'
 </script>
 
 <template>
@@ -29,42 +40,79 @@ import { Switch } from '@amg-webui/form'
 
 Curated demo：`example/demos/Switch/index.vue`
 
-## 交互演示
+## 示例
 
 <DocsDemo name="switch-basic" />
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `boolean` | — | 绑定值 / Bound value (v-model) |
-| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
-| `name` | `string` | — | 表单字段名 / Form field name |
-| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
-| `inlinePrompt` | `boolean` | — | — |
-| `activeText` | `string` | — | — |
-| `inactiveText` | `string` | — | — |
-| `invalid` | `boolean` | — | — |
-| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
+| `modelValue` | `boolean` | false | 绑定值 / Bound value (v-model) |
+| `id` | `string` | `undefined` | 元素 id（无障碍）/ Element id for a11y |
+| `name` | `string` | `undefined` | 表单字段名 / Form field name |
+| `size` | `Size` | `md` | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `inlinePrompt` | `boolean` | false | 是否启用 inlinePrompt |
+| `activeText` | `string` | `undefined` | activeText 字符串 |
+| `inactiveText` | `string` | `undefined` | inactiveText 字符串 |
+| `invalid` | `boolean` | `undefined` | 是否启用 invalid |
+| `ariaLabel` | `string` | `undefined` | Accessible name; falls back to active/inactive prompt text |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `value: boolean` | v-model 更新 / v-model update |
 | `change` | `value: boolean` | 值变更 / Change |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `SwitchProps`
 - `SwitchEmits`
 
+## 键盘交互
+
+- 状态：`PASS`
+- 按键：`Space`
+- Space: Space on focused switch toggles modelValue; Space: disabled switch does not emit update:modelValue on Space
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Switch uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Switch RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Switch client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+- [Form](./form)
+- [FormItem](./form-item)
 
 ## 稳定性
 
@@ -72,6 +120,9 @@ Curated demo：`example/demos/Switch/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/form` |
+| metadata | `component-metadata/Switch.json` |
 | API extract | `generated/component-api/Switch.json` |
 
-> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/Switch`。
+> **DocsDemo** 为 docs 站内嵌演示；完整 curated demo 见 `example/demos/Switch`。
+

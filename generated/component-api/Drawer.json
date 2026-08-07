@@ -1,6 +1,12 @@
 {
   "name": "Drawer",
-  "generatedAt": "2026-08-07T12:40:46.826Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/drawer"
+  ],
+  "sourceHash": "d6555c8a2483f46b00160b37adfe0b656602fa8f94360bc342d06fe7ed274593",
+  "generatedAt": "2026-08-07T18:45:10.983Z",
   "source": {
     "types": "packages/components/overlay/Drawer/types.ts",
     "vue": true
@@ -10,109 +16,127 @@
       "name": "visible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "placement",
       "optional": true,
       "type": "DrawerPlacement",
-      "description": ""
+      "description": "",
+      "default": "right"
     },
     {
       "name": "width",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "height",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "modal",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "closable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "dismissible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "closeOnClickOverlay",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "closeOnPressEscape",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "lockScroll",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "zIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "teleportTo",
       "optional": true,
       "type": "string | HTMLElement",
-      "description": ""
+      "description": "",
+      "default": "body"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "beforeClose",
       "optional": true,
       "type": "( reason: DrawerCloseReason, event?: Event, ) => boolean | Promise<boolean>",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

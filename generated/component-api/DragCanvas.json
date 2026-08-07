@@ -1,6 +1,12 @@
 {
   "name": "DragCanvas",
-  "generatedAt": "2026-08-07T12:40:46.819Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/drag-canvas"
+  ],
+  "sourceHash": "c26cb43a137aa9bbaafadfb94fea153d2e3af7a4cce6ed019ff5bc833e521633",
+  "generatedAt": "2026-08-07T18:45:10.970Z",
   "source": {
     "types": "packages/lowcode/ui/DragCanvas/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "modelValue",
       "optional": true,
       "type": "CanvasNodeData[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "mode",
       "optional": true,
       "type": "'free' | 'grid'",
-      "description": ""
+      "description": "",
+      "default": "free"
     },
     {
       "name": "readonly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "materials",
       "optional": true,
       "type": "CanvasMaterialItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "gridCols",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 24
     },
     {
       "name": "registry",
       "optional": true,
       "type": "ComponentRegistry",
-      "description": ""
+      "description": "When set, canvas nodes mount real components (WYSIWYG).",
+      "default": null
     },
     {
       "name": "renderMode",
       "optional": true,
       "type": "'chrome' | 'component'",
-      "description": ""
+      "description": "`component` = registry mount; `chrome` = label/type placeholder.",
+      "default": "chrome"
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "Button",
-  "generatedAt": "2026-08-07T12:34:13.524Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/button"
+  ],
+  "sourceHash": "215d0bd2f75b7be71c30078bd1441d3eb27cb3436a7bf4cecf2a532870ba5bfa",
+  "generatedAt": "2026-08-07T18:45:10.904Z",
   "source": {
     "types": "packages/components/core/Button/types.ts",
     "vue": true
@@ -10,355 +16,414 @@
       "name": "spin",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Continuous rotate — shared Motion",
+      "default": false
     },
     {
       "name": "pulse",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Soft opacity pulse — shared Motion",
+      "default": false
     },
     {
       "name": "heartbeat",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Scale heartbeat — shared Motion",
+      "default": false
     },
     {
       "name": "bounce",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Jump upward — shared Motion",
+      "default": false
     },
     {
       "name": "blink",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Sharp flash — shared Motion",
+      "default": false
     },
     {
       "name": "breathe",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Breathing light — shared Motion",
+      "default": false
     },
     {
       "name": "glow",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Fluorescent glow — shared Motion",
+      "default": false
     },
     {
       "name": "marqueeLeft",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marquee scroll left — shared Motion",
+      "default": false
     },
     {
       "name": "marqueeRight",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marquee scroll right — shared Motion",
+      "default": false
     },
     {
       "name": "scrollUp",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical scroll up — shared Motion",
+      "default": false
     },
     {
       "name": "scrollDown",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical scroll down — shared Motion",
+      "default": false
     },
     {
       "name": "dampOut",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Damped zoom then fade out — shared Motion",
+      "default": false
     },
     {
       "name": "animationDuration",
       "optional": true,
       "type": "number | string",
-      "description": ""
+      "description": "Animation duration (ms or CSS time) — shared Motion",
+      "default": null
     },
     {
       "name": "label",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "icon",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Lucide icon name (e.g. `Star`) — used when `#icon` slot is empty",
+      "default": null
     },
     {
       "name": "iconPos",
       "optional": true,
       "type": "ButtonIconPos",
-      "description": ""
+      "description": "",
+      "default": "left"
     },
     {
       "name": "iconSize",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "Override icon size token (defaults to button size)",
+      "default": null
     },
     {
       "name": "iconGap",
       "optional": true,
       "type": "Size | string",
-      "description": ""
+      "description": "Gap between icon and label — Size token or CSS length",
+      "default": null
     },
     {
       "name": "severity",
       "optional": true,
       "type": "ButtonSeverity",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "variant",
       "optional": true,
       "type": "ButtonVariant",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "极小 xs → 超大 xl，映射 `--height-*`",
+      "default": null
     },
     {
       "name": "shape",
       "optional": true,
       "type": "ButtonShape",
-      "description": ""
+      "description": "形状：矩形（默认）/ 方形 / 圆形",
+      "default": "rect"
     },
     {
       "name": "rounded",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Pill / full radius",
+      "default": null
     },
     {
       "name": "borderRadius",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Custom radius — CSS value (prefer token / `%`)",
+      "default": null
     },
     {
       "name": "raised",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "link",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Alias for severity=`link` / link morph",
+      "default": null
     },
     {
       "name": "block",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Block-level: width 100%",
+      "default": null
     },
     {
       "name": "fluid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Alias of block (FluidProps parity)",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "loadingText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Shown next to loader when loading",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabledTitle",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native title when disabled (hover tip)",
+      "default": null
     },
     {
       "name": "readonly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Visual normal, clicks ignored (≠ disabled)",
+      "default": null
     },
     {
       "name": "type",
       "optional": true,
       "type": "ButtonNativeType",
-      "description": ""
+      "description": "",
+      "default": "button"
     },
     {
       "name": "badge",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "角标 / 微章内容（绝对定位，不撑布局）",
+      "default": null
     },
     {
       "name": "star",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "标星指示",
+      "default": false
     },
     {
       "name": "rated",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "标星别名",
+      "default": false
     },
     {
       "name": "img",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "图片按钮（avatar 风格）",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "icon-only / img 时的无障碍标签",
+      "default": null
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native tooltip text",
+      "default": null
     },
     {
       "name": "ariaExpanded",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "State semantics for disclosure/toggle buttons",
+      "default": null
     },
     {
       "name": "ariaPressed",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "permission",
       "optional": true,
       "type": "boolean | (() => boolean)",
-      "description": ""
+      "description": "Permission gate. `true` / missing = allowed. `false` or failing checker → hide or disable per `permissionMode`.",
+      "default": null
     },
     {
       "name": "permissionMode",
       "optional": true,
       "type": "ButtonPermissionMode",
-      "description": ""
+      "description": "",
+      "default": "hide"
     },
     {
       "name": "permissionTip",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Tip when permission denied (disable mode / click tip)",
+      "default": null
     },
     {
       "name": "confirm",
       "optional": true,
       "type": "boolean | string",
-      "description": ""
+      "description": "Enable built-in confirm before click emit",
+      "default": null
     },
     {
       "name": "confirmTitle",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "beforeClick",
       "optional": true,
       "type": "(event: MouseEvent) => boolean | void | Promise<boolean | void>",
-      "description": ""
+      "description": "Pre-click interceptor — return false / reject to abort",
+      "default": null
     },
     {
       "name": "clickGuard",
       "optional": true,
       "type": "ButtonClickGuard",
-      "description": ""
+      "description": "Debounce / throttle / none",
+      "default": null
     },
     {
       "name": "wait",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Wait ms for debounce / throttle (falls back to global config)",
+      "default": null
     },
     {
       "name": "href",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Safe external / internal href — renders as `<a>` when set",
+      "default": null
     },
     {
       "name": "to",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Route path string (uses vue-router `$router` when available)",
+      "default": null
     },
     {
       "name": "target",
       "optional": true,
       "type": "'_self' | '_blank' | '_parent' | '_top'",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "replace",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "ripple",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Ripple click feedback",
+      "default": null
     },
     {
       "name": "colorBg",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Optional CSS color overrides (pass token vars, never raw hex in library demos)",
+      "default": null
     },
     {
       "name": "colorText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "colorBorder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "colorHoverBg",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [
@@ -392,34 +457,34 @@
     {
       "name": "default",
       "props": "props: Record<string, never>",
-      "description": ""
+      "description": "Default label content"
     },
     {
       "name": "icon",
       "props": "props: Record<string, never>",
-      "description": ""
+      "description": "Leading / custom icon"
     },
     {
       "name": "loading",
       "props": "props: Record<string, never>",
-      "description": ""
+      "description": "Loading indicator override"
     }
   ],
   "expose": [
     {
       "name": "el",
       "type": "HTMLElement | null",
-      "description": ""
+      "description": "Native button / anchor element"
     },
     {
       "name": "focus",
       "type": "() => void",
-      "description": ""
+      "description": "Focus the control"
     },
     {
       "name": "blur",
       "type": "() => void",
-      "description": ""
+      "description": "Blur the control"
     }
   ],
   "models": [],

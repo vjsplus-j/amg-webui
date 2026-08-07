@@ -1,6 +1,12 @@
 {
   "name": "Pixel404",
-  "generatedAt": "2026-08-07T12:41:35.052Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/pixel404"
+  ],
+  "sourceHash": "eda9fa84c79b252d9905c8512c38bf82d0df318b66e2e3a678d1d25937a403f7",
+  "generatedAt": "2026-08-07T18:45:11.140Z",
   "source": {
     "types": "packages/components/core/Pixel404/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "code",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": 404
     },
     {
       "name": "actions",
       "optional": true,
       "type": "NotFoundAction[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "retryable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "homeHref",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "homeText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

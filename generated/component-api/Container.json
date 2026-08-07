@@ -1,6 +1,12 @@
 {
   "name": "Container",
-  "generatedAt": "2026-08-07T12:40:46.806Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/container"
+  ],
+  "sourceHash": "90dfdeebb4b5ebad4d89424dc99266d7905653309b541bdb83addb0b0fb4a601",
+  "generatedAt": "2026-08-07T18:45:10.947Z",
   "source": {
     "types": "packages/components/core/Container/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "size",
       "optional": true,
       "type": "ContainerSize",
-      "description": ""
+      "description": "",
+      "default": "lg"
     },
     {
       "name": "fluid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "padded",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "align",
       "optional": true,
       "type": "'start' | 'center' | 'end'",
-      "description": ""
+      "description": "",
+      "default": "center"
     },
     {
       "name": "gap",
       "optional": true,
       "type": "'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'section'",
-      "description": ""
+      "description": "",
+      "default": "none"
     },
     {
       "name": "tag",
       "optional": true,
       "type": "'div' | 'main' | 'section' | 'article'",
-      "description": ""
+      "description": "Landmark role when used as page shell segment",
+      "default": "div"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "fullBleed",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "maxWidth",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "class",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "style",
       "optional": true,
       "type": "Record<string, string>",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [],

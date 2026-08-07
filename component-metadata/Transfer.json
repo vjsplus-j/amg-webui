@@ -1,0 +1,69 @@
+{
+  "name": "Transfer",
+  "title": "Transfer",
+  "summary": "Transfer：面向企业场景的 Selection 组件（成熟度 rc）。",
+  "description": "Transfer：面向企业场景的 Selection 组件（成熟度 rc）。",
+  "family": "selection",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/transfer"
+  ],
+  "features": [
+    "Selection 家族组件",
+    "v-model 双向绑定",
+    "可筛选",
+    "虚拟滚动",
+    "加载状态反馈",
+    "事件回调"
+  ],
+  "useCases": [
+    "下拉、级联、树选等选择场景",
+    "表单字段与筛选器",
+    "异步提交或加载过程反馈",
+    "大数据量列表/表格性能场景"
+  ],
+  "avoidWhen": [
+    "超大数据集未开启虚拟化时可能影响性能"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Tab",
+      "Enter",
+      "Escape",
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      "Space"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Transfer uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Transfer RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Transfer client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.574Z",
+  "sourceHash": "5dddc83a6efe808fe6a9ea8fd2cebff64d6ba0fc316be132df380f8567d261cf"
+}

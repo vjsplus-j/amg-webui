@@ -1,27 +1,38 @@
 # TimeSelect
 
-TimeSelect 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+TimeSelect：面向企业场景的 DateTime 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-TimeSelect 当前成熟度为 **RC**；完整交互见本地 example。
+TimeSelect：面向企业场景的 DateTime 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- DateTime 家族组件
+- v-model 双向绑定
+- 占位提示
+- 可一键清空
+- 多尺寸规格
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-- [Form](./form)
-- [FormItem](./form-item)
-- [TimePicker](./time-picker)
+**适用**
+
+- 日期/时间选择与范围输入
+- 表单与筛选面板
+
+**不适用**
+
+- 需要非标准历法或复杂排班规则时需自定义
 
 ## 基础用法
 
+> `import { TimeSelect } from 'amg-webui/form'`
+
 ```vue
 <script setup>
-import { TimeSelect } from '@amg-webui/form'
+import { TimeSelect } from 'amg-webui/form'
 </script>
 
 <template>
@@ -31,39 +42,77 @@ import { TimeSelect } from '@amg-webui/form'
 
 Curated demo：`example/demos/TimeSelect/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
-| `name` | `string` | — | 表单字段名 / Form field name |
-| `modelValue` | `string \| null` | — | 绑定值 / Bound value (v-model) |
-| `start` | `string` | — | — |
-| `end` | `string` | — | — |
-| `step` | `string` | — | — |
-| `placeholder` | `string` | — | 占位提示 / Placeholder text |
-| `clearable` | `boolean` | — | 可一键清空 / Show clear button |
-| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `id` | `string` | `undefined` | Native id — falls back to FormItem field id when nested |
+| `name` | `string` | `undefined` | Native name — falls back to FormItem `prop` when nested |
+| `modelValue` | `string \| null` | `null` | 绑定值 / Bound value (v-model) |
+| `start` | `string` | `00:00` | start 字符串 |
+| `end` | `string` | `23:30` | end 字符串 |
+| `step` | `string` | `00:30` | step 字符串 |
+| `placeholder` | `string` | `undefined` | 占位提示 / Placeholder text |
+| `clearable` | `boolean` | true | 可一键清空 / Show clear button |
+| `size` | `Size` | `md` | 尺寸：`sm` · `md` · `lg` / Size variant |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `value: string \| null` | v-model 更新 / v-model update |
 | `change` | `value: string \| null` | 值变更 / Change |
-| `clear` | `void` | — |
+| `clear` | `void` | clear 时触发 |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `TimeSelectProps`
 - `TimeSelectEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- 按键：`Tab` · `Enter` · `Escape` · `ArrowDown` · `ArrowUp` · `ArrowLeft` · `ArrowRight` · `Home` · `End` · `Space`
+- keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`N/A`
+- optional
+
+## RTL
+
+- 状态：`N/A`
+- optional
+
+## SSR
+
+- 状态：`PASS`
+- structural DOM + component entry
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+- [Form](./form)
+- [FormItem](./form-item)
+- [TimePicker](./time-picker)
 
 ## 稳定性
 
@@ -71,6 +120,9 @@ Curated demo：`example/demos/TimeSelect/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/form` |
+| metadata | `component-metadata/TimeSelect.json` |
 | API extract | `generated/component-api/TimeSelect.json` |
 
-> 完整 Demo 见 `example/demos/TimeSelect`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/TimeSelect`（example 本地调试，不上线）。
+

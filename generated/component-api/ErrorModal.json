@@ -1,6 +1,12 @@
 {
   "name": "ErrorModal",
-  "generatedAt": "2026-08-07T12:45:59.830Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/error-modal"
+  ],
+  "sourceHash": "abbdcc9f3da87594c06f0b326557606e7e390600842d03f1954ab96d56bbfb1e",
+  "generatedAt": "2026-08-07T18:45:11.001Z",
   "source": {
     "types": "packages/components/overlay/ErrorModal/types.ts",
     "vue": true

@@ -1,0 +1,60 @@
+{
+  "name": "Upload",
+  "title": "Upload 上传",
+  "summary": "Upload 上传：面向企业场景的 Upload 组件（成熟度 rc）。",
+  "description": "Upload 上传：面向企业场景的 Upload 组件（成熟度 rc）。",
+  "family": "upload",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/upload"
+  ],
+  "features": [
+    "Upload 家族组件",
+    "v-model 双向绑定",
+    "多选模式",
+    "事件回调"
+  ],
+  "useCases": [
+    "文件选择与上传",
+    "批量/分片上传"
+  ],
+  "avoidWhen": [
+    "仅需下载链接时用 Link / Button"
+  ],
+  "related": [
+    "Form",
+    "FormItem"
+  ],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "Enter",
+      "Space"
+    ],
+    "detail": "Enter: Enter on dropzone invokes hidden file input click; Space: disabled dropzone does not open file picker on Space"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Upload uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Upload RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Upload client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.582Z",
+  "sourceHash": "4fe951d6ad09c3faa90554cca4e930e04de46a5e8a869dc3cd70f653cdcfce6b"
+}

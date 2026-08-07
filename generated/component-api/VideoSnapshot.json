@@ -1,6 +1,12 @@
 {
   "name": "VideoSnapshot",
-  "generatedAt": "2026-08-07T12:42:17.068Z",
+  "package": "media",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/video-snapshot"
+  ],
+  "sourceHash": "5e4e537b017fcb5ec7672b0dfe9476639062f5579f0913ae3c98f5a94753d433",
+  "generatedAt": "2026-08-07T18:45:11.288Z",
   "source": {
     "types": "packages/components/media/VideoSnapshot/types.ts",
     "vue": true
@@ -10,115 +16,134 @@
       "name": "videoRef",
       "optional": true,
       "type": "HTMLVideoElement | null",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "src",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "stream",
       "optional": true,
       "type": "MediaStream | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "crossOrigin",
       "optional": true,
       "type": "\"\" | \"anonymous\" | \"use-credentials\"",
-      "description": ""
+      "description": "",
+      "default": "anonymous"
     },
     {
       "name": "controls",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "autoplay",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "muted",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "format",
       "optional": true,
       "type": "VideoSnapshotFormat",
-      "description": ""
+      "description": "",
+      "default": "image/png"
     },
     {
       "name": "quality",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0.92
     },
     {
       "name": "maxWidth",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "maxHeight",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "preview",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "downloadable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "fileName",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

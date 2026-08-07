@@ -1,6 +1,12 @@
 {
   "name": "FixedLayout",
-  "generatedAt": "2026-08-07T12:41:13.585Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/fixed-layout"
+  ],
+  "sourceHash": "594cd7ccf72a06003a699399819e3e1312fa0adf491b8d9435a62073ed155fc7",
+  "generatedAt": "2026-08-07T18:45:11.008Z",
   "source": {
     "types": "packages/components/core/FixedLayout/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "mode",
       "optional": true,
       "type": "\"fixed\" | \"absolute\"",
-      "description": ""
+      "description": "",
+      "default": "fixed"
     },
     {
       "name": "position",
       "optional": true,
       "type": "FixedLayoutPosition",
-      "description": ""
+      "description": "",
+      "default": "top"
     },
     {
       "name": "offset",
       "optional": true,
       "type": "\"none\" | \"sm\" | \"md\" | \"lg\"",
-      "description": ""
+      "description": "",
+      "default": "none"
     },
     {
       "name": "zIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "safeArea",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "as",
       "optional": true,
       "type": "\"div\" | \"header\" | \"footer\" | \"aside\" | \"nav\"",
-      "description": ""
+      "description": "",
+      "default": "div"
     },
     {
       "name": "role",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "teleportTo",
       "optional": true,
       "type": "string | HTMLElement",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

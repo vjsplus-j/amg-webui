@@ -1,6 +1,12 @@
 {
   "name": "TabPane",
-  "generatedAt": "2026-08-07T12:41:56.167Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/tab-pane"
+  ],
+  "sourceHash": "5cb2d71997eeca6ce86bfedac8f7d2249cb0be9a6866d33e17c505be1c07ed39",
+  "generatedAt": "2026-08-07T18:45:11.226Z",
   "source": {
     "types": "packages/components/core/TabPane/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "name",
       "optional": false,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "label",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "lazy",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Defer rendering until the pane is first activated",
+      "default": false
     },
     {
       "name": "forceRender",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Always keep content mounted (overrides lazy after first paint)",
+      "default": false
     },
     {
       "name": "destroyInactive",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Unmount content whenever the pane becomes inactive",
+      "default": false
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name when rendered outside Tabs or without a label",
+      "default": null
     },
     {
       "name": "tabindex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Focus order for the active panel",
+      "default": null
     }
   ],
   "events": [],

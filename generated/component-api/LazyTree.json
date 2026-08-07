@@ -1,6 +1,12 @@
 {
   "name": "LazyTree",
-  "generatedAt": "2026-08-07T12:41:13.625Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/lazy-tree"
+  ],
+  "sourceHash": "d89d51c2f1010ce12978cad23032497698e9d0754db60d79a3645208044fcd02",
+  "generatedAt": "2026-08-07T18:45:11.083Z",
   "source": {
     "types": "packages/components/data/LazyTree/types.ts",
     "vue": true

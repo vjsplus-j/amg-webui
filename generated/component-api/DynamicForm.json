@@ -1,6 +1,12 @@
 {
   "name": "DynamicForm",
-  "generatedAt": "2026-08-07T12:34:13.535Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/dynamic-form"
+  ],
+  "sourceHash": "f9c05c7c73b3c6cfe2f720cd2d86923d2a914394bb67be99bc1a343fb1180146",
+  "generatedAt": "2026-08-07T18:45:10.987Z",
   "source": {
     "types": "packages/components/form/DynamicForm/types.ts",
     "vue": true
@@ -10,19 +16,22 @@
       "name": "modelValue",
       "optional": true,
       "type": "Record<string, unknown>",
-      "description": ""
+      "description": "",
+      "default": "() => ({})"
     },
     {
       "name": "schema",
       "optional": true,
       "type": "DynamicFieldSchema[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "Empty",
-  "generatedAt": "2026-08-07T12:41:13.580Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/empty"
+  ],
+  "sourceHash": "87470aff48e53cd34e9aa1842942d08a4414ab9b0d3e5c51e92b335fed64f0e1",
+  "generatedAt": "2026-08-07T18:45:10.999Z",
   "source": {
     "types": "packages/components/core/Empty/types.ts",
     "vue": true
@@ -10,44 +16,50 @@
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Description under the illustration (defaults to `common.noData`)",
+      "default": null
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Optional title above the description",
+      "default": null
     },
     {
       "name": "image",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Custom illustration URL; falls back to built-in SVG on `@error`",
+      "default": null
     },
     {
       "name": "imageAlt",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible label for the custom image",
+      "default": null
     },
     {
       "name": "imageSize",
       "optional": true,
       "type": "EmptyImageSize",
-      "description": ""
+      "description": "Illustration size — Size token, CSS length, or number mapped to spacing scale",
+      "default": "md"
     },
     {
       "name": "imageStyle",
       "optional": true,
       "type": "Record<string, string>",
-      "description": ""
+      "description": "Inline styles applied to the image / placeholder host",
+      "default": null
     }
   ],
   "events": [
     {
       "name": "imageError",
       "payload": "event: Event",
-      "description": ""
+      "description": "Fired when a custom `image` fails to load (before SVG fallback)"
     }
   ],
   "slots": [],

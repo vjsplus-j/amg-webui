@@ -1,6 +1,12 @@
 {
   "name": "ColorPicker",
-  "generatedAt": "2026-08-07T12:34:13.528Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/color-picker"
+  ],
+  "sourceHash": "cdf1a59f95bcaec154a1599dc484386245076e1915e37a1b12af3eb257129d8f",
+  "generatedAt": "2026-08-07T18:45:10.940Z",
   "source": {
     "types": "packages/components/form/ColorPicker/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "presets",
       "optional": true,
       "type": "string[]",
-      "description": ""
+      "description": "",
+      "default": "() => [ 'var(--primary-500)', 'var(--success-500)', 'var(--warning-500)', 'var(--danger-500)', 'var(--info-500)', 'var(--text-primary)', 'var(--surface-3)', 'var(--primary-300)', 'var(--success-300)', 'var(--warning-300)', 'var(--danger-300)', 'var(--text-muted)' ]"
     },
     {
       "name": "skipFormItem",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "When true, skip FormItem inject (composite parents own the hook).",
+      "default": false
     }
   ],
   "events": [

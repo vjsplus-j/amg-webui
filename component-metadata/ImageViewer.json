@@ -1,0 +1,64 @@
+{
+  "name": "ImageViewer",
+  "title": "ImageViewer",
+  "summary": "ImageViewer：面向企业场景的 Overlay 组件（成熟度 rc）。",
+  "description": "ImageViewer：面向企业场景的 Overlay 组件（成熟度 rc）。",
+  "family": "overlay",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/image-viewer"
+  ],
+  "features": [
+    "Overlay 家族组件",
+    "事件回调"
+  ],
+  "useCases": [
+    "对话框、抽屉、气泡确认等浮层",
+    "阻断式交互"
+  ],
+  "avoidWhen": [
+    "轻量提示优先 Toast / Message",
+    "非阻断提示不要用 Modal 对话框"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Tab",
+      "Enter",
+      "Escape",
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      "Space"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts ImageViewer uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts ImageViewer RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts ImageViewer client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.454Z",
+  "sourceHash": "b2e8590d45c5f38bf8b380f57da5b7fd40c00016aff9b87de80a108ca2a67b67"
+}

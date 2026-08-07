@@ -1,6 +1,12 @@
 {
   "name": "TemplateSelect",
-  "generatedAt": "2026-08-07T12:37:37.636Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/template-select"
+  ],
+  "sourceHash": "8bc07eea175077cf0e49c0c9767eeffee16413c36f52dd3f52325e5d0fb8baec",
+  "generatedAt": "2026-08-07T18:45:11.242Z",
   "source": {
     "types": "packages/lowcode/ui/TemplateSelect/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "modelValue",
       "optional": true,
       "type": "string | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "templates",
       "optional": true,
       "type": "FormTemplate[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "layout",
       "optional": true,
       "type": "'dropdown' | 'cards'",
-      "description": ""
+      "description": "Dropdown select or selectable card grid",
+      "default": "dropdown"
     },
     {
       "name": "searchable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Show search filter when templates.length > searchableMin",
+      "default": true
     },
     {
       "name": "searchableMin",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 4
     }
   ],
   "events": [

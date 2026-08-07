@@ -1,6 +1,12 @@
 {
   "name": "OnvifSettingPanel",
-  "generatedAt": "2026-08-07T12:41:35.038Z",
+  "package": "onvif",
+  "importPaths": [
+    "amg-webui/onvif",
+    "amg-webui/onvif-setting-panel"
+  ],
+  "sourceHash": "af13654d7e0c288de78585239d9181faa341ff5601c4b6cd57e350ce70b295ef",
+  "generatedAt": "2026-08-07T18:45:11.126Z",
   "source": {
     "types": "packages/components/onvif/OnvifSettingPanel/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "modelValue",
       "optional": true,
       "type": "OnvifSettings",
-      "description": ""
+      "description": "",
+      "default": "() => ({ username: 'admin', password: '', port: 80 })"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

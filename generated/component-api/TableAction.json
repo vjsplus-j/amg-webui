@@ -1,6 +1,12 @@
 {
   "name": "TableAction",
-  "generatedAt": "2026-08-07T12:41:56.168Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/table-action"
+  ],
+  "sourceHash": "5f22a3c6051a4ad407f030822009bb27eb7344646c252e85283d2e99e0f1b082",
+  "generatedAt": "2026-08-07T18:45:11.227Z",
   "source": {
     "types": "packages/components/data/TableAction/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

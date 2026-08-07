@@ -1,6 +1,12 @@
 {
   "name": "GridLayoutDrag",
-  "generatedAt": "2026-08-07T12:41:13.609Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/grid-layout-drag"
+  ],
+  "sourceHash": "b980ff767df2ea29cdbb7e442ee1180bc3ad5fa5d2a96d2dcea4309f618483e7",
+  "generatedAt": "2026-08-07T18:45:11.055Z",
   "source": {
     "types": "packages/lowcode/ui/GridLayoutDrag/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "cols",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 24
     },
     {
       "name": "enabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

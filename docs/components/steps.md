@@ -1,25 +1,35 @@
 # Steps
 
-Steps 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Steps：面向企业场景的 Navigation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Steps 当前成熟度为 **RC**；完整交互见本地 example。
+Steps：面向企业场景的 Navigation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Navigation 家族组件
+- v-model 双向绑定
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 菜单、标签页、面包屑等导航
+- 页面结构引导
+
+**不适用**
+
+- 单页极简场景可省略复杂导航组件
 
 ## 基础用法
 
+> `import { Steps } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { Steps } from '@amg-webui/core'
+import { Steps } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,32 +39,34 @@ import { Steps } from '@amg-webui/core'
 
 Curated demo：`example/demos/Steps/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `active` | `number` | — | — |
-| `modelValue` | `number` | — | 绑定值 / Bound value (v-model) |
-| `direction` | `'horizontal' \| 'vertical'` | — | — |
-| `clickable` | `boolean` | — | — |
-| `trackId` | `string` | — | Telemetry 追踪 id / Telemetry track id |
-| `telemetry` | `boolean` | — | 是否上报 Telemetry / Enable telemetry |
+| `active` | `number` | 0 | Controlled active step index (0-based) |
+| `modelValue` | `number` | `undefined` | Alias for v-model |
+| `direction` | `'horizontal' \| 'vertical'` | `horizontal` | direction 配置项 |
+| `clickable` | `boolean` | false | Allow clicking finished / upcoming steps |
+| `trackId` | `string` | `undefined` | Telemetry 追踪 id / Telemetry track id |
+| `telemetry` | `boolean` | `undefined` | 是否上报 Telemetry / Enable telemetry |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
-| `update:active` | `index: number` | — |
+| `update:active` | `index: number` | `active` 更新时触发（v-model） |
 | `update:modelValue` | `index: number` | v-model 更新 / v-model update |
 | `change` | `index: number` | 值变更 / Change |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `StepStatus`
 - `StepsProps`
@@ -62,6 +74,39 @@ Curated demo：`example/demos/Steps/index.vue`
 - `StepItemProps`
 - `StepItemEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- invalid keyboard evidence (mount/visibility only): "tests/unit/hardening/real-mount-remaining.spec.ts Steps interactive surface present (keyboard applicable)"
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Steps uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Steps RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Steps client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -69,6 +114,9 @@ Curated demo：`example/demos/Steps/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Steps.json` |
 | API extract | `generated/component-api/Steps.json` |
 
-> 完整 Demo 见 `example/demos/Steps`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Steps`（example 本地调试，不上线）。
+

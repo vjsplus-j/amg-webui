@@ -1,6 +1,12 @@
 {
   "name": "Layout",
-  "generatedAt": "2026-08-07T12:41:13.624Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/layout"
+  ],
+  "sourceHash": "43b2cf50d7345d844aee5ac3676f3a2bbbb3d1e29f4c53ff885a27becc022685",
+  "generatedAt": "2026-08-07T18:45:11.082Z",
   "source": {
     "types": "packages/components/core/Layout/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "hasSider",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Force has-sider layout (also auto when a Sider child registers)",
+      "default": false
     },
     {
       "name": "direction",
       "optional": true,
       "type": "'horizontal' | 'vertical'",
-      "description": ""
+      "description": "vertical = stack regions; horizontal = sider + content row",
+      "default": "vertical"
     },
     {
       "name": "shell",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Full-viewport app chrome (locks document scroll)",
+      "default": false
     },
     {
       "name": "fill",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Fill parent height (nested panels)",
+      "default": false
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible label when the layout is used as a landmark",
+      "default": null
     },
     {
       "name": "as",
       "optional": true,
       "type": "'div' | 'section' | 'main'",
-      "description": ""
+      "description": "Root element; defaults to section",
+      "default": "section"
     }
   ],
   "events": [],

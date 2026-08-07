@@ -1,6 +1,12 @@
 {
   "name": "Cartoon404",
-  "generatedAt": "2026-08-07T12:40:46.790Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/cartoon404"
+  ],
+  "sourceHash": "2a88ebe7efb0a8132f71cf9b817fedfc025ca4c279faca5c553027515e8c192b",
+  "generatedAt": "2026-08-07T18:45:10.923Z",
   "source": {
     "types": "packages/components/core/Cartoon404/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "code",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": 404
     },
     {
       "name": "actions",
       "optional": true,
       "type": "NotFoundAction[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "retryable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "homeHref",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "homeText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

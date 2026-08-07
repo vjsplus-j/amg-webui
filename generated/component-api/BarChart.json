@@ -1,6 +1,12 @@
 {
   "name": "BarChart",
-  "generatedAt": "2026-08-07T12:39:09.859Z",
+  "package": "charts",
+  "importPaths": [
+    "amg-webui/charts",
+    "amg-webui/bar-chart"
+  ],
+  "sourceHash": "b54765675d84cfe5e632e232a47ab909d17b5282bb1e8e1ff30dd823505484d3",
+  "generatedAt": "2026-08-07T18:45:10.891Z",
   "source": {
     "types": "packages/components/charts/BarChart/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number | null",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "max",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "height",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 160
     },
     {
       "name": "showValues",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "selectable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

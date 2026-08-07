@@ -1,6 +1,12 @@
 {
   "name": "Popover",
-  "generatedAt": "2026-08-07T12:41:35.058Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/popover"
+  ],
+  "sourceHash": "c52dbb5ad3a9bd2daf087affe4e10abb97aa0ae3e2b493db62d6711821f70246",
+  "generatedAt": "2026-08-07T18:45:11.144Z",
   "source": {
     "types": "packages/components/overlay/Popover/types.ts",
     "vue": true
@@ -10,97 +16,113 @@
       "name": "visible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "placement",
       "optional": true,
       "type": "FloatingPlacement",
-      "description": ""
+      "description": "",
+      "default": "top"
     },
     {
       "name": "trigger",
       "optional": true,
       "type": "PopoverTrigger",
-      "description": ""
+      "description": "",
+      "default": "click"
     },
     {
       "name": "dismissible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "offset",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 8
     },
     {
       "name": "zIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "openDelay",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 100
     },
     {
       "name": "closeDelay",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 120
     },
     {
       "name": "showArrow",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "focusOnOpen",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "teleportTo",
       "optional": true,
       "type": "string | HTMLElement",
-      "description": ""
+      "description": "",
+      "default": "body"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

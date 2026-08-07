@@ -1,25 +1,35 @@
 # FloatButton
 
-FloatButton 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+FloatButton：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-FloatButton 当前成熟度为 **RC**；完整交互见本地 example。
+FloatButton：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Foundation 家族组件
+- 语义色变体
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 基础 UI 交互与页面操作
+- 按钮、标签、图标等原子组件
+
+**不适用**
+
+- 需要复杂业务编排时优先业务组件或组合模式
 
 ## 基础用法
 
+> `import { FloatButton } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { FloatButton } from '@amg-webui/core'
+import { FloatButton } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,35 +39,70 @@ import { FloatButton } from '@amg-webui/core'
 
 Curated demo：`example/demos/FloatButton/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `type` | `Severity` | — | 输入类型 / Input type |
-| `severity` | `Severity` | — | 语义色：`primary` · `secondary` · `danger` 等 / Semantic color |
-| `shape` | `Shape` | — | — |
-| `icon` | `string` | — | 图标名 / Icon name |
-| `href` | `string` | — | — |
-| `top` | `string \| number` | — | — |
-| `right` | `string \| number` | — | — |
-| `bottom` | `string \| number` | — | — |
-| `left` | `string \| number` | — | — |
-| `open` | `boolean` | — | — |
-| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
+| `type` | `Severity` | `undefined` | 输入类型 / Input type |
+| `severity` | `Severity` | `primary` | 语义色：`primary` · `secondary` · `danger` 等 / Semantic color |
+| `shape` | `Shape` | `circle` | shape 配置项 |
+| `icon` | `string` | `undefined` | 图标名 / Icon name |
+| `href` | `string` | `undefined` | href 字符串 |
+| `top` | `string \| number` | `undefined` | top 数值 |
+| `right` | `string \| number` | `undefined` | right 数值 |
+| `bottom` | `string \| number` | `undefined` | bottom 数值 |
+| `left` | `string \| number` | `undefined` | left 数值 |
+| `open` | `boolean` | `undefined` | Controlled menu open state (when `#menu` slot is used) |
+| `ariaLabel` | `string` | `undefined` | Accessible name for the trigger (defaults to `common.more` when menu is present) |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `click` | `event: MouseEvent` | 点击 / Click |
-| `update:open` | `open: boolean` | — |
-| `openChange` | `open: boolean` | — |
+| `update:open` | `open: boolean` | `open` 更新时触发（v-model） |
+| `openChange` | `open: boolean` | openChange 时触发 |
 
-## Public types
+### Public Types
 
 - `FloatButtonProps`
 - `FloatButtonEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- invalid keyboard evidence (mount/visibility only): "tests/unit/hardening/real-mount-remaining.spec.ts FloatButton interactive surface present (keyboard applicable)"
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts FloatButton uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts FloatButton RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts FloatButton client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -65,6 +110,9 @@ Curated demo：`example/demos/FloatButton/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/FloatButton.json` |
 | API extract | `generated/component-api/FloatButton.json` |
 
-> 完整 Demo 见 `example/demos/FloatButton`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/FloatButton`（example 本地调试，不上线）。
+

@@ -1,0 +1,53 @@
+{
+  "name": "VirtualTree",
+  "title": "VirtualTree",
+  "summary": "VirtualTree：面向企业场景的 Tree 组件（成熟度 rc）。",
+  "description": "VirtualTree：面向企业场景的 Tree 组件（成熟度 rc）。",
+  "family": "tree",
+  "package": "data",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/virtual-tree"
+  ],
+  "features": [
+    "Tree 家族组件"
+  ],
+  "useCases": [
+    "层级数据展示与勾选",
+    "目录/组织架构"
+  ],
+  "avoidWhen": [
+    "扁平列表请用 Table / List"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "Enter"
+    ],
+    "detail": "Enter: Enter on label button selects node and emits update:modelValue"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts VirtualTree uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts VirtualTree RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts VirtualTree client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.597Z",
+  "sourceHash": "4eca1ebe60d6c6cb9d6ff01f2d8d87b43d25f0e623555eb22c8111baf2fbeac8"
+}

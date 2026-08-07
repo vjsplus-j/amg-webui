@@ -1,6 +1,12 @@
 {
   "name": "SchemaRenderer",
-  "generatedAt": "2026-08-07T12:45:59.836Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/schema-renderer"
+  ],
+  "sourceHash": "8acb969033798effcc783dd8848ca6ce7e668862764a1e40559bbe48ab931d63",
+  "generatedAt": "2026-08-07T18:45:11.174Z",
   "source": {
     "types": "packages/lowcode/ui/SchemaRenderer/types.ts",
     "vue": true
@@ -10,73 +16,85 @@
       "name": "schema",
       "optional": true,
       "type": "CanvasSchema | CanvasNodeData[] | null",
-      "description": ""
+      "description": "Full schema or nodes-only array.",
+      "default": "null"
     },
     {
       "name": "nodes",
       "optional": true,
       "type": "CanvasNodeData[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "mode",
       "optional": true,
       "type": "'free' | 'grid'",
-      "description": ""
+      "description": "",
+      "default": "free"
     },
     {
       "name": "registry",
       "optional": true,
       "type": "ComponentRegistry",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "renderMode",
       "optional": true,
       "type": "SchemaRenderMode",
-      "description": ""
+      "description": "`component` mounts real Vue components; `chrome` shows label/type placeholders.",
+      "default": "component"
     },
     {
       "name": "columns",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 24
     },
     {
       "name": "selectedId",
       "optional": true,
       "type": "string | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "interactive",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "context",
       "optional": true,
       "type": "LowcodeRenderContext",
-      "description": ""
+      "description": "Runtime state for `__bindings` path expressions (e.g. `form.name`). Prefer a reactive object so binding updates re-render.",
+      "default": null
     },
     {
       "name": "handlers",
       "optional": true,
       "type": "LowcodeEventHandlers",
-      "description": ""
+      "description": "Named handlers for `__events` / registry `events` stubs (same names as codegen).",
+      "default": null
     }
   ],
   "events": [

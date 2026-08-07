@@ -1,6 +1,12 @@
 {
   "name": "SettingPanel",
-  "generatedAt": "2026-08-07T12:41:56.143Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/setting-panel"
+  ],
+  "sourceHash": "3628f40e832c53319812bc6177b7e6f3cb32b09686a6ef6333a2038f53ccbd17",
+  "generatedAt": "2026-08-07T18:45:11.190Z",
   "source": {
     "types": "packages/components/form/SettingPanel/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "modelValue",
       "optional": true,
       "type": "Record<string, unknown>",
-      "description": ""
+      "description": "",
+      "default": "() => ({})"
     },
     {
       "name": "items",
       "optional": true,
       "type": "SettingItem[]",
-      "description": ""
+      "description": "Flat list — used when groups is empty",
+      "default": "() => []"
     },
     {
       "name": "groups",
       "optional": true,
       "type": "SettingGroup[]",
-      "description": ""
+      "description": "Grouped settings rows",
+      "default": "() => []"
     },
     {
       "name": "defaultValue",
       "optional": true,
       "type": "Record<string, unknown>",
-      "description": ""
+      "description": "Snapshot for reset emit",
+      "default": "() => ({})"
     }
   ],
   "events": [

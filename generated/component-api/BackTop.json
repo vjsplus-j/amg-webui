@@ -1,6 +1,12 @@
 {
   "name": "BackTop",
-  "generatedAt": "2026-08-07T12:39:09.857Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/back-top"
+  ],
+  "sourceHash": "923a67a94cf1e7acb2ebc6f1040eac8e60591eb22dcae5cf02f7e52f12f3558c",
+  "generatedAt": "2026-08-07T18:45:10.887Z",
   "source": {
     "types": "packages/components/core/BackTop/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "visibilityHeight",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Show button after scrolling past this distance (px)",
+      "default": 200
     },
     {
       "name": "container",
       "optional": true,
       "type": "string | HTMLElement",
-      "description": ""
+      "description": "Scroll container selector or element; defaults to window",
+      "default": null
     },
     {
       "name": "teleport",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Teleport button to document.body",
+      "default": true
     },
     {
       "name": "right",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "bottom",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "icon",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Lucide icon name",
+      "default": "ChevronUp"
     }
   ],
   "events": [

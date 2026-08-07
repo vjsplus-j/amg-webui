@@ -1,6 +1,12 @@
 {
   "name": "Preview",
-  "generatedAt": "2026-08-07T12:41:35.059Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/preview"
+  ],
+  "sourceHash": "10d170d35f7636d95e221a748db5139502d2db5fa7ced985f2cbbbf44d11270a",
+  "generatedAt": "2026-08-07T18:45:11.145Z",
   "source": {
     "types": "packages/components/core/Preview/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "modelValue",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "zoom",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "minZoom",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0.25
     },
     {
       "name": "maxZoom",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 3
     },
     {
       "name": "step",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0.1
     },
     {
       "name": "fullscreen",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "keyboard",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "rotatable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "showToolbar",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     }
   ],
   "events": [

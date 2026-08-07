@@ -1,0 +1,59 @@
+{
+  "name": "EditTree",
+  "title": "EditTree",
+  "summary": "EditTree：面向企业场景的 Tree 组件（成熟度 rc）。",
+  "description": "EditTree：面向企业场景的 Tree 组件（成熟度 rc）。",
+  "family": "tree",
+  "package": "data",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/edit-tree"
+  ],
+  "features": [
+    "Tree 家族组件",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "加载状态反馈",
+    "事件回调"
+  ],
+  "useCases": [
+    "层级数据展示与勾选",
+    "目录/组织架构",
+    "需要禁用/只读控制的表单场景",
+    "异步提交或加载过程反馈"
+  ],
+  "avoidWhen": [
+    "扁平列表请用 Table / List"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "Enter"
+    ],
+    "detail": "Enter: Enter in inline edit input commits node label change"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts EditTree uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts EditTree RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts EditTree client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.412Z",
+  "sourceHash": "31c1dc5fd5c51f3d14cbdf401c1ac7c44b46be45bc734934244d5670977d658f"
+}

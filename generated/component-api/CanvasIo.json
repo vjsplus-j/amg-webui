@@ -1,6 +1,12 @@
 {
   "name": "CanvasIo",
-  "generatedAt": "2026-08-07T12:39:09.871Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/canvas-io"
+  ],
+  "sourceHash": "122744fb6b23e637427466762586e90eb3a8c322a893df7906a2c858dd63564c",
+  "generatedAt": "2026-08-07T18:45:10.909Z",
   "source": {
     "types": "packages/lowcode/ui/CanvasIo/types.ts",
     "vue": true
@@ -10,19 +16,22 @@
       "name": "schema",
       "optional": true,
       "type": "CanvasSchema",
-      "description": ""
+      "description": "",
+      "default": "() => ({ version: 1, mode: 'free', nodes: [] })"
     },
     {
       "name": "filename",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "canvas.json"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

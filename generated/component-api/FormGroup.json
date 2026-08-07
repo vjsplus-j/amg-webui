@@ -1,6 +1,12 @@
 {
   "name": "FormGroup",
-  "generatedAt": "2026-08-07T12:34:13.536Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/form-group"
+  ],
+  "sourceHash": "53652ac89dad575073a8e7a14deb19ce43d82594ef26b33ea5fb35d2be350acd",
+  "generatedAt": "2026-08-07T18:45:11.028Z",
   "source": {
     "types": "packages/components/form/FormGroup/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "collapsible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "collapsed",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

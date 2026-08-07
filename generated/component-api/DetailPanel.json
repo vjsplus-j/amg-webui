@@ -1,6 +1,12 @@
 {
   "name": "DetailPanel",
-  "generatedAt": "2026-08-07T12:40:46.816Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/detail-panel"
+  ],
+  "sourceHash": "18d108cbf492360d4f7305924f98243ed28025e3736ec97022165a3b70631179",
+  "generatedAt": "2026-08-07T18:45:10.964Z",
   "source": {
     "types": "packages/components/data/DetailPanel/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "sections",
       "optional": true,
       "type": "DetailSection[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "activeTab",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "layout",
       "optional": true,
       "type": "'tabs' | 'stack'",
-      "description": ""
+      "description": "tabs: section tabs; stack: vertical collapsible sections",
+      "default": "tabs"
     },
     {
       "name": "collapsible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Allow collapsing section bodies in stack layout",
+      "default": true
     },
     {
       "name": "empty",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Force empty state even when sections exist",
+      "default": false
     },
     {
       "name": "column",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Descriptions column count",
+      "default": 2
     }
   ],
   "events": [

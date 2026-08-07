@@ -1,6 +1,12 @@
 {
   "name": "DragSelect",
-  "generatedAt": "2026-08-07T12:37:37.637Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/drag-select"
+  ],
+  "sourceHash": "87b743483f585152e2354c62f8084ea97641f221d451802f71a90a5c070d6156",
+  "generatedAt": "2026-08-07T18:45:10.976Z",
   "source": {
     "types": "packages/lowcode/ui/DragSelect/types.ts",
     "vue": true
@@ -10,19 +16,22 @@
       "name": "modelValue",
       "optional": true,
       "type": "(string | number)[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "options",
       "optional": true,
       "type": "DragSelectItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "clearable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     }
   ],
   "events": [

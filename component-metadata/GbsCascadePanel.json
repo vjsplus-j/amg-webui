@@ -1,0 +1,54 @@
+{
+  "name": "GbsCascadePanel",
+  "title": "GbsCascadePanel",
+  "summary": "GbsCascadePanel：面向企业场景的 GB28181 组件（成熟度 rc）。",
+  "description": "GbsCascadePanel：面向企业场景的 GB28181 组件（成熟度 rc）。",
+  "family": "gb28181",
+  "package": "gb28181",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/gb28181",
+    "amg-webui/gbs-cascade-panel"
+  ],
+  "features": [
+    "GB28181 家族组件",
+    "支持禁用状态",
+    "加载状态反馈",
+    "事件回调"
+  ],
+  "useCases": [
+    "国标 GB28181 设备与级联",
+    "视频监控平台"
+  ],
+  "avoidWhen": [
+    "非国标场景勿引入行业包"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts GbsCascadePanel interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "FAIL",
+    "detail": "a11y PASS requires A11Y_STRUCTURE/A11Y_CONTRAST or critical/serious counts (family name alone insufficient)"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsCascadePanel uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsCascadePanel RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsCascadePanel client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.438Z",
+  "sourceHash": "fb8ac68781ef0941b5fdace5ecd4d00d61c9f724544b4d07dd23a2c90bacb375"
+}

@@ -1,6 +1,12 @@
 {
   "name": "Radio",
-  "generatedAt": "2026-08-07T12:41:56.118Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/radio"
+  ],
+  "sourceHash": "d5fc26d3bed858d977dc1f9ab6149131d5834d71b1ec1809d800a559d1e7a162",
+  "generatedAt": "2026-08-07T18:45:11.158Z",
   "source": {
     "types": "packages/components/form/Radio/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "value",
       "optional": false,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "label",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "skipFormItem",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

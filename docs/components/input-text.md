@@ -1,29 +1,41 @@
 # InputText 文本输入
 
-InputText 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+InputText 文本输入：面向企业场景的 Input 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-InputText 当前成熟度为 **RC**；下方 DocsDemo 提供 docs 站内嵌交互，完整场景见 example。
+InputText 文本输入：面向企业场景的 Input 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Input 家族组件
+- v-model 双向绑定
+- 占位提示
+- 支持禁用状态
+- 只读模式
+- 多尺寸规格
+- 宽度 100%
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-- [Form](./form)
-- [FormItem](./form-item)
-- [Textarea](./textarea)
-- [Password](./password)
-- [InputNumber](./input-number)
+**适用**
+
+- 表单文本/数值输入
+- 受控与非受控输入场景
+- 需要禁用/只读控制的表单场景
+
+**不适用**
+
+- 极复杂富文本编辑请使用 RichText / MdEditor
 
 ## 基础用法
 
+> `import { InputText } from 'amg-webui/form'`
+
 ```vue
 <script setup>
-import { InputText } from '@amg-webui/form'
+import { InputText } from 'amg-webui/form'
 </script>
 
 <template>
@@ -33,48 +45,88 @@ import { InputText } from '@amg-webui/form'
 
 Curated demo：`example/demos/InputText/index.vue`
 
-## 交互演示
+## 示例
 
 <DocsDemo name="input-text-basic" />
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `string` | — | 绑定值 / Bound value (v-model) |
-| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
-| `name` | `string` | — | 表单字段名 / Form field name |
-| `autocomplete` | `string` | — | — |
-| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
-| `placeholder` | `string` | — | 占位提示 / Placeholder text |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
-| `readonly` | `boolean` | — | 是否只读 / Read-only |
-| `maxlength` | `number` | — | 最大长度 / Max length |
-| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
-| `invalid` | `boolean` | — | — |
-| `fluid` | `boolean` | — | 宽度 100% / Full width |
-| `type` | `'text' \| 'password' \| 'email' \| 'tel' \| 'url' \| 'search'` | — | 输入类型 / Input type |
-| `sanitizeInput` | `boolean \| 'blur' \| 'input' \| 'off'` | — | — |
-| `skipFormItem` | `boolean` | — | — |
+| `modelValue` | `string` | `` | 绑定值 / Bound value (v-model) |
+| `id` | `string` | `undefined` | Native input id — falls back to FormItem field id when nested |
+| `name` | `string` | `undefined` | Native name — falls back to FormItem `prop` when nested |
+| `autocomplete` | `string` | `undefined` | autocomplete 字符串 |
+| `ariaLabel` | `string` | `undefined` | Maps to aria-label on the native input |
+| `placeholder` | `string` | `undefined` | 占位提示 / Placeholder text |
+| `disabled` | `boolean` | `undefined` | 是否禁用 / Whether disabled |
+| `readonly` | `boolean` | `undefined` | 是否只读 / Read-only |
+| `maxlength` | `number` | `undefined` | 最大长度 / Max length |
+| `size` | `Size` | `md` | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `invalid` | `boolean` | `undefined` | 是否启用 invalid |
+| `fluid` | `boolean` | `undefined` | 宽度 100% / Full width |
+| `type` | `'text' \| 'password' \| 'email' \| 'tel' \| 'url' \| 'search'` | `text` | 输入类型 / Input type |
+| `sanitizeInput` | `boolean \| 'blur' \| 'input' \| 'off'` | false | Opt-in field filter via `@amg-webui/security` (not XSS defense). Default `false`. Use `true` / `'blur'` on blur, `'input'` for keystroke filtering. |
+| `skipFormItem` | `boolean` | false | When true, skip FormItem inject (composite parents own the hook). |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
-| `keydown` | `event: KeyboardEvent` | — |
-| `keyup` | `event: KeyboardEvent` | — |
+| `keydown` | `event: KeyboardEvent` | keydown 时触发 |
+| `keyup` | `event: KeyboardEvent` | keyup 时触发 |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `InputTextProps`
 - `InputTextEmits`
 
+## 键盘交互
+
+- 状态：`PASS`
+- 按键：`Type` · `KeyA`
+- Type: typing updates modelValue through update:modelValue emit; KeyA: disabled input does not emit update:modelValue on key interaction
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`N/A`
+- optional
+
+## RTL
+
+- 状态：`N/A`
+- optional
+
+## SSR
+
+- 状态：`PASS`
+- structural DOM clean
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+- [Form](./form)
+- [FormItem](./form-item)
+- [Textarea](./textarea)
+- [Password](./password)
+- [InputNumber](./input-number)
 
 ## 稳定性
 
@@ -82,6 +134,9 @@ Curated demo：`example/demos/InputText/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/form` |
+| metadata | `component-metadata/InputText.json` |
 | API extract | `generated/component-api/InputText.json` |
 
-> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/InputText`。
+> **DocsDemo** 为 docs 站内嵌演示；完整 curated demo 见 `example/demos/InputText`。
+

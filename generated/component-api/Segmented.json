@@ -1,6 +1,12 @@
 {
   "name": "Segmented",
-  "generatedAt": "2026-08-07T12:41:56.140Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/segmented"
+  ],
+  "sourceHash": "f58fd9c39488e70b944ce7e9246145c64864f2a4d5c272a414e98ca14aa9f643",
+  "generatedAt": "2026-08-07T18:45:11.184Z",
   "source": {
     "types": "packages/components/core/Segmented/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "modelValue",
       "optional": true,
       "type": "string | number | boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "options",
       "optional": true,
       "type": "SegmentedOption[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "block",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

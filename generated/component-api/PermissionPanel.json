@@ -1,6 +1,12 @@
 {
   "name": "PermissionPanel",
-  "generatedAt": "2026-08-07T12:41:35.046Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/permission-panel"
+  ],
+  "sourceHash": "0cbb77c4ed806db1aef9bf0c8df9b82243545ec9d5c4430ba59dd9621c42bddd",
+  "generatedAt": "2026-08-07T18:45:11.138Z",
   "source": {
     "types": "packages/components/form/PermissionPanel/types.ts",
     "vue": true
@@ -10,19 +16,22 @@
       "name": "modelValue",
       "optional": true,
       "type": "string[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "tree",
       "optional": true,
       "type": "PermissionNode[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "checkStrictly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

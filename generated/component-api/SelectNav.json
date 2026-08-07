@@ -1,6 +1,12 @@
 {
   "name": "SelectNav",
-  "generatedAt": "2026-08-07T12:34:13.549Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/select-nav"
+  ],
+  "sourceHash": "b982dfc46779300dd6a9901a5085c96f24440796717379e48cbd5e197162e49d",
+  "generatedAt": "2026-08-07T18:45:11.188Z",
   "source": {
     "types": "packages/components/form/SelectNav/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "options",
       "optional": true,
       "type": "SelectNavItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name for the nav / select",
+      "default": null
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "Avatar",
-  "generatedAt": "2026-08-07T12:39:09.855Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/avatar"
+  ],
+  "sourceHash": "730c0bbe4e49aaf317b2ababd245d6b57ed72a56dc4f862201bebe4378df57e9",
+  "generatedAt": "2026-08-07T18:45:10.882Z",
   "source": {
     "types": "packages/components/core/Avatar/types.ts",
     "vue": true
@@ -10,211 +16,246 @@
       "name": "spin",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Continuous rotate — shared Motion",
+      "default": false
     },
     {
       "name": "pulse",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Soft opacity pulse — shared Motion",
+      "default": false
     },
     {
       "name": "heartbeat",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Scale heartbeat — shared Motion",
+      "default": false
     },
     {
       "name": "bounce",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Jump upward — shared Motion",
+      "default": false
     },
     {
       "name": "blink",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Sharp flash — shared Motion",
+      "default": false
     },
     {
       "name": "breathe",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Breathing light — shared Motion",
+      "default": false
     },
     {
       "name": "glow",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Fluorescent glow — shared Motion",
+      "default": false
     },
     {
       "name": "marqueeLeft",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marquee scroll left — shared Motion",
+      "default": false
     },
     {
       "name": "marqueeRight",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marquee scroll right — shared Motion",
+      "default": false
     },
     {
       "name": "scrollUp",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical scroll up — shared Motion",
+      "default": false
     },
     {
       "name": "scrollDown",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical scroll down — shared Motion",
+      "default": false
     },
     {
       "name": "dampOut",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Damped zoom then fade out — shared Motion",
+      "default": false
     },
     {
       "name": "animationDuration",
       "optional": true,
       "type": "number | string",
-      "description": ""
+      "description": "Animation duration (ms or CSS time) — shared Motion",
+      "default": null
     },
     {
       "name": "src",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Image URL",
+      "default": null
     },
     {
       "name": "alt",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible description for image / role=img",
+      "default": null
     },
     {
       "name": "text",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Letter avatar text (username / initials)",
+      "default": null
     },
     {
       "name": "textMaxLength",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Max graphemes for letter avatar (default 2)",
+      "default": 2
     },
     {
       "name": "size",
       "optional": true,
       "type": "AvatarSize",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "shape",
       "optional": true,
       "type": "AvatarShape",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "borderRadius",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Custom radius — CSS value (token / % preferred)",
+      "default": null
     },
     {
       "name": "icon",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Lucide icon name — icon avatar / final fallback",
+      "default": null
     },
     {
       "name": "bordered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Show border (default true; neon variant always draws a dashed track)",
+      "default": null
     },
     {
       "name": "borderColor",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Border color (token / CSS preferred)",
+      "default": null
     },
     {
       "name": "borderWidth",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Border width CSS (default 1px hairline)",
+      "default": null
     },
     {
       "name": "variant",
       "optional": true,
       "type": "'default' | 'neon'",
-      "description": ""
+      "description": "Appearance: default | neon (dashed track + lightboard marquee glow). Cascades from AvatarGroup when omitted.",
+      "default": null
     },
     {
       "name": "colorBg",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Background override (token preferred)",
+      "default": null
     },
     {
       "name": "colorText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Text / icon color override",
+      "default": null
     },
     {
       "name": "tooltip",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Hover tooltip content",
+      "default": null
     },
     {
       "name": "tooltipDelay",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Tooltip show delay (ms)",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Skeleton while image loads, or force skeleton",
+      "default": false
     },
     {
       "name": "clickable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Interactive — keyboard focus + click",
+      "default": false
     },
     {
       "name": "fallbackSrc",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Secondary image when `src` fails",
+      "default": null
     },
     {
       "name": "fallbackText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Letter fallback when image fails (defaults to `text`)",
+      "default": null
     },
     {
       "name": "fallbackIcon",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Icon fallback when no letter text (default User)",
+      "default": null
     }
   ],
   "events": [

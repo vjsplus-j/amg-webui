@@ -7,6 +7,7 @@
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { toKebab } from '../build/shared.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const outPath = join(root, 'docs/.vitepress/sidebar.components.ts')
@@ -44,10 +45,6 @@ const CATEGORY_LABELS = {
   feedback: '反馈',
   other: '其它',
   industry: '行业'
-}
-
-function toKebab(name) {
-  return name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
 }
 
 function loadJson(rel) {

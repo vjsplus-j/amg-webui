@@ -1,6 +1,12 @@
 {
   "name": "Transfer",
-  "generatedAt": "2026-08-07T12:42:17.046Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/transfer"
+  ],
+  "sourceHash": "5dddc83a6efe808fe6a9ea8fd2cebff64d6ba0fc316be132df380f8567d261cf",
+  "generatedAt": "2026-08-07T18:45:11.261Z",
   "source": {
     "types": "packages/components/form/Transfer/types.ts",
     "vue": true
@@ -10,79 +16,92 @@
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "TransferItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "(string | number)[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "filterable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "leftTitle",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "rightTitle",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "filterPlaceholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "filterDebounce",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Delay filtering for large data sets. @default 200",
+      "default": 200
     },
     {
       "name": "filterMethod",
       "optional": true,
       "type": "( query: string, item: TransferItem, direction: \"left\" | \"right\", ) => boolean",
-      "description": ""
+      "description": "Custom filter predicate.",
+      "default": null
     },
     {
       "name": "virtual",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Native virtual scrolling is enabled by default.",
+      "default": true
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marks both panels busy while data is being fetched.",
+      "default": false
     }
   ],
   "events": [

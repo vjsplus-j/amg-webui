@@ -1,0 +1,64 @@
+{
+  "name": "Slider",
+  "title": "Slider",
+  "summary": "Slider：面向企业场景的 Input 组件（成熟度 rc）。",
+  "description": "Slider：面向企业场景的 Input 组件（成熟度 rc）。",
+  "family": "input",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/slider"
+  ],
+  "features": [
+    "Input 家族组件",
+    "v-model 双向绑定",
+    "事件回调"
+  ],
+  "useCases": [
+    "表单文本/数值输入",
+    "受控与非受控输入场景"
+  ],
+  "avoidWhen": [
+    "极复杂富文本编辑请使用 RichText / MdEditor"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Tab",
+      "Enter",
+      "Escape",
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      "Space"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Slider uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Slider RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Slider client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.536Z",
+  "sourceHash": "c60839987e6a077e2ac47ccb70759a74ec20643a0cb16ca71bbd5157383d6b2e"
+}

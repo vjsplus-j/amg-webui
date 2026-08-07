@@ -1,0 +1,79 @@
+{
+  "name": "Select",
+  "title": "Select 选择器",
+  "summary": "Select 选择器：面向企业场景的 Selection 组件（成熟度 rc）。",
+  "description": "Select 选择器：面向企业场景的 Selection 组件（成熟度 rc）。",
+  "family": "selection",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/select"
+  ],
+  "features": [
+    "Selection 家族组件",
+    "v-model 双向绑定",
+    "选项列表配置",
+    "占位提示",
+    "支持禁用状态",
+    "只读模式",
+    "可筛选",
+    "可一键清空",
+    "多尺寸规格",
+    "宽度 100%",
+    "多选模式",
+    "虚拟滚动",
+    "加载状态反馈",
+    "事件回调",
+    "插槽自定义",
+    "实例方法暴露"
+  ],
+  "useCases": [
+    "下拉、级联、树选等选择场景",
+    "表单字段与筛选器",
+    "需要禁用/只读控制的表单场景",
+    "异步提交或加载过程反馈",
+    "大数据量列表/表格性能场景"
+  ],
+  "avoidWhen": [
+    "超大数据集未开启虚拟化时可能影响性能"
+  ],
+  "related": [
+    "Form",
+    "FormItem",
+    "SelectNav",
+    "TreeSelect",
+    "Cascader"
+  ],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "ArrowDown",
+      "Enter",
+      "Escape"
+    ],
+    "detail": "ArrowDown: moves highlighted active option in open listbox; Enter: selects active option and emits update:modelValue; Escape: closes listbox and sets aria-expanded false"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural DOM + component entry"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.531Z",
+  "sourceHash": "5cc607b24bbff246d74b76516213d532ceb78ef52f87f398e99ebb223207a62a"
+}

@@ -1,6 +1,12 @@
 {
   "name": "ExcelIo",
-  "generatedAt": "2026-08-07T12:41:13.582Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/excel-io"
+  ],
+  "sourceHash": "3b5fc9b7cb63ce4f4c74388c08cd7dd1c6c626a407cdf3998ec49e3a63de5869",
+  "generatedAt": "2026-08-07T18:45:11.002Z",
   "source": {
     "types": "packages/components/data/ExcelIo/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "columns",
       "optional": true,
       "type": "string[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "data",
       "optional": true,
       "type": "Record<string, unknown>[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "filename",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "export.csv"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "encoding",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "utf-8"
     },
     {
       "name": "maxPreviewRows",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 100
     },
     {
       "name": "showPreview",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

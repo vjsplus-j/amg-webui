@@ -1,25 +1,33 @@
 # Toast
 
-Toast 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Toast：面向企业场景的 Feedback 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Toast 当前成熟度为 **RC**；完整交互见本地 example。
+Toast：面向企业场景的 Feedback 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Feedback 家族组件
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 操作结果与状态提示
+- 空态与加载反馈
+
+**不适用**
+
+- 需要模态决策时用 Dialog / Confirm
 
 ## 基础用法
 
+> `import { Toast } from 'amg-webui/overlay'`
+
 ```vue
 <script setup>
-import { Toast } from '@amg-webui/overlay'
+import { Toast } from 'amg-webui/overlay'
 </script>
 
 <template>
@@ -29,17 +37,52 @@ import { Toast } from '@amg-webui/overlay'
 
 Curated demo：`example/demos/Toast/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| — | — | — | 见 `generated/component-api` 或源码 `types.ts` |
+| （无公开 Props） | | | |
 
-## Public types
+### Public Types
 
 - `ToastProps`
 - `ToastEmits`
 
+## 键盘交互
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Toast non-interactive display — keyboard N/A
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Toast uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Toast RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Toast client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -47,6 +90,9 @@ Curated demo：`example/demos/Toast/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/overlay` |
+| metadata | `component-metadata/Toast.json` |
 | API extract | `generated/component-api/Toast.json` |
 
-> 完整 Demo 见 `example/demos/Toast`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Toast`（example 本地调试，不上线）。
+

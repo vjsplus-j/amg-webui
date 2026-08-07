@@ -1,6 +1,12 @@
 {
   "name": "Form",
-  "generatedAt": "2026-08-07T12:34:13.535Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/form"
+  ],
+  "sourceHash": "3c256d1972be3a94b6e7f2111965c0aab120a8f17a85ac8c5e5ec8a86c12aabb",
+  "generatedAt": "2026-08-07T18:45:11.027Z",
   "source": {
     "types": "packages/components/form/Form/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "model",
       "optional": true,
       "type": "Record<string, unknown>",
-      "description": ""
+      "description": "",
+      "default": "() => ({})"
     },
     {
       "name": "rules",
       "optional": true,
       "type": "FormRules",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "labelWidth",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "labelPosition",
       "optional": true,
       "type": "'left' | 'top'",
-      "description": ""
+      "description": "",
+      "default": "left"
     },
     {
       "name": "sanitizeOnSubmit",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Before successful submit, deep-filter string fields with `sanitizeModelStrings`. Mutates `model` in place when provided as a reactive object.",
+      "default": false
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

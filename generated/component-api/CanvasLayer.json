@@ -1,6 +1,12 @@
 {
   "name": "CanvasLayer",
-  "generatedAt": "2026-08-07T12:39:09.873Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/canvas-layer"
+  ],
+  "sourceHash": "ef37dc6834d3c1731067adc929587d97ae4ca12d334b8b35fc7b41bde0ebc54d",
+  "generatedAt": "2026-08-07T18:45:10.910Z",
   "source": {
     "types": "packages/lowcode/ui/CanvasLayer/types.ts",
     "vue": true
@@ -10,13 +16,15 @@
       "name": "compact",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "showActions",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "Col",
-  "generatedAt": "2026-08-07T12:40:46.798Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/col"
+  ],
+  "sourceHash": "85d9f0b0515332b38ee73083093393bc9a2e95700cd0bbc4fa8d30348dfb3cf7",
+  "generatedAt": "2026-08-07T18:45:10.935Z",
   "source": {
     "types": "packages/components/core/Col/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "span",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "1–24 column span",
+      "default": null
     },
     {
       "name": "offset",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Offset before this col (0–23)",
+      "default": 0
     },
     {
       "name": "push",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "pull",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "flex",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Grow to fill remaining row space",
+      "default": false
     },
     {
       "name": "order",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Order within the row",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Semantic label when used as a standalone layout cell",
+      "default": null
     },
     {
       "name": "as",
       "optional": true,
       "type": "\"div\" | \"article\" | \"section\"",
-      "description": ""
+      "description": "Whether to render as a landmark-like container",
+      "default": null
     }
   ],
   "events": [

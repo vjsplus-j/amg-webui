@@ -1,6 +1,12 @@
 {
   "name": "FloatButton",
-  "generatedAt": "2026-08-07T12:41:13.586Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/float-button"
+  ],
+  "sourceHash": "b448b926aea070457ee2a22ae96f6a12fd16bac2eb009fe5e6b29d33b94bdd1a",
+  "generatedAt": "2026-08-07T18:45:11.011Z",
   "source": {
     "types": "packages/components/core/FloatButton/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "type",
       "optional": true,
       "type": "Severity",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "severity",
       "optional": true,
       "type": "Severity",
-      "description": ""
+      "description": "",
+      "default": "primary"
     },
     {
       "name": "shape",
       "optional": true,
       "type": "Shape",
-      "description": ""
+      "description": "",
+      "default": "circle"
     },
     {
       "name": "icon",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "href",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "top",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "right",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "bottom",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "left",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "open",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Controlled menu open state (when `#menu` slot is used)",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name for the trigger (defaults to `common.more` when menu is present)",
+      "default": null
     }
   ],
   "events": [

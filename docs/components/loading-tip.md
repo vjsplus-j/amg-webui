@@ -1,25 +1,38 @@
 # LoadingTip
 
-LoadingTip 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+LoadingTip：面向企业场景的 Feedback 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-LoadingTip 当前成熟度为 **RC**；完整交互见本地 example。
+LoadingTip：面向企业场景的 Feedback 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Feedback 家族组件
+- 加载状态反馈
+- 多尺寸规格
+- 块级布局
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 操作结果与状态提示
+- 空态与加载反馈
+- 异步提交或加载过程反馈
+
+**不适用**
+
+- 需要模态决策时用 Dialog / Confirm
 
 ## 基础用法
 
+> `import { LoadingTip } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { LoadingTip } from '@amg-webui/core'
+import { LoadingTip } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,36 +42,71 @@ import { LoadingTip } from '@amg-webui/core'
 
 Curated demo：`example/demos/LoadingTip/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `message` | `string` | — | — |
-| `loading` | `boolean` | — | 加载中状态 / Loading state |
-| `size` | `LoadingTipSize` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
-| `delay` | `number` | — | — |
-| `block` | `boolean` | — | 块级按钮（整行）/ Block-level button |
-| `overlay` | `boolean` | — | — |
-| `persistent` | `boolean` | — | — |
-| `live` | `"polite" \| "assertive" \| "off"` | — | — |
-| `progress` | `number` | — | — |
-| `cancellable` | `boolean` | — | — |
-| `cancelText` | `string` | — | — |
+| `message` | `string` | `undefined` | message 字符串 |
+| `loading` | `boolean` | true | 加载中状态 / Loading state |
+| `size` | `LoadingTipSize` | `md` | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `delay` | `number` | 0 | delay 数值 |
+| `block` | `boolean` | false | 块级按钮（整行）/ Block-level button |
+| `overlay` | `boolean` | false | 是否启用 overlay |
+| `persistent` | `boolean` | false | 是否启用 persistent |
+| `live` | `"polite" \| "assertive" \| "off"` | `polite` | live 配置项 |
+| `progress` | `number` | `undefined` | progress 数值 |
+| `cancellable` | `boolean` | false | 是否启用 cancellable |
+| `cancelText` | `string` | `undefined` | cancelText 字符串 |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
-| `show` | `void` | — |
-| `hide` | `void` | — |
-| `cancel` | `event: MouseEvent` | — |
+| `show` | `void` | show 时触发 |
+| `hide` | `void` | hide 时触发 |
+| `cancel` | `event: MouseEvent` | cancel 时触发 |
 
-## Public types
+### Public Types
 
 - `LoadingTipSize`
 - `LoadingTipProps`
 - `LoadingTipEmits`
 
+## 键盘交互
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts LoadingTip non-interactive display — keyboard N/A
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts LoadingTip uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts LoadingTip RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts LoadingTip client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -66,6 +114,9 @@ Curated demo：`example/demos/LoadingTip/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/LoadingTip.json` |
 | API extract | `generated/component-api/LoadingTip.json` |
 
-> 完整 Demo 见 `example/demos/LoadingTip`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/LoadingTip`（example 本地调试，不上线）。
+

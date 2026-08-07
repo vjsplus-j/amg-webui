@@ -1,0 +1,67 @@
+{
+  "name": "AutoComplete",
+  "title": "AutoComplete 自动完成",
+  "summary": "AutoComplete 自动完成：面向企业场景的 Selection 组件（成熟度 rc）。",
+  "description": "AutoComplete 自动完成：面向企业场景的 Selection 组件（成熟度 rc）。",
+  "family": "selection",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/auto-complete"
+  ],
+  "features": [
+    "Selection 家族组件",
+    "v-model 双向绑定",
+    "占位提示",
+    "多尺寸规格",
+    "宽度 100%",
+    "事件回调",
+    "插槽自定义",
+    "实例方法暴露"
+  ],
+  "useCases": [
+    "下拉、级联、树选等选择场景",
+    "表单字段与筛选器"
+  ],
+  "avoidWhen": [
+    "超大数据集未开启虚拟化时可能影响性能"
+  ],
+  "related": [
+    "Form",
+    "FormItem",
+    "InputText",
+    "Select"
+  ],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "ArrowDown",
+      "Enter",
+      "Escape"
+    ],
+    "detail": "ArrowDown: moves highlighted suggestion in open panel; Enter: selects active suggestion and emits update:modelValue; Escape: closes autocomplete suggestion panel"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural DOM clean"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.341Z",
+  "sourceHash": "8a91242848fa9b4521caefe897e76afb87c55d7ebc140efb5ac57a644ad8709c"
+}

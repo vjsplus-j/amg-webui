@@ -1,6 +1,12 @@
 {
   "name": "Affix",
-  "generatedAt": "2026-08-07T12:39:09.850Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/affix"
+  ],
+  "sourceHash": "828bea96d29d161c106f35e837b44cf3f68a0d4ae057a49dace0e3f4578a37fb",
+  "generatedAt": "2026-08-07T18:45:10.873Z",
   "source": {
     "types": "packages/components/core/Affix/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "modelValue",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "offsetTop",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Distance to top when affixed (px)",
+      "default": 0
     },
     {
       "name": "offsetBottom",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Distance to bottom when affixed (px)",
+      "default": null
     },
     {
       "name": "target",
       "optional": true,
       "type": "string | HTMLElement | Window",
-      "description": ""
+      "description": "Scroll container — defaults to window",
+      "default": null
     },
     {
       "name": "zIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "affixedClass",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLive",
       "optional": true,
       "type": "'off' | 'polite' | 'assertive'",
-      "description": ""
+      "description": "",
+      "default": "off"
     }
   ],
   "events": [

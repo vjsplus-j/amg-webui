@@ -1,0 +1,57 @@
+{
+  "name": "RadioGroup",
+  "title": "RadioGroup",
+  "summary": "RadioGroup：面向企业场景的 Input 组件（成熟度 rc）。",
+  "description": "RadioGroup：面向企业场景的 Input 组件（成熟度 rc）。",
+  "family": "input",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/radio-group"
+  ],
+  "features": [
+    "Input 家族组件",
+    "v-model 双向绑定",
+    "多尺寸规格",
+    "选项列表配置",
+    "事件回调"
+  ],
+  "useCases": [
+    "表单文本/数值输入",
+    "受控与非受控输入场景"
+  ],
+  "avoidWhen": [
+    "极复杂富文本编辑请使用 RichText / MdEditor"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "Space"
+    ],
+    "detail": "Space: Space on focused radio selects option and emits update:modelValue; Space: disabled RadioGroup does not emit update:modelValue on Space"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts RadioGroup uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts RadioGroup RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts RadioGroup client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.514Z",
+  "sourceHash": "8c299b815e2594de77970619c8972ca5e3e5a40bc244ca234654df7e5a22541a"
+}

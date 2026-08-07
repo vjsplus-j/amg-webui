@@ -1,6 +1,12 @@
 {
   "name": "StepNav",
-  "generatedAt": "2026-08-07T12:41:56.163Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/step-nav"
+  ],
+  "sourceHash": "68533c6b3d0ff846c72bec4e3042666a09c9bb93a5a1bf82ded8908995e01ba8",
+  "generatedAt": "2026-08-07T18:45:11.215Z",
   "source": {
     "types": "packages/components/core/StepNav/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "items",
       "optional": true,
       "type": "NavItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "direction",
       "optional": true,
       "type": "'horizontal' | 'vertical'",
-      "description": ""
+      "description": "",
+      "default": "horizontal"
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

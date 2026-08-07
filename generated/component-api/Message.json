@@ -1,6 +1,12 @@
 {
   "name": "Message",
-  "generatedAt": "2026-08-07T12:41:35.023Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/message"
+  ],
+  "sourceHash": "fa4fffe7175aaa378a4fb2754c570bb75952851646f8b099620bb792301c9302",
+  "generatedAt": "2026-08-07T18:45:11.105Z",
   "source": {
     "types": "packages/components/overlay/Message/types.ts",
     "vue": true
@@ -10,91 +16,106 @@
       "name": "visible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "severity",
       "optional": true,
       "type": "Severity",
-      "description": ""
+      "description": "",
+      "default": "info"
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "text",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "showIcon",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "closable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "autoHide",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "hideDelay",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 3000
     },
     {
       "name": "pauseOnHover",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "showProgress",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "variant",
       "optional": true,
       "type": "MessageVariant",
-      "description": ""
+      "description": "",
+      "default": "soft"
     },
     {
       "name": "actionText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLive",
       "optional": true,
       "type": "\"polite\" | \"assertive\" | \"off\"",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

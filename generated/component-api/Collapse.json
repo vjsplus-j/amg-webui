@@ -1,6 +1,12 @@
 {
   "name": "Collapse",
-  "generatedAt": "2026-08-07T12:40:46.799Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/collapse"
+  ],
+  "sourceHash": "489f287f4a60ba65c025005f501c071f9c69b49c10be2ea7583b88c4e9143b0e",
+  "generatedAt": "2026-08-07T18:45:10.937Z",
   "source": {
     "types": "packages/components/core/Collapse/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "modelValue",
       "optional": true,
       "type": "string | string[]",
-      "description": ""
+      "description": "Controlled open keys",
+      "default": null
     },
     {
       "name": "panels",
       "optional": true,
       "type": "CollapsePanel[]",
-      "description": ""
+      "description": "Panel list (slot per key still supported)",
+      "default": "() => []"
     },
     {
       "name": "accordion",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Only one panel open at a time (default true)",
+      "default": true
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Optional section heading above panels",
+      "default": null
     },
     {
       "name": "bordered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "ghost",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Ghost — no card chrome",
+      "default": false
     }
   ],
   "events": [

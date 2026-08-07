@@ -1,6 +1,12 @@
 {
   "name": "DragRuler",
-  "generatedAt": "2026-08-07T12:40:46.822Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/drag-ruler"
+  ],
+  "sourceHash": "e3aa6ea769d641cf7bffe227099904ab0c878891bed362ab36582b50ee5958b8",
+  "generatedAt": "2026-08-07T18:45:10.974Z",
   "source": {
     "types": "packages/lowcode/ui/DragRuler/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "scale",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "showGuides",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,0 +1,70 @@
+{
+  "name": "TimeRangeInput",
+  "title": "TimeRangeInput",
+  "summary": "TimeRangeInput：面向企业场景的 DateTime 组件（成熟度 rc）。",
+  "description": "TimeRangeInput：面向企业场景的 DateTime 组件（成熟度 rc）。",
+  "family": "datetime",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/time-range-input"
+  ],
+  "features": [
+    "DateTime 家族组件",
+    "v-model 双向绑定",
+    "可一键清空",
+    "事件回调"
+  ],
+  "useCases": [
+    "日期/时间选择与范围输入",
+    "表单与筛选面板"
+  ],
+  "avoidWhen": [
+    "需要非标准历法或复杂排班规则时需自定义"
+  ],
+  "related": [
+    "Form",
+    "FormItem",
+    "TimePicker",
+    "RangeInput"
+  ],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Tab",
+      "Enter",
+      "Escape",
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      "Space"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural DOM + component entry"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.565Z",
+  "sourceHash": "bffbb3ecbfa9f71abfc4a7241e47f85e8853a6260edd5654428bf3fe288b437b"
+}

@@ -1,13 +1,28 @@
 {
-  "updatedAt": "2026-08-08T03:05:00.000Z",
+  "updatedAt": "2026-08-08T04:05:00.000Z",
   "hardeningStatus": "CLOSED",
-  "activeBatch": null,
-  "status": "CORE_STABLE_SET_COMPLETE",
-  "next": null,
-  "statusNotes": "Batches 01–04 CLOSED. Enterprise Admin (showcases/01-admin) CLOSED. Hardening architecture FROZEN.",
-  "components": [],
+  "activeBatch": "DOCS-PUBLIC-API",
+  "status": "CLOSED",
+  "phase": "DONE",
+  "statusNotes": "DOCS-PUBLIC-API CLOSED for all public inventory packages. Batch 01–04 remain paused until explicitly resumed.",
+  "completedPhases": ["P0", "P1", "P2", "P3", "P4"],
+  "packages": {
+    "P0": ["core", "form", "data", "overlay"],
+    "P1": ["charts", "editor"],
+    "P2": ["business"],
+    "P3": ["media", "gb28181", "onvif"],
+    "P4": ["lowcode", "experimental"]
+  },
   "referenceApp": "showcases/01-admin",
-  "scenarios": [],
+  "scenarios": [
+    "Component Metadata SSOT",
+    "API Extract",
+    "Public Export Audit",
+    "Example Intro",
+    "Docs Complete API",
+    "Consumer Import Smoke",
+    "Docs Code Parse"
+  ],
   "showcases": {
     "01-admin": "CLOSED",
     "02-saas": "BACKLOG",
@@ -19,5 +34,12 @@
     "08-onvif-center": "BACKLOG",
     "09-dashboard": "BACKLOG",
     "10-mobile-admin": "BACKLOG"
-  }
+  },
+  "batchesPaused": [
+    "BATCH-01-FORM-INPUT",
+    "BATCH-02-DATA",
+    "BATCH-03-OVERLAY",
+    "BATCH-04-NAVIGATION-LAYOUT"
+  ],
+  "resumeBatchesAfter": "explicit user request"
 }

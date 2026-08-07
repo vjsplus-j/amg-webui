@@ -1,25 +1,40 @@
 # PivotTable
 
-PivotTable 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+PivotTable：面向企业场景的 Table 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-PivotTable 当前成熟度为 **RC**；完整交互见本地 example。
+PivotTable：面向企业场景的 Table 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Table 家族组件
+- v-model 双向绑定
+- 加载状态反馈
+- 支持禁用状态
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 结构化数据表格
+- 排序筛选分页场景
+- 需要禁用/只读控制的表单场景
+- 异步提交或加载过程反馈
+
+**不适用**
+
+- 少量键值对用 Descriptions
+- 无结构化列需求时避免过度使用表格
 
 ## 基础用法
 
+> `import { PivotTable } from 'amg-webui/data'`
+
 ```vue
 <script setup>
-import { PivotTable } from '@amg-webui/data'
+import { PivotTable } from 'amg-webui/data'
 </script>
 
 <template>
@@ -29,43 +44,45 @@ import { PivotTable } from '@amg-webui/data'
 
 Curated demo：`example/demos/PivotTable/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `title` | `string` | — | 标题 / Title |
-| `description` | `string` | — | — |
-| `data` | `PivotRecord[]` | — | 树形数据 / Tree data |
-| `rows` | `PivotRecord[]` | — | 每页行数 / Rows per page |
-| `rowField` | `string` | — | — |
-| `columnField` | `string` | — | — |
-| `colField` | `string` | — | — |
-| `valueField` | `string` | — | — |
-| `valueFormatter` | `(value: number, cell?: PivotCell) => string` | — | — |
-| `modelValue` | `string \| null` | — | 绑定值 / Bound value (v-model) |
-| `rowLabel` | `string` | — | — |
-| `showRowTotals` | `boolean` | — | — |
-| `showColumnTotals` | `boolean` | — | — |
-| `stickyHeader` | `boolean` | — | — |
-| `loading` | `boolean` | — | 加载中状态 / Loading state |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
+| `title` | `string` | `undefined` | 标题 / Title |
+| `description` | `string` | `undefined` | description 字符串 |
+| `data` | `PivotRecord[]` | `() => []` | 树形数据 / Tree data |
+| `rows` | `PivotRecord[]` | `() => []` | 每页行数 / Rows per page |
+| `rowField` | `string` | `undefined` | rowField 字符串 |
+| `columnField` | `string` | `undefined` | columnField 字符串 |
+| `colField` | `string` | `undefined` | Backward-compatible alias for columnField. |
+| `valueField` | `string` | `undefined` | valueField 字符串 |
+| `valueFormatter` | `(value: number, cell?: PivotCell) => string` | `undefined` | valueFormatter 数值 |
+| `modelValue` | `string \| null` | `null` | 绑定值 / Bound value (v-model) |
+| `rowLabel` | `string` | `undefined` | rowLabel 字符串 |
+| `showRowTotals` | `boolean` | true | 是否启用 showRowTotals |
+| `showColumnTotals` | `boolean` | true | 是否启用 showColumnTotals |
+| `stickyHeader` | `boolean` | true | 是否启用 stickyHeader |
+| `loading` | `boolean` | false | 加载中状态 / Loading state |
+| `disabled` | `boolean` | false | 是否禁用 / Whether disabled |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `value: string \| null` | v-model 更新 / v-model update |
 | `change` | `value: string \| null` | 值变更 / Change |
-| `cellClick` | `cell: PivotCell, event: MouseEvent` | — |
-| `rowClick` | `rowKey: string, event: MouseEvent` | — |
+| `cellClick` | `cell: PivotCell, event: MouseEvent` | cellClick 时触发 |
+| `rowClick` | `rowKey: string, event: MouseEvent` | rowClick 时触发 |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `PivotRecord`
 - `PivotAggregator`
@@ -73,6 +90,40 @@ Curated demo：`example/demos/PivotTable/index.vue`
 - `PivotTableProps`
 - `PivotTableEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- 按键：`Tab` · `Enter` · `Escape` · `ArrowDown` · `ArrowUp` · `ArrowLeft` · `ArrowRight` · `Home` · `End` · `Space`
+- keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts PivotTable uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts PivotTable RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts PivotTable client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -80,6 +131,9 @@ Curated demo：`example/demos/PivotTable/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/data` |
+| metadata | `component-metadata/PivotTable.json` |
 | API extract | `generated/component-api/PivotTable.json` |
 
-> 完整 Demo 见 `example/demos/PivotTable`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/PivotTable`（example 本地调试，不上线）。
+

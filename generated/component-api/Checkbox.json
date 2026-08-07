@@ -1,6 +1,12 @@
 {
   "name": "Checkbox",
-  "generatedAt": "2026-08-07T12:40:46.793Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/checkbox"
+  ],
+  "sourceHash": "52acbea7e8bf4740a244e2c76a81849ba39ae98459df8cf3c61d9b38884c130c",
+  "generatedAt": "2026-08-07T18:45:10.928Z",
   "source": {
     "types": "packages/components/form/Checkbox/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "modelValue",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "value",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "label",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "indeterminate",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "skipFormItem",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

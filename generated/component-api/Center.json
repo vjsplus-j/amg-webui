@@ -1,6 +1,12 @@
 {
   "name": "Center",
-  "generatedAt": "2026-08-07T12:40:46.792Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/center"
+  ],
+  "sourceHash": "71978e9ac28fb7990fe7196e954932e2558985e817d395f3696079513f52972d",
+  "generatedAt": "2026-08-07T18:45:10.927Z",
   "source": {
     "types": "packages/components/core/Center/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "axis",
       "optional": true,
       "type": "CenterAxis",
-      "description": ""
+      "description": "",
+      "default": "both"
     },
     {
       "name": "flush",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Stick to edge; when false, inset with `--spacing-lg` on the flush side(s)",
+      "default": true
     },
     {
       "name": "minHeight",
       "optional": true,
       "type": "CenterMinHeight",
-      "description": ""
+      "description": "Minimum height — spacing tokens, `fill` (100%), or `viewport` (100dvh / shell height). Default `none` (content-sized); demos often pass `md`+ or `fill`.",
+      "default": "none"
     },
     {
       "name": "fill",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Stretch to 100% of parent height (sets height: 100%)",
+      "default": false
     },
     {
       "name": "textAlign",
       "optional": true,
       "type": "\"start\" | \"center\" | \"end\" | \"inherit\"",
-      "description": ""
+      "description": "Inline / block centering hint on the content wrapper",
+      "default": "inherit"
     },
     {
       "name": "as",
       "optional": true,
       "type": "\"div\" | \"section\" | \"main\"",
-      "description": ""
+      "description": "",
+      "default": "div"
     },
     {
       "name": "contentAs",
       "optional": true,
       "type": "\"div\" | \"span\"",
-      "description": ""
+      "description": "",
+      "default": "div"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "maxWidth",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [],

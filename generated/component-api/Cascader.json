@@ -1,6 +1,12 @@
 {
   "name": "Cascader",
-  "generatedAt": "2026-08-07T12:34:13.526Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/cascader"
+  ],
+  "sourceHash": "0f987adc3fc4e6ed4b1b311d45f3833edd893384f80dec44da530a83e7b94e18",
+  "generatedAt": "2026-08-07T18:45:10.925Z",
   "source": {
     "types": "packages/components/form/Cascader/types.ts",
     "vue": true
@@ -10,31 +16,43 @@
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "options",
       "optional": true,
       "type": "CascaderOption[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": "Show loading state in the dropdown panel",
+      "default": false
     }
   ],
   "events": [

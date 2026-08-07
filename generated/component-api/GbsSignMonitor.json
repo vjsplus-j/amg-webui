@@ -1,6 +1,12 @@
 {
   "name": "GbsSignMonitor",
-  "generatedAt": "2026-08-07T12:41:13.605Z",
+  "package": "gb28181",
+  "importPaths": [
+    "amg-webui/gb28181",
+    "amg-webui/gbs-sign-monitor"
+  ],
+  "sourceHash": "03143ee52f8dd665a584de1d2d10fcddf79f5adfab5446da922a9e155964ff50",
+  "generatedAt": "2026-08-07T18:45:11.049Z",
   "source": {
     "types": "packages/components/gb28181/GbsSignMonitor/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "logs",
       "optional": true,
       "type": "GbsSignEntry[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "filter",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "type",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "selectedId",
       "optional": true,
       "type": "string | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "autoFollow",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "clearable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "Carousel",
-  "generatedAt": "2026-08-07T12:40:46.789Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/carousel"
+  ],
+  "sourceHash": "39f2323e407de3ed14c5b1cb961ad8821b8996761bacd6257cc24df1822c6ab5",
+  "generatedAt": "2026-08-07T18:45:10.922Z",
   "source": {
     "types": "packages/components/core/Carousel/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

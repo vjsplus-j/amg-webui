@@ -1,0 +1,53 @@
+{
+  "name": "RichText",
+  "title": "RichText",
+  "summary": "RichText：面向企业场景的 Editor 组件（成熟度 rc）。",
+  "description": "RichText：面向企业场景的 Editor 组件（成熟度 rc）。",
+  "family": "editor",
+  "package": "editor",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/editor",
+    "amg-webui/rich-text"
+  ],
+  "features": [
+    "Editor 家族组件",
+    "v-model 双向绑定",
+    "占位提示",
+    "事件回调"
+  ],
+  "useCases": [
+    "代码/富文本/Markdown 编辑"
+  ],
+  "avoidWhen": [
+    "只读展示用 Typography / RichText 预览模式"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts RichText interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts RichText uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts RichText RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts RichText client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.520Z",
+  "sourceHash": "3ff7c4a86a7b25bfd92468bfd96f1ab6532c6a0935016d22427e2452b5fbe86d"
+}

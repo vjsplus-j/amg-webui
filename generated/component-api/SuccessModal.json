@@ -1,6 +1,12 @@
 {
   "name": "SuccessModal",
-  "generatedAt": "2026-08-07T12:45:59.838Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/success-modal"
+  ],
+  "sourceHash": "06ef2b8c18df277d848a734684ab2d9879def534cbda528204e3ddd0663a9217",
+  "generatedAt": "2026-08-07T18:45:11.219Z",
   "source": {
     "types": "packages/components/overlay/SuccessModal/types.ts",
     "vue": true

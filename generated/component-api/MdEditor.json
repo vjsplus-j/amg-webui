@@ -1,6 +1,12 @@
 {
   "name": "MdEditor",
-  "generatedAt": "2026-08-07T12:41:35.020Z",
+  "package": "editor",
+  "importPaths": [
+    "amg-webui/editor",
+    "amg-webui/md-editor"
+  ],
+  "sourceHash": "0e8ebe3cc84eedae5c0789e784e3aa2291877380da6d0f66641b7da4822677d3",
+  "generatedAt": "2026-08-07T18:45:11.097Z",
   "source": {
     "types": "packages/components/editor/MdEditor/types.ts",
     "vue": true
@@ -10,13 +16,15 @@
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "preview",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     }
   ],
   "events": [

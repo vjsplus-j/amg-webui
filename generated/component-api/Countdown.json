@@ -1,6 +1,12 @@
 {
   "name": "Countdown",
-  "generatedAt": "2026-08-07T12:40:46.809Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/countdown"
+  ],
+  "sourceHash": "2a16a2d64efc8bd5579ae791eaf87988ee803e0b4562357e410b8ac503b4ef48",
+  "generatedAt": "2026-08-07T18:45:10.951Z",
   "source": {
     "types": "packages/components/core/Countdown/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "modelValue",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "value",
       "optional": false,
       "type": "number | Date",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "format",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "HH:mm:ss"
     },
     {
       "name": "millisecond",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "autoStart",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "paused",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "interval",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "prefix",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "suffix",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "showControls",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

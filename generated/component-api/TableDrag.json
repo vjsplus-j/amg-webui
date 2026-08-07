@@ -1,6 +1,12 @@
 {
   "name": "TableDrag",
-  "generatedAt": "2026-08-07T12:41:56.170Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/table-drag"
+  ],
+  "sourceHash": "2d398c60d2bb505ee3adf3b0ded6ac459309469245a5b6fbc182c93e2ad18c77",
+  "generatedAt": "2026-08-07T18:45:11.228Z",
   "source": {
     "types": "packages/components/data/TableDrag/types.ts",
     "vue": true
@@ -10,85 +16,99 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "rows",
       "optional": true,
       "type": "TableDragRow[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "data",
       "optional": true,
       "type": "TableDragRow[]",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "TableDragRow[]",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "columns",
       "optional": true,
       "type": "TableDragColumn[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "rowKey",
       "optional": true,
       "type": "string | ((row: TableDragRow, index: number) => TableDragKey)",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "selectedKey",
       "optional": true,
       "type": "TableDragKey | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "rowDisabled",
       "optional": true,
       "type": "(row: TableDragRow, index: number) => boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "striped",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

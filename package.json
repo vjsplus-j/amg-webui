@@ -2390,6 +2390,11 @@
     "hardening:templates": "node scripts/hardening/enrich-template-contracts.mjs",
     "hardening:demote": "node scripts/hardening/demote-fake-stable.mjs",
     "hardening:extract-api": "node scripts/hardening/extract-component-api.mjs",
+    "extract:component-api": "npm run hardening:extract-api",
+    "generate:component-metadata": "node scripts/generate-component-metadata.mjs",
+    "audit:public-api": "node scripts/audit-public-component-api.mjs",
+    "check:docs-quality": "node scripts/check-docs-quality.mjs",
+    "build:public-doc-coverage": "node scripts/build-public-doc-coverage.mjs",
     "hardening:promote": "node scripts/hardening/promote-stable.mjs",
     "hardening:dashboard": "node scripts/hardening/build-dashboard.mjs",
     "hardening:program-status": "node scripts/hardening/build-program-status.mjs",
@@ -2401,6 +2406,8 @@
     "hardening:all": "npm run hardening:generate && npm run hardening:templates && npm run hardening:batches && npm run audit:api && node scripts/hardening/verify-component.mjs --all --strict && npm run check:evidence-freshness && npm run hardening:demote && npm run hardening:ssr && npm run hardening:visual && npm run hardening:dashboard && npm run generate:docs-sidebar && npm run hardening:release && npm run check:version-consistency",
     "ci": "vue-tsc --noEmit && npm run check:boundaries && npm run check:version-consistency && npm run validate:catalog && npm run extract:i18n && npm run test && npm run test:ssr && npm run build:lib && npm run check:dist && npm run test:consumers",
     "generate:vitepress-api": "node scripts/generate-vitepress-api.mjs",
+    "generate:example-metadata": "node scripts/generate-example-metadata.mjs",
+    "generate:docs-public-api": "node scripts/generate-component-metadata.mjs && node scripts/generate-example-metadata.mjs && node scripts/generate-vitepress-api.mjs --force",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "showcase:admin": "npm run dev --prefix showcases/01-admin",
@@ -2426,7 +2433,9 @@
     "showcases:build": "npm run showcase:admin:build && npm run showcase:saas:build && npm run showcase:ecommerce:build && npm run showcase:content-management:build && npm run showcase:device-management:build && npm run showcase:video-surveillance:build && npm run showcase:gb28181-center:build && npm run showcase:onvif-center:build && npm run showcase:dashboard:build && npm run showcase:mobile-admin:build",
     "test:showcases": "npm run showcases:build",
     "showcases:generate": "node scripts/generate-showcases.mjs",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "test:docs-code": "node scripts/test-docs-code.mjs",
+    "test:docs-consumer-imports": "node scripts/test-docs-consumer-imports.mjs"
   },
   "peerDependencies": {
     "@lucide/vue": "^1.0.0",

@@ -1,6 +1,12 @@
 {
   "name": "DescriptionsItem",
-  "generatedAt": "2026-08-07T12:40:46.815Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/descriptions-item"
+  ],
+  "sourceHash": "7521c6204e461d90261969d3192204b8c5bcd788542ae21d55b54cc236a84654",
+  "generatedAt": "2026-08-07T18:45:10.963Z",
   "source": {
     "types": "packages/components/data/DescriptionsItem/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "label",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "span",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "colon",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "labelAlign",
       "optional": true,
       "type": "\"start\" | \"end\"",
-      "description": ""
+      "description": "",
+      "default": "start"
     },
     {
       "name": "labelWidth",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [],

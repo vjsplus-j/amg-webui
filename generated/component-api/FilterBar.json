@@ -1,6 +1,12 @@
 {
   "name": "FilterBar",
-  "generatedAt": "2026-08-07T12:41:13.585Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/filter-bar"
+  ],
+  "sourceHash": "5105d060554857454d468d821385aca935a3722df2877c9350a2e1dd684f5dca",
+  "generatedAt": "2026-08-07T18:45:11.007Z",
   "source": {
     "types": "packages/components/form/FilterBar/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "modelValue",
       "optional": true,
       "type": "FilterCondition[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "fields",
       "optional": true,
       "type": "FilterFieldOption[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "collapsed",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

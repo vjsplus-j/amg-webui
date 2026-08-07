@@ -1,0 +1,64 @@
+{
+  "name": "InputNumber",
+  "title": "InputNumber",
+  "summary": "InputNumber：面向企业场景的 Input 组件（成熟度 rc）。",
+  "description": "InputNumber：面向企业场景的 Input 组件（成熟度 rc）。",
+  "family": "input",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/input-number"
+  ],
+  "features": [
+    "Input 家族组件",
+    "v-model 双向绑定",
+    "多尺寸规格",
+    "宽度 100%",
+    "只读模式",
+    "占位提示",
+    "事件回调"
+  ],
+  "useCases": [
+    "表单文本/数值输入",
+    "受控与非受控输入场景"
+  ],
+  "avoidWhen": [
+    "极复杂富文本编辑请使用 RichText / MdEditor"
+  ],
+  "related": [
+    "Form",
+    "FormItem",
+    "InputText"
+  ],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "Type",
+      "Key7"
+    ],
+    "detail": "Type: typing updates InputNumber modelValue; Key7: disabled InputNumber does not emit update:modelValue on key interaction"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural DOM clean"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.459Z",
+  "sourceHash": "a83ac1ec844e927a3880edf1437ac2d60b7740fd25518dcac07be1e866c4d67a"
+}

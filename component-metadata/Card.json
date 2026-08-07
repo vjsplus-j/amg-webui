@@ -1,0 +1,54 @@
+{
+  "name": "Card",
+  "title": "Card",
+  "summary": "Card：面向企业场景的 Foundation 组件（成熟度 rc）。",
+  "description": "Card：面向企业场景的 Foundation 组件（成熟度 rc）。",
+  "family": "foundation",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/card"
+  ],
+  "features": [
+    "Foundation 家族组件",
+    "加载状态反馈",
+    "事件回调"
+  ],
+  "useCases": [
+    "基础 UI 交互与页面操作",
+    "按钮、标签、图标等原子组件",
+    "异步提交或加载过程反馈"
+  ],
+  "avoidWhen": [
+    "需要复杂业务编排时优先业务组件或组合模式"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Card non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Card uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Card RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Card client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.366Z",
+  "sourceHash": "67c78d2e5fb724a59934889c0c83c9962b8c5c35da89eaaa338491288a9f3236"
+}

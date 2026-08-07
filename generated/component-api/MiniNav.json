@@ -1,6 +1,12 @@
 {
   "name": "MiniNav",
-  "generatedAt": "2026-08-07T12:41:35.025Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/mini-nav"
+  ],
+  "sourceHash": "f8b30ddf81733fb59222651ff673c0ae2d67671e6e10dd9a16c8fa5bfd0e3341",
+  "generatedAt": "2026-08-07T18:45:11.108Z",
   "source": {
     "types": "packages/components/core/MiniNav/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "items",
       "optional": true,
       "type": "NavItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "collapsed",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "showBadges",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

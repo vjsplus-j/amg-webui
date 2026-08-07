@@ -1,6 +1,12 @@
 {
   "name": "ScaleLayout",
-  "generatedAt": "2026-08-07T12:41:56.130Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/scale-layout"
+  ],
+  "sourceHash": "b0deac2d6b706aa463d75744a698090ec551c6ab83fb9f55733bb3b561f136b6",
+  "generatedAt": "2026-08-07T18:45:11.173Z",
   "source": {
     "types": "packages/components/core/ScaleLayout/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "scale",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Manual scale when fit is `manual` (also clamps auto scale display)",
+      "default": 1
     },
     {
       "name": "width",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Design canvas width in px (required for auto fit)",
+      "default": null
     },
     {
       "name": "height",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Design canvas height in px (required for auto fit)",
+      "default": null
     },
     {
       "name": "fit",
       "optional": true,
       "type": "ScaleLayoutFit",
-      "description": ""
+      "description": "How design size maps into the host: - manual: use `scale` - contain: fit inside (no crop; may letterbox) - cover: fill host (may crop) - width / height: lock one axis",
+      "default": "manual"
     },
     {
       "name": "origin",
       "optional": true,
       "type": "ScaleLayoutOrigin",
-      "description": ""
+      "description": "",
+      "default": "center"
     },
     {
       "name": "fill",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Root fills parent width/height (default true)",
+      "default": true
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

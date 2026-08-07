@@ -1,6 +1,12 @@
 {
   "name": "Result",
-  "generatedAt": "2026-08-07T12:41:56.125Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/result"
+  ],
+  "sourceHash": "838cdf729ab2a23639a2cbddf072b72ce8e66689773e23e68b326ea40f1c7ec2",
+  "generatedAt": "2026-08-07T18:45:11.166Z",
   "source": {
     "types": "packages/components/core/Result/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "status",
       "optional": true,
       "type": "ResultStatus",
-      "description": ""
+      "description": "",
+      "default": "info"
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "subTitle",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "icon",
       "optional": true,
       "type": "string | false",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "image",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "ResultSize",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "fullScreen",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "actions",
       "optional": true,
       "type": "ResultAction[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "live",
       "optional": true,
       "type": "\"polite\" | \"assertive\" | \"off\"",
-      "description": ""
+      "description": "",
+      "default": "polite"
     }
   ],
   "events": [

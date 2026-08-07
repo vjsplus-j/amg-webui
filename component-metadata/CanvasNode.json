@@ -1,0 +1,52 @@
+{
+  "name": "CanvasNode",
+  "title": "CanvasNode",
+  "summary": "CanvasNode：面向企业场景的 Lowcode 组件（成熟度 rc）。",
+  "description": "CanvasNode：面向企业场景的 Lowcode 组件（成熟度 rc）。",
+  "family": "lowcode",
+  "package": "lowcode",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/canvas-node"
+  ],
+  "features": [
+    "Lowcode 家族组件",
+    "事件回调"
+  ],
+  "useCases": [
+    "低代码画布与物料拖拽",
+    "Schema 渲染"
+  ],
+  "avoidWhen": [
+    "标准后台 CRUD 无需低代码层"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts CanvasNode interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CanvasNode uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CanvasNode RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CanvasNode client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.363Z",
+  "sourceHash": "02c5f1300abef330356c4c2fadfaacffebc8d5265666ccc227a33fdf42c8363e"
+}

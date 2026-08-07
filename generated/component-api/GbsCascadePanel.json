@@ -1,6 +1,12 @@
 {
   "name": "GbsCascadePanel",
-  "generatedAt": "2026-08-07T12:41:13.599Z",
+  "package": "gb28181",
+  "importPaths": [
+    "amg-webui/gb28181",
+    "amg-webui/gbs-cascade-panel"
+  ],
+  "sourceHash": "fb8ac68781ef0941b5fdace5ecd4d00d61c9f724544b4d07dd23a2c90bacb375",
+  "generatedAt": "2026-08-07T18:45:11.041Z",
   "source": {
     "types": "packages/components/gb28181/GbsCascadePanel/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "upstream",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "34020000001110000001"
     },
     {
       "name": "downstream",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "34020000001320000002"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

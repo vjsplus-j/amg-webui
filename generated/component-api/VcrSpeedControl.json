@@ -1,6 +1,12 @@
 {
   "name": "VcrSpeedControl",
-  "generatedAt": "2026-08-07T12:42:17.061Z",
+  "package": "media",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/vcr-speed-control"
+  ],
+  "sourceHash": "0b14957108ec940dff13023a86db1b6fd4171318ac4386c4ff364a173caa841f",
+  "generatedAt": "2026-08-07T18:45:11.281Z",
   "source": {
     "types": "packages/components/media/VcrSpeedControl/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "modelValue",
       "optional": true,
       "type": "VcrSpeed",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

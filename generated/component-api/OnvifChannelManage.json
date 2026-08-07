@@ -1,6 +1,12 @@
 {
   "name": "OnvifChannelManage",
-  "generatedAt": "2026-08-07T12:41:35.033Z",
+  "package": "onvif",
+  "importPaths": [
+    "amg-webui/onvif",
+    "amg-webui/onvif-channel-manage"
+  ],
+  "sourceHash": "10ec58457d113a6338c7151908921aed579a1128f0a329f073ee3789d6ddfbb9",
+  "generatedAt": "2026-08-07T18:45:11.117Z",
   "source": {
     "types": "packages/components/onvif/OnvifChannelManage/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "channels",
       "optional": true,
       "type": "OnvifChannel[]",
-      "description": ""
+      "description": "",
+      "default": "() => [{ id: 'ch1', name: 'Channel-01' }, { id: 'ch2', name: 'Channel-02' }]"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

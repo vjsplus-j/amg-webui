@@ -1,6 +1,12 @@
 {
   "name": "Divider",
-  "generatedAt": "2026-08-07T12:40:46.817Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/divider"
+  ],
+  "sourceHash": "188c97b0d5a26303fd987786722941feee57091f4c40f392bc450bf543a1da97",
+  "generatedAt": "2026-08-07T18:45:10.967Z",
   "source": {
     "types": "packages/components/core/Divider/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "direction",
       "optional": true,
       "type": "DividerDirection",
-      "description": ""
+      "description": "Layout axis — `vertical` is the inline `|` pipe separator",
+      "default": null
     },
     {
       "name": "type",
       "optional": true,
       "type": "DividerDirection",
-      "description": ""
+      "description": "Alias of `direction` (Ant Design–style API)",
+      "default": null
     },
     {
       "name": "contentPosition",
       "optional": true,
       "type": "DividerContentPosition",
-      "description": ""
+      "description": "",
+      "default": "center"
     },
     {
       "name": "dashed",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "borderStyle",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "plain",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Compact visual weight (softer line / text)",
+      "default": false
     },
     {
       "name": "margin",
       "optional": true,
       "type": "DividerMargin",
-      "description": ""
+      "description": "Outer margin along the primary axis — maps to spacing tokens",
+      "default": "md"
     },
     {
       "name": "decorative",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Decorative separator (no semantic landmark). Sets `aria-hidden` and omits `role=\"separator\"` when true.",
+      "default": false
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name when the divider is a landmark separator",
+      "default": null
     }
   ],
   "events": [],

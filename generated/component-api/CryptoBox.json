@@ -1,6 +1,12 @@
 {
   "name": "CryptoBox",
-  "generatedAt": "2026-08-07T12:40:46.810Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/crypto-box"
+  ],
+  "sourceHash": "1bc6497725d5537a38289d06212f98c0cd7eaa53ed817e47ab96eb55ee4fe929",
+  "generatedAt": "2026-08-07T18:45:10.952Z",
   "source": {
     "types": "packages/components/core/CryptoBox/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "passphrase",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "masked",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

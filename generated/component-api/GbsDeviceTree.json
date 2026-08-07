@@ -1,6 +1,12 @@
 {
   "name": "GbsDeviceTree",
-  "generatedAt": "2026-08-07T12:46:30.689Z",
+  "package": "gb28181",
+  "importPaths": [
+    "amg-webui/gb28181",
+    "amg-webui/gbs-device-tree"
+  ],
+  "sourceHash": "78a4996d74a7511233750d66e33730db8c7838411b5300b9c6cf6c1a0e126a33",
+  "generatedAt": "2026-08-07T18:45:11.044Z",
   "source": {
     "types": "packages/components/gb28181/GbsDeviceTree/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "GbsDeviceNode[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "options",
       "optional": true,
       "type": "GbsDeviceNode[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "Array<string | number>",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "expandedKeys",
       "optional": true,
       "type": "Array<string | number>",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "filter",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "checkStrategy",
       "optional": true,
       "type": "\"all\" | \"leaf\"",
-      "description": ""
+      "description": "",
+      "default": "leaf"
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "Simple404",
-  "generatedAt": "2026-08-07T12:41:56.146Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/simple404"
+  ],
+  "sourceHash": "f6c9aefae4e30b6043037dedebe4c2701c39c9d9ef02a2ddffb773e14bc05f46",
+  "generatedAt": "2026-08-07T18:45:11.193Z",
   "source": {
     "types": "packages/components/core/Simple404/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "code",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": 404
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "actions",
       "optional": true,
       "type": "Simple404Action[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "homeHref",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "retryable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "Progress",
-  "generatedAt": "2026-08-07T12:41:35.062Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/progress"
+  ],
+  "sourceHash": "a2d14c93d33d3a473595c3868bf9f56073c67b7df6a051214aadd420b93e21ec",
+  "generatedAt": "2026-08-07T18:45:11.149Z",
   "source": {
     "types": "packages/components/core/Progress/types.ts",
     "vue": true
@@ -10,43 +16,48 @@
       "name": "percentage",
       "optional": false,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "type",
       "optional": true,
       "type": "ProgressType",
-      "description": ""
+      "description": "",
+      "default": "line"
     },
     {
       "name": "status",
       "optional": true,
       "type": "ProgressStatus",
-      "description": ""
+      "description": "",
+      "default": "normal"
     },
     {
       "name": "showText",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "strokeWidth",
       "optional": true,
       "type": "number | string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [
     {
       "name": "change",
       "payload": "percentage: number",
-      "description": ""
+      "description": "Percentage clamped value changed"
     },
     {
       "name": "finish",
       "payload": "void",
-      "description": ""
+      "description": "Fires once when percentage reaches 100"
     }
   ],
   "slots": [],

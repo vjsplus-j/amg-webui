@@ -1,6 +1,12 @@
 {
   "name": "Badge",
-  "generatedAt": "2026-08-07T12:39:09.859Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/badge"
+  ],
+  "sourceHash": "1381cb8730382a8490befae04b998950fdd358f6905a2dcdfb3ec76bb4ca3df2",
+  "generatedAt": "2026-08-07T18:45:10.889Z",
   "source": {
     "types": "packages/components/core/Badge/types.ts",
     "vue": true
@@ -10,181 +16,211 @@
       "name": "spin",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Continuous rotate — shared Motion",
+      "default": false
     },
     {
       "name": "heartbeat",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Scale heartbeat — shared Motion",
+      "default": false
     },
     {
       "name": "bounce",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Jump upward — shared Motion",
+      "default": false
     },
     {
       "name": "blink",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Sharp flash — shared Motion",
+      "default": false
     },
     {
       "name": "breathe",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Breathing light — shared Motion",
+      "default": false
     },
     {
       "name": "glow",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Fluorescent glow — shared Motion",
+      "default": false
     },
     {
       "name": "marqueeLeft",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marquee scroll left — shared Motion",
+      "default": false
     },
     {
       "name": "marqueeRight",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marquee scroll right — shared Motion",
+      "default": false
     },
     {
       "name": "scrollUp",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical scroll up — shared Motion",
+      "default": false
     },
     {
       "name": "scrollDown",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical scroll down — shared Motion",
+      "default": false
     },
     {
       "name": "dampOut",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Damped zoom then fade out — shared Motion",
+      "default": false
     },
     {
       "name": "animationDuration",
       "optional": true,
       "type": "number | string",
-      "description": ""
+      "description": "Animation duration (ms or CSS time) — shared Motion",
+      "default": null
     },
     {
       "name": "value",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "Count or short text mark (NEW / HOT…). Number ≤0 hides unless `dot`.",
+      "default": null
     },
     {
       "name": "max",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Truncate threshold — shows `{max}+` when numeric value exceeds (default 99).",
+      "default": null
     },
     {
       "name": "dot",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Pure status dot — no number / text.",
+      "default": false
     },
     {
       "name": "hidden",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Force hide.",
+      "default": false
     },
     {
       "name": "type",
       "optional": true,
       "type": "BadgeSeverity",
-      "description": ""
+      "description": "Alias of `severity`",
+      "default": null
     },
     {
       "name": "severity",
       "optional": true,
       "type": "BadgeSeverity",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "BadgeSize",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "position",
       "optional": true,
       "type": "BadgePosition",
-      "description": ""
+      "description": "Anchor corner relative to host (default top-right).",
+      "default": null
     },
     {
       "name": "offset",
       "optional": true,
       "type": "[number, number]",
-      "description": ""
+      "description": "Extra translate offset `[x, y]` in px (right/down positive when top-right). Prefer leaving at `[0,0]` so Token offsets control alignment.",
+      "default": null
     },
     {
       "name": "colorBg",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Custom background (prefer CSS Token vars).",
+      "default": null
     },
     {
       "name": "colorText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Custom text color (prefer CSS Token vars).",
+      "default": null
     },
     {
       "name": "color",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Shorthand fill — sets background; pair with `colorText` for contrast.",
+      "default": null
     },
     {
       "name": "tooltip",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Hover tooltip content.",
+      "default": null
     },
     {
       "name": "tooltipDelay",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Tooltip show delay (ms).",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Dimmed / expired mark.",
+      "default": false
     },
     {
       "name": "pulse",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Badge ring/brightness pulse for urgent reminders (not shared `vp-motion--pulse`).",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Override accessible name; defaults to count / text / i18n for dots.",
+      "default": null
     },
     {
       "name": "decorative",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Pure decoration — suppress screen-reader announcement.",
+      "default": false
     }
   ],
   "events": [

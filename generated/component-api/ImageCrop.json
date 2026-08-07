@@ -1,6 +1,12 @@
 {
   "name": "ImageCrop",
-  "generatedAt": "2026-08-07T12:41:13.616Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/image-crop"
+  ],
+  "sourceHash": "3431e4941582a1b674ce09fc35d3d1bbb8b6668f9ec6b99e01a8cc7c3462b415",
+  "generatedAt": "2026-08-07T18:45:11.066Z",
   "source": {
     "types": "packages/components/core/ImageCrop/types.ts",
     "vue": true
@@ -10,19 +16,22 @@
       "name": "src",
       "optional": true,
       "type": "string | File | Blob | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "aspectRatio",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

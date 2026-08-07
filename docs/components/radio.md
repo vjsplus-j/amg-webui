@@ -1,25 +1,36 @@
-# Radio
+# Radio 单选框
 
-Radio 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Radio 单选框：面向企业场景的 Input 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Radio 当前成熟度为 **RC**；下方 DocsDemo 提供 docs 站内嵌交互，完整场景见 example。
+Radio 单选框：面向企业场景的 Input 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Input 家族组件
+- v-model 双向绑定
+- 多尺寸规格
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 表单文本/数值输入
+- 受控与非受控输入场景
+
+**不适用**
+
+- 极复杂富文本编辑请使用 RichText / MdEditor
 
 ## 基础用法
 
+> `import { Radio } from 'amg-webui/form'`
+
 ```vue
 <script setup>
-import { Radio } from '@amg-webui/form'
+import { Radio } from 'amg-webui/form'
 </script>
 
 <template>
@@ -29,42 +40,79 @@ import { Radio } from '@amg-webui/form'
 
 Curated demo：`example/demos/Radio/index.vue`
 
-## 交互演示
+## 示例
 
 <DocsDemo name="radio-basic" />
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `unknown` | — | 绑定值 / Bound value (v-model) |
-| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
+| `modelValue` | `unknown` | `undefined` | 绑定值 / Bound value (v-model) |
+| `id` | `string` | `undefined` | 元素 id（无障碍）/ Element id for a11y |
 | `value` | `unknown` | **必填** | 表格行数据或绑定值 / Row data or bound value |
-| `label` | `string` | — | 显示文案 / Display label |
-| `name` | `string` | — | 表单字段名 / Form field name |
-| `invalid` | `boolean` | — | — |
-| `skipFormItem` | `boolean` | — | — |
-| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `label` | `string` | `undefined` | 显示文案 / Display label |
+| `name` | `string` | `undefined` | 表单字段名 / Form field name |
+| `invalid` | `boolean` | `undefined` | 是否启用 invalid |
+| `skipFormItem` | `boolean` | false | 是否启用 skipFormItem |
+| `size` | `Size` | `undefined` | 尺寸：`sm` · `md` · `lg` / Size variant |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `value: unknown` | v-model 更新 / v-model update |
 | `change` | `value: unknown` | 值变更 / Change |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `RadioGroupContext`
 - `RadioProps`
 - `RadioEmits`
 
+## 键盘交互
+
+- 状态：`PASS`
+- 按键：`Space`
+- Space: Space on focused Radio selects value and emits update:modelValue; Space: disabled Radio does not emit update:modelValue on Space
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Radio uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Radio RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Radio client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+- [RadioGroup](./radio-group)
+- [Form](./form)
 
 ## 稳定性
 
@@ -72,6 +120,9 @@ Curated demo：`example/demos/Radio/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/form` |
+| metadata | `component-metadata/Radio.json` |
 | API extract | `generated/component-api/Radio.json` |
 
-> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/Radio`。
+> **DocsDemo** 为 docs 站内嵌演示；完整 curated demo 见 `example/demos/Radio`。
+

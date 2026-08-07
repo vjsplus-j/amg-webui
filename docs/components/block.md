@@ -1,25 +1,33 @@
 # Block
 
-Block 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Block：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Block 当前成熟度为 **RC**；完整交互见本地 example。
+Block：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Foundation 家族组件
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 基础 UI 交互与页面操作
+- 按钮、标签、图标等原子组件
+
+**不适用**
+
+- 需要复杂业务编排时优先业务组件或组合模式
 
 ## 基础用法
 
+> `import { Block } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { Block } from '@amg-webui/core'
+import { Block } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,22 +37,24 @@ import { Block } from '@amg-webui/core'
 
 Curated demo：`example/demos/Block/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `display` | `BlockDisplay` | — | — |
-| `padding` | `BlockPadding` | — | — |
-| `padded` | `boolean` | — | — |
-| `bordered` | `boolean` | — | — |
-| `gap` | `BlockGap` | — | — |
-| `margin` | `BlockMargin` | — | — |
-| `bg` | `BlockBg` | — | — |
-| `fullBleed` | `boolean` | — | — |
-| `radius` | `BlockRadius` | — | — |
-| `raised` | `boolean` | — | — |
+| `display` | `BlockDisplay` | `block` | CSS display — default `block` |
+| `padding` | `BlockPadding` | `undefined` | Inner padding via spacing / theme tokens. When omitted, `padded` controls card pad vs none. |
+| `padded` | `boolean` | true | Legacy boolean pad — true → card pad (default); ignored when `padding` is set |
+| `bordered` | `boolean` | false | 是否启用 bordered |
+| `gap` | `BlockGap` | true | Child stack gap — `true` → md; token key or false/none to disable |
+| `margin` | `BlockMargin` | `none` | Outer margin — spacing tokens; default `none` |
+| `bg` | `BlockBg` | `surface-1` | Background surface token |
+| `fullBleed` | `boolean` | false | Cancel parent page pad; edge-to-edge within content column |
+| `radius` | `BlockRadius` | `card` | Border radius token |
+| `raised` | `boolean` | false | Soft elevation (shadow-sm) |
 
-## Public types
+### Public Types
 
 - `BlockMargin`
 - `BlockPadding`
@@ -55,6 +65,39 @@ Curated demo：`example/demos/Block/index.vue`
 - `BlockEmits`
 - `BlockProps`
 
+## 键盘交互
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Block non-interactive display — keyboard N/A
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Block uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Block RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Block client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -62,6 +105,9 @@ Curated demo：`example/demos/Block/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Block.json` |
 | API extract | `generated/component-api/Block.json` |
 
-> 完整 Demo 见 `example/demos/Block`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Block`（example 本地调试，不上线）。
+

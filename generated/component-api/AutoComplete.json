@@ -1,6 +1,12 @@
 {
   "name": "AutoComplete",
-  "generatedAt": "2026-08-07T12:34:13.521Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/auto-complete"
+  ],
+  "sourceHash": "8a91242848fa9b4521caefe897e76afb87c55d7ebc140efb5ac57a644ad8709c",
+  "generatedAt": "2026-08-07T18:45:10.881Z",
   "source": {
     "types": "packages/components/form/AutoComplete/types.ts",
     "vue": true
@@ -10,55 +16,71 @@
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "suggestions",
       "optional": true,
       "type": "AutoCompleteSuggestion[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "debounce",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 300
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "fluid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": "",
+      "default": null
     }
   ],
   "events": [
@@ -83,8 +105,55 @@
       "description": ""
     }
   ],
-  "slots": [],
-  "expose": [],
+  "slots": [
+    {
+      "name": "default",
+      "props": "props: Record<string, never>",
+      "description": "Trailing auxiliary content beside the control"
+    },
+    {
+      "name": "option",
+      "props": "props: { item: { value: string; label: string }; index: number }",
+      "description": "Custom suggestion row in the dropdown"
+    },
+    {
+      "name": "empty",
+      "props": "props: Record<string, never>",
+      "description": "Empty state when no suggestions match"
+    },
+    {
+      "name": "loading",
+      "props": "props: Record<string, never>",
+      "description": "Loading indicator while remote suggestions load"
+    }
+  ],
+  "expose": [
+    {
+      "name": "focus",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "open",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "type": "() => void",
+      "description": ""
+    }
+  ],
   "models": [
     {
       "name": "modelValue",
@@ -94,13 +163,15 @@
   "publicTypes": [
     "AutoCompleteSuggestion",
     "AutoCompleteProps",
-    "AutoCompleteEmits"
+    "AutoCompleteEmits",
+    "AutoCompleteSlots",
+    "AutoCompleteExpose"
   ],
   "completeness": {
     "props": true,
     "emits": true,
-    "slots": false,
-    "expose": false,
+    "slots": true,
+    "expose": true,
     "models": true
   }
 }

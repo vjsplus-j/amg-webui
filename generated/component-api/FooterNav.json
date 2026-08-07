@@ -1,6 +1,12 @@
 {
   "name": "FooterNav",
-  "generatedAt": "2026-08-07T12:41:13.592Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/footer-nav"
+  ],
+  "sourceHash": "96a0b70c7a984b26a1b80c27d9e2abfee85982eb305ea970e71ed7d040a3a9eb",
+  "generatedAt": "2026-08-07T18:45:11.025Z",
   "source": {
     "types": "packages/components/core/FooterNav/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "items",
       "optional": true,
       "type": "NavItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "align",
       "optional": true,
       "type": "'start' | 'center' | 'end' | 'between'",
-      "description": ""
+      "description": "",
+      "default": "start"
     },
     {
       "name": "dividers",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "wrap",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

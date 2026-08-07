@@ -1,6 +1,12 @@
 {
   "name": "StepForm",
-  "generatedAt": "2026-08-07T12:34:13.550Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/step-form"
+  ],
+  "sourceHash": "0b407f65c5405dc5a1a9d424befc39c7bdc7eae069eaa5360c66d1c24a9a5ea6",
+  "generatedAt": "2026-08-07T18:45:11.210Z",
   "source": {
     "types": "packages/components/form/StepForm/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "modelValue",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "steps",
       "optional": true,
       "type": "StepFormStep[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "stepData",
       "optional": true,
       "type": "Record<string, Record<string, unknown>>",
-      "description": ""
+      "description": "",
+      "default": "() => ({})"
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

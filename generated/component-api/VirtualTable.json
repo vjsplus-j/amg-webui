@@ -1,6 +1,12 @@
 {
   "name": "VirtualTable",
-  "generatedAt": "2026-08-07T12:42:38.277Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/virtual-table"
+  ],
+  "sourceHash": "bffad55d09604be9bafd5296666e3305d700e6b43e93c04330cec1bf7e10836b",
+  "generatedAt": "2026-08-07T18:45:11.292Z",
   "source": {
     "types": "packages/components/data/VirtualTable/types.ts",
     "vue": true
@@ -10,79 +16,92 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "Record<string, unknown>[]",
-      "description": ""
+      "description": "Legacy alias — prefer `rows`",
+      "default": null
     },
     {
       "name": "rows",
       "optional": true,
       "type": "Record<string, unknown>[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "columns",
       "optional": true,
       "type": "TableColumn[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "virtual",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Virtual scroll (default ON)",
+      "default": true
     },
     {
       "name": "rowKey",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "id"
     },
     {
       "name": "filterDebounce",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 200
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "Record<string, unknown> | null",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

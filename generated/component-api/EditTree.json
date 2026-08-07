@@ -1,6 +1,12 @@
 {
   "name": "EditTree",
-  "generatedAt": "2026-08-07T12:41:13.578Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/edit-tree"
+  ],
+  "sourceHash": "31c1dc5fd5c51f3d14cbdf401c1ac7c44b46be45bc734934244d5670977d658f",
+  "generatedAt": "2026-08-07T18:45:10.990Z",
   "source": {
     "types": "packages/components/data/EditTree/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

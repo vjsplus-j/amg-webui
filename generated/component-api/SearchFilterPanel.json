@@ -1,6 +1,12 @@
 {
   "name": "SearchFilterPanel",
-  "generatedAt": "2026-08-07T12:41:56.138Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/search-filter-panel"
+  ],
+  "sourceHash": "2ac1166cca535168bdb946b157756129d0604dae352b4812133fd41c8e272405",
+  "generatedAt": "2026-08-07T18:45:11.182Z",
   "source": {
     "types": "packages/components/form/SearchFilterPanel/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "keyword",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "FilterCondition[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "fields",
       "optional": true,
       "type": "FilterFieldOption[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "collapsed",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "debounce",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 400
     },
     {
       "name": "searchOnInput",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

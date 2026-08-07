@@ -1,6 +1,12 @@
 {
   "name": "EmbedLayout",
-  "generatedAt": "2026-08-07T12:41:13.579Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/embed-layout"
+  ],
+  "sourceHash": "fd2be2107618823a2eae5be39cfc2e05a7b6b165740d695c98609a2b124a8fd3",
+  "generatedAt": "2026-08-07T18:45:10.994Z",
   "source": {
     "types": "packages/components/core/EmbedLayout/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "aspectRatio",
       "optional": true,
       "type": "EmbedAspect",
-      "description": ""
+      "description": "",
+      "default": "16 / 9"
     },
     {
       "name": "fill",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "rounded",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "bordered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "objectFit",
       "optional": true,
       "type": "EmbedObjectFit",
-      "description": ""
+      "description": "",
+      "default": "cover"
     },
     {
       "name": "label",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "caption",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "interactive",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "as",
       "optional": true,
       "type": "\"div\" | \"figure\" | \"section\"",
-      "description": ""
+      "description": "",
+      "default": "figure"
     }
   ],
   "events": [

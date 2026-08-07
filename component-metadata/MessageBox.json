@@ -1,0 +1,54 @@
+{
+  "name": "MessageBox",
+  "title": "MessageBox 命令式对话框",
+  "summary": "命令式确认 / 提示 / 输入框：`MessageBox.confirm` · `alert` · `prompt`。",
+  "description": "命令式确认 / 提示 / 输入框：`MessageBox.confirm` · `alert` · `prompt`。",
+  "family": "overlay",
+  "package": "overlay",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/message-box"
+  ],
+  "features": [
+    "Overlay 家族组件"
+  ],
+  "useCases": [
+    "对话框、抽屉、气泡确认等浮层",
+    "阻断式交互"
+  ],
+  "avoidWhen": [
+    "轻量提示优先 Toast / Message",
+    "非阻断提示不要用 Modal 对话框"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "Escape"
+    ],
+    "detail": "Escape: Escape dismisses message box and emits cancel"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts MessageBox uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts MessageBox RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts MessageBox client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.476Z",
+  "sourceHash": "6f4ad2ebcc1aadb20b4be90008eb63476adf626fbf75248f5ec1ac5b85e10e96"
+}

@@ -1,6 +1,12 @@
 {
   "name": "Exception",
-  "generatedAt": "2026-08-07T12:41:13.583Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/exception"
+  ],
+  "sourceHash": "d7cc80b0424a846404b55c88095955ffae682832bb89abe98ed22da152c949a8",
+  "generatedAt": "2026-08-07T18:45:11.004Z",
   "source": {
     "types": "packages/components/core/Exception/types.ts",
     "vue": true
@@ -10,73 +16,85 @@
       "name": "status",
       "optional": true,
       "type": "\"403\" | \"404\" | \"500\" | \"offline\"",
-      "description": ""
+      "description": "",
+      "default": "404"
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "actionText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "actionDisabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "ariaLive",
       "optional": true,
       "type": "\"polite\" | \"assertive\" | \"off\"",
-      "description": ""
+      "description": "",
+      "default": "polite"
     },
     {
       "name": "secondaryActionText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "showCode",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "compact",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

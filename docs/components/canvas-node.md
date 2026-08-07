@@ -1,25 +1,34 @@
 # CanvasNode
 
-CanvasNode 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+CanvasNode：面向企业场景的 Lowcode 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-CanvasNode 当前成熟度为 **RC**；完整交互见本地 example。
+CanvasNode：面向企业场景的 Lowcode 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Lowcode 家族组件
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 低代码画布与物料拖拽
+- Schema 渲染
+
+**不适用**
+
+- 标准后台 CRUD 无需低代码层
 
 ## 基础用法
 
+> `import { CanvasNode } from 'amg-webui/lowcode'`
+
 ```vue
 <script setup>
-import { CanvasNode } from '@amg-webui/lowcode'
+import { CanvasNode } from 'amg-webui/lowcode'
 </script>
 
 <template>
@@ -29,33 +38,68 @@ import { CanvasNode } from '@amg-webui/lowcode'
 
 Curated demo：`example/demos/CanvasNode/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `node` | `CanvasNodeData` | **必填** | — |
-| `nested` | `boolean` | — | — |
-| `children` | `CanvasTreeNode[]` | — | — |
-| `selectable` | `boolean` | — | — |
-| `draggable` | `boolean` | — | — |
-| `keyboardStep` | `number` | — | — |
-| `registry` | `ComponentRegistry` | — | — |
-| `renderMode` | `SchemaRenderMode` | — | — |
+| `node` | `CanvasNodeData` | **必填** | node 配置项 |
+| `nested` | `boolean` | false | Nested under a parent — flow layout, not free-canvas absolute. |
+| `children` | `CanvasTreeNode[]` | `() => []` | Child tree from `buildCanvasTree` (recursive mount). |
+| `selectable` | `boolean` | true | 是否启用 selectable |
+| `draggable` | `boolean` | true | 是否启用 draggable |
+| `keyboardStep` | `number` | 1 | keyboardStep 数值 |
+| `registry` | `ComponentRegistry` | `undefined` | registry 配置项 |
+| `renderMode` | `SchemaRenderMode` | `chrome` | renderMode 配置项 |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `select` | `id: string` | 选中 / Select |
-| `move` | `payload: { id: string; x: number; y: number }` | — |
-| `moveStart` | `payload: { id: string; x: number; y: number }` | — |
-| `moveEnd` | `payload: { id: string; x: number; y: number }` | — |
+| `move` | `payload: { id: string; x: number; y: number }` | move 时触发 |
+| `moveStart` | `payload: { id: string; x: number; y: number }` | moveStart 时触发 |
+| `moveEnd` | `payload: { id: string; x: number; y: number }` | moveEnd 时触发 |
 
-## Public types
+### Public Types
 
 - `CanvasNodeProps`
 - `CanvasNodeEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- invalid keyboard evidence (mount/visibility only): "tests/unit/hardening/real-mount-remaining.spec.ts CanvasNode interactive surface present (keyboard applicable)"
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts CanvasNode uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts CanvasNode RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts CanvasNode client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -63,6 +107,9 @@ Curated demo：`example/demos/CanvasNode/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/lowcode` |
+| metadata | `component-metadata/CanvasNode.json` |
 | API extract | `generated/component-api/CanvasNode.json` |
 
-> 完整 Demo 见 `example/demos/CanvasNode`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/CanvasNode`（example 本地调试，不上线）。
+

@@ -1,6 +1,12 @@
 {
   "name": "Skeleton",
-  "generatedAt": "2026-08-07T12:41:56.147Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/skeleton"
+  ],
+  "sourceHash": "dac9a08458285e2cf8ccfd31d91f28289de88c896415da61daafff5822d97c37",
+  "generatedAt": "2026-08-07T18:45:11.195Z",
   "source": {
     "types": "packages/components/core/Skeleton/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Show skeleton when true; otherwise render default slot (real content)",
+      "default": true
     },
     {
       "name": "variant",
       "optional": true,
       "type": "SkeletonVariant",
-      "description": ""
+      "description": "Layout preset",
+      "default": "text"
     },
     {
       "name": "rows",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Paragraph / text line count",
+      "default": 3
     },
     {
       "name": "animated",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Soft loading animation (false disables)",
+      "default": true
     },
     {
       "name": "animation",
       "optional": true,
       "type": "SkeletonAnimation",
-      "description": ""
+      "description": "Animation kind — shimmer (default) / pulse",
+      "default": "shimmer"
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size | number | string",
-      "description": ""
+      "description": "Circle / avatar diameter — Size token or CSS length / number(px)",
+      "default": null
     },
     {
       "name": "width",
       "optional": true,
       "type": "SkeletonWidth",
-      "description": ""
+      "description": "Block / line width — CSS length, % or per-row array",
+      "default": null
     },
     {
       "name": "height",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "Block / line height — CSS length or number(px)",
+      "default": null
     },
     {
       "name": "round",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Fully rounded rect/image",
+      "default": false
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible loading label (defaults via i18n caller / aria)",
+      "default": null
     }
   ],
   "events": [],

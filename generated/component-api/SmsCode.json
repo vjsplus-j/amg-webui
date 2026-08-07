@@ -1,6 +1,12 @@
 {
   "name": "SmsCode",
-  "generatedAt": "2026-08-07T12:41:56.150Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/sms-code"
+  ],
+  "sourceHash": "2ca34ce5037bfbcbafb01ac37fdc544c53cf4afce52fb3532777a4d7baa4cdf2",
+  "generatedAt": "2026-08-07T18:45:11.197Z",
   "source": {
     "types": "packages/components/form/SmsCode/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "countdown",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Countdown seconds after send",
+      "default": 60
     },
     {
       "name": "length",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Expected digit length",
+      "default": 6
     },
     {
       "name": "phone",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "beforeSend",
       "optional": true,
       "type": "() => boolean | void | Promise<boolean | void>",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

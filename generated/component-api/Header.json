@@ -1,6 +1,12 @@
 {
   "name": "Header",
-  "generatedAt": "2026-08-07T12:41:13.611Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/header"
+  ],
+  "sourceHash": "a5992585e3be18eb3e727d68a2644cb8c41dfdd4b4598d7a3c664a40c199e47e",
+  "generatedAt": "2026-08-07T18:45:11.058Z",
   "source": {
     "types": "packages/components/core/Header/types.ts",
     "vue": true
@@ -10,73 +16,85 @@
       "name": "sticky",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "fixed",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Viewport-fixed bar (implies sticky stacking)",
+      "default": false
     },
     {
       "name": "bordered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "size",
       "optional": true,
       "type": "'sm' | 'md' | 'lg'",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "padding",
       "optional": true,
       "type": "HeaderPadding",
-      "description": ""
+      "description": "Horizontal padding token; default follows size / page pad",
+      "default": "page"
     },
     {
       "name": "translucent",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Soft glass surface (default true)",
+      "default": true
     },
     {
       "name": "elevated",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "centered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "subtitle",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "as",
       "optional": true,
       "type": "'header' | 'div'",
-      "description": ""
+      "description": "",
+      "default": "header"
     }
   ],
   "events": [],

@@ -1,0 +1,55 @@
+{
+  "name": "GbsSignMonitor",
+  "title": "GbsSignMonitor",
+  "summary": "GbsSignMonitor：面向企业场景的 GB28181 组件（成熟度 rc）。",
+  "description": "GbsSignMonitor：面向企业场景的 GB28181 组件（成熟度 rc）。",
+  "family": "gb28181",
+  "package": "gb28181",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/gb28181",
+    "amg-webui/gbs-sign-monitor"
+  ],
+  "features": [
+    "GB28181 家族组件",
+    "支持禁用状态",
+    "加载状态反馈",
+    "可一键清空",
+    "事件回调"
+  ],
+  "useCases": [
+    "国标 GB28181 设备与级联",
+    "视频监控平台"
+  ],
+  "avoidWhen": [
+    "非国标场景勿引入行业包"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts GbsSignMonitor interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "FAIL",
+    "detail": "a11y PASS requires A11Y_STRUCTURE/A11Y_CONTRAST or critical/serious counts (family name alone insufficient)"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsSignMonitor uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsSignMonitor RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsSignMonitor client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.442Z",
+  "sourceHash": "03143ee52f8dd665a584de1d2d10fcddf79f5adfab5446da922a9e155964ff50"
+}

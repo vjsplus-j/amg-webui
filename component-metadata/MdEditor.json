@@ -1,0 +1,52 @@
+{
+  "name": "MdEditor",
+  "title": "MdEditor",
+  "summary": "MdEditor：面向企业场景的 Editor 组件（成熟度 rc）。",
+  "description": "MdEditor：面向企业场景的 Editor 组件（成熟度 rc）。",
+  "family": "editor",
+  "package": "editor",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/editor",
+    "amg-webui/md-editor"
+  ],
+  "features": [
+    "Editor 家族组件",
+    "v-model 双向绑定",
+    "事件回调"
+  ],
+  "useCases": [
+    "代码/富文本/Markdown 编辑"
+  ],
+  "avoidWhen": [
+    "只读展示用 Typography / RichText 预览模式"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts MdEditor interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts MdEditor uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts MdEditor RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts MdEditor client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.471Z",
+  "sourceHash": "0e8ebe3cc84eedae5c0789e784e3aa2291877380da6d0f66641b7da4822677d3"
+}

@@ -1,6 +1,12 @@
 {
   "name": "Switch",
-  "generatedAt": "2026-08-07T12:41:56.167Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/switch"
+  ],
+  "sourceHash": "fc8c2adacebfc88d3191956cf98fddee4ec34b007dd31a49e92944c52808eb54",
+  "generatedAt": "2026-08-07T18:45:11.224Z",
   "source": {
     "types": "packages/components/form/Switch/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "modelValue",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "inlinePrompt",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "activeText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "inactiveText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name; falls back to active/inactive prompt text",
+      "default": null
     }
   ],
   "events": [

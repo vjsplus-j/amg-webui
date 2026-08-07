@@ -1,6 +1,12 @@
 {
   "name": "MatrixCode",
-  "generatedAt": "2026-08-07T12:41:35.018Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/matrix-code"
+  ],
+  "sourceHash": "7e43f889aa3cfc261780ee4b29ce998e15dd94e5634a9182f69808611d83ba35",
+  "generatedAt": "2026-08-07T18:45:11.096Z",
   "source": {
     "types": "packages/components/core/MatrixCode/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "value",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "format",
       "optional": true,
       "type": "MatrixCodeFormat",
-      "description": ""
+      "description": "Two-dimensional or stacked barcode symbology.",
+      "default": "qrcode"
     },
     {
       "name": "pixelSize",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Module pixel scale.",
+      "default": 4
     },
     {
       "name": "quietZone",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Quiet-zone padding around the generated symbol.",
+      "default": 8
     },
     {
       "name": "errorCorrection",
       "optional": true,
       "type": "MatrixCodeErrorCorrection",
-      "description": ""
+      "description": "Format-specific error correction: QR L/M/Q/H, PDF417 0-8, Ultracode EC1-EC5.",
+      "default": null
     },
     {
       "name": "version",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "Optional format-specific version, e.g. rMQR R17x43.",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "editable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

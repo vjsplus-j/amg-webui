@@ -1,6 +1,12 @@
 {
   "name": "MessageBox",
-  "generatedAt": "2026-08-07T12:41:35.024Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/message-box"
+  ],
+  "sourceHash": "6f4ad2ebcc1aadb20b4be90008eb63476adf626fbf75248f5ec1ac5b85e10e96",
+  "generatedAt": "2026-08-07T18:45:11.106Z",
   "source": {
     "types": "packages/components/overlay/MessageBox/types.ts",
     "vue": false

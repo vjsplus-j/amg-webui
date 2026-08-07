@@ -1,6 +1,12 @@
 {
   "name": "CheckboxGroup",
-  "generatedAt": "2026-08-07T12:40:46.794Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/checkbox-group"
+  ],
+  "sourceHash": "d8967e339e8210958b57842e750463bd300b12dd7f77d05e6971a7483c6bc00e",
+  "generatedAt": "2026-08-07T18:45:10.930Z",
   "source": {
     "types": "packages/components/form/CheckboxGroup/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "modelValue",
       "optional": true,
       "type": "unknown[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "direction",
       "optional": true,
       "type": "'horizontal' | 'vertical'",
-      "description": ""
+      "description": "",
+      "default": "horizontal"
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "max",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Max selectable count; omit = unlimited",
+      "default": null
     },
     {
       "name": "min",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Min selectable count (soft hint via aria only)",
+      "default": null
     },
     {
       "name": "options",
       "optional": true,
       "type": "CheckboxOption[]",
-      "description": ""
+      "description": "Declarative options; can combine with default slot",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

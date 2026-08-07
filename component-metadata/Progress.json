@@ -1,0 +1,52 @@
+{
+  "name": "Progress",
+  "title": "Progress",
+  "summary": "Progress：面向企业场景的 Foundation 组件（成熟度 rc）。",
+  "description": "Progress：面向企业场景的 Foundation 组件（成熟度 rc）。",
+  "family": "foundation",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/progress"
+  ],
+  "features": [
+    "Foundation 家族组件",
+    "事件回调"
+  ],
+  "useCases": [
+    "基础 UI 交互与页面操作",
+    "按钮、标签、图标等原子组件"
+  ],
+  "avoidWhen": [
+    "需要复杂业务编排时优先业务组件或组合模式"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Progress non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Progress uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Progress RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Progress client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.505Z",
+  "sourceHash": "a2d14c93d33d3a473595c3868bf9f56073c67b7df6a051214aadd420b93e21ec"
+}

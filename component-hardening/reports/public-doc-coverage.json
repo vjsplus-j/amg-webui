@@ -1,0 +1,57 @@
+{
+  "generatedAt": "2026-08-07T19:00:35.047Z",
+  "total": 287,
+  "metadataComplete": 287,
+  "apiExtractComplete": 287,
+  "docsPresent": 287,
+  "examplePresent": 287,
+  "publicExportValidated": 287,
+  "consumerValidated": 6,
+  "consumerStatus": "PASS",
+  "phaseStats": {
+    "P0": {
+      "total": 224,
+      "metadataComplete": 224,
+      "docsPresent": 224,
+      "exportOk": 224
+    },
+    "P1": {
+      "total": 12,
+      "metadataComplete": 12,
+      "docsPresent": 12,
+      "exportOk": 12
+    },
+    "P2": {
+      "total": 0,
+      "metadataComplete": 0,
+      "docsPresent": 0,
+      "exportOk": 0
+    },
+    "P3": {
+      "total": 34,
+      "metadataComplete": 34,
+      "docsPresent": 34,
+      "exportOk": 34
+    },
+    "P4": {
+      "total": 17,
+      "metadataComplete": 17,
+      "docsPresent": 17,
+      "exportOk": 17
+    }
+  },
+  "p0": {
+    "total": 224,
+    "metadataComplete": 224,
+    "docsPresent": 224,
+    "publicExportValidated": 224,
+    "status": "CLOSED"
+  },
+  "phases": {
+    "P0": "CLOSED",
+    "P1": "CLOSED",
+    "P2": "CLOSED",
+    "P3": "CLOSED",
+    "P4": "CLOSED"
+  }
+}

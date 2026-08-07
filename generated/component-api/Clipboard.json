@@ -1,6 +1,12 @@
 {
   "name": "Clipboard",
-  "generatedAt": "2026-08-07T12:40:46.796Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/clipboard"
+  ],
+  "sourceHash": "56c37372d3323fff012fd2fa74f792c7a1b8b02de141eee63578616d03d90563",
+  "generatedAt": "2026-08-07T18:45:10.932Z",
   "source": {
     "types": "packages/components/core/Clipboard/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "text",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

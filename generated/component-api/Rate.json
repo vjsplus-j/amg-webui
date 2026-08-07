@@ -1,6 +1,12 @@
 {
   "name": "Rate",
-  "generatedAt": "2026-08-07T12:41:56.122Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/rate"
+  ],
+  "sourceHash": "e0f71740935317b52886f7141062c873a16ab175e669b9c8d63256576a611360",
+  "generatedAt": "2026-08-07T18:45:11.164Z",
   "source": {
     "types": "packages/components/form/Rate/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "max",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 5
     },
     {
       "name": "allowHalf",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "clearable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "readonly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "size",
       "optional": true,
       "type": "RateSize",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "showScore",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "texts",
       "optional": true,
       "type": "string[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "Card",
-  "generatedAt": "2026-08-07T12:40:46.782Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/card"
+  ],
+  "sourceHash": "67c78d2e5fb724a59934889c0c83c9962b8c5c35da89eaaa338491288a9f3236",
+  "generatedAt": "2026-08-07T18:45:10.915Z",
   "source": {
     "types": "packages/components/core/Card/types.ts",
     "vue": true
@@ -10,79 +16,92 @@
       "name": "header",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Header bar title (left)",
+      "default": null
     },
     {
       "name": "footer",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Footer text when no footer slot",
+      "default": null
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Body title above slot",
+      "default": null
     },
     {
       "name": "subTitle",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Body subtitle",
+      "default": null
     },
     {
       "name": "subtitle",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Alias of subTitle",
+      "default": null
     },
     {
       "name": "raised",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Soft elevation",
+      "default": false
     },
     {
       "name": "hover",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Hover affordance; clickable when true",
+      "default": false
     },
     {
       "name": "hoverable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Alias of hover",
+      "default": false
     },
     {
       "name": "selected",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Selected visual state",
+      "default": false
     },
     {
       "name": "selectable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Selection interaction; emits update:selected on click",
+      "default": false
     },
     {
       "name": "bordered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Show 1px border (default true)",
+      "default": true
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Replace body with a compact skeleton",
+      "default": false
     },
     {
       "name": "skeleton",
       "optional": true,
       "type": "CardSkeleton",
-      "description": ""
+      "description": "Which small skeleton to show while loading",
+      "default": "basic"
     }
   ],
   "events": [

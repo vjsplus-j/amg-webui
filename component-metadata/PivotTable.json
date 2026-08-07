@@ -1,0 +1,69 @@
+{
+  "name": "PivotTable",
+  "title": "PivotTable",
+  "summary": "PivotTable：面向企业场景的 Table 组件（成熟度 rc）。",
+  "description": "PivotTable：面向企业场景的 Table 组件（成熟度 rc）。",
+  "family": "table",
+  "package": "data",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/pivot-table"
+  ],
+  "features": [
+    "Table 家族组件",
+    "v-model 双向绑定",
+    "加载状态反馈",
+    "支持禁用状态",
+    "事件回调"
+  ],
+  "useCases": [
+    "结构化数据表格",
+    "排序筛选分页场景",
+    "需要禁用/只读控制的表单场景",
+    "异步提交或加载过程反馈"
+  ],
+  "avoidWhen": [
+    "少量键值对用 Descriptions",
+    "无结构化列需求时避免过度使用表格"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Tab",
+      "Enter",
+      "Escape",
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      "Space"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts PivotTable uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts PivotTable RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts PivotTable client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.497Z",
+  "sourceHash": "b3073989b3bcf101c39843e44df3ccdf2139507bb10d83e6fc5efbb3b432cb0c"
+}

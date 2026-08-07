@@ -1,0 +1,53 @@
+{
+  "name": "Loading",
+  "title": "Loading",
+  "summary": "Loading：面向企业场景的 Feedback 组件（成熟度 rc）。",
+  "description": "Loading：面向企业场景的 Feedback 组件（成熟度 rc）。",
+  "family": "feedback",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/loading"
+  ],
+  "features": [
+    "Feedback 家族组件",
+    "多尺寸规格",
+    "事件回调"
+  ],
+  "useCases": [
+    "操作结果与状态提示",
+    "空态与加载反馈"
+  ],
+  "avoidWhen": [
+    "需要模态决策时用 Dialog / Confirm"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Loading non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Loading uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Loading RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Loading client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.464Z",
+  "sourceHash": "ef8eb97d5289b29c200aa184c0b58d580b617048abf90fcd1f3b3517a0e00eb0"
+}

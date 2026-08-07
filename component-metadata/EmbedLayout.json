@@ -1,0 +1,56 @@
+{
+  "name": "EmbedLayout",
+  "title": "EmbedLayout",
+  "summary": "EmbedLayout：面向企业场景的 Layout 组件（成熟度 rc）。",
+  "description": "EmbedLayout：面向企业场景的 Layout 组件（成熟度 rc）。",
+  "family": "layout",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/embed-layout"
+  ],
+  "features": [
+    "Layout 家族组件",
+    "加载状态反馈",
+    "支持禁用状态",
+    "事件回调"
+  ],
+  "useCases": [
+    "页面栅格与区域布局",
+    "响应式容器",
+    "需要禁用/只读控制的表单场景",
+    "异步提交或加载过程反馈"
+  ],
+  "avoidWhen": [
+    "简单页面可用原生 CSS 布局"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts EmbedLayout non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts EmbedLayout uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts EmbedLayout RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts EmbedLayout client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.414Z",
+  "sourceHash": "fd2be2107618823a2eae5be39cfc2e05a7b6b165740d695c98609a2b124a8fd3"
+}

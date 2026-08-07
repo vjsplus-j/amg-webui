@@ -1,0 +1,67 @@
+{
+  "name": "Rate",
+  "title": "Rate",
+  "summary": "Rate：面向企业场景的 Input 组件（成熟度 rc）。",
+  "description": "Rate：面向企业场景的 Input 组件（成熟度 rc）。",
+  "family": "input",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/rate"
+  ],
+  "features": [
+    "Input 家族组件",
+    "v-model 双向绑定",
+    "可一键清空",
+    "只读模式",
+    "多尺寸规格",
+    "事件回调"
+  ],
+  "useCases": [
+    "表单文本/数值输入",
+    "受控与非受控输入场景"
+  ],
+  "avoidWhen": [
+    "极复杂富文本编辑请使用 RichText / MdEditor"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Tab",
+      "Enter",
+      "Escape",
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      "Space"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Rate uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Rate RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Rate client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.517Z",
+  "sourceHash": "e0f71740935317b52886f7141062c873a16ab175e669b9c8d63256576a611360"
+}

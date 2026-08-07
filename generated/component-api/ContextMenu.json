@@ -1,6 +1,12 @@
 {
   "name": "ContextMenu",
-  "generatedAt": "2026-08-07T12:40:46.807Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/context-menu"
+  ],
+  "sourceHash": "0696e2da862a787f1ae214b59dffa68de919e6986c1e40edf756724dab757684",
+  "generatedAt": "2026-08-07T18:45:10.948Z",
   "source": {
     "types": "packages/components/overlay/ContextMenu/types.ts",
     "vue": true
@@ -10,19 +16,22 @@
       "name": "modelValue",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "items",
       "optional": true,
       "type": "ContextMenuItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "target",
       "optional": true,
       "type": "HTMLElement | null",
-      "description": ""
+      "description": "External element that opens the menu on contextmenu. When omitted, the default slot host listens.",
+      "default": "null"
     }
   ],
   "events": [

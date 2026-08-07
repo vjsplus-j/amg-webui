@@ -1,6 +1,12 @@
 {
   "name": "VcrStorageDashboard",
-  "generatedAt": "2026-08-07T12:42:17.061Z",
+  "package": "media",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/vcr-storage-dashboard"
+  ],
+  "sourceHash": "05893dc92709c67112ca2ee508a24a4ade1c203e7a9cab9403633a401232cb1e",
+  "generatedAt": "2026-08-07T18:45:11.282Z",
   "source": {
     "types": "packages/components/media/VcrStorageDashboard/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "volumes",
       "optional": true,
       "type": "VcrStorageVolume[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "selectedId",
       "optional": true,
       "type": "string | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "warningThreshold",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 75
     },
     {
       "name": "dangerThreshold",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 90
     },
     {
       "name": "valueFormatter",
       "optional": true,
       "type": "(value: number) => string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

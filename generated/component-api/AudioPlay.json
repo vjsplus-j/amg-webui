@@ -1,6 +1,12 @@
 {
   "name": "AudioPlay",
-  "generatedAt": "2026-08-07T12:39:09.852Z",
+  "package": "media",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/audio-play"
+  ],
+  "sourceHash": "b16eb3530e1dae931b5df41112e1f6ba81c7a935ac4280f2510d2057c6a742f8",
+  "generatedAt": "2026-08-07T18:45:10.878Z",
   "source": {
     "types": "packages/components/media/AudioPlay/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "src",
       "optional": true,
       "type": "string | File | Blob | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "controls",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "autoplay",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loop",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

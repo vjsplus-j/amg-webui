@@ -1,6 +1,12 @@
 {
   "name": "RichText",
-  "generatedAt": "2026-08-07T12:41:56.126Z",
+  "package": "editor",
+  "importPaths": [
+    "amg-webui/editor",
+    "amg-webui/rich-text"
+  ],
+  "sourceHash": "3ff7c4a86a7b25bfd92468bfd96f1ab6532c6a0935016d22427e2452b5fbe86d",
+  "generatedAt": "2026-08-07T18:45:11.168Z",
   "source": {
     "types": "packages/components/editor/RichText/types.ts",
     "vue": true
@@ -10,31 +16,43 @@
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "sanitize",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Sanitize HTML on read/write (default true).",
+      "default": true
     },
     {
       "name": "sanitizeOptions",
       "optional": true,
       "type": "SanitizeHtmlOptions",
-      "description": ""
+      "description": "Passed to sanitizeHtml when sanitize is enabled.",
+      "default": null
     },
     {
       "name": "historyLimit",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Max undo stack depth (default 50).",
+      "default": 50
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": "",
+      "default": null
     }
   ],
   "events": [

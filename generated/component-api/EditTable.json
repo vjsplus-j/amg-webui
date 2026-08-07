@@ -1,6 +1,12 @@
 {
   "name": "EditTable",
-  "generatedAt": "2026-08-07T12:41:13.577Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/edit-table"
+  ],
+  "sourceHash": "f05759dd212d45a1c851aa97cafa47d7846b63d7d796f4eb586e9b9d0d65bd36",
+  "generatedAt": "2026-08-07T18:45:10.989Z",
   "source": {
     "types": "packages/components/data/EditTable/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

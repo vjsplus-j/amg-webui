@@ -1,25 +1,37 @@
 # FilterBar
 
-FilterBar 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+FilterBar：面向企业场景的 Form 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-FilterBar 当前成熟度为 **RC**；完整交互见本地 example。
+FilterBar：面向企业场景的 Form 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Form 家族组件
+- v-model 双向绑定
+- 加载状态反馈
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 表单布局、校验与字段编排
+- 动态/分步表单
+- 异步提交或加载过程反馈
+
+**不适用**
+
+- 纯展示场景无需引入完整 Form
 
 ## 基础用法
 
+> `import { FilterBar } from 'amg-webui/form'`
+
 ```vue
 <script setup>
-import { FilterBar } from '@amg-webui/form'
+import { FilterBar } from 'amg-webui/form'
 </script>
 
 <template>
@@ -29,38 +41,74 @@ import { FilterBar } from '@amg-webui/form'
 
 Curated demo：`example/demos/FilterBar/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `FilterCondition[]` | — | 绑定值 / Bound value (v-model) |
-| `fields` | `FilterFieldOption[]` | — | — |
-| `collapsed` | `boolean` | — | — |
-| `loading` | `boolean` | — | 加载中状态 / Loading state |
+| `modelValue` | `FilterCondition[]` | `() => []` | 绑定值 / Bound value (v-model) |
+| `fields` | `FilterFieldOption[]` | `() => []` | fields 列表数据 |
+| `collapsed` | `boolean` | false | 是否启用 collapsed |
+| `loading` | `boolean` | false | 加载中状态 / Loading state |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `value: FilterCondition[]` | v-model 更新 / v-model update |
-| `update:collapsed` | `value: boolean` | — |
+| `update:collapsed` | `value: boolean` | `collapsed` 更新时触发（v-model） |
 | `change` | `value: FilterCondition[]` | 值变更 / Change |
-| `search` | `value: FilterCondition[]` | — |
-| `reset` | `void` | — |
+| `search` | `value: FilterCondition[]` | search 时触发 |
+| `reset` | `void` | reset 时触发 |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `FilterCondition`
 - `FilterFieldOption`
 - `FilterBarProps`
 - `FilterBarEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- 按键：`Tab` · `Enter` · `Escape` · `ArrowDown` · `ArrowUp` · `ArrowLeft` · `ArrowRight` · `Home` · `End` · `Space`
+- keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts FilterBar uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts FilterBar RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts FilterBar client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -68,6 +116,9 @@ Curated demo：`example/demos/FilterBar/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/form` |
+| metadata | `component-metadata/FilterBar.json` |
 | API extract | `generated/component-api/FilterBar.json` |
 
-> 完整 Demo 见 `example/demos/FilterBar`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/FilterBar`（example 本地调试，不上线）。
+

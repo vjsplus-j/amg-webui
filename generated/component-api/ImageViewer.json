@@ -1,6 +1,12 @@
 {
   "name": "ImageViewer",
-  "generatedAt": "2026-08-07T12:46:30.691Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/image-viewer"
+  ],
+  "sourceHash": "b2e8590d45c5f38bf8b380f57da5b7fd40c00016aff9b87de80a108ca2a67b67",
+  "generatedAt": "2026-08-07T18:45:11.070Z",
   "source": {
     "types": "packages/components/core/ImageViewer/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "visible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "urlList",
       "optional": false,
       "type": "string[]",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "initialIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "infinite",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "zoomRate",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1.2
     },
     {
       "name": "minScale",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0.25
     },
     {
       "name": "maxScale",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 3
     },
     {
       "name": "teleported",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "class",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "style",
       "optional": true,
       "type": "Record<string, string>",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

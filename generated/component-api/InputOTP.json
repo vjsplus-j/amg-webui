@@ -1,6 +1,12 @@
 {
   "name": "InputOTP",
-  "generatedAt": "2026-08-07T12:34:13.542Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/input-otp"
+  ],
+  "sourceHash": "e30d85ff2d808abd3d57686f26574fa693054ba79df2ee8ab3dded550dfc84f2",
+  "generatedAt": "2026-08-07T18:45:11.079Z",
   "source": {
     "types": "packages/components/form/InputOTP/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native id — falls back to FormItem field id when nested; applied to first cell",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "length",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 6
     },
     {
       "name": "mask",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "autofocus",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "type",
       "optional": true,
       "type": "'text' | 'number'",
-      "description": ""
+      "description": "",
+      "default": "text"
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     }
   ],
   "events": [

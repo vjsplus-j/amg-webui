@@ -1,6 +1,12 @@
 {
   "name": "Split",
-  "generatedAt": "2026-08-07T12:41:56.157Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/split"
+  ],
+  "sourceHash": "9bc26376fd46119669c63c7c0a89d94745cf12a14d43c05e0f817cdef2cf908b",
+  "generatedAt": "2026-08-07T18:45:11.203Z",
   "source": {
     "types": "packages/components/core/Split/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "direction",
       "optional": true,
       "type": "SplitDirection",
-      "description": ""
+      "description": "",
+      "default": "horizontal"
     },
     {
       "name": "min",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 48
     },
     {
       "name": "max",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "number | string",
-      "description": ""
+      "description": "",
+      "default": "50%"
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "Barcode",
-  "generatedAt": "2026-08-07T12:39:09.860Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/barcode"
+  ],
+  "sourceHash": "d38abb83c5990923cff161de0ff15b08fe2849536c8b9cdaa714bb15252dfa8a",
+  "generatedAt": "2026-08-07T18:45:10.892Z",
   "source": {
     "types": "packages/components/core/Barcode/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "value",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "barWidth",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 2
     },
     {
       "name": "height",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 48
     },
     {
       "name": "showLabel",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "format",
       "optional": true,
       "type": "BarcodeFormat",
-      "description": ""
+      "description": "Standards-based barcode symbology.",
+      "default": "code128"
     },
     {
       "name": "editable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Show the editable source input above the symbol.",
+      "default": true
     },
     {
       "name": "quietZone",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Quiet-zone padding around the generated symbol.",
+      "default": 10
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

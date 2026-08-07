@@ -85,10 +85,17 @@ jobs:
           npm run hardening:demote
           npm run hardening:dashboard
           npm run check:version-consistency
+          npm run extract:component-api
           npm run check:docs-drift
+          npm run check:docs-quality
+          node scripts/check-docs-quality.mjs --all
+          npm run audit:public-api
+          npm run test:docs-code
+          npm run test:docs-consumer-imports
           npm run check:closed-components
           npm run test:showcases
           node -e "const d=require('./component-hardening/dashboard/component-dashboard.json'); const fake=d.components.filter(c=>c.productMaturity==='stable'&&!c.verifiedStable); if(fake.length){console.error('Fake stable rows', fake.length, fake.slice(0,10).map(c=>c.name)); process.exit(1)} console.log('verifiedStable=', d.stableRatio+'%', 'gatePass=', d.gates?.pass+'/'+d.gates?.total, 'claimedUnverified=', d.honesty?.claimedStableUnverified)"
+          node scripts/build-public-doc-coverage.mjs
 
       - name: Build docs
         run: npm run docs:build

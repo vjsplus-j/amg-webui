@@ -1,0 +1,55 @@
+{
+  "name": "RouterNav",
+  "title": "RouterNav",
+  "summary": "RouterNav：面向企业场景的 Navigation 组件（成熟度 rc）。",
+  "description": "RouterNav：面向企业场景的 Navigation 组件（成熟度 rc）。",
+  "family": "navigation",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/router-nav"
+  ],
+  "features": [
+    "Navigation 家族组件",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "事件回调"
+  ],
+  "useCases": [
+    "菜单、标签页、面包屑等导航",
+    "页面结构引导",
+    "需要禁用/只读控制的表单场景"
+  ],
+  "avoidWhen": [
+    "单页极简场景可省略复杂导航组件"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts RouterNav interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts RouterNav uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts RouterNav RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts RouterNav client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.520Z",
+  "sourceHash": "e192dde47681ca2816cdf07b26ce1485de61200242f1e6bdf616ed48be2942fc"
+}

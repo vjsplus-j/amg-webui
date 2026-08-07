@@ -1,6 +1,12 @@
 {
   "name": "ConfigProvider",
-  "generatedAt": "2026-08-07T12:40:46.803Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/config-provider"
+  ],
+  "sourceHash": "a5e13cc24db16e20b50f399f0b972a44b1f7710392cc30dafe64f93dcbcf00db",
+  "generatedAt": "2026-08-07T18:45:10.942Z",
   "source": {
     "types": "packages/components/core/ConfigProvider/types.ts",
     "vue": true
@@ -10,151 +16,176 @@
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "zIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "namespace",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "vp"
     },
     {
       "name": "overlayTeleportTo",
       "optional": true,
       "type": "TeleportTarget",
-      "description": ""
+      "description": "Default Teleport target for Overlay runtime (`useOverlay`).",
+      "default": null
     },
     {
       "name": "overlayRuntime",
       "optional": true,
       "type": "OverlayRuntimeApi",
-      "description": ""
+      "description": "Scoped Overlay runtime (micro-FE). When set, provided to descendants via OVERLAY_RUNTIME_KEY.",
+      "default": null
     },
     {
       "name": "direction",
       "optional": true,
       "type": "ConfigProviderDirection",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "density",
       "optional": true,
       "type": "ConfigProviderDensity",
-      "description": ""
+      "description": "",
+      "default": "comfortable"
     },
     {
       "name": "theme",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Legacy alias for `design` (official brand name). When set with other theme axes, scopes a local ThemeRuntime on this root.",
+      "default": null
     },
     {
       "name": "design",
       "optional": true,
       "type": "DesignStyleName | string",
-      "description": ""
+      "description": "Official design brand — scopes local ThemeRuntime when set.",
+      "default": null
     },
     {
       "name": "scheme",
       "optional": true,
       "type": "ColorScheme",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "font",
       "optional": true,
       "type": "FontName | string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "iconStyle",
       "optional": true,
       "type": "IconStyleName | string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "tokens",
       "optional": true,
       "type": "Record<string, string>",
-      "description": ""
+      "description": "CSS custom property overlay on this provider root.",
+      "default": null
     },
     {
       "name": "primary",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Primary → full `--primary-*` scale via Theme Core.",
+      "default": null
     },
     {
       "name": "themeRuntime",
       "optional": true,
       "type": "ThemeRuntime",
-      "description": ""
+      "description": "Inject existing runtime (will not be disposed by this provider).",
+      "default": null
     },
     {
       "name": "themePersist",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Persist scoped theme axes. Default false.",
+      "default": false
     },
     {
       "name": "themeStorageNamespace",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "locale",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "validateMessages",
       "optional": true,
       "type": "Record<string, string>",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "componentDefaults",
       "optional": true,
       "type": "Record<string, Record<string, unknown> | undefined>",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "empty",
       "optional": true,
       "type": "ConfigProviderEmptyConfig",
-      "description": ""
+      "description": "Empty component / message override",
+      "default": null
     },
     {
       "name": "button",
       "optional": true,
       "type": "ButtonGlobalConfig",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "tag",
       "optional": true,
       "type": "TagGlobalConfig",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "badge",
       "optional": true,
       "type": "BadgeGlobalConfig",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "avatar",
       "optional": true,
       "type": "AvatarGlobalConfig",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

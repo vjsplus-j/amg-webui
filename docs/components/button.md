@@ -1,26 +1,48 @@
-# Button
+# Button 按钮
 
-Button 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Button 按钮：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Button 当前成熟度为 **RC**；下方 DocsDemo 提供 docs 站内嵌交互，完整场景见 example。
+Button 按钮：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Foundation 家族组件
+- 语义色变体
+- 外观变体
+- 多尺寸规格
+- 块级布局
+- 宽度 100%
+- 加载状态反馈
+- 支持禁用状态
+- 只读模式
+- 内置确认交互
+- 点击涟漪反馈
+- 事件回调
+- 插槽自定义
+- 实例方法暴露
 
-## 相关组件
+## 何时使用 / 不适用
 
-- [ButtonGroup](./button-group)
-- [Dialog](./dialog)
+**适用**
+
+- 基础 UI 交互与页面操作
+- 按钮、标签、图标等原子组件
+- 需要禁用/只读控制的表单场景
+- 异步提交或加载过程反馈
+
+**不适用**
+
+- 需要复杂业务编排时优先业务组件或组合模式
 
 ## 基础用法
 
+> `import { Button } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { Button } from '@amg-webui/core'
+import { Button } from 'amg-webui/core'
 </script>
 
 <template>
@@ -30,74 +52,103 @@ import { Button } from '@amg-webui/core'
 
 Curated demo：`example/demos/Button/index.vue`
 
-## 交互演示
+## 示例
 
 <DocsDemo name="button-basic" />
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `spin` | `boolean` | — | 旋转动画 / Spin animation |
-| `pulse` | `boolean` | — | 脉冲动画 / Pulse animation |
-| `heartbeat` | `boolean` | — | — |
-| `bounce` | `boolean` | — | — |
-| `blink` | `boolean` | — | — |
-| `breathe` | `boolean` | — | — |
-| `glow` | `boolean` | — | — |
-| `marqueeLeft` | `boolean` | — | — |
-| `marqueeRight` | `boolean` | — | — |
-| `scrollUp` | `boolean` | — | — |
-| `scrollDown` | `boolean` | — | — |
-| `dampOut` | `boolean` | — | — |
-| `animationDuration` | `number \| string` | — | — |
-| `label` | `string` | — | 显示文案 / Display label |
-| `icon` | `string` | — | 图标名 / Icon name |
-| `iconPos` | `ButtonIconPos` | — | 图标位置 / Icon position |
-| `iconSize` | `Size` | — | — |
-| `iconGap` | `Size \| string` | — | — |
-| `severity` | `ButtonSeverity` | — | 语义色：`primary` · `secondary` · `danger` 等 / Semantic color |
-| `variant` | `ButtonVariant` | — | 外观变体：`solid` · `outlined` · `text` / Visual variant |
-| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
-| `shape` | `ButtonShape` | — | 形状：`rectangle` · `pill` · `circle` / Button shape |
-| `rounded` | `boolean` | — | 圆角按钮 / Rounded shape |
-| `borderRadius` | `string` | — | — |
-| `raised` | `boolean` | — | 浮起阴影 / Raised shadow |
-| `link` | `boolean` | — | 链接样式 / Link appearance |
-| `block` | `boolean` | — | 块级按钮（整行）/ Block-level button |
-| `fluid` | `boolean` | — | 宽度 100% / Full width |
-| `loading` | `boolean` | — | 加载中状态 / Loading state |
-| `loadingText` | `string` | — | 加载中文案 / Loading text |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
-| `disabledTitle` | `string` | — | — |
+| `spin` | `boolean` | false | Continuous rotate — shared Motion |
+| `pulse` | `boolean` | false | Soft opacity pulse — shared Motion |
+| `heartbeat` | `boolean` | false | Scale heartbeat — shared Motion |
+| `bounce` | `boolean` | false | Jump upward — shared Motion |
+| `blink` | `boolean` | false | Sharp flash — shared Motion |
+| `breathe` | `boolean` | false | Breathing light — shared Motion |
+| `glow` | `boolean` | false | Fluorescent glow — shared Motion |
+| `marqueeLeft` | `boolean` | false | Marquee scroll left — shared Motion |
+| `marqueeRight` | `boolean` | false | Marquee scroll right — shared Motion |
+| `scrollUp` | `boolean` | false | Vertical scroll up — shared Motion |
+| `scrollDown` | `boolean` | false | Vertical scroll down — shared Motion |
+| `dampOut` | `boolean` | false | Damped zoom then fade out — shared Motion |
+| `animationDuration` | `number \| string` | `undefined` | Animation duration (ms or CSS time) — shared Motion |
+| `label` | `string` | `` | 显示文案 / Display label |
+| `icon` | `string` | `undefined` | Lucide icon name (e.g. `Star`) — used when `#icon` slot is empty |
+| `iconPos` | `ButtonIconPos` | `left` | 图标位置 / Icon position |
+| `iconSize` | `Size` | `undefined` | Override icon size token (defaults to button size) |
+| `iconGap` | `Size \| string` | `undefined` | Gap between icon and label — Size token or CSS length |
+| `severity` | `ButtonSeverity` | `undefined` | 语义色：`primary` · `secondary` · `danger` 等 / Semantic color |
+| `variant` | `ButtonVariant` | `undefined` | 外观变体：`solid` · `outlined` · `text` / Visual variant |
+| `size` | `Size` | `undefined` | 极小 xs → 超大 xl，映射 `--height-*` |
+| `shape` | `ButtonShape` | `rect` | 形状：矩形（默认）/ 方形 / 圆形 |
+| `rounded` | `boolean` | `undefined` | Pill / full radius |
+| `borderRadius` | `string` | `undefined` | Custom radius — CSS value (prefer token / `%`) |
+| `raised` | `boolean` | `undefined` | 浮起阴影 / Raised shadow |
+| `link` | `boolean` | `undefined` | Alias for severity=`link` / link morph |
+| `block` | `boolean` | `undefined` | Block-level: width 100% |
+| `fluid` | `boolean` | `undefined` | Alias of block (FluidProps parity) |
+| `loading` | `boolean` | `undefined` | 加载中状态 / Loading state |
+| `loadingText` | `string` | `undefined` | Shown next to loader when loading |
+| `disabled` | `boolean` | `undefined` | 是否禁用 / Whether disabled |
+| `disabledTitle` | `string` | `undefined` | Native title when disabled (hover tip) |
+| `readonly` | `boolean` | `undefined` | Visual normal, clicks ignored (≠ disabled) |
+| `type` | `ButtonNativeType` | `button` | 输入类型 / Input type |
+| `badge` | `string \| number` | `undefined` | 角标 / 微章内容（绝对定位，不撑布局） |
+| `star` | `boolean` | false | 标星指示 |
+| `rated` | `boolean` | false | 标星别名 |
+| `img` | `string` | `undefined` | 图片按钮（avatar 风格） |
+| `ariaLabel` | `string` | `undefined` | icon-only / img 时的无障碍标签 |
+| `title` | `string` | `undefined` | Native tooltip text |
+| `ariaExpanded` | `boolean` | `undefined` | State semantics for disclosure/toggle buttons |
+| `ariaPressed` | `boolean` | `undefined` | 是否启用 ariaPressed |
+| `permission` | `boolean \| (() => boolean)` | `undefined` | Permission gate. `true` / missing = allowed. `false` or failing checker → hide or disable per `permissionMode`. |
+| `permissionMode` | `ButtonPermissionMode` | `hide` | permissionMode 配置项 |
+| `permissionTip` | `string` | `undefined` | Tip when permission denied (disable mode / click tip) |
+| `confirm` | `boolean \| string` | `undefined` | Enable built-in confirm before click emit |
+| `confirmTitle` | `string` | `undefined` | confirmTitle 字符串 |
+| `beforeClick` | `(event: MouseEvent) => boolean \| void \| Promise<boolean \| void>` | `undefined` | Pre-click interceptor — return false / reject to abort |
+| `clickGuard` | `ButtonClickGuard` | `undefined` | Debounce / throttle / none |
+| `wait` | `number` | `undefined` | Wait ms for debounce / throttle (falls back to global config) |
+| `href` | `string` | `undefined` | Safe external / internal href — renders as `<a>` when set |
+| `to` | `string` | `undefined` | Route path string (uses vue-router `$router` when available) |
+| `target` | `'_self' \| '_blank' \| '_parent' \| '_top'` | `undefined` | target 配置项 |
+| `replace` | `boolean` | false | 是否启用 replace |
+| `ripple` | `boolean` | `undefined` | Ripple click feedback |
+| `colorBg` | `string` | `undefined` | Optional CSS color overrides (pass token vars, never raw hex in library demos) |
+| `colorText` | `string` | `undefined` | colorText 字符串 |
+| `colorBorder` | `string` | `undefined` | colorBorder 字符串 |
+| `colorHoverBg` | `string` | `undefined` | colorHoverBg 字符串 |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `click` | `event: MouseEvent` | 点击 / Click |
 | `focus` | `event: FocusEvent` | 聚焦 / Focus |
 | `blur` | `event: FocusEvent` | 失焦 / Blur |
-| `confirm` | `event: Event` | — |
-| `cancelConfirm` | `event: Event` | — |
+| `confirm` | `event: Event` | 确认时触发 |
+| `cancelConfirm` | `event: Event` | 取消确认时触发 |
 
-## Slots
+### Slots
 
 | Slot | Props | 说明 |
 | --- | --- | --- |
-| `default` | `props: Record<string, never>` | — |
-| `icon` | `props: Record<string, never>` | — |
-| `loading` | `props: Record<string, never>` | — |
+| `default` | `props: Record<string, never>` | Default label content |
+| `icon` | `props: Record<string, never>` | Leading / custom icon |
+| `loading` | `props: Record<string, never>` | Loading indicator override |
 
-## Expose
+### Expose
 
-| Expose | 类型 | 说明 |
+| 方法 / 属性 | 类型 | 说明 |
 | --- | --- | --- |
-| `el` | `HTMLElement \| null` | — |
-| `focus` | `() => void` | — |
-| `blur` | `() => void` | — |
+| `el` | `HTMLElement \| null` | Native button / anchor element |
+| `focus` | `() => void` | Focus the control |
+| `blur` | `() => void` | Blur the control |
 
-## Public types
+### Public Types
 
 - `ButtonSeverity`
 - `ButtonIconPos`
@@ -112,6 +163,41 @@ Curated demo：`example/demos/Button/index.vue`
 - `ButtonSlots`
 - `ButtonExpose`
 
+## 键盘交互
+
+- 状态：`PASS`
+- 按键：`Space`
+- Space: Space on focused anchor Button synthesizes click and emits click; Space: disabled Button does not emit click on Space
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`N/A`
+- theme optional
+
+## RTL
+
+- 状态：`N/A`
+- rtl optional
+
+## SSR
+
+- 状态：`PASS`
+- structural top-level DOM clean
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+- [ButtonGroup](./button-group)
+- [Dialog](./dialog)
 
 ## 稳定性
 
@@ -119,6 +205,9 @@ Curated demo：`example/demos/Button/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Button.json` |
 | API extract | `generated/component-api/Button.json` |
 
-> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/Button`。
+> **DocsDemo** 为 docs 站内嵌演示；完整 curated demo 见 `example/demos/Button`。
+

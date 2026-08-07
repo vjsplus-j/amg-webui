@@ -1,6 +1,12 @@
 {
   "name": "PropPanel",
-  "generatedAt": "2026-08-07T12:41:35.064Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/prop-panel"
+  ],
+  "sourceHash": "f607522ffe0071f77cc737a97ac27a1514f0f71c99876bf4fff3cd32f27b3611",
+  "generatedAt": "2026-08-07T18:45:11.151Z",
   "source": {
     "types": "packages/lowcode/ui/PropPanel/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "fields",
       "optional": true,
       "type": "PropField[]",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "registry",
       "optional": true,
       "type": "ComponentRegistry",
-      "description": ""
+      "description": "When set, merge layout fields + registry propsSchema for the selected node.",
+      "default": null
     },
     {
       "name": "readonly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "Record<string, unknown>",
-      "description": ""
+      "description": "",
+      "default": "() => ({})"
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

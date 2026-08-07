@@ -1,6 +1,12 @@
 {
   "name": "FolderTree",
-  "generatedAt": "2026-08-07T12:41:13.590Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/folder-tree"
+  ],
+  "sourceHash": "ee816ba70221323db134e4149a69544f835588f8ac695da31efbc9bf1149a831",
+  "generatedAt": "2026-08-07T18:45:11.022Z",
   "source": {
     "types": "packages/components/data/FolderTree/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

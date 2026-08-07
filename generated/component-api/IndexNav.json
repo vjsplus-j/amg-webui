@@ -1,6 +1,12 @@
 {
   "name": "IndexNav",
-  "generatedAt": "2026-08-07T12:41:13.620Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/index-nav"
+  ],
+  "sourceHash": "dfa409af2629e1790af701be83653696c323907030a035ef5d0fc322c0875bba",
+  "generatedAt": "2026-08-07T18:45:11.072Z",
   "source": {
     "types": "packages/components/core/IndexNav/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "items",
       "optional": true,
       "type": "NavItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "direction",
       "optional": true,
       "type": "'horizontal' | 'vertical'",
-      "description": ""
+      "description": "",
+      "default": "horizontal"
     },
     {
       "name": "scrollToTarget",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "scrollBehavior",
       "optional": true,
       "type": "ScrollBehavior",
-      "description": ""
+      "description": "",
+      "default": "smooth"
     },
     {
       "name": "sticky",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

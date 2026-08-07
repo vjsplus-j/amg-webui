@@ -1,0 +1,57 @@
+{
+  "name": "Space404",
+  "title": "Space404",
+  "summary": "Space404：面向企业场景的 Special 组件（成熟度 rc）。",
+  "description": "Space404：面向企业场景的 Special 组件（成熟度 rc）。",
+  "family": "special",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/space404"
+  ],
+  "features": [
+    "Special 家族组件",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "加载状态反馈",
+    "事件回调"
+  ],
+  "useCases": [
+    "特殊场景组件",
+    "业务定制页面块",
+    "需要禁用/只读控制的表单场景",
+    "异步提交或加载过程反馈"
+  ],
+  "avoidWhen": [
+    "通用场景优先 foundation 组件"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Space404 non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Space404 uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Space404 RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Space404 client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.538Z",
+  "sourceHash": "ee1b7c86dfc705ec536a26f66fe48624900edc97272957ecb186135d86f20121"
+}

@@ -1,6 +1,12 @@
 {
   "name": "GbsAlarmModal",
-  "generatedAt": "2026-08-07T12:45:59.832Z",
+  "package": "gb28181",
+  "importPaths": [
+    "amg-webui/gb28181",
+    "amg-webui/gbs-alarm-modal"
+  ],
+  "sourceHash": "95597c0a5136f0c635619b682db5dc7d9c2e44cc9545f0cd921e148c42b705d7",
+  "generatedAt": "2026-08-07T18:45:11.039Z",
   "source": {
     "types": "packages/components/gb28181/GbsAlarmModal/types.ts",
     "vue": true
@@ -10,79 +16,92 @@
       "name": "open",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "alarm",
       "optional": true,
       "type": "GbsAlarmInfo | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "closable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "maskClosable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "closeOnEscape",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "lockScroll",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "destroyOnClose",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "teleportTo",
       "optional": true,
       "type": "string | HTMLElement",
-      "description": ""
+      "description": "",
+      "default": "body"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

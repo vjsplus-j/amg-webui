@@ -1,6 +1,12 @@
 {
   "name": "DataCard",
-  "generatedAt": "2026-08-07T12:40:46.812Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/data-card"
+  ],
+  "sourceHash": "fb7949db55d796bb8d2b28ea4f53033e1f7447466899526ecdcfdcf34e93aadb",
+  "generatedAt": "2026-08-07T18:45:10.955Z",
   "source": {
     "types": "packages/components/data/DataCard/types.ts",
     "vue": true
@@ -10,103 +16,120 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "value",
       "optional": true,
       "type": "DataCardValue",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "DataCardValue",
-      "description": ""
+      "description": "Backward-compatible value alias.",
+      "default": null
     },
     {
       "name": "prefix",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "suffix",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "formatter",
       "optional": true,
       "type": "(value: DataCardValue) => string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trend",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trendType",
       "optional": true,
       "type": "DataCardTrend",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trendLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "status",
       "optional": true,
       "type": "Severity",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "icon",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "clickable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "selected",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "progress",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

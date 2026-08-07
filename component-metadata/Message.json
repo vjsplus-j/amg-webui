@@ -1,0 +1,55 @@
+{
+  "name": "Message",
+  "title": "Message",
+  "summary": "Message：面向企业场景的 Feedback 组件（成熟度 rc）。",
+  "description": "Message：面向企业场景的 Feedback 组件（成熟度 rc）。",
+  "family": "feedback",
+  "package": "overlay",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/message"
+  ],
+  "features": [
+    "Feedback 家族组件",
+    "语义色变体",
+    "可关闭",
+    "外观变体",
+    "事件回调"
+  ],
+  "useCases": [
+    "操作结果与状态提示",
+    "空态与加载反馈"
+  ],
+  "avoidWhen": [
+    "需要模态决策时用 Dialog / Confirm"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts Message interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Message uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Message RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Message client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.475Z",
+  "sourceHash": "fa4fffe7175aaa378a4fb2754c570bb75952851646f8b099620bb792301c9302"
+}

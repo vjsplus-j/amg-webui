@@ -1,0 +1,58 @@
+{
+  "name": "Popover",
+  "title": "Popover",
+  "summary": "Popover：面向企业场景的 Overlay 组件（成熟度 rc）。",
+  "description": "Popover：面向企业场景的 Overlay 组件（成熟度 rc）。",
+  "family": "overlay",
+  "package": "overlay",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/popover"
+  ],
+  "features": [
+    "Overlay 家族组件",
+    "支持禁用状态",
+    "事件回调"
+  ],
+  "useCases": [
+    "对话框、抽屉、气泡确认等浮层",
+    "阻断式交互",
+    "需要禁用/只读控制的表单场景"
+  ],
+  "avoidWhen": [
+    "轻量提示优先 Toast / Message",
+    "非阻断提示不要用 Modal 对话框"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "Enter",
+      "Escape"
+    ],
+    "detail": "Enter: Enter on trigger opens popover panel; Escape: Escape closes open popover panel"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Popover uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Popover RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Popover client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.501Z",
+  "sourceHash": "c52dbb5ad3a9bd2daf087affe4e10abb97aa0ae3e2b493db62d6711821f70246"
+}

@@ -1,6 +1,12 @@
 {
   "name": "StackLayout",
-  "generatedAt": "2026-08-07T12:41:56.159Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/stack-layout"
+  ],
+  "sourceHash": "569f9cb7c423623c8ce181ba983725e7e19625858b24f8739b7d7902beb56a5b",
+  "generatedAt": "2026-08-07T18:45:11.205Z",
   "source": {
     "types": "packages/components/core/StackLayout/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "direction",
       "optional": true,
       "type": "\"vertical\" | \"horizontal\"",
-      "description": ""
+      "description": "",
+      "default": "vertical"
     },
     {
       "name": "gap",
       "optional": true,
       "type": "StackGap",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "align",
       "optional": true,
       "type": "StackAlign",
-      "description": ""
+      "description": "",
+      "default": "stretch"
     },
     {
       "name": "justify",
       "optional": true,
       "type": "StackJustify",
-      "description": ""
+      "description": "",
+      "default": "start"
     },
     {
       "name": "wrap",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Allow wrap (useful for horizontal stacks)",
+      "default": false
     },
     {
       "name": "inline",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "inline-flex instead of flex + full width",
+      "default": false
     },
     {
       "name": "block",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Stretch to 100% parent width (default true unless inline)",
+      "default": true
     },
     {
       "name": "reverse",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Reverse visual order without changing slot source order.",
+      "default": false
     },
     {
       "name": "divider",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Draw token-based separators between direct children.",
+      "default": false
     },
     {
       "name": "as",
       "optional": true,
       "type": "\"div\" | \"section\" | \"nav\" | \"ul\" | \"ol\"",
-      "description": ""
+      "description": "",
+      "default": "div"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [],

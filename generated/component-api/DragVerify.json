@@ -1,6 +1,12 @@
 {
   "name": "DragVerify",
-  "generatedAt": "2026-08-07T12:40:46.824Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/drag-verify"
+  ],
+  "sourceHash": "03bd583c9f6c22e1bde084957d929d8e574212f888b2d3b008c2c7fc15d4bfb3",
+  "generatedAt": "2026-08-07T18:45:10.979Z",
   "source": {
     "types": "packages/components/core/DragVerify/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "modelValue",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "threshold",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0.92
     },
     {
       "name": "width",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "100%"
     },
     {
       "name": "resetOnFail",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "keyboardStep",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 12
     }
   ],
   "events": [

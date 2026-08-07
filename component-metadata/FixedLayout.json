@@ -1,0 +1,53 @@
+{
+  "name": "FixedLayout",
+  "title": "FixedLayout",
+  "summary": "FixedLayout：面向企业场景的 Layout 组件（成熟度 rc）。",
+  "description": "FixedLayout：面向企业场景的 Layout 组件（成熟度 rc）。",
+  "family": "layout",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/fixed-layout"
+  ],
+  "features": [
+    "Layout 家族组件",
+    "占位提示",
+    "事件回调"
+  ],
+  "useCases": [
+    "页面栅格与区域布局",
+    "响应式容器"
+  ],
+  "avoidWhen": [
+    "简单页面可用原生 CSS 布局"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts FixedLayout non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts FixedLayout uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts FixedLayout RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts FixedLayout client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.422Z",
+  "sourceHash": "594cd7ccf72a06003a699399819e3e1312fa0adf491b8d9435a62073ed155fc7"
+}

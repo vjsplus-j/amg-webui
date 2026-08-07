@@ -1,0 +1,55 @@
+{
+  "name": "GraphChart",
+  "title": "GraphChart",
+  "summary": "GraphChart：面向企业场景的 Charts 组件（成熟度 rc）。",
+  "description": "GraphChart：面向企业场景的 Charts 组件（成熟度 rc）。",
+  "family": "charts",
+  "package": "charts",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/charts",
+    "amg-webui/graph-chart"
+  ],
+  "features": [
+    "Charts 家族组件",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "加载状态反馈",
+    "事件回调"
+  ],
+  "useCases": [
+    "统计图表可视化",
+    "仪表盘指标展示"
+  ],
+  "avoidWhen": [
+    "极简单数值用 Statistic"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GraphChart non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GraphChart uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GraphChart RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GraphChart client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.445Z",
+  "sourceHash": "a1f00ce6b4edb30b52f972e172efda3fef2e20318ab6989e41f4af1d0e8f6f8b"
+}

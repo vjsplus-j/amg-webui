@@ -1,6 +1,12 @@
 {
   "name": "Footer",
-  "generatedAt": "2026-08-07T12:41:13.591Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/footer"
+  ],
+  "sourceHash": "4c8b2c93d25fd788ef9920790bd8fbce366c7db65f7f4fd48c48a97b8a25a268",
+  "generatedAt": "2026-08-07T18:45:11.024Z",
   "source": {
     "types": "packages/components/core/Footer/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "bordered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "align",
       "optional": true,
       "type": "'start' | 'center' | 'end'",
-      "description": ""
+      "description": "",
+      "default": "center"
     },
     {
       "name": "size",
       "optional": true,
       "type": "'sm' | 'md' | 'lg'",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "sticky",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "fixed",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "padding",
       "optional": true,
       "type": "FooterPadding",
-      "description": ""
+      "description": "",
+      "default": "page"
     }
   ],
   "events": [

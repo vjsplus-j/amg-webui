@@ -8,9 +8,11 @@ import { getCatalogEntry } from '../../component-catalog'
 import { componentMaturity, type MaturityLevel } from '../../component-zones'
 import { getCuratedDemo } from '../../demos/registry'
 import { isV01Component, V01_COMPONENTS } from '../../v0.1-subset'
+import { getComponentMetadata } from '../../generated/component-metadata'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import DemoSafeHost from '../../components/demo/DemoSafeHost.vue'
 import ExamplePageHero from '../../components/ExamplePageHero.vue'
+import ComponentIntroCard from '../../components/ComponentIntroCard.vue'
 import ApiRenderer from '../../components/docs/ApiRenderer.vue'
 
 const route = useRoute()
@@ -21,10 +23,11 @@ const componentName = computed(() => String(route.params.name ?? ''))
 
 const entry = computed(() => getCatalogEntry(componentName.value))
 
+const metadata = computed(() => getComponentMetadata(componentName.value))
+
 const curated = computed(() => getCuratedDemo(componentName.value))
 
 const displayTitle = computed(() => {
-  // English component leaf name only (Button), not「按钮 Button」
   return componentName.value
 })
 
@@ -40,6 +43,8 @@ const whenToUse = computed(() => {
   }
   return t(LocaleKeys.exampleDoc.whenFallback, { name: componentName.value })
 })
+
+const heroLead = computed(() => metadata.value?.summary ?? whenToUse.value)
 
 const maturity = computed(() => componentMaturity(componentName.value))
 
@@ -73,7 +78,7 @@ watch(
 
 <template>
   <div v-if="entry" class="vp-doc-page">
-    <ExamplePageHero :title="displayTitle" :lead="whenToUse">
+    <ExamplePageHero :title="displayTitle" :lead="heroLead">
       <template #title-extra>
         <Tag
           v-if="isV01Component(componentName)"
@@ -90,6 +95,13 @@ watch(
         />
       </template>
     </ExamplePageHero>
+
+    <ComponentIntroCard
+      v-if="metadata"
+      :meta="metadata"
+      :maturity-label="levelLabel(maturity.level)"
+      :maturity-severity="levelSeverity(maturity.level)"
+    />
 
     <section v-if="curated" class="vp-doc-page__section">
       <h2 class="vp-doc-page__h2">{{ t(LocaleKeys.exampleDoc.demos) }}</h2>

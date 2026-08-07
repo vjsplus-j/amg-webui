@@ -9,8 +9,10 @@ Official design themes are screenshot-compared across **8 brands × light/dark (
 - Dialog
 
 Matrix SSOT: [`matrix.mjs`](./matrix.mjs)  
-Harness page: `example/pages/lab/VisualThemeMatrixPage.vue`  
-Playwright spec: `tests/e2e/visual-theme-matrix.spec.ts`  
+Harness page: `example/pages/lab/VisualThemeMatrixPage.vue`
+- Human: side-by-side `ThemeProvider` cells for all 8 official designs
+- CI: fixed `data-visual-matrix` capture strip driven by `?design&scheme&dir`
+Playwright spec: `tests/e2e/visual-theme-matrix.spec.ts`
 Baselines: `tests/e2e/visual-theme-matrix.spec.ts-snapshots/`
 
 ## Prerequisites

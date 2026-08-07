@@ -1,6 +1,12 @@
 {
   "name": "ConfirmDialog",
-  "generatedAt": "2026-08-07T12:40:46.805Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/confirm-dialog"
+  ],
+  "sourceHash": "a3f7765d053d59948a7bed10a26b7b9527767dfa67f6a0ee102c7ca5ea77af67",
+  "generatedAt": "2026-08-07T18:45:10.945Z",
   "source": {
     "types": "packages/components/overlay/ConfirmDialog/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "visible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "message",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "icon",
       "optional": true,
       "type": "ConfirmDialogIcon",
-      "description": ""
+      "description": "",
+      "default": "warning"
     },
     {
       "name": "confirmLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "cancelLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "modal",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "draggable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "closable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "dismissible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     }
   ],
   "events": [

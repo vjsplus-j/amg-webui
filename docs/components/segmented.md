@@ -1,25 +1,38 @@
 # Segmented
 
-Segmented 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Segmented：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Segmented 当前成熟度为 **RC**；完整交互见本地 example。
+Segmented：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Foundation 家族组件
+- v-model 双向绑定
+- 选项列表配置
+- 多尺寸规格
+- 块级布局
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 基础 UI 交互与页面操作
+- 按钮、标签、图标等原子组件
+
+**不适用**
+
+- 需要复杂业务编排时优先业务组件或组合模式
 
 ## 基础用法
 
+> `import { Segmented } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { Segmented } from '@amg-webui/core'
+import { Segmented } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,36 +42,71 @@ import { Segmented } from '@amg-webui/core'
 
 Curated demo：`example/demos/Segmented/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `string \| number \| boolean` | — | 绑定值 / Bound value (v-model) |
-| `options` | `SegmentedOption[]` | — | 选项列表 / Option list |
-| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
-| `block` | `boolean` | — | 块级按钮（整行）/ Block-level button |
-| `name` | `string` | — | 表单字段名 / Form field name |
-| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
+| `modelValue` | `string \| number \| boolean` | `undefined` | 绑定值 / Bound value (v-model) |
+| `options` | `SegmentedOption[]` | `() => []` | 选项列表 / Option list |
+| `size` | `Size` | `md` | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `block` | `boolean` | false | 块级按钮（整行）/ Block-level button |
+| `name` | `string` | `undefined` | 表单字段名 / Form field name |
+| `ariaLabel` | `string` | `undefined` | 无障碍标签 / ARIA label |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `value: string \| number \| boolean` | v-model 更新 / v-model update |
 | `change` | `value: string \| number \| boolean` | 值变更 / Change |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `SegmentedOption`
 - `SegmentedProps`
 - `SegmentedEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- invalid keyboard evidence (mount/visibility only): "tests/unit/hardening/real-mount-remaining.spec.ts Segmented interactive surface present (keyboard applicable)"
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Segmented uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Segmented RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Segmented client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -66,6 +114,9 @@ Curated demo：`example/demos/Segmented/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Segmented.json` |
 | API extract | `generated/component-api/Segmented.json` |
 
-> 完整 Demo 见 `example/demos/Segmented`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Segmented`（example 本地调试，不上线）。
+

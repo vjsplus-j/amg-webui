@@ -1,6 +1,12 @@
 {
   "name": "LineChart",
-  "generatedAt": "2026-08-07T12:41:35.007Z",
+  "package": "charts",
+  "importPaths": [
+    "amg-webui/charts",
+    "amg-webui/line-chart"
+  ],
+  "sourceHash": "fbf83a704918e1c7248bb61773b958eb7cdddf38b58fc377878e7837c53737c7",
+  "generatedAt": "2026-08-07T18:45:11.084Z",
   "source": {
     "types": "packages/components/charts/LineChart/types.ts",
     "vue": true
@@ -10,73 +16,85 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "height",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 160
     },
     {
       "name": "max",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "showArea",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "showPoints",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "selectable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

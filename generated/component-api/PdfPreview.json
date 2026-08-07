@@ -1,6 +1,12 @@
 {
   "name": "PdfPreview",
-  "generatedAt": "2026-08-07T12:41:35.044Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/pdf-preview"
+  ],
+  "sourceHash": "aa55fbe5f4bc8dafd8e45aaffc97b200939abb3e8ac50866ea45dc5746757ae9",
+  "generatedAt": "2026-08-07T18:45:11.136Z",
   "source": {
     "types": "packages/components/core/PdfPreview/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "src",
       "optional": true,
       "type": "string | File | Blob | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "height",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "20rem"
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

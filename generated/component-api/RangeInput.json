@@ -1,6 +1,12 @@
 {
   "name": "RangeInput",
-  "generatedAt": "2026-08-07T12:34:13.546Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/range-input"
+  ],
+  "sourceHash": "4811853a270653feeaf05eadf77b5e51a8547b9182f55485c061a1a1956d3f6c",
+  "generatedAt": "2026-08-07T18:45:11.161Z",
   "source": {
     "types": "packages/components/form/RangeInput/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "modelValue",
       "optional": true,
       "type": "RangeValue",
-      "description": ""
+      "description": "",
+      "default": "() => ({ min: null, max: null })"
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "precision",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "step",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "min",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "max",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "allowCross",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "startPlaceholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "endPlaceholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

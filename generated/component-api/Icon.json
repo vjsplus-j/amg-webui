@@ -1,6 +1,12 @@
 {
   "name": "Icon",
-  "generatedAt": "2026-08-07T12:41:13.615Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/icon"
+  ],
+  "sourceHash": "176588b9d7e1fba6e94cfc02e3522e5434799050aac97d5bb9c3a7a277e006f9",
+  "generatedAt": "2026-08-07T18:45:11.062Z",
   "source": {
     "types": "packages/components/core/Icon/types.ts",
     "vue": true
@@ -10,181 +16,211 @@
       "name": "spin",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Continuous rotate — shared Motion",
+      "default": false
     },
     {
       "name": "pulse",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Soft opacity pulse — shared Motion",
+      "default": false
     },
     {
       "name": "heartbeat",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Scale heartbeat — shared Motion",
+      "default": false
     },
     {
       "name": "bounce",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Jump upward — shared Motion",
+      "default": false
     },
     {
       "name": "blink",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Sharp flash — shared Motion",
+      "default": false
     },
     {
       "name": "breathe",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Breathing light — shared Motion",
+      "default": false
     },
     {
       "name": "glow",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Fluorescent glow — shared Motion",
+      "default": false
     },
     {
       "name": "marqueeLeft",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marquee scroll left — shared Motion",
+      "default": false
     },
     {
       "name": "marqueeRight",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marquee scroll right — shared Motion",
+      "default": false
     },
     {
       "name": "scrollUp",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical scroll up — shared Motion",
+      "default": false
     },
     {
       "name": "scrollDown",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical scroll down — shared Motion",
+      "default": false
     },
     {
       "name": "dampOut",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Damped zoom then fade out — shared Motion",
+      "default": false
     },
     {
       "name": "animationDuration",
       "optional": true,
       "type": "number | string",
-      "description": ""
+      "description": "Animation duration (ms or CSS time) — shared Motion",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "IconName",
-      "description": ""
+      "description": "Lucide icon name (PascalCase or kebab-case aliases)",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "IconSize",
-      "description": ""
+      "description": "Token size xs–xl, or custom number (px) / CSS length",
+      "default": "md"
     },
     {
       "name": "color",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Fill/stroke color; defaults to currentColor / inherit",
+      "default": null
     },
     {
       "name": "strokeWidth",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Override Lucide stroke width; defaults from IconStyleService / --icon-stroke-width",
+      "default": null
     },
     {
       "name": "absoluteStrokeWidth",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "When true, stroke width stays constant in screen px as the icon scales (Lucide `absoluteStrokeWidth`).",
+      "default": false
     },
     {
       "name": "rotate",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Static rotation in degrees",
+      "default": null
     },
     {
       "name": "flip",
       "optional": true,
       "type": "IconFlip",
-      "description": ""
+      "description": "Flip glyph horizontally and/or vertically",
+      "default": null
     },
     {
       "name": "flipH",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Horizontal flip (shorthand)",
+      "default": false
     },
     {
       "name": "flipV",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical flip (shorthand)",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Dimmed, non-interactive appearance",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Replace glyph with Loader2 + spin until cleared",
+      "default": false
     },
     {
       "name": "selected",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Selected accent color",
+      "default": false
     },
     {
       "name": "opacity",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Opacity 0–1 (also via style)",
+      "default": null
     },
     {
       "name": "label",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name. When set, role=\"img\" + aria-label; otherwise aria-hidden. Checklist `alt` is accepted as an alias.",
+      "default": null
     },
     {
       "name": "alt",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Alias of `label` (a11y / alt text)",
+      "default": null
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native title tooltip",
+      "default": null
     },
     {
       "name": "interactive",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Treat as a control: role=button, focusable, Enter/Space activate. Also auto-enabled when the parent listens for `@click`. Presentational by default — no Telemetry (see TELEMETRY.md).",
+      "default": false
     }
   ],
   "events": [

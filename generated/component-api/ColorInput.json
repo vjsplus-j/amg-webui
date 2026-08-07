@@ -1,6 +1,12 @@
 {
   "name": "ColorInput",
-  "generatedAt": "2026-08-07T12:40:46.800Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/color-input"
+  ],
+  "sourceHash": "5c0e2a62f0ada6f70c8e60f8457174089f12c596e30b63481534701a3d4ad2e0",
+  "generatedAt": "2026-08-07T18:45:10.938Z",
   "source": {
     "types": "packages/components/form/ColorInput/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

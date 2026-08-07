@@ -1,6 +1,12 @@
 {
   "name": "TimeRangeInput",
-  "generatedAt": "2026-08-07T12:34:13.553Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/time-range-input"
+  ],
+  "sourceHash": "bffbb3ecbfa9f71abfc4a7241e47f85e8853a6260edd5654428bf3fe288b437b",
+  "generatedAt": "2026-08-07T18:45:11.249Z",
   "source": {
     "types": "packages/components/form/TimeRangeInput/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "modelValue",
       "optional": true,
       "type": "TimeRangeValue",
-      "description": ""
+      "description": "",
+      "default": "() => ({ start: null, end: null })"
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "showSeconds",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "clearable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

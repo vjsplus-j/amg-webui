@@ -1,0 +1,64 @@
+{
+  "name": "TimePicker",
+  "title": "TimePicker 时间选择",
+  "summary": "TimePicker 时间选择：面向企业场景的 DateTime 组件（成熟度 rc）。",
+  "description": "TimePicker 时间选择：面向企业场景的 DateTime 组件（成熟度 rc）。",
+  "family": "datetime",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/time-picker"
+  ],
+  "features": [
+    "DateTime 家族组件",
+    "v-model 双向绑定",
+    "占位提示",
+    "可一键清空",
+    "只读模式",
+    "事件回调"
+  ],
+  "useCases": [
+    "日期/时间选择与范围输入",
+    "表单与筛选面板"
+  ],
+  "avoidWhen": [
+    "需要非标准历法或复杂排班规则时需自定义"
+  ],
+  "related": [
+    "Form",
+    "FormItem",
+    "DateTimePicker",
+    "TimeSelect"
+  ],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "ArrowDown",
+      "Escape"
+    ],
+    "detail": "ArrowDown: ArrowDown opens panel and moves hour selection in column; Escape: Escape closes TimePicker panel"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural DOM clean"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.564Z",
+  "sourceHash": "957b69cfcf2db12c6364a1c3800573987cedab814fa7f99bfab011a041ae25c4"
+}

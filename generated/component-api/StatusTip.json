@@ -1,6 +1,12 @@
 {
   "name": "StatusTip",
-  "generatedAt": "2026-08-07T12:41:56.161Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/status-tip"
+  ],
+  "sourceHash": "8e4b321faf8a76b3df2fa2ccd408557df8a2e6f30013bb6dcdf463ae4e79e715",
+  "generatedAt": "2026-08-07T18:45:11.209Z",
   "source": {
     "types": "packages/components/core/StatusTip/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "message",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "severity",
       "optional": true,
       "type": "Severity",
-      "description": ""
+      "description": "",
+      "default": "info"
     },
     {
       "name": "icon",
       "optional": true,
       "type": "string | boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "closable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "actionText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "block",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "compact",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "LoginPanel",
-  "generatedAt": "2026-08-07T12:41:35.013Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/login-panel"
+  ],
+  "sourceHash": "bb0eba13d5ba835617c4a978207635098d7c285de80ebae485e5a15454e3431a",
+  "generatedAt": "2026-08-07T18:45:11.090Z",
   "source": {
     "types": "packages/components/form/LoginPanel/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "modelValue",
       "optional": true,
       "type": "LoginFormModel",
-      "description": ""
+      "description": "",
+      "default": "() => ({ username: '', password: '', remember: false, captcha: '' })"
     },
     {
       "name": "rules",
       "optional": true,
       "type": "Record<string, FormRule | FormRule[]>",
-      "description": ""
+      "description": "Built-in validation rules keyed by prop",
+      "default": null
     },
     {
       "name": "showCaptcha",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "showRemember",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "showForgot",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "showRegister",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     }
   ],
   "events": [

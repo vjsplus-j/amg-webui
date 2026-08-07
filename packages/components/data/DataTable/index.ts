@@ -1,6 +1,10 @@
 import DataTable from './index.vue'
 import type {
   DataTableProps,
+  DataTableEmits,
+  DataTableSlots,
+  DataTableExpose,
+  DataTableInstance,
   Column,
   SortOrder,
   RowKey,
@@ -12,6 +16,10 @@ import type {
 export { DataTable }
 export type {
   DataTableProps,
+  DataTableEmits,
+  DataTableSlots,
+  DataTableExpose,
+  DataTableInstance,
   Column,
   SortOrder,
   RowKey,

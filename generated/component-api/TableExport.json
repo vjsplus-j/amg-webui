@@ -1,6 +1,12 @@
 {
   "name": "TableExport",
-  "generatedAt": "2026-08-07T12:42:17.024Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/table-export"
+  ],
+  "sourceHash": "49305a30509189acc4cb03e11ff1152d331b74507d49be5cf0e46fbe230637f4",
+  "generatedAt": "2026-08-07T18:45:11.229Z",
   "source": {
     "types": "packages/components/data/TableExport/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

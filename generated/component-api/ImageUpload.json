@@ -1,6 +1,12 @@
 {
   "name": "ImageUpload",
-  "generatedAt": "2026-08-07T12:41:13.618Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/image-upload"
+  ],
+  "sourceHash": "1e3be05a531ec86f01e3908c57333b36f80e6704778a651f9676ce53586c6e8c",
+  "generatedAt": "2026-08-07T18:45:11.069Z",
   "source": {
     "types": "packages/components/form/ImageUpload/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "modelValue",
       "optional": true,
       "type": "ImageFileItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "multiple",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "maxCount",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 9
     },
     {
       "name": "accept",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "image/*"
     }
   ],
   "events": [

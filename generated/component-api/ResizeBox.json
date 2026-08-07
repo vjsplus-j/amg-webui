@@ -1,6 +1,12 @@
 {
   "name": "ResizeBox",
-  "generatedAt": "2026-08-07T12:41:56.123Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/resize-box"
+  ],
+  "sourceHash": "bc8feef32a9a282b6b5addbd285b0e1db136cc29f839a6bd6e17d6d1b533f426",
+  "generatedAt": "2026-08-07T18:45:11.165Z",
   "source": {
     "types": "packages/components/core/ResizeBox/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "width",
       "optional": true,
       "type": "number | string",
-      "description": ""
+      "description": "",
+      "default": "100%"
     },
     {
       "name": "height",
       "optional": true,
       "type": "number | string",
-      "description": ""
+      "description": "",
+      "default": "auto"
     },
     {
       "name": "minWidth",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 120
     },
     {
       "name": "minHeight",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 80
     },
     {
       "name": "maxWidth",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "maxHeight",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "directions",
       "optional": true,
       "type": "ResizeDirection[]",
-      "description": ""
+      "description": "",
+      "default": "() => ['right', 'bottom', 'bottom-right']"
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "Spin",
-  "generatedAt": "2026-08-07T12:41:56.156Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/spin"
+  ],
+  "sourceHash": "3c05dca8b7c56a96bdf2803eb2a09ca5797a47e919cae575b5bb5f9bcb70eebc",
+  "generatedAt": "2026-08-07T18:45:11.202Z",
   "source": {
     "types": "packages/components/core/Spin/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "spinning",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Show spinner overlay (default true)",
+      "default": true
     },
     {
       "name": "tip",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Tip under the spinner",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "SpinSize",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "delay",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Delay before showing spinner (ms) — reduces flash",
+      "default": 0
     },
     {
       "name": "fullscreen",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Full-bleed overlay when wrapping slotted content",
+      "default": false
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name for the status region (falls back to tip)",
+      "default": null
     }
   ],
   "events": [],

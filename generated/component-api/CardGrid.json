@@ -1,6 +1,12 @@
 {
   "name": "CardGrid",
-  "generatedAt": "2026-08-07T12:40:46.784Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/card-grid"
+  ],
+  "sourceHash": "16042d616aec6b60a140afcb6b935e63e9edacad6d57c160bedb0107f965c3ad",
+  "generatedAt": "2026-08-07T18:45:10.916Z",
   "source": {
     "types": "packages/components/core/CardGrid/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "columns",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Fixed column count (1–6). When set, ignores minTrack auto grid.",
+      "default": null
     },
     {
       "name": "minTrack",
       "optional": true,
       "type": "CardGridMinTrack",
-      "description": ""
+      "description": "Min track width for auto-fill / auto-fit mode",
+      "default": "md"
     },
     {
       "name": "fit",
       "optional": true,
       "type": "CardGridFit",
-      "description": ""
+      "description": "`fill` keeps empty tracks; `fit` collapses empty tracks",
+      "default": "fill"
     },
     {
       "name": "gap",
       "optional": true,
       "type": "CardGridGap",
-      "description": ""
+      "description": "",
+      "default": "lg"
     },
     {
       "name": "equalHeight",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Stretch cards to equal row height (default true)",
+      "default": true
     },
     {
       "name": "as",
       "optional": true,
       "type": "\"div\" | \"section\" | \"ul\" | \"ol\"",
-      "description": ""
+      "description": "",
+      "default": "div"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "skeletonCount",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 3
     },
     {
       "name": "empty",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

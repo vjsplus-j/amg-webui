@@ -1,6 +1,12 @@
 {
   "name": "GroupNav",
-  "generatedAt": "2026-08-07T12:41:13.610Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/group-nav"
+  ],
+  "sourceHash": "38720e781fffbab86cf4ba61c8e50c5633a731b367da02bb8b1a7d5167e5d410",
+  "generatedAt": "2026-08-07T18:45:11.056Z",
   "source": {
     "types": "packages/components/core/GroupNav/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "items",
       "optional": true,
       "type": "NavItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "direction",
       "optional": true,
       "type": "'horizontal' | 'vertical'",
-      "description": ""
+      "description": "",
+      "default": "vertical"
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

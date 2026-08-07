@@ -1,6 +1,12 @@
 {
   "name": "VcrMarkPoint",
-  "generatedAt": "2026-08-07T12:42:17.059Z",
+  "package": "media",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/vcr-mark-point"
+  ],
+  "sourceHash": "fd675a25d4c36d8de2310f81059353b134bd2368a7412ff8e14711c56965f2b7",
+  "generatedAt": "2026-08-07T18:45:11.279Z",
   "source": {
     "types": "packages/components/media/VcrMarkPoint/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "marks",
       "optional": true,
       "type": "VcrMark[]",
-      "description": ""
+      "description": "",
+      "default": "() => [ { id: 'm1', time: 120, label: 'Incident A' }, { id: 'm2', time: 480, label: 'Motion peak' } ]"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

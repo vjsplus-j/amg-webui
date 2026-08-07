@@ -1,6 +1,12 @@
 {
   "name": "OnvifSearch",
-  "generatedAt": "2026-08-07T12:41:35.037Z",
+  "package": "onvif",
+  "importPaths": [
+    "amg-webui/onvif",
+    "amg-webui/onvif-search"
+  ],
+  "sourceHash": "9a7d5669e70f1c566102c4938fe9add96b816e60a18f5001824d1b69f0d3cedc",
+  "generatedAt": "2026-08-07T18:45:11.124Z",
   "source": {
     "types": "packages/components/onvif/OnvifSearch/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "devices",
       "optional": true,
       "type": "OnvifDevice[]",
-      "description": ""
+      "description": "",
+      "default": "() => [ { id: 'cam-01', name: 'IPC-Office-01', ip: '192.168.1.101', port: 80, online: true }, { id: 'cam-02', name: 'IPC-Gate-02', ip: '192.168.1.102', port: 80, online: true }, { id: 'nvr-01', name: 'NVR-Main', ip: '192.168.1.200', port: 8000, online: false } ]"
     },
     {
       "name": "filter",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "pageSize",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Max rows before virtual hint (display only)",
+      "default": 50
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

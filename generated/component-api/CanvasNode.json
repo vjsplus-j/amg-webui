@@ -1,6 +1,12 @@
 {
   "name": "CanvasNode",
-  "generatedAt": "2026-08-07T12:39:09.874Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/canvas-node"
+  ],
+  "sourceHash": "02c5f1300abef330356c4c2fadfaacffebc8d5265666ccc227a33fdf42c8363e",
+  "generatedAt": "2026-08-07T18:45:10.912Z",
   "source": {
     "types": "packages/lowcode/ui/CanvasNode/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "node",
       "optional": false,
       "type": "CanvasNodeData",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "nested",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Nested under a parent — flow layout, not free-canvas absolute.",
+      "default": false
     },
     {
       "name": "children",
       "optional": true,
       "type": "CanvasTreeNode[]",
-      "description": ""
+      "description": "Child tree from `buildCanvasTree` (recursive mount).",
+      "default": "() => []"
     },
     {
       "name": "selectable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "draggable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "keyboardStep",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "registry",
       "optional": true,
       "type": "ComponentRegistry",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "renderMode",
       "optional": true,
       "type": "SchemaRenderMode",
-      "description": ""
+      "description": "",
+      "default": "chrome"
     }
   ],
   "events": [

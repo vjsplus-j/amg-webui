@@ -1,6 +1,12 @@
 {
   "name": "QuarterPicker",
-  "generatedAt": "2026-08-07T12:37:37.635Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/quarter-picker"
+  ],
+  "sourceHash": "bb17dcce074c48692724d772689918493c4f3d8da68105227056bb44deb15471",
+  "generatedAt": "2026-08-07T18:45:11.153Z",
   "source": {
     "types": "packages/components/form/QuarterPicker/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "modelValue",
       "optional": true,
       "type": "QuarterValue",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "minYear",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 2000
     },
     {
       "name": "maxYear",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 2100
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

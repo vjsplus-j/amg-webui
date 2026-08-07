@@ -1,6 +1,12 @@
 {
   "name": "VcrDownloadPanel",
-  "generatedAt": "2026-08-07T12:42:17.058Z",
+  "package": "media",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/vcr-download-panel"
+  ],
+  "sourceHash": "105f93eba5d0089e22910ce328e64b245808fa2fa954cee13e8edc11c3b0156a",
+  "generatedAt": "2026-08-07T18:45:11.277Z",
   "source": {
     "types": "packages/components/media/VcrDownloadPanel/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "items",
       "optional": true,
       "type": "VcrDownloadItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => [ { id: 'dl1', name: 'clip-20260714-1000.mp4', progress: 100, status: 'done' }, { id: 'dl2', name: 'clip-20260714-1030.mp4', progress: 45, status: 'running' } ]"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "FormItem",
-  "generatedAt": "2026-08-07T12:34:13.537Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/form-item"
+  ],
+  "sourceHash": "0409ef405687e8e3cb763b27d7b06d214d89850abd6c9bd1b6c55626d6ac02bb",
+  "generatedAt": "2026-08-07T18:45:11.029Z",
   "source": {
     "types": "packages/components/form/FormItem/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "prop",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "label",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "required",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "labelWidth",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

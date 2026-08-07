@@ -1,6 +1,12 @@
 {
   "name": "VideoPreview",
-  "generatedAt": "2026-08-07T12:42:17.067Z",
+  "package": "media",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/video-preview"
+  ],
+  "sourceHash": "005c8331bff501bc14f8de406b27f2eb5ae09632f8e7af9c7be9892bc63c6a91",
+  "generatedAt": "2026-08-07T18:45:11.287Z",
   "source": {
     "types": "packages/components/media/VideoPreview/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "src",
       "optional": true,
       "type": "string | File | Blob | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "poster",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "controls",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "autoplay",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loop",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "muted",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

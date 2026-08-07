@@ -1,6 +1,12 @@
 {
   "name": "TimelineItem",
-  "generatedAt": "2026-08-07T12:42:17.039Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/timeline-item"
+  ],
+  "sourceHash": "5cbfe4a3c0b0e275f4e1334d0d24a944cb862c8bf7f98f8bad3d8204b1d4955d",
+  "generatedAt": "2026-08-07T18:45:11.253Z",
   "source": {
     "types": "packages/components/data/TimelineItem/types.ts",
     "vue": true

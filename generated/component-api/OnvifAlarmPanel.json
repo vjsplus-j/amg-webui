@@ -1,6 +1,12 @@
 {
   "name": "OnvifAlarmPanel",
-  "generatedAt": "2026-08-07T12:41:35.032Z",
+  "package": "onvif",
+  "importPaths": [
+    "amg-webui/onvif",
+    "amg-webui/onvif-alarm-panel"
+  ],
+  "sourceHash": "24f90c96758444aafaca122113eb406836e320365f96d3a87a8e0bc1b6895407",
+  "generatedAt": "2026-08-07T18:45:11.115Z",
   "source": {
     "types": "packages/components/onvif/OnvifAlarmPanel/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "alarms",
       "optional": true,
       "type": "OnvifAlarm[]",
-      "description": ""
+      "description": "",
+      "default": "() => [ { id: 'a1', type: 'motion', time: '2026-07-14 10:00:00' }, { id: 'a2', type: 'tamper', time: '2026-07-14 09:30:00' } ]"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

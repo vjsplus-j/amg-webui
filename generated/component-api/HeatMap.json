@@ -1,6 +1,12 @@
 {
   "name": "HeatMap",
-  "generatedAt": "2026-08-07T12:41:13.612Z",
+  "package": "charts",
+  "importPaths": [
+    "amg-webui/charts",
+    "amg-webui/heat-map"
+  ],
+  "sourceHash": "68f2a8a1951f4d1a81433704ba104806cb7eaf9380c2c54df02b6138b1732227",
+  "generatedAt": "2026-08-07T18:45:11.059Z",
   "source": {
     "types": "packages/components/charts/HeatMap/types.ts",
     "vue": true
@@ -10,79 +16,92 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "number | string | null",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "rows",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 5
     },
     {
       "name": "cols",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 7
     },
     {
       "name": "min",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "max",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "showValues",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "selectable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

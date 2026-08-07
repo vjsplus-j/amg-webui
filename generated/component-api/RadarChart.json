@@ -1,6 +1,12 @@
 {
   "name": "RadarChart",
-  "generatedAt": "2026-08-07T12:41:56.115Z",
+  "package": "charts",
+  "importPaths": [
+    "amg-webui/charts",
+    "amg-webui/radar-chart"
+  ],
+  "sourceHash": "2abc81940538be1816db65b44158a97953cdacb3cab855b77b371c893abbe65f",
+  "generatedAt": "2026-08-07T18:45:11.157Z",
   "source": {
     "types": "packages/components/charts/RadarChart/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number | null",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "max",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "levels",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 4
     },
     {
       "name": "showValues",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "selectable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

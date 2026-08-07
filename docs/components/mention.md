@@ -1,27 +1,37 @@
 # Mention
 
-Mention 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Mention：面向企业场景的 Selection 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Mention 当前成熟度为 **RC**；完整交互见本地 example。
+Mention：面向企业场景的 Selection 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Selection 家族组件
+- v-model 双向绑定
+- 选项列表配置
+- 占位提示
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-- [Form](./form)
-- [FormItem](./form-item)
-- [InputText](./input-text)
+**适用**
+
+- 下拉、级联、树选等选择场景
+- 表单字段与筛选器
+
+**不适用**
+
+- 超大数据集未开启虚拟化时可能影响性能
 
 ## 基础用法
 
+> `import { Mention } from 'amg-webui/form'`
+
 ```vue
 <script setup>
-import { Mention } from '@amg-webui/form'
+import { Mention } from 'amg-webui/form'
 </script>
 
 <template>
@@ -31,40 +41,79 @@ import { Mention } from '@amg-webui/form'
 
 Curated demo：`example/demos/Mention/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
-| `name` | `string` | — | 表单字段名 / Form field name |
-| `modelValue` | `string` | — | 绑定值 / Bound value (v-model) |
-| `options` | `MentionOption[]` | — | 选项列表 / Option list |
-| `prefix` | `string` | — | — |
-| `placeholder` | `string` | — | 占位提示 / Placeholder text |
-| `rows` | `number` | — | 每页行数 / Rows per page |
-| `maxLength` | `number` | — | — |
+| `id` | `string` | `undefined` | Native id — falls back to FormItem field id when nested |
+| `name` | `string` | `undefined` | Native name — falls back to FormItem `prop` when nested |
+| `modelValue` | `string` | `` | 绑定值 / Bound value (v-model) |
+| `options` | `MentionOption[]` | `() => []` | 选项列表 / Option list |
+| `prefix` | `string` | `@` | prefix 字符串 |
+| `placeholder` | `string` | `undefined` | 占位提示 / Placeholder text |
+| `rows` | `number` | 3 | 每页行数 / Rows per page |
+| `maxLength` | `number` | `undefined` | maxLength 数值 |
+| `ariaLabel` | `string` | `undefined` | 无障碍标签 / ARIA label |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `value: string` | v-model 更新 / v-model update |
 | `change` | `value: string` | 值变更 / Change |
 | `select` | `option: MentionOption` | 选中 / Select |
-| `search` | `query: string` | — |
+| `search` | `query: string` | search 时触发 |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `MentionOption`
 - `MentionProps`
 - `MentionEmits`
 
+## 键盘交互
+
+- 状态：`PASS`
+- 按键：`ArrowDown` · `Enter`
+- ArrowDown: moves highlighted mention option in popup listbox; Enter: inserts active mention option into modelValue
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`N/A`
+- optional
+
+## RTL
+
+- 状态：`N/A`
+- optional
+
+## SSR
+
+- 状态：`PASS`
+- structural DOM clean
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+- [Form](./form)
+- [FormItem](./form-item)
+- [InputText](./input-text)
 
 ## 稳定性
 
@@ -72,6 +121,9 @@ Curated demo：`example/demos/Mention/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/form` |
+| metadata | `component-metadata/Mention.json` |
 | API extract | `generated/component-api/Mention.json` |
 
-> 完整 Demo 见 `example/demos/Mention`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Mention`（example 本地调试，不上线）。
+

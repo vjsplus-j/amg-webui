@@ -281,7 +281,7 @@ export const componentSidebarGroup = {
     { text: 'OnvifSearch', link: '/components/onvif-search' },
     { text: 'OnvifSettingPanel', link: '/components/onvif-setting-panel' },
     { text: 'OnvifUrlForm', link: '/components/onvif-url-form' },
-    { text: 'PTZControl', link: '/components/ptzcontrol' },
+    { text: 'PTZControl', link: '/components/ptz-control' },
     { text: 'Pixel404', link: '/components/pixel404' },
     { text: 'Plant404', link: '/components/plant404' },
     { text: 'Simple404', link: '/components/simple404' },

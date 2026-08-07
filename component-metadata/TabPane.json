@@ -1,0 +1,54 @@
+{
+  "name": "TabPane",
+  "title": "TabPane",
+  "summary": "TabPane：面向企业场景的 Navigation 组件（成熟度 rc）。",
+  "description": "TabPane：面向企业场景的 Navigation 组件（成熟度 rc）。",
+  "family": "navigation",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/tab-pane"
+  ],
+  "features": [
+    "Navigation 家族组件",
+    "支持禁用状态",
+    "远程/懒加载数据"
+  ],
+  "useCases": [
+    "菜单、标签页、面包屑等导航",
+    "页面结构引导",
+    "需要禁用/只读控制的表单场景"
+  ],
+  "avoidWhen": [
+    "单页极简场景可省略复杂导航组件"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts TabPane interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TabPane uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TabPane RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TabPane client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.549Z",
+  "sourceHash": "5cb2d71997eeca6ce86bfedac8f7d2249cb0be9a6866d33e17c505be1c07ed39"
+}

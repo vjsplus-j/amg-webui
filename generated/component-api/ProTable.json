@@ -1,6 +1,12 @@
 {
   "name": "ProTable",
-  "generatedAt": "2026-08-07T12:41:35.061Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/pro-table"
+  ],
+  "sourceHash": "f90883a4467b3096033bed3820bd587f7b5da592d81ebfa98ab7402e3652fce9",
+  "generatedAt": "2026-08-07T18:45:11.148Z",
   "source": {
     "types": "packages/components/data/ProTable/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

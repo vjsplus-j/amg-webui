@@ -1,6 +1,12 @@
 {
   "name": "LoadingTip",
-  "generatedAt": "2026-08-07T12:41:35.012Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/loading-tip"
+  ],
+  "sourceHash": "8406c3ef7e243452707e04d0d614da6b77d02ae9a14095578e9425ddf4d2bfe1",
+  "generatedAt": "2026-08-07T18:45:11.088Z",
   "source": {
     "types": "packages/components/core/LoadingTip/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "message",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "size",
       "optional": true,
       "type": "LoadingTipSize",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "delay",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "block",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "overlay",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "persistent",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "live",
       "optional": true,
       "type": "\"polite\" | \"assertive\" | \"off\"",
-      "description": ""
+      "description": "",
+      "default": "polite"
     },
     {
       "name": "progress",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "cancellable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "cancelText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

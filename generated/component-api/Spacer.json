@@ -1,6 +1,12 @@
 {
   "name": "Spacer",
-  "generatedAt": "2026-08-07T12:41:56.154Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/spacer"
+  ],
+  "sourceHash": "f31e61998c6ffe6f2034f3eb407313917b91dc7c0a692138e0dd08521f34ac78",
+  "generatedAt": "2026-08-07T18:45:11.201Z",
   "source": {
     "types": "packages/components/core/Spacer/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "flex",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Grow to fill remaining flex space (default true when size omitted)",
+      "default": true
     },
     {
       "name": "grow",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Flex grow factor when `flex` is true",
+      "default": 1
     },
     {
       "name": "shrink",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Flex shrink factor when `flex` is true",
+      "default": 1
     },
     {
       "name": "size",
       "optional": true,
       "type": "SpacerSize",
-      "description": ""
+      "description": "Fixed size via spacing scale key",
+      "default": null
     },
     {
       "name": "axis",
       "optional": true,
       "type": "SpacerAxis",
-      "description": ""
+      "description": "",
+      "default": "horizontal"
     },
     {
       "name": "minSize",
       "optional": true,
       "type": "SpacerSize",
-      "description": ""
+      "description": "Minimum size when flexing",
+      "default": null
     },
     {
       "name": "inline",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Render as inline spacer when used inside text / button rows",
+      "default": false
     },
     {
       "name": "basis",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Explicit flex basis when flexing",
+      "default": null
     },
     {
       "name": "ariaHidden",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Whether the root is hidden from assistive tech",
+      "default": true
     },
     {
       "name": "tabIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Optional focus order when the spacer is used as a semantic separator",
+      "default": null
     },
     {
       "name": "observeResize",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Emit resize payload through ResizeObserver",
+      "default": false
     }
   ],
   "events": [

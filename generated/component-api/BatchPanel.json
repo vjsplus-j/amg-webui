@@ -1,6 +1,12 @@
 {
   "name": "BatchPanel",
-  "generatedAt": "2026-08-07T12:39:09.860Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/batch-panel"
+  ],
+  "sourceHash": "18ccafce49469765029422686989e779b5c4446eea4d22a1f8a0df181f607e24",
+  "generatedAt": "2026-08-07T18:45:10.893Z",
   "source": {
     "types": "packages/components/data/BatchPanel/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "selectedCount",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "totalCount",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "showEmpty",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "When true, show empty hint instead of hiding the panel",
+      "default": false
     },
     {
       "name": "actions",
       "optional": true,
       "type": "BatchPanelAction[]",
-      "description": ""
+      "description": "Custom action buttons; falls back to built-in edit/delete/export/clear",
+      "default": null
     }
   ],
   "events": [

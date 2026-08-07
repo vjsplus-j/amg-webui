@@ -1,6 +1,12 @@
 {
   "name": "UserInfoCard",
-  "generatedAt": "2026-08-07T12:42:17.054Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/user-info-card"
+  ],
+  "sourceHash": "777f1c805ebe91c8e695bcbc96d9b8ebc716e91774937a9583afc2e3f13aa0bf",
+  "generatedAt": "2026-08-07T18:45:11.275Z",
   "source": {
     "types": "packages/components/core/UserInfoCard/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "role",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "department",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "email",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "avatar",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "status",
       "optional": true,
       "type": "'online' | 'offline' | 'busy'",
-      "description": ""
+      "description": "",
+      "default": "offline"
     }
   ],
   "events": [

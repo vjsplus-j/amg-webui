@@ -1,0 +1,69 @@
+{
+  "name": "FormTabs",
+  "title": "FormTabs",
+  "summary": "FormTabs：面向企业场景的 Form 组件（成熟度 rc）。",
+  "description": "FormTabs：面向企业场景的 Form 组件（成熟度 rc）。",
+  "family": "form",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/form-tabs"
+  ],
+  "features": [
+    "Form 家族组件",
+    "v-model 双向绑定",
+    "校验规则",
+    "事件回调"
+  ],
+  "useCases": [
+    "表单布局、校验与字段编排",
+    "动态/分步表单"
+  ],
+  "avoidWhen": [
+    "纯展示场景无需引入完整 Form"
+  ],
+  "related": [
+    "Form",
+    "FormItem",
+    "Tabs"
+  ],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Tab",
+      "Enter",
+      "Escape",
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      "Space"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural DOM + component entry"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.434Z",
+  "sourceHash": "a6cf9ed4bb62992bf44839d852889d0b9f637a5111e568571305f49eed2c2485"
+}

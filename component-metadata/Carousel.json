@@ -1,0 +1,57 @@
+{
+  "name": "Carousel",
+  "title": "Carousel",
+  "summary": "Carousel：面向企业场景的 Foundation 组件（成熟度 rc）。",
+  "description": "Carousel：面向企业场景的 Foundation 组件（成熟度 rc）。",
+  "family": "foundation",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/carousel"
+  ],
+  "features": [
+    "Foundation 家族组件",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "加载状态反馈",
+    "事件回调"
+  ],
+  "useCases": [
+    "基础 UI 交互与页面操作",
+    "按钮、标签、图标等原子组件",
+    "需要禁用/只读控制的表单场景",
+    "异步提交或加载过程反馈"
+  ],
+  "avoidWhen": [
+    "需要复杂业务编排时优先业务组件或组合模式"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts Carousel interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Carousel uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Carousel RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Carousel client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.371Z",
+  "sourceHash": "39f2323e407de3ed14c5b1cb961ad8821b8996761bacd6257cc24df1822c6ab5"
+}

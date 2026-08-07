@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-08-07T18:59:38.894Z",
+  "status": "PASS",
+  "validatedCount": 6,
+  "checks": [
+    "amg-webui/core",
+    "amg-webui/form",
+    "amg-webui/data",
+    "amg-webui/overlay",
+    "amg-webui/data-table",
+    "amg-webui/data"
+  ],
+  "failures": []
+}

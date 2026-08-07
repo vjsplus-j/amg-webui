@@ -1,0 +1,66 @@
+{
+  "name": "ColorInput",
+  "title": "ColorInput",
+  "summary": "ColorInput：面向企业场景的 Input 组件（成熟度 rc）。",
+  "description": "ColorInput：面向企业场景的 Input 组件（成熟度 rc）。",
+  "family": "input",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/color-input"
+  ],
+  "features": [
+    "Input 家族组件",
+    "v-model 双向绑定",
+    "多尺寸规格",
+    "占位提示",
+    "事件回调"
+  ],
+  "useCases": [
+    "表单文本/数值输入",
+    "受控与非受控输入场景"
+  ],
+  "avoidWhen": [
+    "极复杂富文本编辑请使用 RichText / MdEditor"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Tab",
+      "Enter",
+      "Escape",
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      "Space"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts ColorInput uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts ColorInput RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts ColorInput client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.381Z",
+  "sourceHash": "5c0e2a62f0ada6f70c8e60f8457174089f12c596e30b63481534701a3d4ad2e0"
+}

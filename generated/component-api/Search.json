@@ -1,6 +1,12 @@
 {
   "name": "Search",
-  "generatedAt": "2026-08-07T12:41:56.136Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/search"
+  ],
+  "sourceHash": "621657f38f1608c4147fb9aea33613489de3e732d68125e8df284dca32ff69d9",
+  "generatedAt": "2026-08-07T18:45:11.180Z",
   "source": {
     "types": "packages/components/form/Search/types.ts",
     "vue": true
@@ -10,49 +16,64 @@
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native input id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "clearable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "fluid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": "",
+      "default": null
     }
   ],
   "events": [

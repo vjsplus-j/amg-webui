@@ -1,26 +1,36 @@
-# Tabs
+# Tabs 标签页
 
-Tabs 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Tabs 标签页：面向企业场景的 Navigation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Tabs 当前成熟度为 **RC**；下方 DocsDemo 提供 docs 站内嵌交互，完整场景见 example。
+Tabs 标签页：面向企业场景的 Navigation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Navigation 家族组件
+- v-model 双向绑定
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 菜单、标签页、面包屑等导航
+- 页面结构引导
+
+**不适用**
+
+- 单页极简场景可省略复杂导航组件
 
 ## 基础用法
+
+> `import { Tabs } from 'amg-webui/core'`
 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { Tabs, TabPane } from '@amg-webui/core'
+import { Tabs, TabPane } from 'amg-webui/core'
 
 const active = ref('a')
 </script>
@@ -35,38 +45,75 @@ const active = ref('a')
 
 Curated demo：`example/demos/Tabs/index.vue`
 
-## 交互演示
+## 示例
 
 <DocsDemo name="tabs-basic" />
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `string \| number` | — | 绑定值 / Bound value (v-model) |
-| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
+| `modelValue` | `string \| number` | `undefined` | 绑定值 / Bound value (v-model) |
+| `ariaLabel` | `string` | `undefined` | Accessible name for the tablist |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `value: string \| number` | v-model 更新 / v-model update |
 | `change` | `value: string \| number` | 值变更 / Change |
-| `tabClick` | `value: string \| number, event: MouseEvent \| KeyboardEvent` | — |
+| `tabClick` | `value: string \| number, event: MouseEvent \| KeyboardEvent` | tabClick 时触发 |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `TabsPaneMeta`
 - `TabsProps`
 - `TabsEmits`
 - `TabPaneProps`
 
+## 键盘交互
+
+- 状态：`PASS`
+- 按键：`ArrowRight` · `ArrowLeft`
+- ArrowRight: ArrowRight activates next tab and emits update:modelValue; ArrowLeft: ArrowLeft activates previous tab and emits update:modelValue
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Tabs uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Tabs RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Tabs client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+- [TabPane](./tab-pane)
+- [Menu](./menu)
 
 ## 稳定性
 
@@ -74,6 +121,9 @@ Curated demo：`example/demos/Tabs/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Tabs.json` |
 | API extract | `generated/component-api/Tabs.json` |
 
-> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/Tabs`。
+> **DocsDemo** 为 docs 站内嵌演示；完整 curated demo 见 `example/demos/Tabs`。
+

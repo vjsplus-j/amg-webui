@@ -1,6 +1,12 @@
 {
   "name": "AvatarGroup",
-  "generatedAt": "2026-08-07T12:39:09.856Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/avatar-group"
+  ],
+  "sourceHash": "f39ff28a6dcc52176a1c78d9cda19286cc9a8acd8d66ec2d6cbd9733b0d80066",
+  "generatedAt": "2026-08-07T18:45:10.885Z",
   "source": {
     "types": "packages/components/core/AvatarGroup/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "max",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Max visible avatars before +N overflow (default 3; component > global)",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "AvatarSize",
-      "description": ""
+      "description": "Cascades to child Avatars when they omit size",
+      "default": null
     },
     {
       "name": "shape",
       "optional": true,
       "type": "AvatarShape",
-      "description": ""
+      "description": "Cascades to child Avatars when they omit shape",
+      "default": null
     },
     {
       "name": "variant",
       "optional": true,
       "type": "'default' | 'neon'",
-      "description": ""
+      "description": "Cascades appearance to children: neon = dashed track + lightboard marquee.",
+      "default": null
     },
     {
       "name": "overlap",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Negative margin for stack overlap (token preferred)",
+      "default": null
     },
     {
       "name": "maxTooltip",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Custom overflow / members tooltip (default: joined member labels)",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Disable all children + overflow interactions",
+      "default": false
     }
   ],
   "events": [],
@@ -59,7 +72,7 @@
     {
       "name": "overflowTooltip",
       "props": "props: { overflowCount: number; labels: string[] }",
-      "description": ""
+      "description": "Custom overflow tooltip body"
     }
   ],
   "expose": [],

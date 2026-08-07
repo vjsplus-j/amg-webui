@@ -1,25 +1,34 @@
 # Breadcrumb
 
-Breadcrumb 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Breadcrumb：面向企业场景的 Navigation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Breadcrumb 当前成熟度为 **RC**；完整交互见本地 example。
+Breadcrumb：面向企业场景的 Navigation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Navigation 家族组件
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 菜单、标签页、面包屑等导航
+- 页面结构引导
+
+**不适用**
+
+- 单页极简场景可省略复杂导航组件
 
 ## 基础用法
 
+> `import { Breadcrumb } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { Breadcrumb } from '@amg-webui/core'
+import { Breadcrumb } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,29 +38,64 @@ import { Breadcrumb } from '@amg-webui/core'
 
 Curated demo：`example/demos/Breadcrumb/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `items` | `BreadcrumbItemData[]` | — | 菜单项 / Menu items |
-| `separator` | `string` | — | — |
-| `maxCount` | `number` | — | 最大文件数 / Max file count |
-| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
-| `trackId` | `string` | — | Telemetry 追踪 id / Telemetry track id |
-| `telemetry` | `boolean` | — | 是否上报 Telemetry / Enable telemetry |
+| `items` | `BreadcrumbItemData[]` | `undefined` | Declarative items (alternative to default slot) |
+| `separator` | `string` | `/` | Text separator between items (ignored when #separator slot is used) |
+| `maxCount` | `number` | `undefined` | Collapse middle items when length exceeds this count. Shows first + ellipsis + trailing items. |
+| `ariaLabel` | `string` | `undefined` | Accessible name for the nav landmark |
+| `trackId` | `string` | `undefined` | Telemetry 追踪 id / Telemetry track id |
+| `telemetry` | `boolean` | `undefined` | 是否上报 Telemetry / Enable telemetry |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `click` | `payload: { href?: string; to?: string; index: number; event: MouseEvent }` | 点击 / Click |
 
-## Public types
+### Public Types
 
 - `BreadcrumbItemData`
 - `BreadcrumbProps`
 - `BreadcrumbEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- invalid keyboard evidence (mount/visibility only): "tests/unit/hardening/real-mount-remaining.spec.ts Breadcrumb interactive surface present (keyboard applicable)"
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Breadcrumb uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Breadcrumb RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Breadcrumb client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -59,6 +103,9 @@ Curated demo：`example/demos/Breadcrumb/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Breadcrumb.json` |
 | API extract | `generated/component-api/Breadcrumb.json` |
 
-> 完整 Demo 见 `example/demos/Breadcrumb`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Breadcrumb`（example 本地调试，不上线）。
+

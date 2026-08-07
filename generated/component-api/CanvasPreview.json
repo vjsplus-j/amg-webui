@@ -1,6 +1,12 @@
 {
   "name": "CanvasPreview",
-  "generatedAt": "2026-08-07T12:39:09.876Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/canvas-preview"
+  ],
+  "sourceHash": "71b12eb560360f3a69f2a1b5a421cd333ac925d27e0e02a86ad79a5f5aad22c4",
+  "generatedAt": "2026-08-07T18:45:10.913Z",
   "source": {
     "types": "packages/lowcode/ui/CanvasPreview/types.ts",
     "vue": true
@@ -10,109 +16,127 @@
       "name": "nodes",
       "optional": true,
       "type": "CanvasNodeData[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "mode",
       "optional": true,
       "type": "\"free\" | \"grid\"",
-      "description": ""
+      "description": "",
+      "default": "free"
     },
     {
       "name": "scale",
       "optional": true,
       "type": "number | \"fit\"",
-      "description": ""
+      "description": "",
+      "default": "fit"
     },
     {
       "name": "minScale",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0.1
     },
     {
       "name": "maxScale",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 2
     },
     {
       "name": "canvasWidth",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 960
     },
     {
       "name": "canvasHeight",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 540
     },
     {
       "name": "columns",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 24
     },
     {
       "name": "showGrid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "interactive",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "registry",
       "optional": true,
       "type": "ComponentRegistry",
-      "description": ""
+      "description": "When set with renderMode=`component`, mounts real components via registry.",
+      "default": null
     },
     {
       "name": "renderMode",
       "optional": true,
       "type": "SchemaRenderMode",
-      "description": ""
+      "description": "",
+      "default": "chrome"
     }
   ],
   "events": [

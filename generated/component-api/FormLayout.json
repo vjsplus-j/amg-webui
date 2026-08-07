@@ -1,6 +1,12 @@
 {
   "name": "FormLayout",
-  "generatedAt": "2026-08-07T12:41:13.593Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/form-layout"
+  ],
+  "sourceHash": "b4d018eee827eeebd7a85017dea142c17aa4478c25bd8d77db16d5cef74ef0e1",
+  "generatedAt": "2026-08-07T18:45:11.031Z",
   "source": {
     "types": "packages/components/core/FormLayout/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "layout",
       "optional": true,
       "type": "FormLayoutMode",
-      "description": ""
+      "description": "Label + control arrangement",
+      "default": "horizontal"
     },
     {
       "name": "columns",
       "optional": true,
       "type": "FormLayoutColumns",
-      "description": ""
+      "description": "Multi-column grid for horizontal / vertical layouts",
+      "default": 1
     },
     {
       "name": "colon",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Append colon suffix to labels via `--vp-form-layout-colon`",
+      "default": false
     },
     {
       "name": "labelWidth",
       "optional": true,
       "type": "\"sm\" | \"md\" | \"lg\" | \"auto\"",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "gap",
       "optional": true,
       "type": "\"sm\" | \"md\" | \"lg\"",
-      "description": ""
+      "description": "",
+      "default": "md"
     }
   ],
   "events": [

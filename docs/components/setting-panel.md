@@ -1,25 +1,35 @@
 # SettingPanel
 
-SettingPanel 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+SettingPanel：面向企业场景的 Form 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-SettingPanel 当前成熟度为 **RC**；完整交互见本地 example。
+SettingPanel：面向企业场景的 Form 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Form 家族组件
+- v-model 双向绑定
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 表单布局、校验与字段编排
+- 动态/分步表单
+
+**不适用**
+
+- 纯展示场景无需引入完整 Form
 
 ## 基础用法
 
+> `import { SettingPanel } from 'amg-webui/form'`
+
 ```vue
 <script setup>
-import { SettingPanel } from '@amg-webui/form'
+import { SettingPanel } from 'amg-webui/form'
 </script>
 
 <template>
@@ -29,37 +39,73 @@ import { SettingPanel } from '@amg-webui/form'
 
 Curated demo：`example/demos/SettingPanel/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `Record<string, unknown>` | — | 绑定值 / Bound value (v-model) |
-| `items` | `SettingItem[]` | — | 菜单项 / Menu items |
-| `groups` | `SettingGroup[]` | — | — |
-| `defaultValue` | `Record<string, unknown>` | — | 非受控初始值 / Uncontrolled initial value |
+| `modelValue` | `Record<string, unknown>` | `() => ({})` | 绑定值 / Bound value (v-model) |
+| `items` | `SettingItem[]` | `() => []` | Flat list — used when groups is empty |
+| `groups` | `SettingGroup[]` | `() => []` | Grouped settings rows |
+| `defaultValue` | `Record<string, unknown>` | `() => ({})` | Snapshot for reset emit |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `value: Record<string, unknown>` | v-model 更新 / v-model update |
 | `change` | `value: Record<string, unknown>` | 值变更 / Change |
-| `save` | `value: Record<string, unknown>` | — |
-| `reset` | `value: Record<string, unknown>` | — |
+| `save` | `value: Record<string, unknown>` | save 时触发 |
+| `reset` | `value: Record<string, unknown>` | reset 时触发 |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `SettingItem`
 - `SettingGroup`
 - `SettingPanelProps`
 - `SettingPanelEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- 按键：`Tab` · `Enter` · `Escape` · `ArrowDown` · `ArrowUp` · `ArrowLeft` · `ArrowRight` · `Home` · `End` · `Space`
+- keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts SettingPanel uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts SettingPanel RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts SettingPanel client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -67,6 +113,9 @@ Curated demo：`example/demos/SettingPanel/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/form` |
+| metadata | `component-metadata/SettingPanel.json` |
 | API extract | `generated/component-api/SettingPanel.json` |
 
-> 完整 Demo 见 `example/demos/SettingPanel`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/SettingPanel`（example 本地调试，不上线）。
+

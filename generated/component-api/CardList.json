@@ -1,6 +1,12 @@
 {
   "name": "CardList",
-  "generatedAt": "2026-08-07T12:40:46.785Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/card-list"
+  ],
+  "sourceHash": "eb5ce8eb742fa3e48645b03a1871cd4addda48226f432ead37ea5272ffb2933e",
+  "generatedAt": "2026-08-07T18:45:10.918Z",
   "source": {
     "types": "packages/components/data/CardList/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "GbsGatewayForm",
-  "generatedAt": "2026-08-07T12:41:13.602Z",
+  "package": "gb28181",
+  "importPaths": [
+    "amg-webui/gb28181",
+    "amg-webui/gbs-gateway-form"
+  ],
+  "sourceHash": "af73527d3b9fb79ddd9469939ce1307312befedc58dac0f01d5f6428a51dc5fb",
+  "generatedAt": "2026-08-07T18:45:11.045Z",
   "source": {
     "types": "packages/components/gb28181/GbsGatewayForm/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "modelValue",
       "optional": true,
       "type": "GbsGateway",
-      "description": ""
+      "description": "",
+      "default": "() => ({ gatewayId: '34020000001320000001', sipDomain: '3402000000', sipPort: 5060, password: '', realm: '3402000000' })"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "readonly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "compact",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "showPassword",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

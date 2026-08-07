@@ -1,6 +1,12 @@
 {
   "name": "FlowPanel",
-  "generatedAt": "2026-08-07T12:41:13.589Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/flow-panel"
+  ],
+  "sourceHash": "38e65d03f30697daaa2607279a88d58b23af5c90ae27f5aa5a7c00ba5c222170",
+  "generatedAt": "2026-08-07T18:45:11.021Z",
   "source": {
     "types": "packages/components/data/FlowPanel/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "steps",
       "optional": true,
       "type": "FlowStep[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "current",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "showNav",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Show wizard prev/next controls",
+      "default": false
     },
     {
       "name": "blockOnError",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Disable next when current step has error status",
+      "default": true
     }
   ],
   "events": [

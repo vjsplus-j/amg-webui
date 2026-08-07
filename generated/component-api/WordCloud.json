@@ -1,6 +1,12 @@
 {
   "name": "WordCloud",
-  "generatedAt": "2026-08-07T12:42:38.283Z",
+  "package": "charts",
+  "importPaths": [
+    "amg-webui/charts",
+    "amg-webui/word-cloud"
+  ],
+  "sourceHash": "79bf824365430970c3b27f1e78f9f29f94007cda099a32e9fc07b0aa41f3e8ea",
+  "generatedAt": "2026-08-07T18:45:11.299Z",
   "source": {
     "types": "packages/components/charts/WordCloud/types.ts",
     "vue": true
@@ -10,73 +16,85 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number | null",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "minFontSize",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 12
     },
     {
       "name": "maxFontSize",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 32
     },
     {
       "name": "rotate",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "showValues",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "selectable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

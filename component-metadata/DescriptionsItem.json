@@ -1,0 +1,63 @@
+{
+  "name": "DescriptionsItem",
+  "title": "DescriptionsItem",
+  "summary": "DescriptionsItem：面向企业场景的 Table 组件（成熟度 rc）。",
+  "description": "DescriptionsItem：面向企业场景的 Table 组件（成熟度 rc）。",
+  "family": "table",
+  "package": "data",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/descriptions-item"
+  ],
+  "features": [
+    "Table 家族组件"
+  ],
+  "useCases": [
+    "结构化数据表格",
+    "排序筛选分页场景"
+  ],
+  "avoidWhen": [
+    "少量键值对用 Descriptions",
+    "无结构化列需求时避免过度使用表格"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Tab",
+      "Enter",
+      "Escape",
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      "Space"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts DescriptionsItem uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts DescriptionsItem RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts DescriptionsItem client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.396Z",
+  "sourceHash": "7521c6204e461d90261969d3192204b8c5bcd788542ae21d55b54cc236a84654"
+}

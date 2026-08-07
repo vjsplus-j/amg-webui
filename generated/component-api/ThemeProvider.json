@@ -1,6 +1,12 @@
 {
   "name": "ThemeProvider",
-  "generatedAt": "2026-08-07T12:42:17.036Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/theme-provider"
+  ],
+  "sourceHash": "7785c19a3cbd29ff55dc606f0bf601c248be05f817d7ea9ed256e2e0f7a0eda5",
+  "generatedAt": "2026-08-07T18:45:11.245Z",
   "source": {
     "types": "packages/components/core/ThemeProvider/types.ts",
     "vue": true
@@ -10,79 +16,92 @@
       "name": "design",
       "optional": true,
       "type": "DesignStyleName | string",
-      "description": ""
+      "description": "Official design brand (mercedes / linear / …).",
+      "default": null
     },
     {
       "name": "theme",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Alias of `design` for ConfigProvider-compatible naming.",
+      "default": null
     },
     {
       "name": "scheme",
       "optional": true,
       "type": "ColorScheme",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "font",
       "optional": true,
       "type": "FontName | string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "iconStyle",
       "optional": true,
       "type": "IconStyleName | string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "tokens",
       "optional": true,
       "type": "Record<string, string>",
-      "description": ""
+      "description": "CSS custom property overlay (keys with or without `--`).",
+      "default": null
     },
     {
       "name": "primary",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Primary color → full `--primary-*` scale + semantic bridges.",
+      "default": null
     },
     {
       "name": "runtime",
       "optional": true,
       "type": "ThemeRuntime",
-      "description": ""
+      "description": "Inject an existing runtime (provider will not dispose it).",
+      "default": null
     },
     {
       "name": "persist",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Persist axes to storage. Default false for scoped providers.",
+      "default": false
     },
     {
       "name": "storageNamespace",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "tag",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "div"
     },
     {
       "name": "display",
       "optional": true,
       "type": "'block' | 'contents' | 'inline'",
-      "description": ""
+      "description": "",
+      "default": "block"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "FormTabs",
-  "generatedAt": "2026-08-07T12:34:13.538Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/form-tabs"
+  ],
+  "sourceHash": "a6cf9ed4bb62992bf44839d852889d0b9f637a5111e568571305f49eed2c2485",
+  "generatedAt": "2026-08-07T18:45:11.034Z",
   "source": {
     "types": "packages/components/form/FormTabs/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "tabs",
       "optional": true,
       "type": "FormTabItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "tabData",
       "optional": true,
       "type": "Record<string, Record<string, unknown>>",
-      "description": ""
+      "description": "",
+      "default": "() => ({})"
     },
     {
       "name": "fieldLabels",
       "optional": true,
       "type": "Record<string, Record<string, string>>",
-      "description": ""
+      "description": "Optional per-tab field labels: { [tabName]: { [field]: label } }",
+      "default": "() => ({})"
     },
     {
       "name": "rules",
       "optional": true,
       "type": "FormRules",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

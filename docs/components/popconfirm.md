@@ -1,25 +1,40 @@
 # Popconfirm
 
-Popconfirm 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Popconfirm：面向企业场景的 Overlay 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Popconfirm 当前成熟度为 **RC**；完整交互见本地 example。
+Popconfirm：面向企业场景的 Overlay 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Overlay 家族组件
+- 支持禁用状态
+- 语义色变体
+- 加载状态反馈
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 对话框、抽屉、气泡确认等浮层
+- 阻断式交互
+- 需要禁用/只读控制的表单场景
+- 异步提交或加载过程反馈
+
+**不适用**
+
+- 轻量提示优先 Toast / Message
+- 非阻断提示不要用 Modal 对话框
 
 ## 基础用法
 
+> `import { Popconfirm } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { Popconfirm } from '@amg-webui/core'
+import { Popconfirm } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,45 +44,81 @@ import { Popconfirm } from '@amg-webui/core'
 
 Curated demo：`example/demos/Popconfirm/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `visible` | `boolean` | — | 是否可见 / Visibility (v-model:visible) |
-| `title` | `string` | — | 标题 / Title |
-| `description` | `string` | — | — |
-| `placement` | `FloatingPlacement` | — | 抽屉方向 / Drawer placement |
-| `dismissible` | `boolean` | — | — |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
-| `confirmLabel` | `string` | — | — |
-| `cancelLabel` | `string` | — | — |
-| `severity` | `Severity` | — | 语义色：`primary` · `secondary` · `danger` 等 / Semantic color |
-| `loading` | `boolean` | — | 加载中状态 / Loading state |
-| `showIcon` | `boolean` | — | — |
-| `offset` | `number` | — | — |
-| `zIndex` | `number` | — | — |
-| `teleportTo` | `string \| HTMLElement` | — | — |
-| `beforeConfirm` | `(event: MouseEvent) => boolean \| Promise<boolean>` | — | — |
-| `beforeCancel` | `( reason: PopconfirmCloseReason, event?: Event, ) => boolean \| Promise<boolean>` | — | — |
-| `trackId` | `string` | — | Telemetry 追踪 id / Telemetry track id |
-| `telemetry` | `boolean` | — | 是否上报 Telemetry / Enable telemetry |
+| `visible` | `boolean` | `undefined` | 是否可见 / Visibility (v-model:visible) |
+| `title` | `string` | `undefined` | 标题 / Title |
+| `description` | `string` | `undefined` | description 字符串 |
+| `placement` | `FloatingPlacement` | `top` | 抽屉方向 / Drawer placement |
+| `dismissible` | `boolean` | true | 是否启用 dismissible |
+| `disabled` | `boolean` | false | 是否禁用 / Whether disabled |
+| `confirmLabel` | `string` | `` | confirmLabel 字符串 |
+| `cancelLabel` | `string` | `` | cancelLabel 字符串 |
+| `severity` | `Severity` | `warning` | 语义色：`primary` · `secondary` · `danger` 等 / Semantic color |
+| `loading` | `boolean` | false | 加载中状态 / Loading state |
+| `showIcon` | `boolean` | true | 是否启用 showIcon |
+| `offset` | `number` | 8 | offset 数值 |
+| `zIndex` | `number` | `undefined` | zIndex 数值 |
+| `teleportTo` | `string \| HTMLElement` | `body` | teleportTo 字符串 |
+| `beforeConfirm` | `(event: MouseEvent) => boolean \| Promise<boolean>` | `undefined` | 是否启用 beforeConfirm |
+| `beforeCancel` | `( reason: PopconfirmCloseReason, event?: Event, ) => boolean \| Promise<boolean>` | `undefined` | 是否启用 beforeCancel |
+| `trackId` | `string` | `undefined` | Telemetry 追踪 id / Telemetry track id |
+| `telemetry` | `boolean` | `undefined` | 是否上报 Telemetry / Enable telemetry |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:visible` | `value: boolean` | visible 更新 / visible update |
-| `confirm` | `event: MouseEvent` | — |
-| `cancel` | `event: Event, reason: PopconfirmCloseReason` | — |
-| `openChange` | `value: boolean, reason?: PopconfirmCloseReason` | — |
-| `error` | `error: unknown, action: "confirm" \| "cancel"` | — |
+| `confirm` | `event: MouseEvent` | 确认时触发 |
+| `cancel` | `event: Event, reason: PopconfirmCloseReason` | cancel 时触发 |
+| `openChange` | `value: boolean, reason?: PopconfirmCloseReason` | openChange 时触发 |
+| `error` | `error: unknown, action: "confirm" \| "cancel"` | error 时触发 |
 
-## Public types
+### Public Types
 
 - `PopconfirmCloseReason`
 - `PopconfirmProps`
 - `PopconfirmEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- 按键：`Tab` · `Enter` · `Escape` · `ArrowDown` · `ArrowUp` · `ArrowLeft` · `ArrowRight` · `Home` · `End` · `Space`
+- keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Popconfirm uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Popconfirm RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Popconfirm client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -75,6 +126,9 @@ Curated demo：`example/demos/Popconfirm/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Popconfirm.json` |
 | API extract | `generated/component-api/Popconfirm.json` |
 
-> 完整 Demo 见 `example/demos/Popconfirm`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Popconfirm`（example 本地调试，不上线）。
+

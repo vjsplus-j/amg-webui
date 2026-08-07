@@ -1,6 +1,12 @@
 {
   "name": "InputCaptcha",
-  "generatedAt": "2026-08-07T12:41:13.623Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/input-captcha"
+  ],
+  "sourceHash": "633de2019e000abfe5cbcbbb5878a44e65894c3801d754d704037287c5aa4a3c",
+  "generatedAt": "2026-08-07T18:45:11.077Z",
   "source": {
     "types": "packages/components/form/InputCaptcha/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "length",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 4
     },
     {
       "name": "caseSensitive",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "refreshDelay",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 300
     },
     {
       "name": "showRefreshButton",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "generator",
       "optional": true,
       "type": "(length: number) => string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

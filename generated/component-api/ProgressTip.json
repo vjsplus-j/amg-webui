@@ -1,6 +1,12 @@
 {
   "name": "ProgressTip",
-  "generatedAt": "2026-08-07T12:41:35.063Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/progress-tip"
+  ],
+  "sourceHash": "1cf7a30a9683847e497a21d31bc5a430a23ac1d3abf0db8575cae569c9976bc7",
+  "generatedAt": "2026-08-07T18:45:11.150Z",
   "source": {
     "types": "packages/components/core/ProgressTip/types.ts",
     "vue": true
@@ -10,127 +16,148 @@
       "name": "modelValue",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "message",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "percentage",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "severity",
       "optional": true,
       "type": "Severity",
-      "description": ""
+      "description": "",
+      "default": "info"
     },
     {
       "name": "size",
       "optional": true,
       "type": "ProgressTipSize",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "showText",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "striped",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "indeterminate",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "closable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "currentStep",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "totalSteps",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "actionText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "state",
       "optional": true,
       "type": "ProgressTipState",
-      "description": ""
+      "description": "",
+      "default": "active"
     },
     {
       "name": "cancellable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "cancelText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "retryable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "retryText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "Space",
-  "generatedAt": "2026-08-07T12:41:56.151Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/space"
+  ],
+  "sourceHash": "06b46f1ec80bb78d3893ef09a1a34c1c0b78c5904427162bbe053d3317f55b11",
+  "generatedAt": "2026-08-07T18:45:11.199Z",
   "source": {
     "types": "packages/components/core/Space/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "size",
       "optional": true,
       "type": "SpaceSize",
-      "description": ""
+      "description": "Gap: xs–xl（极小/小/中/大/极大）→ `--spacing-*`；默认 md",
+      "default": "md"
     },
     {
       "name": "gap",
       "optional": true,
       "type": "SpaceSize",
-      "description": ""
+      "description": "Alias of size",
+      "default": null
     },
     {
       "name": "gutter",
       "optional": true,
       "type": "number | string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "direction",
       "optional": true,
       "type": "SpaceDirection",
-      "description": ""
+      "description": "",
+      "default": "horizontal"
     },
     {
       "name": "align",
       "optional": true,
       "type": "'start' | 'end' | 'center' | 'baseline' | 'stretch'",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "justify",
       "optional": true,
       "type": "'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly'",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "wrap",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Wrap onto new lines (default true for horizontal)",
+      "default": true
     },
     {
       "name": "block",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Stretch to 100% parent width",
+      "default": false
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name for the spacing group",
+      "default": null
     }
   ],
   "events": [],

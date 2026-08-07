@@ -1,6 +1,12 @@
 {
   "name": "Dashboard",
-  "generatedAt": "2026-08-07T12:40:46.811Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/dashboard"
+  ],
+  "sourceHash": "ca2ac62c1dbfc9ba9538b2c31d0a6f576a4da02db4f1fc5c5941908003f6242d",
+  "generatedAt": "2026-08-07T18:45:10.954Z",
   "source": {
     "types": "packages/components/data/Dashboard/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "stats",
       "optional": true,
       "type": "DashboardStat[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "widgets",
       "optional": true,
       "type": "DashboardWidget[]",
-      "description": ""
+      "description": "Named widget slots: #widget-{id}",
+      "default": "() => []"
     },
     {
       "name": "columns",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Responsive grid column count",
+      "default": 3
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

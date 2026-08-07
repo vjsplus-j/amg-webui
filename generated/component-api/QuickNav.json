@@ -1,6 +1,12 @@
 {
   "name": "QuickNav",
-  "generatedAt": "2026-08-07T12:41:56.113Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/quick-nav"
+  ],
+  "sourceHash": "1531df2e0c51d5065976d30c79be184f04569ab00f78a08ead95164c398790f1",
+  "generatedAt": "2026-08-07T18:45:11.155Z",
   "source": {
     "types": "packages/components/core/QuickNav/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "items",
       "optional": true,
       "type": "NavItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "variant",
       "optional": true,
       "type": "QuickNavVariant",
-      "description": ""
+      "description": "",
+      "default": "grid"
     },
     {
       "name": "columns",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 4
     },
     {
       "name": "showDescriptions",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

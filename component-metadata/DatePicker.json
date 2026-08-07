@@ -1,0 +1,66 @@
+{
+  "name": "DatePicker",
+  "title": "DatePicker 日期选择",
+  "summary": "DatePicker 日期选择：面向企业场景的 DateTime 组件（成熟度 rc）。",
+  "description": "DatePicker 日期选择：面向企业场景的 DateTime 组件（成熟度 rc）。",
+  "family": "datetime",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/date-picker"
+  ],
+  "features": [
+    "DateTime 家族组件",
+    "v-model 双向绑定",
+    "占位提示",
+    "事件回调",
+    "插槽自定义",
+    "实例方法暴露"
+  ],
+  "useCases": [
+    "日期/时间选择与范围输入",
+    "表单与筛选面板"
+  ],
+  "avoidWhen": [
+    "需要非标准历法或复杂排班规则时需自定义"
+  ],
+  "related": [
+    "Form",
+    "FormItem",
+    "DateTimePicker",
+    "TimePicker",
+    "Calendar"
+  ],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Enter",
+      "ArrowDown",
+      "Escape"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural top-level DOM clean"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.394Z",
+  "sourceHash": "f54e0d983591b8a20a90e7ba871ae5fcc02c1e9b2b039ddaa2445e06b8ab12b4"
+}

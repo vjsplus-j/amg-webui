@@ -1,6 +1,12 @@
 {
   "name": "FilePreview",
-  "generatedAt": "2026-08-07T12:41:13.584Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/file-preview"
+  ],
+  "sourceHash": "1b0593600b1ed4d2a17e5cbedbbe7ba098b5fffc4bce97d025274c698cb90b52",
+  "generatedAt": "2026-08-07T18:45:11.005Z",
   "source": {
     "types": "packages/components/core/FilePreview/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "src",
       "optional": true,
       "type": "string | File | Blob | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "mime",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "height",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "16rem"
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "Qrcode",
-  "generatedAt": "2026-08-07T12:41:56.112Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/qrcode"
+  ],
+  "sourceHash": "566181add9712801647d48003e8e1c41ce18ac7542cd01a6f8b8d669bef77f4a",
+  "generatedAt": "2026-08-07T18:45:11.152Z",
   "source": {
     "types": "packages/components/core/Qrcode/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "value",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "size",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "pixelSize",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 4
     },
     {
       "name": "standard",
       "optional": true,
       "type": "QrcodeStandard",
-      "description": ""
+      "description": "QR Code standard profile.",
+      "default": "iso"
     },
     {
       "name": "errorCorrection",
       "optional": true,
       "type": "QrcodeErrorCorrectionLevel",
-      "description": ""
+      "description": "QR Code error correction level.",
+      "default": null
     },
     {
       "name": "quietZone",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Quiet-zone padding around the generated symbol.",
+      "default": 8
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "editable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

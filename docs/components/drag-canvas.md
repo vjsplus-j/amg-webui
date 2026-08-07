@@ -1,25 +1,36 @@
 # DragCanvas
 
-DragCanvas 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+DragCanvas：面向企业场景的 Lowcode 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-DragCanvas 当前成熟度为 **RC**；完整交互见本地 example。
+DragCanvas：面向企业场景的 Lowcode 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Lowcode 家族组件
+- v-model 双向绑定
+- 只读模式
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 低代码画布与物料拖拽
+- Schema 渲染
+
+**不适用**
+
+- 标准后台 CRUD 无需低代码层
 
 ## 基础用法
 
+> `import { DragCanvas } from 'amg-webui/lowcode'`
+
 ```vue
 <script setup>
-import { DragCanvas } from '@amg-webui/lowcode'
+import { DragCanvas } from 'amg-webui/lowcode'
 </script>
 
 <template>
@@ -29,19 +40,21 @@ import { DragCanvas } from '@amg-webui/lowcode'
 
 Curated demo：`example/demos/DragCanvas/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `CanvasNodeData[]` | — | 绑定值 / Bound value (v-model) |
-| `mode` | `'free' \| 'grid'` | — | — |
-| `readonly` | `boolean` | — | 是否只读 / Read-only |
-| `materials` | `CanvasMaterialItem[]` | — | — |
-| `gridCols` | `number` | — | — |
-| `registry` | `ComponentRegistry` | — | — |
-| `renderMode` | `'chrome' \| 'component'` | — | — |
+| `modelValue` | `CanvasNodeData[]` | `() => []` | 绑定值 / Bound value (v-model) |
+| `mode` | `'free' \| 'grid'` | `free` | mode 配置项 |
+| `readonly` | `boolean` | false | 是否只读 / Read-only |
+| `materials` | `CanvasMaterialItem[]` | `() => []` | materials 列表数据 |
+| `gridCols` | `number` | 24 | gridCols 数值 |
+| `registry` | `ComponentRegistry` | `undefined` | When set, canvas nodes mount real components (WYSIWYG). |
+| `renderMode` | `'chrome' \| 'component'` | `chrome` | `component` = registry mount; `chrome` = label/type placeholder. |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
@@ -49,17 +62,50 @@ Curated demo：`example/demos/DragCanvas/index.vue`
 | `select` | `ids: string[]` | 选中 / Select |
 | `change` | `value: CanvasNodeData[]` | 值变更 / Change |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `DragCanvasProps`
 - `DragCanvasEmits`
 
+## 键盘交互
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts DragCanvas non-interactive display — keyboard N/A
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts DragCanvas uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts DragCanvas RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts DragCanvas client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -67,6 +113,9 @@ Curated demo：`example/demos/DragCanvas/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/lowcode` |
+| metadata | `component-metadata/DragCanvas.json` |
 | API extract | `generated/component-api/DragCanvas.json` |
 
-> 完整 Demo 见 `example/demos/DragCanvas`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/DragCanvas`（example 本地调试，不上线）。
+

@@ -1,0 +1,65 @@
+{
+  "name": "TemplateSelect",
+  "title": "TemplateSelect",
+  "summary": "TemplateSelect：面向企业场景的 Selection 组件（成熟度 rc）。",
+  "description": "TemplateSelect：面向企业场景的 Selection 组件（成熟度 rc）。",
+  "family": "selection",
+  "package": "lowcode",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/template-select"
+  ],
+  "features": [
+    "Selection 家族组件",
+    "v-model 双向绑定",
+    "可搜索",
+    "事件回调"
+  ],
+  "useCases": [
+    "下拉、级联、树选等选择场景",
+    "表单字段与筛选器"
+  ],
+  "avoidWhen": [
+    "超大数据集未开启虚拟化时可能影响性能"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Tab",
+      "Enter",
+      "Escape",
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      "Space"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural DOM + component entry"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.560Z",
+  "sourceHash": "8bc07eea175077cf0e49c0c9767eeffee16413c36f52dd3f52325e5d0fb8baec"
+}

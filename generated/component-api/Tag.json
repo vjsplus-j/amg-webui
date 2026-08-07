@@ -1,6 +1,12 @@
 {
   "name": "Tag",
-  "generatedAt": "2026-08-07T12:42:17.029Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/tag"
+  ],
+  "sourceHash": "d128cda7b8d8e4d0ad57399482c4cb88899b2c4d9ced3da7af90c4c5ce5758ee",
+  "generatedAt": "2026-08-07T18:45:11.234Z",
   "source": {
     "types": "packages/components/core/Tag/types.ts",
     "vue": true
@@ -10,193 +16,225 @@
       "name": "spin",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Continuous rotate — shared Motion",
+      "default": false
     },
     {
       "name": "pulse",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Soft opacity pulse — shared Motion",
+      "default": false
     },
     {
       "name": "heartbeat",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Scale heartbeat — shared Motion",
+      "default": false
     },
     {
       "name": "bounce",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Jump upward — shared Motion",
+      "default": false
     },
     {
       "name": "blink",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Sharp flash — shared Motion",
+      "default": false
     },
     {
       "name": "breathe",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Breathing light — shared Motion",
+      "default": false
     },
     {
       "name": "glow",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Fluorescent glow — shared Motion",
+      "default": false
     },
     {
       "name": "marqueeLeft",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marquee scroll left — shared Motion",
+      "default": false
     },
     {
       "name": "marqueeRight",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marquee scroll right — shared Motion",
+      "default": false
     },
     {
       "name": "scrollUp",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical scroll up — shared Motion",
+      "default": false
     },
     {
       "name": "scrollDown",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical scroll down — shared Motion",
+      "default": false
     },
     {
       "name": "dampOut",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Damped zoom then fade out — shared Motion",
+      "default": false
     },
     {
       "name": "animationDuration",
       "optional": true,
       "type": "number | string",
-      "description": ""
+      "description": "Animation duration (ms or CSS time) — shared Motion",
+      "default": null
     },
     {
       "name": "label",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "type",
       "optional": true,
       "type": "TagSeverity",
-      "description": ""
+      "description": "Alias of `severity`",
+      "default": null
     },
     {
       "name": "severity",
       "optional": true,
       "type": "TagSeverity",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "effect",
       "optional": true,
       "type": "TagEffect",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "TagSize",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "icon",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Lucide icon name — prefix; size follows tag unless `iconSize` set",
+      "default": null
     },
     {
       "name": "iconSize",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "closable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "round",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Pill / full radius",
+      "default": false
     },
     {
       "name": "rounded",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Alias of `round`",
+      "default": false
     },
     {
       "name": "borderRadius",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Custom radius — CSS value (token / % preferred)",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "clickable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Interactive tag — keyboard focus + role=button when click listeners present",
+      "default": false
     },
     {
       "name": "wait",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Close debounce wait (ms); falls back to global config",
+      "default": null
     },
     {
       "name": "beforeClose",
       "optional": true,
       "type": "(event: MouseEvent) => boolean | void | Promise<boolean | void>",
-      "description": ""
+      "description": "Pre-close interceptor — return false / reject to abort",
+      "default": null
     },
     {
       "name": "colorBg",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Custom fill (prefer CSS vars / tokens)",
+      "default": null
     },
     {
       "name": "colorText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Custom text color",
+      "default": null
     },
     {
       "name": "colorBorder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Custom border color",
+      "default": null
     },
     {
       "name": "color",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Shorthand custom color: solid → bg; outlined/light → text + border. Prefer Token vars; pair with colorText for contrast when needed.",
+      "default": null
     }
   ],
   "events": [

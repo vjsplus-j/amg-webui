@@ -1,25 +1,39 @@
 # TreeForm
 
-TreeForm 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+TreeForm：面向企业场景的 Form 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-TreeForm 当前成熟度为 **RC**；完整交互见本地 example。
+TreeForm：面向企业场景的 Form 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Form 家族组件
+- v-model 双向绑定
+- 支持禁用状态
+- 加载状态反馈
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 表单布局、校验与字段编排
+- 动态/分步表单
+- 需要禁用/只读控制的表单场景
+- 异步提交或加载过程反馈
+
+**不适用**
+
+- 纯展示场景无需引入完整 Form
 
 ## 基础用法
 
+> `import { TreeForm } from 'amg-webui/form'`
+
 ```vue
 <script setup>
-import { TreeForm } from '@amg-webui/form'
+import { TreeForm } from 'amg-webui/form'
 </script>
 
 <template>
@@ -29,18 +43,20 @@ import { TreeForm } from '@amg-webui/form'
 
 Curated demo：`example/demos/TreeForm/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `title` | `string` | — | 标题 / Title |
-| `description` | `string` | — | — |
-| `data` | `unknown` | — | 树形数据 / Tree data |
-| `modelValue` | `unknown` | — | 绑定值 / Bound value (v-model) |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
-| `loading` | `boolean` | — | 加载中状态 / Loading state |
+| `title` | `string` | `undefined` | 标题 / Title |
+| `description` | `string` | `undefined` | description 字符串 |
+| `data` | `unknown` | `undefined` | 树形数据 / Tree data |
+| `modelValue` | `unknown` | `undefined` | 绑定值 / Bound value (v-model) |
+| `disabled` | `boolean` | false | 是否禁用 / Whether disabled |
+| `loading` | `boolean` | `undefined` | 加载中状态 / Loading state |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
@@ -48,17 +64,51 @@ Curated demo：`example/demos/TreeForm/index.vue`
 | `change` | `value: unknown` | 值变更 / Change |
 | `click` | `event: MouseEvent` | 点击 / Click |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `TreeFormProps`
 - `TreeFormEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- 按键：`Tab` · `Enter` · `Escape` · `ArrowDown` · `ArrowUp` · `ArrowLeft` · `ArrowRight` · `Home` · `End` · `Space`
+- keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts TreeForm uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts TreeForm RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts TreeForm client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -66,6 +116,9 @@ Curated demo：`example/demos/TreeForm/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/form` |
+| metadata | `component-metadata/TreeForm.json` |
 | API extract | `generated/component-api/TreeForm.json` |
 
-> 完整 Demo 见 `example/demos/TreeForm`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/TreeForm`（example 本地调试，不上线）。
+

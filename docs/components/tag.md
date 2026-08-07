@@ -1,25 +1,40 @@
 # Tag
 
-Tag 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Tag：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Tag 当前成熟度为 **RC**；完整交互见本地 example。
+Tag：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Foundation 家族组件
+- 语义色变体
+- 多尺寸规格
+- 可关闭
+- 支持禁用状态
+- 事件回调
+- 插槽自定义
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 基础 UI 交互与页面操作
+- 按钮、标签、图标等原子组件
+- 需要禁用/只读控制的表单场景
+
+**不适用**
+
+- 需要复杂业务编排时优先业务组件或组合模式
 
 ## 基础用法
 
+> `import { Tag } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { Tag } from '@amg-webui/core'
+import { Tag } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,59 +44,61 @@ import { Tag } from '@amg-webui/core'
 
 Curated demo：`example/demos/Tag/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `spin` | `boolean` | — | — |
-| `pulse` | `boolean` | — | — |
-| `heartbeat` | `boolean` | — | — |
-| `bounce` | `boolean` | — | — |
-| `blink` | `boolean` | — | — |
-| `breathe` | `boolean` | — | — |
-| `glow` | `boolean` | — | — |
-| `marqueeLeft` | `boolean` | — | — |
-| `marqueeRight` | `boolean` | — | — |
-| `scrollUp` | `boolean` | — | — |
-| `scrollDown` | `boolean` | — | — |
-| `dampOut` | `boolean` | — | — |
-| `animationDuration` | `number \| string` | — | — |
-| `label` | `string` | — | 显示文案 / Display label |
-| `type` | `TagSeverity` | — | 输入类型 / Input type |
-| `severity` | `TagSeverity` | — | 语义色：`primary` · `secondary` · `danger` 等 / Semantic color |
-| `effect` | `TagEffect` | — | — |
-| `size` | `TagSize` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
-| `icon` | `string` | — | 图标名 / Icon name |
-| `iconSize` | `Size` | — | — |
-| `closable` | `boolean` | — | 显示关闭按钮 / Show close button |
-| `round` | `boolean` | — | — |
-| `rounded` | `boolean` | — | 圆角按钮 / Rounded shape |
-| `borderRadius` | `string` | — | — |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
-| `clickable` | `boolean` | — | — |
-| `wait` | `number` | — | — |
-| `beforeClose` | `(event: MouseEvent) => boolean \| void \| Promise<boolean \| void>` | — | — |
-| `colorBg` | `string` | — | — |
-| `colorText` | `string` | — | — |
-| `colorBorder` | `string` | — | — |
-| `color` | `string` | — | — |
+| `spin` | `boolean` | false | Continuous rotate — shared Motion |
+| `pulse` | `boolean` | false | Soft opacity pulse — shared Motion |
+| `heartbeat` | `boolean` | false | Scale heartbeat — shared Motion |
+| `bounce` | `boolean` | false | Jump upward — shared Motion |
+| `blink` | `boolean` | false | Sharp flash — shared Motion |
+| `breathe` | `boolean` | false | Breathing light — shared Motion |
+| `glow` | `boolean` | false | Fluorescent glow — shared Motion |
+| `marqueeLeft` | `boolean` | false | Marquee scroll left — shared Motion |
+| `marqueeRight` | `boolean` | false | Marquee scroll right — shared Motion |
+| `scrollUp` | `boolean` | false | Vertical scroll up — shared Motion |
+| `scrollDown` | `boolean` | false | Vertical scroll down — shared Motion |
+| `dampOut` | `boolean` | false | Damped zoom then fade out — shared Motion |
+| `animationDuration` | `number \| string` | `undefined` | Animation duration (ms or CSS time) — shared Motion |
+| `label` | `string` | `undefined` | 显示文案 / Display label |
+| `type` | `TagSeverity` | `undefined` | Alias of `severity` |
+| `severity` | `TagSeverity` | `undefined` | 语义色：`primary` · `secondary` · `danger` 等 / Semantic color |
+| `effect` | `TagEffect` | `undefined` | effect 配置项 |
+| `size` | `TagSize` | `undefined` | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `icon` | `string` | `undefined` | Lucide icon name — prefix; size follows tag unless `iconSize` set |
+| `iconSize` | `Size` | `undefined` | iconSize 配置项 |
+| `closable` | `boolean` | false | 显示关闭按钮 / Show close button |
+| `round` | `boolean` | false | Pill / full radius |
+| `rounded` | `boolean` | false | Alias of `round` |
+| `borderRadius` | `string` | `undefined` | Custom radius — CSS value (token / % preferred) |
+| `disabled` | `boolean` | false | 是否禁用 / Whether disabled |
+| `clickable` | `boolean` | false | Interactive tag — keyboard focus + role=button when click listeners present |
+| `wait` | `number` | `undefined` | Close debounce wait (ms); falls back to global config |
+| `beforeClose` | `(event: MouseEvent) => boolean \| void \| Promise<boolean \| void>` | `undefined` | Pre-close interceptor — return false / reject to abort |
+| `colorBg` | `string` | `undefined` | Custom fill (prefer CSS vars / tokens) |
+| `colorText` | `string` | `undefined` | Custom text color |
+| `colorBorder` | `string` | `undefined` | Custom border color |
+| `color` | `string` | `undefined` | Shorthand custom color: solid → bg; outlined/light → text + border. Prefer Token vars; pair with colorText for contrast when needed. |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `close` | `event: MouseEvent` | 关闭 / Close |
 | `click` | `event: MouseEvent` | 点击 / Click |
 
-## Slots
+### Slots
 
 | Slot | Props | 说明 |
 | --- | --- | --- |
-| `default` | `props: Record<string, never>` | — |
-| `icon` | `props: Record<string, never>` | — |
-| `closeIcon` | `props: Record<string, never>` | — |
+| `default` | `props: Record<string, never>` | 默认插槽 |
+| `icon` | `props: Record<string, never>` | icon 插槽 |
+| `closeIcon` | `props: Record<string, never>` | closeIcon 插槽 |
 
-## Public types
+### Public Types
 
 - `TagEffect`
 - `TagSeverity`
@@ -90,6 +107,39 @@ Curated demo：`example/demos/Tag/index.vue`
 - `TagEmits`
 - `TagSlots`
 
+## 键盘交互
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Tag non-interactive display — keyboard N/A
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Tag uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Tag RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Tag client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -97,6 +147,9 @@ Curated demo：`example/demos/Tag/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Tag.json` |
 | API extract | `generated/component-api/Tag.json` |
 
-> 完整 Demo 见 `example/demos/Tag`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Tag`（example 本地调试，不上线）。
+

@@ -1,6 +1,12 @@
 {
   "name": "CardNav",
-  "generatedAt": "2026-08-07T12:40:46.786Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/card-nav"
+  ],
+  "sourceHash": "2f4f22e693b4d586a47fae6c525c4735347214837cbeec914f8b11fb6f796c05",
+  "generatedAt": "2026-08-07T18:45:10.919Z",
   "source": {
     "types": "packages/components/core/CardNav/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "items",
       "optional": true,
       "type": "NavItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "direction",
       "optional": true,
       "type": "\"horizontal\" | \"vertical\"",
-      "description": ""
+      "description": "",
+      "default": "horizontal"
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

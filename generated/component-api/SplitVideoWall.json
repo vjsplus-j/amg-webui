@@ -1,6 +1,12 @@
 {
   "name": "SplitVideoWall",
-  "generatedAt": "2026-08-07T12:41:56.158Z",
+  "package": "media",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/split-video-wall"
+  ],
+  "sourceHash": "20aa2ac3519ed8fbd1418885c14b610c0f602c64a0859545349a0f252b8ab59a",
+  "generatedAt": "2026-08-07T18:45:11.204Z",
   "source": {
     "types": "packages/components/media/SplitVideoWall/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "modelValue",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "layout",
       "optional": true,
       "type": "WallLayout",
-      "description": ""
+      "description": "",
+      "default": 4
     },
     {
       "name": "selected",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "layouts",
       "optional": true,
       "type": "WallLayout[]",
-      "description": ""
+      "description": "",
+      "default": "() => [1, 4, 9]"
     },
     {
       "name": "showToolbar",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "keyboard",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "aspectRatio",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "16 / 9"
     }
   ],
   "events": [

@@ -1,0 +1,64 @@
+{
+  "name": "SettingPanel",
+  "title": "SettingPanel",
+  "summary": "SettingPanel：面向企业场景的 Form 组件（成熟度 rc）。",
+  "description": "SettingPanel：面向企业场景的 Form 组件（成熟度 rc）。",
+  "family": "form",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/setting-panel"
+  ],
+  "features": [
+    "Form 家族组件",
+    "v-model 双向绑定",
+    "事件回调"
+  ],
+  "useCases": [
+    "表单布局、校验与字段编排",
+    "动态/分步表单"
+  ],
+  "avoidWhen": [
+    "纯展示场景无需引入完整 Form"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Tab",
+      "Enter",
+      "Escape",
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      "Space"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts SettingPanel uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts SettingPanel RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts SettingPanel client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.532Z",
+  "sourceHash": "3628f40e832c53319812bc6177b7e6f3cb32b09686a6ef6333a2038f53ccbd17"
+}

@@ -1,6 +1,12 @@
 {
   "name": "NoticeBar",
-  "generatedAt": "2026-08-07T12:41:35.027Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/notice-bar"
+  ],
+  "sourceHash": "e1e6829e803eaba23d451467d171a051e05be09f77690542dcf123991e628cbc",
+  "generatedAt": "2026-08-07T18:45:11.110Z",
   "source": {
     "types": "packages/components/core/NoticeBar/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "modelValue",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "message",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "severity",
       "optional": true,
       "type": "Severity",
-      "description": ""
+      "description": "",
+      "default": "info"
     },
     {
       "name": "icon",
       "optional": true,
       "type": "string | boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "closable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "scrollable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "speed",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 18
     },
     {
       "name": "pauseOnHover",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "wrap",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "actionText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

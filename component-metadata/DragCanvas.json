@@ -1,0 +1,54 @@
+{
+  "name": "DragCanvas",
+  "title": "DragCanvas",
+  "summary": "DragCanvas：面向企业场景的 Lowcode 组件（成熟度 rc）。",
+  "description": "DragCanvas：面向企业场景的 Lowcode 组件（成熟度 rc）。",
+  "family": "lowcode",
+  "package": "lowcode",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/drag-canvas"
+  ],
+  "features": [
+    "Lowcode 家族组件",
+    "v-model 双向绑定",
+    "只读模式",
+    "事件回调"
+  ],
+  "useCases": [
+    "低代码画布与物料拖拽",
+    "Schema 渲染"
+  ],
+  "avoidWhen": [
+    "标准后台 CRUD 无需低代码层"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts DragCanvas non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts DragCanvas uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts DragCanvas RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts DragCanvas client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.401Z",
+  "sourceHash": "c26cb43a137aa9bbaafadfb94fea153d2e3af7a4cce6ed019ff5bc833e521633"
+}

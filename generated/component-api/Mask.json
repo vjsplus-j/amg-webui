@@ -1,6 +1,12 @@
 {
   "name": "Mask",
-  "generatedAt": "2026-08-07T12:41:35.017Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/mask"
+  ],
+  "sourceHash": "da551b5b5b4df71d115a6790889a74dd8a701efaab080397290dc96b1f1a5539",
+  "generatedAt": "2026-08-07T18:45:11.094Z",
   "source": {
     "types": "packages/components/overlay/Mask/types.ts",
     "vue": true
@@ -10,79 +16,92 @@
       "name": "visible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "dismissible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "zIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "lockScroll",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "trapFocus",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "centered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "blur",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "teleportTo",
       "optional": true,
       "type": "string | HTMLElement",
-      "description": ""
+      "description": "",
+      "default": "body"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "closeOnPressEscape",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "beforeClose",
       "optional": true,
       "type": "( reason: MaskCloseReason, event?: Event, ) => boolean | Promise<boolean>",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

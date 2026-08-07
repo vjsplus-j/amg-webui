@@ -1,25 +1,38 @@
 # Typography
 
-Typography 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Typography：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Typography 当前成熟度为 **RC**；完整交互见本地 example。
+Typography：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Foundation 家族组件
+- 支持禁用状态
+- 加载状态反馈
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 基础 UI 交互与页面操作
+- 按钮、标签、图标等原子组件
+- 需要禁用/只读控制的表单场景
+- 异步提交或加载过程反馈
+
+**不适用**
+
+- 需要复杂业务编排时优先业务组件或组合模式
 
 ## 基础用法
 
+> `import { Typography } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { Typography } from '@amg-webui/core'
+import { Typography } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,51 +42,53 @@ import { Typography } from '@amg-webui/core'
 
 Curated demo：`example/demos/Typography/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `spin` | `boolean` | — | — |
-| `pulse` | `boolean` | — | — |
-| `heartbeat` | `boolean` | — | — |
-| `bounce` | `boolean` | — | — |
-| `blink` | `boolean` | — | — |
-| `breathe` | `boolean` | — | — |
-| `glow` | `boolean` | — | — |
-| `marqueeLeft` | `boolean` | — | — |
-| `marqueeRight` | `boolean` | — | — |
-| `scrollUp` | `boolean` | — | — |
-| `scrollDown` | `boolean` | — | — |
-| `dampOut` | `boolean` | — | — |
-| `animationDuration` | `number \| string` | — | — |
-| `type` | `TypographyType` | — | 输入类型 / Input type |
-| `typeColor` | `Severity` | — | — |
-| `color` | `Severity` | — | — |
-| `copyable` | `TypographyCopyable` | — | — |
-| `ellipsis` | `TypographyEllipsis` | — | — |
-| `strong` | `boolean` | — | — |
-| `italic` | `boolean` | — | — |
-| `underline` | `boolean` | — | — |
-| `delete` | `boolean` | — | — |
-| `mark` | `boolean` | — | — |
-| `code` | `boolean` | — | — |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
-| `loading` | `boolean` | — | 加载中状态 / Loading state |
-| `shimmer` | `boolean` | — | — |
-| `clickable` | `boolean` | — | — |
-| `fontFamily` | `TypographyFontFamily` | — | — |
-| `lineHeight` | `string \| number` | — | — |
-| `content` | `string` | — | — |
+| `spin` | `boolean` | false | Continuous rotate — shared Motion |
+| `pulse` | `boolean` | false | Soft opacity pulse — shared Motion |
+| `heartbeat` | `boolean` | false | Scale heartbeat — shared Motion |
+| `bounce` | `boolean` | false | Jump upward — shared Motion |
+| `blink` | `boolean` | false | Sharp flash — shared Motion |
+| `breathe` | `boolean` | false | Breathing light — shared Motion |
+| `glow` | `boolean` | false | Fluorescent glow — shared Motion |
+| `marqueeLeft` | `boolean` | false | Marquee scroll left — shared Motion |
+| `marqueeRight` | `boolean` | false | Marquee scroll right — shared Motion |
+| `scrollUp` | `boolean` | false | Vertical scroll up — shared Motion |
+| `scrollDown` | `boolean` | false | Vertical scroll down — shared Motion |
+| `dampOut` | `boolean` | false | Damped zoom then fade out — shared Motion |
+| `animationDuration` | `number \| string` | `undefined` | Animation duration (ms or CSS time) — shared Motion |
+| `type` | `TypographyType` | `undefined` | 输入类型 / Input type |
+| `typeColor` | `Severity` | `undefined` | Semantic status color |
+| `color` | `Severity` | `undefined` | Alias of typeColor |
+| `copyable` | `TypographyCopyable` | false | copyable 配置项 |
+| `ellipsis` | `TypographyEllipsis` | false | ellipsis 配置项 |
+| `strong` | `boolean` | false | 是否启用 strong |
+| `italic` | `boolean` | false | 是否启用 italic |
+| `underline` | `boolean` | false | 是否启用 underline |
+| `delete` | `boolean` | false | Strikethrough |
+| `mark` | `boolean` | false | 是否启用 mark |
+| `code` | `boolean` | false | 是否启用 code |
+| `disabled` | `boolean` | false | 是否禁用 / Whether disabled |
+| `loading` | `boolean` | false | Wait / thinking state — keeps the text visible while a light beam walks across the glyphs (not a block skeleton). |
+| `shimmer` | `boolean` | false | Same light-beam visual without locking interaction / aria-busy |
+| `clickable` | `boolean` | false | 是否启用 clickable |
+| `fontFamily` | `TypographyFontFamily` | `undefined` | fontFamily 配置项 |
+| `lineHeight` | `string \| number` | `undefined` | CSS length or unitless; prefers design tokens when string |
+| `content` | `string` | `undefined` | Explicit text when default slot is empty / for copy payload fallback |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
-| `copy` | `text: string` | — |
-| `copyError` | `error: Error` | — |
+| `copy` | `text: string` | copy 时触发 |
+| `copyError` | `error: Error` | copyError 时触发 |
 | `click` | `event: MouseEvent` | 点击 / Click |
 
-## Public types
+### Public Types
 
 - `TypographyType`
 - `TypographyFontFamily`
@@ -84,6 +99,39 @@ Curated demo：`example/demos/Typography/index.vue`
 - `TypographyProps`
 - `TypographyEmits`
 
+## 键盘交互
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Typography non-interactive display — keyboard N/A
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Typography uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Typography RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Typography client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -91,6 +139,9 @@ Curated demo：`example/demos/Typography/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Typography.json` |
 | API extract | `generated/component-api/Typography.json` |
 
-> 完整 Demo 见 `example/demos/Typography`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Typography`（example 本地调试，不上线）。
+

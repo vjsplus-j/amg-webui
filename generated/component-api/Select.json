@@ -1,6 +1,12 @@
 {
   "name": "Select",
-  "generatedAt": "2026-08-07T12:34:13.547Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/select"
+  ],
+  "sourceHash": "5cc607b24bbff246d74b76516213d532ceb78ef52f87f398e99ebb223207a62a",
+  "generatedAt": "2026-08-07T18:45:11.186Z",
   "source": {
     "types": "packages/components/form/Select/types.ts",
     "vue": true
@@ -10,145 +16,169 @@
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "SelectModelValue",
-      "description": ""
+      "description": "v-model — scalar for single mode, array for `multiple`",
+      "default": null
     },
     {
       "name": "options",
       "optional": true,
       "type": "SelectOption[]",
-      "description": ""
+      "description": "Option list rendered in the dropdown",
+      "default": "() => []"
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Placeholder when nothing is selected",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "readonly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "filterable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Local filter on option labels",
+      "default": null
     },
     {
       "name": "clearable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Show clear control when a value is present",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "fluid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Stretch to container width",
+      "default": null
     },
     {
       "name": "width",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "panelClass",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "panelStyle",
       "optional": true,
       "type": "Record<string, string>",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "multiple",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Multi-select mode — `modelValue` becomes `(string | number)[]`. Dropdown stays open after each pick; selected values render as tags.",
+      "default": null
     },
     {
       "name": "collapseTags",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Collapse excess tags to `+N` (multiple mode only).",
+      "default": null
     },
     {
       "name": "maxCollapseTags",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Max visible tags before collapse when `collapseTags` is true.",
+      "default": 1
     },
     {
       "name": "virtual",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Enable virtual scrolling in the dropdown. When `undefined`, auto-enables when option count exceeds `virtualThreshold`. Set `false` to force full DOM render.",
+      "default": null
     },
     {
       "name": "virtualThreshold",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Option count threshold for auto virtual scroll.",
+      "default": 60
     },
     {
       "name": "filterDebounce",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Delay local and remote filtering to avoid repeated large-list work. @default 200",
+      "default": 200
     },
     {
       "name": "remote",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Remote search — skips local filtering; call `remoteMethod` on filter input. Implies filterable search input when open.",
+      "default": null
     },
     {
       "name": "remoteMethod",
       "optional": true,
       "type": "( query: string, context: SelectRemoteContext, ) => void | SelectOption[] | Promise<void | SelectOption[]>",
-      "description": ""
+      "description": "Invoked with the current filter query when `remote` is true. Returning options enables built-in latest-request-wins handling; returning void remains compatible with externally controlled `options`.",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Loading indicator while remote options are fetched",
+      "default": null
     }
   ],
   "events": [
@@ -190,61 +220,61 @@
     {
       "name": "remove-tag",
       "payload": "value: string | number",
-      "description": ""
+      "description": "Fired when a tag is removed in multiple mode"
     },
     {
       "name": "remote-error",
       "payload": "error: Error, query: string",
-      "description": ""
+      "description": "Fired for a non-abort remote lookup failure."
     }
   ],
   "slots": [
     {
       "name": "default",
       "props": "props: Record<string, never>",
-      "description": ""
+      "description": "Trailing auxiliary content beside the control"
     },
     {
       "name": "option",
       "props": "props: { option: SelectOption }",
-      "description": ""
+      "description": "Custom option row in the dropdown"
     },
     {
       "name": "empty",
       "props": "props: Record<string, never>",
-      "description": ""
+      "description": "Empty state when no options match"
     },
     {
       "name": "loading",
       "props": "props: Record<string, never>",
-      "description": ""
+      "description": "Loading indicator while remote options load"
     }
   ],
   "expose": [
     {
       "name": "focus",
       "type": "() => void",
-      "description": ""
+      "description": "Focus the trigger input"
     },
     {
       "name": "blur",
       "type": "() => void",
-      "description": ""
+      "description": "Blur the trigger input"
     },
     {
       "name": "open",
       "type": "() => void",
-      "description": ""
+      "description": "Open the dropdown panel"
     },
     {
       "name": "close",
       "type": "() => void",
-      "description": ""
+      "description": "Close the dropdown panel"
     },
     {
       "name": "clear",
       "type": "() => void",
-      "description": ""
+      "description": "Clear the current selection"
     }
   ],
   "models": [

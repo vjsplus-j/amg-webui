@@ -1,6 +1,12 @@
 {
   "name": "Calendar",
-  "generatedAt": "2026-08-07T12:34:13.525Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/calendar"
+  ],
+  "sourceHash": "512275621d69e9a9845526f322fbbe019a1672d57ed1be919261281bfbf7b8e8",
+  "generatedAt": "2026-08-07T18:45:10.908Z",
   "source": {
     "types": "packages/components/data/Calendar/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "modelValue",
       "optional": true,
       "type": "CalendarValue",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "valueFormat",
       "optional": true,
       "type": "\"date\" | \"iso\"",
-      "description": ""
+      "description": "",
+      "default": "iso"
     },
     {
       "name": "viewDate",
       "optional": true,
       "type": "CalendarValue",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "min",
       "optional": true,
       "type": "CalendarValue",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "max",
       "optional": true,
       "type": "CalendarValue",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabledDate",
       "optional": true,
       "type": "(date: Date) => boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "firstDayOfWeek",
       "optional": true,
       "type": "0 | 1 | 2 | 3 | 4 | 5 | 6",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "showAdjacent",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "showToday",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

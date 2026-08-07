@@ -1,6 +1,12 @@
 {
   "name": "Confirm",
-  "generatedAt": "2026-08-07T12:40:46.804Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/confirm"
+  ],
+  "sourceHash": "b67242e3593ea19f24f21c43fd82202bb466ef11178471c98f20791a3f61cbb0",
+  "generatedAt": "2026-08-07T18:45:10.944Z",
   "source": {
     "types": "packages/components/overlay/Confirm/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "visible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "message",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "closable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "dismissible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "confirmLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "cancelLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "severity",
       "optional": true,
       "type": "ConfirmSeverity",
-      "description": ""
+      "description": "",
+      "default": "warning"
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "CanvasShortcut",
-  "generatedAt": "2026-08-07T12:39:09.877Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/canvas-shortcut"
+  ],
+  "sourceHash": "4161f0bedc80a1c71e623dea4338d29726b753e8e3883c9ef61530c596e50504",
+  "generatedAt": "2026-08-07T18:45:10.914Z",
   "source": {
     "types": "packages/lowcode/ui/CanvasShortcut/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "enabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "commands",
       "optional": true,
       "type": "Array<{ key: string; label: string; shortcut?: string }>",
-      "description": ""
+      "description": "",
+      "default": "() => [ { key: 'copy', label: 'Copy', shortcut: 'Ctrl/Cmd + C' }, { key: 'paste', label: 'Paste', shortcut: 'Ctrl/Cmd + V' }, { key: 'delete', label: 'Delete', shortcut: 'Delete / Backspace' }, { key: 'undo', label: 'Undo', shortcut: 'Ctrl/Cmd + Z' }, { key: 'redo', label: 'Redo', shortcut: 'Ctrl/Cmd + Shift + Z' } ]"
     },
     {
       "name": "showCommands",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "keyboard",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

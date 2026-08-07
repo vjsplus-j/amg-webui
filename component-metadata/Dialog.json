@@ -1,0 +1,63 @@
+{
+  "name": "Dialog",
+  "title": "Dialog 对话框",
+  "summary": "Dialog 对话框：面向企业场景的 Overlay 组件（成熟度 rc）。",
+  "description": "Dialog 对话框：面向企业场景的 Overlay 组件（成熟度 rc）。",
+  "family": "overlay",
+  "package": "overlay",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/dialog"
+  ],
+  "features": [
+    "Overlay 家族组件",
+    "模态遮罩",
+    "可关闭",
+    "多尺寸规格",
+    "事件回调",
+    "插槽自定义",
+    "实例方法暴露"
+  ],
+  "useCases": [
+    "对话框、抽屉、气泡确认等浮层",
+    "阻断式交互"
+  ],
+  "avoidWhen": [
+    "轻量提示优先 Toast / Message",
+    "非阻断提示不要用 Modal 对话框"
+  ],
+  "related": [
+    "Button",
+    "Form"
+  ],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "Escape"
+    ],
+    "detail": "Escape: closes dialog and emits update:visible false"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural DOM + component entry"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.399Z",
+  "sourceHash": "546bb8b0d3d86d0a92c51dc4fa886ca6729c31a4531e703710465484e8de7ac7"
+}

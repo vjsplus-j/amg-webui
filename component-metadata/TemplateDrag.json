@@ -1,0 +1,54 @@
+{
+  "name": "TemplateDrag",
+  "title": "TemplateDrag",
+  "summary": "TemplateDrag：面向企业场景的 Lowcode 组件（成熟度 rc）。",
+  "description": "TemplateDrag：面向企业场景的 Lowcode 组件（成熟度 rc）。",
+  "family": "lowcode",
+  "package": "lowcode",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/template-drag"
+  ],
+  "features": [
+    "Lowcode 家族组件",
+    "加载状态反馈",
+    "支持禁用状态",
+    "事件回调"
+  ],
+  "useCases": [
+    "低代码画布与物料拖拽",
+    "Schema 渲染"
+  ],
+  "avoidWhen": [
+    "标准后台 CRUD 无需低代码层"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts TemplateDrag interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TemplateDrag uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TemplateDrag RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TemplateDrag client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.559Z",
+  "sourceHash": "be8a25090a664f63efb38a472e72b3e602ed20672dc52329b7ec777f47d86185"
+}

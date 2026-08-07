@@ -1,0 +1,57 @@
+{
+  "name": "Thumbnail",
+  "title": "Thumbnail",
+  "summary": "Thumbnail：面向企业场景的 Foundation 组件（成熟度 rc）。",
+  "description": "Thumbnail：面向企业场景的 Foundation 组件（成熟度 rc）。",
+  "family": "foundation",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/thumbnail"
+  ],
+  "features": [
+    "Foundation 家族组件",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "加载状态反馈",
+    "事件回调"
+  ],
+  "useCases": [
+    "基础 UI 交互与页面操作",
+    "按钮、标签、图标等原子组件",
+    "需要禁用/只读控制的表单场景",
+    "异步提交或加载过程反馈"
+  ],
+  "avoidWhen": [
+    "需要复杂业务编排时优先业务组件或组合模式"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Thumbnail non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Thumbnail uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Thumbnail RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Thumbnail client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.563Z",
+  "sourceHash": "a6e0eb0a8001b515cf218de4716c3dee4e64f324c002db06eeb2a8f72beb155d"
+}

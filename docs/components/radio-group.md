@@ -1,25 +1,37 @@
 # RadioGroup
 
-RadioGroup 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+RadioGroup：面向企业场景的 Input 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-RadioGroup 当前成熟度为 **RC**；完整交互见本地 example。
+RadioGroup：面向企业场景的 Input 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Input 家族组件
+- v-model 双向绑定
+- 多尺寸规格
+- 选项列表配置
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 表单文本/数值输入
+- 受控与非受控输入场景
+
+**不适用**
+
+- 极复杂富文本编辑请使用 RichText / MdEditor
 
 ## 基础用法
 
+> `import { RadioGroup } from 'amg-webui/form'`
+
 ```vue
 <script setup>
-import { RadioGroup } from '@amg-webui/form'
+import { RadioGroup } from 'amg-webui/form'
 </script>
 
 <template>
@@ -29,38 +41,74 @@ import { RadioGroup } from '@amg-webui/form'
 
 Curated demo：`example/demos/RadioGroup/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `unknown` | — | 绑定值 / Bound value (v-model) |
-| `id` | `string` | — | 元素 id（无障碍）/ Element id for a11y |
-| `invalid` | `boolean` | — | — |
-| `name` | `string` | — | 表单字段名 / Form field name |
-| `direction` | `'horizontal' \| 'vertical'` | — | — |
-| `size` | `Size` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
-| `options` | `RadioOption[]` | — | 选项列表 / Option list |
-| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
+| `modelValue` | `unknown` | `undefined` | 绑定值 / Bound value (v-model) |
+| `id` | `string` | `undefined` | 元素 id（无障碍）/ Element id for a11y |
+| `invalid` | `boolean` | `undefined` | 是否启用 invalid |
+| `name` | `string` | `undefined` | 表单字段名 / Form field name |
+| `direction` | `'horizontal' \| 'vertical'` | `horizontal` | direction 配置项 |
+| `size` | `Size` | `md` | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `options` | `RadioOption[]` | `undefined` | Declarative options; can combine with default slot |
+| `ariaLabel` | `string` | `undefined` | 无障碍标签 / ARIA label |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `value: unknown` | v-model 更新 / v-model update |
 | `change` | `value: unknown` | 值变更 / Change |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `RadioOption`
 - `RadioGroupProps`
 - `RadioGroupEmits`
 
+## 键盘交互
+
+- 状态：`PASS`
+- 按键：`Space`
+- Space: Space on focused radio selects option and emits update:modelValue; Space: disabled RadioGroup does not emit update:modelValue on Space
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts RadioGroup uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts RadioGroup RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts RadioGroup client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -68,6 +116,9 @@ Curated demo：`example/demos/RadioGroup/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/form` |
+| metadata | `component-metadata/RadioGroup.json` |
 | API extract | `generated/component-api/RadioGroup.json` |
 
-> 完整 Demo 见 `example/demos/RadioGroup`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/RadioGroup`（example 本地调试，不上线）。
+

@@ -1,0 +1,53 @@
+{
+  "name": "CanvasShortcut",
+  "title": "CanvasShortcut",
+  "summary": "CanvasShortcut：面向企业场景的 Lowcode 组件（成熟度 rc）。",
+  "description": "CanvasShortcut：面向企业场景的 Lowcode 组件（成熟度 rc）。",
+  "family": "lowcode",
+  "package": "lowcode",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/canvas-shortcut"
+  ],
+  "features": [
+    "Lowcode 家族组件",
+    "加载状态反馈",
+    "事件回调"
+  ],
+  "useCases": [
+    "低代码画布与物料拖拽",
+    "Schema 渲染"
+  ],
+  "avoidWhen": [
+    "标准后台 CRUD 无需低代码层"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CanvasShortcut non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CanvasShortcut uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CanvasShortcut RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CanvasShortcut client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.365Z",
+  "sourceHash": "4161f0bedc80a1c71e623dea4338d29726b753e8e3883c9ef61530c596e50504"
+}

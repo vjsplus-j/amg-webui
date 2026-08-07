@@ -1,6 +1,12 @@
 {
   "name": "FlowLayout",
-  "generatedAt": "2026-08-07T12:41:13.588Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/flow-layout"
+  ],
+  "sourceHash": "02fdfb0404066c81d8db077223e47be8adae581b452ece4f504a1f484d4b83b5",
+  "generatedAt": "2026-08-07T18:45:11.019Z",
   "source": {
     "types": "packages/components/core/FlowLayout/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "gap",
       "optional": true,
       "type": "FlowGap",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "rowGap",
       "optional": true,
       "type": "FlowGap",
-      "description": ""
+      "description": "Row gap — defaults to `gap` when omitted",
+      "default": null
     },
     {
       "name": "columnGap",
       "optional": true,
       "type": "FlowGap",
-      "description": ""
+      "description": "Column gap — defaults to `gap` when omitted",
+      "default": null
     },
     {
       "name": "align",
       "optional": true,
       "type": "FlowAlign",
-      "description": ""
+      "description": "",
+      "default": "start"
     },
     {
       "name": "justify",
       "optional": true,
       "type": "FlowJustify",
-      "description": ""
+      "description": "",
+      "default": "start"
     },
     {
       "name": "reverse",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Reverse wrap direction",
+      "default": false
     },
     {
       "name": "wrap",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "as",
       "optional": true,
       "type": "\"div\" | \"section\" | \"ul\" | \"ol\"",
-      "description": ""
+      "description": "",
+      "default": "div"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [],

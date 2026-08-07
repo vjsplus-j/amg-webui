@@ -16,17 +16,28 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 
 import { resolve, dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { spawnSync } from 'node:child_process'
+import { toKebab } from '../build/shared.mjs'
 import {
   componentDirRel,
   componentToPackage,
   packageAlias
 } from './component-package-map.mjs'
+import {
+  P0_COMPONENTS,
+  RELATED,
+  DISPLAY_NAMES,
+  parseDisplayTitle,
+  consumerImportFrom
+} from './component-docs-constants.mjs'
+
+export { DISPLAY_NAMES, RELATED }
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const docsComponentsDir = resolve(root, 'docs/components')
 const vitepressConfigPath = resolve(root, 'docs/.vitepress/config.ts')
 const programStatusPath = join(root, 'component-hardening/program-status.json')
 const apiDir = join(root, 'generated/component-api')
+const metadataDir = join(root, 'component-metadata')
 const evidenceRoot = join(root, 'component-hardening/evidence')
 
 const force = process.argv.includes('--force')
@@ -224,6 +235,20 @@ const COMMON_EVENT_DESCRIPTIONS = {
   remove: '移除文件 / Remove file'
 }
 
+function inferPropDescription(name, type = '') {
+  const common = COMMON_PROP_DESCRIPTIONS[name]
+  if (common && common !== '—') return common
+  const t = String(type)
+  if (name === 'modelValue') return '绑定值（v-model）'
+  if (name.startsWith('on') && name.length > 2) return `${name} 回调`
+  if (t.includes('boolean')) return `是否启用 ${name}`
+  if (t.includes('number')) return `${name} 数值`
+  if (t.includes('string')) return `${name} 字符串`
+  if (t.includes('[]') || t.includes('Array')) return `${name} 列表数据`
+  if (t.includes('Function') || t.includes('=>')) return `${name} 回调函数`
+  return `${name} 配置项`
+}
+
 function enrichPropDescriptions(componentName, props) {
   const overrides = COMPONENT_PROP_DESCRIPTIONS[componentName] || {}
   return props.map((p) => {
@@ -231,19 +256,56 @@ function enrichPropDescriptions(componentName, props) {
     const desc =
       overrides[p.name] ||
       COMMON_PROP_DESCRIPTIONS[p.name] ||
-      COMMON_PROP_DESCRIPTIONS[p.name.replace(/^modelValue$/, 'modelValue')] ||
-      ''
-    return { ...p, description: desc || '—' }
+      inferPropDescription(p.name, p.type)
+    return { ...p, description: desc }
   })
 }
 
-function enrichEventDescriptions(events) {
+/** Minimal Chinese event copy for P0 when extract description is empty */
+const P0_EVENT_CN = {
+  click: '点击时触发',
+  dblclick: '双击时触发',
+  focus: '获得焦点时触发',
+  blur: '失去焦点时触发',
+  change: '值变更时触发',
+  input: '输入时触发',
+  select: '选中时触发',
+  sort: '排序时触发',
+  close: '关闭时触发',
+  open: '打开时触发',
+  submit: '提交时触发',
+  upload: '上传时触发',
+  remove: '移除时触发',
+  confirm: '确认时触发',
+  cancelConfirm: '取消确认时触发',
+  'row-click': '行点击时触发',
+  'row-select': '行选择时触发',
+  page: '翻页时触发',
+  filter: '筛选时触发'
+}
+
+function inferP0EventDescription(name) {
+  if (P0_EVENT_CN[name]) return P0_EVENT_CN[name]
+  if (name.startsWith('update:')) {
+    const field = name.slice(7)
+    return `\`${field}\` 更新时触发（v-model）`
+  }
+  return `${name} 时触发`
+}
+
+function enrichEventDescriptions(events, componentName) {
+  void componentName
   return events.map((e) => {
     const name = typeof e === 'string' ? e : e.name
     const existing = typeof e === 'string' ? '' : e.description
-    if (existing && existing !== '—') return e
-    const desc = COMMON_EVENT_DESCRIPTIONS[name] || '—'
-    return typeof e === 'string' ? { name, payload: '—', description: desc } : { ...e, description: desc }
+    if (existing && existing.trim() && existing !== '—') {
+      return typeof e === 'string' ? { name, payload: 'void', description: existing } : e
+    }
+    const common = COMMON_EVENT_DESCRIPTIONS[name]
+    let desc = common && common !== '—' ? common : ''
+    if (!desc) desc = inferP0EventDescription(name)
+    const payload = typeof e === 'string' ? 'void' : e.payload || 'void'
+    return typeof e === 'string' ? { name, payload, description: desc } : { ...e, description: desc }
   })
 }
 
@@ -306,54 +368,6 @@ const EXISTING_STUBS = [
   'Switch',
   'Tabs'
 ]
-
-const DISPLAY_NAMES = {
-  InputText: 'InputText 文本输入',
-  DataTable: 'DataTable 数据表格',
-  MessageBox: 'MessageBox 命令式对话框',
-  ConfigProvider: 'ConfigProvider 全局配置',
-  ButtonGroup: 'ButtonGroup 按钮组',
-  Checkbox: 'Checkbox 复选框',
-  AutoComplete: 'AutoComplete 自动完成',
-  DatePicker: 'DatePicker 日期选择',
-  DateTimePicker: 'DateTimePicker 日期时间',
-  TimePicker: 'TimePicker 时间选择',
-  ColorPicker: 'ColorPicker 颜色选择',
-  TreeSelect: 'TreeSelect 树形选择',
-  DynamicForm: 'DynamicForm 动态表单',
-  StepForm: 'StepForm 分步表单'
-}
-
-const RELATED = {
-  Form: ['FormItem', 'FormGroup', 'FormTabs', 'DynamicForm', 'StepForm', 'InputText'],
-  FormItem: ['Form', 'InputText', 'Select', 'Checkbox'],
-  FormGroup: ['Form', 'FormItem'],
-  FormTabs: ['Form', 'FormItem', 'Tabs'],
-  DynamicForm: ['Form', 'FormItem'],
-  StepForm: ['Form', 'FormItem'],
-  InputText: ['Form', 'FormItem', 'Textarea', 'Password', 'InputNumber'],
-  Textarea: ['Form', 'FormItem', 'InputText'],
-  Password: ['Form', 'FormItem', 'InputText'],
-  InputNumber: ['Form', 'FormItem', 'InputText'],
-  InputOTP: ['Form', 'FormItem'],
-  Mention: ['Form', 'FormItem', 'InputText'],
-  Select: ['Form', 'FormItem', 'SelectNav', 'TreeSelect', 'Cascader'],
-  AutoComplete: ['Form', 'FormItem', 'InputText', 'Select'],
-  Cascader: ['Form', 'FormItem', 'Select'],
-  TreeSelect: ['Form', 'FormItem', 'Select', 'Tree'],
-  DatePicker: ['Form', 'FormItem', 'DateTimePicker', 'TimePicker', 'Calendar'],
-  DateTimePicker: ['Form', 'FormItem', 'DatePicker', 'TimePicker'],
-  TimePicker: ['Form', 'FormItem', 'DateTimePicker', 'TimeSelect'],
-  TimeSelect: ['Form', 'FormItem', 'TimePicker'],
-  TimeRangeInput: ['Form', 'FormItem', 'TimePicker', 'RangeInput'],
-  RangeInput: ['Form', 'FormItem', 'InputNumber'],
-  ColorPicker: ['Form', 'FormItem'],
-  Calendar: ['DatePicker', 'DateTimePicker'],
-  SelectNav: ['Select', 'Menu'],
-  Button: ['ButtonGroup', 'Dialog'],
-  Dialog: ['Button', 'Form'],
-  DataTable: ['Pagination', 'Form']
-}
 
 const EXTRA_SECTIONS = {
   Form: `
@@ -459,14 +473,49 @@ const columns = [
 \`\`\``
 }
 
+/** Consumer-facing import path for docs (amg-webui/<package>) */
+function importPathForComponent(name) {
+  const pkg = componentToPackage.get(name)
+  return consumerImportFrom(pkg || 'core')
+}
+
+/** Internal @amg-webui alias for legacy templates */
 function importAliasForComponent(name) {
   const pkg = componentToPackage.get(name)
   if (!pkg) return '@amg-webui/core'
   return packageAlias(pkg)
 }
 
-function toKebab(name) {
-  return name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
+function formatEvidenceBlock(field) {
+  if (!field) return ''
+  if (typeof field === 'string') return field
+  const lines = []
+  if (field.status) lines.push(`- 状态：\`${field.status}\``)
+  if (field.keys?.length) lines.push(`- 按键：${field.keys.map((k) => `\`${k}\``).join(' · ')}`)
+  if (field.detail) lines.push(`- ${field.detail}`)
+  return lines.join('\n')
+}
+
+function metadataHeading(meta, name) {
+  if (!meta) return `# ${toTitle(name)}`
+  const { title, titleZh } = parseDisplayTitle(name, meta.title)
+  return titleZh ? `# ${title} ${titleZh}` : `# ${title}`
+}
+
+function metadataImportFrom(meta, name) {
+  if (meta?.importPaths?.length) return meta.importPaths[0]
+  if (meta?.importFrom) return meta.importFrom
+  return importPathForComponent(name)
+}
+
+function loadComponentMetadata(name) {
+  const p = join(metadataDir, `${name}.json`)
+  if (!existsSync(p)) return null
+  try {
+    return JSON.parse(readFileSync(p, 'utf8'))
+  } catch {
+    return null
+  }
 }
 
 function toTitle(name) {
@@ -620,7 +669,7 @@ function resolveApiSurface(name) {
     }
   }
   surface.props = enrichPropDescriptions(name, surface.props)
-  surface.events = enrichEventDescriptions(surface.events)
+  surface.events = enrichEventDescriptions(surface.events, name)
   return surface
 }
 
@@ -633,12 +682,14 @@ function resolveDemoPath(name) {
 }
 
 function defaultUsage(name) {
+  const importFrom = importPathForComponent(name)
   const template = USAGE_TEMPLATES[name]
-  if (template) return template()
-  const alias = importAliasForComponent(name)
+  if (template) {
+    return template().replace(/@amg-webui\/[\w-]+/g, importFrom)
+  }
   return `\`\`\`vue
 <script setup>
-import { ${name} } from '${alias}'
+import { ${name} } from '${importFrom}'
 </script>
 
 <template>
@@ -651,15 +702,25 @@ function escPipe(s) {
   return String(s).replace(/\|/g, '\\|')
 }
 
+function formatPropDefault(p) {
+  if (Object.prototype.hasOwnProperty.call(p, 'default') && p.default !== undefined && p.default !== null) {
+    if (typeof p.default === 'boolean' || typeof p.default === 'number') return String(p.default)
+    if (typeof p.default === 'string') return `\`${p.default}\``
+    return `\`${JSON.stringify(p.default)}\``
+  }
+  if (p.optional === false) return '**必填**'
+  // Prefer explicit undefined over em-dash placeholders (docs quality gate)
+  return '`undefined`'
+}
+
 function propsTable(props) {
   if (!props.length) {
-    return '| Prop | 类型 | 默认 | 说明 |\n| --- | --- | --- | --- |\n| — | — | — | 见 `generated/component-api` 或源码 `types.ts` |'
+    return '| Prop | 类型 | 默认 | 说明 |\n| --- | --- | --- | --- |\n| （无公开 Props） | | | |'
   }
-  const rows = props.slice(0, 32).map((p) => {
-    const optional = p.optional !== false
-    const def = optional ? '—' : '**必填**'
+  const rows = props.map((p) => {
+    const def = formatPropDefault(p)
     const type = escPipe(p.type)
-    const desc = escPipe(p.description || '—')
+    const desc = escPipe(p.description || inferPropDescription(p.name, p.type))
     return `| \`${p.name}\` | \`${type}\` | ${def} | ${desc} |`
   })
   return ['| Prop | 类型 | 默认 | 说明 |', '| --- | --- | --- | --- |', ...rows].join('\n')
@@ -669,8 +730,11 @@ function eventsTable(events) {
   if (!events.length) return ''
   const rows = events.map((e) => {
     const name = typeof e === 'string' ? e : e.name
-    const payload = typeof e === 'string' ? '—' : escPipe(e.payload || '—')
-    const desc = typeof e === 'string' ? '—' : escPipe(e.description || '—')
+    const payload = typeof e === 'string' ? 'void' : escPipe(e.payload || 'void')
+    const desc =
+      typeof e === 'string'
+        ? inferP0EventDescription(name)
+        : escPipe(e.description || inferP0EventDescription(name))
     return `| \`${name}\` | \`${payload}\` | ${desc} |`
   })
   return ['| 事件 | Payload | 说明 |', '| --- | --- | --- |', ...rows].join('\n')
@@ -679,15 +743,27 @@ function eventsTable(events) {
 function slotsTable(slots) {
   if (!slots.length) return ''
   const rows = slots.map((s) => {
-    return `| \`${s.name}\` | \`${escPipe(s.props || '—')}\` | ${escPipe(s.description || '—')} |`
+    const desc =
+      s.description && s.description !== '—'
+        ? s.description
+        : s.name === 'default'
+          ? '默认插槽'
+          : `${s.name} 插槽`
+    return `| \`${s.name}\` | \`${escPipe(s.props || '')}\` | ${escPipe(desc)} |`
   })
   return ['| Slot | Props | 说明 |', '| --- | --- | --- |', ...rows].join('\n')
 }
 
 function exposeTable(expose) {
   if (!expose.length) return ''
-  const rows = expose.map((x) => `| \`${x.name}\` | \`${escPipe(x.type)}\` | ${escPipe(x.description || '—')} |`)
-  return ['| Expose | 类型 | 说明 |', '| --- | --- | --- |', ...rows].join('\n')
+  const rows = expose.map((x) => {
+    const desc =
+      x.description && x.description !== '—'
+        ? x.description
+        : `${x.name} 实例方法/属性`
+    return `| \`${x.name}\` | \`${escPipe(x.type)}\` | ${escPipe(desc)} |`
+  })
+  return ['| 方法 / 属性 | 类型 | 说明 |', '| --- | --- | --- |', ...rows].join('\n')
 }
 
 function modelsTable(models) {
@@ -701,8 +777,8 @@ function publicTypesSection(types) {
   return `\n## Public types\n\n${types.map((t) => `- \`${t}\``).join('\n')}\n`
 }
 
-function relatedSection(name) {
-  const related = RELATED[name]
+function relatedSection(name, meta) {
+  const related = meta?.related?.length ? meta.related : RELATED[name]
   if (!related?.length) return '— 见同包组件与 `Form` / `Select` 等表单家族。'
   return related.map((r) => `- [${r}](./${toKebab(r)})`).join('\n')
 }
@@ -736,138 +812,169 @@ function maturityLabel(name) {
 }
 
 function generateMarkdown(name) {
+  const meta = loadComponentMetadata(name)
   const api = resolveApiSurface(name)
-  const title = toTitle(name)
   const demoPath = resolveDemoPath(name)
   const demoDir = demoPath ? demoPath.replace(/\/index\.vue$|\/parts\/Basic\.vue$/, '') : `example/demos/${name}/`
   const stable = isStable(name)
   const maturity = maturityLabel(name)
+  const contract = loadContractMaturity(name)
   const docsDemoId = DOCS_DEMOS[name]
-  const intro =
-    name === 'MessageBox'
-      ? '命令式确认 / 提示 / 输入框：`MessageBox.confirm` · `alert` · `prompt`。'
-      : stable
-        ? `${name} 为 **Stable** 公共组件（API frozen）。本文档由 \`generate-vitepress-api.mjs\` 从 \`${api.source}\` 生成。`
-        : `${name} 为 **${maturity}** 公共组件（Contract maturity=\`${loadContractMaturity(name).maturity}\`）。本文档由 \`generate-vitepress-api.mjs\` 从 \`${api.source}\` 生成。`
+  const importFrom = metadataImportFrom(meta, name)
 
-  const sections = [
-    `# ${title}`,
-    '',
-    intro,
-    '',
-    '## 概览',
-    '',
-    stable
-      ? docsDemoId
-        ? `${name} 已通过 Component Hardening 证据门禁；下方 **DocsDemo** 提供 docs 站内嵌交互，完整 curated demo 见 example。`
-        : `${name} 已通过 Component Hardening 证据门禁；完整交互演示见本地 example curated demo。`
-      : docsDemoId
-        ? `${name} 当前成熟度为 **${maturity}**；下方 DocsDemo 提供 docs 站内嵌交互，完整场景见 example。`
-        : `${name} 当前成熟度为 **${maturity}**；完整交互见本地 example。`,
-    '',
-    '## 何时使用 / 何时不用',
-    '',
-    `- **适用**：${stable ? '生产可用的 Stable 组件场景' : `${maturity} 阶段的标准 UI 场景（未宣称 Stable）`}。`,
-    '- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。',
-    '',
-    '## 相关组件',
-    '',
-    relatedSection(name),
-    '',
+  const heading = metadataHeading(meta, name)
+  const summary =
+    meta?.summary ||
+    (name === 'MessageBox'
+      ? '命令式确认 / 提示 / 输入框。'
+      : `${name} 为 **${maturity}** 公共组件。`)
+
+  const sections = [heading, '', summary, '']
+
+  if (meta?.description || meta?.summary) {
+    let intro = meta.description || meta.summary
+    if (/generate-vitepress|本文档由|Contract maturity/.test(intro)) {
+      intro = meta.summary || summary
+    }
+    sections.push('## 组件介绍', '', intro, '')
+  }
+
+  if (meta?.features?.length) {
+    sections.push('## 核心特性', '', ...meta.features.map((f) => `- ${f}`), '')
+  }
+
+  sections.push('## 何时使用 / 不适用', '')
+  if (meta?.useCases?.length) {
+    sections.push('**适用**', '', ...meta.useCases.map((u) => `- ${u}`), '')
+  } else {
+    sections.push(
+      `- **适用**：${stable ? '生产可用的 Stable 组件场景' : `${maturity} 阶段的标准 UI 场景`}。`,
+      ''
+    )
+  }
+  if (meta?.avoidWhen?.length) {
+    sections.push('**不适用**', '', ...meta.avoidWhen.map((a) => `- ${a}`), '')
+  } else {
+    sections.push('- **不适用**：需要未实现能力时请查阅 example 或等待后续阶段。', '')
+  }
+
+  sections.push(
     '## 基础用法',
+    '',
+    `> \`import { ${name} } from '${importFrom}'\``,
     '',
     defaultUsage(name),
     '',
     demoPath ? `Curated demo：\`${demoPath}\`` : `Curated demo 目录：\`${demoDir}\``,
     ''
-  ]
+  )
 
   if (docsDemoId) {
-    sections.push('## 交互演示', '', `<DocsDemo name="${docsDemoId}" />`, '')
+    sections.push('## 示例', '', `<DocsDemo name="${docsDemoId}" />`, '')
   }
 
   if (EXTRA_SECTIONS[name]) {
     sections.push(EXTRA_SECTIONS[name].trim(), '')
   }
 
+  sections.push('## API', '', '### Props', '', propsTable(api.props), '')
+
+  if (api.events.length) {
+    sections.push('### Events', '', eventsTable(api.events), '')
+  }
+  if (api.slots.length) {
+    sections.push('### Slots', '', slotsTable(api.slots), '')
+  }
+  if (api.expose.length) {
+    sections.push('### Expose', '', exposeTable(api.expose), '')
+  }
+  if (api.models.length) {
+    sections.push('### Models', '', modelsTable(api.models), '')
+  }
+  if (api.publicTypes.length) {
+    sections.push('### Public Types', '', api.publicTypes.map((t) => `- \`${t}\``).join('\n'), '')
+  }
+
+  const keyboardText = formatEvidenceBlock(meta?.keyboard)
+  if (keyboardText) {
+    sections.push('## 键盘交互', '', keyboardText, '')
+  } else if (stable) {
+    sections.push(
+      '## 键盘交互',
+      '',
+      `以 \`component-hardening/evidence/${name}/keyboard.json\` 为准；本地复现：\`${demoDir}\`。`,
+      ''
+    )
+  }
+
+  const a11yText = formatEvidenceBlock(meta?.a11y)
+  if (a11yText) {
+    sections.push('## 无障碍', '', a11yText, '')
+  } else if (stable) {
+    sections.push(
+      '## 无障碍',
+      '',
+      `以 \`component-hardening/evidence/${name}/a11y.json\` 为准。`,
+      ''
+    )
+  }
+
+  const themeText = formatEvidenceBlock(meta?.theme)
+  if (themeText) sections.push('## Theme', '', themeText, '')
+  const rtlText = formatEvidenceBlock(meta?.rtl)
+  if (rtlText) sections.push('## RTL', '', rtlText, '')
+  const ssrText = formatEvidenceBlock(meta?.ssr)
+  if (ssrText) sections.push('## SSR', '', ssrText, '')
+
+  if (meta?.limitations?.length) {
+    sections.push('## 当前限制', '', ...meta.limitations.map((l) => `- ${l}`), '')
+  }
+
+  sections.push('## 相关组件', '', relatedSection(name, meta), '')
+
   sections.push(
-    '## Props',
+    '## 稳定性',
     '',
-    propsTable(api.props),
+    '| 字段 | 值 |',
+    '| --- | --- |',
+    `| maturity | \`${meta?.maturity || contract.maturity}\` |`,
+    `| apiFreeze | \`${contract.frozen ? 'frozen' : 'unfrozen'}\` |`,
+    `| import | \`${importFrom}\` |`,
+    `| metadata | \`component-metadata/${name}.json\` |`,
+    `| API extract | \`generated/component-api/${name}.json\` |`,
     ''
   )
 
-  if (api.events.length) {
-    sections.push('## Events', '', eventsTable(api.events), '')
-  }
-  if (api.slots.length) {
-    sections.push('## Slots', '', slotsTable(api.slots), '')
-  }
-  if (api.expose.length) {
-    sections.push('## Expose', '', exposeTable(api.expose), '')
-  }
-  if (api.models.length) {
-    sections.push('## Models', '', modelsTable(api.models), '')
-  }
-  if (api.publicTypes.length) {
-    sections.push(publicTypesSection(api.publicTypes).trim(), '')
-  }
-
-  {
-    const { maturity: m, frozen } = loadContractMaturity(name)
-    sections.push(
-      '',
-      '## 稳定性',
-      '',
-      '| 字段 | 值 |',
-      '| --- | --- |',
-      `| maturity | \`${m}\` |`,
-      `| apiFreeze | \`${frozen ? 'frozen' : 'unfrozen'}\` |`,
-      `| API extract | \`generated/component-api/${name}.json\` |`
-    )
-  }
-
-  if (stable) {
-    sections.push(
-      '',
-      '## 无障碍与键盘',
-      '',
-      '交互行为与键盘路径以 `component-hardening/evidence/' +
-        name +
-        '/a11y.json` · `keyboard.json` 为准；本地可复现：`example/demos/' +
-        name +
-        '/`。'
-    )
-  }
-
   if (docsDemoId) {
-    sections.push(
-      '',
-      `> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 \`${demoDir}\`。`
-    )
+    sections.push(`> **DocsDemo** 为 docs 站内嵌演示；完整 curated demo 见 \`${demoDir}\`。`, '')
   } else {
-    sections.push(
-      '',
-      `> 完整 Demo 见 \`${demoDir}\`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。`
-    )
+    sections.push(`> 完整 Demo 见 \`${demoDir}\`（example 本地调试，不上线）。`, '')
   }
 
   return sections.join('\n') + '\n'
 }
 
+function shouldWriteDoc(name, outPath, forceWrite) {
+  if (forceWrite || force) return true
+  if (!existsSync(outPath)) return true
+  if (P0_COMPONENTS.includes(name) && loadComponentMetadata(name)) return true
+  return false
+}
+
 function writeDoc(name, forceWrite = false) {
   const kebab = toKebab(name)
   const outPath = join(docsComponentsDir, `${kebab}.md`)
-  const shouldWrite = forceWrite || force || !existsSync(outPath)
-  if (!shouldWrite) {
+  if (!shouldWriteDoc(name, outPath, forceWrite)) {
     return { action: 'skip', path: outPath }
   }
   if (!existsSync(join(root, componentDirRel(name)))) {
     return { action: 'missing-component', path: outPath }
   }
   mkdirSync(docsComponentsDir, { recursive: true })
+  const existed = existsSync(outPath)
   writeFileSync(outPath, generateMarkdown(name), 'utf8')
-  return { action: existsSync(outPath) && force ? 'update' : 'create', path: outPath }
+  const action = existed ? 'update' : 'create'
+  return { action, path: outPath }
 }
 
 function updateDocsEvidence(name) {

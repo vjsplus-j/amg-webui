@@ -1,6 +1,12 @@
 {
   "name": "Waterfall",
-  "generatedAt": "2026-08-07T12:42:38.281Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/waterfall"
+  ],
+  "sourceHash": "753784ae73840c5a08e77d549141c8bd04823aad0f0c5aa7b8e06096ba8d58c3",
+  "generatedAt": "2026-08-07T18:45:11.295Z",
   "source": {
     "types": "packages/components/data/Waterfall/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "WaterfallItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "items",
       "optional": true,
       "type": "WaterfallItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "columns",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 3
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "clickable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

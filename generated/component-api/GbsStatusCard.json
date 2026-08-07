@@ -1,6 +1,12 @@
 {
   "name": "GbsStatusCard",
-  "generatedAt": "2026-08-07T12:41:13.606Z",
+  "package": "gb28181",
+  "importPaths": [
+    "amg-webui/gb28181",
+    "amg-webui/gbs-status-card"
+  ],
+  "sourceHash": "97f6e04dfb494e171868db029a2e0caecdd0ff8ea5d57a744a07308c6ea6a9ed",
+  "generatedAt": "2026-08-07T18:45:11.051Z",
   "source": {
     "types": "packages/components/gb28181/GbsStatusCard/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "registered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "deviceCount",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 12
     },
     {
       "name": "channelCount",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 48
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

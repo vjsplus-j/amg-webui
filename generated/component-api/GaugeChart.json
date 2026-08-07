@@ -1,6 +1,12 @@
 {
   "name": "GaugeChart",
-  "generatedAt": "2026-08-07T12:41:13.596Z",
+  "package": "charts",
+  "importPaths": [
+    "amg-webui/charts",
+    "amg-webui/gauge-chart"
+  ],
+  "sourceHash": "03ba27c6f53857be547ba6d406f2e8be3d5956e4294ce963a8f2d007679afb34",
+  "generatedAt": "2026-08-07T18:45:11.038Z",
   "source": {
     "types": "packages/components/charts/GaugeChart/types.ts",
     "vue": true
@@ -10,73 +16,85 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": "() => 72"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "number | null",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "min",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "max",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 100
     },
     {
       "name": "unit",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "showValue",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "thresholds",
       "optional": true,
       "type": "{ value: number; color: string }[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

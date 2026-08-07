@@ -1,6 +1,12 @@
 {
   "name": "PieChart",
-  "generatedAt": "2026-08-07T12:41:35.048Z",
+  "package": "charts",
+  "importPaths": [
+    "amg-webui/charts",
+    "amg-webui/pie-chart"
+  ],
+  "sourceHash": "c233e6c3d5d95550434a56437e4978588beebe465e56a9f5fba38866450a667d",
+  "generatedAt": "2026-08-07T18:45:11.139Z",
   "source": {
     "types": "packages/components/charts/PieChart/types.ts",
     "vue": true
@@ -10,97 +16,113 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "PieChartDatum[] | number[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "PieChartKey | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "selectionValue",
       "optional": true,
       "type": "\"key\" | \"value\"",
-      "description": ""
+      "description": "",
+      "default": "key"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "radius",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 64
     },
     {
       "name": "innerRadius",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "startAngle",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": -90
     },
     {
       "name": "showLegend",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "showLabels",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "showPercent",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "valueFormatter",
       "optional": true,
       "type": "(value: number, datum: PieChartDatum) => string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

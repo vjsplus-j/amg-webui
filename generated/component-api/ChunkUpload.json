@@ -1,6 +1,12 @@
 {
   "name": "ChunkUpload",
-  "generatedAt": "2026-08-07T12:40:46.795Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/chunk-upload"
+  ],
+  "sourceHash": "acc9cad8fd0d43df4efc8b83741675e937b53fc1d8738d1abfe68520f87d2ccd",
+  "generatedAt": "2026-08-07T18:45:10.931Z",
   "source": {
     "types": "packages/components/form/ChunkUpload/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "modelValue",
       "optional": true,
       "type": "ChunkFileItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "chunkSize",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": "1024 * 512"
     },
     {
       "name": "accept",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "*"
     },
     {
       "name": "drag",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     }
   ],
   "events": [

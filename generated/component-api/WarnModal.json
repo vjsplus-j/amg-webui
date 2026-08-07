@@ -1,6 +1,12 @@
 {
   "name": "WarnModal",
-  "generatedAt": "2026-08-07T12:45:59.838Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/warn-modal"
+  ],
+  "sourceHash": "8ca7f390a8cf4cebfe21b5709c82bc03e323316f7e9567a359312ece7ee5f78a",
+  "generatedAt": "2026-08-07T18:45:11.294Z",
   "source": {
     "types": "packages/components/overlay/WarnModal/types.ts",
     "vue": true

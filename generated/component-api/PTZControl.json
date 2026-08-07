@@ -1,6 +1,12 @@
 {
   "name": "PTZControl",
-  "generatedAt": "2026-08-07T12:41:35.040Z",
+  "package": "media",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/ptz-control"
+  ],
+  "sourceHash": "d73c9d98fdcee0bc1312922b03007ab7c4acdd90df8dee57795d0db04553a42a",
+  "generatedAt": "2026-08-07T18:45:11.129Z",
   "source": {
     "types": "packages/components/media/PTZControl/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "modelValue",
       "optional": true,
       "type": "PtzCommand | null",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "speed",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 4
     },
     {
       "name": "minSpeed",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "maxSpeed",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 8
     },
     {
       "name": "step",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "keyboard",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "showAdvanced",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "presets",
       "optional": true,
       "type": "number[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     }
   ],
   "events": [

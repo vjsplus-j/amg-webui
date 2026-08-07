@@ -1,25 +1,35 @@
 # Spacer
 
-Spacer 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Spacer：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Spacer 当前成熟度为 **RC**；完整交互见本地 example。
+Spacer：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Foundation 家族组件
+- 多尺寸规格
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 基础 UI 交互与页面操作
+- 按钮、标签、图标等原子组件
+
+**不适用**
+
+- 需要复杂业务编排时优先业务组件或组合模式
 
 ## 基础用法
 
+> `import { Spacer } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { Spacer } from '@amg-webui/core'
+import { Spacer } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,31 +39,33 @@ import { Spacer } from '@amg-webui/core'
 
 Curated demo：`example/demos/Spacer/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `flex` | `boolean` | — | — |
-| `grow` | `number` | — | — |
-| `shrink` | `number` | — | — |
-| `size` | `SpacerSize` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
-| `axis` | `SpacerAxis` | — | — |
-| `minSize` | `SpacerSize` | — | — |
-| `inline` | `boolean` | — | 行内表单 / Inline layout |
-| `basis` | `string` | — | — |
-| `ariaHidden` | `boolean` | — | — |
-| `tabIndex` | `number` | — | — |
-| `observeResize` | `boolean` | — | — |
+| `flex` | `boolean` | true | Grow to fill remaining flex space (default true when size omitted) |
+| `grow` | `number` | 1 | Flex grow factor when `flex` is true |
+| `shrink` | `number` | 1 | Flex shrink factor when `flex` is true |
+| `size` | `SpacerSize` | `undefined` | Fixed size via spacing scale key |
+| `axis` | `SpacerAxis` | `horizontal` | axis 配置项 |
+| `minSize` | `SpacerSize` | `undefined` | Minimum size when flexing |
+| `inline` | `boolean` | false | Render as inline spacer when used inside text / button rows |
+| `basis` | `string` | `undefined` | Explicit flex basis when flexing |
+| `ariaHidden` | `boolean` | true | Whether the root is hidden from assistive tech |
+| `tabIndex` | `number` | `undefined` | Optional focus order when the spacer is used as a semantic separator |
+| `observeResize` | `boolean` | false | Emit resize payload through ResizeObserver |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
-| `resize` | `payload: SpacerResizePayload` | — |
+| `resize` | `payload: SpacerResizePayload` | resize 时触发 |
 | `focus` | `event: FocusEvent` | 聚焦 / Focus |
 | `blur` | `event: FocusEvent` | 失焦 / Blur |
 
-## Public types
+### Public Types
 
 - `SpacerSize`
 - `SpacerAxis`
@@ -61,6 +73,39 @@ Curated demo：`example/demos/Spacer/index.vue`
 - `SpacerResizePayload`
 - `SpacerEmits`
 
+## 键盘交互
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Spacer non-interactive display — keyboard N/A
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Spacer uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Spacer RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Spacer client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -68,6 +113,9 @@ Curated demo：`example/demos/Spacer/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Spacer.json` |
 | API extract | `generated/component-api/Spacer.json` |
 
-> 完整 Demo 见 `example/demos/Spacer`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Spacer`（example 本地调试，不上线）。
+

@@ -1,0 +1,56 @@
+{
+  "name": "GbsDeviceTree",
+  "title": "GbsDeviceTree",
+  "summary": "GbsDeviceTree：面向企业场景的 GB28181 组件（成熟度 rc）。",
+  "description": "GbsDeviceTree：面向企业场景的 GB28181 组件（成熟度 rc）。",
+  "family": "gb28181",
+  "package": "gb28181",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/gb28181",
+    "amg-webui/gbs-device-tree"
+  ],
+  "features": [
+    "GB28181 家族组件",
+    "选项列表配置",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "加载状态反馈",
+    "事件回调"
+  ],
+  "useCases": [
+    "国标 GB28181 设备与级联",
+    "视频监控平台"
+  ],
+  "avoidWhen": [
+    "非国标场景勿引入行业包"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsDeviceTree non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "FAIL",
+    "detail": "a11y PASS requires A11Y_STRUCTURE/A11Y_CONTRAST or critical/serious counts (family name alone insufficient)"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsDeviceTree uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsDeviceTree RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsDeviceTree client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.440Z",
+  "sourceHash": "78a4996d74a7511233750d66e33730db8c7838411b5300b9c6cf6c1a0e126a33"
+}

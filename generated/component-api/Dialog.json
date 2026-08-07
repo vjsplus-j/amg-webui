@@ -1,6 +1,12 @@
 {
   "name": "Dialog",
-  "generatedAt": "2026-08-07T12:34:13.533Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/dialog"
+  ],
+  "sourceHash": "546bb8b0d3d86d0a92c51dc4fa886ca6729c31a4531e703710465484e8de7ac7",
+  "generatedAt": "2026-08-07T18:45:10.966Z",
   "source": {
     "types": "packages/components/overlay/Dialog/types.ts",
     "vue": true
@@ -10,97 +16,113 @@
       "name": "visible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "header",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "footer",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modal",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "dismissible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "closable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "maximizable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "minimizable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "size",
       "optional": true,
       "type": "DialogSize",
-      "description": ""
+      "description": "Preset width — ignored when maximized",
+      "default": "md"
     },
     {
       "name": "width",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Custom width CSS value (overrides size)",
+      "default": ""
     },
     {
       "name": "lockScroll",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Lock document scroll while open (modal only). @default true",
+      "default": true
     },
     {
       "name": "closeOnPressEscape",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Close on Escape. @default dismissible",
+      "default": null
     },
     {
       "name": "closeOnClickOverlay",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Close on overlay click. @default dismissible",
+      "default": null
     },
     {
       "name": "teleportTo",
       "optional": true,
       "type": "string | HTMLElement",
-      "description": ""
+      "description": "Teleport target. @default body (via Overlay runtime)",
+      "default": "body"
     },
     {
       "name": "zIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Explicit stacking order; otherwise Overlay z-index manager.",
+      "default": null
     }
   ],
   "events": [
@@ -119,29 +141,29 @@
     {
       "name": "default",
       "props": "props: Record<string, never>",
-      "description": ""
+      "description": "Main dialog body"
     },
     {
       "name": "header",
       "props": "props: Record<string, never>",
-      "description": ""
+      "description": "Header region — replaces `title` / `header` props when provided"
     },
     {
       "name": "footer",
       "props": "props: Record<string, never>",
-      "description": ""
+      "description": "Footer region — replaces `footer` prop when provided"
     }
   ],
   "expose": [
     {
       "name": "open",
       "type": "() => void",
-      "description": ""
+      "description": "Open the dialog (`update:visible` true)"
     },
     {
       "name": "close",
       "type": "(reason?: DialogCloseReason) => void",
-      "description": ""
+      "description": "Close the dialog with an optional reason"
     }
   ],
   "models": [],

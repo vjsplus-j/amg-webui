@@ -1,6 +1,12 @@
 {
   "name": "GbsRegisterForm",
-  "generatedAt": "2026-08-07T12:41:13.604Z",
+  "package": "gb28181",
+  "importPaths": [
+    "amg-webui/gb28181",
+    "amg-webui/gbs-register-form"
+  ],
+  "sourceHash": "c5299899de8dcf8a5148adc87a8d32c3aa82df84c14c7a150ac060f23df829e4",
+  "generatedAt": "2026-08-07T18:45:11.047Z",
   "source": {
     "types": "packages/components/gb28181/GbsRegisterForm/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "modelValue",
       "optional": true,
       "type": "GbsRegister",
-      "description": ""
+      "description": "",
+      "default": "() => ({ deviceId: '34020000001320000001', sipDomain: '3402000000', expires: 3600, password: '' })"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "readonly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "compact",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "showPassword",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

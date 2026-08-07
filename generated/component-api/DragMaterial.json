@@ -1,6 +1,12 @@
 {
   "name": "DragMaterial",
-  "generatedAt": "2026-08-07T12:40:46.821Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/drag-material"
+  ],
+  "sourceHash": "62d1af207f8226581ab7ed6cc603027556bcd7bbd236fb49e6f0e0bc435c343d",
+  "generatedAt": "2026-08-07T18:45:10.972Z",
   "source": {
     "types": "packages/lowcode/ui/DragMaterial/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "materials",
       "optional": true,
       "type": "CanvasMaterialItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "filter",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "group",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "searchable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

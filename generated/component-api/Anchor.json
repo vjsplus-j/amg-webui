@@ -1,6 +1,12 @@
 {
   "name": "Anchor",
-  "generatedAt": "2026-08-07T12:39:09.852Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/anchor"
+  ],
+  "sourceHash": "f19f03665fefa2fcb3a1a60efdf80fe0d4f85756ae9a27fa2ae2ec87f7e03c9b",
+  "generatedAt": "2026-08-07T18:45:10.877Z",
   "source": {
     "types": "packages/components/core/Anchor/types.ts",
     "vue": true
@@ -10,73 +16,85 @@
       "name": "items",
       "optional": true,
       "type": "NavItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "direction",
       "optional": true,
       "type": "'horizontal' | 'vertical'",
-      "description": ""
+      "description": "",
+      "default": "vertical"
     },
     {
       "name": "offset",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Pixels offset from container top when scrolling / detecting",
+      "default": 0
     },
     {
       "name": "container",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Scroll container CSS selector; omit for window",
+      "default": null
     },
     {
       "name": "smooth",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "bound",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Extra bound (px) for active detection",
+      "default": 0
     },
     {
       "name": "affix",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "CSS sticky while scrolling",
+      "default": false
     },
     {
       "name": "affixOffset",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Sticky top offset (px) when affix",
+      "default": 0
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

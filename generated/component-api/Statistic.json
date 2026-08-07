@@ -1,6 +1,12 @@
 {
   "name": "Statistic",
-  "generatedAt": "2026-08-07T12:45:59.837Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/statistic"
+  ],
+  "sourceHash": "51bc1e8ddd5dd3f1004b70ba72ab9f475df64388c8e8183354cdc210d0a1c6e9",
+  "generatedAt": "2026-08-07T18:45:11.207Z",
   "source": {
     "types": "packages/components/core/Statistic/types.ts",
     "vue": true
@@ -10,68 +16,85 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": "",
+      "default": null
     },
     {
       "name": "value",
       "optional": false,
       "type": "number | string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "precision",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "prefix",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "suffix",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "groupSeparator",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ","
     },
     {
       "name": "decimalSeparator",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "."
     },
     {
       "name": "trend",
       "optional": true,
       "type": "StatisticTrend",
-      "description": ""
+      "description": "",
+      "default": "none"
     },
     {
       "name": "animate",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "duration",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1000
     }
   ],
   "events": [
     {
       "name": "finish",
       "payload": "value: number | string",
-      "description": ""
+      "description": "Count-up animation finished (or skipped when animate=false)"
     }
   ],
   "slots": [],

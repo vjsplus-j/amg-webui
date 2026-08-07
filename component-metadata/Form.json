@@ -1,0 +1,64 @@
+{
+  "name": "Form",
+  "title": "Form 表单",
+  "summary": "Form 表单：面向企业场景的 Form 组件（成熟度 rc）。",
+  "description": "Form 表单：面向企业场景的 Form 组件（成熟度 rc）。",
+  "family": "form",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/form"
+  ],
+  "features": [
+    "Form 家族组件",
+    "校验规则",
+    "支持禁用状态",
+    "事件回调"
+  ],
+  "useCases": [
+    "表单布局、校验与字段编排",
+    "动态/分步表单",
+    "需要禁用/只读控制的表单场景"
+  ],
+  "avoidWhen": [
+    "纯展示场景无需引入完整 Form"
+  ],
+  "related": [
+    "FormItem",
+    "FormGroup",
+    "FormTabs",
+    "DynamicForm",
+    "StepForm",
+    "InputText"
+  ],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "Enter"
+    ],
+    "detail": "Enter: Enter in field triggers native form submission and Form emits submit when valid; Enter: invalid Form emits validate(false) and does not emit submit"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural DOM + component entry"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.430Z",
+  "sourceHash": "3c256d1972be3a94b6e7f2111965c0aab120a8f17a85ac8c5e5ec8a86c12aabb"
+}

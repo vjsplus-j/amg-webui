@@ -1,6 +1,12 @@
 {
   "name": "TelemetryProvider",
-  "generatedAt": "2026-08-07T12:42:17.034Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/telemetry-provider"
+  ],
+  "sourceHash": "a327fe2152a7bfdf295e24358a150569c77cb63a4990b90eba134a5b95137148",
+  "generatedAt": "2026-08-07T18:45:11.239Z",
   "source": {
     "types": "packages/components/core/TelemetryProvider/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "config",
       "optional": true,
       "type": "VpTelemetryConfig",
-      "description": ""
+      "description": "Configuration applied while this provider is mounted.",
+      "default": null
     },
     {
       "name": "enabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Explicit enabled override; omitted keeps `config.enabled` or the current state.",
+      "default": null
     },
     {
       "name": "tag",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Render element. The provider uses `display: contents` by default.",
+      "default": "div"
     },
     {
       "name": "restoreOnUnmount",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Restore the previous global telemetry configuration on unmount.",
+      "default": true
     },
     {
       "name": "trackLifecycle",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Record provider mount/unmount lifecycle events when telemetry is enabled.",
+      "default": false
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible label when a visible wrapper tag is used.",
+      "default": null
     },
     {
       "name": "eager",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Apply changes immediately before mount (useful for SSR-safe setup).",
+      "default": false
     },
     {
       "name": "display",
       "optional": true,
       "type": "\"contents\" | \"block\" | \"inline\"",
-      "description": ""
+      "description": "Wrapper layout mode; contents preserves zero-layout behavior.",
+      "default": "contents"
     }
   ],
   "events": [

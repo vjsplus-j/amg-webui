@@ -1,0 +1,57 @@
+{
+  "name": "QuickNav",
+  "title": "QuickNav",
+  "summary": "QuickNav：面向企业场景的 Navigation 组件（成熟度 rc）。",
+  "description": "QuickNav：面向企业场景的 Navigation 组件（成熟度 rc）。",
+  "family": "navigation",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/quick-nav"
+  ],
+  "features": [
+    "Navigation 家族组件",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "外观变体",
+    "列配置",
+    "事件回调"
+  ],
+  "useCases": [
+    "菜单、标签页、面包屑等导航",
+    "页面结构引导",
+    "需要禁用/只读控制的表单场景"
+  ],
+  "avoidWhen": [
+    "单页极简场景可省略复杂导航组件"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts QuickNav interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts QuickNav uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts QuickNav RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts QuickNav client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.511Z",
+  "sourceHash": "1531df2e0c51d5065976d30c79be184f04569ab00f78a08ead95164c398790f1"
+}

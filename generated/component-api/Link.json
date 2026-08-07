@@ -1,6 +1,12 @@
 {
   "name": "Link",
-  "generatedAt": "2026-08-07T12:41:35.008Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/link"
+  ],
+  "sourceHash": "ba76eebf8fb66a017b844e9cd307637e5d700a9e12e58c0b331e77d2dd1d516d",
+  "generatedAt": "2026-08-07T18:45:11.085Z",
   "source": {
     "types": "packages/components/core/Link/types.ts",
     "vue": true
@@ -10,139 +16,162 @@
       "name": "href",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "External URL — blocked for javascript:/data:/vbscript:",
+      "default": null
     },
     {
       "name": "to",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Internal path (vue-router `$router` when available)",
+      "default": null
     },
     {
       "name": "type",
       "optional": true,
       "type": "LinkType",
-      "description": ""
+      "description": "Semantic color; `link` = native hyperlink primary",
+      "default": "default"
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "xs → xl, maps font-size tokens (aligned with Button)",
+      "default": "md"
     },
     {
       "name": "underline",
       "optional": true,
       "type": "LinkUnderline",
-      "description": ""
+      "description": "Underline mode; `true`≡always, `false`≡never",
+      "default": "hover"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "readonly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Visual normal, clicks/navigation ignored (≠ disabled)",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Locks interaction; shows spinner (overrides custom icon)",
+      "default": false
     },
     {
       "name": "target",
       "optional": true,
       "type": "'_self' | '_blank' | '_parent' | '_top' | string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "replace",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "icon",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Lucide icon name",
+      "default": null
     },
     {
       "name": "iconPos",
       "optional": true,
       "type": "LinkIconPos",
-      "description": ""
+      "description": "",
+      "default": "left"
     },
     {
       "name": "iconSize",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "Override icon size token (defaults to link size)",
+      "default": null
     },
     {
       "name": "iconGap",
       "optional": true,
       "type": "Size | string",
-      "description": ""
+      "description": "Gap between icon and text — Size token or CSS length",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name when slot text is insufficient",
+      "default": null
     },
     {
       "name": "tooltip",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native title / tooltip hint",
+      "default": null
     },
     {
       "name": "stopPropagation",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Stop click bubbling (tables / nested actions)",
+      "default": false
     },
     {
       "name": "permission",
       "optional": true,
       "type": "boolean | (() => boolean)",
-      "description": ""
+      "description": "Permission gate. `true` / missing = allowed. Vue Boolean props omit as `false` — component default must be `true` so hide mode does not blank every Link. `false` or failing checker → hide or disable per `permissionMode`.",
+      "default": true
     },
     {
       "name": "permissionMode",
       "optional": true,
       "type": "LinkPermissionMode",
-      "description": ""
+      "description": "",
+      "default": "hide"
     },
     {
       "name": "permissionTip",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "beforeClick",
       "optional": true,
       "type": "(event: MouseEvent) => boolean | void | Promise<boolean | void>",
-      "description": ""
+      "description": "Pre-click interceptor — return false / reject to abort",
+      "default": null
     },
     {
       "name": "clickGuard",
       "optional": true,
       "type": "LinkClickGuard",
-      "description": ""
+      "description": "",
+      "default": "none"
     },
     {
       "name": "wait",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Wait ms for debounce / throttle",
+      "default": null
     }
   ],
   "events": [

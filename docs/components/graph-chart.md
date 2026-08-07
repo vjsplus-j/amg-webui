@@ -1,25 +1,37 @@
 # GraphChart
 
-GraphChart 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+GraphChart：面向企业场景的 Charts 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-GraphChart 当前成熟度为 **RC**；完整交互见本地 example。
+GraphChart：面向企业场景的 Charts 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Charts 家族组件
+- v-model 双向绑定
+- 支持禁用状态
+- 加载状态反馈
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 统计图表可视化
+- 仪表盘指标展示
+
+**不适用**
+
+- 极简单数值用 Statistic
 
 ## 基础用法
 
+> `import { GraphChart } from 'amg-webui/charts'`
+
 ```vue
 <script setup>
-import { GraphChart } from '@amg-webui/charts'
+import { GraphChart } from 'amg-webui/charts'
 </script>
 
 <template>
@@ -29,22 +41,24 @@ import { GraphChart } from '@amg-webui/charts'
 
 Curated demo：`example/demos/GraphChart/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `title` | `string` | — | 标题 / Title |
-| `description` | `string` | — | — |
-| `data` | `unknown` | — | 树形数据 / Tree data |
-| `modelValue` | `unknown` | — | 绑定值 / Bound value (v-model) |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
-| `loading` | `boolean` | — | 加载中状态 / Loading state |
-| `nodes` | `GraphChartNode[]` | — | — |
-| `edges` | `GraphChartEdge[]` | — | — |
-| `selectable` | `boolean` | — | — |
-| `emptyText` | `string` | — | — |
+| `title` | `string` | `undefined` | 标题 / Title |
+| `description` | `string` | `undefined` | description 字符串 |
+| `data` | `unknown` | `undefined` | 树形数据 / Tree data |
+| `modelValue` | `unknown` | `undefined` | 绑定值 / Bound value (v-model) |
+| `disabled` | `boolean` | false | 是否禁用 / Whether disabled |
+| `loading` | `boolean` | false | 加载中状态 / Loading state |
+| `nodes` | `GraphChartNode[]` | `() => []` | nodes 列表数据 |
+| `edges` | `GraphChartEdge[]` | `() => []` | edges 列表数据 |
+| `selectable` | `boolean` | true | 是否启用 selectable |
+| `emptyText` | `string` | `undefined` | emptyText 字符串 |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
@@ -53,19 +67,52 @@ Curated demo：`example/demos/GraphChart/index.vue`
 | `select` | `value: GraphChartNode, event?: MouseEvent \| KeyboardEvent` | 选中 / Select |
 | `click` | `event: MouseEvent` | 点击 / Click |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `GraphChartNode`
 - `GraphChartEdge`
 - `GraphChartProps`
 - `GraphChartEmits`
 
+## 键盘交互
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts GraphChart non-interactive display — keyboard N/A
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts GraphChart uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts GraphChart RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts GraphChart client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -73,6 +120,9 @@ Curated demo：`example/demos/GraphChart/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/charts` |
+| metadata | `component-metadata/GraphChart.json` |
 | API extract | `generated/component-api/GraphChart.json` |
 
-> 完整 Demo 见 `example/demos/GraphChart`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/GraphChart`（example 本地调试，不上线）。
+

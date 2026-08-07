@@ -1,6 +1,12 @@
 {
   "name": "Sider",
-  "generatedAt": "2026-08-07T12:41:56.145Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/sider"
+  ],
+  "sourceHash": "630a1c788300e790527c03795a886c337b7bf83c0ef6d208e8f9d5cd3565a6e2",
+  "generatedAt": "2026-08-07T18:45:11.192Z",
   "source": {
     "types": "packages/components/core/Sider/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "width",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Expanded width (CSS length or token). Default: var(--ln-sidebar-width)",
+      "default": "var(--ln-sidebar-width)"
     },
     {
       "name": "collapsedWidth",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Collapsed width. Default: var(--ln-sidebar-width-collapsed)",
+      "default": "var(--ln-sidebar-width-collapsed)"
     },
     {
       "name": "collapsed",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "collapsible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "side",
       "optional": true,
       "type": "'left' | 'right'",
-      "description": ""
+      "description": "Which edge the sider docks to",
+      "default": "left"
     },
     {
       "name": "bordered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Show edge border (default true)",
+      "default": true
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

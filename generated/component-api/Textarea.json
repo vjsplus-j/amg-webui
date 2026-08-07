@@ -1,6 +1,12 @@
 {
   "name": "Textarea",
-  "generatedAt": "2026-08-07T12:34:13.551Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/textarea"
+  ],
+  "sourceHash": "5ad78cfcd1d15d7d5e9b5c0654dc043a07b02511dc7abd07e3602fd3f8bdbdd7",
+  "generatedAt": "2026-08-07T18:45:11.243Z",
   "source": {
     "types": "packages/components/form/Textarea/types.ts",
     "vue": true
@@ -10,103 +16,120 @@
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "autocomplete",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "readonly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "maxlength",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "rows",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 4
     },
     {
       "name": "cols",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 50
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "fluid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "autoResize",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "showCounter",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "sanitizeInput",
       "optional": true,
       "type": "boolean | 'blur' | 'input' | 'off'",
-      "description": ""
+      "description": "Opt-in field filter via `@amg-webui/security` (not XSS defense). Default `false`. Use `true` / `'blur'` on blur, `'input'` for keystroke filtering.",
+      "default": false
     }
   ],
   "events": [

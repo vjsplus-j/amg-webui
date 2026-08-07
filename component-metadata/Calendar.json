@@ -1,0 +1,69 @@
+{
+  "name": "Calendar",
+  "title": "Calendar",
+  "summary": "Calendar：面向企业场景的 DateTime 组件（成熟度 rc）。",
+  "description": "Calendar：面向企业场景的 DateTime 组件（成熟度 rc）。",
+  "family": "datetime",
+  "package": "data",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/calendar"
+  ],
+  "features": [
+    "DateTime 家族组件",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "事件回调"
+  ],
+  "useCases": [
+    "日期/时间选择与范围输入",
+    "表单与筛选面板",
+    "需要禁用/只读控制的表单场景"
+  ],
+  "avoidWhen": [
+    "需要非标准历法或复杂排班规则时需自定义"
+  ],
+  "related": [
+    "DatePicker",
+    "DateTimePicker"
+  ],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [
+      "Tab",
+      "Enter",
+      "Escape",
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      "Space"
+    ],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural DOM + component entry"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.361Z",
+  "sourceHash": "512275621d69e9a9845526f322fbbe019a1672d57ed1be919261281bfbf7b8e8"
+}

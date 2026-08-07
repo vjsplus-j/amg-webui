@@ -1,25 +1,36 @@
 # OnvifSearch
 
-OnvifSearch 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+OnvifSearch：面向企业场景的 ONVIF 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-OnvifSearch 当前成熟度为 **RC**；完整交互见本地 example。
+OnvifSearch：面向企业场景的 ONVIF 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- ONVIF 家族组件
+- 加载状态反馈
+- 支持禁用状态
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- ONVIF 设备发现与管理
+- IPC 运维面板
+
+**不适用**
+
+- 非 ONVIF 设备对接场景
 
 ## 基础用法
 
+> `import { OnvifSearch } from 'amg-webui/onvif'`
+
 ```vue
 <script setup>
-import { OnvifSearch } from '@amg-webui/onvif'
+import { OnvifSearch } from 'amg-webui/onvif'
 </script>
 
 <template>
@@ -29,31 +40,66 @@ import { OnvifSearch } from '@amg-webui/onvif'
 
 Curated demo：`example/demos/OnvifSearch/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `devices` | `OnvifDevice[]` | — | — |
-| `filter` | `string` | — | — |
-| `loading` | `boolean` | — | 加载中状态 / Loading state |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
-| `pageSize` | `number` | — | 每页条数 / Page size |
-| `emptyText` | `string` | — | — |
+| `devices` | `OnvifDevice[]` | `() => [ { id: 'cam-01', name: 'IPC-Office-01', ip: '192.168.1.101', port: 80, online: true }, { id: 'cam-02', name: 'IPC-Gate-02', ip: '192.168.1.102', port: 80, online: true }, { id: 'nvr-01', name: 'NVR-Main', ip: '192.168.1.200', port: 8000, online: false } ]` | devices 列表数据 |
+| `filter` | `string` | `` | filter 字符串 |
+| `loading` | `boolean` | false | 加载中状态 / Loading state |
+| `disabled` | `boolean` | false | 是否禁用 / Whether disabled |
+| `pageSize` | `number` | 50 | Max rows before virtual hint (display only) |
+| `emptyText` | `string` | `undefined` | emptyText 字符串 |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
-| `update:filter` | `v: string` | — |
-| `discover` | `void` | — |
+| `update:filter` | `v: string` | `filter` 更新时触发（v-model） |
+| `discover` | `void` | discover 时触发 |
 | `select` | `device: OnvifDevice` | 选中 / Select |
 
-## Public types
+### Public Types
 
 - `OnvifDevice`
 - `OnvifSearchProps`
 - `OnvifSearchEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- invalid keyboard evidence (mount/visibility only): "tests/unit/hardening/real-mount-remaining.spec.ts OnvifSearch interactive surface present (keyboard applicable)"
+
+## 无障碍
+
+- 状态：`FAIL`
+- a11y PASS requires A11Y_STRUCTURE/A11Y_CONTRAST or critical/serious counts (family name alone insufficient)
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts OnvifSearch uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts OnvifSearch RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts OnvifSearch client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -61,6 +107,9 @@ Curated demo：`example/demos/OnvifSearch/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/onvif` |
+| metadata | `component-metadata/OnvifSearch.json` |
 | API extract | `generated/component-api/OnvifSearch.json` |
 
-> 完整 Demo 见 `example/demos/OnvifSearch`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/OnvifSearch`（example 本地调试，不上线）。
+

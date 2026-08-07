@@ -1,6 +1,12 @@
 {
   "name": "OnvifGroupTree",
-  "generatedAt": "2026-08-07T12:46:30.692Z",
+  "package": "onvif",
+  "importPaths": [
+    "amg-webui/onvif",
+    "amg-webui/onvif-group-tree"
+  ],
+  "sourceHash": "97de334bd9603ae7eeffb39c3e088cce12477504d18b4d5f1784bb116291cb56",
+  "generatedAt": "2026-08-07T18:45:11.120Z",
   "source": {
     "types": "packages/components/onvif/OnvifGroupTree/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "OnvifGroupNode[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "options",
       "optional": true,
       "type": "OnvifGroupNode[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "Array<string | number>",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "expandedKeys",
       "optional": true,
       "type": "Array<string | number>",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "filter",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "checkStrategy",
       "optional": true,
       "type": "\"all\" | \"leaf\"",
-      "description": ""
+      "description": "",
+      "default": "all"
     }
   ],
   "events": [

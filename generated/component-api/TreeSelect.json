@@ -1,6 +1,12 @@
 {
   "name": "TreeSelect",
-  "generatedAt": "2026-08-07T12:34:13.555Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/tree-select"
+  ],
+  "sourceHash": "15d4d2994e6fa13cc382eeb3700a9fde7d452c0669fb2c3b5b716ca9c26fe38e",
+  "generatedAt": "2026-08-07T18:45:11.268Z",
   "source": {
     "types": "packages/components/data/TreeSelect/types.ts",
     "vue": true
@@ -10,61 +16,78 @@
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "options",
       "optional": true,
       "type": "TreeSelectOption[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "filterable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "clearable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "multiple",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "showCheckbox",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Show tree checkboxes (implies cascade when multiple).",
+      "default": false
     },
     {
       "name": "checkStrictly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": "Show loading state in the dropdown panel",
+      "default": false
     }
   ],
   "events": [

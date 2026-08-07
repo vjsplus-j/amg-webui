@@ -1,6 +1,12 @@
 {
   "name": "Highlight",
-  "generatedAt": "2026-08-07T12:41:13.613Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/highlight"
+  ],
+  "sourceHash": "8f4f872f8db28709301c75575fb24049b855dcec923a187cc8f88b4b25630e10",
+  "generatedAt": "2026-08-07T18:45:11.060Z",
   "source": {
     "types": "packages/components/core/Highlight/types.ts",
     "vue": true
@@ -10,62 +16,71 @@
       "name": "text",
       "optional": false,
       "type": "string",
-      "description": ""
+      "description": "Source text to scan",
+      "default": null
     },
     {
       "name": "keyword",
       "optional": false,
       "type": "string | string[]",
-      "description": ""
+      "description": "One or more keywords to highlight",
+      "default": null
     },
     {
       "name": "ignoreCase",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Case-insensitive match (default true)",
+      "default": true
     },
     {
       "name": "matchWholeWord",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Prefer whole-word boundaries (`\\b`) when matching",
+      "default": false
     },
     {
       "name": "variant",
       "optional": true,
       "type": "HighlightVariant",
-      "description": ""
+      "description": "Visual treatment for matches",
+      "default": "mark"
     },
     {
       "name": "compact",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Tighter mark padding for dense search UIs",
+      "default": false
     },
     {
       "name": "color",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Highlight background — prefer CSS Token vars (e.g. var(--warning-100))",
+      "default": null
     },
     {
       "name": "colorText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Highlight foreground — prefer CSS Token vars",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Optional accessible label for the highlight region",
+      "default": null
     }
   ],
   "events": [
     {
       "name": "matchChange",
       "payload": "count: number",
-      "description": ""
+      "description": "Fired whenever the number of highlighted segments changes"
     }
   ],
   "slots": [],

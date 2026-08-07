@@ -1,0 +1,53 @@
+{
+  "name": "CodeEditor",
+  "title": "CodeEditor",
+  "summary": "CodeEditor：面向企业场景的 Editor 组件（成熟度 rc）。",
+  "description": "CodeEditor：面向企业场景的 Editor 组件（成熟度 rc）。",
+  "family": "editor",
+  "package": "editor",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/editor",
+    "amg-webui/code-editor"
+  ],
+  "features": [
+    "Editor 家族组件",
+    "v-model 双向绑定",
+    "只读模式",
+    "事件回调"
+  ],
+  "useCases": [
+    "代码/富文本/Markdown 编辑"
+  ],
+  "avoidWhen": [
+    "只读展示用 Typography / RichText 预览模式"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts CodeEditor interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CodeEditor uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CodeEditor RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CodeEditor client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.379Z",
+  "sourceHash": "202afbd49d406f1d48fde213984f88d3eaf761ff592e4ecaeb64abdd6752bfad"
+}

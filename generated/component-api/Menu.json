@@ -1,6 +1,12 @@
 {
   "name": "Menu",
-  "generatedAt": "2026-08-07T12:41:35.021Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/menu"
+  ],
+  "sourceHash": "21b2da5736937f4bafc10ef0587dc25b413101910a0b21101a16a1510246096e",
+  "generatedAt": "2026-08-07T18:45:11.100Z",
   "source": {
     "types": "packages/components/core/Menu/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "items",
       "optional": true,
       "type": "MenuItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "openKeys",
       "optional": true,
       "type": "string[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "collapsed",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "direction",
       "optional": true,
       "type": "'vertical' | 'horizontal'",
-      "description": ""
+      "description": "",
+      "default": "vertical"
     },
     {
       "name": "mode",
       "optional": true,
       "type": "'auto' | 'inline' | 'popup'",
-      "description": ""
+      "description": "inline | popup | auto (horizontal/collapsed → popup)",
+      "default": "auto"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

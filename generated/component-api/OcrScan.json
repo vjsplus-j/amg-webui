@@ -1,6 +1,12 @@
 {
   "name": "OcrScan",
-  "generatedAt": "2026-08-07T12:41:35.030Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/ocr-scan"
+  ],
+  "sourceHash": "f93de95c612da17a87b0aaf35aa7baf9eb3b4b7902b38bcf4e36ebb48b4c2dc5",
+  "generatedAt": "2026-08-07T18:45:11.114Z",
   "source": {
     "types": "packages/components/core/OcrScan/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "accept",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "image/*"
     },
     {
       "name": "maxFileSize",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": "10 * 1024 * 1024"
     },
     {
       "name": "maxPreviewWidth",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 640
     },
     {
       "name": "showPreview",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "autoScan",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "recognizer",
       "optional": true,
       "type": "OcrRecognizer",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "label",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "scanText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

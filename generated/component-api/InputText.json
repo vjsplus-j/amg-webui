@@ -1,6 +1,12 @@
 {
   "name": "InputText",
-  "generatedAt": "2026-08-07T12:34:13.543Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/input-text"
+  ],
+  "sourceHash": "46b8ea4de470255818eeb64d2df20f07c64603fa1725203917c5470672adf134",
+  "generatedAt": "2026-08-07T18:45:11.080Z",
   "source": {
     "types": "packages/components/form/InputText/types.ts",
     "vue": true
@@ -10,91 +16,106 @@
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native input id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "autocomplete",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Maps to aria-label on the native input",
+      "default": null
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "readonly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "maxlength",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "fluid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "type",
       "optional": true,
       "type": "'text' | 'password' | 'email' | 'tel' | 'url' | 'search'",
-      "description": ""
+      "description": "",
+      "default": "text"
     },
     {
       "name": "sanitizeInput",
       "optional": true,
       "type": "boolean | 'blur' | 'input' | 'off'",
-      "description": ""
+      "description": "Opt-in field filter via `@amg-webui/security` (not XSS defense). Default `false`. Use `true` / `'blur'` on blur, `'input'` for keystroke filtering.",
+      "default": false
     },
     {
       "name": "skipFormItem",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "When true, skip FormItem inject (composite parents own the hook).",
+      "default": false
     }
   ],
   "events": [

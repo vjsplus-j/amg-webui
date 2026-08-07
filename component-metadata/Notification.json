@@ -1,0 +1,51 @@
+{
+  "name": "Notification",
+  "title": "Notification",
+  "summary": "Notification：面向企业场景的 Feedback 组件（成熟度 rc）。",
+  "description": "Notification：面向企业场景的 Feedback 组件（成熟度 rc）。",
+  "family": "feedback",
+  "package": "overlay",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/notification"
+  ],
+  "features": [
+    "Feedback 家族组件"
+  ],
+  "useCases": [
+    "操作结果与状态提示",
+    "空态与加载反馈"
+  ],
+  "avoidWhen": [
+    "需要模态决策时用 Dialog / Confirm"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Notification non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Notification uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Notification RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Notification client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.480Z",
+  "sourceHash": "1aec0b19e7b1dd5ef15d9fd8c60e070591055eb0a232bad5c20ce6048e164298"
+}

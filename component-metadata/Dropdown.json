@@ -1,0 +1,59 @@
+{
+  "name": "Dropdown",
+  "title": "Dropdown",
+  "summary": "Dropdown：面向企业场景的 Overlay 组件（成熟度 rc）。",
+  "description": "Dropdown：面向企业场景的 Overlay 组件（成熟度 rc）。",
+  "family": "overlay",
+  "package": "overlay",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/dropdown"
+  ],
+  "features": [
+    "Overlay 家族组件",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "事件回调"
+  ],
+  "useCases": [
+    "对话框、抽屉、气泡确认等浮层",
+    "阻断式交互",
+    "需要禁用/只读控制的表单场景"
+  ],
+  "avoidWhen": [
+    "轻量提示优先 Toast / Message",
+    "非阻断提示不要用 Modal 对话框"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "ArrowDown",
+      "Escape"
+    ],
+    "detail": "ArrowDown: moves roving focus among open dropdown menuitems; Escape: closes dropdown menu and restores trigger focus"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Dropdown uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Dropdown RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Dropdown client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.409Z",
+  "sourceHash": "adaaa7e66f0817362b857a2bec80264322f873b4f1c398cf12ec6cefa9497ea5"
+}

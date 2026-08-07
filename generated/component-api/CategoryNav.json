@@ -1,6 +1,12 @@
 {
   "name": "CategoryNav",
-  "generatedAt": "2026-08-07T12:40:46.791Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/category-nav"
+  ],
+  "sourceHash": "5fa09a6052727e49894a7c8e8dccb2871b0fa7e9cf9916a3d93e4954c2cfb822",
+  "generatedAt": "2026-08-07T18:45:10.926Z",
   "source": {
     "types": "packages/components/core/CategoryNav/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "items",
       "optional": true,
       "type": "NavItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "variant",
       "optional": true,
       "type": "CategoryNavVariant",
-      "description": ""
+      "description": "",
+      "default": "pills"
     },
     {
       "name": "size",
       "optional": true,
       "type": "CategoryNavSize",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "wrap",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

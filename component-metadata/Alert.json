@@ -1,0 +1,54 @@
+{
+  "name": "Alert",
+  "title": "Alert",
+  "summary": "Alert：面向企业场景的 Feedback 组件（成熟度 rc）。",
+  "description": "Alert：面向企业场景的 Feedback 组件（成熟度 rc）。",
+  "family": "feedback",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/alert"
+  ],
+  "features": [
+    "Feedback 家族组件",
+    "语义色变体",
+    "可关闭",
+    "事件回调"
+  ],
+  "useCases": [
+    "操作结果与状态提示",
+    "空态与加载反馈"
+  ],
+  "avoidWhen": [
+    "需要模态决策时用 Dialog / Confirm"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts Alert interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Alert uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Alert RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Alert client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.336Z",
+  "sourceHash": "42ec666154575523b67bd9a2f430fbeb70dbad9bb5cf08812dd25815e8a902d9"
+}

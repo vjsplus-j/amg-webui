@@ -1,6 +1,12 @@
 {
   "name": "RouterNav",
-  "generatedAt": "2026-08-07T12:41:56.127Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/router-nav"
+  ],
+  "sourceHash": "e192dde47681ca2816cdf07b26ce1485de61200242f1e6bdf616ed48be2942fc",
+  "generatedAt": "2026-08-07T18:45:11.170Z",
   "source": {
     "types": "packages/components/core/RouterNav/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "items",
       "optional": true,
       "type": "NavItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "direction",
       "optional": true,
       "type": "'horizontal' | 'vertical'",
-      "description": ""
+      "description": "",
+      "default": "horizontal"
     },
     {
       "name": "activeMatch",
       "optional": true,
       "type": "'exact' | 'prefix'",
-      "description": ""
+      "description": "",
+      "default": "prefix"
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

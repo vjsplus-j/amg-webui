@@ -1,6 +1,12 @@
 {
   "name": "Breadcrumb",
-  "generatedAt": "2026-08-07T12:39:09.864Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/breadcrumb"
+  ],
+  "sourceHash": "0f368aedc3adf8ab097b992f00ca05c5c0b311e89dca746657e926aca3eec094",
+  "generatedAt": "2026-08-07T18:45:10.898Z",
   "source": {
     "types": "packages/components/core/Breadcrumb/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "items",
       "optional": true,
       "type": "BreadcrumbItemData[]",
-      "description": ""
+      "description": "Declarative items (alternative to default slot)",
+      "default": null
     },
     {
       "name": "separator",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Text separator between items (ignored when #separator slot is used)",
+      "default": "/"
     },
     {
       "name": "maxCount",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Collapse middle items when length exceeds this count. Shows first + ellipsis + trailing items.",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name for the nav landmark",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

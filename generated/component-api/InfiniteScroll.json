@@ -1,6 +1,12 @@
 {
   "name": "InfiniteScroll",
-  "generatedAt": "2026-08-07T12:41:13.621Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/infinite-scroll"
+  ],
+  "sourceHash": "f474f430aaf5e773318871551c3eea17bc139d58daa122db65bbcc0f74d4ae66",
+  "generatedAt": "2026-08-07T18:45:11.073Z",
   "source": {
     "types": "packages/components/data/InfiniteScroll/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "distance",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "immediate",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "scrollTarget",
       "optional": true,
       "type": "string | HTMLElement",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "finished",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

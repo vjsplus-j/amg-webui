@@ -603,6 +603,13 @@ export const LocaleKeys = {
     fallbackHint: 'example.doc.fallbackHint',
     basicMount: 'example.doc.basicMount',
     basicMountDesc: 'example.doc.basicMountDesc',
+    intro: {
+      package: 'example.doc.intro.package',
+      maturity: 'example.doc.intro.maturity',
+      importPath: 'example.doc.intro.importPath',
+      features: 'example.doc.intro.features',
+      viewDocs: 'example.doc.intro.viewDocs'
+    },
     apiDraft: 'example.doc.apiDraft',
     overview: 'example.doc.overview',
     fallbackLead: 'example.doc.fallbackLead',

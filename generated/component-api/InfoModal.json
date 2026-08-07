@@ -1,6 +1,12 @@
 {
   "name": "InfoModal",
-  "generatedAt": "2026-08-07T12:45:59.835Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/info-modal"
+  ],
+  "sourceHash": "b29e7a7e3a9582c22319f51e435bf8789d96566d905e5007af2f7b6a6e5158d1",
+  "generatedAt": "2026-08-07T18:45:11.074Z",
   "source": {
     "types": "packages/components/overlay/InfoModal/types.ts",
     "vue": true

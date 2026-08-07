@@ -1,31 +1,38 @@
-# Form
+# Form 表单
 
-Form 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Form 表单：面向企业场景的 Form 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Form 当前成熟度为 **RC**；下方 DocsDemo 提供 docs 站内嵌交互，完整场景见 example。
+Form 表单：面向企业场景的 Form 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Form 家族组件
+- 校验规则
+- 支持禁用状态
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-- [FormItem](./form-item)
-- [FormGroup](./form-group)
-- [FormTabs](./form-tabs)
-- [DynamicForm](./dynamic-form)
-- [StepForm](./step-form)
-- [InputText](./input-text)
+**适用**
+
+- 表单布局、校验与字段编排
+- 动态/分步表单
+- 需要禁用/只读控制的表单场景
+
+**不适用**
+
+- 纯展示场景无需引入完整 Form
 
 ## 基础用法
+
+> `import { Form } from 'amg-webui/form'`
 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { Form, FormItem, InputText } from '@amg-webui/form'
+import { Form, FormItem, InputText } from 'amg-webui/form'
 
 const model = ref({ name: '' })
 </script>
@@ -41,7 +48,7 @@ const model = ref({ name: '' })
 
 Curated demo：`example/demos/Form/index.vue`
 
-## 交互演示
+## 示例
 
 <DocsDemo name="form-basic" />
 
@@ -55,27 +62,29 @@ Curated demo：`example/demos/Form/index.vue`
 
 Undeclared native attrs (`pattern`, `inputmode`, `minlength`, `aria-labelledby`, …) are forwarded onto the real control via `useNativeInputAttrs` — not the wrapper host.
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `model` | `Record<string, unknown>` | — | 表单数据对象（响应式）/ Reactive form model |
-| `rules` | `FormRules` | — | 字段校验规则映射 / Field validation rules |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
-| `labelWidth` | `string` | — | 标签宽度 / Label width |
-| `labelPosition` | `'left' \| 'top'` | — | 标签位置 / Label position |
-| `sanitizeOnSubmit` | `boolean` | — | — |
-| `trackId` | `string` | — | Telemetry 追踪 id / Telemetry track id |
-| `telemetry` | `boolean` | — | 是否上报 Telemetry / Enable telemetry |
+| `model` | `Record<string, unknown>` | `() => ({})` | 表单数据对象（响应式）/ Reactive form model |
+| `rules` | `FormRules` | `undefined` | 字段校验规则映射 / Field validation rules |
+| `disabled` | `boolean` | `undefined` | 是否禁用 / Whether disabled |
+| `labelWidth` | `string` | `undefined` | 标签宽度 / Label width |
+| `labelPosition` | `'left' \| 'top'` | `left` | 标签位置 / Label position |
+| `sanitizeOnSubmit` | `boolean` | false | Before successful submit, deep-filter string fields with `sanitizeModelStrings`. Mutates `model` in place when provided as a reactive object. |
+| `trackId` | `string` | `undefined` | Telemetry 追踪 id / Telemetry track id |
+| `telemetry` | `boolean` | `undefined` | 是否上报 Telemetry / Enable telemetry |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
-| `validate` | `valid: boolean, errors: Record<string, string>` | — |
+| `validate` | `valid: boolean, errors: Record<string, string>` | validate 时触发 |
 | `submit` | `void` | 提交 / Submit |
 
-## Public types
+### Public Types
 
 - `FormRules`
 - `FormRule`
@@ -83,6 +92,45 @@ Undeclared native attrs (`pattern`, `inputmode`, `minlength`, `aria-labelledby`,
 - `FormProps`
 - `FormEmits`
 
+## 键盘交互
+
+- 状态：`PASS`
+- 按键：`Enter`
+- Enter: Enter in field triggers native form submission and Form emits submit when valid; Enter: invalid Form emits validate(false) and does not emit submit
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`N/A`
+- optional
+
+## RTL
+
+- 状态：`N/A`
+- optional
+
+## SSR
+
+- 状态：`PASS`
+- structural DOM + component entry
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+- [FormItem](./form-item)
+- [FormGroup](./form-group)
+- [FormTabs](./form-tabs)
+- [DynamicForm](./dynamic-form)
+- [StepForm](./step-form)
+- [InputText](./input-text)
 
 ## 稳定性
 
@@ -90,6 +138,9 @@ Undeclared native attrs (`pattern`, `inputmode`, `minlength`, `aria-labelledby`,
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/form` |
+| metadata | `component-metadata/Form.json` |
 | API extract | `generated/component-api/Form.json` |
 
-> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/Form`。
+> **DocsDemo** 为 docs 站内嵌演示；完整 curated demo 见 `example/demos/Form`。
+

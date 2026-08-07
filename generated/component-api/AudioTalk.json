@@ -1,6 +1,12 @@
 {
   "name": "AudioTalk",
-  "generatedAt": "2026-08-07T12:39:09.854Z",
+  "package": "media",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/audio-talk"
+  ],
+  "sourceHash": "f3ebfaee9e84f43b847deaf56b632ca482f73e1fca43d3f67a755a64a6918f5e",
+  "generatedAt": "2026-08-07T18:45:10.879Z",
   "source": {
     "types": "packages/components/media/AudioTalk/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "active",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

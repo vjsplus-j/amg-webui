@@ -1,0 +1,57 @@
+{
+  "name": "ConfirmDialog",
+  "title": "ConfirmDialog",
+  "summary": "ConfirmDialog：面向企业场景的 Overlay 组件（成熟度 rc）。",
+  "description": "ConfirmDialog：面向企业场景的 Overlay 组件（成熟度 rc）。",
+  "family": "overlay",
+  "package": "overlay",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/confirm-dialog"
+  ],
+  "features": [
+    "Overlay 家族组件",
+    "模态遮罩",
+    "可关闭",
+    "事件回调"
+  ],
+  "useCases": [
+    "对话框、抽屉、气泡确认等浮层",
+    "阻断式交互"
+  ],
+  "avoidWhen": [
+    "轻量提示优先 Toast / Message",
+    "非阻断提示不要用 Modal 对话框"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "Escape"
+    ],
+    "detail": "Escape: Escape dismisses confirm dialog and emits update:visible false"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts ConfirmDialog uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts ConfirmDialog RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts ConfirmDialog client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.386Z",
+  "sourceHash": "a3f7765d053d59948a7bed10a26b7b9527767dfa67f6a0ee102c7ca5ea77af67"
+}

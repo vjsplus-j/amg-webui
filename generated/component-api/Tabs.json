@@ -1,6 +1,12 @@
 {
   "name": "Tabs",
-  "generatedAt": "2026-08-07T12:42:17.026Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/tabs"
+  ],
+  "sourceHash": "a290d85423a2da8903f4595e360b6156eca49c45ec75709377bf735b5d38d1a7",
+  "generatedAt": "2026-08-07T18:45:11.231Z",
   "source": {
     "types": "packages/components/core/Tabs/types.ts",
     "vue": true
@@ -10,13 +16,15 @@
       "name": "modelValue",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name for the tablist",
+      "default": null
     }
   ],
   "events": [

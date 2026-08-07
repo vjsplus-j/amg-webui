@@ -1,25 +1,37 @@
 # GbsSignMonitor
 
-GbsSignMonitor 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+GbsSignMonitor：面向企业场景的 GB28181 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-GbsSignMonitor 当前成熟度为 **RC**；完整交互见本地 example。
+GbsSignMonitor：面向企业场景的 GB28181 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- GB28181 家族组件
+- 支持禁用状态
+- 加载状态反馈
+- 可一键清空
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 国标 GB28181 设备与级联
+- 视频监控平台
+
+**不适用**
+
+- 非国标场景勿引入行业包
 
 ## 基础用法
 
+> `import { GbsSignMonitor } from 'amg-webui/gb28181'`
+
 ```vue
 <script setup>
-import { GbsSignMonitor } from '@amg-webui/gb28181'
+import { GbsSignMonitor } from 'amg-webui/gb28181'
 </script>
 
 <template>
@@ -29,41 +41,76 @@ import { GbsSignMonitor } from '@amg-webui/gb28181'
 
 Curated demo：`example/demos/GbsSignMonitor/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `logs` | `GbsSignEntry[]` | — | — |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
-| `loading` | `boolean` | — | 加载中状态 / Loading state |
-| `title` | `string` | — | 标题 / Title |
-| `filter` | `string` | — | — |
-| `type` | `string` | — | 输入类型 / Input type |
-| `selectedId` | `string \| null` | — | — |
-| `autoFollow` | `boolean` | — | — |
-| `clearable` | `boolean` | — | 可一键清空 / Show clear button |
-| `emptyText` | `string` | — | — |
-| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
+| `logs` | `GbsSignEntry[]` | `() => []` | logs 列表数据 |
+| `disabled` | `boolean` | false | 是否禁用 / Whether disabled |
+| `loading` | `boolean` | false | 加载中状态 / Loading state |
+| `title` | `string` | `undefined` | 标题 / Title |
+| `filter` | `string` | `` | filter 字符串 |
+| `type` | `string` | `` | 输入类型 / Input type |
+| `selectedId` | `string \| null` | `null` | selectedId 字符串 |
+| `autoFollow` | `boolean` | true | 是否启用 autoFollow |
+| `clearable` | `boolean` | true | 可一键清空 / Show clear button |
+| `emptyText` | `string` | `undefined` | emptyText 字符串 |
+| `ariaLabel` | `string` | `undefined` | 无障碍标签 / ARIA label |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
-| `update:logs` | `logs: GbsSignEntry[]` | — |
-| `update:filter` | `filter: string` | — |
-| `update:type` | `type: string` | — |
-| `update:selectedId` | `id: string \| null` | — |
-| `refresh` | `void` | — |
-| `clear` | `void` | — |
+| `update:logs` | `logs: GbsSignEntry[]` | `logs` 更新时触发（v-model） |
+| `update:filter` | `filter: string` | `filter` 更新时触发（v-model） |
+| `update:type` | `type: string` | `type` 更新时触发（v-model） |
+| `update:selectedId` | `id: string \| null` | `selectedId` 更新时触发（v-model） |
+| `refresh` | `void` | refresh 时触发 |
+| `clear` | `void` | clear 时触发 |
 | `select` | `entry: GbsSignEntry` | 选中 / Select |
-| `filterChange` | `filter: string, type: string` | — |
+| `filterChange` | `filter: string, type: string` | filterChange 时触发 |
 
-## Public types
+### Public Types
 
 - `GbsSignEntry`
 - `GbsSignMonitorProps`
 - `GbsSignMonitorEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- invalid keyboard evidence (mount/visibility only): "tests/unit/hardening/real-mount-remaining.spec.ts GbsSignMonitor interactive surface present (keyboard applicable)"
+
+## 无障碍
+
+- 状态：`FAIL`
+- a11y PASS requires A11Y_STRUCTURE/A11Y_CONTRAST or critical/serious counts (family name alone insufficient)
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts GbsSignMonitor uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts GbsSignMonitor RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts GbsSignMonitor client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -71,6 +118,9 @@ Curated demo：`example/demos/GbsSignMonitor/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/gb28181` |
+| metadata | `component-metadata/GbsSignMonitor.json` |
 | API extract | `generated/component-api/GbsSignMonitor.json` |
 
-> 完整 Demo 见 `example/demos/GbsSignMonitor`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/GbsSignMonitor`（example 本地调试，不上线）。
+

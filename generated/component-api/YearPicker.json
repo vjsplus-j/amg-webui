@@ -1,6 +1,12 @@
 {
   "name": "YearPicker",
-  "generatedAt": "2026-08-07T12:37:37.633Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/year-picker"
+  ],
+  "sourceHash": "b4dfddec1857e43b1a4414bba766d29dc1016b3c34323d224fbc66f71db12f02",
+  "generatedAt": "2026-08-07T18:45:11.301Z",
   "source": {
     "types": "packages/components/form/YearPicker/types.ts",
     "vue": true
@@ -10,67 +16,78 @@
       "name": "modelValue",
       "optional": true,
       "type": "string | Date | number | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "valueFormat",
       "optional": true,
       "type": "\"number\" | \"date\" | \"iso\"",
-      "description": ""
+      "description": "",
+      "default": "number"
     },
     {
       "name": "yearRange",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 12
     },
     {
       "name": "min",
       "optional": true,
       "type": "string | Date | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "max",
       "optional": true,
       "type": "string | Date | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "clearable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "readonly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

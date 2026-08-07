@@ -1,6 +1,12 @@
 {
   "name": "Row",
-  "generatedAt": "2026-08-07T12:41:56.129Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/row"
+  ],
+  "sourceHash": "c8a11126e93c005dc94bf652f40beeefad2e4fc0a4f80d631d2aacefc517967d",
+  "generatedAt": "2026-08-07T18:45:11.171Z",
   "source": {
     "types": "packages/components/core/Row/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "gutter",
       "optional": true,
       "type": "RowGutter",
-      "description": ""
+      "description": "Gap between cols — token key, CSS length, or number × `--spacing-xs`. Default: md",
+      "default": "md"
     },
     {
       "name": "wrap",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "align",
       "optional": true,
       "type": "RowAlign",
-      "description": ""
+      "description": "",
+      "default": "stretch"
     },
     {
       "name": "justify",
       "optional": true,
       "type": "RowJustify",
-      "description": ""
+      "description": "",
+      "default": "start"
     }
   ],
   "events": [],

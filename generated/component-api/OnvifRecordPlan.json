@@ -1,6 +1,12 @@
 {
   "name": "OnvifRecordPlan",
-  "generatedAt": "2026-08-07T12:41:35.036Z",
+  "package": "onvif",
+  "importPaths": [
+    "amg-webui/onvif",
+    "amg-webui/onvif-record-plan"
+  ],
+  "sourceHash": "9229b249b0881e4b9fa3c2b41e7e6c64a4d529ecdcf17e29e905b9a4d96140fa",
+  "generatedAt": "2026-08-07T18:45:11.123Z",
   "source": {
     "types": "packages/components/onvif/OnvifRecordPlan/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "slots",
       "optional": true,
       "type": "boolean[]",
-      "description": ""
+      "description": "",
+      "default": "() => Array.from({ length: 24 }, (_, i) => i >= 8 && i < 20)"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

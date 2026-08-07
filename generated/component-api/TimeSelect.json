@@ -1,6 +1,12 @@
 {
   "name": "TimeSelect",
-  "generatedAt": "2026-08-07T12:34:13.554Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/time-select"
+  ],
+  "sourceHash": "d675d301deb0168589479c763ce95a919f95fc9b16d73f776885eba328dd3bc7",
+  "generatedAt": "2026-08-07T18:45:11.250Z",
   "source": {
     "types": "packages/components/form/TimeSelect/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "start",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "00:00"
     },
     {
       "name": "end",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "23:30"
     },
     {
       "name": "step",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "00:30"
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "clearable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     }
   ],
   "events": [

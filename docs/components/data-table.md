@@ -1,27 +1,45 @@
 # DataTable 数据表格
 
-DataTable 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+DataTable 数据表格：面向企业场景的 Table 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-DataTable 当前成熟度为 **RC**；下方 DocsDemo 提供 docs 站内嵌交互，完整场景见 example。
+DataTable 数据表格：面向企业场景的 Table 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Table 家族组件
+- 列配置
+- 加载状态反馈
+- 远程/懒加载数据
+- 虚拟滚动
+- 事件回调
+- 插槽自定义
+- 实例方法暴露
+- v-model 双向绑定
 
-## 相关组件
+## 何时使用 / 不适用
 
-- [Pagination](./pagination)
-- [Form](./form)
+**适用**
+
+- 结构化数据表格
+- 排序筛选分页场景
+- 异步提交或加载过程反馈
+- 大数据量列表/表格性能场景
+
+**不适用**
+
+- 少量键值对用 Descriptions
+- 无结构化列需求时避免过度使用表格
 
 ## 基础用法
+
+> `import { DataTable } from 'amg-webui/data'`
 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { DataTable } from '@amg-webui/data'
+import { DataTable } from 'amg-webui/data'
 
 const rows = ref([
   { id: 1, name: 'Alpha' },
@@ -40,7 +58,7 @@ const columns = [
 
 Curated demo：`example/demos/DataTable/index.vue`
 
-## 交互演示
+## 示例
 
 <DocsDemo name="data-table-basic" />
 
@@ -53,37 +71,39 @@ Curated demo：`example/demos/DataTable/index.vue`
 - 本地排序：行数 ≥ `sortWorkerThreshold`（默认 5000）走 Worker，失败回退主线程。
 - **尚未实现**：逐行动态行高、分组虚拟化、展开行虚拟化、分片 100k 内核。
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `value` | `T[]` | — | 行数据源 / Row data source |
-| `columns` | `Column<T>[]` | **必填** | 列配置数组 / Column config array |
-| `rowKey` | `string` | — | 行唯一键字段 / Unique row key field |
-| `selection` | `RowKey[]` | — | 选中行 keys / Selected row keys |
-| `selectionMode` | `"single" \| "multiple"` | — | 选择模式：`single` · `multiple` / Selection mode |
-| `paginator` | `boolean` | — | 是否显示分页 / Show paginator |
-| `rows` | `number` | — | 每页行数 / Rows per page |
-| `first` | `number` | — | 分页起始索引 / Pagination offset |
-| `totalRecords` | `number` | — | 总记录数（远程分页）/ Total records |
-| `sortField` | `string` | — | 排序字段 / Sort field |
-| `sortOrder` | `SortOrder` | — | 排序方向 / Sort order |
-| `striped` | `boolean` | — | 斑马纹 / Striped rows |
-| `fixedHeader` | `boolean` | — | 固定表头 / Fixed header |
-| `filterGlobal` | `boolean` | — | 全局筛选 / Global filter |
-| `loading` | `boolean` | — | 加载中状态 / Loading state |
-| `lazy` | `boolean` | — | 远程数据模式 / Lazy remote data |
-| `filterDebounce` | `number` | — | 筛选防抖毫秒 / Filter debounce (ms) |
-| `virtual` | `boolean` | — | 虚拟滚动 / Virtual scrolling |
-| `virtualHeight` | `number` | — | 虚拟视口高度（spacing 倍数）/ Virtual viewport height |
-| `rowHeight` | `number` | — | 行高（px）/ Row height |
-| `virtualColumns` | `boolean` | — | 横向虚拟列 / Virtual columns |
-| `virtualColumnThreshold` | `number` | — | 自动开启虚拟列的列数阈值 / Column threshold |
-| `sortWorkerThreshold` | `number` | — | Worker 排序行数阈值 / Worker sort threshold |
-| `trackId` | `string` | — | Telemetry 追踪 id / Telemetry track id |
-| `telemetry` | `boolean` | — | 是否上报 Telemetry / Enable telemetry |
+| `value` | `T[]` | `() => []` | 行数据源 / Row data source |
+| `columns` | `Column<T>[]` | `() => []` | 列配置数组 / Column config array |
+| `rowKey` | `string` | `id` | Field name used as stable row identity (default `id`). Required when selection or virtual scroll is enabled. |
+| `selection` | `RowKey[]` | `() => []` | Selected row keys — use with v-model:selection |
+| `selectionMode` | `"single" \| "multiple"` | `undefined` | 选择模式：`single` · `multiple` / Selection mode |
+| `paginator` | `boolean` | `undefined` | 是否显示分页 / Show paginator |
+| `rows` | `number` | 10 | 每页行数 / Rows per page |
+| `first` | `number` | 0 | 分页起始索引 / Pagination offset |
+| `totalRecords` | `number` | 0 | 总记录数（远程分页）/ Total records |
+| `sortField` | `string` | `undefined` | 排序字段 / Sort field |
+| `sortOrder` | `SortOrder` | `undefined` | 排序方向 / Sort order |
+| `striped` | `boolean` | false | 斑马纹 / Striped rows |
+| `fixedHeader` | `boolean` | true | 固定表头 / Fixed header |
+| `filterGlobal` | `boolean` | false | 全局筛选 / Global filter |
+| `loading` | `boolean` | `undefined` | 加载中状态 / Loading state |
+| `lazy` | `boolean` | false | Delegate sorting, filtering and pagination to the consumer. |
+| `filterDebounce` | `number` | 200 | Delay local filtering and lazy filter events. |
+| `virtual` | `boolean` | true | Virtual scroll for the current display set. Default ON. Works with paginator (virtualizes the current page). Set false to render full DOM for the page/list. |
+| `virtualHeight` | `number` | 80 | Viewport height as spacing-xs multiples (synced into virtual math + CSS). |
+| `rowHeight` | `number` | `undefined` | Optional fixed row height in CSS px. When omitted, uses `--theme-table-row-height` then refines via ResizeObserver on the first rendered row. |
+| `virtualColumns` | `boolean` | `undefined` | Horizontal column windowing. Default: auto-enable when column count ≥ `virtualColumnThreshold`. |
+| `virtualColumnThreshold` | `number` | 8 | Column count that triggers auto horizontal virtualization (default 8). |
+| `sortWorkerThreshold` | `number` | `SORT_WORKER_THRESHOLD` | Local sort switches to Worker above this row count (default 5000). |
+| `trackId` | `string` | `undefined` | Telemetry 追踪 id / Telemetry track id |
+| `telemetry` | `boolean` | `undefined` | 是否上报 Telemetry / Enable telemetry |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
@@ -94,44 +114,82 @@ Curated demo：`example/demos/DataTable/index.vue`
 | `update:first` | `first: number` | 分页偏移更新 / first update |
 | `update:rows` | `rows: number` | 每页行数更新 / rows update |
 | `sort` | `event: { field: string; order: SortOrder }` | 排序 / Sort |
-| `row-select` | `event: { originalEvent: DataTableRowInteractionEvent; data: T; checked: boolean }` | 行选择 / Row select |
-| `row-click` | `event: { originalEvent: DataTableRowInteractionEvent; data: T }` | 行点击 / Row click |
+| `row-select` | `event: DataTableRowSelectEvent<T>` | 行选择 / Row select |
+| `row-click` | `event: DataTableRowClickEvent<T>` | 行点击 / Row click |
 | `page` | `event: { first: number; rows: number; page: number; pageCount: number },` | 翻页 / Page change |
 | `filter` | `event: { global: string; fields: Record<string, string> },` | 筛选 / Filter |
 
-## Slots
+### Slots
 
 | Slot | Props | 说明 |
 | --- | --- | --- |
-| `header` | `—` | — |
-| `footer` | `—` | — |
-| `empty` | `—` | — |
-| `loading` | `—` | — |
+| `header` | `—` | header 插槽 |
+| `footer` | `—` | footer 插槽 |
+| `empty` | `—` | empty 插槽 |
+| `loading` | `—` | loading 插槽 |
 | `[key: `body-${string}`]` | `props: { value: unknown; row: T }` | index signature slot |
 
-## Expose
+### Expose
 
-| Expose | 类型 | 说明 |
+| 方法 / 属性 | 类型 | 说明 |
 | --- | --- | --- |
-| `scrollTo` | `(options: { rowIndex?: number; key?: RowKey }) => void` | — |
+| `scrollTo` | `(options: { rowIndex?: number; key?: RowKey }) => void` | Scroll the virtual viewport to a row index or stable row key |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `selection` | v-model:selection |
 
-## Public types
+### Public Types
 
 - `SortOrder`
 - `RowKey`
+- `DataTableRowInteractionEvent`
 - `DataTableInstance`
+- `DataTableRowSelectEvent`
+- `DataTableRowClickEvent`
 - `Column`
 - `DataTableProps`
 - `DataTableEmits`
 - `DataTableSlots`
 - `DataTableExpose`
 
+## 键盘交互
+
+- 状态：`PASS`
+- 按键：`ArrowDown` · `Enter` · `Escape`
+- ArrowDown: ArrowDown/ArrowUp/Home/End move grid row focus; Enter: Enter selects focused row and emits update:selection; Escape: Escape clears row focus without additional selection
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`N/A`
+- optional
+
+## RTL
+
+- 状态：`N/A`
+- optional
+
+## SSR
+
+- 状态：`PASS`
+- structural top-level DOM clean
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+- [Pagination](./pagination)
+- [Form](./form)
 
 ## 稳定性
 
@@ -139,6 +197,9 @@ Curated demo：`example/demos/DataTable/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/data` |
+| metadata | `component-metadata/DataTable.json` |
 | API extract | `generated/component-api/DataTable.json` |
 
-> 上方 **DocsDemo** 为 docs 站内嵌交互演示。完整 curated demo 见 `example/demos/DataTable`。
+> **DocsDemo** 为 docs 站内嵌演示；完整 curated demo 见 `example/demos/DataTable`。
+

@@ -1,6 +1,12 @@
 {
   "name": "ButtonGroup",
-  "generatedAt": "2026-08-07T12:39:09.870Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/button-group"
+  ],
+  "sourceHash": "4480da582664dd1b8057f3270b70ed824bdd85a8e79db962d3ff3dd4153ff06d",
+  "generatedAt": "2026-08-07T18:45:10.907Z",
   "source": {
     "types": "packages/components/core/ButtonGroup/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "severity",
       "optional": true,
       "type": "ButtonSeverity",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "variant",
       "optional": true,
       "type": "ButtonVariant",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "block",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Stretch group to full width",
+      "default": false
     },
     {
       "name": "direction",
       "optional": true,
       "type": "'horizontal' | 'vertical'",
-      "description": ""
+      "description": "Layout axis for child buttons",
+      "default": "horizontal"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Disable all cascaded children when Button honors group inject",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Cascade loading state to child Buttons",
+      "default": false
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name for the group",
+      "default": null
     }
   ],
   "events": [],

@@ -1,25 +1,37 @@
 # Skeleton
 
-Skeleton 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Skeleton：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Skeleton 当前成熟度为 **RC**；完整交互见本地 example。
+Skeleton：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Foundation 家族组件
+- 加载状态反馈
+- 外观变体
+- 多尺寸规格
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 基础 UI 交互与页面操作
+- 按钮、标签、图标等原子组件
+- 异步提交或加载过程反馈
+
+**不适用**
+
+- 需要复杂业务编排时优先业务组件或组合模式
 
 ## 基础用法
 
+> `import { Skeleton } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { Skeleton } from '@amg-webui/core'
+import { Skeleton } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,28 +41,63 @@ import { Skeleton } from '@amg-webui/core'
 
 Curated demo：`example/demos/Skeleton/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `loading` | `boolean` | — | 加载中状态 / Loading state |
-| `variant` | `SkeletonVariant` | — | 外观变体：`solid` · `outlined` · `text` / Visual variant |
-| `rows` | `number` | — | 每页行数 / Rows per page |
-| `animated` | `boolean` | — | — |
-| `animation` | `SkeletonAnimation` | — | — |
-| `size` | `Size \| number \| string` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
-| `width` | `SkeletonWidth` | — | — |
-| `height` | `string \| number` | — | — |
-| `round` | `boolean` | — | — |
-| `ariaLabel` | `string` | — | 无障碍标签 / ARIA label |
+| `loading` | `boolean` | true | Show skeleton when true; otherwise render default slot (real content) |
+| `variant` | `SkeletonVariant` | `text` | Layout preset |
+| `rows` | `number` | 3 | Paragraph / text line count |
+| `animated` | `boolean` | true | Soft loading animation (false disables) |
+| `animation` | `SkeletonAnimation` | `shimmer` | Animation kind — shimmer (default) / pulse |
+| `size` | `Size \| number \| string` | `undefined` | Circle / avatar diameter — Size token or CSS length / number(px) |
+| `width` | `SkeletonWidth` | `undefined` | Block / line width — CSS length, % or per-row array |
+| `height` | `string \| number` | `undefined` | Block / line height — CSS length or number(px) |
+| `round` | `boolean` | false | Fully rounded rect/image |
+| `ariaLabel` | `string` | `undefined` | Accessible loading label (defaults via i18n caller / aria) |
 
-## Public types
+### Public Types
 
 - `SkeletonVariant`
 - `SkeletonAnimation`
 - `SkeletonWidth`
 - `SkeletonProps`
 
+## 键盘交互
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Skeleton non-interactive display — keyboard N/A
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Skeleton uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Skeleton RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Skeleton client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -58,6 +105,9 @@ Curated demo：`example/demos/Skeleton/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Skeleton.json` |
 | API extract | `generated/component-api/Skeleton.json` |
 
-> 完整 Demo 见 `example/demos/Skeleton`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Skeleton`（example 本地调试，不上线）。
+

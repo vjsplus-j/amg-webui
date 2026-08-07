@@ -1,6 +1,12 @@
 {
   "name": "TabsNav",
-  "generatedAt": "2026-08-07T12:42:17.027Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/tabs-nav"
+  ],
+  "sourceHash": "50bbb859f5e5877548a979bfadefb4607594233fa753b8002702c9d3af0b18dd",
+  "generatedAt": "2026-08-07T18:45:11.233Z",
   "source": {
     "types": "packages/components/core/TabsNav/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "items",
       "optional": true,
       "type": "TabsNavItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "closable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "overflow",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "When true (default), show scroll arrows + more menu if tabs overflow.",
+      "default": true
     },
     {
       "name": "draggable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Enable HTML5 drag-and-drop reorder; emits update:items + reorder",
+      "default": false
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

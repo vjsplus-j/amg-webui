@@ -1,6 +1,12 @@
 {
   "name": "Scrollbar",
-  "generatedAt": "2026-08-07T12:41:56.135Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/scrollbar"
+  ],
+  "sourceHash": "f8413afac957b55a5907d12ac06c068cbc306eeb4de29fa8ba0ad5333151e568",
+  "generatedAt": "2026-08-07T18:45:11.178Z",
   "source": {
     "types": "packages/components/core/Scrollbar/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "height",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "CSS length or spacing-step number (× --spacing-xs)",
+      "default": null
     },
     {
       "name": "maxHeight",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "native",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Use browser native scrollbar chrome",
+      "default": false
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "axis",
       "optional": true,
       "type": "\"both\" | \"x\" | \"y\"",
-      "description": ""
+      "description": "",
+      "default": "both"
     },
     {
       "name": "tabindex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "endThreshold",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     }
   ],
   "events": [

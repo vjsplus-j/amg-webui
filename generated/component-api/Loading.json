@@ -1,6 +1,12 @@
 {
   "name": "Loading",
-  "generatedAt": "2026-08-07T12:41:35.010Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/loading"
+  ],
+  "sourceHash": "ef8eb97d5289b29c200aa184c0b58d580b617048abf90fcd1f3b3517a0e00eb0",
+  "generatedAt": "2026-08-07T18:45:11.087Z",
   "source": {
     "types": "packages/components/core/Loading/types.ts",
     "vue": true
@@ -10,79 +16,92 @@
       "name": "visible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "text",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "fullscreen",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "size",
       "optional": true,
       "type": "LoadingSize",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "indicator",
       "optional": true,
       "type": "LoadingIndicator",
-      "description": ""
+      "description": "",
+      "default": "spinner"
     },
     {
       "name": "lockScroll",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "backdrop",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "delay",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "progress",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "cancellable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "cancelText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "zIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "live",
       "optional": true,
       "type": "\"polite\" | \"assertive\" | \"off\"",
-      "description": ""
+      "description": "",
+      "default": "polite"
     }
   ],
   "events": [

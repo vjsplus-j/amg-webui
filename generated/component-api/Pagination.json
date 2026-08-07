@@ -1,6 +1,12 @@
 {
   "name": "Pagination",
-  "generatedAt": "2026-08-07T12:41:35.043Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/pagination"
+  ],
+  "sourceHash": "c9252100428b08dcffe39356d504677f11afc7c53d7c4ba8cfce426c74ff302c",
+  "generatedAt": "2026-08-07T18:45:11.133Z",
   "source": {
     "types": "packages/components/data/Pagination/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "total",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "page",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "pageSize",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 10
     },
     {
       "name": "pageSizes",
       "optional": true,
       "type": "number[]",
-      "description": ""
+      "description": "",
+      "default": "() => [10, 20, 50, 100]"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

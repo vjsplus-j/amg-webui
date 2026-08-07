@@ -1,0 +1,59 @@
+{
+  "name": "Switch",
+  "title": "Switch 开关",
+  "summary": "Switch 开关：面向企业场景的 Input 组件（成熟度 rc）。",
+  "description": "Switch 开关：面向企业场景的 Input 组件（成熟度 rc）。",
+  "family": "input",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/switch"
+  ],
+  "features": [
+    "Input 家族组件",
+    "v-model 双向绑定",
+    "多尺寸规格",
+    "事件回调"
+  ],
+  "useCases": [
+    "表单文本/数值输入",
+    "受控与非受控输入场景"
+  ],
+  "avoidWhen": [
+    "极复杂富文本编辑请使用 RichText / MdEditor"
+  ],
+  "related": [
+    "Form",
+    "FormItem"
+  ],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "Space"
+    ],
+    "detail": "Space: Space on focused switch toggles modelValue; Space: disabled switch does not emit update:modelValue on Space"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Switch uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Switch RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Switch client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.548Z",
+  "sourceHash": "fc8c2adacebfc88d3191956cf98fddee4ec34b007dd31a49e92944c52808eb54"
+}

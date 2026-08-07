@@ -1,25 +1,38 @@
 # AvatarGroup
 
-AvatarGroup 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+AvatarGroup：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-AvatarGroup 当前成熟度为 **RC**；完整交互见本地 example。
+AvatarGroup：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Foundation 家族组件
+- 多尺寸规格
+- 外观变体
+- 支持禁用状态
+- 插槽自定义
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 基础 UI 交互与页面操作
+- 按钮、标签、图标等原子组件
+- 需要禁用/只读控制的表单场景
+
+**不适用**
+
+- 需要复杂业务编排时优先业务组件或组合模式
 
 ## 基础用法
 
+> `import { AvatarGroup } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { AvatarGroup } from '@amg-webui/core'
+import { AvatarGroup } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,31 +42,66 @@ import { AvatarGroup } from '@amg-webui/core'
 
 Curated demo：`example/demos/AvatarGroup/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `max` | `number` | — | — |
-| `size` | `AvatarSize` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
-| `shape` | `AvatarShape` | — | — |
-| `variant` | `'default' \| 'neon'` | — | 外观变体：`solid` · `outlined` · `text` / Visual variant |
-| `overlap` | `string` | — | — |
-| `maxTooltip` | `string` | — | — |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
+| `max` | `number` | `undefined` | Max visible avatars before +N overflow (default 3; component > global) |
+| `size` | `AvatarSize` | `undefined` | Cascades to child Avatars when they omit size |
+| `shape` | `AvatarShape` | `undefined` | Cascades to child Avatars when they omit shape |
+| `variant` | `'default' \| 'neon'` | `undefined` | Cascades appearance to children: neon = dashed track + lightboard marquee. |
+| `overlap` | `string` | `undefined` | Negative margin for stack overlap (token preferred) |
+| `maxTooltip` | `string` | `undefined` | Custom overflow / members tooltip (default: joined member labels) |
+| `disabled` | `boolean` | false | Disable all children + overflow interactions |
 
-## Slots
+### Slots
 
 | Slot | Props | 说明 |
 | --- | --- | --- |
-| `default` | `props: Record<string, never>` | — |
-| `overflowTooltip` | `props: { overflowCount: number; labels: string[] }` | — |
+| `default` | `props: Record<string, never>` | 默认插槽 |
+| `overflowTooltip` | `props: { overflowCount: number; labels: string[] }` | Custom overflow tooltip body |
 
-## Public types
+### Public Types
 
 - `AvatarGroupEmits`
 - `AvatarGroupProps`
 - `AvatarGroupSlots`
 
+## 键盘交互
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts AvatarGroup non-interactive display — keyboard N/A
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts AvatarGroup uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts AvatarGroup RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts AvatarGroup client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -61,6 +109,9 @@ Curated demo：`example/demos/AvatarGroup/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/AvatarGroup.json` |
 | API extract | `generated/component-api/AvatarGroup.json` |
 
-> 完整 Demo 见 `example/demos/AvatarGroup`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/AvatarGroup`（example 本地调试，不上线）。
+

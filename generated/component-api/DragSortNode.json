@@ -1,6 +1,12 @@
 {
   "name": "DragSortNode",
-  "generatedAt": "2026-08-07T12:40:46.823Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/drag-sort-node"
+  ],
+  "sourceHash": "0db9582bdca69718d95fa7af6903685a5c9a328492fbeda6049601fc448345db",
+  "generatedAt": "2026-08-07T18:45:10.978Z",
   "source": {
     "types": "packages/lowcode/ui/DragSortNode/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "modelValue",
       "optional": true,
       "type": "CanvasNodeData[]",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "nodes",
       "optional": true,
       "type": "CanvasNodeData[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "selectedId",
       "optional": true,
       "type": "string | null",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "clearable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

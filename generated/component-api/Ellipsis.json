@@ -1,6 +1,12 @@
 {
   "name": "Ellipsis",
-  "generatedAt": "2026-08-07T12:41:13.578Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/ellipsis"
+  ],
+  "sourceHash": "9f0acb360ca893c444e8d740991f55152bf1fc9ddf604a095b5be91e5b0c884d",
+  "generatedAt": "2026-08-07T18:45:10.992Z",
   "source": {
     "types": "packages/components/core/Ellipsis/types.ts",
     "vue": true
@@ -10,38 +16,43 @@
       "name": "lines",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Max visible lines (1 = single-line ellipsis)",
+      "default": 1
     },
     {
       "name": "tooltip",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Show full text in Tooltip when overflowing",
+      "default": true
     },
     {
       "name": "tooltipPlacement",
       "optional": true,
       "type": "TooltipPlacement",
-      "description": ""
+      "description": "Tooltip placement when tooltip is enabled",
+      "default": "top"
     },
     {
       "name": "content",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Plain text fallback when slot is empty; also used as tooltip source when set",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name when truncated text is focusable",
+      "default": null
     }
   ],
   "events": [
     {
       "name": "overflowChange",
       "payload": "overflowing: boolean",
-      "description": ""
+      "description": "Overflow state changed (true = text is truncated)"
     }
   ],
   "slots": [],

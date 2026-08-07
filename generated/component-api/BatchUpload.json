@@ -1,6 +1,12 @@
 {
   "name": "BatchUpload",
-  "generatedAt": "2026-08-07T12:39:09.861Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/batch-upload"
+  ],
+  "sourceHash": "b1e6f3e378b36441d756a29c83e06df0a8e258f8f44009eb20f58e7312735515",
+  "generatedAt": "2026-08-07T18:45:10.895Z",
   "source": {
     "types": "packages/components/form/BatchUpload/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "modelValue",
       "optional": true,
       "type": "BatchFileItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "concurrent",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 2
     },
     {
       "name": "accept",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "*"
     },
     {
       "name": "drag",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     }
   ],
   "events": [

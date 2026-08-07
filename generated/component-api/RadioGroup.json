@@ -1,6 +1,12 @@
 {
   "name": "RadioGroup",
-  "generatedAt": "2026-08-07T12:41:56.119Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/radio-group"
+  ],
+  "sourceHash": "8c299b815e2594de77970619c8972ca5e3e5a40bc244ca234654df7e5a22541a",
+  "generatedAt": "2026-08-07T18:45:11.160Z",
   "source": {
     "types": "packages/components/form/RadioGroup/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "invalid",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "direction",
       "optional": true,
       "type": "'horizontal' | 'vertical'",
-      "description": ""
+      "description": "",
+      "default": "horizontal"
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "options",
       "optional": true,
       "type": "RadioOption[]",
-      "description": ""
+      "description": "Declarative options; can combine with default slot",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

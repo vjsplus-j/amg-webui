@@ -1,25 +1,34 @@
 # Empty
 
-Empty 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Empty：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Empty 当前成熟度为 **RC**；完整交互见本地 example。
+Empty：面向企业场景的 Foundation 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Foundation 家族组件
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 基础 UI 交互与页面操作
+- 按钮、标签、图标等原子组件
+
+**不适用**
+
+- 需要复杂业务编排时优先业务组件或组合模式
 
 ## 基础用法
 
+> `import { Empty } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { Empty } from '@amg-webui/core'
+import { Empty } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,29 +38,64 @@ import { Empty } from '@amg-webui/core'
 
 Curated demo：`example/demos/Empty/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `description` | `string` | — | — |
-| `title` | `string` | — | 标题 / Title |
-| `image` | `string` | — | — |
-| `imageAlt` | `string` | — | — |
-| `imageSize` | `EmptyImageSize` | — | — |
-| `imageStyle` | `Record<string, string>` | — | — |
+| `description` | `string` | `undefined` | Description under the illustration (defaults to `common.noData`) |
+| `title` | `string` | `undefined` | Optional title above the description |
+| `image` | `string` | `undefined` | Custom illustration URL; falls back to built-in SVG on `@error` |
+| `imageAlt` | `string` | `undefined` | Accessible label for the custom image |
+| `imageSize` | `EmptyImageSize` | `md` | Illustration size — Size token, CSS length, or number mapped to spacing scale |
+| `imageStyle` | `Record<string, string>` | `undefined` | Inline styles applied to the image / placeholder host |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
-| `imageError` | `event: Event` | — |
+| `imageError` | `event: Event` | Fired when a custom `image` fails to load (before SVG fallback) |
 
-## Public types
+### Public Types
 
 - `EmptyImageSize`
 - `EmptyProps`
 - `EmptyEmits`
 
+## 键盘交互
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Empty non-interactive display — keyboard N/A
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Empty uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Empty RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Empty client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -59,6 +103,9 @@ Curated demo：`example/demos/Empty/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Empty.json` |
 | API extract | `generated/component-api/Empty.json` |
 
-> 完整 Demo 见 `example/demos/Empty`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Empty`（example 本地调试，不上线）。
+

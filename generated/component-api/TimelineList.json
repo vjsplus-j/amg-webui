@@ -1,6 +1,12 @@
 {
   "name": "TimelineList",
-  "generatedAt": "2026-08-07T12:42:17.041Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/timeline-list"
+  ],
+  "sourceHash": "9395deaaf72eb334e5afc40486d5715f0c63997e1ba3d503e690cf6bf09bc19c",
+  "generatedAt": "2026-08-07T18:45:11.254Z",
   "source": {
     "types": "packages/components/data/TimelineList/types.ts",
     "vue": true
@@ -10,91 +16,106 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "items",
       "optional": true,
       "type": "TimelineListItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "data",
       "optional": true,
       "type": "TimelineListItem[]",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "TimelineListKey | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "selectable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "reverse",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "groupBy",
       "optional": true,
       "type": "\"day\" | \"none\" | ((item: TimelineListItem) => string)",
-      "description": ""
+      "description": "",
+      "default": "day"
     },
     {
       "name": "collapsible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "defaultExpandedKeys",
       "optional": true,
       "type": "string[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "pending",
       "optional": true,
       "type": "boolean | string",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

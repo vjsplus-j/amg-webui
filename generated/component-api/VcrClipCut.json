@@ -1,6 +1,12 @@
 {
   "name": "VcrClipCut",
-  "generatedAt": "2026-08-07T12:42:17.057Z",
+  "package": "media",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/vcr-clip-cut"
+  ],
+  "sourceHash": "041b64d00b9a5afeda14fe6998148117d6b9d591ffb3cae4e8098aa43e91d027",
+  "generatedAt": "2026-08-07T18:45:11.277Z",
   "source": {
     "types": "packages/components/media/VcrClipCut/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "start",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "end",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 60
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

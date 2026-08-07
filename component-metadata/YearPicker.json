@@ -1,0 +1,56 @@
+{
+  "name": "YearPicker",
+  "title": "YearPicker",
+  "summary": "YearPicker：面向企业场景的 DateTime 组件（成熟度 rc）。",
+  "description": "YearPicker：面向企业场景的 DateTime 组件（成熟度 rc）。",
+  "family": "datetime",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/year-picker"
+  ],
+  "features": [
+    "DateTime 家族组件",
+    "v-model 双向绑定",
+    "占位提示",
+    "可一键清空",
+    "只读模式",
+    "事件回调"
+  ],
+  "useCases": [
+    "日期/时间选择与范围输入",
+    "表单与筛选面板"
+  ],
+  "avoidWhen": [
+    "需要非标准历法或复杂排班规则时需自定义"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural DOM + component entry"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.602Z",
+  "sourceHash": "b4dfddec1857e43b1a4414bba766d29dc1016b3c34323d224fbc66f71db12f02"
+}

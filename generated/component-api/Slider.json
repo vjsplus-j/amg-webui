@@ -1,6 +1,12 @@
 {
   "name": "Slider",
-  "generatedAt": "2026-08-07T12:41:56.149Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/slider"
+  ],
+  "sourceHash": "c60839987e6a077e2ac47ccb70759a74ec20643a0cb16ca71bbd5157383d6b2e",
+  "generatedAt": "2026-08-07T18:45:11.196Z",
   "source": {
     "types": "packages/components/form/Slider/types.ts",
     "vue": true
@@ -10,49 +16,64 @@
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "SliderValue",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "min",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "max",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 100
     },
     {
       "name": "step",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "range",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "showTooltip",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": "",
+      "default": null
     }
   ],
   "events": [

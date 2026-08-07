@@ -1,6 +1,12 @@
 {
   "name": "Ink404",
-  "generatedAt": "2026-08-07T12:41:13.622Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/ink404"
+  ],
+  "sourceHash": "5476d5ba1520613eb2f825be5ed720b54ff8c44ca295e06e8237da75fd2304c8",
+  "generatedAt": "2026-08-07T18:45:11.075Z",
   "source": {
     "types": "packages/components/core/Ink404/types.ts",
     "vue": true
@@ -10,55 +16,64 @@
       "name": "code",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "",
+      "default": 404
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "actionText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "retryable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

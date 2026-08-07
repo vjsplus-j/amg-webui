@@ -1,6 +1,12 @@
 {
   "name": "Typography",
-  "generatedAt": "2026-08-07T12:42:17.053Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/typography"
+  ],
+  "sourceHash": "7132c6d50ec38326d873e3be06d6b1a26c1e1558a940c782c5d7af37f953a092",
+  "generatedAt": "2026-08-07T18:45:11.272Z",
   "source": {
     "types": "packages/components/core/Typography/types.ts",
     "vue": true
@@ -10,187 +16,218 @@
       "name": "spin",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Continuous rotate — shared Motion",
+      "default": false
     },
     {
       "name": "pulse",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Soft opacity pulse — shared Motion",
+      "default": false
     },
     {
       "name": "heartbeat",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Scale heartbeat — shared Motion",
+      "default": false
     },
     {
       "name": "bounce",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Jump upward — shared Motion",
+      "default": false
     },
     {
       "name": "blink",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Sharp flash — shared Motion",
+      "default": false
     },
     {
       "name": "breathe",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Breathing light — shared Motion",
+      "default": false
     },
     {
       "name": "glow",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Fluorescent glow — shared Motion",
+      "default": false
     },
     {
       "name": "marqueeLeft",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marquee scroll left — shared Motion",
+      "default": false
     },
     {
       "name": "marqueeRight",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Marquee scroll right — shared Motion",
+      "default": false
     },
     {
       "name": "scrollUp",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical scroll up — shared Motion",
+      "default": false
     },
     {
       "name": "scrollDown",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Vertical scroll down — shared Motion",
+      "default": false
     },
     {
       "name": "dampOut",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Damped zoom then fade out — shared Motion",
+      "default": false
     },
     {
       "name": "animationDuration",
       "optional": true,
       "type": "number | string",
-      "description": ""
+      "description": "Animation duration (ms or CSS time) — shared Motion",
+      "default": null
     },
     {
       "name": "type",
       "optional": true,
       "type": "TypographyType",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "typeColor",
       "optional": true,
       "type": "Severity",
-      "description": ""
+      "description": "Semantic status color",
+      "default": null
     },
     {
       "name": "color",
       "optional": true,
       "type": "Severity",
-      "description": ""
+      "description": "Alias of typeColor",
+      "default": null
     },
     {
       "name": "copyable",
       "optional": true,
       "type": "TypographyCopyable",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "ellipsis",
       "optional": true,
       "type": "TypographyEllipsis",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "strong",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "italic",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "underline",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "delete",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Strikethrough",
+      "default": false
     },
     {
       "name": "mark",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "code",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Wait / thinking state — keeps the text visible while a light beam walks across the glyphs (not a block skeleton).",
+      "default": false
     },
     {
       "name": "shimmer",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Same light-beam visual without locking interaction / aria-busy",
+      "default": false
     },
     {
       "name": "clickable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "fontFamily",
       "optional": true,
       "type": "TypographyFontFamily",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "lineHeight",
       "optional": true,
       "type": "string | number",
-      "description": ""
+      "description": "CSS length or unitless; prefers design tokens when string",
+      "default": null
     },
     {
       "name": "content",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Explicit text when default slot is empty / for copy payload fallback",
+      "default": null
     }
   ],
   "events": [

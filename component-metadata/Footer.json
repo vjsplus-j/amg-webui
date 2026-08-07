@@ -1,0 +1,53 @@
+{
+  "name": "Footer",
+  "title": "Footer",
+  "summary": "Footer：面向企业场景的 Layout 组件（成熟度 rc）。",
+  "description": "Footer：面向企业场景的 Layout 组件（成熟度 rc）。",
+  "family": "layout",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/footer"
+  ],
+  "features": [
+    "Layout 家族组件",
+    "多尺寸规格",
+    "事件回调"
+  ],
+  "useCases": [
+    "页面栅格与区域布局",
+    "响应式容器"
+  ],
+  "avoidWhen": [
+    "简单页面可用原生 CSS 布局"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Footer non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Footer uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Footer RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Footer client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.428Z",
+  "sourceHash": "4c8b2c93d25fd788ef9920790bd8fbce366c7db65f7f4fd48c48a97b8a25a268"
+}

@@ -1,25 +1,37 @@
 # GbsRegisterForm
 
-GbsRegisterForm 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+GbsRegisterForm：面向企业场景的 GB28181 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-GbsRegisterForm 当前成熟度为 **RC**；完整交互见本地 example。
+GbsRegisterForm：面向企业场景的 GB28181 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- GB28181 家族组件
+- v-model 双向绑定
+- 支持禁用状态
+- 只读模式
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 国标 GB28181 设备与级联
+- 视频监控平台
+
+**不适用**
+
+- 非国标场景勿引入行业包
 
 ## 基础用法
 
+> `import { GbsRegisterForm } from 'amg-webui/gb28181'`
+
 ```vue
 <script setup>
-import { GbsRegisterForm } from '@amg-webui/gb28181'
+import { GbsRegisterForm } from 'amg-webui/gb28181'
 </script>
 
 <template>
@@ -29,36 +41,71 @@ import { GbsRegisterForm } from '@amg-webui/gb28181'
 
 Curated demo：`example/demos/GbsRegisterForm/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `GbsRegister` | — | 绑定值 / Bound value (v-model) |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
-| `readonly` | `boolean` | — | 是否只读 / Read-only |
-| `compact` | `boolean` | — | — |
-| `showPassword` | `boolean` | — | — |
+| `modelValue` | `GbsRegister` | `() => ({ deviceId: '34020000001320000001', sipDomain: '3402000000', expires: 3600, password: '' })` | 绑定值 / Bound value (v-model) |
+| `disabled` | `boolean` | false | 是否禁用 / Whether disabled |
+| `readonly` | `boolean` | false | 是否只读 / Read-only |
+| `compact` | `boolean` | false | 是否启用 compact |
+| `showPassword` | `boolean` | false | 是否启用 showPassword |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `v: GbsRegister` | v-model 更新 / v-model update |
-| `register` | `v: GbsRegister` | — |
-| `reset` | `void` | — |
+| `register` | `v: GbsRegister` | register 时触发 |
+| `reset` | `void` | reset 时触发 |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `GbsRegister`
 - `GbsRegisterFormProps`
 - `GbsRegisterFormEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- invalid keyboard evidence (mount/visibility only): "tests/unit/hardening/real-mount-remaining.spec.ts GbsRegisterForm interactive surface present (keyboard applicable)"
+
+## 无障碍
+
+- 状态：`FAIL`
+- a11y PASS requires A11Y_STRUCTURE/A11Y_CONTRAST or critical/serious counts (family name alone insufficient)
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts GbsRegisterForm uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts GbsRegisterForm RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts GbsRegisterForm client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -66,6 +113,9 @@ Curated demo：`example/demos/GbsRegisterForm/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/gb28181` |
+| metadata | `component-metadata/GbsRegisterForm.json` |
 | API extract | `generated/component-api/GbsRegisterForm.json` |
 
-> 完整 Demo 见 `example/demos/GbsRegisterForm`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/GbsRegisterForm`（example 本地调试，不上线）。
+

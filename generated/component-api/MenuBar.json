@@ -1,6 +1,12 @@
 {
   "name": "MenuBar",
-  "generatedAt": "2026-08-07T12:41:35.022Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/menu-bar"
+  ],
+  "sourceHash": "e9ac67c76a32709a6ab3fbefa46b13f372de7771c2847f7b59b62775a91d0539",
+  "generatedAt": "2026-08-07T18:45:11.102Z",
   "source": {
     "types": "packages/components/core/MenuBar/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "modelValue",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "items",
       "optional": true,
       "type": "MenuBarItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,26 +1,37 @@
 # Calendar
 
-Calendar 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Calendar：面向企业场景的 DateTime 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Calendar 当前成熟度为 **RC**；完整交互见本地 example。
+Calendar：面向企业场景的 DateTime 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- DateTime 家族组件
+- v-model 双向绑定
+- 支持禁用状态
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-- [DatePicker](./date-picker)
-- [DateTimePicker](./date-time-picker)
+**适用**
+
+- 日期/时间选择与范围输入
+- 表单与筛选面板
+- 需要禁用/只读控制的表单场景
+
+**不适用**
+
+- 需要非标准历法或复杂排班规则时需自定义
 
 ## 基础用法
 
+> `import { Calendar } from 'amg-webui/data'`
+
 ```vue
 <script setup>
-import { Calendar } from '@amg-webui/data'
+import { Calendar } from 'amg-webui/data'
 </script>
 
 <template>
@@ -30,43 +41,80 @@ import { Calendar } from '@amg-webui/data'
 
 Curated demo：`example/demos/Calendar/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `CalendarValue` | — | 绑定值 / Bound value (v-model) |
-| `valueFormat` | `"date" \| "iso"` | — | — |
-| `viewDate` | `CalendarValue` | — | — |
-| `min` | `CalendarValue` | — | — |
-| `max` | `CalendarValue` | — | — |
-| `disabledDate` | `(date: Date) => boolean` | — | — |
-| `firstDayOfWeek` | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6` | — | — |
-| `showAdjacent` | `boolean` | — | — |
-| `showToday` | `boolean` | — | — |
-| `disabled` | `boolean` | — | 是否禁用 / Whether disabled |
+| `modelValue` | `CalendarValue` | `null` | 绑定值 / Bound value (v-model) |
+| `valueFormat` | `"date" \| "iso"` | `iso` | valueFormat 配置项 |
+| `viewDate` | `CalendarValue` | `undefined` | viewDate 配置项 |
+| `min` | `CalendarValue` | `undefined` | min 配置项 |
+| `max` | `CalendarValue` | `undefined` | max 配置项 |
+| `disabledDate` | `(date: Date) => boolean` | `undefined` | 是否启用 disabledDate |
+| `firstDayOfWeek` | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6` | 0 | firstDayOfWeek 配置项 |
+| `showAdjacent` | `boolean` | true | 是否启用 showAdjacent |
+| `showToday` | `boolean` | true | 是否启用 showToday |
+| `disabled` | `boolean` | false | 是否禁用 / Whether disabled |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `value: CalendarValue` | v-model 更新 / v-model update |
-| `update:viewDate` | `value: Date` | — |
+| `update:viewDate` | `value: Date` | `viewDate` 更新时触发（v-model） |
 | `select` | `value: string \| Date` | 选中 / Select |
 | `change` | `value: CalendarValue` | 值变更 / Change |
-| `monthChange` | `value: Date` | — |
+| `monthChange` | `value: Date` | monthChange 时触发 |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `CalendarValue`
 - `CalendarProps`
 - `CalendarEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- 按键：`Tab` · `Enter` · `Escape` · `ArrowDown` · `ArrowUp` · `ArrowLeft` · `ArrowRight` · `Home` · `End` · `Space`
+- keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`N/A`
+- optional
+
+## RTL
+
+- 状态：`N/A`
+- optional
+
+## SSR
+
+- 状态：`PASS`
+- structural DOM + component entry
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+- [DatePicker](./date-picker)
+- [DateTimePicker](./date-time-picker)
 
 ## 稳定性
 
@@ -74,6 +122,9 @@ Curated demo：`example/demos/Calendar/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/data` |
+| metadata | `component-metadata/Calendar.json` |
 | API extract | `generated/component-api/Calendar.json` |
 
-> 完整 Demo 见 `example/demos/Calendar`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Calendar`（example 本地调试，不上线）。
+

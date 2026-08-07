@@ -1,0 +1,56 @@
+{
+  "name": "OnvifGroupTree",
+  "title": "OnvifGroupTree",
+  "summary": "OnvifGroupTree：面向企业场景的 ONVIF 组件（成熟度 rc）。",
+  "description": "OnvifGroupTree：面向企业场景的 ONVIF 组件（成熟度 rc）。",
+  "family": "onvif",
+  "package": "onvif",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/onvif",
+    "amg-webui/onvif-group-tree"
+  ],
+  "features": [
+    "ONVIF 家族组件",
+    "选项列表配置",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "加载状态反馈",
+    "事件回调"
+  ],
+  "useCases": [
+    "ONVIF 设备发现与管理",
+    "IPC 运维面板"
+  ],
+  "avoidWhen": [
+    "非 ONVIF 设备对接场景"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "N/A",
+    "keys": [],
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts OnvifGroupTree non-interactive display — keyboard N/A"
+  },
+  "a11y": {
+    "status": "FAIL",
+    "detail": "a11y PASS requires A11Y_STRUCTURE/A11Y_CONTRAST or critical/serious counts (family name alone insufficient)"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts OnvifGroupTree uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts OnvifGroupTree RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts OnvifGroupTree client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.484Z",
+  "sourceHash": "97de334bd9603ae7eeffb39c3e088cce12477504d18b4d5f1784bb116291cb56"
+}

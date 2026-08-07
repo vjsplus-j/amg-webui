@@ -1,0 +1,54 @@
+{
+  "name": "VcrClipCut",
+  "title": "VcrClipCut",
+  "summary": "VcrClipCut：面向企业场景的 VCR 组件（成熟度 rc）。",
+  "description": "VcrClipCut：面向企业场景的 VCR 组件（成熟度 rc）。",
+  "family": "vcr",
+  "package": "media",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/vcr-clip-cut"
+  ],
+  "features": [
+    "VCR 家族组件",
+    "支持禁用状态",
+    "加载状态反馈",
+    "事件回调"
+  ],
+  "useCases": [
+    "录像回放与存储运维",
+    "监控中心 VCR 能力"
+  ],
+  "avoidWhen": [
+    "无录像业务时勿引入"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts VcrClipCut interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "FAIL",
+    "detail": "a11y PASS requires A11Y_STRUCTURE/A11Y_CONTRAST or critical/serious counts (family name alone insufficient)"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts VcrClipCut uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts VcrClipCut RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts VcrClipCut client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.585Z",
+  "sourceHash": "041b64d00b9a5afeda14fe6998148117d6b9d591ffb3cae4e8098aa43e91d027"
+}

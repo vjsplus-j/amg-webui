@@ -1,6 +1,12 @@
 {
   "name": "Watermark",
-  "generatedAt": "2026-08-07T12:42:38.282Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/watermark"
+  ],
+  "sourceHash": "60d8a24cb1de893b4f7e93fd4b8f62a823ec3e55fad1e2666c0009c337efaeb7",
+  "generatedAt": "2026-08-07T18:45:11.296Z",
   "source": {
     "types": "packages/components/core/Watermark/types.ts",
     "vue": true
@@ -10,97 +16,113 @@
       "name": "content",
       "optional": true,
       "type": "string | string[]",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "image",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "imageCrossOrigin",
       "optional": true,
       "type": "\"\" | \"anonymous\" | \"use-credentials\"",
-      "description": ""
+      "description": "",
+      "default": "anonymous"
     },
     {
       "name": "gap",
       "optional": true,
       "type": "[number, number]",
-      "description": ""
+      "description": "",
+      "default": "() => [0, 0]"
     },
     {
       "name": "offset",
       "optional": true,
       "type": "[number, number]",
-      "description": ""
+      "description": "",
+      "default": "() => [0, 0]"
     },
     {
       "name": "width",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "height",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "rotate",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": -22
     },
     {
       "name": "fontSize",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 14
     },
     {
       "name": "font",
       "optional": true,
       "type": "WatermarkFont",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "opacity",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0.15
     },
     {
       "name": "zIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "inherit",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "observe",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "enabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,0 +1,68 @@
+{
+  "name": "InputText",
+  "title": "InputText 文本输入",
+  "summary": "InputText 文本输入：面向企业场景的 Input 组件（成熟度 rc）。",
+  "description": "InputText 文本输入：面向企业场景的 Input 组件（成熟度 rc）。",
+  "family": "input",
+  "package": "form",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/input-text"
+  ],
+  "features": [
+    "Input 家族组件",
+    "v-model 双向绑定",
+    "占位提示",
+    "支持禁用状态",
+    "只读模式",
+    "多尺寸规格",
+    "宽度 100%",
+    "事件回调"
+  ],
+  "useCases": [
+    "表单文本/数值输入",
+    "受控与非受控输入场景",
+    "需要禁用/只读控制的表单场景"
+  ],
+  "avoidWhen": [
+    "极复杂富文本编辑请使用 RichText / MdEditor"
+  ],
+  "related": [
+    "Form",
+    "FormItem",
+    "Textarea",
+    "Password",
+    "InputNumber"
+  ],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "Type",
+      "KeyA"
+    ],
+    "detail": "Type: typing updates modelValue through update:modelValue emit; KeyA: disabled input does not emit update:modelValue on key interaction"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "optional"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "structural DOM clean"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.460Z",
+  "sourceHash": "46b8ea4de470255818eeb64d2df20f07c64603fa1725203917c5470672adf134"
+}

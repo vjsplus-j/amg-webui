@@ -1,6 +1,12 @@
 {
   "name": "Notification",
-  "generatedAt": "2026-08-07T12:41:35.028Z",
+  "package": "overlay",
+  "importPaths": [
+    "amg-webui/overlay",
+    "amg-webui/notification"
+  ],
+  "sourceHash": "1aec0b19e7b1dd5ef15d9fd8c60e070591055eb0a232bad5c20ce6048e164298",
+  "generatedAt": "2026-08-07T18:45:11.112Z",
   "source": {
     "types": "packages/components/overlay/Notification/types.ts",
     "vue": true

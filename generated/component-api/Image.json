@@ -1,6 +1,12 @@
 {
   "name": "Image",
-  "generatedAt": "2026-08-07T12:41:13.615Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/image"
+  ],
+  "sourceHash": "8442e74acb8fa07eb13bafb3633166161047b9dbc6c0cb594494e24a10c46d72",
+  "generatedAt": "2026-08-07T18:45:11.063Z",
   "source": {
     "types": "packages/components/core/Image/types.ts",
     "vue": true
@@ -10,79 +16,92 @@
       "name": "src",
       "optional": false,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "alt",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "fit",
       "optional": true,
       "type": "ImageFit",
-      "description": ""
+      "description": "",
+      "default": "cover"
     },
     {
       "name": "lazy",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "preview",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "previewSrc",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "previewSrcList",
       "optional": true,
       "type": "string[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "initialIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "width",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "height",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "fallback",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

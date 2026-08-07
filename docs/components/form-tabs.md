@@ -1,27 +1,36 @@
 # FormTabs
 
-FormTabs 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+FormTabs：面向企业场景的 Form 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-FormTabs 当前成熟度为 **RC**；完整交互见本地 example。
+FormTabs：面向企业场景的 Form 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Form 家族组件
+- v-model 双向绑定
+- 校验规则
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-- [Form](./form)
-- [FormItem](./form-item)
-- [Tabs](./tabs)
+**适用**
+
+- 表单布局、校验与字段编排
+- 动态/分步表单
+
+**不适用**
+
+- 纯展示场景无需引入完整 Form
 
 ## 基础用法
 
+> `import { FormTabs } from 'amg-webui/form'`
+
 ```vue
 <script setup>
-import { FormTabs } from '@amg-webui/form'
+import { FormTabs } from 'amg-webui/form'
 </script>
 
 <template>
@@ -31,38 +40,76 @@ import { FormTabs } from '@amg-webui/form'
 
 Curated demo：`example/demos/FormTabs/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `modelValue` | `string \| number` | — | 绑定值 / Bound value (v-model) |
-| `tabs` | `FormTabItem[]` | — | — |
-| `tabData` | `Record<string, Record<string, unknown>>` | — | — |
-| `fieldLabels` | `Record<string, Record<string, string>>` | — | — |
-| `rules` | `FormRules` | — | 校验规则 / Validation rules |
-| `trackId` | `string` | — | Telemetry 追踪 id / Telemetry track id |
-| `telemetry` | `boolean` | — | 是否上报 Telemetry / Enable telemetry |
+| `modelValue` | `string \| number` | `undefined` | 绑定值 / Bound value (v-model) |
+| `tabs` | `FormTabItem[]` | `() => []` | tabs 列表数据 |
+| `tabData` | `Record<string, Record<string, unknown>>` | `() => ({})` | tabData 字符串 |
+| `fieldLabels` | `Record<string, Record<string, string>>` | `() => ({})` | Optional per-tab field labels: { [tabName]: { [field]: label } } |
+| `rules` | `FormRules` | `undefined` | 校验规则 / Validation rules |
+| `trackId` | `string` | `undefined` | Telemetry 追踪 id / Telemetry track id |
+| `telemetry` | `boolean` | `undefined` | 是否上报 Telemetry / Enable telemetry |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `update:modelValue` | `value: string \| number` | v-model 更新 / v-model update |
-| `update:tabData` | `value: Record<string, Record<string, unknown>>` | — |
+| `update:tabData` | `value: Record<string, Record<string, unknown>>` | `tabData` 更新时触发（v-model） |
 | `change` | `name: string \| number` | 值变更 / Change |
 
-## Models
+### Models
 
 | Model | 说明 |
 | --- | --- |
 | `modelValue` | v-model |
 
-## Public types
+### Public Types
 
 - `FormTabItem`
 - `FormTabsProps`
 - `FormTabsEmits`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- 按键：`Tab` · `Enter` · `Escape` · `ArrowDown` · `ArrowUp` · `ArrowLeft` · `ArrowRight` · `Home` · `End` · `Space`
+- keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`N/A`
+- optional
+
+## RTL
+
+- 状态：`N/A`
+- optional
+
+## SSR
+
+- 状态：`PASS`
+- structural DOM + component entry
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+- [Form](./form)
+- [FormItem](./form-item)
+- [Tabs](./tabs)
 
 ## 稳定性
 
@@ -70,6 +117,9 @@ Curated demo：`example/demos/FormTabs/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/form` |
+| metadata | `component-metadata/FormTabs.json` |
 | API extract | `generated/component-api/FormTabs.json` |
 
-> 完整 Demo 见 `example/demos/FormTabs`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/FormTabs`（example 本地调试，不上线）。
+

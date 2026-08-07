@@ -1,6 +1,12 @@
 {
   "name": "BreadcrumbItem",
-  "generatedAt": "2026-08-07T12:39:09.866Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/breadcrumb-item"
+  ],
+  "sourceHash": "ccc68151b64936405d9a0eecfe2ecdcc10d03a28b813c2947bb7e1ed3522eb2c",
+  "generatedAt": "2026-08-07T18:45:10.899Z",
   "source": {
     "types": "packages/components/core/BreadcrumbItem/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "to",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Router path or hash — rendered as link when set",
+      "default": null
     },
     {
       "name": "href",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "External / absolute URL",
+      "default": null
     },
     {
       "name": "current",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Mark as current page (aria-current)",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

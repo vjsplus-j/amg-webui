@@ -1,6 +1,12 @@
 {
   "name": "DatePicker",
-  "generatedAt": "2026-08-07T12:34:13.531Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/date-picker"
+  ],
+  "sourceHash": "f54e0d983591b8a20a90e7ba871ae5fcc02c1e9b2b039ddaa2445e06b8ab12b4",
+  "generatedAt": "2026-08-07T18:45:10.959Z",
   "source": {
     "types": "packages/components/form/DatePicker/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | Date | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "valueFormat",
       "optional": true,
       "type": "'date' | 'iso'",
-      "description": ""
+      "description": "",
+      "default": "iso"
     }
   ],
   "events": [
@@ -53,29 +64,29 @@
     {
       "name": "default",
       "props": "props: Record<string, never>",
-      "description": ""
+      "description": "Trailing auxiliary content beside the control"
     }
   ],
   "expose": [
     {
       "name": "focus",
       "type": "() => void",
-      "description": ""
+      "description": "Focus the trigger button"
     },
     {
       "name": "blur",
       "type": "() => void",
-      "description": ""
+      "description": "Blur the trigger button"
     },
     {
       "name": "open",
       "type": "() => void",
-      "description": ""
+      "description": "Open the calendar panel"
     },
     {
       "name": "close",
       "type": "() => void",
-      "description": ""
+      "description": "Close the calendar panel"
     }
   ],
   "models": [

@@ -1,25 +1,35 @@
 # Footer
 
-Footer 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+Footer：面向企业场景的 Layout 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-Footer 当前成熟度为 **RC**；完整交互见本地 example。
+Footer：面向企业场景的 Layout 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Layout 家族组件
+- 多尺寸规格
+- 事件回调
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 页面栅格与区域布局
+- 响应式容器
+
+**不适用**
+
+- 简单页面可用原生 CSS 布局
 
 ## 基础用法
 
+> `import { Footer } from 'amg-webui/core'`
+
 ```vue
 <script setup>
-import { Footer } from '@amg-webui/core'
+import { Footer } from 'amg-webui/core'
 </script>
 
 <template>
@@ -29,29 +39,64 @@ import { Footer } from '@amg-webui/core'
 
 Curated demo：`example/demos/Footer/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `bordered` | `boolean` | — | — |
-| `align` | `'start' \| 'center' \| 'end'` | — | — |
-| `size` | `'sm' \| 'md' \| 'lg'` | — | 尺寸：`sm` · `md` · `lg` / Size variant |
-| `sticky` | `boolean` | — | — |
-| `fixed` | `boolean` | — | — |
-| `padding` | `FooterPadding` | — | — |
+| `bordered` | `boolean` | true | 是否启用 bordered |
+| `align` | `'start' \| 'center' \| 'end'` | `center` | align 配置项 |
+| `size` | `'sm' \| 'md' \| 'lg'` | `md` | 尺寸：`sm` · `md` · `lg` / Size variant |
+| `sticky` | `boolean` | false | 是否启用 sticky |
+| `fixed` | `boolean` | false | 是否启用 fixed |
+| `padding` | `FooterPadding` | `page` | padding 配置项 |
 
-## Events
+### Events
 
 | 事件 | Payload | 说明 |
 | --- | --- | --- |
 | `click` | `event: MouseEvent` | 点击 / Click |
 
-## Public types
+### Public Types
 
 - `FooterPadding`
 - `FooterProps`
 - `FooterEmits`
 
+## 键盘交互
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Footer non-interactive display — keyboard N/A
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Footer uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts Footer RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts Footer client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -59,6 +104,9 @@ Curated demo：`example/demos/Footer/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/core` |
+| metadata | `component-metadata/Footer.json` |
 | API extract | `generated/component-api/Footer.json` |
 
-> 完整 Demo 见 `example/demos/Footer`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Footer`（example 本地调试，不上线）。
+

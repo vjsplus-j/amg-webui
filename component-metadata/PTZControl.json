@@ -1,0 +1,54 @@
+{
+  "name": "PTZControl",
+  "title": "PTZControl",
+  "summary": "PTZControl：面向企业场景的 Media 组件（成熟度 rc）。",
+  "description": "PTZControl：面向企业场景的 Media 组件（成熟度 rc）。",
+  "family": "media",
+  "package": "media",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/media",
+    "amg-webui/ptz-control"
+  ],
+  "features": [
+    "Media 家族组件",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "事件回调"
+  ],
+  "useCases": [
+    "音视频播放与控制",
+    "监控预览场景"
+  ],
+  "avoidWhen": [
+    "非媒体业务无需引入行业包"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts PTZControl interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "FAIL",
+    "detail": "a11y PASS requires A11Y_STRUCTURE/A11Y_CONTRAST or critical/serious counts (family name alone insufficient)"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts PTZControl uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts PTZControl RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts PTZControl client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.489Z",
+  "sourceHash": "d73c9d98fdcee0bc1312922b03007ab7c4acdd90df8dee57795d0db04553a42a"
+}

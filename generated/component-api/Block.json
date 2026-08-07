@@ -1,6 +1,12 @@
 {
   "name": "Block",
-  "generatedAt": "2026-08-07T12:39:09.862Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/block"
+  ],
+  "sourceHash": "093d47b8c3979bd3a8259c6174bd76f1bcb3c65b117ed8cbb1ba217f614e304e",
+  "generatedAt": "2026-08-07T18:45:10.896Z",
   "source": {
     "types": "packages/components/core/Block/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "display",
       "optional": true,
       "type": "BlockDisplay",
-      "description": ""
+      "description": "CSS display — default `block`",
+      "default": "block"
     },
     {
       "name": "padding",
       "optional": true,
       "type": "BlockPadding",
-      "description": ""
+      "description": "Inner padding via spacing / theme tokens. When omitted, `padded` controls card pad vs none.",
+      "default": null
     },
     {
       "name": "padded",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Legacy boolean pad — true → card pad (default); ignored when `padding` is set",
+      "default": true
     },
     {
       "name": "bordered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "gap",
       "optional": true,
       "type": "BlockGap",
-      "description": ""
+      "description": "Child stack gap — `true` → md; token key or false/none to disable",
+      "default": true
     },
     {
       "name": "margin",
       "optional": true,
       "type": "BlockMargin",
-      "description": ""
+      "description": "Outer margin — spacing tokens; default `none`",
+      "default": "none"
     },
     {
       "name": "bg",
       "optional": true,
       "type": "BlockBg",
-      "description": ""
+      "description": "Background surface token",
+      "default": "surface-1"
     },
     {
       "name": "fullBleed",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Cancel parent page pad; edge-to-edge within content column",
+      "default": false
     },
     {
       "name": "radius",
       "optional": true,
       "type": "BlockRadius",
-      "description": ""
+      "description": "Border radius token",
+      "default": "card"
     },
     {
       "name": "raised",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Soft elevation (shadow-sm)",
+      "default": false
     }
   ],
   "events": [],

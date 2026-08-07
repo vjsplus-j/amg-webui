@@ -1,6 +1,12 @@
 {
   "name": "StepItem",
-  "generatedAt": "2026-08-07T12:41:56.162Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/step-item"
+  ],
+  "sourceHash": "d99adab10a73f1c2baa9c7fcd7223fa20b082c1bbffb18e49cb43477ac9b016b",
+  "generatedAt": "2026-08-07T18:45:11.212Z",
   "source": {
     "types": "packages/components/core/StepItem/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "icon",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "status",
       "optional": true,
       "type": "StepStatus",
-      "description": ""
+      "description": "Override computed state",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

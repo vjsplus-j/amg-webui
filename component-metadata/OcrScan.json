@@ -1,0 +1,55 @@
+{
+  "name": "OcrScan",
+  "title": "OcrScan",
+  "summary": "OcrScan：面向企业场景的 Special 组件（成熟度 rc）。",
+  "description": "OcrScan：面向企业场景的 Special 组件（成熟度 rc）。",
+  "family": "special",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/ocr-scan"
+  ],
+  "features": [
+    "Special 家族组件",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "事件回调"
+  ],
+  "useCases": [
+    "特殊场景组件",
+    "业务定制页面块",
+    "需要禁用/只读控制的表单场景"
+  ],
+  "avoidWhen": [
+    "通用场景优先 foundation 组件"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts OcrScan interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts OcrScan uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts OcrScan RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts OcrScan client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.481Z",
+  "sourceHash": "f93de95c612da17a87b0aaf35aa7baf9eb3b4b7902b38bcf4e36ebb48b4c2dc5"
+}

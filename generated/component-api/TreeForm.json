@@ -1,6 +1,12 @@
 {
   "name": "TreeForm",
-  "generatedAt": "2026-08-07T12:42:17.050Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/tree-form"
+  ],
+  "sourceHash": "12bc77196ed1cafca9b7c6b13dbf5e01d0a7e966b88f8571c828e6257e3c0a0d",
+  "generatedAt": "2026-08-07T18:45:11.267Z",
   "source": {
     "types": "packages/components/form/TreeForm/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

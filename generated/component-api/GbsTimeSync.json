@@ -1,6 +1,12 @@
 {
   "name": "GbsTimeSync",
-  "generatedAt": "2026-08-07T12:41:13.607Z",
+  "package": "gb28181",
+  "importPaths": [
+    "amg-webui/gb28181",
+    "amg-webui/gbs-time-sync"
+  ],
+  "sourceHash": "9fc87696351b468d51aaf38c5a9a1e9774bfb73b3d50794945d7a4032768e47d",
+  "generatedAt": "2026-08-07T18:45:11.052Z",
   "source": {
     "types": "packages/components/gb28181/GbsTimeSync/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "server",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "ntp.pool.org"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "syncing",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

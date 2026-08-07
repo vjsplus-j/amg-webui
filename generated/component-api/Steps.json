@@ -1,6 +1,12 @@
 {
   "name": "Steps",
-  "generatedAt": "2026-08-07T12:41:56.164Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/steps"
+  ],
+  "sourceHash": "3b072bd1be607f35f0fef312df072048375ed7d84c8b9eab6640ef7197444038",
+  "generatedAt": "2026-08-07T18:45:11.217Z",
   "source": {
     "types": "packages/components/core/Steps/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "active",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Controlled active step index (0-based)",
+      "default": 0
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Alias for v-model",
+      "default": null
     },
     {
       "name": "direction",
       "optional": true,
       "type": "'horizontal' | 'vertical'",
-      "description": ""
+      "description": "",
+      "default": "horizontal"
     },
     {
       "name": "clickable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Allow clicking finished / upcoming steps",
+      "default": false
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

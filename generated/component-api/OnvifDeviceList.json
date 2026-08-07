@@ -1,6 +1,12 @@
 {
   "name": "OnvifDeviceList",
-  "generatedAt": "2026-08-07T12:41:35.034Z",
+  "package": "onvif",
+  "importPaths": [
+    "amg-webui/onvif",
+    "amg-webui/onvif-device-list"
+  ],
+  "sourceHash": "08519fba0ac1edf26dab5c5778372166f4f7288a3eae8e345b610626023a0860",
+  "generatedAt": "2026-08-07T18:45:11.118Z",
   "source": {
     "types": "packages/components/onvif/OnvifDeviceList/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "devices",
       "optional": true,
       "type": "OnvifDevice[]",
-      "description": ""
+      "description": "",
+      "default": "() => [ { id: 'cam-01', name: 'IPC-Office-01', ip: '192.168.1.101', port: 80, online: true }, { id: 'cam-02', name: 'IPC-Gate-02', ip: '192.168.1.102', port: 80, online: true }, { id: 'nvr-01', name: 'NVR-Main', ip: '192.168.1.200', port: 8000, online: false } ]"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

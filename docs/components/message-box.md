@@ -2,23 +2,32 @@
 
 命令式确认 / 提示 / 输入框：`MessageBox.confirm` · `alert` · `prompt`。
 
-## 概览
+## 组件介绍
 
-MessageBox 当前成熟度为 **RC**；完整交互见本地 example。
+命令式确认 / 提示 / 输入框：`MessageBox.confirm` · `alert` · `prompt`。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Overlay 家族组件
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 对话框、抽屉、气泡确认等浮层
+- 阻断式交互
+
+**不适用**
+
+- 轻量提示优先 Toast / Message
+- 非阻断提示不要用 Modal 对话框
 
 ## 基础用法
 
+> `import { MessageBox } from 'amg-webui/overlay'`
+
 ```ts
-import { MessageBox } from '@amg-webui/overlay'
+import { MessageBox } from 'amg-webui/overlay'
 
 const result = await MessageBox.confirm({
   title: 'Confirm',
@@ -31,13 +40,15 @@ if (result === 'confirm') {
 
 Curated demo：`example/demos/MessageBox/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| — | — | — | 见 `generated/component-api` 或源码 `types.ts` |
+| （无公开 Props） | | | |
 
-## Public types
+### Public Types
 
 - `MessageBoxMode`
 - `MessageBoxAction`
@@ -51,6 +62,40 @@ Curated demo：`example/demos/MessageBox/index.vue`
 - `MessageBoxHostProps`
 - `MessageBoxHostEmits`
 
+## 键盘交互
+
+- 状态：`PASS`
+- 按键：`Escape`
+- Escape: Escape dismisses message box and emits cancel
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts MessageBox uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts MessageBox RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts MessageBox client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -58,6 +103,9 @@ Curated demo：`example/demos/MessageBox/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/overlay` |
+| metadata | `component-metadata/MessageBox.json` |
 | API extract | `generated/component-api/MessageBox.json` |
 
-> 完整 Demo 见 `example/demos/MessageBox`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/MessageBox`（example 本地调试，不上线）。
+

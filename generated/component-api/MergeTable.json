@@ -1,6 +1,12 @@
 {
   "name": "MergeTable",
-  "generatedAt": "2026-08-07T12:41:35.022Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/merge-table"
+  ],
+  "sourceHash": "463c7d2cc183d080a616dfafad355a3d5212b7ae4220b74d1ae6e12ec75abcb8",
+  "generatedAt": "2026-08-07T18:45:11.104Z",
   "source": {
     "types": "packages/components/data/MergeTable/types.ts",
     "vue": true
@@ -10,97 +16,113 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "MergeTableRow[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "rows",
       "optional": true,
       "type": "MergeTableRow[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "columns",
       "optional": true,
       "type": "MergeTableColumn[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "mergeField",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "mergeFields",
       "optional": true,
       "type": "string[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "rowKey",
       "optional": true,
       "type": "MergeTableRowKey",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | number | MergeTableRow | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "bordered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "striped",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "stickyHeader",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

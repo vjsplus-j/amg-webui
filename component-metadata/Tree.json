@@ -1,0 +1,62 @@
+{
+  "name": "Tree",
+  "title": "Tree 树形控件",
+  "summary": "Tree 树形控件：面向企业场景的 Tree 组件（成熟度 rc）。",
+  "description": "Tree 树形控件：面向企业场景的 Tree 组件（成熟度 rc）。",
+  "family": "tree",
+  "package": "data",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/tree"
+  ],
+  "features": [
+    "Tree 家族组件",
+    "虚拟滚动",
+    "事件回调",
+    "v-model 双向绑定"
+  ],
+  "useCases": [
+    "层级数据展示与勾选",
+    "目录/组织架构",
+    "大数据量列表/表格性能场景"
+  ],
+  "avoidWhen": [
+    "扁平列表请用 Table / List"
+  ],
+  "related": [
+    "TreeSelect",
+    "TreeTable"
+  ],
+  "keyboard": {
+    "status": "PASS",
+    "keys": [
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowRight"
+    ],
+    "detail": "ArrowDown: moves active tree row highlight; ArrowUp: moves active tree row highlight upward; ArrowRight: expands active parent node and sets aria-expanded true"
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Tree uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Tree RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Tree client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.576Z",
+  "sourceHash": "5c9dcf58ee9cf7917327cb20ba12f9d29d709b55d9da02286dd4db6cfe4d84be"
+}

@@ -1,6 +1,12 @@
 {
   "name": "Popconfirm",
-  "generatedAt": "2026-08-07T12:41:35.057Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/popconfirm"
+  ],
+  "sourceHash": "cad8bf28fec76e68ef132b81a63386cba5ca719476af053eaa04a780e124812b",
+  "generatedAt": "2026-08-07T18:45:11.142Z",
   "source": {
     "types": "packages/components/core/Popconfirm/types.ts",
     "vue": true
@@ -10,109 +16,127 @@
       "name": "visible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "placement",
       "optional": true,
       "type": "FloatingPlacement",
-      "description": ""
+      "description": "",
+      "default": "top"
     },
     {
       "name": "dismissible",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "confirmLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "cancelLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "severity",
       "optional": true,
       "type": "Severity",
-      "description": ""
+      "description": "",
+      "default": "warning"
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "showIcon",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "offset",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 8
     },
     {
       "name": "zIndex",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "teleportTo",
       "optional": true,
       "type": "string | HTMLElement",
-      "description": ""
+      "description": "",
+      "default": "body"
     },
     {
       "name": "beforeConfirm",
       "optional": true,
       "type": "(event: MouseEvent) => boolean | Promise<boolean>",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "beforeCancel",
       "optional": true,
       "type": "( reason: PopconfirmCloseReason, event?: Event, ) => boolean | Promise<boolean>",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

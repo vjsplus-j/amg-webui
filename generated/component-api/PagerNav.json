@@ -1,6 +1,12 @@
 {
   "name": "PagerNav",
-  "generatedAt": "2026-08-07T12:41:35.042Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/pager-nav"
+  ],
+  "sourceHash": "518c697ffaeb1b2e750a6f769d606c1ad45f4f7fa43cdfca7b4bb92b8ffa98ae",
+  "generatedAt": "2026-08-07T18:45:11.132Z",
   "source": {
     "types": "packages/components/core/PagerNav/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "modelValue",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Current page (1-based)",
+      "default": 1
     },
     {
       "name": "totalPages",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Total page count",
+      "default": 1
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "direction",
       "optional": true,
       "type": "'horizontal' | 'vertical'",
-      "description": ""
+      "description": "",
+      "default": "horizontal"
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Accessible name for the nav landmark",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,0 +1,57 @@
+{
+  "name": "CategoryNav",
+  "title": "CategoryNav",
+  "summary": "CategoryNav：面向企业场景的 Navigation 组件（成熟度 rc）。",
+  "description": "CategoryNav：面向企业场景的 Navigation 组件（成熟度 rc）。",
+  "family": "navigation",
+  "package": "core",
+  "maturity": "rc",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/category-nav"
+  ],
+  "features": [
+    "Navigation 家族组件",
+    "v-model 双向绑定",
+    "支持禁用状态",
+    "外观变体",
+    "多尺寸规格",
+    "事件回调"
+  ],
+  "useCases": [
+    "菜单、标签页、面包屑等导航",
+    "页面结构引导",
+    "需要禁用/只读控制的表单场景"
+  ],
+  "avoidWhen": [
+    "单页极简场景可省略复杂导航组件"
+  ],
+  "related": [],
+  "keyboard": {
+    "status": "FAIL",
+    "keys": [],
+    "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts CategoryNav interactive surface present (keyboard applicable)\""
+  },
+  "a11y": {
+    "status": "PASS",
+    "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
+  },
+  "theme": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CategoryNav uses package styles / semantic tokens gate"
+  },
+  "rtl": {
+    "status": "N/A",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CategoryNav RTL covered by theme/dir provider"
+  },
+  "ssr": {
+    "status": "PASS",
+    "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CategoryNav client mount OK; no required browser-only top-level in package gate"
+  },
+  "limitations": [
+    "Interactive actions no-op when disabled",
+    "API 尚未冻结，可能随 hardening 批次调整"
+  ],
+  "generatedAt": "2026-08-07T18:51:48.374Z",
+  "sourceHash": "5fa09a6052727e49894a7c8e8dccb2871b0fa7e9cf9916a3d93e4954c2cfb822"
+}

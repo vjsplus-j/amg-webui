@@ -1,6 +1,12 @@
 {
   "name": "TimePicker",
-  "generatedAt": "2026-08-07T12:34:13.552Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/time-picker"
+  ],
+  "sourceHash": "957b69cfcf2db12c6364a1c3800573987cedab814fa7f99bfab011a041ae25c4",
+  "generatedAt": "2026-08-07T18:45:11.247Z",
   "source": {
     "types": "packages/components/form/TimePicker/types.ts",
     "vue": true
@@ -10,73 +16,85 @@
       "name": "id",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native id — falls back to FormItem field id when nested",
+      "default": null
     },
     {
       "name": "name",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Native name — falls back to FormItem `prop` when nested",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | Date | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "placeholder",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "showSeconds",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "valueFormat",
       "optional": true,
       "type": "'time' | 'date'",
-      "description": ""
+      "description": "",
+      "default": "time"
     },
     {
       "name": "minuteStep",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "secondStep",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 1
     },
     {
       "name": "clearable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "readonly",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "ariaLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "skipFormItem",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "When true, skip FormItem inject (composite parents own the hook).",
+      "default": false
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "PageHeader",
-  "generatedAt": "2026-08-07T12:41:35.041Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/page-header"
+  ],
+  "sourceHash": "37e3e7dafdaf49f0b2bad31d89a307514e09b88cd83a20cb735885ea13d8fca1",
+  "generatedAt": "2026-08-07T18:45:11.130Z",
   "source": {
     "types": "packages/components/core/PageHeader/types.ts",
     "vue": true
@@ -10,25 +16,29 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "subtitle",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "back",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "backLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

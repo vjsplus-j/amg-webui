@@ -1,6 +1,12 @@
 {
   "name": "TablePrint",
-  "generatedAt": "2026-08-07T12:42:17.025Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/table-print"
+  ],
+  "sourceHash": "3a02d5021cbfb6631035073526daf1c70cefc3af273be3b67e12d73983be3617",
+  "generatedAt": "2026-08-07T18:45:11.230Z",
   "source": {
     "types": "packages/components/data/TablePrint/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "columns",
       "optional": true,
       "type": "{ key: string; label?: string; formatter?: ( value: unknown, row: Record<string, unknown>, index: number, ) => string; }[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "data",
       "optional": true,
       "type": "Record<string, unknown>[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "bordered",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "showToolbar",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "DataTable",
-  "generatedAt": "2026-08-07T12:34:13.530Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/data-table"
+  ],
+  "sourceHash": "1654eb64f4f4e831dc984607bc754f1ccfd12175438ed3670fe143431e578ec2",
+  "generatedAt": "2026-08-07T18:45:10.957Z",
   "source": {
     "types": "packages/components/data/DataTable/types.ts",
     "vue": true
@@ -10,151 +16,176 @@
       "name": "value",
       "optional": true,
       "type": "T[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "columns",
       "optional": false,
       "type": "Column<T>[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "rowKey",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Field name used as stable row identity (default `id`). Required when selection or virtual scroll is enabled.",
+      "default": "id"
     },
     {
       "name": "selection",
       "optional": true,
       "type": "RowKey[]",
-      "description": ""
+      "description": "Selected row keys — use with v-model:selection",
+      "default": "() => []"
     },
     {
       "name": "selectionMode",
       "optional": true,
       "type": "\"single\" | \"multiple\"",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "paginator",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "rows",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 10
     },
     {
       "name": "first",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "totalRecords",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "",
+      "default": 0
     },
     {
       "name": "sortField",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "sortOrder",
       "optional": true,
       "type": "SortOrder",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "striped",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "fixedHeader",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "filterGlobal",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "lazy",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Delegate sorting, filtering and pagination to the consumer.",
+      "default": false
     },
     {
       "name": "filterDebounce",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Delay local filtering and lazy filter events.",
+      "default": 200
     },
     {
       "name": "virtual",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Virtual scroll for the current display set. Default ON. Works with paginator (virtualizes the current page). Set false to render full DOM for the page/list.",
+      "default": true
     },
     {
       "name": "virtualHeight",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Viewport height as spacing-xs multiples (synced into virtual math + CSS).",
+      "default": 80
     },
     {
       "name": "rowHeight",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Optional fixed row height in CSS px. When omitted, uses `--theme-table-row-height` then refines via ResizeObserver on the first rendered row.",
+      "default": null
     },
     {
       "name": "virtualColumns",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Horizontal column windowing. Default: auto-enable when column count ≥ `virtualColumnThreshold`.",
+      "default": null
     },
     {
       "name": "virtualColumnThreshold",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Column count that triggers auto horizontal virtualization (default 8).",
+      "default": 8
     },
     {
       "name": "sortWorkerThreshold",
       "optional": true,
       "type": "number",
-      "description": ""
+      "description": "Local sort switches to Worker above this row count (default 5000).",
+      "default": "SORT_WORKER_THRESHOLD"
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [
@@ -195,12 +226,12 @@
     },
     {
       "name": "row-select",
-      "payload": "event: { originalEvent: DataTableRowInteractionEvent; data: T; checked: boolean }",
+      "payload": "event: DataTableRowSelectEvent<T>",
       "description": ""
     },
     {
       "name": "row-click",
-      "payload": "event: { originalEvent: DataTableRowInteractionEvent; data: T }",
+      "payload": "event: DataTableRowClickEvent<T>",
       "description": ""
     },
     {
@@ -245,7 +276,7 @@
     {
       "name": "scrollTo",
       "type": "(options: { rowIndex?: number; key?: RowKey }) => void",
-      "description": ""
+      "description": "Scroll the virtual viewport to a row index or stable row key"
     }
   ],
   "models": [
@@ -257,7 +288,10 @@
   "publicTypes": [
     "SortOrder",
     "RowKey",
+    "DataTableRowInteractionEvent",
     "DataTableInstance",
+    "DataTableRowSelectEvent",
+    "DataTableRowClickEvent",
     "Column",
     "DataTableProps",
     "DataTableEmits",

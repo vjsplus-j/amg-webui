@@ -1,6 +1,12 @@
 {
   "name": "GraphChart",
-  "generatedAt": "2026-08-07T12:41:13.608Z",
+  "package": "charts",
+  "importPaths": [
+    "amg-webui/charts",
+    "amg-webui/graph-chart"
+  ],
+  "sourceHash": "a1f00ce6b4edb30b52f972e172efda3fef2e20318ab6989e41f4af1d0e8f6f8b",
+  "generatedAt": "2026-08-07T18:45:11.053Z",
   "source": {
     "types": "packages/components/charts/GraphChart/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "nodes",
       "optional": true,
       "type": "GraphChartNode[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "edges",
       "optional": true,
       "type": "GraphChartEdge[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "selectable",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "emptyText",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "AdvancedSearch",
-  "generatedAt": "2026-08-07T12:39:09.849Z",
+  "package": "form",
+  "importPaths": [
+    "amg-webui/form",
+    "amg-webui/advanced-search"
+  ],
+  "sourceHash": "4ee7ff42730fba27b4840f8f14e087efbeaeb371321c6168a1ee7bccbd70d4a1",
+  "generatedAt": "2026-08-07T18:45:10.871Z",
   "source": {
     "types": "packages/components/form/AdvancedSearch/types.ts",
     "vue": true
@@ -10,31 +16,36 @@
       "name": "modelValue",
       "optional": true,
       "type": "FilterCondition[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "logic",
       "optional": true,
       "type": "SearchLogic",
-      "description": ""
+      "description": "",
+      "default": "and"
     },
     {
       "name": "fields",
       "optional": true,
       "type": "FilterFieldOption[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "templates",
       "optional": true,
       "type": "{ id: string; name: string; conditions: FilterCondition[]; logic: SearchLogic }[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

@@ -1,6 +1,12 @@
 {
   "name": "PivotTable",
-  "generatedAt": "2026-08-07T12:41:35.051Z",
+  "package": "data",
+  "importPaths": [
+    "amg-webui/data",
+    "amg-webui/pivot-table"
+  ],
+  "sourceHash": "b3073989b3bcf101c39843e44df3ccdf2139507bb10d83e6fc5efbb3b432cb0c",
+  "generatedAt": "2026-08-07T18:45:11.140Z",
   "source": {
     "types": "packages/components/data/PivotTable/types.ts",
     "vue": true
@@ -10,97 +16,113 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "PivotRecord[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "rows",
       "optional": true,
       "type": "PivotRecord[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "rowField",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "columnField",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "colField",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Backward-compatible alias for columnField.",
+      "default": null
     },
     {
       "name": "valueField",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "valueFormatter",
       "optional": true,
       "type": "(value: number, cell?: PivotCell) => string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "string | null",
-      "description": ""
+      "description": "",
+      "default": "null"
     },
     {
       "name": "rowLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "showRowTotals",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "showColumnTotals",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "stickyHeader",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     }
   ],
   "events": [

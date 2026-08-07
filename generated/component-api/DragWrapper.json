@@ -1,6 +1,12 @@
 {
   "name": "DragWrapper",
-  "generatedAt": "2026-08-07T12:40:46.825Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/drag-wrapper"
+  ],
+  "sourceHash": "1792ce4e3e1cc4510109f47edb2ffa42e85c751291bc495056e962ed1e762fa2",
+  "generatedAt": "2026-08-07T18:45:10.981Z",
   "source": {
     "types": "packages/lowcode/ui/DragWrapper/types.ts",
     "vue": true
@@ -10,49 +16,57 @@
       "name": "label",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": ""
     },
     {
       "name": "nested",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "accept",
       "optional": true,
       "type": "string[]",
-      "description": ""
+      "description": "",
+      "default": "() => [\"application/vp-material-type\"]"
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

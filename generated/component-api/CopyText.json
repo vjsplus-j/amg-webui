@@ -1,6 +1,12 @@
 {
   "name": "CopyText",
-  "generatedAt": "2026-08-07T12:40:46.808Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/copy-text"
+  ],
+  "sourceHash": "104bc2c1b3789c996a6a7ea7e87cbfd0aa560d6988e9ebc04f3d6519d468209e",
+  "generatedAt": "2026-08-07T18:45:10.950Z",
   "source": {
     "types": "packages/components/core/CopyText/types.ts",
     "vue": true
@@ -10,43 +16,50 @@
       "name": "text",
       "optional": false,
       "type": "string",
-      "description": ""
+      "description": "Text written to the clipboard (required for copy)",
+      "default": null
     },
     {
       "name": "label",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Visible label — defaults to `text`",
+      "default": null
     },
     {
       "name": "truncate",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Truncate display with ellipsis",
+      "default": true
     },
     {
       "name": "maxWidth",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Max visible characters when truncate (graphemes approx via CSS)",
+      "default": null
     },
     {
       "name": "size",
       "optional": true,
       "type": "Size",
-      "description": ""
+      "description": "",
+      "default": "md"
     },
     {
       "name": "showButton",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "Show copy control (default true)",
+      "default": true
     },
     {
       "name": "copyTooltip",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "Tooltip / aria for the copy control",
+      "default": null
     }
   ],
   "events": [
@@ -58,7 +71,7 @@
     {
       "name": "copyError",
       "payload": "error: unknown",
-      "description": ""
+      "description": "Preferred — aligns with Typography"
     },
     {
       "name": "error",

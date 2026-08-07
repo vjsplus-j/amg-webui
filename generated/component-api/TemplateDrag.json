@@ -1,6 +1,12 @@
 {
   "name": "TemplateDrag",
-  "generatedAt": "2026-08-07T12:42:17.035Z",
+  "package": "lowcode",
+  "importPaths": [
+    "amg-webui/lowcode",
+    "amg-webui/template-drag"
+  ],
+  "sourceHash": "be8a25090a664f63efb38a472e72b3e602ed20672dc52329b7ec777f47d86185",
+  "generatedAt": "2026-08-07T18:45:11.241Z",
   "source": {
     "types": "packages/lowcode/ui/TemplateDrag/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "templates",
       "optional": true,
       "type": "TemplateDragItem[]",
-      "description": ""
+      "description": "",
+      "default": "() => []"
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "telemetry",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "trackId",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

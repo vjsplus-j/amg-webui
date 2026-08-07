@@ -1,6 +1,12 @@
 {
   "name": "Print",
-  "generatedAt": "2026-08-07T12:41:35.060Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/print"
+  ],
+  "sourceHash": "62842211b118ab3663349e25a0bf0dfd0fbe802bac4d73a8208827827584c9c4",
+  "generatedAt": "2026-08-07T18:45:11.146Z",
   "source": {
     "types": "packages/components/core/Print/types.ts",
     "vue": true
@@ -10,61 +16,71 @@
       "name": "modelValue",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "showToolbar",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "printClass",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "CSS class injected into print window body",
+      "default": null
     },
     {
       "name": "copyStyles",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "pageStyle",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "autoClose",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": true
     },
     {
       "name": "windowFeatures",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": "noopener,noreferrer"
     },
     {
       "name": "pendingLabel",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [

@@ -1,25 +1,34 @@
 # DescriptionsItem
 
-DescriptionsItem 为 **RC** 公共组件（Contract maturity=`rc`）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+DescriptionsItem：面向企业场景的 Table 组件（成熟度 rc）。
 
-## 概览
+## 组件介绍
 
-DescriptionsItem 当前成熟度为 **RC**；完整交互见本地 example。
+DescriptionsItem：面向企业场景的 Table 组件（成熟度 rc）。
 
-## 何时使用 / 何时不用
+## 核心特性
 
-- **适用**：RC 阶段的标准 UI 场景（未宣称 Stable）。
-- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+- Table 家族组件
 
-## 相关组件
+## 何时使用 / 不适用
 
-— 见同包组件与 `Form` / `Select` 等表单家族。
+**适用**
+
+- 结构化数据表格
+- 排序筛选分页场景
+
+**不适用**
+
+- 少量键值对用 Descriptions
+- 无结构化列需求时避免过度使用表格
 
 ## 基础用法
 
+> `import { DescriptionsItem } from 'amg-webui/data'`
+
 ```vue
 <script setup>
-import { DescriptionsItem } from '@amg-webui/data'
+import { DescriptionsItem } from 'amg-webui/data'
 </script>
 
 <template>
@@ -29,20 +38,56 @@ import { DescriptionsItem } from '@amg-webui/data'
 
 Curated demo：`example/demos/DescriptionsItem/index.vue`
 
-## Props
+## API
+
+### Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `label` | `string` | — | 显示文案 / Display label |
-| `span` | `number` | — | — |
-| `colon` | `boolean` | — | — |
-| `labelAlign` | `"start" \| "end"` | — | — |
-| `labelWidth` | `string \| number` | — | 标签宽度 / Label width |
+| `label` | `string` | `undefined` | 显示文案 / Display label |
+| `span` | `number` | 1 | span 数值 |
+| `colon` | `boolean` | false | 是否启用 colon |
+| `labelAlign` | `"start" \| "end"` | `start` | labelAlign 配置项 |
+| `labelWidth` | `string \| number` | `undefined` | 标签宽度 / Label width |
 
-## Public types
+### Public Types
 
 - `DescriptionsItemProps`
 
+## 键盘交互
+
+- 状态：`FAIL`
+- 按键：`Tab` · `Enter` · `Escape` · `ArrowDown` · `ArrowUp` · `ArrowLeft` · `ArrowRight` · `Home` · `End` · `Space`
+- keyboard PASS requires testCases[] with ≥1 PASS case including expected behavior text
+
+## 无障碍
+
+- 状态：`PASS`
+- A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS
+
+## Theme
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts DescriptionsItem uses package styles / semantic tokens gate
+
+## RTL
+
+- 状态：`N/A`
+- tests/unit/hardening/real-mount-remaining.spec.ts DescriptionsItem RTL covered by theme/dir provider
+
+## SSR
+
+- 状态：`PASS`
+- tests/unit/hardening/real-mount-remaining.spec.ts DescriptionsItem client mount OK; no required browser-only top-level in package gate
+
+## 当前限制
+
+- Interactive actions no-op when disabled
+- API 尚未冻结，可能随 hardening 批次调整
+
+## 相关组件
+
+— 见同包组件与 `Form` / `Select` 等表单家族。
 
 ## 稳定性
 
@@ -50,6 +95,9 @@ Curated demo：`example/demos/DescriptionsItem/index.vue`
 | --- | --- |
 | maturity | `rc` |
 | apiFreeze | `unfrozen` |
+| import | `amg-webui/data` |
+| metadata | `component-metadata/DescriptionsItem.json` |
 | API extract | `generated/component-api/DescriptionsItem.json` |
 
-> 完整 Demo 见 `example/demos/DescriptionsItem`。对外 docs 为 API 导向页面；交互预览见本地 example（不上线）。
+> 完整 Demo 见 `example/demos/DescriptionsItem`（example 本地调试，不上线）。
+

@@ -1,6 +1,12 @@
 {
   "name": "Thumbnail",
-  "generatedAt": "2026-08-07T12:42:17.037Z",
+  "package": "core",
+  "importPaths": [
+    "amg-webui/core",
+    "amg-webui/thumbnail"
+  ],
+  "sourceHash": "a6e0eb0a8001b515cf218de4716c3dee4e64f324c002db06eeb2a8f72beb155d",
+  "generatedAt": "2026-08-07T18:45:11.246Z",
   "source": {
     "types": "packages/components/core/Thumbnail/types.ts",
     "vue": true
@@ -10,37 +16,43 @@
       "name": "title",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "description",
       "optional": true,
       "type": "string",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "data",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "modelValue",
       "optional": true,
       "type": "unknown",
-      "description": ""
+      "description": "",
+      "default": null
     },
     {
       "name": "disabled",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": false
     },
     {
       "name": "loading",
       "optional": true,
       "type": "boolean",
-      "description": ""
+      "description": "",
+      "default": null
     }
   ],
   "events": [
