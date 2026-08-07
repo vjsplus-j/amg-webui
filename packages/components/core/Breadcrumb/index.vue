@@ -36,7 +36,8 @@ const slots = useSlots() as Readonly<{
 
 provide(BREADCRUMB_INJECTION_KEY, {
   separator: toRef(props, 'separator'),
-  separatorSlot: computed(() => slots.separator)
+  separatorSlot: computed(() => slots.separator),
+  inList: true
 })
 
 const navLabel = computed(() => props.ariaLabel ?? t('component.breadcrumb.aria'))

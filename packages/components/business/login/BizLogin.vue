@@ -7,6 +7,7 @@ import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { BizLoginEmits, BizLoginProps, BizLoginMode } from './types'
 import { useLoginForm } from './composables/useLoginForm'
+import { useBizAuth } from './composables/useBizAuth'
 import BizCaptcha from './BizCaptcha.vue'
 import BizVerifyCode from './BizVerifyCode.vue'
 import './style.scss'
@@ -30,6 +31,10 @@ const props = withDefaults(defineProps<BizLoginProps>(), {
 const emit = defineEmits<BizLoginEmits>()
 const attrs = useAttrs()
 const { t } = useLocale()
+
+const auth = useBizAuth({ adapter: () => props.adapter })
+const usingAdapter = computed(() => Boolean(props.adapter))
+const submitLoading = computed(() => props.loading || auth.loading.value)
 
 const { username, password, remember, toPayload } = useLoginForm({
   username: props.defaultUsername
@@ -59,6 +64,7 @@ const modeTabs = computed(() =>
 function setMode(next: BizLoginMode) {
   mode.value = next
   error.value = ''
+  auth.error.value = null
   emit('update:mode', next)
 }
 
@@ -70,6 +76,7 @@ async function resolveCaptcha(): Promise<string | undefined> {
 
 async function onSubmit() {
   error.value = ''
+  auth.error.value = null
   if (mode.value === 'password') {
     if (!username.value.trim()) {
       error.value = t('biz.login.usernameRequired')
@@ -93,6 +100,13 @@ async function onSubmit() {
       }
       payload.captchaToken = token
     }
+    if (usingAdapter.value) {
+      const result = await auth.login(payload)
+      if (auth.error.value || !result) return
+      emit('submit', payload)
+      emit('auth-success', result)
+      return
+    }
     emit('submit', payload)
     return
   }
@@ -106,15 +120,36 @@ async function onSubmit() {
       error.value = t('biz.login.codeRequired')
       return
     }
-    emit('submit', {
+    const payload = {
       username: phone.value.trim(),
       password: '',
       phone: phone.value.trim(),
       code: smsCode.value.trim(),
-      mode: 'sms',
+      mode: 'sms' as const,
       remember: remember.value
-    })
+    }
+    if (usingAdapter.value) {
+      const result = await auth.login(payload)
+      if (auth.error.value || !result) return
+      emit('submit', payload)
+      emit('auth-success', result)
+      return
+    }
+    emit('submit', payload)
   }
+}
+
+async function onSendCode() {
+  if (usingAdapter.value && props.adapter?.sendCode) {
+    const target = mode.value === 'sms' ? phone.value.trim() : username.value.trim()
+    if (!target) {
+      error.value = t('biz.login.phoneRequired')
+      return
+    }
+    await auth.sendCode('login', target)
+    if (auth.error.value) return
+  }
+  emit('send-code')
 }
 </script>
 
@@ -140,7 +175,9 @@ async function onSubmit() {
       </div>
 
       <form v-if="mode === 'password'" class="biz-login__form" @submit.prevent="onSubmit">
-        <Message v-if="error" severity="danger" :closable="false">{{ error }}</Message>
+        <Message v-if="error || auth.error.value" severity="danger" :closable="false">
+          {{ error || auth.error.value }}
+        </Message>
 
         <label class="biz-login__field">
           <span>{{ t(LocaleKeys.auth.username) }}</span>
@@ -169,23 +206,25 @@ async function onSubmit() {
           </button>
         </div>
 
-        <Button type="submit" severity="primary" variant="solid" :loading="loading" class="biz-login__submit">
+        <Button type="submit" severity="primary" variant="solid" :loading="submitLoading" class="biz-login__submit">
           <Icon name="User" size="sm" />
           {{ t(LocaleKeys.button.signIn) }}
         </Button>
       </form>
 
       <form v-else-if="mode === 'sms'" class="biz-login__form" @submit.prevent="onSubmit">
-        <Message v-if="error" severity="danger" :closable="false">{{ error }}</Message>
+        <Message v-if="error || auth.error.value" severity="danger" :closable="false">
+          {{ error || auth.error.value }}
+        </Message>
         <label class="biz-login__field">
           <span>{{ t('biz.login.phone') }}</span>
           <InputText v-model="phone" autocomplete="tel" fluid />
         </label>
         <label class="biz-login__field">
           <span>{{ t('biz.login.smsCode') }}</span>
-          <BizVerifyCode v-model="smsCode" @send="emit('send-code')" />
+          <BizVerifyCode v-model="smsCode" @send="onSendCode" />
         </label>
-        <Button type="submit" severity="primary" variant="solid" :loading="loading" class="biz-login__submit">
+        <Button type="submit" severity="primary" variant="solid" :loading="submitLoading" class="biz-login__submit">
           {{ t(LocaleKeys.button.signIn) }}
         </Button>
       </form>

@@ -26,12 +26,12 @@ export type LowcodeActionType =
 
 export interface LowcodeAction {
   type: LowcodeActionType
-  /** Target path for SetState / SetValue / OpenDialog (state key), etc. */
+  /** Target path for SetState / SetValue / OpenDialog (state key), Download filename, etc. */
   target?: string
   value?: unknown
-  /** DataSource id for CallApi / RefreshData */
+  /** DataSource id for CallApi / RefreshData / SubmitForm / Download */
   dataSourceId?: string
-  /** Navigate path */
+  /** Navigate path or Download URL */
   path?: string
   message?: string
   severity?: 'info' | 'success' | 'warn' | 'error'
@@ -56,7 +56,11 @@ export interface DataSourceDef {
   /** Path in response → context, e.g. `{ list: 'data.list', total: 'data.total' }` for mapping into data[id] */
   responseMap?: Record<string, string>
   cache?: boolean
+  /** Cache TTL in ms when `cache` is true (default: no expiry). */
+  cacheTtlMs?: number
   retry?: number
+  /** Request timeout in ms (REST only). */
+  timeout?: number
 }
 
 export interface DataSourceState {
@@ -70,12 +74,23 @@ export interface ShowMessagePayload {
   severity: 'info' | 'success' | 'warn' | 'error'
 }
 
+export interface RunDataSourceOptions {
+  /** Bypass cache and re-fetch. */
+  force?: boolean
+  /** Override request body (SubmitForm). */
+  body?: unknown
+  /** Override HTTP method (SubmitForm defaults to POST). */
+  method?: DataSourceDef['request'] extends infer R ? (R extends { method?: infer M } ? M : never) : never
+}
+
 export interface PageRuntimeOptions {
   initial?: Partial<PageContext>
   dataSources?: DataSourceDef[]
   /** Optional navigate hook */
   onNavigate?: (path: string) => void
   onMessage?: (payload: ShowMessagePayload) => void
+  /** Trigger browser / host download (defaults to anchor click in browser). */
+  onDownload?: (payload: { url: string; filename?: string; blob?: Blob }) => void
   /** Custom fetch for REST (defaults to global fetch) */
   fetchImpl?: typeof fetch
 }
@@ -88,12 +103,18 @@ export interface PageRuntime {
   setState: (path: string, value: unknown) => void
   getState: (path: string) => unknown
   registerDataSource: (ds: DataSourceDef) => void
-  runDataSource: (id: string) => Promise<unknown>
+  runDataSource: (id: string, options?: RunDataSourceOptions) => Promise<unknown>
+  invalidateDataSourceCache: (id?: string) => void
   runAction: (action: LowcodeAction) => Promise<void>
   runActionChain: (actions: LowcodeAction[]) => Promise<void>
   /** Resolve `__events` handler name → actions map */
   handlersFromActions: (map: Record<string, LowcodeAction[]>) => Record<string, (...args: unknown[]) => void>
   reset: () => void
+}
+
+interface CacheEntry {
+  data: unknown
+  cachedAt: number
 }
 
 function emptyContext(partial?: Partial<PageContext>): PageContext {
@@ -115,6 +136,33 @@ function resolveTemplateString(input: string, ctx: PageContext): string {
   })
 }
 
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+function defaultDownload(payload: { url: string; filename?: string; blob?: Blob }): void {
+  if (typeof document === 'undefined') return
+  const anchor = document.createElement('a')
+  anchor.style.display = 'none'
+  if (payload.blob) {
+    anchor.href = URL.createObjectURL(payload.blob)
+  } else {
+    anchor.href = payload.url
+  }
+  if (payload.filename) anchor.download = payload.filename
+  document.body.appendChild(anchor)
+  anchor.click()
+  document.body.removeChild(anchor)
+  if (payload.blob) URL.revokeObjectURL(anchor.href)
+}
+
+function mergeBody(base: unknown, extra: unknown): unknown {
+  if (base && typeof base === 'object' && !Array.isArray(base) && extra && typeof extra === 'object' && !Array.isArray(extra)) {
+    return { ...(base as Record<string, unknown>), ...(extra as Record<string, unknown>) }
+  }
+  return extra ?? base
+}
+
 export function createPageRuntime(options: PageRuntimeOptions = {}): PageRuntime {
   const context = reactive(emptyContext(options.initial)) as Reactive<PageContext>
   const dataSources = ref<DataSourceDef[]>([...(options.dataSources ?? [])])
@@ -123,6 +171,8 @@ export function createPageRuntime(options: PageRuntimeOptions = {}): PageRuntime
   >
   const messages = ref<ShowMessagePayload[]>([])
   const fetchImpl = options.fetchImpl ?? (typeof fetch !== 'undefined' ? fetch.bind(globalThis) : undefined)
+  const downloadImpl = options.onDownload ?? defaultDownload
+  const dsCache = new Map<string, CacheEntry>()
 
   for (const ds of dataSources.value) {
     dsState[ds.id] = { loading: false, error: null, response: null }
@@ -152,7 +202,109 @@ export function createPageRuntime(options: PageRuntimeOptions = {}): PageRuntime
     return raw
   }
 
-  const runDataSource = async (id: string): Promise<unknown> => {
+  const buildRestUrl = (ds: DataSourceDef): string => {
+    let url = resolveTemplateString(ds.request?.url ?? '', context)
+    const query = ds.request?.query ?? {}
+    const qs = Object.entries(query)
+      .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(resolveTemplateString(v, context))}`)
+      .join('&')
+    if (qs) url += (url.includes('?') ? '&' : '?') + qs
+    return url
+  }
+
+  const cacheKeyFor = (ds: DataSourceDef, url: string, method: string, body: unknown): string => {
+    const bodyKey = body == null ? '' : JSON.stringify(body)
+    return `${ds.id}:${method}:${url}:${bodyKey}`
+  }
+
+  const readCache = (key: string, ds: DataSourceDef): unknown | undefined => {
+    if (!ds.cache) return undefined
+    const hit = dsCache.get(key)
+    if (!hit) return undefined
+    if (ds.cacheTtlMs != null && Date.now() - hit.cachedAt > ds.cacheTtlMs) {
+      dsCache.delete(key)
+      return undefined
+    }
+    return hit.data
+  }
+
+  const writeCache = (key: string, ds: DataSourceDef, data: unknown) => {
+    if (!ds.cache) return
+    dsCache.set(key, { data, cachedAt: Date.now() })
+  }
+
+  const invalidateDataSourceCache = (id?: string) => {
+    if (!id) {
+      dsCache.clear()
+      return
+    }
+    for (const key of [...dsCache.keys()]) {
+      if (key.startsWith(`${id}:`)) dsCache.delete(key)
+    }
+  }
+
+  const fetchRest = async (
+    ds: DataSourceDef,
+    init: { method: string; headers: Record<string, string>; body?: string },
+    url: string
+  ): Promise<Response> => {
+    if (!fetchImpl) throw new Error('fetch unavailable')
+    const retries = Math.max(0, ds.retry ?? 0)
+    let lastError: unknown
+    for (let attempt = 0; attempt <= retries; attempt++) {
+      const controller = new AbortController()
+      const timeoutId =
+        ds.timeout != null && ds.timeout > 0
+          ? setTimeout(() => controller.abort(), ds.timeout)
+          : undefined
+      try {
+        const res = await fetchImpl(url, {
+          method: init.method,
+          headers: init.headers,
+          body: init.body,
+          signal: controller.signal
+        })
+        if (timeoutId) clearTimeout(timeoutId)
+        if (!res.ok) {
+          lastError = new Error(`HTTP ${res.status}`)
+          if (attempt < retries) {
+            await sleep(150 * (attempt + 1))
+            continue
+          }
+          throw lastError
+        }
+        return res
+      } catch (e) {
+        if (timeoutId) clearTimeout(timeoutId)
+        if (e instanceof Error && e.name === 'AbortError') {
+          lastError = new Error(ds.timeout ? `Timeout after ${ds.timeout}ms` : 'Aborted')
+        } else {
+          lastError = e
+        }
+        if (attempt < retries) {
+          await sleep(150 * (attempt + 1))
+          continue
+        }
+        throw lastError
+      }
+    }
+    throw lastError ?? new Error('Request failed')
+  }
+
+  const commitDataSourceResult = (ds: DataSourceDef, transformed: unknown) => {
+    const st = dsState[ds.id] ?? (dsState[ds.id] = { loading: false, error: null, response: null })
+    st.response = transformed
+    context.data[ds.id] = transformed
+    if (ds.responseMap && transformed && typeof transformed === 'object') {
+      for (const [from, toPath] of Object.entries(ds.responseMap)) {
+        const val = getByPath(transformed as Record<string, unknown>, from)
+        setByPath(context as unknown as Record<string, unknown>, toPath, val)
+      }
+    }
+    return transformed
+  }
+
+  const runDataSource = async (id: string, runOptions: RunDataSourceOptions = {}): Promise<unknown> => {
     const ds = dataSources.value.find((d) => d.id === id)
     if (!ds) throw new Error(`Unknown dataSource: ${id}`)
     const st = dsState[id] ?? (dsState[id] = { loading: false, error: null, response: null })
@@ -161,49 +313,87 @@ export function createPageRuntime(options: PageRuntimeOptions = {}): PageRuntime
     try {
       let raw: unknown
       if (ds.type === 'static' || ds.type === 'mock') {
-        raw = ds.staticData ?? []
-        // Simulate async
-        await Promise.resolve()
-      } else {
-        if (!fetchImpl) throw new Error('fetch unavailable')
-        const method = ds.request?.method ?? 'GET'
-        let url = resolveTemplateString(ds.request?.url ?? '', context)
-        const query = ds.request?.query ?? {}
-        const qs = Object.entries(query)
-          .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(resolveTemplateString(v, context))}`)
-          .join('&')
-        if (qs) url += (url.includes('?') ? '&' : '?') + qs
-        const headers: Record<string, string> = {}
-        for (const [k, v] of Object.entries(ds.request?.headers ?? {})) {
-          headers[k] = resolveTemplateString(v, context)
+        const cacheKey = cacheKeyFor(ds, ds.type, 'READ', null)
+        if (!runOptions.force) {
+          const cached = readCache(cacheKey, ds)
+          if (cached !== undefined) {
+            st.response = cached
+            context.data[id] = cached
+            return cached
+          }
         }
-        const res = await fetchImpl(url, {
-          method,
-          headers,
-          body:
-            method === 'GET' || method === 'DELETE'
-              ? undefined
-              : JSON.stringify(ds.request?.body ?? {})
-        })
-        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        raw = ds.staticData ?? []
+        if (ds.type === 'mock') await sleep(80)
+        else await Promise.resolve()
+        const transformed = applyTransform(ds, raw)
+        writeCache(cacheKey, ds, transformed)
+        return commitDataSourceResult(ds, transformed)
+      }
+
+      const method = (runOptions.method ?? ds.request?.method ?? 'GET').toUpperCase()
+      const url = buildRestUrl(ds)
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+      for (const [k, v] of Object.entries(ds.request?.headers ?? {})) {
+        headers[k] = resolveTemplateString(v, context)
+      }
+      const bodyPayload = mergeBody(ds.request?.body, runOptions.body)
+      const hasBody = method !== 'GET' && method !== 'DELETE'
+      const body = hasBody ? JSON.stringify(bodyPayload ?? {}) : undefined
+      const cacheKey = cacheKeyFor(ds, url, method, bodyPayload)
+
+      if (!runOptions.force && method === 'GET') {
+        const cached = readCache(cacheKey, ds)
+        if (cached !== undefined) {
+          st.response = cached
+          context.data[id] = cached
+          return cached
+        }
+      }
+
+      const res = await fetchRest(ds, { method, headers, body }, url)
+      const contentType = res.headers.get('content-type') ?? ''
+      if (contentType.includes('application/json')) {
         raw = await res.json()
+      } else {
+        raw = await res.text()
       }
       const transformed = applyTransform(ds, raw)
-      st.response = transformed
-      context.data[id] = transformed
-      if (ds.responseMap && transformed && typeof transformed === 'object') {
-        for (const [from, toPath] of Object.entries(ds.responseMap)) {
-          const val = getByPath(transformed as Record<string, unknown>, from)
-          setByPath(context as unknown as Record<string, unknown>, toPath, val)
-        }
-      }
-      return transformed
+      if (!runOptions.force && method === 'GET') writeCache(cacheKey, ds, transformed)
+      return commitDataSourceResult(ds, transformed)
     } catch (e) {
       st.error = e instanceof Error ? e.message : String(e)
       throw e
     } finally {
       st.loading = false
     }
+  }
+
+  const triggerDownload = async (action: LowcodeAction): Promise<void> => {
+    const filename =
+      (typeof action.target === 'string' && action.target) ||
+      (typeof action.value === 'string' && action.value) ||
+      undefined
+
+    if (action.dataSourceId) {
+      const result = await runDataSource(action.dataSourceId, { force: true })
+      const blob =
+        result instanceof Blob
+          ? result
+          : new Blob([typeof result === 'string' ? result : JSON.stringify(result, null, 2)], {
+              type: 'application/json'
+            })
+      downloadImpl({ url: '', filename: filename ?? `${action.dataSourceId}.json`, blob })
+      return
+    }
+
+    const url = resolveTemplateString(action.path ?? '', context)
+    if (!url) throw new Error('Download requires path or dataSourceId')
+    if (!fetchImpl) throw new Error('fetch unavailable')
+
+    const res = await fetchImpl(url)
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const blob = await res.blob()
+    downloadImpl({ url, filename, blob })
   }
 
   const runAction = async (action: LowcodeAction): Promise<void> => {
@@ -222,11 +412,22 @@ export function createPageRuntime(options: PageRuntimeOptions = {}): PageRuntime
         if (action.target) setState(action.target, false)
         break
       case 'CallApi':
-      case 'RefreshData':
         if (action.dataSourceId) await runDataSource(action.dataSourceId)
         break
+      case 'RefreshData':
+        if (action.dataSourceId) {
+          invalidateDataSourceCache(action.dataSourceId)
+          await runDataSource(action.dataSourceId, { force: true })
+        }
+        break
       case 'SubmitForm':
-        // no-op hook: consumers listen via onChange on form
+        if (action.dataSourceId) {
+          await runDataSource(action.dataSourceId, {
+            method: 'POST',
+            body: { ...context.form },
+            force: true
+          })
+        }
         break
       case 'ResetForm':
         context.form = {}
@@ -241,6 +442,7 @@ export function createPageRuntime(options: PageRuntimeOptions = {}): PageRuntime
         break
       }
       case 'Download':
+        await triggerDownload(action)
         break
       default:
         break
@@ -265,6 +467,7 @@ export function createPageRuntime(options: PageRuntimeOptions = {}): PageRuntime
   const reset = () => {
     Object.assign(context, emptyContext(options.initial))
     messages.value = []
+    dsCache.clear()
   }
 
   return {
@@ -276,6 +479,7 @@ export function createPageRuntime(options: PageRuntimeOptions = {}): PageRuntime
     getState,
     registerDataSource,
     runDataSource,
+    invalidateDataSourceCache,
     runAction,
     runActionChain,
     handlersFromActions,

@@ -48,10 +48,24 @@ function extractInterfaceNames(types, suffix) {
 
 function extractTemplateSlots(vue) {
   const slots = new Set()
-  const re = /#(default|[\w-]+)(?:\s|=|>|\/)/g
+  // Provider slots: <slot>, <slot name="x">, <slot :name="`body-${…}`">
+  for (const m of vue.matchAll(/<slot\b([^>]*)\/?>/g)) {
+    const attrs = m[1] || ''
+    const named = attrs.match(/\bname\s*=\s*(['"])([\w*-]+)\1/)
+    if (named) {
+      slots.add(named[2])
+      continue
+    }
+    if (/\b:name\s*=|\bv-bind:name\s*=/.test(attrs)) {
+      if (/body-\$\{|`body-|'body-|"body-/.test(attrs)) slots.add('body-*')
+      continue
+    }
+    slots.add('default')
+  }
+  // Consumer shorthand (rare in library SFCs)
   let m
+  const re = /#(default|[\w-]+)(?:\s|=|>|\/)/g
   while ((m = re.exec(vue))) slots.add(m[1])
-  // also v-slot:
   const re2 = /v-slot:([\w-]+)/g
   while ((m = re2.exec(vue))) slots.add(m[1])
   return [...slots]
@@ -127,10 +141,40 @@ function auditOne(name, contract, familyProfile) {
     slots:
       contract.api.slots === 'not-applicable'
         ? 'N/A'
-        : status(
-            slotsTypes.length > 0 || templateSlots.length === 0,
-            templateSlots.length > 0 && slotsTypes.length === 0
-          ),
+        : (() => {
+            const required = [
+              ...new Set([
+                ...(contract.requiredSlots || []),
+                ...(req.requiredSlots || [])
+              ])
+            ]
+            const typedOrTemplate = slotsTypes.length > 0 || templateSlots.length > 0
+            if (required.length > 0) {
+              const missing = required.filter((slot) => {
+                if (templateSlots.includes(slot)) return false
+                // typed body-* covers dynamic
+                if (slot.startsWith('body-') && templateSlots.includes('body-*')) return false
+                // types-only still counts if Slots interface lists the name
+                if (slotsTypes.length > 0) {
+                  // detailed names come from template; types presence alone is insufficient for required
+                }
+                return true
+              })
+              // Prefer template presence for required slots
+              const missingFinal = required.filter((slot) => {
+                if (templateSlots.includes(slot)) return false
+                if (slot.startsWith('body-') && templateSlots.includes('body-*')) return false
+                if (slot === 'body-*' && templateSlots.some((s) => s.startsWith('body-')))
+                  return false
+                return true
+              })
+              return status(missingFinal.length === 0 && typedOrTemplate)
+            }
+            return status(
+              slotsTypes.length > 0 || templateSlots.length === 0,
+              templateSlots.length > 0 && slotsTypes.length === 0
+            )
+          })(),
     expose:
       contract.api.expose === 'not-applicable'
         ? 'N/A'

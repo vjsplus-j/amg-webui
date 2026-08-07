@@ -63,3 +63,39 @@ export type {
   SkillPipelineSkillItem,
   SkillPipelineStartOptions
 } from './pipeline/types'
+
+/* —— SR3 official built-ins (framework-agnostic) —— */
+export {
+  OFFICIAL_BUILTIN_NAMES,
+  OFFICIAL_BUILTIN_SKILLS,
+  dictMappingSkill,
+  formSubmitSkill,
+  requestWrapperSkill,
+  tableExportSkill,
+  tableSearchSkill
+} from './builtins/index'
+export { registerOfficialBuiltins } from './builtins/register'
+export type {
+  DictMappingConfig,
+  DictMappingResult,
+  FormSubmitConfig,
+  FormSubmitResult,
+  RegisterBuiltinsOptions,
+  RequestWrapperConfig,
+  RequestWrapperResult,
+  TableExportConfig,
+  TableExportResult,
+  TableSearchConfig,
+  TableSearchResult
+} from './builtins/register-types'
+export {
+  createPipelineDebugger,
+  createSkillInspector,
+  type SkillInspector,
+  type SkillInspectorSnapshot
+} from './devtools/inspector'
+export {
+  createSkillTelemetryBridge,
+  type SkillTelemetryBridgeOptions,
+  type SkillTelemetryTrack
+} from './devtools/telemetryBridge'

@@ -6,7 +6,9 @@ import { ref } from 'vue'
 import { TabPane, Tabs } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import { demoCode } from '../../components/demo/demoCode'
+import Basic from '@amg-webui/demos/tabs/Basic.vue'
+import basicSource from '@amg-webui/demos/tabs/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -19,23 +21,6 @@ function noteEvent(kind: string, name?: string | number) {
 }
 
 /* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
-
-const codeBasic = demoSfc({
-  imports: [`import { Tabs, TabPane } from '@amg-webui/core'`],
-  template: [
-    `  <Tabs v-model="active" :aria-label="t('example.doc.tabs.sample.group')">`,
-    `    <TabPane name="a" :label="t('example.doc.tabs.sample.tabA')">`,
-    `      {{ t('example.doc.tabs.sample.panelA') }}`,
-    `    </TabPane>`,
-    `    <TabPane name="b" :label="t('example.doc.tabs.sample.tabB')">`,
-    `      {{ t('example.doc.tabs.sample.panelB') }}`,
-    `    </TabPane>`,
-    `    <TabPane name="c" :label="t('example.doc.tabs.sample.tabC')">`,
-    `      {{ t('example.doc.tabs.sample.panelC') }}`,
-    `    </TabPane>`,
-    `  </Tabs>`
-  ]
-})
 
 const codeDisabled = demoCode(
   `<Tabs v-model="active" :aria-label="t('example.doc.tabs.sample.group')">`,
@@ -101,23 +86,10 @@ const codeLazy = demoCode(
     <DemoBlock
       :title="t('example.doc.tabs.demo.basic')"
       :description="t('example.doc.tabs.demo.basicDesc')"
-      :code="codeBasic"
+      :code="basicSource"
       default-open
     >
-      <Tabs
-        v-model="active"
-        :aria-label="t('example.doc.tabs.sample.group')"
-      >
-        <TabPane name="a" :label="t('example.doc.tabs.sample.tabA')">
-          {{ t('example.doc.tabs.sample.panelA') }}
-        </TabPane>
-        <TabPane name="b" :label="t('example.doc.tabs.sample.tabB')">
-          {{ t('example.doc.tabs.sample.panelB') }}
-        </TabPane>
-        <TabPane name="c" :label="t('example.doc.tabs.sample.tabC')">
-          {{ t('example.doc.tabs.sample.panelC') }}
-        </TabPane>
-      </Tabs>
+      <Basic />
     </DemoBlock>
 
     <DemoBlock

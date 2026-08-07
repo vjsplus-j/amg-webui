@@ -1,4 +1,18 @@
 {
   "status": "PASS",
-  "detail": "delegates to Tabs keyboard"
+  "keys": [
+    "Tab",
+    "Enter",
+    "Escape",
+    "ArrowDown",
+    "ArrowUp",
+    "ArrowLeft",
+    "ArrowRight",
+    "Home",
+    "End",
+    "Space"
+  ],
+  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
+  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
+  "updatedAt": "2026-08-07T15:25:09.615Z"
 }

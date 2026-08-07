@@ -20,7 +20,9 @@ import { LocaleKeys } from '@amg-webui/locale'
 import {
   createUsersMockStore,
   createOrdersMockStore,
-  createContentMockStore
+  createContentMockStore,
+  createSettingsMockStore,
+  createAuthMockAdapter
 } from '../mock/biz/adapters'
 
 defineProps<{ module: 'login' | 'users' | 'orders' | 'content' | 'settings' }>()
@@ -33,12 +35,8 @@ const authPane = ref<AuthPane>('login')
 const usersStore = createUsersMockStore()
 const ordersStore = createOrdersMockStore()
 const contentStore = createContentMockStore()
-
-const settingsProfile = ref({ displayName: 'AMG Operator', email: 'ops@example.com' })
-const settingsParams = ref<Record<string, string | number | boolean>>({
-  sessionTimeout: 30,
-  featureFlagBeta: false
-})
+const settingsStore = createSettingsMockStore()
+const authAdapter = createAuthMockAdapter()
 
 function onLoginSubmit(payload: BizLoginCredentials) {
   ToastService.success({
@@ -46,6 +44,12 @@ function onLoginSubmit(payload: BizLoginCredentials) {
     detail: `${payload.mode ?? 'password'} · ${payload.username || payload.phone}`
   })
   router.push({ name: 'biz-users' })
+}
+
+function onLoginSuccess(result: { displayName?: string; token?: string }) {
+  if (result.displayName) {
+    ToastService.info({ summary: t(LocaleKeys.auth.loginSuccess), detail: result.displayName })
+  }
 }
 
 function onRegisterSubmit(payload: BizRegisterPayload) {
@@ -68,7 +72,7 @@ function onSendCode(kind: string) {
   ToastService.info({ summary: t(LocaleKeys.auth.sendCode), detail: kind })
 }
 function onParamsUpdate(p: Record<string, string | number | boolean>) {
-  settingsParams.value = { ...p }
+  ToastService.info({ summary: t(LocaleKeys.tip.saved), detail: JSON.stringify(p) })
 }
 </script>
 
@@ -106,10 +110,12 @@ function onParamsUpdate(p: Record<string, string | number | boolean>) {
 
     <BizLogin
       v-if="authPane === 'login'"
+      :adapter="authAdapter"
       default-username="admin"
       show-captcha
       captcha-mode="checkbox"
       @submit="onLoginSubmit"
+      @auth-success="onLoginSuccess"
       @send-code="onSendCode('sms')"
       @register="authPane = 'register'"
       @forgot="authPane = 'forgot'"
@@ -124,6 +130,7 @@ function onParamsUpdate(p: Record<string, string | number | boolean>) {
 
     <BizRegister
       v-else-if="authPane === 'register'"
+      :adapter="authAdapter"
       captcha-mode="slider"
       @submit="onRegisterSubmit"
       @login="authPane = 'login'"
@@ -132,6 +139,7 @@ function onParamsUpdate(p: Record<string, string | number | boolean>) {
 
     <BizForgotPassword
       v-else
+      :adapter="authAdapter"
       captcha-mode="checkbox"
       @submit="onForgotSubmit"
       @login="authPane = 'login'"
@@ -172,8 +180,7 @@ function onParamsUpdate(p: Record<string, string | number | boolean>) {
 
   <BizSettings
     v-else
-    :profile="settingsProfile"
-    :params="settingsParams"
+    :adapter="settingsStore.adapter"
     @update:params="onParamsUpdate"
     @change-password="
       (p) => ToastService.success({ summary: t('biz.settings.changePassword'), detail: p.newPassword.length + '' })

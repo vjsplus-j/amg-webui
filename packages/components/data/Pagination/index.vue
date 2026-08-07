@@ -88,6 +88,7 @@ const handleSizeChange = (event: Event) => {
       class="vp-pagination__sizes"
       :value="pageSize"
       :disabled="disabled"
+      :aria-label="t(LocaleKeys.common.rows)"
       @change="handleSizeChange"
     >
       <option v-for="size in pageSizes" :key="size" :value="size">{{ size }}</option>

@@ -7,28 +7,14 @@ import { Drawer } from '@amg-webui/overlay'
 import { Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import { demoCode } from '../../components/demo/demoCode'
+import Basic from '@amg-webui/demos/drawer/Basic.vue'
+import basicSource from '@amg-webui/demos/drawer/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
-const basicOpen = ref(false)
 const leftOpen = ref(false)
 const rightOpen = ref(false)
-
-const codeBasic = demoSfc({
-  imports: [
-    `import { ref } from 'vue'`,
-    `import { Drawer } from '@amg-webui/overlay'
-import { Button } from '@amg-webui/core'`
-  ],
-  script: ['const open = ref(false)'],
-  template: [
-    `  <Button severity="primary" :label="t('example.doc.drawer.sample.open')" @click="open = true" />`,
-    `  <Drawer v-model:visible="open" :title="t('example.doc.drawer.sample.title')">`,
-    `    {{ t('example.doc.drawer.sample.body') }}`,
-    `  </Drawer>`
-  ]
-})
 
 const codePlacement = demoCode(
   `<Button :label="t('example.doc.drawer.sample.openLeft')" @click="leftOpen = true" />`,
@@ -48,19 +34,10 @@ const codePlacement = demoCode(
     <DemoBlock
       :title="t('example.doc.drawer.demo.basic')"
       :description="t('example.doc.drawer.demo.basicDesc')"
-      :code="codeBasic"
+      :code="basicSource"
       default-open
     >
-      <div class="vp-curated__row">
-        <Button
-          severity="primary"
-          :label="t('example.doc.drawer.sample.open')"
-          @click="basicOpen = true"
-        />
-        <Drawer v-model:visible="basicOpen" :title="t('example.doc.drawer.sample.title')">
-          {{ t('example.doc.drawer.sample.body') }}
-        </Drawer>
-      </div>
+      <Basic />
     </DemoBlock>
 
     <DemoBlock

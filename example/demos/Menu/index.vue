@@ -6,7 +6,9 @@ import { computed, ref } from 'vue'
 import { Menu, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import { demoCode } from '../../components/demo/demoCode'
+import Basic from '@amg-webui/demos/menu/Basic.vue'
+import basicSource from '@amg-webui/demos/menu/Basic.vue?raw'
 import type { MenuItem } from '@amg-webui/core/Menu'
 import '../../components/demo/curatedDemo.scss'
 
@@ -31,25 +33,15 @@ const menuItems = computed<MenuItem[]>(() => [
   { key: 'settings', label: t('example.doc.menu.sample.settings'), icon: 'Settings' }
 ])
 
-const codeBasic = demoSfc({
-  imports: [
-    `import { ref, computed } from 'vue'`,
-    `import { Menu } from '@amg-webui/core'`
-  ],
-  script: [
-    `const active = ref('home')`,
-    `const openKeys = ref(['more'])`,
-    `const collapsed = ref(false)`
-  ],
-  template: [
-    `  <Menu`,
-    `    v-model="active"`,
-    `    v-model:open-keys="openKeys"`,
-    `    :items="items"`,
-    `    :collapsed="collapsed"`,
-    `  />`
-  ]
-})
+const codeCollapsed = demoCode(
+  `<Button @click="collapsed = !collapsed" />`,
+  `<Menu`,
+  `  v-model="active"`,
+  `  v-model:open-keys="openKeys"`,
+  `  :items="items"`,
+  `  :collapsed="collapsed"`,
+  `/>`
+)
 
 const codeHorizontal = demoCode(
   `<Menu v-model="hActive" direction="horizontal" mode="popup" :items="items" />`
@@ -62,8 +54,16 @@ const codeHorizontal = demoCode(
     <DemoBlock
       :title="t('example.doc.menu.demo.basic')"
       :description="t('example.doc.menu.demo.basicDesc')"
-      :code="codeBasic"
+      :code="basicSource"
       default-open
+    >
+      <Basic />
+    </DemoBlock>
+
+    <DemoBlock
+      :title="t('example.doc.menu.demo.collapsedToggle')"
+      :description="t('example.doc.menu.demo.horizontalDesc')"
+      :code="codeCollapsed"
     >
       <Space direction="vertical" block size="md">
         <Button
@@ -97,7 +97,7 @@ const codeHorizontal = demoCode(
       <p class="vp-curated__hint">
         {{ t('example.doc.menu.sample.active', { key: hActive }) }}
       </p>
-    </DemoBlock>
+    </DemoBlock>
   </div>
 </template>
 

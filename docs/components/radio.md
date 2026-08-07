@@ -42,6 +42,10 @@ const val = ref('a')
 
 
 
+## 交互演示
+
+<DocsDemo name="radio-basic" />
+
 ## 常用 API
 
 

@@ -349,6 +349,7 @@ onBeforeUnmount(() => {
       :contenteditable="disabled ? 'false' : 'true'"
       role="textbox"
       aria-multiline="true"
+      :aria-label="ariaLabel || t(LocaleKeys.component.richText.editorAria)"
       :aria-disabled="disabled || undefined"
       :data-placeholder="placeholder ?? t(LocaleKeys.component.richText.placeholder)"
       @input="onInput"

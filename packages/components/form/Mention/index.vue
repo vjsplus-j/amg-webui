@@ -11,6 +11,7 @@ import {
 import type { MentionProps, MentionEmits, MentionOption } from './types'
 import { useFormItem } from '../FormItem/useFormItem'
 import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
+import { useControlAriaLabel } from '../FormItem/useControlAriaLabel'
 import './style.scss'
 
 defineOptions({ inheritAttrs: false, name: 'Mention' })
@@ -34,6 +35,8 @@ const {
   isInvalid,
   isRequired,
   ariaDescribedby,
+  hasVisibleLabel,
+  ariaLabelledby,
   name: resolvedName,
   validateOnBlur,
   validateOnChange
@@ -45,6 +48,12 @@ const {
 })
 
 const { nativeAttrs } = useNativeInputAttrs()
+
+const inputAriaLabel = useControlAriaLabel(
+  () => props.ariaLabel,
+  LocaleKeys.component.mention.inputAria,
+  hasVisibleLabel
+)
 
 const textareaRef = ref<HTMLTextAreaElement | null>(null)
 const popupRef = ref<HTMLElement | null>(null)
@@ -243,6 +252,8 @@ watch(showPopup, (open) => {
       :disabled="isDisabled"
       :rows="rows"
       :maxlength="maxLength"
+      :aria-label="inputAriaLabel"
+      :aria-labelledby="ariaLabelledby"
       :aria-invalid="isInvalid || undefined"
       :aria-required="isRequired || undefined"
       :aria-describedby="ariaDescribedby"

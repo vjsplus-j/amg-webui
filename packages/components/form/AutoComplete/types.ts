@@ -12,6 +12,7 @@ export interface AutoCompleteProps extends BaseProps, DisabledProps {
   debounce?: number
   size?: Size
   fluid?: boolean
+  ariaLabel?: string
 }
 
 export interface AutoCompleteEmits {

@@ -73,7 +73,6 @@ function onKeydown(event: KeyboardEvent) {
     :class="rootClass"
     :style="style"
     :aria-label="ariaLabel || t('component.index-nav.title')"
-    :aria-orientation="direction"
     data-component="IndexNav"
   >
     <button

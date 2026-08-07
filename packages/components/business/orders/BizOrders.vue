@@ -197,24 +197,52 @@ function onCancel(id: string) {
 }
 
 async function runCancel(id: string) {
-  if (usingAdapter.value && props.adapter?.remove) {
-    await asyncApi.remove(id, { optimistic: true })
-    if (asyncApi.mutation.value.error) return
+  if (usingAdapter.value && props.adapter?.update) {
+    const order = asyncApi.list.value.find((o) => o.id === id)
+    if (order) {
+      const next = { ...order, status: 'cancelled' as const }
+      await asyncApi.update(next, { optimistic: next })
+      if (asyncApi.mutation.value.error) return
+    }
   }
   emit('cancel', id)
 }
 
 function onRefund(id: string) {
   if (!access.value.refund) return
+  void runRefund(id)
+}
+
+async function runRefund(id: string) {
+  if (usingAdapter.value && props.adapter?.update) {
+    const order = asyncApi.list.value.find((o) => o.id === id)
+    if (order) {
+      const next = { ...order, status: 'refunded' as const, refundable: false }
+      await asyncApi.update(next, { optimistic: next })
+      if (asyncApi.mutation.value.error) return
+    }
+  }
   emit('refund', id)
 }
 
 function onBatchCancel() {
   if (!access.value.batch || !selection.value.length) return
-  emit(
-    'batch-cancel',
-    selection.value.map(String)
-  )
+  void runBatchCancel()
+}
+
+async function runBatchCancel() {
+  const ids = selection.value.map(String)
+  if (usingAdapter.value && props.adapter?.update) {
+    for (const id of ids) {
+      const order = asyncApi.list.value.find((o) => o.id === id)
+      if (order && canCancel(order)) {
+        const next = { ...order, status: 'cancelled' as const }
+        await asyncApi.update(next, { optimistic: next })
+        if (asyncApi.mutation.value.error) return
+      }
+    }
+  }
+  emit('batch-cancel', ids)
   selection.value = []
 }
 

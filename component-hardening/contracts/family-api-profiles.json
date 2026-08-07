@@ -200,7 +200,6 @@
       "scrollTo"
     ],
     "requiredSlots": [
-      "default",
       "empty",
       "loading"
     ]

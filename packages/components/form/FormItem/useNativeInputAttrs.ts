@@ -1,5 +1,29 @@
 import { computed, useAttrs } from 'vue'
 
+/** Sample-mount / doc-preview props that must not leak onto native controls. */
+export const NATIVE_INPUT_ATTR_EXCLUDES = [
+  'title',
+  'message',
+  'content',
+  'text',
+  'label',
+  'items',
+  'options',
+  'data',
+  'treeData',
+  'columns',
+  'rows',
+  'value',
+  'fields',
+  'suggestions',
+  'slides',
+  'src',
+  'poster',
+  'url',
+  'visible',
+  'open'
+] as const
+
 /**
  * Forward undeclared native / ARIA attrs onto the real `<input>` / `<textarea>` /
  * trigger control — not the component wrapper (`inheritAttrs: false`).
@@ -9,9 +33,16 @@ import { computed, useAttrs } from 'vue'
  * come after `v-bind="nativeAttrs"` already win; only pass `exclude` for keys
  * that must not land on the control at all.
  */
-export function useNativeInputAttrs(exclude: Iterable<string> = []) {
+export function useNativeInputAttrs(
+  exclude: Iterable<string> = NATIVE_INPUT_ATTR_EXCLUDES
+) {
   const attrs = useAttrs()
-  const excludeSet = exclude instanceof Set ? exclude : new Set(exclude)
+  const excludeSet =
+    exclude === NATIVE_INPUT_ATTR_EXCLUDES
+      ? new Set(NATIVE_INPUT_ATTR_EXCLUDES)
+      : exclude instanceof Set
+        ? new Set([...NATIVE_INPUT_ATTR_EXCLUDES, ...exclude])
+        : new Set([...NATIVE_INPUT_ATTR_EXCLUDES, ...exclude])
 
   const nativeAttrs = computed(() => {
     const out: Record<string, unknown> = {}

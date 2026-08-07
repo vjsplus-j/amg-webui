@@ -6,6 +6,8 @@ import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import { demoSfc } from '../../components/demo/demoCode'
+import Basic from '@amg-webui/demos/form/Basic.vue'
+import basicSource from '@amg-webui/demos/form/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -72,6 +74,15 @@ import { Button } from '@amg-webui/core'`],
 <template>
   <div class="vp-curated">
     <p class="vp-curated__lead">{{ t('example.doc.form.when') }}</p>
+
+    <DemoBlock
+      :title="t('example.doc.form.demo.basic')"
+      :description="t('example.doc.form.demo.basicDesc')"
+      :code="basicSource"
+      default-open
+    >
+      <Basic />
+    </DemoBlock>
 
     <DemoBlock
       :title="t('example.doc.form.demo.validate')"

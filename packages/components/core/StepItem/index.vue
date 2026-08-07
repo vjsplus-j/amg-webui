@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, inject, onBeforeMount, onUnmounted, ref } from 'vue'
 import Icon from '@amg-webui/core/Icon/index.vue'
+import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import type { StepStatus } from './types'
 import { STEPS_INJECTION_KEY } from '../Steps/types'
@@ -28,6 +29,8 @@ const emit = defineEmits<{
   click: [index: number, event: MouseEvent]
 }>()
 
+const { t } = useLocale()
+
 const fallbackActive = ref(0)
 const fallbackDirection = ref<'horizontal' | 'vertical'>('horizontal')
 const fallbackClickable = ref(false)
@@ -39,8 +42,11 @@ const ctx = inject(STEPS_INJECTION_KEY, {
   register: () => undefined,
   unregister: () => undefined,
   indexOf: () => 0,
-  setActive: () => undefined
+  setActive: () => undefined,
+  inList: false
 })
+
+const rootTag = computed(() => (ctx.inList ? 'li' : 'div'))
 
 const uid = Symbol('vp-step-item')
 
@@ -91,7 +97,8 @@ function onClick(event: MouseEvent) {
 </script>
 
 <template>
-  <li
+  <component
+    :is="rootTag"
     :class="[
       'vp-step-item',
       `vp-step-item--${state}`,
@@ -102,7 +109,6 @@ function onClick(event: MouseEvent) {
       props.class
     ]"
     :style="style"
-    role="listitem"
     :aria-current="state === 'process' ? 'step' : undefined"
   >
     <button
@@ -110,6 +116,7 @@ function onClick(event: MouseEvent) {
       class="vp-step-item__trigger"
       :disabled="disabled"
       :tabindex="canClick ? 0 : -1"
+      :aria-label="title || t('component.step-item.title')"
       @click="onClick"
     >
       <span :class="indicatorClass" aria-hidden="true">
@@ -131,5 +138,5 @@ function onClick(event: MouseEvent) {
       </div>
     </button>
     <span class="vp-step-item__tail" aria-hidden="true" />
-  </li>
+  </component>
 </template>

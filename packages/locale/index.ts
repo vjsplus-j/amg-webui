@@ -12,6 +12,7 @@ export {
   LOCALE_ALIASES,
   resolveLocaleCode,
   registerLocale,
+  extendLocaleMessages,
   getLocalePack,
   getLocaleMeta,
   listLocaleCodes,

@@ -44,14 +44,90 @@ export const dependencyExternals = ['@bwip-js/generic']
 export function isPublishExternal(id) {
   if (peerExternals.includes(id)) return true
   if (dependencyExternals.includes(id)) return true
-  if (id.startsWith('@bwip-js/')) return true
-  if (isAmgPackageId(id)) return true
+  if (typeof id === 'string' && id.startsWith('@bwip-js/')) return true
+  if (id === '@amg-webui' || id === 'amg-webui') return true
+
+  const normalized =
+    typeof id === 'string' && id.startsWith('amg-webui/')
+      ? `@amg-webui/${id.slice('amg-webui/'.length)}`
+      : id
+
+  if (typeof normalized !== 'string' || !normalized.startsWith('@amg-webui/')) {
+    return false
+  }
+
+  // Runtime / platform packages — keep external (have package exports)
+  if (
+    /^@amg-webui\/(hooks|telemetry|security|theme|icons|utils|locale|types|constants|animations|runtime|skill|demos)(\/|$)/.test(
+      normalized
+    )
+  ) {
+    return true
+  }
+
+  // Component package barrels
+  if (
+    /^@amg-webui\/(core|form|data|overlay|charts|editor|media|gb28181|onvif|business|lowcode|components(?:\/[\w-]+)?)\/?$/.test(
+      normalized
+    )
+  ) {
+    return true
+  }
+
+  // Component entry SFCs / folders → external kebab import via publicizePaths
+  // e.g. @amg-webui/core/Icon/index.vue · @amg-webui/form/Select
+  if (
+    /^@amg-webui\/(?:components\/)?(?:core|form|data|overlay|charts|editor|media|gb28181|onvif|business|lowcode(?:\/ui)?)\/[A-Za-z][\w]*(?:\/index(?:\.vue)?)?$/.test(
+      normalized
+    )
+  ) {
+    return true
+  }
+
+  // Deep internals (useFormItem, helpers, …) must be bundled into the entry —
+  // they are not public export specifiers.
   return false
 }
 
 /** Vite/Rollup `paths` map so emitted imports resolve for consumers */
 export function publicizePaths(id) {
-  return publicizeId(id)
+  const pub = publicizeId(id)
+  if (typeof pub !== 'string' || !pub.startsWith('amg-webui/')) return pub
+
+  // Deep SFC / folder imports → published kebab entry (e.g. amg-webui/icon)
+  // `@amg-webui/core/Icon/index.vue` → `amg-webui/icon`
+  // Form component → `amg-webui/form-component` (package barrel owns `amg-webui/form`)
+  const deep = pub.match(
+    /^amg-webui\/(?:components\/)?(?:core|form|data|overlay|charts|editor|media|gb28181|onvif|lowcode(?:\/ui)?)\/([A-Za-z][\w]*)(?:\/index(?:\.vue)?)?$/
+  )
+  if (deep && componentToPackage.has(deep[1])) {
+    const kebab = toKebab(deep[1])
+    const reserved = new Set([
+      'form',
+      'core',
+      'data',
+      'overlay',
+      'charts',
+      'editor',
+      'media',
+      'gb28181',
+      'onvif',
+      'business',
+      'lowcode',
+      'theme',
+      'skill'
+    ])
+    return reserved.has(kebab)
+      ? `amg-webui/${kebab}-component`
+      : `amg-webui/${kebab}`
+  }
+
+  // Strip accidental `.vue` on other amg-webui paths
+  if (pub.endsWith('.vue')) {
+    return pub.replace(/\.vue$/, '')
+  }
+
+  return pub
 }
 
 export const packageAlias = {
@@ -76,6 +152,7 @@ export const packageAlias = {
   '@amg-webui/skill/core': resolve(root, 'packages/skill/core.ts'),
   '@amg-webui/skill': resolve(root, 'packages/skill/index.ts'),
   '@amg-webui/theme/core': resolve(root, 'packages/theme/core.ts'),
+  '@amg-webui/theme/studio': resolve(root, 'packages/theme/studio/index.ts'),
   '@amg-webui/theme': resolve(root, 'packages/theme'),
   '@amg-webui/icons': resolve(root, 'packages/icons'),
   '@amg-webui/utils': resolve(root, 'packages/utils'),
@@ -83,6 +160,7 @@ export const packageAlias = {
   '@amg-webui/locale': resolve(root, 'packages/locale'),
   '@amg-webui/constants': resolve(root, 'packages/constants'),
   '@amg-webui/animations': resolve(root, 'packages/animations'),
+  '@amg-webui/demos': resolve(root, 'packages/demos'),
   '@amg-webui': resolve(root, 'packages'),
   '@': resolve(root, 'packages')
 }

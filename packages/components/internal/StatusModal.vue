@@ -66,7 +66,10 @@ const confirmText = computed(
 const cancelText = computed(
   () => props.cancelLabel || t(LocaleKeys.button.cancel),
 );
-const closeLabel = computed(() => t(LocaleKeys.common.close));
+const closeLabel = computed(() => t(LocaleKeys.common.close))
+const dialogName = computed(
+  () => props.title?.trim() || t(LocaleKeys.component.statusModal.aria)
+);
 const closeOnOverlay = computed(
   () => props.closeOnClickOverlay ?? props.dismissible,
 );
@@ -201,7 +204,8 @@ watch(
           :style="panelStyle"
           role="alertdialog"
           :aria-modal="overlay.ariaModal.value"
-          :aria-labelledby="titleId"
+          :aria-labelledby="title ? titleId : undefined"
+          :aria-label="title ? undefined : dialogName"
           :aria-describedby="
             message || $slots.default ? descriptionId : undefined
           "

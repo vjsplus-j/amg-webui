@@ -4,14 +4,14 @@
  */
 import { ref, computed } from 'vue'
 import { Checkbox, CheckboxGroup } from '@amg-webui/form'
-import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import { demoCode } from '../../components/demo/demoCode'
+import Basic from '@amg-webui/demos/checkbox/Basic.vue'
+import basicSource from '@amg-webui/demos/checkbox/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
-const solo = ref(true)
 const half = ref(false)
 const groupVal = ref<string[]>(['read'])
 const optionsVal = ref<string[]>(['a'])
@@ -22,18 +22,6 @@ const featureOptions = computed(() => [
   { label: t('example.doc.checkbox.sample.featureB'), value: 'b' },
   { label: t('example.doc.checkbox.sample.featureC'), value: 'c' }
 ])
-
-const codeBasic = demoSfc({
-  imports: [
-    `import { ref } from 'vue'`,
-    `import { Checkbox } from '@amg-webui/form'`
-  ],
-  script: [`const solo = ref(true)`],
-  template: [
-    `  <Checkbox v-model="solo" :label="t('example.doc.checkbox.sample.agree')" />`,
-    `  <Checkbox v-model="solo" :label="t('example.doc.checkbox.sample.disabled')" disabled />`
-  ]
-})
 
 const codeIndeterminate = demoCode(
   `<Checkbox`,
@@ -75,19 +63,10 @@ const codeMax = demoCode(
     <DemoBlock
       :title="t('example.doc.checkbox.demo.basic')"
       :description="t('example.doc.checkbox.demo.basicDesc')"
-      :code="codeBasic"
+      :code="basicSource"
       default-open
     >
-      <div class="vp-curated__row">
-        <Space>
-          <Checkbox v-model="solo" :label="t('example.doc.checkbox.sample.agree')" />
-          <Checkbox
-            v-model="solo"
-            :label="t('example.doc.checkbox.sample.disabled')"
-            disabled
-          />
-        </Space>
-      </div>
+      <Basic />
     </DemoBlock>
 
     <DemoBlock
@@ -141,7 +120,7 @@ const codeMax = demoCode(
           <Checkbox value="4" :label="t('example.doc.checkbox.sample.item4')" />
         </CheckboxGroup>
       </div>
-    </DemoBlock>
+    </DemoBlock>
   </div>
 </template>
 

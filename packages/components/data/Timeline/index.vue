@@ -46,6 +46,7 @@ provide(TIMELINE_INJECTION_KEY, {
   selectable,
   claimIndex: () => count.value++,
   select,
+  inList: true,
 });
 const rootClass = computed(() => [
   "vp-timeline",

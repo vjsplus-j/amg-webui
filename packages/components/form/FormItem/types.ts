@@ -8,6 +8,8 @@ export interface FormItemContext {
   inputId: string
   errorId: string
   labelId: string
+  /** True when the FormItem renders a visible label element */
+  hasLabel: ComputedRef<boolean>
   prop: ComputedRef<string | undefined>
   error: ComputedRef<string | null>
   required: ComputedRef<boolean>

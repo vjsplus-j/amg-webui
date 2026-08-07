@@ -1,7 +1,9 @@
 # Docs（VitePress）— 对外官方文档站点
 
-**docs = 给业务开发者查阅的官方站点**：标准示例、API 参数、使用教程。  
+**Enterprise Vue Web Application UI Platform** — **docs = 给业务开发者查阅的官方站点**：标准示例、API 参数、使用教程。  
 可打包部署线上。与 **example（仅本地调试）** 严格区分，见 [APP_WORKFLOW.md §0](./APP_WORKFLOW.md)。
+
+Stable 口径：以 Hardening Dashboard **`verifiedStable`** 为准（`component-hardening/dashboard/component-dashboard.json`），**不是**映射目录总数。
 
 ## 0.1 试用（Release Step 4）
 

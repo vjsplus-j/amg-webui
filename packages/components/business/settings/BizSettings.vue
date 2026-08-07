@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, toRef, watch, useAttrs } from 'vue'
-import { Button, Card } from '@amg-webui/core'
+import { Button, Card, Empty } from '@amg-webui/core'
 import { InputText, Select } from '@amg-webui/form'
 import { Message } from '@amg-webui/overlay'
 import { ThemeService, designStyles } from '@amg-webui/theme'
@@ -8,6 +8,8 @@ import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys, LOCALE_CODES, LOCALE_META, type LocaleCode } from '@amg-webui/locale'
 import type { BizSettingsProps, BizSettingsEmits, BizSettingsSection } from './types'
 import { useSettingsTabs } from './composables/useSettingsTabs'
+import { useBizSettings } from './composables/useBizSettings'
+import { DEFAULT_BIZ_ACCESS } from '../_shared'
 import './style.scss'
 
 defineOptions({ inheritAttrs: false })
@@ -17,13 +19,26 @@ const props = withDefaults(defineProps<BizSettingsProps>(), {
   profile: undefined,
   params: () => ({}),
   notifyMail: true,
-  notifyPush: false
+  notifyPush: false,
+  loading: false,
+  error: null
 })
 
 const emit = defineEmits<BizSettingsEmits>()
 const attrs = useAttrs()
 const { t, locale, setLocale } = useLocale()
 const { section, setSection } = useSettingsTabs(toRef(props, 'section'))
+const usingAdapter = computed(() => Boolean(props.adapter))
+const settingsApi = useBizSettings({
+  adapter: () => props.adapter,
+  immediate: Boolean(props.adapter)
+})
+
+const access = computed(() => ({
+  ...DEFAULT_BIZ_ACCESS,
+  changePassword: true,
+  ...props.access
+}))
 
 const displayName = ref(props.profile?.displayName ?? '')
 const email = ref(props.profile?.email ?? '')
@@ -39,12 +54,29 @@ const paramDraft = ref(
 const newParamKey = ref('')
 const newParamValue = ref('')
 
+function applySnapshot(snapshot: {
+  profile?: { displayName?: string; email?: string }
+  params?: Record<string, string | number | boolean>
+  notifyMail?: boolean
+  notifyPush?: boolean
+}) {
+  if (snapshot.profile?.displayName != null) displayName.value = snapshot.profile.displayName
+  if (snapshot.profile?.email != null) email.value = snapshot.profile.email
+  if (snapshot.notifyMail != null) notifyMail.value = snapshot.notifyMail
+  if (snapshot.notifyPush != null) notifyPush.value = snapshot.notifyPush
+  if (snapshot.params) {
+    paramDraft.value = Object.entries(snapshot.params).map(([key, value]) => ({
+      key,
+      value: String(value)
+    }))
+  }
+}
+
 watch(
   () => props.profile,
   (p) => {
-    if (!p) return
-    if (p.displayName != null) displayName.value = p.displayName
-    if (p.email != null) email.value = p.email
+    if (!p || usingAdapter.value) return
+    applySnapshot({ profile: p })
   },
   { deep: true }
 )
@@ -52,10 +84,29 @@ watch(
 watch(
   () => props.params,
   (p) => {
+    if (usingAdapter.value) return
     paramDraft.value = Object.entries(p ?? {}).map(([key, value]) => ({ key, value: String(value) }))
   },
   { deep: true }
 )
+
+watch(
+  () => settingsApi.snapshot.value,
+  (snap) => {
+    if (!snap) return
+    applySnapshot(snap)
+  },
+  { deep: true }
+)
+
+const panelLoading = computed(() =>
+  usingAdapter.value ? settingsApi.loading.value : props.loading
+)
+const panelError = computed(() =>
+  usingAdapter.value ? settingsApi.error.value : props.error
+)
+const savePending = computed(() => settingsApi.saving.value)
+const saveError = computed(() => settingsApi.saveError.value)
 
 const displayTitle = computed(() => props.title ?? t(LocaleKeys.biz.settingsTitle))
 
@@ -100,6 +151,7 @@ function onLocaleChange(code: unknown) {
 
 function submitPassword() {
   securityError.value = ''
+  if (!access.value.changePassword) return
   if (!oldPassword.value || !newPassword.value || !confirmPassword.value) {
     securityError.value = t('biz.settings.passwordRequired')
     return
@@ -108,7 +160,21 @@ function submitPassword() {
     securityError.value = t('biz.settings.passwordMismatch')
     return
   }
-  emit('change-password', { oldPassword: oldPassword.value, newPassword: newPassword.value })
+  const payload = { oldPassword: oldPassword.value, newPassword: newPassword.value }
+  if (usingAdapter.value && props.adapter?.changePassword) {
+    void settingsApi.changePassword(payload).then(() => {
+      if (settingsApi.saveError.value) {
+        securityError.value = settingsApi.saveError.value
+        return
+      }
+      emit('change-password', payload)
+      oldPassword.value = ''
+      newPassword.value = ''
+      confirmPassword.value = ''
+    })
+    return
+  }
+  emit('change-password', payload)
   oldPassword.value = ''
   newPassword.value = ''
   confirmPassword.value = ''
@@ -134,11 +200,12 @@ function syncParams() {
 }
 
 function save() {
+  if (!access.value.update) return
   const params: Record<string, string> = {}
   for (const row of paramDraft.value) {
     if (row.key) params[row.key] = row.value
   }
-  emit('save', {
+  const payload = {
     displayName: displayName.value,
     email: email.value,
     notifyMail: notifyMail.value,
@@ -146,7 +213,22 @@ function save() {
     theme: currentTheme.value,
     locale: locale.value,
     params
-  })
+  }
+  if (usingAdapter.value) {
+    void settingsApi
+      .save({
+        profile: { displayName: displayName.value, email: email.value },
+        params,
+        notifyMail: notifyMail.value,
+        notifyPush: notifyPush.value
+      })
+      .then((saved) => {
+        if (settingsApi.saveError.value || !saved) return
+        emit('save', payload)
+      })
+    return
+  }
+  emit('save', payload)
 }
 </script>
 
@@ -170,6 +252,18 @@ function save() {
       </button>
     </div>
 
+    <Message v-if="panelError" severity="danger" :closable="false">
+      <slot name="error" :error="panelError">{{ panelError }}</slot>
+    </Message>
+    <Message v-if="saveError" severity="danger" :closable="false">
+      <slot name="mutation-error" :error="saveError">{{ saveError }}</slot>
+    </Message>
+
+    <slot v-if="panelLoading" name="loading">
+      <Empty :description="t(LocaleKeys.common.loading)" />
+    </slot>
+
+    <template v-else>
     <Card v-if="section === 'general'" class="biz-settings__panel">
       <h3 class="theme-kit-heading">{{ t('biz.settings.profile') }}</h3>
       <div class="biz-settings__form">
@@ -248,7 +342,16 @@ function save() {
     </Card>
 
     <div class="biz-settings__actions">
-      <Button severity="primary" variant="solid" @click="save">{{ t('biz.settings.save') }}</Button>
+      <Button
+        v-if="access.update"
+        severity="primary"
+        variant="solid"
+        :loading="savePending"
+        @click="save"
+      >
+        {{ t('biz.settings.save') }}
+      </Button>
     </div>
+    </template>
   </div>
 </template>

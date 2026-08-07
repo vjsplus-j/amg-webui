@@ -24,6 +24,10 @@ import { Drawer } from 'amg-webui'
 
 运行态 Demo：`example/demos/Drawer/index.vue`
 
+## 交互演示
+
+<DocsDemo name="drawer-basic" />
+
 ## Props
 
 | Prop | Type | Default | Description |

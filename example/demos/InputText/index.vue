@@ -8,11 +8,12 @@ import { Space } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import { demoCode } from '../../components/demo/demoCode'
+import Basic from '@amg-webui/demos/input-text/Basic.vue'
+import basicSource from '@amg-webui/demos/input-text/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
-const basic = ref('')
 const limited = ref('')
 const sizes: Size[] = ['xs', 'sm', 'md', 'lg', 'xl']
 const sizeVals = ref<Record<Size, string>>({
@@ -21,18 +22,6 @@ const sizeVals = ref<Record<Size, string>>({
   md: '',
   lg: '',
   xl: ''
-})
-
-const codeBasic = demoSfc({
-  imports: [
-    `import { ref } from 'vue'`,
-    `import { InputText } from '@amg-webui/form'`
-  ],
-  script: [`const value = ref('')`],
-  template: [
-    `  <InputText v-model="value" :placeholder="t('example.doc.inputText.sample.placeholder')" />`,
-    `  <InputText v-model="value" disabled />`
-  ]
 })
 
 const codeSize = demoCode(
@@ -59,22 +48,10 @@ const codeLimit = demoCode(
     <DemoBlock
       :title="t('example.doc.inputText.demo.basic')"
       :description="t('example.doc.inputText.demo.basicDesc')"
-      :code="codeBasic"
+      :code="basicSource"
       default-open
     >
-      <div class="vp-curated__row">
-        <Space>
-          <InputText
-            v-model="basic"
-            :placeholder="t('example.doc.inputText.sample.placeholder')"
-          />
-          <InputText
-            v-model="basic"
-            disabled
-            :placeholder="t('example.doc.inputText.sample.placeholder')"
-          />
-        </Space>
-      </div>
+      <Basic />
     </DemoBlock>
 
     <DemoBlock

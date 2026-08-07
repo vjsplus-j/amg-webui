@@ -20,9 +20,7 @@
     "blur"
   ],
   "requiredSlots": [
-    "default",
-    "prefix",
-    "suffix"
+    "default"
   ],
   "models": [],
   "behavioralContract": {
@@ -56,10 +54,10 @@
   "apiFreeze": {
     "version": "1",
     "frozen": true,
-    "frozenAt": "2026-08-07T12:42:16.797Z"
+    "frozenAt": "2026-08-07T15:42:23.457Z"
   },
   "generated": true,
   "generatedAt": "2026-08-07T09:57:01.268Z",
   "promoteStable": true,
-  "updatedAt": "2026-08-07T12:42:16.797Z"
+  "updatedAt": "2026-08-07T15:42:23.457Z"
 }

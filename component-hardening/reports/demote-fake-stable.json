@@ -1,7 +1,1157 @@
 {
-  "generatedAt": "2026-08-07T10:50:57.481Z",
+  "generatedAt": "2026-08-07T15:12:42.328Z",
   "demoted": 287,
   "keptStable": 0,
   "keptNames": [],
-  "note": "Stable requires evidence/<Name>/{a11y,visual,...}.json PASS|N/A for mandatory gates"
+  "demotedNames": [
+    {
+      "name": "AdvancedSearch",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Affix",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Alert",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Anchor",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "AudioPlay",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "AudioTalk",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "AutoComplete",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Avatar",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "AvatarGroup",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "BackTop",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Badge",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "BarChart",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Barcode",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "BatchPanel",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "BatchUpload",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Block",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Breadcrumb",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "BreadcrumbItem",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "BrowserDetect",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Business404",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Button",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ButtonGroup",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Calendar",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CanvasIo",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CanvasLayer",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CanvasNode",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CanvasPreview",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CanvasShortcut",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Card",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CardGrid",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CardList",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CardNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CardWidgets",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Carousel",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Cartoon404",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Cascader",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CategoryNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Center",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Checkbox",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CheckboxGroup",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ChunkUpload",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Clipboard",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CodeEditor",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Col",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Collapse",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ColorInput",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ColorPicker",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ColumnLayout",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ConfigProvider",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Confirm",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ConfirmDialog",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Container",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ContextMenu",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CopyText",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Countdown",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "CryptoBox",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Dashboard",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DataCard",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DataTable",
+      "reason": "gate FAIL"
+    },
+    {
+      "name": "DatePicker",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DateTimePicker",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Descriptions",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DescriptionsItem",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DetailPanel",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Dialog",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Divider",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Doodle404",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DragCanvas",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DragMaterial",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DragRuler",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DragSelect",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DragSortNode",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DragVerify",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DragWrapper",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Drawer",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DrillTable",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Dropdown",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "DynamicForm",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "EditTable",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "EditTree",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Ellipsis",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "EmbedLayout",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Empty",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ErrorModal",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ExcelIo",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Exception",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FilePreview",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FilterBar",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FixedLayout",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FloatButton",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FloatNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FlowLayout",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FlowPanel",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FolderTree",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Footer",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FooterNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Form",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FormGroup",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FormItem",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FormLayout",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FormTabs",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "FreeLayoutDrag",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "GaugeChart",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "GbsAlarmModal",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "GbsCascadePanel",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "GbsDeviceTree",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "GbsGatewayForm",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "GbsRegisterForm",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "GbsSignMonitor",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "GbsStatusCard",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "GbsTimeSync",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "GraphChart",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "GridLayoutDrag",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "GroupNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Header",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "HeatMap",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Highlight",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Icon",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Image",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ImageCrop",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ImageGroup",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ImageUpload",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ImageViewer",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "IndexNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "InfiniteScroll",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "InfoModal",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Ink404",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "InputCaptcha",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "InputNumber",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "InputOTP",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "InputText",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Layout",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "LazyTree",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "LineChart",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Link",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Loading",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "LoadingTip",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "LoginPanel",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Machine404",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Main",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Mask",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "MatrixCode",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "MdEditor",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Mention",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Menu",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "MenuBar",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "MergeTable",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Message",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "MessageBox",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "MiniNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "MonthPicker",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "NoticeBar",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Notification",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "OcrScan",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "OnvifAlarmPanel",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "OnvifChannelManage",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "OnvifDeviceList",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "OnvifGroupTree",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "OnvifRecordPlan",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "OnvifSearch",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "OnvifSettingPanel",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "OnvifUrlForm",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "PageHeader",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "PagerNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Pagination",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Password",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "PdfPreview",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "PermissionPanel",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "PieChart",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "PivotTable",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Pixel404",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Plant404",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Popconfirm",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Popover",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Preview",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Print",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Progress",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ProgressTip",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "PropPanel",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ProTable",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "PTZControl",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "Qrcode",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "QuarterPicker",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "QuickNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "RadarChart",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Radio",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "RadioGroup",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "RangeInput",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Ranking",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Rate",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ResizeBox",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Result",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "RichText",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "RouterNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Row",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ScaleLayout",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "SchemaRenderer",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Scrollbar",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ScrollNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ScrollNotice",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Search",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "SearchFilterPanel",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Segmented",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Select",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "SelectNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "SettingPanel",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Sider",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Simple404",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Skeleton",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Slider",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "SmsCode",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Space",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Space404",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Spacer",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Spin",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Split",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "SplitVideoWall",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "StackLayout",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Statistic",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "StatusTip",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "StepForm",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "StepItem",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "StepNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Steps",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "StickyTable",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "SuccessModal",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Switch",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TableAction",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TableDrag",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TableExport",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TablePrint",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TabPane",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Tabs",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TabsNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Tag",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TagInput",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Tech404",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TelemetryProvider",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TemplateDrag",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TemplateSelect",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Textarea",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "ThemeProvider",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Thumbnail",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Timeline",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TimelineItem",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TimelineList",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TimePicker",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TimeRangeInput",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TimeSelect",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Toast",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Tooltip",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TopNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Tour",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Transfer",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TransferTree",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Tree",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TreeChart",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TreeForm",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TreeSelect",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TreeTable",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "TreeTransfer",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Typography",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Upload",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "UserInfoCard",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "VcrBackupTask",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VcrClipCut",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VcrDownloadPanel",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VcrMarkPoint",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VcrSearchPanel",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VcrSpeedControl",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VcrStorageDashboard",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VcrTimelinePlayer",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VerticalStepNav",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "VideoAdjust",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VideoPlayer",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VideoPreview",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VideoSnapshot",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VideoVolume",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VideoWatermark",
+      "reason": "gate did not report verifiedStable"
+    },
+    {
+      "name": "VirtualTable",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "VirtualTree",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "WarnModal",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Waterfall",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "Watermark",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "WeekPicker",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "WordCloud",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    },
+    {
+      "name": "YearPicker",
+      "reason": "mandatory evidence FAIL/MISSING or credibility check failed"
+    }
+  ],
+  "note": "Stable requires current gate verifiedStable + credible evidence. No protected keep-list."
 }

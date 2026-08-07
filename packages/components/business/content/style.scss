@@ -95,3 +95,9 @@
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .biz-content__layout {
+    grid-template-columns: 1fr;
+  }
+}
+

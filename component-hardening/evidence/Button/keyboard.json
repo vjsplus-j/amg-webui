@@ -1,4 +1,11 @@
 {
-  "status": "N/A",
-  "detail": "keyboard optional for Button foundation profile"
+  "status": "PASS",
+  "keys": [
+    "Tab",
+    "Enter",
+    "Escape"
+  ],
+  "detail": "Button focus + Tab + Enter + Escape",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts",
+  "updatedAt": "2026-08-07T15:30:00.000Z"
 }

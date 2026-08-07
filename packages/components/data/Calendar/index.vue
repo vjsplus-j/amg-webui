@@ -76,6 +76,13 @@ const cells = computed(() => {
     return date;
   });
 });
+const weeks = computed(() => {
+  const out: Date[][] = [];
+  for (let i = 0; i < cells.value.length; i += 7) {
+    out.push(cells.value.slice(i, i + 7));
+  }
+  return out;
+});
 const minDate = computed(() => asDate(props.min));
 const maxDate = computed(() => asDate(props.max));
 const isDisabled = (date: Date) =>
@@ -193,46 +200,53 @@ function onKeydown(event: KeyboardEvent, date: Date) {
         <Icon name="ChevronRight" size="sm" />
       </button>
     </header>
-    <div class="vp-calendar__weekdays" role="row">
-      <span v-for="label in weekdays" :key="label" role="columnheader">{{
-        label
-      }}</span>
-    </div>
-    <div class="vp-calendar__grid" role="grid">
-      <button
-        v-for="date in cells"
-        :key="toISODate(date)"
-        type="button"
-        role="gridcell"
-        class="vp-calendar__day"
-        :class="{
-          'vp-calendar__day--outside':
-            date.getMonth() !== internalView.getMonth(),
-          'vp-calendar__day--selected': sameDate(date, selectedDate),
-          'vp-calendar__day--today': sameDate(date, today),
-        }"
-        :data-date="toISODate(date)"
-        :disabled="
-          isDisabled(date) ||
-          (!showAdjacent && date.getMonth() !== internalView.getMonth())
-        "
-        :tabindex="sameDate(date, focusedDate) ? 0 : -1"
-        :aria-selected="sameDate(date, selectedDate)"
-        :aria-current="sameDate(date, today) ? 'date' : undefined"
-        @click="select(date)"
-        @keydown="onKeydown($event, date)"
+    <div class="vp-calendar__grid" role="grid" :aria-labelledby="titleId">
+      <div class="vp-calendar__weekdays" role="row">
+        <span v-for="label in weekdays" :key="label" role="columnheader">{{
+          label
+        }}</span>
+      </div>
+      <div
+        v-for="(week, weekIndex) in weeks"
+        :key="weekIndex"
+        class="vp-calendar__week"
+        role="row"
       >
-        <slot
-          name="date"
-          :date="date"
-          :selected="sameDate(date, selectedDate)"
-          >{{
-            showAdjacent || date.getMonth() === internalView.getMonth()
-              ? date.getDate()
-              : ""
-          }}</slot
+        <button
+          v-for="date in week"
+          :key="toISODate(date)"
+          type="button"
+          role="gridcell"
+          class="vp-calendar__day"
+          :class="{
+            'vp-calendar__day--outside':
+              date.getMonth() !== internalView.getMonth(),
+            'vp-calendar__day--selected': sameDate(date, selectedDate),
+            'vp-calendar__day--today': sameDate(date, today),
+          }"
+          :data-date="toISODate(date)"
+          :disabled="
+            isDisabled(date) ||
+            (!showAdjacent && date.getMonth() !== internalView.getMonth())
+          "
+          :tabindex="sameDate(date, focusedDate) ? 0 : -1"
+          :aria-selected="sameDate(date, selectedDate)"
+          :aria-current="sameDate(date, today) ? 'date' : undefined"
+          @click="select(date)"
+          @keydown="onKeydown($event, date)"
         >
-      </button>
+          <slot
+            name="date"
+            :date="date"
+            :selected="sameDate(date, selectedDate)"
+            >{{
+              showAdjacent || date.getMonth() === internalView.getMonth()
+                ? date.getDate()
+                : ""
+            }}</slot
+          >
+        </button>
+      </div>
     </div>
     <footer v-if="showToday || $slots.footer" class="vp-calendar__footer">
       <slot name="footer"

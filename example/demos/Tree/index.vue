@@ -9,6 +9,8 @@ import { Switch } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import Basic from '@amg-webui/demos/tree/Basic.vue'
+import basicSource from '@amg-webui/demos/tree/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -83,10 +85,18 @@ function onNodeClick(node: { label: string }) {
 <template>
   <div class="vp-curated">
     <DemoBlock
+      :title="t('example.doc.tree.demo.basic')"
+      :description="t('example.doc.tree.demo.basicDesc')"
+      :code="basicSource"
+      default-open
+    >
+      <Basic />
+    </DemoBlock>
+
+    <DemoBlock
       :title="t('example.doc.tree.demo.checkable')"
       :description="t('example.doc.tree.demo.checkableDesc')"
       :code="codeCheckable"
-      default-open
     >
       <Space direction="vertical" block size="md">
         <Tree v-model="checked" :options="treeOptions" checkable />

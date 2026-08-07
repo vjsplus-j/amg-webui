@@ -17,7 +17,8 @@
   },
   "requiredExpose": [],
   "requiredSlots": [
-    "default"
+    "placeholder",
+    "error"
   ],
   "models": [],
   "behavioralContract": {
@@ -49,10 +50,10 @@
   "apiFreeze": {
     "version": "1",
     "frozen": true,
-    "frozenAt": "2026-08-07T12:41:34.777Z"
+    "frozenAt": "2026-08-07T15:42:23.457Z"
   },
   "generated": true,
   "generatedAt": "2026-08-07T09:57:01.181Z",
   "promoteStable": true,
-  "updatedAt": "2026-08-07T12:41:34.777Z"
+  "updatedAt": "2026-08-07T15:42:23.457Z"
 }

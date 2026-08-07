@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, toRef, watch } from "vue";
+import { LocaleKeys } from "@amg-webui/locale";
 import { useLocale } from "@amg-webui/hooks";
 import { normalizeTreeNodes } from "@amg-webui/utils/data-display/tree-types";
 import { useTreeState } from "@amg-webui/utils/data-display/useTreeState";
@@ -91,6 +92,7 @@ const displayRows = computed(() =>
         class="vp-tree__search"
         type="search"
         :placeholder="t('common.search')"
+        :aria-label="t(LocaleKeys.component.tree.searchAria)"
         :disabled="disabled"
       />
       <button
@@ -115,8 +117,6 @@ const displayRows = computed(() =>
       <div
         ref="viewportRef"
         class="vp-tree__viewport"
-        role="tree"
-        :aria-label="titleText"
         :aria-busy="loading || undefined"
         @scroll="virtualEnabled ? onScroll : undefined"
       >
@@ -126,11 +126,13 @@ const displayRows = computed(() =>
             class="vp-tree__spacer"
             :style="{ height: `${totalHeight}px` }"
           >
-            <ul
+            <div
               class="vp-tree__list vp-tree__list--virtual"
+              role="tree"
+              :aria-label="titleText"
               :style="{ transform: `translateY(${offsetY}px)` }"
             >
-              <li
+              <div
                 v-for="row in displayRows"
                 :key="row.id"
                 role="treeitem"
@@ -141,6 +143,7 @@ const displayRows = computed(() =>
                   paddingLeft: `calc(${row.depth} * var(--spacing-lg))`,
                 }"
                 :aria-expanded="row.hasChildren ? row.expanded : undefined"
+                :aria-selected="activeId === row.id"
               >
                 <button
                   v-if="row.hasChildren"
@@ -170,11 +173,11 @@ const displayRows = computed(() =>
                 >
                   {{ row.node.label }}
                 </button>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
-          <ul v-else class="vp-tree__list">
-            <li
+          <div v-else class="vp-tree__list" role="tree" :aria-label="titleText">
+            <div
               v-for="row in displayRows"
               :key="row.id"
               role="treeitem"
@@ -182,6 +185,7 @@ const displayRows = computed(() =>
               :class="{ 'vp-tree__row--active': activeId === row.id }"
               :style="{ paddingLeft: `calc(${row.depth} * var(--spacing-lg))` }"
               :aria-expanded="row.hasChildren ? row.expanded : undefined"
+              :aria-selected="activeId === row.id"
             >
               <button
                 v-if="row.hasChildren"
@@ -211,8 +215,8 @@ const displayRows = computed(() =>
               >
                 {{ row.node.label }}
               </button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </template>
         <slot v-else name="empty">
           <p class="vp-tree__muted">{{ t("common.noData") }}</p>

@@ -1,4 +1,5 @@
 export * from './core'
+/** Alias: registerOfficialBuiltins is also available from `amg-webui/skill/core`. */
 export { createSkillDirective, vSkill } from './vue/directive'
 export type {
   SkillDirectiveEntry,

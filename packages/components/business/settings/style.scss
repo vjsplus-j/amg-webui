@@ -48,3 +48,25 @@
   width: 100%;
 }
 
+.biz-settings__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm, 0.5rem);
+}
+
+@media (max-width: 640px) {
+  .biz-settings__tabs {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+  .biz-settings__form {
+    max-width: none;
+  }
+
+  .biz-settings__param-row {
+    flex-direction: column;
+  }
+}
+

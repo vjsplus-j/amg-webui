@@ -14,6 +14,10 @@ import { Menu } from '@amg-webui/core'
 </template>
 ```
 
+## 交互演示
+
+<DocsDemo name="menu-basic" />
+
 ## 常用 API
 
 | Prop | 类型 | 默认 | 说明 |

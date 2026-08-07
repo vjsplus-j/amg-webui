@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import type { DragVerifyProps, DragVerifyEmits } from './types'
 import './style.scss'
 
@@ -110,28 +111,24 @@ defineExpose({ reset })
     :style="rootStyle"
     data-component="DragVerify"
   >
-    <div
-      ref="trackRef"
-      class="vp-drag-verify__track"
-      role="slider"
-      :aria-valuenow="progress"
-      aria-valuemin="0"
-      aria-valuemax="100"
-      :aria-disabled="disabled || passed || undefined"
-      tabindex="0"
-      @keydown="onKeydown"
-      @focus="emit('focus', $event)"
-      @blur="emit('blur', $event)"
-    >
+    <div ref="trackRef" class="vp-drag-verify__track">
       <span class="vp-drag-verify__hint">{{ passed ? t('auth.captchaPass') : t('auth.slideToVerify') }}</span>
-      <button
-        type="button"
+      <div
         class="vp-drag-verify__thumb"
+        role="slider"
         :style="{ transform: `translateX(${offset}px)` }"
-        :disabled="disabled || passed"
+        :aria-label="t(LocaleKeys.component.dragVerify.sliderAria, { progress })"
+        :aria-valuenow="progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        :aria-disabled="disabled || passed || undefined"
+        tabindex="0"
+        @keydown="onKeydown"
         @pointerdown="onPointerDown"
         @pointermove="onPointerMove"
         @pointerup="onPointerUp"
+        @focus="emit('focus', $event)"
+        @blur="emit('blur', $event)"
       />
     </div>
   </div>

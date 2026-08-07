@@ -85,7 +85,7 @@ const rootStyle = computed(() => ({
 </script>
 
 <template>
-  <div :class="rootClass" :style="rootStyle" data-component="Row" role="row">
+  <div :class="rootClass" :style="rootStyle" data-component="Row">
     <slot />
   </div>
 </template>

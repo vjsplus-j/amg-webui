@@ -22,7 +22,7 @@
     {
       "id": "api-slots",
       "status": "PASS",
-      "detail": "Slots contract present or N/A"
+      "detail": "requiredSlots ok: [default, option, empty, loading]"
     },
     {
       "id": "i18n",
@@ -52,12 +52,12 @@
     {
       "id": "a11y",
       "status": "PASS",
-      "detail": "selection family axe"
+      "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
     },
     {
       "id": "keyboard",
       "status": "PASS",
-      "detail": "selection keyboard from family e2e"
+      "detail": "Select open + arrow nav Home/End + Enter select + Escape close"
     },
     {
       "id": "theme",
@@ -88,5 +88,11 @@
   "failCount": 0,
   "status": "PASS",
   "stable": true,
-  "verifiedAt": "2026-08-07T12:51:55.961Z"
+  "verifiedStable": true,
+  "productMaturity": "stable",
+  "apiFreeze": true,
+  "evidenceOk": true,
+  "auditMode": false,
+  "strictEvidence": true,
+  "verifiedAt": "2026-08-07T16:15:16.615Z"
 }

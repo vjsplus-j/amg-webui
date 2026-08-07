@@ -46,6 +46,12 @@ const set = ref(['read'])
 
 
 
+## 交互演示
+
+<DocsDemo name="checkbox-basic" />
+
+
+
 ## 常用 API
 
 

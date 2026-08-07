@@ -409,6 +409,36 @@ export const routes: RouteRecordRaw[] = [
           icon: 'ShieldCheck'
         }
       },
+      {
+        path: 'lab/theme-studio',
+        name: 'lab-theme-studio',
+        component: () => import('../pages/lab/theme-studio.vue'),
+        meta: {
+          titleKey: 'page.lab.themeStudio.title',
+          group: 'lab',
+          icon: 'Palette'
+        }
+      },
+      {
+        path: 'lab/visual-theme-matrix',
+        name: 'lab-visual-theme-matrix',
+        component: () => import('../pages/lab/VisualThemeMatrixPage.vue'),
+        meta: {
+          titleKey: 'page.lab.visualMatrix.title',
+          group: 'lab',
+          icon: 'ScanEye'
+        }
+      },
+      {
+        path: 'lab/skill',
+        name: 'lab-skill',
+        component: () => import('../pages/lab/SkillLabPage.vue'),
+        meta: {
+          titleKey: 'page.lab.skill.title',
+          group: 'lab',
+          icon: 'Cpu'
+        }
+      },
 
       {
         path: 'dev/config',

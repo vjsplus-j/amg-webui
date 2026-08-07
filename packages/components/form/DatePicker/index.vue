@@ -133,7 +133,7 @@ const selectDay = (day: Date | null) => {
       :aria-invalid="isInvalid || undefined"
       :aria-required="isRequired || undefined"
       :aria-describedby="ariaDescribedby"
-      :aria-label="placeholder || undefined"
+      :aria-label="placeholder || displayLabel || t(LocaleKeys.component.datePicker.triggerAria)"
       :disabled="isDisabled"
       @click="handleTriggerClick"
       @blur="handleTriggerBlur"

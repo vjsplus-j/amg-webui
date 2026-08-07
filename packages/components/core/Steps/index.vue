@@ -69,7 +69,8 @@ provide(STEPS_INJECTION_KEY, {
   register,
   unregister,
   indexOf,
-  setActive
+  setActive,
+  inList: true
 })
 </script>
 

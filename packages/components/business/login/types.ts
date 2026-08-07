@@ -1,4 +1,25 @@
+import type { BizRequestOptions } from '../_shared'
+
 export type BizLoginMode = 'password' | 'sms' | 'qr'
+
+/** Domain auth result — not a backend DTO. */
+export interface BizAuthResult {
+  token?: string
+  userId?: string | number
+  displayName?: string
+}
+
+/** Host-owned auth adapter. UI never hard-codes HTTP or wire DTOs. */
+export interface BizAuthAdapter {
+  login(credentials: BizLoginCredentials, options?: BizRequestOptions): Promise<BizAuthResult>
+  register?(payload: BizRegisterPayload, options?: BizRequestOptions): Promise<BizAuthResult>
+  resetPassword?(payload: BizForgotPasswordPayload, options?: BizRequestOptions): Promise<void>
+  sendCode?(
+    channel: 'login' | 'register' | 'forgot',
+    target: string,
+    options?: BizRequestOptions
+  ): Promise<void>
+}
 
 export interface BizLoginCredentials {
   username: string
@@ -14,6 +35,8 @@ export interface BizLoginProps {
   title?: string
   subtitle?: string
   loading?: boolean
+  /** When set, submit flows through adapter (race-safe + AbortSignal). */
+  adapter?: BizAuthAdapter
   defaultUsername?: string
   showRemember?: boolean
   showRegister?: boolean
@@ -28,6 +51,7 @@ export interface BizLoginProps {
 
 export interface BizLoginEmits {
   (e: 'submit', payload: BizLoginCredentials): void
+  (e: 'auth-success', result: BizAuthResult): void
   (e: 'register'): void
   (e: 'forgot'): void
   (e: 'send-code'): void
@@ -78,6 +102,7 @@ export interface BizRegisterProps {
   title?: string
   subtitle?: string
   loading?: boolean
+  adapter?: BizAuthAdapter
   showCaptcha?: boolean
   captchaMode?: BizCaptchaMode
   codeCooldown?: number
@@ -85,6 +110,7 @@ export interface BizRegisterProps {
 
 export interface BizRegisterEmits {
   (e: 'submit', payload: BizRegisterPayload): void
+  (e: 'auth-success', result: BizAuthResult): void
   (e: 'login'): void
   (e: 'send-code'): void
 }
@@ -101,6 +127,7 @@ export interface BizForgotPasswordProps {
   title?: string
   subtitle?: string
   loading?: boolean
+  adapter?: BizAuthAdapter
   showCaptcha?: boolean
   captchaMode?: BizCaptchaMode
   codeCooldown?: number
@@ -108,6 +135,7 @@ export interface BizForgotPasswordProps {
 
 export interface BizForgotPasswordEmits {
   (e: 'submit', payload: BizForgotPasswordPayload): void
+  (e: 'auth-success'): void
   (e: 'login'): void
   (e: 'send-code'): void
 }

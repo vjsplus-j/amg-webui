@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, computed, watch, onUnmounted, provide } from 'vue'
+import { inject, computed, watch, onUnmounted, provide, useSlots } from 'vue'
 import { createFieldId } from '@amg-webui/utils'
 import { FORM_INJECTION_KEY } from '../Form/types'
 import type { FormRule } from '../Form/types'
@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<FormItemProps>(), {
 
 const emit = defineEmits<FormItemEmits>()
 
+const slots = useSlots()
 const form = inject(FORM_INJECTION_KEY, null)
 const fieldId = createFieldId('vp-form-item')
 const labelId = `${fieldId}-label`
@@ -64,10 +65,13 @@ async function validate() {
   return err
 }
 
+const hasLabel = computed(() => Boolean(props.label || slots.label))
+
 provide(FORM_ITEM_INJECTION_KEY, {
   inputId: fieldId,
   errorId,
   labelId,
+  hasLabel,
   prop: propRef,
   error,
   required: isRequired,

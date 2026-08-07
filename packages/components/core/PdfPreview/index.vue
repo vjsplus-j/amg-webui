@@ -28,6 +28,11 @@ watch(toRef(props, 'src'), (val) => {
 onBeforeUnmount(() => { if (url.value.startsWith('blob:')) URL.revokeObjectURL(url.value) })
 
 const titleText = computed(() => props.title ?? t('component.pdf-preview.title'))
+const isPdf = computed(
+  () =>
+    /\.pdf(\?|#|$)/i.test(url.value) ||
+    /^data:application\/pdf/i.test(url.value)
+)
 
 function onLoad() {
   emit('load')
@@ -53,9 +58,8 @@ function clearPreview() {
     </header>
     <div v-if="loading" class="vp-pdf-preview__loading" role="status">{{ t(LocaleKeys.common.loading) }}</div>
     <div v-else class="vp-pdf-preview__body">
-      <object v-if="url" :data="url" type="application/pdf" class="vp-pdf-preview__obj" :style="{ height }" @load="onLoad">
-        <iframe :src="url" class="vp-pdf-preview__frame" :style="{ height }" :title="titleText" />
-      </object>
+      <iframe v-if="url && isPdf" :src="url" class="vp-pdf-preview__frame" :style="{ height }" :title="titleText" @load="onLoad" />
+      <p v-else-if="url && !isPdf" class="vp-pdf-preview__empty">{{ t('component.pdf-preview.lead') }}</p>
       <p v-else class="vp-pdf-preview__empty">{{ t('component.pdf-preview.lead') }}</p>
       <slot />
     </div>

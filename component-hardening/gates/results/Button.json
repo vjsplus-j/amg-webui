@@ -22,7 +22,7 @@
     {
       "id": "api-slots",
       "status": "PASS",
-      "detail": "Slots contract present or N/A"
+      "detail": "requiredSlots ok: [default]"
     },
     {
       "id": "i18n",
@@ -52,12 +52,12 @@
     {
       "id": "a11y",
       "status": "PASS",
-      "detail": "foundation family axe on /lab/hardening"
+      "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
     },
     {
       "id": "keyboard",
-      "status": "N/A",
-      "detail": "keyboard optional for Button foundation profile"
+      "status": "PASS",
+      "detail": "Button focus + Tab + Enter + Escape"
     },
     {
       "id": "theme",
@@ -88,5 +88,11 @@
   "failCount": 0,
   "status": "PASS",
   "stable": true,
-  "verifiedAt": "2026-08-07T12:51:55.957Z"
+  "verifiedStable": true,
+  "productMaturity": "stable",
+  "apiFreeze": true,
+  "evidenceOk": true,
+  "auditMode": false,
+  "strictEvidence": true,
+  "verifiedAt": "2026-08-07T16:15:02.878Z"
 }

@@ -9,7 +9,7 @@
  *
  * - Reads Stable list from component-hardening/program-status.json (frozen contracts SSOT)
  * - Writes docs/components/<kebab>.md if missing (or with --force)
- * - Patches component sidebar block in vitepress.config.ts (preserves other sections)
+ * - Patches component sidebar block in docs/.vitepress/config.ts (preserves other sections)
  * - Optionally updates component-hardening/evidence/<Name>/docs.json
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 'node:fs'
@@ -23,7 +23,7 @@ import {
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const docsComponentsDir = resolve(root, 'docs/components')
-const vitepressConfigPath = resolve(root, 'vitepress.config.ts')
+const vitepressConfigPath = resolve(root, 'docs/.vitepress/config.ts')
 const programStatusPath = join(root, 'component-hardening/program-status.json')
 const apiDir = join(root, 'generated/component-api')
 const evidenceRoot = join(root, 'component-hardening/evidence')
@@ -57,6 +57,26 @@ export const V01_PRIORITY = [
   'Image',
   'Tour'
 ]
+
+/** Wired VitePress interactive demos — SSOT: docs/demos/registry.ts */
+const DOCS_DEMOS = {
+  Button: 'button-basic',
+  InputText: 'input-text-basic',
+  Select: 'select-basic',
+  Checkbox: 'checkbox-basic',
+  Radio: 'radio-basic',
+  Switch: 'switch-basic',
+  DatePicker: 'date-picker-basic',
+  Form: 'form-basic',
+  DataTable: 'data-table-basic',
+  Tree: 'tree-basic',
+  Dialog: 'dialog-basic',
+  Drawer: 'drawer-basic',
+  Tabs: 'tabs-basic',
+  Menu: 'menu-basic',
+  Pagination: 'pagination-basic',
+  Upload: 'upload-basic'
+}
 
 /** Existing thin stubs from prior docs pass */
 const EXISTING_STUBS = [
@@ -489,6 +509,11 @@ function generateMarkdown(name) {
     ''
   ]
 
+  const docsDemoId = DOCS_DEMOS[name]
+  if (docsDemoId) {
+    sections.push('## 交互演示', '', `<DocsDemo name="${docsDemoId}" />`, '')
+  }
+
   if (EXTRA_SECTIONS[name]) {
     sections.push(EXTRA_SECTIONS[name].trim(), '')
   }
@@ -609,7 +634,7 @@ function buildSidebarItems() {
 
 function updateVitepressConfig() {
   if (!existsSync(vitepressConfigPath)) {
-    console.warn('[warn] vitepress.config.ts missing — skip sidebar patch')
+    console.warn('[warn] docs/.vitepress/config.ts missing — skip sidebar patch')
     return false
   }
   const items = buildSidebarItems()
@@ -626,7 +651,7 @@ function updateVitepressConfig() {
   }
   config = config.replace(blockRe, `$1\n${itemsStr}$3`)
   writeFileSync(vitepressConfigPath, config, 'utf8')
-  console.log('[write] vitepress.config.ts component sidebar patched')
+  console.log('[write] docs/.vitepress/config.ts component sidebar patched')
   return true
 }
 

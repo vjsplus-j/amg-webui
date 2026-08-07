@@ -1,8 +1,10 @@
 {
-  "status": "PASS",
-  "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Print interactive surface present (keyboard applicable)",
+  "status": "FAIL",
+  "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts Print interactive surface present (keyboard applicable)\"",
   "tests": [
     "tests/unit/hardening/real-mount-remaining.spec.ts"
   ],
-  "updatedAt": "2026-08-07T12:41:52.728Z"
+  "updatedAt": "2026-08-07T12:41:52.728Z",
+  "invalidatedAt": "2026-08-07T15:18:58.826Z",
+  "previousStatus": "PASS"
 }

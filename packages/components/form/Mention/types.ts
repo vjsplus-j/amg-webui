@@ -17,6 +17,7 @@ export interface MentionProps extends BaseProps, DisabledProps, LoadingProps, In
   placeholder?: string
   rows?: number
   maxLength?: number
+  ariaLabel?: string
 }
 
 export interface MentionEmits {

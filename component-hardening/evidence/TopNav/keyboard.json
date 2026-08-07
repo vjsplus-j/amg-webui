@@ -1,8 +1,10 @@
 {
-  "status": "PASS",
-  "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TopNav interactive surface present (keyboard applicable)",
+  "status": "FAIL",
+  "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts TopNav interactive surface present (keyboard applicable)\"",
   "tests": [
     "tests/unit/hardening/real-mount-remaining.spec.ts"
   ],
-  "updatedAt": "2026-08-07T12:42:34.470Z"
+  "updatedAt": "2026-08-07T12:42:34.470Z",
+  "invalidatedAt": "2026-08-07T15:18:58.911Z",
+  "previousStatus": "PASS"
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
 import { rowsToCsv, parseCsv, downloadTextFile } from "@amg-webui/utils";
 import { trackEmit } from "@amg-webui/telemetry";
 import type { ExcelIoProps, ExcelIoEmits } from "./types";
@@ -99,6 +100,7 @@ function onFile(e: Event) {
         type="file"
         accept=".csv,text/csv"
         class="vp-excel-io__file"
+        :aria-label="t(LocaleKeys.component.excelIo.fileAria)"
         @change="onFile"
       />
     </div>

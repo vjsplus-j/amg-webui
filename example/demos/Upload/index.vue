@@ -7,7 +7,9 @@ import { Upload } from '@amg-webui/form'
 import type { UploadFile } from '@amg-webui/form/Upload/types'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import { demoCode } from '../../components/demo/demoCode'
+import Basic from '@amg-webui/demos/upload/Basic.vue'
+import basicSource from '@amg-webui/demos/upload/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -33,15 +35,6 @@ function onChange(list: UploadFile[]) {
   files.value = list
 }
 
-const codeDrag = demoSfc({
-  imports: [
-    `import { ref } from 'vue'`,
-    `import { Upload } from '@amg-webui/form'`
-  ],
-  script: [`const files = ref([])`],
-  template: [`  <Upload v-model="files" drag multiple />`]
-})
-
 const codeList = demoCode(
   `const mockFiles = ref([`,
   `  { uid: 'demo-1', name: 'report.pdf', size: 204800, status: 'success' }`,
@@ -56,12 +49,10 @@ const codeList = demoCode(
     <DemoBlock
       :title="t('example.doc.upload.demo.drag')"
       :description="t('example.doc.upload.demo.dragDesc')"
-      :code="codeDrag"
+      :code="basicSource"
       default-open
     >
-      <div class="vp-curated__row">
-        <Upload v-model="files" drag multiple @change="onChange" />
-      </div>
+      <Basic />
     </DemoBlock>
 
     <DemoBlock

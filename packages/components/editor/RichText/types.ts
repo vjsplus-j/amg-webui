@@ -10,6 +10,7 @@ export interface RichTextProps extends BaseProps, DisabledProps {
   sanitizeOptions?: SanitizeHtmlOptions
   /** Max undo stack depth (default 50). */
   historyLimit?: number
+  ariaLabel?: string
 }
 
 export interface RichTextEmits {

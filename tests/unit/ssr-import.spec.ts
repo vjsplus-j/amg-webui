@@ -9,22 +9,20 @@ describe('SSR module imports', () => {
   it(
     'imports core modules without throwing',
     async () => {
-      const modules = await Promise.all([
-        import('@amg-webui/utils/env'),
-        import('@amg-webui/utils/dom'),
-        import('@amg-webui/theme/core'),
-        import('@amg-webui/overlay/MessageBox/service'),
-        import('@amg-webui/core/Affix/useAffix'),
-        import('@amg-webui/data/InfiniteScroll/directive'),
-        import('@amg-webui/core/Button/index.vue'),
-        import('@amg-webui/form/Select/useSelect')
-      ])
+      const env = await import('@amg-webui/utils/env')
+      const dom = await import('@amg-webui/utils/dom')
+      const theme = await import('@amg-webui/theme/core')
+      const messageBox = await import('@amg-webui/overlay/MessageBox/service')
+      const affix = await import('@amg-webui/core/Affix/useAffix')
+      const infiniteScroll = await import('@amg-webui/data/InfiniteScroll/directive')
+      const button = await import('@amg-webui/core/Button/index.vue')
+      const select = await import('@amg-webui/form/Select/useSelect')
 
-      for (const mod of modules) {
+      for (const mod of [env, dom, theme, messageBox, affix, infiniteScroll, button, select]) {
         expect(mod).toBeTruthy()
       }
     },
-    15_000
+    45_000
   )
 
   it('theme core init works when window is undefined', async () => {

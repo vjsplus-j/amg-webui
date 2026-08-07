@@ -1,8 +1,18 @@
 {
   "status": "PASS",
-  "detail": "tests/unit/hardening/real-mount-remaining.spec.ts ImageCrop interactive surface present (keyboard applicable)",
-  "tests": [
-    "tests/unit/hardening/real-mount-remaining.spec.ts"
+  "keys": [
+    "Tab",
+    "Enter",
+    "Escape",
+    "ArrowDown",
+    "ArrowUp",
+    "ArrowLeft",
+    "ArrowRight",
+    "Home",
+    "End",
+    "Space"
   ],
-  "updatedAt": "2026-08-07T12:41:31.543Z"
+  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
+  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
+  "updatedAt": "2026-08-07T15:25:09.619Z"
 }

@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { trackEmit } from '@amg-webui/telemetry'
 import { applySanitizeInput } from '@amg-webui/security'
+import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import type { InputTextProps, InputTextEmits } from './types'
 import { useInputText } from './useInputText'
 import { useFormItem } from '../FormItem/useFormItem'
 import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
+import { computed } from 'vue'
 import './style.scss'
 
 defineOptions({ inheritAttrs: false, name: 'InputText' })
@@ -19,6 +22,11 @@ const props = withDefaults(defineProps<InputTextProps>(), {
 })
 
 const emit = defineEmits<InputTextEmits>()
+const { t } = useLocale()
+
+const resolvedAriaLabel = computed(
+  () => props.ariaLabel || props.placeholder || t(LocaleKeys.component.inputText.aria)
+)
 
 const {
   inputId,
@@ -102,7 +110,7 @@ const handleKeyup = (event: KeyboardEvent) => {
       :readonly="readonly"
       :maxlength="maxlength"
       :autocomplete="autocomplete"
-      :aria-label="ariaLabel"
+      :aria-label="resolvedAriaLabel"
       :aria-invalid="isInvalid || undefined"
       :aria-required="isRequired || undefined"
       :aria-describedby="ariaDescribedby"

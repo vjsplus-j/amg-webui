@@ -69,11 +69,6 @@ function selectNode(item: NodePos, event?: MouseEvent | KeyboardEvent) {
   if (event instanceof MouseEvent) emit('click', event)
 }
 
-function onKeydown(event: KeyboardEvent, item: NodePos) {
-  if (event.key !== 'Enter' && event.key !== ' ') return
-  event.preventDefault()
-  selectNode(item, event)
-}
 </script>
 
 <template>
@@ -81,7 +76,7 @@ function onKeydown(event: KeyboardEvent, item: NodePos) {
     <h3 class="vp-tree-chart__title">{{ titleText }}</h3>
     <p v-if="loading" class="vp-tree-chart__muted" role="status">{{ t('common.loading') }}</p>
     <p v-else-if="!positions.length" class="vp-tree-chart__muted" role="status">{{ emptyText }}</p>
-    <svg v-else class="vp-tree-chart__chart" viewBox="0 0 320 180" role="img" :aria-label="titleText">
+    <svg v-else class="vp-tree-chart__chart" viewBox="0 0 320 180">
       <line
         v-for="(e, i) in edges"
         :key="i"
@@ -92,7 +87,7 @@ function onKeydown(event: KeyboardEvent, item: NodePos) {
         stroke="var(--ds-border)"
         stroke-width="1"
       />
-      <g v-for="p in positions" :key="p.id" class="vp-tree-chart__node" :class="{ 'vp-tree-chart__node--selected': modelValue === p.id }" role="button" :tabindex="selectable && !disabled ? 0 : -1" :aria-label="p.label" @click="selectNode(p, $event)" @keydown="onKeydown($event, p)">
+      <g v-for="p in positions" :key="p.id" class="vp-tree-chart__node" :class="{ 'vp-tree-chart__node--selected': modelValue === p.id }" :aria-label="p.label" @click="selectNode(p, $event)">
         <circle :cx="p.x" :cy="p.y" r="14" fill="var(--surface-1)" stroke="var(--primary-500)" stroke-width="2" />
         <text :x="p.x" :y="p.y + 28" text-anchor="middle" font-size="10" fill="var(--text-secondary)">{{ p.label }}</text>
       </g>

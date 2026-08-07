@@ -66,7 +66,8 @@ export const LocaleKeys = {
       pastePlain: 'component.rich-text.pastePlain',
       undo: 'component.rich-text.undo',
       redo: 'component.rich-text.redo',
-      placeholder: 'component.rich-text.placeholder'
+      placeholder: 'component.rich-text.placeholder',
+      editorAria: 'component.rich-text.editorAria'
     },
     schemaRenderer: {
       unknown: 'component.schema-renderer.unknown',
@@ -95,7 +96,13 @@ export const LocaleKeys = {
       start: 'component.time-range-input.start',
       end: 'component.time-range-input.end',
       clear: 'component.time-range-input.clear',
-      invalidRange: 'component.time-range-input.invalidRange'
+      invalidRange: 'component.time-range-input.invalidRange',
+      aria: 'component.time-range-input.aria'
+    },
+    rangeInput: {
+      aria: 'component.range-input.aria',
+      start: 'component.range-input.start',
+      end: 'component.range-input.end'
     },
     smsCode: {
       inputAria: 'component.sms-code.inputAria'
@@ -140,11 +147,57 @@ export const LocaleKeys = {
       loading: 'component.select.loading',
       clear: 'component.select.clear'
     },
+    dataTable: {
+      title: 'component.datatable.title'
+    },
+    datePicker: {
+      triggerAria: 'component.datepicker.triggerAria'
+    },
+    progress: {
+      aria: 'component.progress.aria'
+    },
+    inputText: {
+      aria: 'component.input-text.aria'
+    },
+    search: {
+      aria: 'component.search.aria'
+    },
+    autocomplete: {
+      aria: 'component.autocomplete.aria'
+    },
+    tagInput: {
+      aria: 'component.tag-input.aria'
+    },
+    rate: {
+      aria: 'component.rate.aria'
+    },
+    slider: {
+      aria: 'component.slider.aria'
+    },
+    space: {
+      aria: 'component.space.aria'
+    },
+    loadingTip: {
+      progressAria: 'component.loading-tip.progressAria'
+    },
+    statusModal: {
+      aria: 'component.status-modal.aria'
+    },
+    popover: {
+      aria: 'component.popover.aria'
+    },
+    popconfirm: {
+      aria: 'component.popconfirm.aria'
+    },
+    tree: {
+      searchAria: 'component.tree.searchAria'
+    },
     mention: {
       placeholder: 'component.mention.placeholder',
       listAria: 'component.mention.listAria',
       empty: 'component.mention.empty',
-      loading: 'component.mention.loading'
+      loading: 'component.mention.loading',
+      inputAria: 'component.mention.inputAria'
     },
     image: {
       title: 'component.image.title',
@@ -180,6 +233,58 @@ export const LocaleKeys = {
     },
     treeSelect: {
       placeholder: 'component.tree-select.placeholder'
+    },
+    cardList: {
+      title: 'component.card-list.title',
+      selectItem: 'component.card-list.selectItem'
+    },
+    statistic: {
+      aria: 'component.statistic.aria'
+    },
+    dragVerify: {
+      sliderAria: 'component.drag-verify.sliderAria'
+    },
+    excelIo: {
+      fileAria: 'component.excel-io.fileAria'
+    },
+    imageCrop: {
+      fileAria: 'component.image-crop.fileAria',
+      canvasAria: 'component.image-crop.canvasAria'
+    },
+    tableExport: {
+      title: 'component.table-export.title',
+      searchAria: 'component.table-export.searchAria',
+      selectColumn: 'component.table-export.selectColumn',
+      selectRow: 'component.table-export.selectRow'
+    },
+    transferTree: {
+      aria: 'component.transfer-tree.aria',
+      searchAria: 'component.transfer-tree.searchAria',
+      selectNode: 'component.transfer-tree.selectNode',
+      expandNode: 'component.transfer-tree.expandNode',
+      collapseNode: 'component.transfer-tree.collapseNode'
+    },
+    treeTransfer: {
+      aria: 'component.tree-transfer.aria',
+      searchAria: 'component.tree-transfer.searchAria',
+      selectNode: 'component.tree-transfer.selectNode',
+      expandNode: 'component.tree-transfer.expandNode',
+      collapseNode: 'component.tree-transfer.collapseNode',
+      moveChildren: 'component.tree-transfer.moveChildren'
+    },
+    templateDrag: {
+      listAria: 'component.template-drag.listAria',
+      optionAria: 'component.template-drag.optionAria'
+    },
+    dragMaterial: {
+      listAria: 'component.drag-material.listAria'
+    },
+    timePicker: {
+      clear: 'component.time-picker.clear',
+      aria: 'component.time-picker.aria'
+    },
+    colorPicker: {
+      hexInput: 'component.color-picker.hexInput'
     }
   },
   avatar: {

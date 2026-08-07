@@ -1,6 +1,9 @@
 # 组件文档（v0.1 核心）
 
-本阶段对外 VitePress 文档以**薄 API stub**为主；完整交互、边界与代码高亮预览在本地 **example curated demos**（不上线）。
+本阶段对外 VitePress 文档以 **API + 标准交互 Demo** 为主；完整边界、压测与排障在本地 **example curated demos**（不上线）。  
+v0.1 核心页已接入 `<DocsDemo />`（16 个基础 Demo，源码 SSOT：`packages/demos/`，见 [`EXAMPLE_DOCUMENTATION.md`](../EXAMPLE_DOCUMENTATION.md)）。
+
+Stable 口径：以 Hardening Dashboard `verifiedStable` 为准（`component-hardening/dashboard/component-dashboard.json`），**不是**目录总数。
 
 ## v0.1 核心 API（Release Step 4）
 

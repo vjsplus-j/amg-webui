@@ -1,6 +1,20 @@
 {
   "status": "PASS",
-  "detail": "foundation family axe on /lab/hardening",
-  "source": "tests/e2e/hardening-family-evidence.spec.ts",
-  "family": "foundation"
+  "A11Y_STRUCTURE": {
+    "status": "PASS",
+    "critical": 0,
+    "serious": 0,
+    "detail": "axe-core on mounted SFC (unit)",
+    "violations": []
+  },
+  "A11Y_CONTRAST": {
+    "status": "PASS",
+    "critical": 0,
+    "serious": 0,
+    "detail": "axe color-contrast on mounted SFC",
+    "violations": []
+  },
+  "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS",
+  "source": "tests/unit/hardening/core-a11y-evidence.spec.ts",
+  "updatedAt": "2026-08-07T15:22:32.230Z"
 }

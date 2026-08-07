@@ -3,8 +3,21 @@
  *
  * Usage:
  *   node scripts/hardening/verify-component.mjs Button
+ *   node scripts/hardening/verify-component.mjs Button Select Dialog
  *   node scripts/hardening/verify-component.mjs --all
+ *   node scripts/hardening/verify-component.mjs --all --strict   (default for --all)
+ *   node scripts/hardening/verify-component.mjs --all --audit    (loose scan; NOT Stable)
  *   node scripts/hardening/verify-component.mjs --batch B01
+ *
+ * npm (single component): npm run verify:component -- Button
+ * Chained/CI on Windows: prefer direct `node scripts/hardening/verify-component.mjs …`
+ * (see hardening:all / hardening:templates-verify — args after `--` can be dropped in long chains)
+ *
+ * Rules:
+ *   - verify (--all / single / batch / CI) → strictEvidence = true
+ *   - --audit → strictEvidence = false (scan only; never Stable)
+ *   - Mandatory evidence missing → FAIL in verify mode
+ *   - api-slots must validate requiredSlots against real implementations (no || true)
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
@@ -15,6 +28,7 @@ import {
   checkHardcodedColor,
   checkHardcodedCopy,
   checkPackageFiles,
+  checkSlots,
   checkTopLevelDom,
   loadSources
 } from './gate-checks.mjs'
@@ -44,12 +58,14 @@ function gateResult(id, ok, detail = '', severity = 'mandatory', forcedStatus) {
 
 function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
   const strictEvidence = Boolean(opts.strictEvidence)
-  const familyProfile = profiles[contract.gates ? null : null]
+  const auditMode = Boolean(opts.auditMode)
   const profileId =
     loadJson('inventory/component-family-map.json').families.find(
       (f) => f.id === contract.family
     )?.gateProfile || 'general'
   const profile = profiles[profileId] || profiles.general
+  const familyProfiles = loadJson('contracts/family-api-profiles.json') || {}
+  const familyApi = familyProfiles.profiles?.[contract.family] || familyProfiles[contract.family] || {}
   const src = loadSources(root, name)
   const gates = []
 
@@ -84,14 +100,15 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
       profile.gates['api-emits'] || 'mandatory'
     )
   )
+
+  const slotsCheck = checkSlots(src, contract, [])
   gates.push(
     gateResult(
       'api-slots',
-      contract.api.slots === 'not-applicable' ||
-        /Slots/.test(src.types) ||
-        true,
-      'Slots contract present or N/A',
-      profile.gates['api-slots'] || 'mandatory'
+      slotsCheck.ok,
+      slotsCheck.detail,
+      profile.gates['api-slots'] || 'mandatory',
+      slotsCheck.status === 'N/A' ? 'N/A' : undefined
     )
   )
 
@@ -129,7 +146,7 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
 
   const evidence = loadEvidenceManifest(hardening, name)
 
-  // Evidence-backed harness gates (no silent structural PASS for mandatory)
+  // Evidence-backed harness gates — verify mode never soft-passes missing mandatory evidence
   for (const harnessGate of [
     'behavior',
     'visual',
@@ -149,39 +166,20 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
       continue
     }
     const resolved = resolveEvidenceGate(evidence, harnessGate, sev)
-    if (harnessGate === 'keyboard' && sev === 'mandatory' && !evidence.gates.keyboard?.present) {
-      if (strictEvidence) {
-        gates.push(
-          gateResult(
-            harnessGate,
-            false,
-            'missing evidence/keyboard.json (contract field alone is insufficient)',
-            sev
-          )
-        )
-      } else {
-        gates.push(
-          gateResult(
-            harnessGate,
-            true,
-            'evidence pending (non-strict --all); blocks Stable',
-            'optional'
-          )
-        )
-      }
-      continue
-    }
-    if (!strictEvidence && sev === 'mandatory' && !resolved.ok && resolved.detail.includes('missing evidence')) {
+
+    if (auditMode && !strictEvidence && sev === 'mandatory' && !resolved.ok) {
+      // Audit scan only: surface as WARN, never claim Stable
       gates.push(
         gateResult(
           harnessGate,
           true,
-          `${resolved.detail} (non-strict --all; blocks Stable)`,
+          `${resolved.detail} (audit mode — not Stable)`,
           'optional'
         )
       )
       continue
     }
+
     gates.push(
       gateResult(
         harnessGate,
@@ -224,14 +222,16 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
             'ssr',
             dom.ok,
             dom.ok
-              ? 'structural OK; evidence/ssr.json pending (blocks Stable)'
+              ? 'structural OK; evidence/ssr.json pending (audit — not Stable)'
               : `hits: ${dom.hits.join('; ')}`,
             sev
           )
         )
       }
     } else {
-      gates.push(gateResult('ssr', dom.ok, dom.ok ? 'structural OK' : `hits: ${dom.hits.join('; ')}`, sev))
+      gates.push(
+        gateResult('ssr', dom.ok, dom.ok ? 'structural OK' : `hits: ${dom.hits.join('; ')}`, sev)
+      )
     }
   }
 
@@ -245,7 +245,7 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
           ? 'domain/media adapter symbols present'
           : strictEvidence
             ? 'domain/media adapter symbols required'
-            : 'adapter evidence pending (non-strict; blocks Stable)',
+            : 'adapter pending (audit — not Stable)',
         strictEvidence ? 'mandatory' : 'optional'
       )
     )
@@ -260,7 +260,7 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
           ? 'mock policy present'
           : strictEvidence
             ? 'missing mock evidence'
-            : 'mock evidence pending (non-strict; blocks Stable)',
+            : 'mock pending (audit — not Stable)',
         strictEvidence ? 'mandatory' : 'optional'
       )
     )
@@ -279,12 +279,11 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
     )
   }
 
-  // Deduplicate: remove earlier structural-only ssr if we added evidence ssr
+  // Deduplicate: keep last (evidence-aware) for each gate id
   const seen = new Set()
   const deduped = []
   for (const g of gates) {
     if (seen.has(g.id)) {
-      // keep last (evidence-aware)
       const idx = deduped.findIndex((x) => x.id === g.id)
       if (idx >= 0) deduped[idx] = g
       continue
@@ -311,7 +310,11 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
       )
     )
   const evidenceOk = evidenceCompleteForStable(evidence, mandatoryEvidenceIds)
-  const stable =
+
+  // verifiedStable: current gates + evidence + apiFreeze + contract maturity claim
+  // Never invent Stable from contract history alone when gates FAIL/UNKNOWN
+  const verifiedStable =
+    !auditMode &&
     passed &&
     evidenceOk &&
     contract.maturity === 'stable' &&
@@ -325,7 +328,13 @@ function verifyOne(name, inventoryEntry, contract, profiles, opts = {}) {
     gates,
     failCount: blocking.length,
     status: passed ? 'PASS' : 'FAIL',
-    stable: Boolean(stable),
+    stable: Boolean(verifiedStable),
+    verifiedStable: Boolean(verifiedStable),
+    productMaturity: contract.maturity || 'beta',
+    apiFreeze: Boolean(contract.apiFreeze?.frozen),
+    evidenceOk: Boolean(evidenceOk),
+    auditMode,
+    strictEvidence,
     verifiedAt: new Date().toISOString()
   }
 }
@@ -336,13 +345,20 @@ function main() {
   const batches = loadJson('inventory/component-batches.json')
   const profiles = loadJson('gates/profiles/index.json')
 
+  const auditMode = args.includes('--audit')
   let names = []
+  // VERIFY is always strict. Only --audit opts into loose scan.
   let strictEvidence =
-    process.env.HARDENING_STRICT === '1' || args.includes('--strict')
+    !auditMode &&
+    (process.env.HARDENING_STRICT !== '0')
+
   if (args.includes('--all')) {
     names = inventory.components.map((c) => c.name)
-    if (!args.includes('--strict') && process.env.HARDENING_STRICT !== '1') {
+    // --all defaults to strict; --audit is the only escape hatch
+    if (auditMode) {
       strictEvidence = false
+    } else {
+      strictEvidence = true
     }
   } else if (args[0] === '--batch' && args[1]) {
     const batch = batches.batches.find((b) => b.id === args[1])
@@ -351,15 +367,20 @@ function main() {
       process.exit(1)
     }
     names = batch.components
-    strictEvidence = true
+    strictEvidence = !auditMode
   } else if (args[0] && !args[0].startsWith('-')) {
     names = args.filter((a) => !a.startsWith('-'))
-    strictEvidence = true
+    strictEvidence = !auditMode
   } else {
     console.error(
-      'Usage: verify-component <Name...> | --all [--strict] | --batch B01'
+      'Usage: verify-component <Name...> | --all [--strict|--audit] | --batch B01 [--audit]'
     )
     process.exit(1)
+  }
+
+  // Explicit --strict always wins over --audit conflict → strict
+  if (args.includes('--strict') || process.env.HARDENING_STRICT === '1') {
+    strictEvidence = true
   }
 
   const results = []
@@ -371,13 +392,16 @@ function main() {
         name,
         status: 'FAIL',
         stable: false,
+        verifiedStable: false,
         failCount: 1,
         gates: [gateResult('package', false, 'missing contract')]
       })
       continue
     }
     const contract = JSON.parse(readFileSync(contractPath, 'utf8'))
-    results.push(verifyOne(name, entry, contract, profiles, { strictEvidence }))
+    results.push(
+      verifyOne(name, entry, contract, profiles, { strictEvidence, auditMode })
+    )
   }
 
   mkdirSync(join(hardening, 'gates/results'), { recursive: true })
@@ -388,7 +412,7 @@ function main() {
       JSON.stringify(r, null, 2) + '\n'
     )
     console.log(
-      `[verify:component] ${r.name} ${r.status} stable=${r.stable} fails=${r.failCount} strict=${strictEvidence}`
+      `[verify:component] ${r.name} ${r.status} stable=${r.stable} fails=${r.failCount} strict=${strictEvidence} audit=${auditMode}`
     )
     for (const g of r.gates) {
       if (g.status !== 'PASS' && g.status !== 'N/A') {
@@ -404,7 +428,12 @@ function main() {
     pass: results.filter((r) => r.status === 'PASS').length,
     fail: results.filter((r) => r.status === 'FAIL').length,
     stable: results.filter((r) => r.stable).length,
-    strictEvidence
+    verifiedStable: results.filter((r) => r.verifiedStable).length,
+    strictEvidence,
+    auditMode,
+    note: auditMode
+      ? 'AUDIT MODE — results do not authorize Stable'
+      : 'STRICT VERIFY — missing mandatory evidence = FAIL'
   }
   writeFileSync(
     join(hardening, 'gates/results/all.json'),
@@ -417,7 +446,7 @@ function main() {
     )
   }
   console.log(
-    `[verify:component] total=${summary.total} pass=${summary.pass} fail=${summary.fail} stable=${summary.stable} strict=${strictEvidence}`
+    `[verify:component] total=${summary.total} pass=${summary.pass} fail=${summary.fail} stable=${summary.stable} strict=${strictEvidence} audit=${auditMode}`
   )
   process.exit(summary.fail > 0 ? 1 : 0)
 }

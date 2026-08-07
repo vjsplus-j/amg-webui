@@ -11,6 +11,8 @@ import { useAutoComplete } from './useAutoComplete'
 import { useVirtualWindow } from '../Transfer/useVirtualWindow'
 import { useFormItem } from '../FormItem/useFormItem'
 import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
+import { useControlAriaLabel } from '../FormItem/useControlAriaLabel'
+import { LocaleKeys } from '@amg-webui/locale'
 import './style.scss'
 
 defineOptions({ inheritAttrs: false, name: 'AutoComplete' })
@@ -30,6 +32,8 @@ const {
   isInvalid,
   isRequired,
   ariaDescribedby,
+  hasVisibleLabel,
+  ariaLabelledby,
   validateOnBlur,
   validateOnChange
 } = useFormItem({
@@ -39,6 +43,12 @@ const {
 })
 
 const { nativeAttrs } = useNativeInputAttrs()
+
+const inputAriaLabel = useControlAriaLabel(
+  () => props.ariaLabel,
+  LocaleKeys.component.autocomplete.aria,
+  hasVisibleLabel
+)
 
 const inputRef = ref<HTMLInputElement | null>(null)
 const panelRef = ref<HTMLElement | null>(null)
@@ -160,6 +170,8 @@ watch(suggestions, () => {
       :disabled="isDisabled"
       autocomplete="off"
       role="combobox"
+      :aria-label="inputAriaLabel"
+      :aria-labelledby="ariaLabelledby"
       :aria-expanded="isOpen"
       :aria-invalid="isInvalid || undefined"
       :aria-required="isRequired || undefined"

@@ -14,6 +14,10 @@ import { Tree } from '@amg-webui/data'
 </template>
 ```
 
+## 交互演示
+
+<DocsDemo name="tree-basic" />
+
 ## 常用 API
 
 | Prop | 类型 | 默认 | 说明 |

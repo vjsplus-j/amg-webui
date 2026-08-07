@@ -78,12 +78,12 @@
   "apiFreeze": {
     "version": "1",
     "frozen": true,
-    "frozenAt": "2026-08-07T11:19:52.715Z"
+    "frozenAt": "2026-08-07T15:42:23.457Z"
   },
   "generated": false,
   "generatedAt": "2026-08-07T09:57:01.123Z",
   "template": true,
-  "updatedAt": "2026-08-07T11:19:52.715Z",
+  "updatedAt": "2026-08-07T15:42:23.457Z",
   "promoteStable": true,
   "batchTitle": "Date Family"
 }

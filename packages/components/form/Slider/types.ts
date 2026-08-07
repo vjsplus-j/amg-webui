@@ -13,6 +13,7 @@ export interface SliderProps extends BaseProps, DisabledProps, InvalidProps {
   step?: number
   range?: boolean
   showTooltip?: boolean
+  ariaLabel?: string
 }
 
 export interface SliderEmits {

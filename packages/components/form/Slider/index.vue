@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
+import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import type { SliderProps, SliderEmits, SliderValue } from './types'
 import { useSlider } from './useSlider'
 import { useFormItem } from '../FormItem/useFormItem'
@@ -16,6 +18,11 @@ const props = withDefaults(defineProps<SliderProps>(), {
 })
 
 const emit = defineEmits<SliderEmits>()
+const { t } = useLocale()
+
+const sliderAriaLabel = computed(
+  () => props.ariaLabel || t(LocaleKeys.component.slider.aria)
+)
 
 const {
   inputId,
@@ -126,20 +133,15 @@ const handleBlur = () => {
     :class="rootClass"
     :style="style"
     role="group"
+    :aria-label="sliderAriaLabel"
     :aria-invalid="isInvalid || undefined"
     :aria-required="isRequired || undefined"
     :aria-describedby="ariaDescribedby"
-    tabindex="0"
     @blur="handleBlur"
   >
     <div
       ref="trackRef"
       class="vp-slider__track"
-      role="slider"
-      :aria-valuemin="min"
-      :aria-valuemax="max"
-      :aria-valuenow="range ? undefined : values[0]"
-      :aria-disabled="isDisabled || undefined"
       @pointerdown="handleTrackPointer"
     >
       <div
@@ -151,21 +153,31 @@ const handleBlur = () => {
       <button
         type="button"
         class="vp-slider__thumb"
+        role="slider"
         :style="{ left: `${percentLow}%` }"
+        :aria-valuemin="min"
+        :aria-valuemax="max"
         :aria-valuenow="values[0]"
+        :aria-disabled="isDisabled || undefined"
+        :aria-label="sliderAriaLabel"
         @pointerdown="startDrag(range ? 'low' : 'single', $event)"
       >
-        <span v-if="showTooltip" class="vp-slider__tooltip">{{ values[0] }}</span>
+        <span v-if="showTooltip" class="vp-slider__tooltip" aria-hidden="true">{{ values[0] }}</span>
       </button>
       <button
         v-if="range"
         type="button"
         class="vp-slider__thumb"
+        role="slider"
         :style="{ left: `${percentHigh}%` }"
+        :aria-valuemin="min"
+        :aria-valuemax="max"
         :aria-valuenow="values[1]"
+        :aria-disabled="isDisabled || undefined"
+        :aria-label="sliderAriaLabel"
         @pointerdown="startDrag('high', $event)"
       >
-        <span v-if="showTooltip" class="vp-slider__tooltip">{{ values[1] }}</span>
+        <span v-if="showTooltip" class="vp-slider__tooltip" aria-hidden="true">{{ values[1] }}</span>
       </button>
     </div>
   </div>

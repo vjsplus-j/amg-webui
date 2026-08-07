@@ -74,12 +74,12 @@
   "apiFreeze": {
     "version": "1",
     "frozen": true,
-    "frozenAt": "2026-08-07T10:51:53.798Z"
+    "frozenAt": "2026-08-07T15:42:23.457Z"
   },
   "generated": false,
   "generatedAt": "2026-08-07T09:57:01.134Z",
   "template": true,
-  "updatedAt": "2026-08-07T10:51:53.798Z",
+  "updatedAt": "2026-08-07T15:42:23.457Z",
   "promoteStable": true,
   "batchTitle": "Overlay Family"
 }

@@ -6,11 +6,8 @@ import { join } from 'node:path'
 import { componentDirRel } from '../component-package-map.mjs'
 
 const HEX_RE = /#(?:[0-9a-fA-F]{3,8})\b/g
-const RGB_RE = /\brgba?\s*\(/g
 const HARDCODE_CJK_RE =
   /['"`][^'"`]*[\u4e00-\u9fff\u3400-\u4dbf][^'"`]*['"`]/g
-const TOP_DOM_RE =
-  /(?:^|\n)\s*(?:const|let|var|[^/\n]*)\b(?:window|document)\b(?!\s*\?)/m
 
 /** Allowlisted hex/token files and patterns (theme primitives only). */
 const COLOR_ALLOW = [
@@ -164,5 +161,142 @@ export function checkCleanupHints(src) {
   return {
     ok: cleans,
     note: cleans ? 'cleanup patterns found' : 'side effects without obvious cleanup'
+  }
+}
+
+/**
+ * Extract slot names actually implemented in template / typed Slots / defineSlots.
+ * Does NOT treat the word "Slots" alone as proof.
+ */
+export function extractImplementedSlots(src) {
+  const slots = new Set()
+  const vue = src.vue || ''
+  const types = src.types || ''
+
+  // <slot> → default; <slot name="x"> / <slot :name="..."> / dynamic body-*
+  for (const m of vue.matchAll(/<slot\b([^>]*)\/?>/g)) {
+    const attrs = m[1] || ''
+    // Static name="x" only (not :name)
+    const named = attrs.match(/(?:^|\s)name\s*=\s*(['"])([\w*-]+)\1/)
+    if (named) {
+      slots.add(named[2])
+      continue
+    }
+    // :name / v-bind:name — do NOT use \b before ":" (colon is non-word)
+    if (/:name\s*=|v-bind:name\s*=/.test(attrs)) {
+      if (/body-/.test(attrs)) slots.add('body-*')
+      continue
+    }
+    slots.add('default')
+  }
+
+  // #slot / v-slot: (consumer-facing pattern sometimes in docs SFCs; rare in library)
+  for (const m of vue.matchAll(/#(default|[\w-]+)/g)) slots.add(m[1])
+  for (const m of vue.matchAll(/v-slot:([\w-]+)/g)) slots.add(m[1])
+
+  // defineSlots<{ ... }>()
+  if (/defineSlots\s*</.test(vue)) {
+    const block = vue.match(/defineSlots\s*<\s*\{([^}]*)\}/s)
+    if (block) {
+      for (const m of block[1].matchAll(/(?:['"]([\w*-]+)['"]|(\w+))\s*[?:]/g)) {
+        slots.add(m[1] || m[2])
+      }
+    }
+  }
+
+  // interface XxxSlots — brace-balanced (nested `{ row }` must not truncate)
+  const ifaceStart = types.search(/(?:export\s+)?interface\s+\w*Slots\b/)
+  if (ifaceStart >= 0) {
+    const brace = types.indexOf('{', ifaceStart)
+    if (brace >= 0) {
+      let depth = 0
+      let end = brace
+      for (; end < types.length; end++) {
+        if (types[end] === '{') depth++
+        else if (types[end] === '}') {
+          depth--
+          if (depth === 0) break
+        }
+      }
+      const body = types.slice(brace + 1, end)
+      for (const m of body.matchAll(/(?:['"]([\w*-]+)['"]|(?:^|[\n;])\s*(\w+)\s*\??\s*[:(])/g)) {
+        const name = m[1] || m[2]
+        if (name && name !== 'key' && name !== 'props') slots.add(name)
+      }
+      if (/body-/.test(body)) slots.add('body-*')
+    }
+  }
+
+  if (/:name[\s\S]{0,120}body-/.test(vue) || /body-\$\{/.test(vue + types)) {
+    slots.add('body-*')
+  }
+
+  return [...slots]
+}
+
+/**
+ * Validate api.slots contract against real implementations.
+ * - not-applicable → N/A (ok)
+ * - required → every contract.requiredSlots (or family requiredSlots) must be implemented
+ * - optional → PASS if typed/template slots exist OR no slots claimed
+ */
+export function checkSlots(src, contract, familyRequiredSlots = []) {
+  if (contract?.api?.slots === 'not-applicable') {
+    return { ok: true, status: 'N/A', detail: 'slots not-applicable', implemented: [], missing: [] }
+  }
+
+  const implemented = extractImplementedSlots(src)
+  const required = [
+    ...new Set([
+      ...(contract?.requiredSlots || []),
+      ...(familyRequiredSlots || [])
+    ])
+  ].filter(Boolean)
+
+  if (contract?.api?.slots === 'required' || required.length > 0) {
+    const missing = required.filter((slot) => {
+      if (implemented.includes(slot)) return false
+      // body-* covers body-foo dynamic slots
+      if (slot.startsWith('body-') && implemented.includes('body-*')) return false
+      if (slot === 'body-*' && implemented.some((s) => s.startsWith('body-'))) return false
+      return true
+    })
+    const hasSurface =
+      implemented.length > 0 ||
+      /interface\s+\w*Slots\b/.test(src.types || '') ||
+      /defineSlots\s*</.test(src.vue || '')
+    if (required.length === 0) {
+      // required api.slots but no requiredSlots list — still need a typed Slots surface
+      return {
+        ok: hasSurface,
+        status: hasSurface ? 'PASS' : 'FAIL',
+        detail: hasSurface
+          ? `slots surface present: [${implemented.join(', ') || 'typed'}]`
+          : 'api.slots=required but no Slots interface / defineSlots / <slot> found',
+        implemented,
+        missing: []
+      }
+    }
+    return {
+      ok: missing.length === 0,
+      status: missing.length === 0 ? 'PASS' : 'FAIL',
+      detail:
+        missing.length === 0
+          ? `requiredSlots ok: [${required.join(', ')}]`
+          : `missing requiredSlots: [${missing.join(', ')}]; implemented=[${implemented.join(', ') || 'none'}]`,
+      implemented,
+      missing
+    }
+  }
+
+  // optional
+  return {
+    ok: true,
+    status: 'PASS',
+    detail: implemented.length
+      ? `optional slots: [${implemented.join(', ')}]`
+      : 'optional; no slots declared',
+    implemented,
+    missing: []
   }
 }

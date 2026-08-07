@@ -22,7 +22,7 @@
     {
       "id": "api-slots",
       "status": "PASS",
-      "detail": "Slots contract present or N/A"
+      "detail": "requiredSlots ok: [default]"
     },
     {
       "id": "i18n",
@@ -52,7 +52,7 @@
     {
       "id": "a11y",
       "status": "PASS",
-      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Countdown mount tree available for a11y contract"
+      "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
     },
     {
       "id": "keyboard",
@@ -77,7 +77,7 @@
     {
       "id": "docs",
       "status": "PASS",
-      "detail": "VitePress docs page + generated API extract (countdown.md)"
+      "detail": "VitePress docs page + generated API extract"
     },
     {
       "id": "ssr",
@@ -87,6 +87,12 @@
   ],
   "failCount": 0,
   "status": "PASS",
-  "stable": false,
-  "verifiedAt": "2026-08-07T12:41:05.593Z"
+  "stable": true,
+  "verifiedStable": true,
+  "productMaturity": "stable",
+  "apiFreeze": true,
+  "evidenceOk": true,
+  "auditMode": false,
+  "strictEvidence": true,
+  "verifiedAt": "2026-08-07T16:15:05.394Z"
 }

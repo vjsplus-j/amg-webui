@@ -1,6 +1,7 @@
+import { compileScript, compileTemplate, parse } from '@vue/compiler-sfc'
 import type { CanvasNodeData, CanvasSchema } from '@amg-webui/utils'
 import { splitMetaProps } from './meta'
-import type { LowcodeAction } from './runtime'
+import type { DataSourceDef, LowcodeAction, PageContext } from './runtime'
 import { buildCanvasTree, type CanvasTreeNode } from './tree'
 import type {
   CodegenOptions,
@@ -71,20 +72,73 @@ function resolveImportFrom(type: string, registry?: ComponentRegistry): string {
   return registry?.get(type)?.importFrom ?? '@amg-webui/core'
 }
 
-function actionComment(actions: LowcodeAction[] | undefined): string {
-  if (!actions?.length) return '  // no document actions'
-  return actions
-    .map((a) => {
-      const detail = [a.type, a.dataSourceId, a.target, a.path, a.message]
-        .filter(Boolean)
-        .join(' ')
-      return `  // action: ${detail}`
+/** Map schema event names to valid JS identifier suffixes (`update:modelValue` → `UpdateModelValue`). */
+function eventToHandlerSuffix(event: string): string {
+  const parts = event.split(/[:.]/)
+  return parts
+    .map((part, index) => {
+      const camel = part.replace(/-([a-zA-Z])/g, (_, c: string) => c.toUpperCase())
+      if (index === 0) {
+        return camel.charAt(0).toUpperCase() + camel.slice(1)
+      }
+      return camel.charAt(0).toUpperCase() + camel.slice(1)
     })
-    .join('\n')
+    .join('')
+}
+
+function defaultHandlerName(nodeType: string, event: string): string {
+  return `on${nodeType}${eventToHandlerSuffix(event)}`
+}
+
+function serializeJson(value: unknown, indent = 2): string {
+  return JSON.stringify(value, null, indent)
+}
+
+function renderActionChainBody(actions: LowcodeAction[] | undefined): string {
+  if (!actions?.length) return '  // no document actions'
+  return `  void runtime.runActionChain(${serializeJson(actions)})`
 }
 
 function renderHandlerFn(name: string, actions: LowcodeAction[] | undefined): string {
-  return `function ${name}(): void {\n${actionComment(actions)}\n}`
+  return `function ${name}(): void {\n${renderActionChainBody(actions)}\n}`
+}
+
+function collectContextPaths(nodes: CanvasNodeData[]): Partial<PageContext> {
+  const paths = new Set<string>()
+  for (const node of nodes) {
+    const { bindings } = splitMetaProps(node.props ?? {})
+    for (const expr of Object.values(bindings)) {
+      if (expr) paths.add(expr.split('.')[0] ?? expr)
+    }
+  }
+  const initial: Partial<PageContext> = {}
+  for (const root of paths) {
+    if (root === 'state' || root === 'form' || root === 'data' || root === 'page' || root === 'route' || root === 'user' || root === 'env') {
+      if (!(initial as Record<string, unknown>)[root]) {
+        ;(initial as Record<string, Record<string, unknown>>)[root] = {}
+      }
+    }
+  }
+  return initial
+}
+
+function renderRuntimeBootstrap(options: CodegenOptions, nodes: CanvasNodeData[]): string {
+  const dataSources: DataSourceDef[] = options.dataSources ?? []
+  const initial = {
+    ...collectContextPaths(nodes),
+    ...(options.initialContext ?? {})
+  }
+  const lines = [
+    "import { createPageRuntime } from '@amg-webui/lowcode'",
+    '',
+    'const runtime = createPageRuntime({',
+    `  initial: ${serializeJson(initial)},`,
+    `  dataSources: ${serializeJson(dataSources)}`,
+    '})',
+    '',
+    'const { state, form, data, page, route, user, env } = runtime.context'
+  ]
+  return lines.join('\n')
 }
 
 function renderTreeNode(
@@ -99,7 +153,7 @@ function renderTreeNode(
   const meta = options.registry?.get(node.type)
   const mergedEvents = { ...events }
   for (const ev of meta?.events ?? []) {
-    if (!mergedEvents[ev]) mergedEvents[ev] = `on${node.type}${ev[0]!.toUpperCase()}${ev.slice(1)}`
+    if (!mergedEvents[ev]) mergedEvents[ev] = defaultHandlerName(node.type, ev)
   }
   const attrStr = propsToAttrs(attrs, bindings, mergedEvents)
   const style =
@@ -134,7 +188,7 @@ export function generateVueSfc(schema: CanvasSchema, options: CodegenOptions = {
     const { events } = splitMetaProps(node.props ?? {})
     const meta = options.registry?.get(node.type)
     for (const ev of meta?.events ?? []) {
-      handlers.add(`on${node.type}${ev[0]!.toUpperCase()}${ev.slice(1)}`)
+      handlers.add(defaultHandlerName(node.type, ev))
     }
     for (const handler of Object.values(events)) {
       if (handler) handlers.add(handler)
@@ -146,6 +200,7 @@ export function generateVueSfc(schema: CanvasSchema, options: CodegenOptions = {
     .map(([from, names]) => `import { ${[...names].sort().join(', ')} } from '${from}'`)
     .join('\n')
 
+  const runtimeBootstrap = renderRuntimeBootstrap(options, nodes)
   const handlerLines = [...handlers]
     .sort()
     .map((h) => renderHandlerFn(h, actionMap[h]))
@@ -160,7 +215,7 @@ export function generateVueSfc(schema: CanvasSchema, options: CodegenOptions = {
       ? ' style="display:grid;grid-template-columns:repeat(24,1fr);gap:var(--spacing-md);position:relative;min-height:20rem;"'
       : ' style="position:relative;min-height:20rem;"'
 
-  const scriptBody = [importLines, handlerLines].filter(Boolean).join('\n\n')
+  const scriptBody = [importLines, runtimeBootstrap, handlerLines].filter(Boolean).join('\n\n')
 
   if (scriptSetup) {
     return `<script setup lang="ts">
@@ -179,13 +234,17 @@ ${nodeLines}
 import { defineComponent } from 'vue'
 ${importLines}
 
+${runtimeBootstrap.replace("import { createPageRuntime } from '@amg-webui/lowcode'\n\n", "import { createPageRuntime } from '@amg-webui/lowcode'\n")}
+
 export default defineComponent({
   name: '${name}',
   components: { ${[...new Set(nodes.map((n) => resolveExportName(n.type, options.registry)))].join(', ')} },
-  methods: {
+  setup() {
 ${[...handlers]
-  .map((h) => `    ${h}() {\n${actionComment(actionMap[h]).replace(/^/gm, '  ')}\n    }`)
-  .join(',\n')}
+  .sort()
+  .map((h) => `    function ${h}(): void {\n${renderActionChainBody(actionMap[h]).replace(/^/gm, '      ')}\n    }`)
+  .join('\n\n')}
+    return { runtime, state, form, data, page, route, user, env, ${[...handlers].sort().join(', ')} }
   }
 })
 </script>
@@ -205,14 +264,55 @@ export function generateVueTemplate(schema: CanvasSchema, options: CodegenOption
   return match?.[1]?.trim() ?? ''
 }
 
-/** Lightweight structural check that generated SFC is compilable-shaped (no eval). */
+/**
+ * Structural + real @vue/compiler-sfc compile validation for generated SFC.
+ * PASS only when parse + compileScript + compileTemplate succeed and no comment-only actions.
+ */
 export function assertGeneratedSfcShape(sfc: string): { ok: boolean; issues: string[] } {
   const issues: string[] = []
   if (!sfc.includes('<script')) issues.push('missing-script')
   if (!sfc.includes('<template>')) issues.push('missing-template')
   if (/\/\/\s*TODO:\s*wire/.test(sfc)) issues.push('todo-stubs')
+  if (/\/\/\s*action:\s/.test(sfc)) issues.push('comment-only-actions')
   const openScript = (sfc.match(/<script[\s>]/g) || []).length
   const closeScript = (sfc.match(/<\/script>/g) || []).length
   if (openScript !== closeScript) issues.push('unbalanced-script')
+
+  try {
+    const { descriptor, errors } = parse(sfc, { filename: 'Generated.vue' })
+    for (const err of errors) issues.push(`compiler-sfc: ${err.message}`)
+    if (!descriptor.template) issues.push('compiler-sfc: missing-template-block')
+    if (!descriptor.script && !descriptor.scriptSetup) issues.push('compiler-sfc: missing-script-block')
+
+    if (descriptor.script || descriptor.scriptSetup) {
+      try {
+        compileScript(descriptor, { id: 'generated-sfc' })
+      } catch (e) {
+        issues.push(
+          `compileScript: ${e instanceof Error ? e.message : String(e)}`
+        )
+      }
+    }
+
+    if (descriptor.template) {
+      const tpl = compileTemplate({
+        source: descriptor.template.content,
+        filename: 'Generated.vue',
+        id: 'generated-sfc',
+        compilerOptions: { mode: 'module' }
+      })
+      if (tpl.errors?.length) {
+        for (const err of tpl.errors) {
+          issues.push(
+            `compileTemplate: ${typeof err === 'string' ? err : (err as Error).message || String(err)}`
+          )
+        }
+      }
+      if (!tpl.code) issues.push('compileTemplate: empty-code')
+    }
+  } catch (e) {
+    issues.push(`compiler-sfc: ${e instanceof Error ? e.message : String(e)}`)
+  }
+
   return { ok: issues.length === 0, issues }
 }

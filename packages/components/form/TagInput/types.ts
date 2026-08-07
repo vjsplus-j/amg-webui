@@ -9,6 +9,7 @@ export interface TagInputProps extends BaseProps, DisabledProps {
   placeholder?: string
   size?: Size
   fluid?: boolean
+  ariaLabel?: string
 }
 
 export interface TagInputEmits {

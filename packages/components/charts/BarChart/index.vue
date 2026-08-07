@@ -40,12 +40,6 @@ const bars = computed(() => {
 })
 const titleText = computed(() => props.title ?? t('component.bar-chart.title'))
 const emptyText = computed(() => props.emptyText ?? t('common.noData'))
-
-function onKeydown(event: KeyboardEvent, item: { label: string; value: number; index: number }) {
-  if (event.key !== 'Enter' && event.key !== ' ') return
-  event.preventDefault()
-  selectItem(item)
-}
 </script>
 
 <template>
@@ -61,7 +55,7 @@ function onKeydown(event: KeyboardEvent, item: { label: string; value: number; i
     <p v-if="description" class="vp-bar-chart__muted">{{ description }}</p>
     <p v-if="loading" class="vp-bar-chart__muted" role="status">{{ t('common.loading') }}</p>
     <p v-else-if="!hasData" class="vp-bar-chart__muted" role="status">{{ emptyText }}</p>
-    <svg v-else class="vp-bar-chart__chart" :viewBox="`0 0 360 ${height}`" role="img" :aria-label="titleText">
+    <svg v-else class="vp-bar-chart__chart" :viewBox="`0 0 360 ${height}`">
       <line x1="8" :y1="height - 12" x2="352" :y2="height - 12" stroke="var(--ds-border)" stroke-width="1" />
       <rect
         v-for="(b, i) in bars"
@@ -73,12 +67,9 @@ function onKeydown(event: KeyboardEvent, item: { label: string; value: number; i
         :width="b.w"
         :height="b.h"
         :fill="b.color"
-        :tabindex="disabled ? -1 : 0"
         :aria-label="`${b.label}: ${b.value}`"
         rx="2"
-        role="button"
         @click="selectItem(b, $event)"
-        @keydown="onKeydown($event, b)"
       >
         <title>{{ b.label }}: {{ b.value }}</title>
       </rect>

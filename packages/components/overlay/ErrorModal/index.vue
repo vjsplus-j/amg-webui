@@ -9,7 +9,7 @@ const emit = defineEmits<ErrorModalEmits>();
 </script>
 
 <template>
-  <StatusModal role="dialog" aria-modal="true"
+  <StatusModal
     v-bind="props"
     @update:visible="emit('update:visible', $event)"
     @confirm="emit('confirm', $event)"

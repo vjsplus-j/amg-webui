@@ -23,8 +23,18 @@ watch(toRef(props, 'src'), (val) => {
 onBeforeUnmount(() => { if (url.value.startsWith('blob:')) URL.revokeObjectURL(url.value) })
 
 const titleText = computed(() => props.title ?? t('component.file-preview.title'))
-const isImage = computed(() => /^image\//.test(props.mime) || /\.(png|jpe?g|gif|webp|svg)$/i.test(url.value))
-const isPdf = computed(() => props.mime === 'application/pdf' || /\.pdf$/i.test(url.value))
+const isImage = computed(
+  () =>
+    /^image\//.test(props.mime) ||
+    /^data:image\//i.test(url.value) ||
+    /\.(png|jpe?g|gif|webp|svg)(\?|#|$)/i.test(url.value)
+)
+const isPdf = computed(
+  () =>
+    props.mime === 'application/pdf' ||
+    /\.pdf(\?|#|$)/i.test(url.value) ||
+    /^data:application\/pdf/i.test(url.value)
+)
 
 function onLoad() {
   emit('load')
@@ -49,7 +59,7 @@ function clearPreview() {
     <div v-if="loading" class="vp-file-preview__loading" role="status">{{ t(LocaleKeys.common.loading) }}</div>
     <div v-else class="vp-file-preview__body">
       <template v-if="url">
-        <img v-if="isImage" :src="url" class="vp-file-preview__img" :style="{ maxHeight: height }" alt="" @load="onLoad" @error="emit('error', new Error('load'))" />
+        <img v-if="isImage" :src="url" class="vp-file-preview__img" :style="{ maxHeight: height }" :alt="titleText" @load="onLoad" @error="emit('error', new Error('load'))" />
         <iframe v-else-if="isPdf" :src="url" class="vp-file-preview__frame" :style="{ height }" :title="titleText" @load="onLoad" />
         <iframe v-else :src="url" class="vp-file-preview__frame" :style="{ height }" :title="titleText" @load="onLoad" />
       </template>

@@ -21,7 +21,6 @@
   ],
   "requiredSlots": [
     "default",
-    "header",
     "footer"
   ],
   "models": [],
@@ -57,10 +56,10 @@
   "apiFreeze": {
     "version": "1",
     "frozen": true,
-    "frozenAt": "2026-08-07T12:46:16.936Z"
+    "frozenAt": "2026-08-07T15:42:23.457Z"
   },
   "generated": true,
   "generatedAt": "2026-08-07T09:57:01.151Z",
   "promoteStable": true,
-  "updatedAt": "2026-08-07T12:46:16.936Z"
+  "updatedAt": "2026-08-07T15:42:23.457Z"
 }

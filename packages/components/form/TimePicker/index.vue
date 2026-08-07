@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
-import { usePopover } from '@amg-webui/hooks'
+import { useLocale, usePopover } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import Icon from '@amg-webui/core/Icon/index.vue'
 import {
   getFloatingPanelStyle,
@@ -27,6 +28,7 @@ const props = withDefaults(defineProps<TimePickerProps>(), {
 })
 
 const emit = defineEmits<TimePickerEmits>()
+const { t } = useLocale()
 
 const {
   inputId,
@@ -121,6 +123,10 @@ const displayLabel = computed(() => {
 })
 
 const isPlaceholder = computed(() => !props.modelValue && !!props.placeholder)
+
+const resolvedAriaLabel = computed(
+  () => props.ariaLabel ?? props.placeholder ?? t(LocaleKeys.component.timePicker.aria)
+)
 
 const emitValue = () => {
   const d = new Date()
@@ -256,7 +262,7 @@ function handleTriggerKeydown(event: KeyboardEvent) {
       class="vp-timepicker__trigger"
       role="combobox"
       :disabled="isDisabled"
-      :aria-label="ariaLabel"
+      :aria-label="resolvedAriaLabel"
       :aria-expanded="isOpen"
       aria-haspopup="listbox"
       :aria-invalid="isInvalid || undefined"
@@ -278,6 +284,7 @@ function handleTriggerKeydown(event: KeyboardEvent) {
       type="button"
       class="vp-timepicker__clear"
       :disabled="isDisabled || readonly"
+      :aria-label="t(LocaleKeys.component.timePicker.clear)"
       @click="clearValue"
     >
       <Icon name="X" size="sm" />

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, toRef } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import { normalizeTreeNodes, type TreeNode } from '@amg-webui/utils/data-display/tree-types'
 import { useTreeState, collectDescendantValues } from '@amg-webui/utils/data-display/useTreeState'
 import type { TreeTransferProps, TreeTransferEmits } from './types'
@@ -67,14 +68,26 @@ const titleText = computed(() => props.title ?? t('component.tree-transfer.title
 </script>
 
 <template>
-  <div role="region" aria-label="TreeTransfer" :class="['vp-tree-transfer', 'vp-tree-transfer__panel', { 'vp-tree-transfer--disabled': disabled }, props.class]" :style="style">
+  <div
+    role="region"
+    :aria-label="titleText"
+    :class="['vp-tree-transfer', 'vp-tree-transfer__panel', { 'vp-tree-transfer--disabled': disabled }, props.class]"
+    :style="style"
+    data-component="TreeTransfer"
+  >
     <strong class="vp-tree-transfer__title">{{ titleText }}</strong>
     <div class="vp-tree-transfer__panes">
       <section class="vp-tree-transfer__pane">
         <div class="vp-tree-transfer__toolbar">
-          <input v-model="searchQuery" class="vp-tree-transfer__search" type="search" :placeholder="t('common.search')" />
-          <button type="button" class="vp-tree-transfer__action" @click="expandAll">{{ t('common.expand') }}</button>
-          <button type="button" class="vp-tree-transfer__action" @click="collapseAll">{{ t('common.collapse') }}</button>
+          <input
+            v-model="searchQuery"
+            class="vp-tree-transfer__search"
+            type="search"
+            :placeholder="t(LocaleKeys.common.search)"
+            :aria-label="t(LocaleKeys.component.treeTransfer.searchAria)"
+          />
+          <button type="button" class="vp-tree-transfer__action" @click="expandAll">{{ t(LocaleKeys.common.expand) }}</button>
+          <button type="button" class="vp-tree-transfer__action" @click="collapseAll">{{ t(LocaleKeys.common.collapse) }}</button>
         </div>
         <ul class="vp-tree-transfer__list">
           <li
@@ -83,30 +96,51 @@ const titleText = computed(() => props.title ?? t('component.tree-transfer.title
             class="vp-tree-transfer__row"
             :style="{ paddingLeft: `calc(${row.depth} * var(--spacing-md))` }"
           >
-            <button v-if="row.hasChildren" type="button" @click="toggleExpand(row.id)">{{ row.expanded ? '-' : '+' }}</button>
+            <button
+              v-if="row.hasChildren"
+              type="button"
+              :aria-label="
+                t(
+                  row.expanded
+                    ? LocaleKeys.component.treeTransfer.collapseNode
+                    : LocaleKeys.component.treeTransfer.expandNode,
+                  { label: row.node.label }
+                )
+              "
+              @click="toggleExpand(row.id)"
+            >
+              {{ row.expanded ? '-' : '+' }}
+            </button>
             <input
               type="checkbox"
               :checked="leftChecked.has(row.node.value ?? row.node.label)"
+              :aria-label="t(LocaleKeys.component.treeTransfer.selectNode, { label: row.node.label })"
               @change="toggleLeft(row.node)"
             />
             <span>{{ row.node.label }}</span>
-            <button v-if="row.hasChildren" type="button" class="vp-tree-transfer__action" @click="moveWithChildren(row.node)">
-              {{ t('common.all') }}
+            <button
+              v-if="row.hasChildren"
+              type="button"
+              class="vp-tree-transfer__action"
+              :aria-label="t(LocaleKeys.component.treeTransfer.moveChildren, { label: row.node.label })"
+              @click="moveWithChildren(row.node)"
+            >
+              {{ t(LocaleKeys.common.all) }}
             </button>
           </li>
         </ul>
       </section>
       <div class="vp-tree-transfer__controls">
-        <button type="button" class="vp-tree-transfer__action" :disabled="disabled" @click="moveRight">{{ t('common.next') }}</button>
-        <button type="button" class="vp-tree-transfer__action" :disabled="disabled" @click="moveLeft">{{ t('common.previous') }}</button>
+        <button type="button" class="vp-tree-transfer__action" :disabled="disabled" @click="moveRight">{{ t(LocaleKeys.common.next) }}</button>
+        <button type="button" class="vp-tree-transfer__action" :disabled="disabled" @click="moveLeft">{{ t(LocaleKeys.common.previous) }}</button>
       </div>
       <section class="vp-tree-transfer__pane">
-        <h4 class="vp-tree-transfer__subtitle">{{ t('common.value') }}</h4>
+        <h4 class="vp-tree-transfer__subtitle">{{ t(LocaleKeys.common.value) }}</h4>
         <ul class="vp-tree-transfer__selected">
           <li v-for="item in selectedLabels" :key="String(item.key)" class="vp-tree-transfer__selected-row">
             {{ item.label }}
           </li>
-          <li v-if="!selectedLabels.length" class="vp-tree-transfer__muted">{{ t('common.noData') }}</li>
+          <li v-if="!selectedLabels.length" class="vp-tree-transfer__muted">{{ t(LocaleKeys.common.noData) }}</li>
         </ul>
       </section>
     </div>

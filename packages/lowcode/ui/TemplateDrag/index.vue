@@ -69,7 +69,7 @@ function refresh() {
     <div v-if="loading" class="vp-template-drag__loading" role="status">
       {{ t(LocaleKeys.common.loading) }}
     </div>
-    <ul v-else class="vp-template-drag__list" role="listbox">
+    <ul v-else class="vp-template-drag__list" role="listbox" :aria-label="t(LocaleKeys.component.templateDrag.listAria)">
       <li
         v-for="tpl in templates"
         :key="tpl.id"
@@ -79,6 +79,7 @@ function refresh() {
         ]"
         :draggable="!disabled && !tpl.disabled"
         role="option"
+        :aria-label="t(LocaleKeys.component.templateDrag.optionAria, { name: tpl.name })"
         :aria-disabled="disabled || tpl.disabled"
         :tabindex="disabled || tpl.disabled ? -1 : 0"
         @dragstart="onDragStart($event, tpl)"
@@ -92,10 +93,10 @@ function refresh() {
           ><small v-if="tpl.description">{{ tpl.description }}</small></span
         >
       </li>
-      <p v-if="!templates.length" class="vp-template-drag__empty">
-        {{ t(LocaleKeys.common.noData) }}
-      </p>
     </ul>
+    <p v-if="!loading && !templates.length" class="vp-template-drag__empty">
+      {{ t(LocaleKeys.common.noData) }}
+    </p>
     <div class="vp-template-drag__toolbar">
       <button
         type="button"

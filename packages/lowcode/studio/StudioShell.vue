@@ -132,7 +132,12 @@ function generateCode() {
   codegenText.value = generateVueSfc(schema, {
     registry,
     componentName: 'GeneratedPage',
-    actions: doc.value.actions
+    actions: doc.value.actions,
+    dataSources: doc.value.dataSources,
+    initialContext: {
+      state: { keyword: '', createOpen: false, ...doc.value.variables },
+      form: { name: '' }
+    }
   })
   const check = assertGeneratedSfcShape(codegenText.value)
   toast.value = check.ok

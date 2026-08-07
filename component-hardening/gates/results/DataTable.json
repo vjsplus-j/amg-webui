@@ -22,7 +22,7 @@
     {
       "id": "api-slots",
       "status": "PASS",
-      "detail": "Slots contract present or N/A"
+      "detail": "requiredSlots ok: [empty, loading]"
     },
     {
       "id": "i18n",
@@ -52,12 +52,12 @@
     {
       "id": "a11y",
       "status": "PASS",
-      "detail": "table family axe"
+      "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
     },
     {
       "id": "keyboard",
       "status": "PASS",
-      "detail": "table keyboard from family e2e"
+      "detail": "DataTable grid row nav Home/End/Arrow + Enter selection + Escape clear; sort header Enter"
     },
     {
       "id": "theme",
@@ -72,7 +72,7 @@
     {
       "id": "perf",
       "status": "PASS",
-      "detail": "mount 2000 rows in 36ms"
+      "detail": "mount 2000 rows in 14ms"
     },
     {
       "id": "docs",
@@ -88,5 +88,11 @@
   "failCount": 0,
   "status": "PASS",
   "stable": true,
-  "verifiedAt": "2026-08-07T12:51:55.964Z"
+  "verifiedStable": true,
+  "productMaturity": "stable",
+  "apiFreeze": true,
+  "evidenceOk": true,
+  "auditMode": false,
+  "strictEvidence": true,
+  "verifiedAt": "2026-08-07T16:15:05.723Z"
 }

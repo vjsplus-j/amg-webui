@@ -212,9 +212,11 @@ watch(
     <span
       ref="triggerRef"
       class="vp-popconfirm__trigger"
+      role="button"
       :tabindex="disabled ? undefined : 0"
       :aria-expanded="isOpen"
       :aria-controls="isOpen ? overlay.titleId : undefined"
+      :aria-label="title || t(LocaleKeys.component.popconfirm.aria)"
       aria-haspopup="dialog"
       @click="open"
       @keydown="onTriggerKeydown"

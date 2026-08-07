@@ -1,8 +1,11 @@
-import { describe, expect, it, afterEach } from 'vitest'
+import { beforeAll, describe, expect, it, afterEach } from 'vitest'
 import { nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
+import { LocaleService } from '@amg-webui/locale'
 import DataTable from '@amg-webui/data/DataTable/index.vue'
 import { disposeSortWorker } from '@amg-webui/utils/data-display/sortRows'
+
+beforeAll(() => LocaleService.init())
 
 describe('DataTable virtual + sort contract', () => {
   afterEach(() => {
@@ -31,7 +34,7 @@ describe('DataTable virtual + sort contract', () => {
     await nextTick()
     await new Promise((r) => setTimeout(r, 50))
 
-    const bodyRows = wrapper.element.querySelectorAll('tbody tr, .vp-data-table__row')
+    const bodyRows = wrapper.element.querySelectorAll('.vp-datatable__body tbody tr')
     expect(bodyRows.length).toBeGreaterThan(0)
     expect(bodyRows.length).toBeLessThan(500)
     expect(bodyRows.length).toBeLessThan(rows.length / 5)
@@ -60,20 +63,15 @@ describe('DataTable virtual + sort contract', () => {
     })
     await nextTick()
 
-    const sortBtn =
-      wrapper.element.querySelector('[data-field="id"] button, th[data-field="id"], .vp-data-table__th--sortable') ??
-      wrapper.findAll('th').find((th) => th.text().includes('ID'))?.element
+    const sortHeader = wrapper.find('th[data-field="id"]')
+    await sortHeader.trigger('click')
+    await nextTick()
+    await new Promise((r) => setTimeout(r, 80))
 
-    if (sortBtn instanceof HTMLElement) {
-      sortBtn.click()
-      await nextTick()
-      await new Promise((r) => setTimeout(r, 80))
-    } else {
-      await wrapper.setProps({ sortField: 'id', sortOrder: 1 })
-      await nextTick()
-    }
+    expect(wrapper.emitted('sort')).toBeTruthy()
+    expect(wrapper.emitted('sort-change')).toBeUndefined()
 
-    const bodyRows = wrapper.element.querySelectorAll('tbody tr, .vp-data-table__row')
+    const bodyRows = wrapper.element.querySelectorAll('.vp-datatable__body tbody tr')
     expect(bodyRows.length).toBeGreaterThan(0)
     expect(bodyRows.length).toBeLessThan(120)
 

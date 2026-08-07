@@ -36,6 +36,10 @@ const on = ref(true)
 
 
 
+## 交互演示
+
+<DocsDemo name="switch-basic" />
+
 ## 常用 API
 
 

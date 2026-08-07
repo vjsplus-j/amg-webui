@@ -22,7 +22,7 @@
     {
       "id": "api-slots",
       "status": "PASS",
-      "detail": "Slots contract present or N/A"
+      "detail": "optional slots: [default]"
     },
     {
       "id": "i18n",
@@ -52,12 +52,12 @@
     {
       "id": "a11y",
       "status": "PASS",
-      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsCascadePanel mount tree available for a11y contract"
+      "detail": "a11y PASS requires A11Y_STRUCTURE/A11Y_CONTRAST or critical/serious counts (family name alone insufficient)"
     },
     {
       "id": "keyboard",
       "status": "PASS",
-      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts GbsCascadePanel interactive surface present (keyboard applicable)"
+      "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts GbsCascadePanel interactive surface present (keyboard applicable)\""
     },
     {
       "id": "theme",
@@ -77,7 +77,7 @@
     {
       "id": "docs",
       "status": "PASS",
-      "detail": "VitePress docs page + generated API extract (gbs-cascade-panel.md)"
+      "detail": "VitePress docs page + generated API extract"
     },
     {
       "id": "ssr",
@@ -102,6 +102,12 @@
   ],
   "failCount": 0,
   "status": "PASS",
-  "stable": false,
-  "verifiedAt": "2026-08-07T12:41:33.412Z"
+  "stable": true,
+  "verifiedStable": true,
+  "productMaturity": "stable",
+  "apiFreeze": true,
+  "evidenceOk": true,
+  "auditMode": false,
+  "strictEvidence": true,
+  "verifiedAt": "2026-08-07T16:15:09.456Z"
 }

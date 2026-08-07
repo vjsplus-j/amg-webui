@@ -152,7 +152,7 @@ const titleText = computed(
     <div v-if="loading" class="vp-timeline-list__state" role="status">
       {{ t("common.loading") }}
     </div>
-    <div v-else-if="groups.length" class="vp-timeline-list__track" role="list">
+    <div v-else-if="groups.length" class="vp-timeline-list__track" role="group">
       <section
         v-for="group in groups"
         :key="group.key"
@@ -172,16 +172,16 @@ const titleText = computed(
             >{{ group.key }}</slot
           ><span aria-hidden="true">⌄</span>
         </button>
-        <h4 v-else-if="group.key" class="vp-timeline-list__day">
+        <div v-else-if="group.key" class="vp-timeline-list__day">
           <slot
             name="group-label"
             :group="group.key"
             :items="group.entries.map((entry) => entry.item)"
             >{{ group.key }}</slot
           >
-        </h4>
+        </div>
         <div v-show="isExpanded(group.key)" class="vp-timeline-list__items">
-          <article
+          <div
             v-for="entry in group.entries"
             :key="itemKey(entry.item, entry.index)"
             :class="[
@@ -193,7 +193,6 @@ const titleText = computed(
                 'vp-timeline-list__item--disabled': entry.item.disabled,
               },
             ]"
-            role="listitem"
             :tabindex="disabled || entry.item.disabled ? -1 : 0"
             :aria-current="
               modelValue === itemKey(entry.item, entry.index)
@@ -212,7 +211,7 @@ const titleText = computed(
               <time class="vp-timeline-list__time">{{
                 formatTime(entry.item.time)
               }}</time>
-              <h5 class="vp-timeline-list__title">{{ entry.item.title }}</h5>
+              <div class="vp-timeline-list__title">{{ entry.item.title }}</div>
               <p
                 v-if="entry.item.content || entry.item.description"
                 class="vp-timeline-list__content"
@@ -220,7 +219,7 @@ const titleText = computed(
                 {{ entry.item.content ?? entry.item.description }}
               </p>
             </slot>
-          </article>
+          </div>
         </div>
       </section>
       <div v-if="pending" class="vp-timeline-list__pending" role="status">

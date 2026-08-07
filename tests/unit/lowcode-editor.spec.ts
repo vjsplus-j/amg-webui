@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { createCanvasNode } from '@amg-webui/utils'
 import {
   canDrop,
@@ -129,6 +129,112 @@ describe('lowcode page runtime', () => {
     expect(rt.context.state.open).toBe(true)
     expect(rt.context.data.q).toEqual([1, 2, 3])
   })
+
+  it('caches static/mock datasource when cache is enabled', async () => {
+    const rt = createPageRuntime({
+      dataSources: [
+        {
+          id: 'cached',
+          type: 'mock',
+          cache: true,
+          staticData: { n: 1 }
+        }
+      ]
+    })
+    await rt.runDataSource('cached')
+    await rt.runDataSource('cached')
+    expect(rt.context.data.cached).toEqual({ n: 1 })
+    expect(rt.dsState.cached?.loading).toBe(false)
+  })
+
+  it('RefreshData bypasses cache', async () => {
+    const fetchImpl = vi.fn(async () => ({
+      ok: true,
+      headers: { get: () => 'application/json' },
+      json: async () => ({ list: [1], total: 1 })
+    })) as unknown as typeof fetch
+    const rt = createPageRuntime({
+      fetchImpl,
+      dataSources: [
+        {
+          id: 'users',
+          type: 'rest',
+          cache: true,
+          request: { method: 'GET', url: '/api/users' },
+          transform: 'listTotal'
+        }
+      ]
+    })
+    await rt.runDataSource('users')
+    await rt.runDataSource('users')
+    expect(fetchImpl).toHaveBeenCalledTimes(1)
+    await rt.runAction({ type: 'RefreshData', dataSourceId: 'users' })
+    expect(fetchImpl).toHaveBeenCalledTimes(2)
+  })
+
+  it('retries REST datasource on failure', async () => {
+    let attempt = 0
+    const fetchImpl = vi.fn(async () => {
+      attempt++
+      if (attempt < 2) return { ok: false, status: 500, headers: { get: () => '' } }
+      return {
+        ok: true,
+        headers: { get: () => 'application/json' },
+        json: async () => ({ ok: true })
+      }
+    }) as unknown as typeof fetch
+    const rt = createPageRuntime({
+      fetchImpl,
+      dataSources: [
+        {
+          id: 'retryMe',
+          type: 'rest',
+          retry: 2,
+          request: { method: 'GET', url: '/api/retry' }
+        }
+      ]
+    })
+    await rt.runDataSource('retryMe')
+    expect(fetchImpl).toHaveBeenCalledTimes(2)
+    expect(rt.context.data.retryMe).toEqual({ ok: true })
+  })
+
+  it('SubmitForm POSTs form context to datasource', async () => {
+    const fetchImpl = vi.fn(async (_url, init) => {
+      expect(init?.method).toBe('POST')
+      expect(JSON.parse(String(init?.body))).toEqual({ name: 'Ada' })
+      return {
+        ok: true,
+        headers: { get: () => 'application/json' },
+        json: async () => ({ saved: true })
+      }
+    }) as unknown as typeof fetch
+    const rt = createPageRuntime({
+      initial: { form: { name: 'Ada' } },
+      fetchImpl,
+      dataSources: [
+        {
+          id: 'saveUser',
+          type: 'rest',
+          request: { method: 'GET', url: '/api/users' }
+        }
+      ]
+    })
+    await rt.runAction({ type: 'SubmitForm', dataSourceId: 'saveUser' })
+    expect(rt.context.data.saveUser).toEqual({ saved: true })
+  })
+
+  it('Download triggers onDownload with blob from datasource', async () => {
+    const onDownload = vi.fn()
+    const rt = createPageRuntime({
+      onDownload,
+      dataSources: [{ id: 'export', type: 'static', staticData: { rows: [1] } }]
+    })
+    await rt.runAction({ type: 'Download', dataSourceId: 'export', target: 'export.json' })
+    expect(onDownload).toHaveBeenCalledTimes(1)
+    expect(onDownload.mock.calls[0]?.[0]?.filename).toBe('export.json')
+    expect(onDownload.mock.calls[0]?.[0]?.blob).toBeInstanceOf(Blob)
+  })
 })
 
 describe('lowcode document', () => {
@@ -159,12 +265,21 @@ describe('lowcode document', () => {
     const registry = createStudioRegistry('replace')
     const sfc = generateVueSfc(
       { version: 1, mode: 'free', nodes: doc.nodes },
-      { registry, actions: doc.actions, componentName: 'GeneratedPage' }
+      {
+        registry,
+        actions: doc.actions,
+        dataSources: doc.dataSources,
+        initialContext: { state: { keyword: '', createOpen: false }, form: { name: '' } },
+        componentName: 'GeneratedPage'
+      }
     )
     const check = assertGeneratedSfcShape(sfc)
+    expect(check.issues, check.issues.join('; ')).toEqual([])
     expect(check.ok).toBe(true)
     expect(sfc).toContain('function onSearch(): void')
-    expect(sfc).toContain('action: CallApi')
+    expect(sfc).toContain('runtime.runActionChain')
+    expect(sfc).toContain('createPageRuntime')
+    expect(sfc).not.toContain('action: CallApi')
   })
 })
 

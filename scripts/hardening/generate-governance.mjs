@@ -505,7 +505,7 @@ function familyApiProfile(familyId) {
       required: ['props', 'emits', 'slots', 'expose'],
       optional: ['models', 'instance'],
       requiredExpose: ['scrollTo'],
-      requiredSlots: ['default', 'empty', 'loading']
+      requiredSlots: ['empty', 'loading']
     },
     upload: {
       required: ['props', 'emits', 'slots', 'expose'],

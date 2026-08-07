@@ -71,9 +71,6 @@ const rootClass = computed(() => [
   props.class
 ])
 
-const orientation = computed(() =>
-  props.direction === 'vertical' ? 'vertical' : 'horizontal'
-)
 </script>
 
 <template>
@@ -82,7 +79,6 @@ const orientation = computed(() =>
     :style="style"
     role="group"
     :aria-label="ariaLabel"
-    :aria-orientation="orientation"
     :aria-disabled="isGroupDisabled || undefined"
     :aria-busy="isBusy || undefined"
   >

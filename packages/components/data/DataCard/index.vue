@@ -59,7 +59,7 @@ function activate(event: MouseEvent | KeyboardEvent) {
 </script>
 
 <template>
-  <article
+  <div
     :class="[
       'vp-data-card',
       {
@@ -74,7 +74,8 @@ function activate(event: MouseEvent | KeyboardEvent) {
     :role="interactive ? 'button' : undefined"
     :tabindex="interactive ? 0 : undefined"
     :aria-pressed="interactive ? selected : undefined"
-    :aria-busy="loading"
+    :aria-busy="loading || undefined"
+    :aria-label="interactive && !title ? t('component.data-card.title') : undefined"
     data-component="DataCard"
     @click="activate"
     @keydown.enter="activate"
@@ -136,6 +137,7 @@ function activate(event: MouseEvent | KeyboardEvent) {
         aria-valuemin="0"
         aria-valuemax="100"
         :aria-valuenow="progressValue"
+        :aria-label="t('component.progress.aria')"
       >
         <span :style="{ width: `${progressValue}%` }" />
       </div>
@@ -144,5 +146,5 @@ function activate(event: MouseEvent | KeyboardEvent) {
         <slot name="footer" />
       </footer>
     </template>
-  </article>
+  </div>
 </template>

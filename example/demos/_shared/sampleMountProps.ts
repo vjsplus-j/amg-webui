@@ -237,10 +237,28 @@ export function getSampleMountProps(
   if (name === "Loading") {
     props.fullscreen = false;
     props.cancellable = true;
+    props.progress = 40;
+    props.label = sampleTitle;
+  }
+  if (name === "Link") {
+    props.ariaLabel = sampleTitle;
+    props.href = "#";
+  }
+  if (name === "Pagination") {
+    props.total = 100;
+    props.page = 1;
+    props.pageSize = 10;
+    props.pageSizes = [10, 20, 50];
+  }
+  if (/Progress|LoadingTip|ProgressTip/i.test(name)) {
+    props.ariaLabel = props.ariaLabel ?? sampleTitle;
+    props.percentage = props.percentage ?? 64;
     props.progress = 64;
   }
-
-  // Media
+  if (name === "Statistic") {
+    props.value = 128_450;
+    props.ariaLabel = props.ariaLabel ?? sampleTitle;
+  }
   if (
     /Thumbnail|Image|ImageUpload|ImageCrop|ImageGroup|FilePreview|PdfPreview/i.test(
       name,
@@ -257,13 +275,15 @@ export function getSampleMountProps(
 
   // Inputs
   if (
-    /Select|Cascader|AutoComplete|Search|Input|Password|Textarea|Picker/i.test(
+    /Select|Cascader|AutoComplete|Search|Input|Password|Textarea|Picker|Mention|TagInput|ColorInput|RangeInput|TimeRangeInput/i.test(
       name,
     )
   ) {
     if (!("modelValue" in extra)) {
       props.modelValue = undefined;
     }
+    props.ariaLabel = props.ariaLabel ?? sampleTitle;
+    props.placeholder = props.placeholder ?? sampleTitle;
   }
   if (name === "Slider") {
     props.modelValue = 40;

@@ -79,7 +79,10 @@ function onActivate(event: MouseEvent | KeyboardEvent) {
         ? 0
         : undefined
     "
-    :aria-selected="host.interactive ? selected : undefined"
+    :aria-pressed="
+      host.interactive && host.renderMode !== 'component' ? selected : undefined
+    "
+    :aria-label="node.label"
     @click.stop="onActivate"
     @keydown.enter="host.renderMode !== 'component' && onActivate($event)"
     @keydown.space="host.renderMode !== 'component' && onActivate($event)"

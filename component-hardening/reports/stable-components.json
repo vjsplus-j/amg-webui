@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-08-07T12:46:59.160Z",
+  "generatedAt": "2026-08-07T16:23:07.128Z",
   "count": 287,
   "ratio": 100,
+  "source": "gates.results[].verifiedStable",
   "components": [
     "AdvancedSearch",
     "Affix",

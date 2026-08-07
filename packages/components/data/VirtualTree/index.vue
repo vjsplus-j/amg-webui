@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, toRef, watch } from "vue";
 import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
 import { normalizeTreeNodes } from "@amg-webui/utils/data-display/tree-types";
 import { useTreeState } from "@amg-webui/utils/data-display/useTreeState";
 import { useVirtualList } from "@amg-webui/utils/data-display/useVirtualList";
@@ -90,6 +91,7 @@ const titleText = computed(
         class="vp-virtual-tree__search"
         type="search"
         :placeholder="t('common.search')"
+        :aria-label="t(LocaleKeys.component.tree.searchAria)"
         :disabled="disabled"
       />
       <button
@@ -114,8 +116,6 @@ const titleText = computed(
       <div
         ref="viewportRef"
         class="vp-virtual-tree__viewport"
-        role="tree"
-        :aria-label="titleText"
         :aria-busy="loading || undefined"
         @scroll="virtualEnabled ? onScroll : undefined"
       >
@@ -124,16 +124,18 @@ const titleText = computed(
             :class="{ 'vp-virtual-tree__spacer': virtualEnabled }"
             :style="virtualEnabled ? { height: `${totalHeight}px` } : undefined"
           >
-            <ul
+            <div
               class="vp-virtual-tree__list"
               :class="{ 'vp-virtual-tree__list--virtual': virtualEnabled }"
+              role="tree"
+              :aria-label="titleText"
               :style="
                 virtualEnabled
                   ? { transform: `translateY(${offsetY}px)` }
                   : undefined
               "
             >
-              <li
+              <div
                 v-for="row in displayRows"
                 :key="row.id"
                 role="treeitem"
@@ -177,8 +179,8 @@ const titleText = computed(
                 >
                   {{ row.node.label }}
                 </button>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </template>
         <slot v-else name="empty">

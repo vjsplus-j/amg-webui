@@ -1,4 +1,13 @@
 {
   "status": "PASS",
-  "detail": "table keyboard from family e2e"
+  "keys": [
+    "ArrowDown",
+    "ArrowUp",
+    "Home",
+    "End",
+    "Enter",
+    "Escape"
+  ],
+  "detail": "DataTable grid row nav Home/End/Arrow + Enter selection + Escape clear; sort header Enter",
+  "source": "tests/unit/components/datatable-keyboard.spec.ts"
 }

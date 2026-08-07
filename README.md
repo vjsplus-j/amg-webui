@@ -1,6 +1,6 @@
 # AMG-WebUI / Vue3-AMG-WebUI
 
-Vue 3 组件库 — packages 单体架构；官方主题含 **designmd 六套 + WeChat / Alipay**；**foundation / industry / business** 包边界隔离；统一 **Overlay Runtime**；可选 **Vp Telemetry**；实验性、独立可选的 **Skill Runtime**；进行中的 **300 组件治理（Hardening）** 与 **Lowcode Studio**。  
+**Enterprise Vue Web Application UI Platform** — Vue 3 企业 Web 应用 UI 基础设施；packages 单体架构；官方主题含 **designmd 六套 + WeChat / Alipay**；**foundation / industry / business** 包边界隔离；统一 **Overlay Runtime**；可选 **Vp Telemetry**；实验性、独立可选的 **Skill Runtime**；进行中的 **300 组件治理（Hardening）** 与 **Lowcode Studio**。  
 愿景：[`docs/VISION.md`](./docs/VISION.md) · 深度超车：[`docs/OVERTAKE_ELEMENT_PLUS.md`](./docs/OVERTAKE_ELEMENT_PLUS.md)
 
 ## 当前版本：0.1.0（试用 · 未到 1.0）
@@ -11,7 +11,7 @@ Vue 3 组件库 — packages 单体架构；官方主题含 **designmd 六套 + 
 | 库存 | 映射约 **287** 个 UI 组件目录（不以凑满 300 为目标） |
 | 承诺范围 | **v0.1 精选子集** · [`docs/V0_1_SUBSET.md`](./docs/V0_1_SUBSET.md) |
 | API | **可变**；破坏性变更记 [`CHANGELOG.md`](./CHANGELOG.md) |
-| Stable | 仅 `verify:component` 门禁 + API Freeze；score **不**等于 Stable · [`docs/COMPONENT_HARDENING.md`](./docs/COMPONENT_HARDENING.md) |
+| Stable | 仅 Hardening 门禁 **`verifiedStable`**（Dashboard SSOT：`component-hardening/dashboard/component-dashboard.json`）；score / 目录数 **不**等于 Stable · [`docs/COMPONENT_HARDENING.md`](./docs/COMPONENT_HARDENING.md) |
 | 发包说明 | [`docs/RELEASE_0.1.md`](./docs/RELEASE_0.1.md) |
 
 ```bash

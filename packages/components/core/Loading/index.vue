@@ -105,6 +105,7 @@ function cancel(event: MouseEvent) {
               v-else
               class="vp-loading__progress"
               role="progressbar"
+              :aria-label="label || t(LocaleKeys.component.progress.aria)"
               aria-valuemin="0"
               aria-valuemax="100"
               :aria-valuenow="progress"

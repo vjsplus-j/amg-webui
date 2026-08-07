@@ -8,7 +8,7 @@
   "api": {
     "props": "required",
     "emits": "required",
-    "slots": "required",
+    "slots": "not-applicable",
     "expose": "required",
     "models": "not-applicable",
     "instance": "optional",
@@ -20,9 +20,7 @@
     "resetFields",
     "clearValidate"
   ],
-  "requiredSlots": [
-    "default"
-  ],
+  "requiredSlots": [],
   "models": [],
   "behavioralContract": {
     "disabled": "Interactive actions no-op when disabled",
@@ -56,11 +54,11 @@
   "apiFreeze": {
     "version": "1",
     "frozen": true,
-    "frozenAt": "2026-08-07T12:06:18.800Z"
+    "frozenAt": "2026-08-07T15:42:23.457Z"
   },
   "generated": true,
   "generatedAt": "2026-08-07T09:57:01.164Z",
   "promoteStable": true,
   "batchTitle": "Form Family",
-  "updatedAt": "2026-08-07T12:06:18.800Z"
+  "updatedAt": "2026-08-07T15:42:23.457Z"
 }

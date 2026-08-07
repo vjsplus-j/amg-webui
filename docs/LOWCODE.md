@@ -94,8 +94,8 @@ Engine · Interaction · Runtime · Persistence · Production · Test 六维全�
 
 ## 诚实边界
 
-**当前：Studio 0.1 闭环增强中。** 已补：Action 链可视化、编辑态 `resolveRuntimeRender` 与 Preview 同语义、parentRules Drop、Align UI、DataSource 配置面板、Codegen 结构检查（`assertGeneratedSfcShape`）。
+**当前：Studio 0.1 闭环增强中。** 已补：Action 链可视化、编辑态 `resolveRuntimeRender` 与 Preview 同语义、parentRules Drop、Align UI、DataSource 配置面板、Codegen 结构检查（`assertGeneratedSfcShape` + `@vue/compiler-sfc` parse）、生成 SFC 内嵌 `createPageRuntime` 与 `runActionChain`。
 
-仍未宣称 Ready：无 Playwright E2E 全量签核 19 步；编辑态仍扁平绝对定位（非 SchemaRenderer 树内嵌套 Chrome）；Codegen handler 为可编译空实现（注释记录 action，非运行时自动接入生成页）。
+仍未宣称 Ready：无 Playwright E2E 全量签核 19 步；编辑态仍扁平绝对定位（非 SchemaRenderer 树内嵌套 Chrome）；生成页需宿主注入 `fetch` / `onNavigate` 方可对接真实 REST。
 
 未交付（勿宣传）：云端版本库、协作、GraphQL/WS、设备管理/Dashboard 完整模板、AI 生成页、文档站拖拽器上线、全量物料自动目录。

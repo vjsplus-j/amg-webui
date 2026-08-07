@@ -125,11 +125,12 @@ export interface CodegenOptions {
   includeLayoutStyles?: boolean
   /** Registry supplies import paths / export names. */
   registry?: ComponentRegistry
-  /**
-   * Document action chains → emit valid handler stubs that document the chain.
-   * Handlers remain side-effect free (compilable); no eval.
-   */
+  /** Document action chains → wired to `runtime.runActionChain` in generated handlers. */
   actions?: Record<string, import('./runtime').LowcodeAction[]>
+  /** Data sources registered on generated `createPageRuntime`. */
+  dataSources?: import('./runtime').DataSourceDef[]
+  /** Initial PageContext slices merged into generated runtime. */
+  initialContext?: Partial<import('./runtime').PageContext>
 }
 
 export type SchemaRenderMode = 'chrome' | 'component'

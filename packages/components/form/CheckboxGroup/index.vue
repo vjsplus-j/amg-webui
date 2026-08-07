@@ -120,7 +120,6 @@ function onGroupKeydown(event: KeyboardEvent) {
     :style="style"
     role="group"
     :aria-label="ariaLabel"
-    :aria-orientation="orientation"
     :aria-disabled="isDisabled || undefined"
     :aria-invalid="isInvalid || undefined"
     :aria-required="isRequired || undefined"

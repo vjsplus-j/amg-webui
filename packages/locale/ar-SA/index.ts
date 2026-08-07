@@ -8,10 +8,10 @@ import biz from './biz'
 import nav from './nav'
 import component from './component'
 import industry from './industry'
-import exampleDoc from './exampleDoc'
+import exampleDocLibrary from './exampleDoc.library'
 import type { LocaleMessages } from '../message-schema'
 
-const messages = {
+const pack = {
   ...common,
   ...button,
   ...page,
@@ -22,7 +22,7 @@ const messages = {
   ...nav,
   ...component,
   ...industry,
-  ...exampleDoc,
-} satisfies LocaleMessages
+  ...exampleDocLibrary
+} as LocaleMessages
 
-export default messages
+export default pack

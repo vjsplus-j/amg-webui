@@ -93,7 +93,7 @@ const clearRange = () => {
     :style="style"
     data-component="TimeRangeInput"
     role="group"
-    :aria-label="ariaLabel"
+    :aria-label="ariaLabel ?? t(LocaleKeys.component.timeRangeInput.aria)"
     :aria-invalid="isInvalid || undefined"
     :aria-required="isRequired || undefined"
     :aria-describedby="ariaDescribedby"
@@ -106,6 +106,7 @@ const clearRange = () => {
         :show-seconds="showSeconds"
         :invalid="isInvalid"
         :placeholder="t(LocaleKeys.component.timeRangeInput.start)"
+        :aria-label="t(LocaleKeys.component.timeRangeInput.start)"
         skip-form-item
         @update:model-value="(v) => emitValue({ ...local, start: v as string })"
       />
@@ -117,6 +118,7 @@ const clearRange = () => {
         :show-seconds="showSeconds"
         :invalid="isInvalid"
         :placeholder="t(LocaleKeys.component.timeRangeInput.end)"
+        :aria-label="t(LocaleKeys.component.timeRangeInput.end)"
         skip-form-item
         @update:model-value="(v) => emitValue({ ...local, end: v as string })"
       />

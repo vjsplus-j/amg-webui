@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
-import { usePopover } from '@amg-webui/hooks'
+import { useLocale, usePopover } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import {
   cssVarToHex,
   getFloatingPanelStyle,
@@ -34,6 +35,7 @@ const props = withDefaults(defineProps<ColorPickerProps>(), {
 })
 
 const emit = defineEmits<ColorPickerEmits>()
+const { t } = useLocale()
 
 const {
   inputId,
@@ -165,6 +167,7 @@ watch(isOpen, (open) => {
       type="button"
       class="vp-colorpicker__trigger"
       role="combobox"
+      :aria-label="t(LocaleKeys.component.colorInput.pickColor)"
       :aria-expanded="isOpen"
       aria-haspopup="listbox"
       :aria-invalid="isInvalid || undefined"
@@ -197,6 +200,7 @@ watch(isOpen, (open) => {
             'vp-colorpicker__preset--focused': index === focusIndex
           }"
           :style="{ background: preset }"
+          :aria-label="t(LocaleKeys.component.colorInput.pickColor)"
           @click="selectPreset(preset)"
         />
       </div>
@@ -205,6 +209,7 @@ watch(isOpen, (open) => {
         type="text"
         :value="modelValue"
         :disabled="isDisabled"
+        :aria-label="t(LocaleKeys.component.colorInput.placeholder)"
         @input="handleInput"
       />
     </div>

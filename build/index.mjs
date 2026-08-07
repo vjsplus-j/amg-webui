@@ -56,6 +56,7 @@ switch (mode) {
     runVite('vite.config.ts')
     // 2) runtime packages (JS; types already from step 1 / later dts)
     runVite('vite.runtime.config.ts')
+    runNode('scripts/fix-sort-worker-url.mjs')
     // 3) on-demand component ESM + legacy barrels
     runVite('vite.ondemand.config.ts')
     runNode('build/write-component-barrels.mjs')
@@ -64,7 +65,8 @@ switch (mode) {
     runVite('vite.theme.config.ts')
     // 5) per-brand CSS (after emptyOutDir — must follow main lib)
     runVite('vite.themes.config.ts')
-    // 6) refresh public export map (dist-only)
+    // 6) refresh public export map (dist-only) + worker URL again after any overwrite
+    runNode('scripts/fix-sort-worker-url.mjs')
     runNode('scripts/generate-package-exports.mjs')
     break
   case 'on-demand':
@@ -86,6 +88,7 @@ switch (mode) {
     break
   case 'runtime':
     runVite('vite.runtime.config.ts')
+    runNode('scripts/fix-sort-worker-url.mjs')
     runNode('scripts/generate-package-exports.mjs')
     break
   default:

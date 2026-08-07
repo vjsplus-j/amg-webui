@@ -1,8 +1,17 @@
 {
-  "status": "PASS",
-  "detail": "tests/unit/hardening/real-mount-remaining.spec.ts OnvifDeviceList mount tree available for a11y contract",
-  "tests": [
+  "status": "FAIL",
+  "A11Y_STRUCTURE": {
+    "status": "MISSING",
+    "detail": "A11Y_STRUCTURE not recorded — shallow family attribution or mount-only text insufficient for Stable"
+  },
+  "A11Y_CONTRAST": {
+    "status": "MISSING",
+    "detail": "A11Y_CONTRAST not recorded — color-contrast must be PASS, FAIL, or BLOCKED (theme) for Stable"
+  },
+  "detail": "a11y PASS requires A11Y_STRUCTURE/A11Y_CONTRAST or critical/serious counts (family name alone insufficient)",
+  "invalidatedAt": "2026-08-07T15:18:58.796Z",
+  "previousStatus": "PASS",
+  "priorTests": [
     "tests/unit/hardening/real-mount-remaining.spec.ts"
-  ],
-  "updatedAt": "2026-08-07T12:41:52.276Z"
+  ]
 }

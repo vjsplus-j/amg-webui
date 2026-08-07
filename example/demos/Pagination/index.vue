@@ -4,31 +4,17 @@
  */
 import { ref } from 'vue'
 import { Pagination } from '@amg-webui/data'
-import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import { demoCode } from '../../components/demo/demoCode'
+import Basic from '@amg-webui/demos/pagination/Basic.vue'
+import basicSource from '@amg-webui/demos/pagination/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
 const page = ref(1)
 const pageSize = ref(10)
 const total = 128
-
-const codeBasic = demoSfc({
-  imports: [
-    `import { ref } from 'vue'`,
-    `import { Pagination } from '@amg-webui/data'`
-  ],
-  script: [`const page = ref(1)`, `const pageSize = ref(10)`],
-  template: [
-    '  <Pagination',
-    '    :total="128"',
-    '    v-model:page="page"',
-    '    v-model:page-size="pageSize"',
-    '  />'
-  ]
-})
 
 const codePageSize = demoCode(
   `<Pagination`,
@@ -46,23 +32,10 @@ const codePageSize = demoCode(
     <DemoBlock
       :title="t('example.doc.pagination.demo.basic')"
       :description="t('example.doc.pagination.demo.basicDesc')"
-      :code="codeBasic"
+      :code="basicSource"
       default-open
     >
-      <Space direction="vertical" block size="md">
-        <Pagination
-          :total="total"
-          v-model:page="page"
-          v-model:page-size="pageSize"
-        >
-          <template #total="{ total: n }">
-            {{ t('example.doc.pagination.sample.total', { total: n }) }}
-          </template>
-        </Pagination>
-        <p class="vp-curated__hint">
-          {{ t('example.doc.pagination.sample.current', { page, pageSize }) }}
-        </p>
-      </Space>
+      <Basic />
     </DemoBlock>
 
     <DemoBlock
@@ -76,7 +49,7 @@ const codePageSize = demoCode(
         v-model:page-size="pageSize"
         :page-sizes="[10, 20, 50]"
       />
-    </DemoBlock>
+    </DemoBlock>
   </div>
 </template>
 

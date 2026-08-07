@@ -1,0 +1,9 @@
+.amg-docs-shell {
+  width: 100%;
+  min-width: 0;
+}
+
+.amg-docs-shell .vp-doc {
+  /* keep demo preview from collapsing in narrow sidebars */
+  overflow-x: auto;
+}

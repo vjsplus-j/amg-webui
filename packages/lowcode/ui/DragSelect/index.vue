@@ -7,7 +7,6 @@ import {
   moveRovingIndex,
   resolveKeyboardNavAction
 } from '@amg-webui/utils'
-import Checkbox from '@amg-webui/form/Checkbox/index.vue'
 import Button from '@amg-webui/core/Button/index.vue'
 import type { DragSelectProps, DragSelectEmits, DragSelectItem } from './types'
 import './style.scss'
@@ -164,21 +163,15 @@ const onItemKeydown = (event: KeyboardEvent, index: number, item: DragSelectItem
         @dragend="onDragEnd"
         @keydown="onItemKeydown($event, index, item)"
         @focus="focusIndex = index"
+        @click="toggle(item.id, !selected.has(item.id))"
       >
         <span
           class="vp-drag-select__handle"
           :aria-label="t(LocaleKeys.component.dragSelect.handleAria)"
-          aria-hidden="true"
         >
           ⋮⋮
         </span>
-        <Checkbox
-          :model-value="selected.has(item.id)"
-          :disabled="isItemDisabled(item)"
-          @update:model-value="(v) => toggle(item.id, v)"
-        >
-          {{ item.label }}
-        </Checkbox>
+        <span class="vp-drag-select__label">{{ item.label }}</span>
       </li>
     </ul>
   </div>

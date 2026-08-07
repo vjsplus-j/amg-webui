@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
 import { packageAlias, publicizePaths, isPublishExternal } from './build/shared.mjs'
@@ -7,16 +8,19 @@ const root = __dirname
 
 /**
  * Independent theme package build.
- * - `index` / `core` JS (ESM + CJS + d.ts)
+ * - `index` / `core` / `studio` JS (ESM + CJS + d.ts)
  * - `style.css` from style-entry (precompiled tokens + brands)
  */
 export default defineConfig({
   plugins: [
+    vue(),
     dts({
       include: [
         'packages/theme/core.ts',
         'packages/theme/core/**/*.ts',
         'packages/theme/build-entry.ts',
+        'packages/theme/studio/**/*.ts',
+        'packages/theme/studio/**/*.vue',
         'packages/theme/services/**/*.ts',
         'packages/theme/specs.ts',
         'packages/theme/design/**/*.ts'
@@ -45,7 +49,8 @@ export default defineConfig({
     lib: {
       entry: {
         index: resolve(root, 'packages/theme/build-entry.ts'),
-        core: resolve(root, 'packages/theme/core.ts')
+        core: resolve(root, 'packages/theme/core.ts'),
+        studio: resolve(root, 'packages/theme/studio/index.ts')
       },
       formats: ['es', 'cjs'],
       fileName: (format, entryName) =>

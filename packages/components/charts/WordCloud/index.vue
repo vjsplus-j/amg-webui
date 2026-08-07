@@ -33,12 +33,6 @@ const words = computed(() => {
 const hasData = computed(() => words.value.length > 0)
 const titleText = computed(() => props.title ?? t('component.word-cloud.title'))
 const emptyText = computed(() => props.emptyText ?? t('common.noData'))
-
-function onKeydown(event: KeyboardEvent, item: { label: string; value: number; index: number }) {
-  if (event.key !== 'Enter' && event.key !== ' ') return
-  event.preventDefault()
-  selectWord(item)
-}
 </script>
 
 <template>
@@ -54,7 +48,7 @@ function onKeydown(event: KeyboardEvent, item: { label: string; value: number; i
     <p v-if="description" class="vp-word-cloud__muted">{{ description }}</p>
     <p v-if="loading" class="vp-word-cloud__muted" role="status">{{ t('common.loading') }}</p>
     <p v-else-if="!hasData" class="vp-word-cloud__muted" role="status">{{ emptyText }}</p>
-    <svg v-else class="vp-word-cloud__chart" viewBox="0 0 240 140" role="img" :aria-label="titleText">
+    <svg v-else class="vp-word-cloud__chart" viewBox="0 0 240 140">
       <text
         v-for="(w, i) in words"
         :key="i"
@@ -65,12 +59,9 @@ function onKeydown(event: KeyboardEvent, item: { label: string; value: number; i
         :font-size="w.size"
         :fill="w.color"
         :transform="`rotate(${w.rotate} ${w.x} ${w.y})`"
-        :tabindex="disabled ? -1 : 0"
-        role="button"
         :aria-label="`${w.label}: ${w.value}`"
         font-weight="600"
         @click="selectWord(w, $event)"
-        @keydown="onKeydown($event, w)"
       >
         {{ showValues ? `${w.label} ${w.value}` : w.label }}
       </text>

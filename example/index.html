@@ -31,12 +31,13 @@
             screen: 'porsche'
           }
           if (design && legacy[design]) design = legacy[design]
-          var ok = { mercedes: 1, linear: 1, porsche: 1, lamborghini: 1, ferrari: 1, apple: 1 }
+          var ok = { mercedes: 1, linear: 1, porsche: 1, lamborghini: 1, ferrari: 1, apple: 1, wechat: 1, alipay: 1 }
           if (design && ok[design]) d.setAttribute('data-design', design)
           var scheme = g('scheme')
           if (scheme === 'dark' || scheme === 'light') {
             var cur = d.getAttribute('data-design') || 'linear'
-            if (cur === 'linear' || cur === 'apple') d.setAttribute('data-scheme', scheme)
+            var schemeOk = { linear: 1, apple: 1, wechat: 1, alipay: 1 }
+            if (schemeOk[cur]) d.setAttribute('data-scheme', scheme)
           }
           var font = g('font-v3')
           var fonts = {

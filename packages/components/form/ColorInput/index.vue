@@ -125,7 +125,7 @@ const openNativePicker = () => {
       :value="nativeValue"
       :disabled="isDisabled"
       tabindex="-1"
-      aria-hidden="true"
+      :aria-label="t(LocaleKeys.component.colorInput.pickColor)"
       @input="onNativeInput"
     />
     <InputText

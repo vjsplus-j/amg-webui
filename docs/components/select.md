@@ -33,6 +33,10 @@ import { Select } from '@amg-webui/form'
 
 Curated demo：`example/demos/Select/index.vue`
 
+## 交互演示
+
+<DocsDemo name="select-basic" />
+
 ## Props
 
 | Prop | 类型 | 默认 | 说明 |

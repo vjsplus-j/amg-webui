@@ -4,6 +4,7 @@ export type StatisticTrend = 'up' | 'down' | 'none'
 
 export interface StatisticProps extends BaseProps {
   title?: string
+  ariaLabel?: string
   value: number | string
   precision?: number
   prefix?: string

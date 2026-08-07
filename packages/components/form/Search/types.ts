@@ -10,6 +10,7 @@ export interface SearchProps extends BaseProps, DisabledProps {
   size?: Size
   fluid?: boolean
   invalid?: boolean
+  ariaLabel?: string
 }
 
 export interface SearchEmits {

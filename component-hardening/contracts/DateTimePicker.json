@@ -8,7 +8,7 @@
   "api": {
     "props": "required",
     "emits": "required",
-    "slots": "required",
+    "slots": "not-applicable",
     "expose": "required",
     "models": "required",
     "instance": "optional",
@@ -21,9 +21,7 @@
     "open",
     "close"
   ],
-  "requiredSlots": [
-    "default"
-  ],
+  "requiredSlots": [],
   "models": [],
   "behavioralContract": {
     "disabled": "Interactive actions no-op when disabled",
@@ -57,11 +55,11 @@
   "apiFreeze": {
     "version": "1",
     "frozen": true,
-    "frozenAt": "2026-08-07T12:08:06.538Z"
+    "frozenAt": "2026-08-07T15:42:23.457Z"
   },
   "generated": true,
   "generatedAt": "2026-08-07T09:57:01.125Z",
   "promoteStable": true,
   "batchTitle": "Date Family",
-  "updatedAt": "2026-08-07T12:08:06.538Z"
+  "updatedAt": "2026-08-07T15:42:23.457Z"
 }

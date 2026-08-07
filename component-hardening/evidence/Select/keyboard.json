@@ -1,4 +1,14 @@
 {
   "status": "PASS",
-  "detail": "selection keyboard from family e2e"
+  "keys": [
+    "Enter",
+    "ArrowDown",
+    "ArrowUp",
+    "Home",
+    "End",
+    "Escape"
+  ],
+  "detail": "Select open + arrow nav Home/End + Enter select + Escape close",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts",
+  "updatedAt": "2026-08-07T15:30:00.000Z"
 }

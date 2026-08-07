@@ -3,6 +3,8 @@ export type {
   BizLoginEmits,
   BizLoginCredentials,
   BizLoginMode,
+  BizAuthResult,
+  BizAuthAdapter,
   BizCaptchaMode,
   BizCaptchaProps,
   BizCaptchaEmits,
@@ -27,3 +29,4 @@ export { useVerifyCode } from './composables/useVerifyCode'
 export { useCaptcha } from './composables/useCaptcha'
 export { useRegisterForm } from './composables/useRegisterForm'
 export { useForgotPasswordForm } from './composables/useForgotPasswordForm'
+export { useBizAuth } from './composables/useBizAuth'

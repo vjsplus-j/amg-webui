@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, watch, onUnmounted } from 'vue'
 import Icon from '@amg-webui/core/Icon/index.vue'
+import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import type { StatisticEmits, StatisticProps } from './types'
 import { trackEmit } from '@amg-webui/telemetry'
 import './style.scss'
@@ -15,6 +17,11 @@ const props = withDefaults(defineProps<StatisticProps>(), {
 })
 
 const emit = defineEmits<StatisticEmits>()
+const { t } = useLocale()
+
+const regionLabel = computed(
+  () => props.ariaLabel || props.title || t(LocaleKeys.component.statistic.aria)
+)
 
 const displayValue = ref<string>('')
 
@@ -28,9 +35,11 @@ function formatNumber(num: number): string {
     : grouped
 }
 
-function resolveDisplayValue(raw: number | string): string {
+function resolveDisplayValue(raw: number | string | null | undefined): string {
+  if (raw == null || raw === '') return ''
   if (typeof raw === 'string') return raw
-  return formatNumber(raw)
+  if (typeof raw === 'number' && Number.isFinite(raw)) return formatNumber(raw)
+  return String(raw)
 }
 
 let rafId = 0
@@ -105,7 +114,7 @@ const rootClass = computed(() => [
 </script>
 
 <template>
-  <div :class="rootClass" :style="style">
+  <div :class="rootClass" :style="style" role="group" :aria-label="regionLabel" data-component="Statistic">
     <div v-if="title || $slots.title" class="vp-statistic__title">
       <slot name="title">{{ title }}</slot>
     </div>

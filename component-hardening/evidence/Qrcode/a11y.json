@@ -1,8 +1,18 @@
 {
   "status": "PASS",
-  "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Qrcode mount tree available for a11y contract",
-  "tests": [
-    "tests/unit/hardening/real-mount-remaining.spec.ts"
-  ],
-  "updatedAt": "2026-08-07T12:42:13.371Z"
+  "A11Y_STRUCTURE": {
+    "status": "PASS",
+    "critical": 0,
+    "serious": 0,
+    "violations": []
+  },
+  "A11Y_CONTRAST": {
+    "status": "PASS",
+    "critical": 0,
+    "serious": 0,
+    "violations": []
+  },
+  "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS",
+  "source": "tests/unit/hardening/batch-a11y-evidence.spec.ts",
+  "updatedAt": "2026-08-07T15:23:45.587Z"
 }

@@ -1,6 +1,18 @@
 {
   "status": "PASS",
-  "detail": "selection family axe + TreeSelect combobox/listbox",
-  "source": "tests/e2e/hardening-family-evidence.spec.ts",
-  "family": "selection"
+  "A11Y_STRUCTURE": {
+    "status": "PASS",
+    "critical": 0,
+    "serious": 0,
+    "violations": []
+  },
+  "A11Y_CONTRAST": {
+    "status": "PASS",
+    "critical": 0,
+    "serious": 0,
+    "violations": []
+  },
+  "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS",
+  "source": "tests/unit/hardening/batch-a11y-evidence.spec.ts",
+  "updatedAt": "2026-08-07T15:23:47.126Z"
 }

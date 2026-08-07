@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, onBeforeUnmount } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import type { ImageCropProps, ImageCropEmits } from './types'
 import './style.scss'
 
@@ -117,12 +118,21 @@ function onPick(e: Event) {
 
 <template>
   <div :class="['vp-image-crop', { 'vp-image-crop--disabled': disabled }, props.class]" :style="style" data-component="ImageCrop">
-    <input type="file" accept="image/*" class="vp-image-crop__file" :disabled="disabled" @change="onPick" />
+    <input
+      type="file"
+      accept="image/*"
+      class="vp-image-crop__file"
+      :disabled="disabled"
+      :aria-label="t(LocaleKeys.component.imageCrop.fileAria)"
+      @change="onPick"
+    />
     <div v-if="displayUrl" class="vp-image-crop__stage">
       <img ref="imgRef" :src="displayUrl" alt="" class="vp-image-crop__img" @load="onImgLoad" />
       <canvas
         ref="canvasRef"
         class="vp-image-crop__overlay"
+        role="img"
+        :aria-label="t(LocaleKeys.component.imageCrop.canvasAria)"
         @pointerdown="onPointerDown"
         @pointermove="onPointerMove"
         @pointerup="onPointerUp"

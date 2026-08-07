@@ -8,11 +8,12 @@ import { Space } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import { demoCode } from '../../components/demo/demoCode'
+import Basic from '@amg-webui/demos/switch/Basic.vue'
+import basicSource from '@amg-webui/demos/switch/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
-const basic = ref(true)
 const withPrompt = ref(false)
 const loadingOn = ref(true)
 const sizes: Size[] = ['xs', 'sm', 'md', 'lg', 'xl']
@@ -22,15 +23,6 @@ const sizeVals = ref<Record<Size, boolean>>({
   md: false,
   lg: true,
   xl: false
-})
-
-const codeBasic = demoSfc({
-  imports: [
-    `import { ref } from 'vue'`,
-    `import { Switch } from '@amg-webui/form'`
-  ],
-  script: ['const on = ref(true)'],
-  template: [`  <Switch v-model="on" />`, `  <Switch v-model="on" disabled />`]
 })
 
 const codeSize = demoCode(
@@ -59,15 +51,10 @@ const codeLoading = demoCode(`<Switch v-model="loadingOn" loading />`)
     <DemoBlock
       :title="t('example.doc.switch.demo.basic')"
       :description="t('example.doc.switch.demo.basicDesc')"
-      :code="codeBasic"
+      :code="basicSource"
       default-open
     >
-      <div class="vp-curated__row">
-        <Space>
-          <Switch v-model="basic" />
-          <Switch v-model="basic" disabled />
-        </Space>
-      </div>
+      <Basic />
     </DemoBlock>
 
     <DemoBlock
@@ -110,7 +97,7 @@ const codeLoading = demoCode(`<Switch v-model="loadingOn" loading />`)
       <div class="vp-curated__row">
         <Switch v-model="loadingOn" loading />
       </div>
-    </DemoBlock>
+    </DemoBlock>
   </div>
 </template>
 

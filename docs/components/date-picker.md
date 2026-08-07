@@ -33,6 +33,10 @@ import { DatePicker } from '@amg-webui/form'
 
 Curated demo：`example/demos/DatePicker/index.vue`
 
+## 交互演示
+
+<DocsDemo name="date-picker-basic" />
+
 ## Props
 
 | Prop | 类型 | 默认 | 说明 |

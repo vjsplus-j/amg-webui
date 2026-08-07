@@ -177,10 +177,12 @@ onUnmounted(() => {
     <span
       ref="triggerRef"
       class="vp-popover__trigger"
+      role="button"
       :class="{ 'vp-popover__trigger--disabled': disabled }"
       :tabindex="disabled || trigger === 'manual' ? undefined : 0"
       :aria-expanded="isOpen"
       :aria-controls="isOpen ? panelId : undefined"
+      :aria-label="ariaLabel || title || t(LocaleKeys.component.popover.aria)"
       aria-haspopup="dialog"
       @click="onTriggerClick"
       @keydown="onTriggerKeydown"

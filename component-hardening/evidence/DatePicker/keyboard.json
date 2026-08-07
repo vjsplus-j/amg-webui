@@ -1,4 +1,11 @@
 {
   "status": "PASS",
-  "detail": "datetime keyboard from family e2e"
+  "keys": [
+    "Enter",
+    "ArrowDown",
+    "Escape"
+  ],
+  "detail": "DatePicker open + ArrowDown + Escape",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts",
+  "updatedAt": "2026-08-07T15:30:00.000Z"
 }

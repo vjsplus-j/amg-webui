@@ -11,6 +11,7 @@ export const STEPS_INJECTION_KEY: InjectionKey<{
   unregister: (id: symbol) => void
   indexOf: (id: symbol) => number
   setActive: (index: number) => void
+  inList?: boolean
 }> = Symbol('vp-steps')
 
 export interface StepsProps extends BaseProps {

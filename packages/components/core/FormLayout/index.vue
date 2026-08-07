@@ -59,7 +59,6 @@ const rootStyle = computed(() => ({
     :style="rootStyle"
     data-component="FormLayout"
     role="group"
-    aria-orientation="vertical"
   >
     <slot />
   </div>

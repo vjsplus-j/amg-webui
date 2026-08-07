@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
 import { trackEmit } from "@amg-webui/telemetry";
 import type { CanvasMaterialItem } from "@amg-webui/utils";
 import type { DragMaterialEmits, DragMaterialProps } from "./types";
@@ -92,8 +93,9 @@ function pick(item: CanvasMaterialItem, event: MouseEvent | KeyboardEvent) {
       props.class,
     ]"
     :style="style"
+    role="region"
     data-component="DragMaterial"
-    :aria-label="ariaLabel ?? t('common.search')"
+    :aria-label="ariaLabel ?? t(LocaleKeys.component.dragMaterial.listAria)"
     :aria-busy="loading"
   >
     <slot name="header" :groups="groups" />
@@ -103,8 +105,8 @@ function pick(item: CanvasMaterialItem, event: MouseEvent | KeyboardEvent) {
       class="vp-drag-material__search"
       type="search"
       :disabled="disabled"
-      :placeholder="t('common.search')"
-      :aria-label="t('common.search')"
+      :placeholder="t(LocaleKeys.common.search)"
+      :aria-label="t(LocaleKeys.common.search)"
       @input="search"
     />
     <div v-if="loading" class="vp-drag-material__loading" role="status">
@@ -114,6 +116,7 @@ function pick(item: CanvasMaterialItem, event: MouseEvent | KeyboardEvent) {
       v-else-if="list.length"
       class="vp-drag-material__list"
       role="listbox"
+      :aria-label="t(LocaleKeys.component.dragMaterial.listAria)"
       :aria-disabled="disabled"
     >
       <li
@@ -125,6 +128,7 @@ function pick(item: CanvasMaterialItem, event: MouseEvent | KeyboardEvent) {
         ]"
         :draggable="!disabled"
         role="option"
+        :aria-label="item.label"
         :aria-selected="draggingType === item.type"
         :aria-disabled="disabled"
         :tabindex="disabled ? -1 : 0"

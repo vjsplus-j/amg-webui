@@ -10,7 +10,7 @@ import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import { demoSfc } from '../../components/demo/demoCode'
 import Basic from './parts/Basic.vue'
-import basicSource from './parts/Basic.vue?raw'
+import basicSource from '@amg-webui/demos/dialog/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()

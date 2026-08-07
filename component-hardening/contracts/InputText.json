@@ -20,9 +20,8 @@
     "blur"
   ],
   "requiredSlots": [
-    "default",
-    "prefix",
-    "suffix"
+    "leftIcon",
+    "rightIcon"
   ],
   "models": [],
   "behavioralContract": {
@@ -59,12 +58,12 @@
   "apiFreeze": {
     "version": "1",
     "frozen": true,
-    "frozenAt": "2026-08-07T11:27:08.765Z"
+    "frozenAt": "2026-08-07T15:42:23.457Z"
   },
   "generated": true,
   "generatedAt": "2026-08-07T09:57:01.186Z",
   "promoteStable": true,
   "batchTitle": "Input Core",
-  "updatedAt": "2026-08-07T11:27:08.765Z",
+  "updatedAt": "2026-08-07T15:42:23.457Z",
   "template": false
 }

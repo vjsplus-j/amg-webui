@@ -14,6 +14,8 @@ export const BREADCRUMB_INJECTION_KEY: InjectionKey<{
   separator: Ref<string>
   /** Host #separator slot when provided */
   separatorSlot: Ref<Slot | undefined>
+  /** True when rendered inside Breadcrumb `<ol>` */
+  inList?: boolean
 }> = Symbol('vp-breadcrumb')
 
 export interface BreadcrumbProps extends BaseProps {

@@ -128,6 +128,7 @@ function cancel(event: MouseEvent) {
         aria-valuemin="0"
         aria-valuemax="100"
         :aria-valuenow="progressValue"
+        :aria-label="t(LocaleKeys.component.loadingTip.progressAria)"
         ><i :style="{ width: `${progressValue}%` }" /></span
     ></span>
     <button

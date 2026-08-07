@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, toRef, watch } from "vue";
 import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
 import {
   normalizeTreeNodes,
   nodeValue,
@@ -180,6 +181,7 @@ const titleText = computed(() => props.title ?? t("component.lazy-tree.title"));
         class="vp-lazy-tree__search"
         type="search"
         :placeholder="t('common.search')"
+        :aria-label="t(LocaleKeys.component.tree.searchAria)"
         :disabled="disabled"
       />
       <button
@@ -204,8 +206,6 @@ const titleText = computed(() => props.title ?? t("component.lazy-tree.title"));
       <div
         ref="viewportRef"
         class="vp-lazy-tree__viewport"
-        role="tree"
-        :aria-label="titleText"
         :aria-busy="loading || undefined"
         @scroll="virtualEnabled ? onScroll : undefined"
       >
@@ -214,16 +214,18 @@ const titleText = computed(() => props.title ?? t("component.lazy-tree.title"));
           :class="{ 'vp-lazy-tree__spacer': virtualEnabled }"
           :style="virtualEnabled ? { height: `${totalHeight}px` } : undefined"
         >
-          <ul
+          <div
             class="vp-lazy-tree__list"
             :class="{ 'vp-lazy-tree__list--virtual': virtualEnabled }"
+            role="tree"
+            :aria-label="titleText"
             :style="
               virtualEnabled
                 ? { transform: `translateY(${offsetY}px)` }
                 : undefined
             "
           >
-            <li
+            <div
               v-for="row in displayRows"
               :key="row.id"
               role="treeitem"
@@ -269,8 +271,8 @@ const titleText = computed(() => props.title ?? t("component.lazy-tree.title"));
               >
                 {{ row.node.label }}
               </button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
         <slot v-else name="empty">
           <p class="vp-lazy-tree__muted">{{ t("common.noData") }}</p>

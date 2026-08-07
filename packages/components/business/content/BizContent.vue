@@ -251,10 +251,43 @@ async function save(as: BizContentItem['status']) {
 
 function onPublish(id: string) {
   if (!access.value.publish) return
+  void runPublish(id)
+}
+
+async function runPublish(id: string) {
+  if (usingAdapter.value && props.adapter?.update) {
+    const item = asyncApi.list.value.find((i) => i.id === id)
+    if (item) {
+      const next: BizContentItem = {
+        ...item,
+        status: 'published',
+        updatedAt: new Date().toISOString().slice(0, 10)
+      }
+      await asyncApi.update(next, { optimistic: next })
+      if (asyncApi.mutation.value.error) return
+    }
+  }
   emit('publish', id)
 }
+
 function onArchive(id: string) {
   if (!access.value.archive) return
+  void runArchive(id)
+}
+
+async function runArchive(id: string) {
+  if (usingAdapter.value && props.adapter?.update) {
+    const item = asyncApi.list.value.find((i) => i.id === id)
+    if (item) {
+      const next: BizContentItem = {
+        ...item,
+        status: 'archived',
+        updatedAt: new Date().toISOString().slice(0, 10)
+      }
+      await asyncApi.update(next, { optimistic: next })
+      if (asyncApi.mutation.value.error) return
+    }
+  }
   emit('archive', id)
 }
 function onRefresh() {

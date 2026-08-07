@@ -5,6 +5,7 @@ import { LocaleKeys } from '@amg-webui/locale'
 import type { TagInputProps, TagInputEmits } from './types'
 import { useFormItem } from '../FormItem/useFormItem'
 import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
+import { useControlAriaLabel } from '../FormItem/useControlAriaLabel'
 import './style.scss'
 
 defineOptions({ inheritAttrs: false, name: 'TagInput' })
@@ -25,6 +26,8 @@ const {
   isInvalid,
   isRequired,
   ariaDescribedby,
+  hasVisibleLabel,
+  ariaLabelledby,
   validateOnBlur,
   validateOnChange
 } = useFormItem({
@@ -34,6 +37,12 @@ const {
 })
 
 const { nativeAttrs } = useNativeInputAttrs()
+
+const inputAriaLabel = useControlAriaLabel(
+  () => props.ariaLabel,
+  LocaleKeys.component.tagInput.aria,
+  hasVisibleLabel
+)
 
 const closeLabel = computed(() => t(LocaleKeys.common.close))
 
@@ -111,6 +120,8 @@ const handleBlur = () => {
       v-model="draft"
       :placeholder="placeholder"
       :disabled="isDisabled"
+      :aria-label="inputAriaLabel"
+      :aria-labelledby="ariaLabelledby"
       :aria-invalid="isInvalid || undefined"
       :aria-required="isRequired || undefined"
       :aria-describedby="ariaDescribedby"

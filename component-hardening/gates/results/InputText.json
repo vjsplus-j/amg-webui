@@ -22,7 +22,7 @@
     {
       "id": "api-slots",
       "status": "PASS",
-      "detail": "Slots contract present or N/A"
+      "detail": "requiredSlots ok: [leftIcon, rightIcon]"
     },
     {
       "id": "i18n",
@@ -52,12 +52,12 @@
     {
       "id": "a11y",
       "status": "PASS",
-      "detail": "input family axe PASS"
+      "detail": "A11Y_STRUCTURE=PASS; A11Y_CONTRAST=PASS"
     },
     {
       "id": "keyboard",
       "status": "PASS",
-      "detail": "CJK fill retained in family e2e"
+      "detail": "batch keyboard dispatch on mounted surface (10 keys)"
     },
     {
       "id": "theme",
@@ -77,7 +77,7 @@
     {
       "id": "docs",
       "status": "PASS",
-      "detail": "curated demo exists"
+      "detail": "VitePress docs page + generated API extract"
     },
     {
       "id": "ssr",
@@ -88,5 +88,11 @@
   "failCount": 0,
   "status": "PASS",
   "stable": true,
-  "verifiedAt": "2026-08-07T12:29:16.694Z"
+  "verifiedStable": true,
+  "productMaturity": "stable",
+  "apiFreeze": true,
+  "evidenceOk": true,
+  "auditMode": false,
+  "strictEvidence": true,
+  "verifiedAt": "2026-08-07T16:15:11.337Z"
 }

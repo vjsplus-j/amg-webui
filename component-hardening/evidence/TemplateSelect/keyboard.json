@@ -1,12 +1,18 @@
 {
   "status": "PASS",
-  "detail": "Select engines (dropdown) + moveRovingIndex cards Enter",
-  "tests": [
-    "tests/unit/hardening/batch-b06-datetime-lowcode-pickers.spec.ts"
+  "keys": [
+    "Tab",
+    "Enter",
+    "Escape",
+    "ArrowDown",
+    "ArrowUp",
+    "ArrowLeft",
+    "ArrowRight",
+    "Home",
+    "End",
+    "Space"
   ],
-  "engines": [
-    "resolveKeyboardNavAction",
-    "moveRovingIndex",
-    "getFloatingPanelStyle"
-  ]
+  "detail": "batch keyboard dispatch on mounted surface (10 keys)",
+  "source": "tests/unit/hardening/batch-keyboard-evidence.spec.ts",
+  "updatedAt": "2026-08-07T15:25:09.817Z"
 }

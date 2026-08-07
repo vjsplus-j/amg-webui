@@ -6,6 +6,7 @@ export type {
   PageContext,
   PageRuntime,
   PageRuntimeOptions,
+  RunDataSourceOptions,
   ShowMessagePayload
 } from './pageRuntime'
 

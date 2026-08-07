@@ -82,7 +82,7 @@ defineExpose({ print: printRegion })
       </button>
       <slot name="toolbar" :print="printRegion" :printing="isPrinting" />
     </div>
-    <div ref="regionRef" class="vp-print__region" :aria-label="title ?? t('common.print')">
+    <div ref="regionRef" class="vp-print__region" role="region" :aria-label="title ?? t('common.print')">
       <slot :print="printRegion" :printing="isPrinting" />
     </div>
   </div>

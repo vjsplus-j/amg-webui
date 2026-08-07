@@ -82,7 +82,7 @@ const rootStyle = computed(() => {
     :class="rootClass"
     :style="rootStyle"
     data-component="Col"
-    :role="ariaLabel ? 'group' : 'cell'"
+    :role="ariaLabel ? 'group' : undefined"
     :aria-label="ariaLabel"
     @click="emit('click', $event)"
   >

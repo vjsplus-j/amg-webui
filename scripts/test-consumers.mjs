@@ -70,6 +70,15 @@ try {
     run('npm', ['install', '--no-fund', '--no-audit'], dir)
     run('npm', ['install', '--no-fund', '--no-audit', './amg-webui-packed.tgz'], dir)
     run('npm', ['run', 'build'], dir)
+
+    if (name === 'consumer-nuxt') {
+      const serverDir = join(dir, '.output', 'server')
+      if (!existsSync(serverDir)) {
+        console.error('[test:consumers] consumer-nuxt missing .output/server after build')
+        process.exit(1)
+      }
+      console.log('[test:consumers] consumer-nuxt SSR bundle OK (.output/server present)')
+    }
   }
 
   console.log('\n[test:consumers] all fixtures built OK')

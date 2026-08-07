@@ -105,6 +105,10 @@ const exportsMap = {
     './dist/components/core/index.d.ts',
     './dist/es/components/core-barrel.js'
   ),
+  './form': subpath(
+    './dist/components/form/index.d.ts',
+    './dist/es/components/form-barrel.js'
+  ),
   './components/form': subpath(
     './dist/components/form/index.d.ts',
     './dist/es/components/form-barrel.js'
@@ -164,6 +168,32 @@ for (const pkgDir of [
 
 for (const name of listBaseComponentNames()) {
   const kebab = toKebab(name)
+  // Reserved package barrels — do not let component Form collide with amg-webui/form
+  if (
+    kebab === 'form' ||
+    kebab === 'core' ||
+    kebab === 'data' ||
+    kebab === 'overlay' ||
+    kebab === 'charts' ||
+    kebab === 'editor' ||
+    kebab === 'media' ||
+    kebab === 'gb28181' ||
+    kebab === 'onvif' ||
+    kebab === 'business' ||
+    kebab === 'lowcode' ||
+    kebab === 'theme' ||
+    kebab === 'skill'
+  ) {
+    exportsMap[`./${kebab}-component`] = subpath(
+      componentTypesPath(name),
+      componentEsImportPath(name)
+    )
+    const styleRel = componentStyleImportPath(name)
+    if (existsSync(resolve(root, styleRel))) {
+      exportsMap[`./${kebab}-component/style.css`] = styleRel
+    }
+    continue
+  }
   exportsMap[`./${kebab}`] = subpath(componentTypesPath(name), componentEsImportPath(name))
   const styleRel = componentStyleImportPath(name)
   if (existsSync(resolve(root, styleRel))) {

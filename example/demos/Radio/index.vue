@@ -4,14 +4,14 @@
  */
 import { ref, computed } from 'vue'
 import { Radio, RadioGroup } from '@amg-webui/form'
-import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
+import { demoCode } from '../../components/demo/demoCode'
+import Basic from '@amg-webui/demos/radio/Basic.vue'
+import basicSource from '@amg-webui/demos/radio/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
-const solo = ref('a')
 const groupVal = ref('apple')
 const optionsVal = ref('zh-CN')
 const vertVal = ref('1')
@@ -21,19 +21,6 @@ const langOptions = computed(() => [
   { label: t('example.doc.radio.sample.en'), value: 'en-US' },
   { label: t('example.doc.radio.sample.ja'), value: 'ja-JP' }
 ])
-
-const codeBasic = demoSfc({
-  imports: [
-    `import { ref } from 'vue'`,
-    `import { Radio } from '@amg-webui/form'`
-  ],
-  script: [`const solo = ref('a')`],
-  template: [
-    `  <Radio v-model="solo" value="a" :label="t('example.doc.radio.sample.optA')" />`,
-    `  <Radio v-model="solo" value="b" :label="t('example.doc.radio.sample.optB')" />`,
-    `  <Radio v-model="solo" value="c" :label="t('example.doc.radio.sample.optC')" disabled />`
-  ]
-})
 
 const codeGroup = demoCode(
   `<RadioGroup v-model="groupVal" name="fruit">`,
@@ -66,21 +53,10 @@ const codeVert = demoCode(
     <DemoBlock
       :title="t('example.doc.radio.demo.basic')"
       :description="t('example.doc.radio.demo.basicDesc')"
-      :code="codeBasic"
+      :code="basicSource"
       default-open
     >
-      <div class="vp-curated__row">
-        <Space>
-          <Radio v-model="solo" value="a" :label="t('example.doc.radio.sample.optA')" />
-          <Radio v-model="solo" value="b" :label="t('example.doc.radio.sample.optB')" />
-          <Radio
-            v-model="solo"
-            value="c"
-            :label="t('example.doc.radio.sample.optC')"
-            disabled
-          />
-        </Space>
-      </div>
+      <Basic />
     </DemoBlock>
 
     <DemoBlock
@@ -123,7 +99,7 @@ const codeVert = demoCode(
           <Radio value="3" :label="t('example.doc.radio.sample.optC')" />
         </RadioGroup>
       </div>
-    </DemoBlock>
+    </DemoBlock>
   </div>
 </template>
 

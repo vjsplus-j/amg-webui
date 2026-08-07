@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
 import { trackEmit } from "@amg-webui/telemetry";
 import type { RateEmits, RateProps } from "./types";
 import { useFormItem } from "../FormItem/useFormItem";
@@ -19,6 +21,7 @@ const props = withDefaults(defineProps<RateProps>(), {
   telemetry: undefined,
 });
 const emit = defineEmits<RateEmits>();
+const { t } = useLocale();
 
 const {
   inputId,
@@ -98,6 +101,9 @@ const half = (index: number) =>
 const scoreText = computed(
   () => props.texts[Math.ceil(value.value) - 1] ?? String(value.value),
 );
+const rateAriaLabel = computed(
+  () => props.ariaLabel || t(LocaleKeys.component.rate.aria)
+);
 </script>
 <template>
   <div
@@ -109,20 +115,16 @@ const scoreText = computed(
       props.class,
     ]"
     :style="style"
-    role="slider"
-    :tabindex="isDisabled ? -1 : 0"
-    aria-valuemin="0"
-    :aria-valuenow="value"
-    :aria-valuemax="count"
-    :aria-readonly="readonly"
-    :aria-disabled="isDisabled"
+    role="radiogroup"
+    :aria-label="rateAriaLabel"
+    :aria-disabled="isDisabled || undefined"
+    :aria-readonly="readonly || undefined"
     :aria-invalid="isInvalid || undefined"
     :aria-required="isRequired || undefined"
     :aria-describedby="ariaDescribedby"
-    :aria-label="ariaLabel"
     data-component="Rate"
-    @keydown="keydown"
     @mouseleave="leave"
+    @keydown="keydown"
     @focus="emit('focus', $event)"
     @blur="(e) => { emit('blur', e); void validateOnBlur(); }"
   >
@@ -132,7 +134,8 @@ const scoreText = computed(
       type="button"
       :class="['vp-rate__item', { 'vp-rate__item--active': active(index) }]"
       :disabled="isDisabled || readonly"
-      :tabindex="-1"
+      role="radio"
+      :aria-checked="active(index)"
       :aria-label="texts[index - 1] ?? `${index}/${count}`"
       @click="commit(resolve($event, index))"
       @mousemove="hover($event, index)"

@@ -29,6 +29,8 @@ const props = withDefaults(defineProps<TimelineItemProps>(), {
 });
 const emit = defineEmits<TimelineItemEmits>();
 const timeline = inject(TIMELINE_INJECTION_KEY, null);
+const inList = computed(() => timeline?.inList ?? false);
+const rootTag = computed(() => (inList.value ? "li" : "div"));
 const itemIndex = ref(0);
 onMounted(() => {
   if (timeline) itemIndex.value = timeline.claimIndex();
@@ -83,10 +85,10 @@ function activate(event: MouseEvent | KeyboardEvent) {
 }
 </script>
 <template>
-  <li
+  <component
+    :is="rootTag"
     :class="rootClass"
     :style="style"
-    role="listitem"
     :tabindex="interactive ? 0 : undefined"
     :aria-current="active ? 'step' : undefined"
     :aria-disabled="disabled"
@@ -134,5 +136,5 @@ function activate(event: MouseEvent | KeyboardEvent) {
         >{{ timestamp }}</time
       >
     </div>
-  </li>
+  </component>
 </template>

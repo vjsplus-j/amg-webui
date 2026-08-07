@@ -60,11 +60,6 @@ function selectPoint(item: LineChartItem, event?: MouseEvent | KeyboardEvent) {
   if (event instanceof MouseEvent) emit('click', event)
 }
 
-function onKeydown(event: KeyboardEvent, item: LineChartItem) {
-  if (event.key !== 'Enter' && event.key !== ' ') return
-  event.preventDefault()
-  selectPoint(item, event)
-}
 </script>
 
 <template>
@@ -80,7 +75,7 @@ function onKeydown(event: KeyboardEvent, item: LineChartItem) {
     <p v-if="description" class="vp-line-chart__muted">{{ description }}</p>
     <p v-if="loading" class="vp-line-chart__muted" role="status">{{ t('common.loading') }}</p>
     <p v-else-if="!hasData" class="vp-line-chart__muted" role="status">{{ emptyText }}</p>
-    <svg v-else class="vp-line-chart__chart" :viewBox="`0 0 360 ${height}`" role="img" :aria-label="titleText">
+    <svg v-else class="vp-line-chart__chart" :viewBox="`0 0 360 ${height}`">
       <line x1="12" :y1="baseline" x2="348" :y2="baseline" stroke="var(--ds-border)" stroke-width="1" />
       <polygon v-if="showArea && area" class="vp-line-chart__area" :points="area" />
       <polyline v-if="points" fill="none" stroke="var(--primary-500)" stroke-width="2" :points="points" />
@@ -93,11 +88,8 @@ function onKeydown(event: KeyboardEvent, item: LineChartItem) {
         :cx="item.x"
         :cy="item.y"
         r="3"
-        :tabindex="selectable && !disabled ? 0 : -1"
-        role="button"
         :aria-label="`${item.label}: ${item.value}`"
         @click="selectPoint(item, $event)"
-        @keydown="onKeydown($event, item)"
       >
         <title>{{ item.label }}: {{ item.value }}</title>
       </circle>

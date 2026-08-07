@@ -9,7 +9,7 @@ import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import { demoCode } from '../../components/demo/demoCode'
 import Basic from './parts/Basic.vue'
-import basicSource from './parts/Basic.vue?raw'
+import basicSource from '@amg-webui/demos/date-picker/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()

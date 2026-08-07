@@ -39,7 +39,8 @@ import { Button, ThemeService } from 'amg-webui'
 | `amg-webui/hooks` · `utils` · `locale` · … | 运行时深路径（显式 exports，如 `amg-webui/utils/env`） |
 | `amg-webui/skill` · `skill/core` | Skill Runtime（experimental，不纳入 0.1 稳定承诺） |
 | `amg-webui/biz-login` · … | 业务域按需入口 |
-| `amg-webui/components/base` · `components/business` | 域 barrel（编译后的 re-export，非源码） |
+| `amg-webui/components/base` | **legacy**：仅再导出 `core`（不含 Select/Form/DataTable） |
+| `amg-webui/components/business` | 业务域 barrel（编译后的 re-export，非源码） |
 
 > **合同硬约束**：公共子路径禁止指向 `packages/**/*.ts` / `.vue`。消费者不应需要解析仓库 alias、编译 SFC 或处理内部 SCSS 才能导入库。
 

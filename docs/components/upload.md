@@ -24,6 +24,10 @@ import { Upload } from 'amg-webui'
 
 运行态 Demo：`example/demos/Upload/index.vue`
 
+## 交互演示
+
+<DocsDemo name="upload-basic" />
+
 ## Props
 
 | Prop | Type | Default | Description |

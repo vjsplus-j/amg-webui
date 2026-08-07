@@ -142,6 +142,7 @@ onUnmounted(() => {
     ><span
       ref="triggerRef"
       class="vp-tooltip-trigger__target"
+      :role="has('focus') || has('click') ? 'button' : undefined"
       :tabindex="has('focus') || has('click') ? 0 : undefined"
       :aria-describedby="isOpen ? panelId : undefined"
       :aria-expanded="has('click') ? isOpen : undefined"

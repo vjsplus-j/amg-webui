@@ -304,6 +304,7 @@ const {
   itemHeight,
   onScroll,
   reset: resetVirtual,
+  scrollToIndex,
 } = useVirtualList(rowRef, {
   containerHeight: containerHeightPx,
   itemHeight: estimatedItemHeightPx,
@@ -621,6 +622,101 @@ function onScrollHost(event: Event) {
 watch(hVirtualEnabled, (enabled) => {
   if (!enabled) resetHorizontal();
 });
+
+const focusedRowIndex = ref(-1)
+
+function scrollTo(options: { rowIndex?: number; key?: RowKey } = {}) {
+  const source = displaySource.value
+  let index =
+    typeof options.rowIndex === 'number' ? options.rowIndex : -1
+  if (index < 0 && options.key !== undefined && options.key !== null) {
+    index = source.findIndex(
+      (row: any, i: number) => resolveRowKey(row, i) === options.key,
+    )
+  }
+  if (index < 0 || index >= source.length) return
+  focusedRowIndex.value = index
+  if (useVirtual.value && typeof scrollToIndex === 'function') {
+    scrollToIndex(index)
+  } else if (scrollRef.value || bodyRef.value) {
+    const host = bodyRef.value || scrollRef.value
+    const rowEl = host?.querySelector(
+      `[data-row-key="${String(resolveRowKey(source[index], index)).replace(/"/g, '\\"')}"]`,
+    ) as HTMLElement | null
+    rowEl?.scrollIntoView({ block: 'nearest' })
+  }
+}
+
+function onSortKeydown(event: KeyboardEvent, column: Column) {
+  if (!column.sortable) return
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault()
+    handleSort(column)
+  }
+}
+
+function onTableKeydown(event: KeyboardEvent) {
+  const source = displaySource.value
+  if (!source.length) return
+  const key = event.key
+  if (
+    !['ArrowDown', 'ArrowUp', 'Home', 'End', 'Enter', ' ', 'Escape'].includes(
+      key,
+    )
+  ) {
+    return
+  }
+  const target = event.target as HTMLElement | null
+  if (
+    target &&
+    (target.tagName === 'INPUT' ||
+      target.tagName === 'SELECT' ||
+      target.tagName === 'TEXTAREA' ||
+      target.isContentEditable)
+  ) {
+    if (key === 'Escape') (target as HTMLInputElement).blur()
+    return
+  }
+  event.preventDefault()
+  if (key === 'Home') {
+    focusedRowIndex.value = 0
+    scrollTo({ rowIndex: 0 })
+    return
+  }
+  if (key === 'End') {
+    focusedRowIndex.value = source.length - 1
+    scrollTo({ rowIndex: source.length - 1 })
+    return
+  }
+  if (key === 'ArrowDown') {
+    focusedRowIndex.value = Math.min(
+      source.length - 1,
+      Math.max(0, focusedRowIndex.value) + 1,
+    )
+    scrollTo({ rowIndex: focusedRowIndex.value })
+    return
+  }
+  if (key === 'ArrowUp') {
+    focusedRowIndex.value = Math.max(0, focusedRowIndex.value - 1)
+    scrollTo({ rowIndex: focusedRowIndex.value })
+    return
+  }
+  if (key === 'Enter' || key === ' ') {
+    const idx = focusedRowIndex.value
+    if (idx < 0 || idx >= source.length) return
+    const row = source[idx]
+    if (props.selectionMode) {
+      toggleRowSelection(row, event as unknown as MouseEvent)
+    }
+  }
+  if (key === 'Escape') {
+    focusedRowIndex.value = -1
+  }
+}
+
+defineExpose({
+  scrollTo,
+})
 </script>
 
 <template>
@@ -636,6 +732,10 @@ watch(hVirtualEnabled, (enabled) => {
       props.class,
     ]"
     :style="style"
+    role="region"
+    :aria-label="t(LocaleKeys.component.dataTable.title)"
+    tabindex="0"
+    @keydown="onTableKeydown"
   >
     <div
       v-if="loading || sortBusy"
@@ -670,7 +770,6 @@ watch(hVirtualEnabled, (enabled) => {
       <table
         v-if="fixedHeader"
         class="vp-datatable__table vp-datatable__table--head"
-        role="presentation"
       >
         <colgroup>
           <col v-if="selectionMode" class="vp-datatable__col--check" />
@@ -721,7 +820,18 @@ watch(hVirtualEnabled, (enabled) => {
               ]"
               :style="cellStyle(column)"
               scope="col"
+              :tabindex="column.sortable ? 0 : undefined"
+              :aria-sort="
+                sortState(column) === 'asc'
+                  ? 'ascending'
+                  : sortState(column) === 'desc'
+                    ? 'descending'
+                    : column.sortable
+                      ? 'none'
+                      : undefined
+              "
               @click="handleSort(column)"
+              @keydown="onSortKeydown($event, column)"
             >
               <span class="vp-datatable__th-label">
                 {{ column.header }}

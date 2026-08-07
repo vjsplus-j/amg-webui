@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-08-07T16:30:14.566Z",
+  "budgets": {
+    "dataTable10k": {
+      "maxBodyRows": 500,
+      "maxMountMs": 3000
+    },
+    "dataTable100k": {
+      "maxBodyRows": 800,
+      "maxMountMs": 8000
+    },
+    "tree10k": {
+      "maxVisibleNodes": 500,
+      "maxMountMs": 4000
+    },
+    "select10k": {
+      "maxDomOptions": 100,
+      "maxMountMs": 2000
+    },
+    "virtualList100k": {
+      "maxDomItems": 100,
+      "maxMountMs": 3000
+    }
+  },
+  "results": {
+    "dataTable10k": {
+      "maxBodyRows": 17,
+      "maxMountMs": 58.67630000000099
+    },
+    "dataTable100k": {
+      "maxBodyRows": 17,
+      "maxMountMs": 149.59469999999965
+    },
+    "tree10k": {
+      "maxVisibleNodes": 21,
+      "maxMountMs": 56.40730000000076
+    },
+    "select10k": {
+      "maxDomOptions": 18,
+      "maxMountMs": 61.72199999999975
+    },
+    "virtualList100k": {
+      "maxDomItems": 21,
+      "maxMountMs": 560.5125000000007
+    }
+  },
+  "source": "tests/unit/perf/perf-gates.spec.ts"
+}

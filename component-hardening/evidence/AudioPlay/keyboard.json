@@ -1,8 +1,10 @@
 {
-  "status": "PASS",
-  "detail": "tests/unit/hardening/real-mount-remaining.spec.ts AudioPlay interactive surface present (keyboard applicable)",
+  "status": "FAIL",
+  "detail": "invalid keyboard evidence (mount/visibility only): \"tests/unit/hardening/real-mount-remaining.spec.ts AudioPlay interactive surface present (keyboard applicable)\"",
   "tests": [
     "tests/unit/hardening/real-mount-remaining.spec.ts"
   ],
-  "updatedAt": "2026-08-07T12:39:26.512Z"
+  "updatedAt": "2026-08-07T12:39:26.512Z",
+  "invalidatedAt": "2026-08-07T15:18:58.605Z",
+  "previousStatus": "PASS"
 }

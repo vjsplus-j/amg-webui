@@ -8,7 +8,7 @@ import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import Basic from './parts/Basic.vue'
-import basicSource from './parts/Basic.vue?raw'
+import basicSource from '@amg-webui/demos/button/Basic.vue?raw'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import MotionLivePanel from '../../components/demo/MotionLivePanel.vue'
 import {
@@ -539,7 +539,7 @@ const codeGroup = demoCode(
           </template>
         </Button>
       </div>
-    </DemoBlock>
+    </DemoBlock>
   </div>
 </template>
 

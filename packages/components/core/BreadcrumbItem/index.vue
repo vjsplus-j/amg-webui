@@ -30,8 +30,11 @@ const emit = defineEmits<{
 
 const ctx = inject(BREADCRUMB_INJECTION_KEY, {
   separator: ref('/'),
-  separatorSlot: computed(() => undefined)
+  separatorSlot: computed(() => undefined),
+  inList: false
 })
+
+const rootTag = computed(() => (ctx.inList ? 'li' : 'div'))
 
 const isLink = computed(() => Boolean(props.href || props.to) && !props.disabled)
 const linkHref = computed(() => props.href ?? props.to)
@@ -59,7 +62,8 @@ function onClick(event: MouseEvent) {
 </script>
 
 <template>
-  <li
+  <component
+    :is="rootTag"
     :class="[
       'vp-breadcrumb-item',
       {
@@ -94,5 +98,5 @@ function onClick(event: MouseEvent) {
         <template v-else>{{ ctx.separator.value }}</template>
       </slot>
     </span>
-  </li>
+  </component>
 </template>

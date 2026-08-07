@@ -30,6 +30,10 @@ import { Dialog } from '@amg-webui/overlay'
 
 Curated demo：`example/demos/Dialog/index.vue`
 
+## 交互演示
+
+<DocsDemo name="dialog-basic" />
+
 ## Props
 
 | Prop | 类型 | 默认 | 说明 |

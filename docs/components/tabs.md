@@ -20,6 +20,10 @@ const active = ref('a')
 </template>
 ```
 
+## 交互演示
+
+<DocsDemo name="tabs-basic" />
+
 ## 常用 API（Tabs）
 
 | Prop | 类型 | 默认 | 说明 |

@@ -77,6 +77,11 @@
       "types": "./dist/components/core/index.d.ts",
       "default": "./dist/es/components/core-barrel.js"
     },
+    "./form": {
+      "import": "./dist/es/components/form-barrel.js",
+      "types": "./dist/components/form/index.d.ts",
+      "default": "./dist/es/components/form-barrel.js"
+    },
     "./components/form": {
       "import": "./dist/es/components/form-barrel.js",
       "types": "./dist/components/form/index.d.ts",
@@ -544,6 +549,11 @@
       "types": "./dist/locale/en-US/index.d.ts",
       "default": "./dist/locale/en-US/index.js"
     },
+    "./locale/hi-IN": {
+      "import": "./dist/locale/hi-IN/index.js",
+      "types": "./dist/locale/hi-IN/index.d.ts",
+      "default": "./dist/locale/hi-IN/index.js"
+    },
     "./locale": {
       "import": "./dist/locale/index.js",
       "types": "./dist/locale/index.d.ts",
@@ -569,20 +579,15 @@
       "types": "./dist/locale/ru-RU/index.d.ts",
       "default": "./dist/locale/ru-RU/index.js"
     },
-    "./locale/zh-CN": {
-      "import": "./dist/locale/zh-CN/index.js",
-      "types": "./dist/locale/zh-CN/index.d.ts",
-      "default": "./dist/locale/zh-CN/index.js"
-    },
-        "./locale/hi-IN": {
-      "import": "./dist/locale/hi-IN/index.js",
-      "types": "./dist/locale/hi-IN/index.d.ts",
-      "default": "./dist/locale/hi-IN/index.js"
-    },
     "./locale/ug-CN": {
       "import": "./dist/locale/ug-CN/index.js",
       "types": "./dist/locale/ug-CN/index.d.ts",
       "default": "./dist/locale/ug-CN/index.js"
+    },
+    "./locale/zh-CN": {
+      "import": "./dist/locale/zh-CN/index.js",
+      "types": "./dist/locale/zh-CN/index.d.ts",
+      "default": "./dist/locale/zh-CN/index.js"
     },
     "./locale/zh-HK": {
       "import": "./dist/locale/zh-HK/index.js",
@@ -1180,7 +1185,7 @@
       "default": "./dist/es/components/core/FooterNav/index.js"
     },
     "./footer-nav/style.css": "./dist/es/components/core/FooterNav/style.css",
-    "./form": {
+    "./form-component": {
       "import": "./dist/es/components/form/Form/index.js",
       "types": "./dist/components/form/Form/index.d.ts",
       "default": "./dist/es/components/form/Form/index.js"
@@ -2355,11 +2360,15 @@
     "check:dist": "node scripts/check-dist-artifacts.mjs",
     "check:route-title-keys": "node scripts/check-route-title-keys.mjs",
     "test": "vitest run",
-    "test:ssr": "vitest run tests/unit/ssr-env.spec.ts tests/unit/ssr-import.spec.ts tests/unit/theme-core.spec.ts",
+    "test:ssr": "vitest run tests/unit/ssr-env.spec.ts tests/unit/ssr-import.spec.ts tests/unit/ssr-hydration.spec.ts tests/unit/theme-core.spec.ts",
+    "test:perf-gates": "vitest run tests/unit/perf/perf-gates.spec.ts",
     "test:consumers": "node scripts/test-consumers.mjs",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "test:visual:matrix": "playwright test tests/e2e/visual-theme-matrix.spec.ts --project=chromium",
+    "test:visual:matrix:update": "playwright test tests/e2e/visual-theme-matrix.spec.ts --project=chromium --update-snapshots",
     "check:boundaries": "node scripts/check-package-boundaries.mjs",
+    "check:version-consistency": "node scripts/check-version-consistency.mjs",
     "hardening:generate": "node scripts/hardening/generate-governance.mjs",
     "audit:api": "node scripts/hardening/audit-api.mjs",
     "verify:component": "node scripts/hardening/verify-component.mjs",
@@ -2375,12 +2384,34 @@
     "hardening:batches": "node scripts/hardening/enrich-batches.mjs",
     "hardening:release": "node scripts/hardening/isolated-css-report.mjs && node scripts/hardening/release-reports.mjs",
     "hardening:evidence": "npx vitest run tests/unit/hardening/family-evidence.spec.ts && npx playwright test tests/e2e/hardening-family-evidence.spec.ts --project=chromium && node scripts/hardening/summarize-family-evidence.mjs && node scripts/hardening/merge-family-evidence.mjs",
-    "hardening:templates-verify": "npm run verify:component -- Button && npm run verify:component -- Select && npm run verify:component -- DatePicker && npm run verify:component -- Dialog && npm run verify:component -- DataTable",
-    "hardening:all": "npm run hardening:generate && npm run hardening:templates && npm run hardening:batches && npm run audit:api && npm run hardening:demote && npm run verify:component -- --all && npm run hardening:ssr && npm run hardening:visual && npm run hardening:dashboard && npm run hardening:release",
-    "ci": "vue-tsc --noEmit && npm run check:boundaries && npm run validate:catalog && npm run extract:i18n && npm run test && npm run test:ssr && npm run build:lib && npm run check:dist && npm run test:consumers",
+    "hardening:templates-verify": "node scripts/hardening/verify-component.mjs Button && node scripts/hardening/verify-component.mjs Select && node scripts/hardening/verify-component.mjs DatePicker && node scripts/hardening/verify-component.mjs Dialog && node scripts/hardening/verify-component.mjs DataTable",
+    "hardening:all": "npm run hardening:generate && npm run hardening:templates && npm run hardening:batches && npm run audit:api && node scripts/hardening/verify-component.mjs --all && npm run hardening:demote && npm run hardening:ssr && npm run hardening:visual && npm run hardening:dashboard && npm run hardening:release && npm run check:version-consistency",
+    "ci": "vue-tsc --noEmit && npm run check:boundaries && npm run check:version-consistency && npm run validate:catalog && npm run extract:i18n && npm run test && npm run test:ssr && npm run build:lib && npm run check:dist && npm run test:consumers",
     "generate:vitepress-api": "node scripts/generate-vitepress-api.mjs",
-    "docs:dev": "vitepress dev docs --config vitepress.config.ts",
-    "docs:build": "vitepress build docs --config vitepress.config.ts",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "showcase:admin": "npm run dev --prefix showcases/01-admin",
+    "showcase:admin:build": "npm run build --prefix showcases/01-admin",
+    "showcase:saas": "npm run dev --prefix showcases/02-saas",
+    "showcase:saas:build": "npm run build --prefix showcases/02-saas",
+    "showcase:ecommerce": "npm run dev --prefix showcases/03-ecommerce",
+    "showcase:ecommerce:build": "npm run build --prefix showcases/03-ecommerce",
+    "showcase:content-management": "npm run dev --prefix showcases/04-content-management",
+    "showcase:content-management:build": "npm run build --prefix showcases/04-content-management",
+    "showcase:device-management": "npm run dev --prefix showcases/05-device-management",
+    "showcase:device-management:build": "npm run build --prefix showcases/05-device-management",
+    "showcase:video-surveillance": "npm run dev --prefix showcases/06-video-surveillance",
+    "showcase:video-surveillance:build": "npm run build --prefix showcases/06-video-surveillance",
+    "showcase:gb28181-center": "npm run dev --prefix showcases/07-gb28181-center",
+    "showcase:gb28181-center:build": "npm run build --prefix showcases/07-gb28181-center",
+    "showcase:onvif-center": "npm run dev --prefix showcases/08-onvif-center",
+    "showcase:onvif-center:build": "npm run build --prefix showcases/08-onvif-center",
+    "showcase:dashboard": "npm run dev --prefix showcases/09-dashboard",
+    "showcase:dashboard:build": "npm run build --prefix showcases/09-dashboard",
+    "showcase:mobile-admin": "npm run dev --prefix showcases/10-mobile-admin",
+    "showcase:mobile-admin:build": "npm run build --prefix showcases/10-mobile-admin",
+    "showcases:build": "npm run showcase:admin:build && npm run showcase:saas:build && npm run showcase:ecommerce:build && npm run showcase:content-management:build && npm run showcase:device-management:build && npm run showcase:video-surveillance:build && npm run showcase:gb28181-center:build && npm run showcase:onvif-center:build && npm run showcase:dashboard:build && npm run showcase:mobile-admin:build",
+    "showcases:generate": "node scripts/generate-showcases.mjs",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "peerDependencies": {

@@ -16,7 +16,9 @@ const THEMES = [
   'porsche',
   'lamborghini',
   'ferrari',
-  'apple'
+  'apple',
+  'wechat',
+  'alipay'
 ]
 
 function main() {

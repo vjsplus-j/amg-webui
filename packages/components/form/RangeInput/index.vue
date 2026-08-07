@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { useLocale } from "@amg-webui/hooks";
+import { LocaleKeys } from "@amg-webui/locale";
 import InputNumber from "../InputNumber/index.vue";
 import { trackEmit } from "@amg-webui/telemetry";
 import type { RangeInputProps, RangeInputEmits, RangeValue } from "./types";
@@ -17,6 +19,11 @@ const props = withDefaults(defineProps<RangeInputProps>(), {
 });
 
 const emit = defineEmits<RangeInputEmits>();
+const { t } = useLocale();
+
+const rangeAriaLabel = computed(
+  () => props.ariaLabel || t(LocaleKeys.component.rangeInput.aria)
+);
 
 const {
   inputId,
@@ -64,7 +71,7 @@ const emitValue = (next: RangeValue) => {
     :style="style"
     data-component="RangeInput"
     role="group"
-    :aria-label="ariaLabel"
+    :aria-label="rangeAriaLabel"
     :aria-invalid="isInvalid || undefined"
     :aria-required="isRequired || undefined"
     :aria-describedby="ariaDescribedby"
@@ -79,6 +86,7 @@ const emitValue = (next: RangeValue) => {
       :max="max"
       :invalid="isInvalid"
       :placeholder="startPlaceholder"
+      :ariaLabel="startPlaceholder || t(LocaleKeys.component.rangeInput.start)"
       skip-form-item
       @update:model-value="emitValue({ ...local, min: $event })"
     />
@@ -93,6 +101,7 @@ const emitValue = (next: RangeValue) => {
       :max="max"
       :invalid="isInvalid"
       :placeholder="endPlaceholder"
+      :ariaLabel="endPlaceholder || t(LocaleKeys.component.rangeInput.end)"
       skip-form-item
       @update:model-value="emitValue({ ...local, max: $event })"
     />

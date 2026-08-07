@@ -41,6 +41,10 @@ const model = ref({ name: '' })
 
 Curated demo：`example/demos/Form/index.vue`
 
+## 交互演示
+
+<DocsDemo name="form-basic" />
+
 ## FormItem 集成
 
 `FormItem` provides field context; form controls auto-integrate via `useFormItem` (`id` / `name` / `disabled` / `aria-*` / blur-or-change validate):

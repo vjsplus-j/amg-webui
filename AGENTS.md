@@ -54,7 +54,7 @@ Cursor：`.cursor/rules/10-component-hardening.mdc`。
 公开可选子路径：`amg-webui/skill`（Core + Vue 集成）· `amg-webui/skill/core`（框架无关 Core）。
 **根入口 `amg-webui` 禁止导出 Skill Runtime**；未显式导入子路径时不得引入运行时代码或初始化副作用。
 
-状态口径：SR1 / SR2（最小 Core、Vue 接入、Scope、Pipeline JSON v1）experimental 基线已实现并通过当前基础门禁，但不得称 stable；稳定化 DoD 以 `docs/SKILL_RUNTIME.md` 为准。SR3 官方内置 Skill 与 example 调试页尚未实现，不得写成现有能力。
+状态口径：SR1 / SR2（最小 Core、Vue 接入、Scope、Pipeline JSON v1）experimental 基线已实现并通过当前基础门禁，但不得称 stable；稳定化 DoD 以 `docs/SKILL_RUNTIME.md` 为准。SR3 官方 built-ins（`table-search` / `dict-mapping` / `form-submit` / `table-export` / `request-wrapper`）、Inspector / Telemetry Bridge 与 example `/lab/skill` 已进入 experimental 基线，仍不得称 stable。
 
 ## 仓库结构（锁定）
 
@@ -123,4 +123,5 @@ Cursor：`.cursor/rules/20-design-system.mdc`。
 12. **完成必验**：改完 `packages/` / `example/` 必须先跑通检查再宣称完成（至少 `npx vue-tsc --noEmit` + `npm run check:boundaries`）；见 `.cursor/rules/02-verify-before-done.mdc` · `docs/engineering/definition-of-done.md`。
 13. **Telemetry**：交互组件旁路 `trackEmit`；`telemetry` prop 默认 `undefined`（勿依赖 Vue Boolean 省略）；纯展示件不伪造事件。
 14. **example Demo 铺满**：`DemoBlock` / `DemoCode` / curated 演示铺满 `.ln-content` 内容列；禁止阅读栏 `max-width` 套在代码示例上、禁止 `DemoCode` 嵌套 `max-height`。见 `docs/APP_WORKFLOW.md` § Demo 铺满。
-15. **Skill Runtime**：保持 experimental、独立可选、UI 零硬依赖；只从 `amg-webui/skill` 或 `amg-webui/skill/core` 接入，根入口禁止导出。SR1 / SR2 当前仅为已验证最小基线，不得冒充 stable；SR3 built-ins / example 未实现前禁止占位式宣传。
+15. **Skill Runtime**：保持 experimental、独立可选、UI 零硬依赖；只从 `amg-webui/skill` 或 `amg-webui/skill/core` 接入，根入口禁止导出。SR1–SR3 当前均为已验证 experimental 基线，不得冒充 stable；SR4 Pipeline 可视化编辑器未实现前禁止占位式宣传。
+16. **Lowcode**：从 `amg-webui/lowcode` 接入；**根入口 `amg-webui` 不导出 Lowcode**（与 Skill 同为 opt-in，避免撑爆全量 bundle）。

@@ -6,6 +6,7 @@ import type { SearchProps, SearchEmits } from './types'
 import { useSearch } from './useSearch'
 import { useFormItem } from '../FormItem/useFormItem'
 import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
+import { useControlAriaLabel } from '../FormItem/useControlAriaLabel'
 import './style.scss'
 
 defineOptions({ inheritAttrs: false, name: 'Search' })
@@ -26,6 +27,8 @@ const {
   isInvalid,
   isRequired,
   ariaDescribedby,
+  hasVisibleLabel,
+  ariaLabelledby,
   validateOnBlur,
   validateOnChange
 } = useFormItem({
@@ -35,6 +38,12 @@ const {
 })
 
 const { nativeAttrs } = useNativeInputAttrs()
+
+const inputAriaLabel = useControlAriaLabel(
+  () => props.ariaLabel,
+  LocaleKeys.component.search.aria,
+  hasVisibleLabel
+)
 
 const resolvedPlaceholder = computed(
   () => props.placeholder ?? t(LocaleKeys.common.search)
@@ -84,6 +93,8 @@ const handleBlur = (event: FocusEvent) => {
       :value="modelValue"
       :placeholder="resolvedPlaceholder"
       :disabled="isDisabled"
+      :aria-label="inputAriaLabel"
+      :aria-labelledby="ariaLabelledby"
       :aria-invalid="isInvalid || undefined"
       :aria-required="isRequired || undefined"
       :aria-describedby="ariaDescribedby"

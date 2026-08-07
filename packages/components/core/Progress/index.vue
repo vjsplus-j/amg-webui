@@ -2,19 +2,23 @@
 import { computed, watch, ref } from 'vue'
 import type { ProgressEmits, ProgressStatus, ProgressType } from './types'
 import { trackEmit } from '@amg-webui/telemetry'
+import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import './style.scss'
 
 defineOptions({ inheritAttrs: false })
 
-/** Inline � imported `ProgressProps` is not expanded into runtime props. */
+/** Inline — imported `ProgressProps` is not expanded into runtime props. */
 const props = withDefaults(
   defineProps<{
     percentage: number
     type?: ProgressType
     status?: ProgressStatus
     showText?: boolean
-    /** Stroke thickness � Size token CSS var or CSS length */
+    /** Stroke thickness — Size token CSS var or CSS length */
     strokeWidth?: number | string
+    /** Accessible name for the progressbar */
+    ariaLabel?: string
     trackId?: string
     telemetry?: boolean
     class?: string
@@ -29,6 +33,11 @@ const props = withDefaults(
 )
 
 const emit = defineEmits<ProgressEmits>()
+const { t } = useLocale()
+
+const progressAriaLabel = computed(
+  () => props.ariaLabel || t(LocaleKeys.component.progress.aria)
+)
 
 const clampedPercentage = computed(() =>
   Math.min(100, Math.max(0, Number(props.percentage) || 0))
@@ -135,6 +144,7 @@ const strokeDashoffset = computed(
     :class="progressClass"
     :style="progressStyle"
     role="progressbar"
+    :aria-label="progressAriaLabel"
     :aria-valuenow="clampedPercentage"
     aria-valuemin="0"
     aria-valuemax="100"

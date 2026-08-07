@@ -7,6 +7,7 @@ import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { BizForgotPasswordEmits, BizForgotPasswordProps } from './types'
 import { useForgotPasswordForm } from './composables/useForgotPasswordForm'
+import { useBizAuth } from './composables/useBizAuth'
 import './style.scss'
 import BizVerifyCode from './BizVerifyCode.vue'
 import BizCaptcha from './BizCaptcha.vue'
@@ -22,6 +23,9 @@ const props = withDefaults(defineProps<BizForgotPasswordProps>(), {
 
 const emit = defineEmits<BizForgotPasswordEmits>()
 const { t } = useLocale()
+const auth = useBizAuth({ adapter: () => props.adapter })
+const usingAdapter = computed(() => Boolean(props.adapter))
+const submitLoading = computed(() => props.loading || auth.loading.value)
 
 const {
   account,
@@ -37,12 +41,20 @@ const {
 const displayTitle = computed(() => props.title ?? t(LocaleKeys.auth.forgotPassword))
 const displaySubtitle = computed(() => props.subtitle ?? t(LocaleKeys.auth.forgotSubtitle))
 
-function onSubmit() {
+async function onSubmit() {
   if (!validate(props.showCaptcha)) return
-  emit('submit', toPayload())
+  const payload = toPayload()
+  if (usingAdapter.value) {
+    await auth.resetPassword(payload)
+    if (auth.error.value) return
+    emit('submit', payload)
+    emit('auth-success')
+    return
+  }
+  emit('submit', payload)
 }
 
-function onSendCode() {
+async function onSendCode() {
   if (!account.value.trim()) {
     error.value = t(LocaleKeys.auth.sendCodeNeedAccount)
     return
@@ -52,6 +64,10 @@ function onSendCode() {
     return
   }
   error.value = ''
+  if (usingAdapter.value && props.adapter?.sendCode) {
+    await auth.sendCode('forgot', account.value.trim())
+    if (auth.error.value) return
+  }
   emit('send-code')
 }
 </script>
@@ -65,7 +81,9 @@ function onSendCode() {
       </header>
 
       <form class="biz-login__form" @submit.prevent="onSubmit">
-        <Message v-if="error" severity="danger" :closable="false">{{ error }}</Message>
+        <Message v-if="error || auth.error.value" severity="danger" :closable="false">
+          {{ error || auth.error.value }}
+        </Message>
 
         <label class="biz-login__field">
           <span>{{ t(LocaleKeys.auth.account) }}</span>
@@ -117,7 +135,7 @@ function onSendCode() {
           type="submit"
           severity="primary"
           variant="solid"
-          :loading="loading"
+          :loading="submitLoading"
           class="biz-login__submit"
         >
           {{ t(LocaleKeys.auth.resetPassword) }}

@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import type { CardListProps, CardListEmits } from './types'
 import './style.scss'
 
 interface CardItem {
   id: string | number
-  title: string
+  title?: string
+  name?: string
   description?: string
   image?: string
 }
@@ -27,6 +29,10 @@ const list = computed<CardItem[]>(() => {
   return []
 })
 
+function resolveTitle(item: CardItem) {
+  return item.title || item.name || String(item.id)
+}
+
 function toggle(id: string | number) {
   const next = new Set(selected.value)
   if (next.has(id)) next.delete(id)
@@ -37,11 +43,17 @@ function toggle(id: string | number) {
   emit('change', arr)
 }
 
-const titleText = computed(() => props.title ?? t('component.card-list.title'))
+const titleText = computed(() => props.title ?? t(LocaleKeys.component.cardList.title))
 </script>
 
 <template>
-  <div :class="['vp-card-list', 'vp-card-list__panel', { 'vp-card-list--disabled': disabled }, props.class]" :style="style">
+  <div
+    role="region"
+    :aria-label="titleText"
+    :class="['vp-card-list', 'vp-card-list__panel', { 'vp-card-list--disabled': disabled }, props.class]"
+    :style="style"
+    data-component="CardList"
+  >
     <h3 class="vp-card-list__heading">{{ titleText }}</h3>
     <div v-if="list.length" class="vp-card-list__grid">
       <article
@@ -51,9 +63,16 @@ const titleText = computed(() => props.title ?? t('component.card-list.title'))
         :class="{ 'vp-card-list__card--selected': selected.has(item.id) }"
         @click="toggle(item.id)"
       >
-        <input type="checkbox" :checked="selected.has(item.id)" :disabled="disabled" @click.stop @change="toggle(item.id)" />
-        <img v-if="item.image" class="vp-card-list__image" :src="item.image" :alt="item.title" />
-        <h4 class="vp-card-list__title">{{ item.title }}</h4>
+        <input
+          type="checkbox"
+          :checked="selected.has(item.id)"
+          :disabled="disabled"
+          :aria-label="t(LocaleKeys.component.cardList.selectItem, { title: resolveTitle(item) })"
+          @click.stop
+          @change="toggle(item.id)"
+        />
+        <img v-if="item.image" class="vp-card-list__image" :src="item.image" :alt="resolveTitle(item)" />
+        <h4 class="vp-card-list__title">{{ resolveTitle(item) }}</h4>
         <p v-if="item.description" class="vp-card-list__desc">{{ item.description }}</p>
         <slot name="actions" :item="item" />
       </article>

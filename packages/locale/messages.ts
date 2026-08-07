@@ -102,6 +102,21 @@ export function getLocalePack(code: string): LocaleMessages | undefined {
   return customLocales.get(resolved)?.messages
 }
 
+/**
+ * Merge additional messages into a built-in locale pack (host / example only).
+ * Used to keep `example.doc.*` out of the published library bundle.
+ */
+export function extendLocaleMessages(
+  code: LocaleCode,
+  patch: Record<string, string>
+): void {
+  const pack = locales[code]
+  if (!pack) {
+    throw new Error(`[locale] unknown built-in locale: ${code}`)
+  }
+  Object.assign(pack, patch)
+}
+
 export function getLocaleMeta(code: string): LocaleMeta | undefined {
   const resolved = resolveLocaleCode(code) ?? code
   if (resolved in LOCALE_META) return LOCALE_META[resolved as LocaleCode]

@@ -40,7 +40,17 @@ export default defineConfig({
 
   workers: 1,
 
+  snapshotPathTemplate: '{testDir}/{testFileDir}/{testFileName}-snapshots/{arg}-{projectName}{ext}',
+
   reporter: isCI ? [['github'], ['list']] : 'list',
+
+  expect: {
+    toHaveScreenshot: {
+      maxDiffPixelRatio: 0.01,
+      threshold: 0.15,
+      animations: 'disabled'
+    }
+  },
 
   use: {
 

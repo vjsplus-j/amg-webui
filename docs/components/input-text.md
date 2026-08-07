@@ -33,6 +33,10 @@ import { InputText } from '@amg-webui/form'
 
 Curated demo：`example/demos/InputText/index.vue`
 
+## 交互演示
+
+<DocsDemo name="input-text-basic" />
+
 ## Props
 
 | Prop | 类型 | 默认 | 说明 |

@@ -14,7 +14,7 @@ Skill Runtime 是 AMG-WebUI 的新增差异化赛道，不把规划能力提前�
 |------|------|----------|
 | **SR1 · Core** | SkillUnit / SkillContext / Runtime、注册、执行、销毁、Adapter、Observer | 最小基线已进入工程并通过基础门禁；保持 experimental |
 | **SR2 · Compose + Vue** | Scope、Pipeline（顺序 / 并行 / 条件 / 重试 / 降级）、`v-skill`、`AmgSkillScope`、Vue Plugin | 最小基线已进入工程并通过基础门禁；稳定化仍按本文 DoD 推进 |
-| **SR3 · Ecosystem** | 官方 built-ins、开发日志面板、DevTools、example 专项实验页 | 后续，不属于本次交付 |
+| **SR3 · Ecosystem** | 官方 built-ins、Runtime Inspector / Pipeline Debugger、Telemetry Bridge、example Skill Lab | experimental 基线已进入工程；稳定化仍按本文 DoD 推进 |
 | **SR4 · Low-code** | Pipeline 可视化编辑、Schema 校验、导入导出、版本迁移 | 后续，不属于本次交付 |
 
 附件中的“100%”“零成本”“全覆盖”“无任何硬编码”等表述统一转换为**可验证目标**，不得直接作为当前完成结论。成熟度必须由类型检查、单测、构建、包导出与真实示例共同证明。
@@ -359,14 +359,27 @@ type SkillObserver = (event: SkillTraceEvent | SkillPipelineTraceEvent) => void
 - 独立 subpath；根入口不导出
 - 生命周期、隔离、取消、错误与包导出单测
 
-### SR3 / SR4 后续范围
+### SR3 已交付（experimental）
 
-- 官方 `table-search` · `dict-mapping` · `form-submit` · `table-export` · `request-wrapper`
-- Telemetry Observer bridge、开发日志面板、DevTools
-- `example/lab` Skill 专项页与压力 / 泄漏复现
+- 官方 built-ins：`table-search` · `dict-mapping` · `form-submit` · `table-export` · `request-wrapper`
+- `registerOfficialBuiltins(runtime)`
+- `createSkillInspector` · `createPipelineDebugger` · `createSkillTelemetryBridge`
+- example：`/lab/skill`（Skill Lab）
+- 单测：`tests/unit/skill-sr3-builtins.spec.ts`
+
+导入：
+
+```ts
+import {
+  createSkillRuntime,
+  registerOfficialBuiltins,
+  createSkillInspector
+} from 'amg-webui/skill/core'
+```
+
+### SR4 后续范围
+
 - Pipeline 可视化编辑器、完整 JSON Schema、迁移器与低代码集成
-
-在 SR3 实现前，文档可以列出 built-ins 方向，但不得提供不存在的 import 或宣称“官方已内置”。
 
 ---
 
@@ -400,4 +413,4 @@ type SkillObserver = (event: SkillTraceEvent | SkillPipelineTraceEvent) => void
 9. `amg-webui/skill` 可导入 Vue 集成；根入口持续不导出 Skill API。
 10. 完整构建、发包清单、临时消费者与文档站 smoke 纳入 CI。
 
-当前尚未宣称 stable 的主要缺口是：Pipeline 每类节点的失败 / 取消全矩阵、异步指令卸载压力用例，以及上述包形 smoke 的 CI 固化。SR3 built-ins / Telemetry bridge / DevTools / example Skill Lab 与 SR4 低代码编辑器也仍未交付。
+当前尚未宣称 stable 的主要缺口是：Pipeline 每类节点的失败 / 取消全矩阵、异步指令卸载压力用例，以及上述包形 smoke 的 CI 固化。SR4 低代码 Pipeline 编辑器仍未交付。SR3 built-ins / Inspector / Telemetry bridge / Skill Lab 已进入 experimental 基线（见 § SR3 已交付）。

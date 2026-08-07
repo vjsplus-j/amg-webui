@@ -39,12 +39,6 @@ const axes = computed(() =>
 )
 const titleText = computed(() => props.title ?? t('component.radar-chart.title'))
 const emptyText = computed(() => props.emptyText ?? t('common.noData'))
-
-function onKeydown(event: KeyboardEvent, item: { label: string; value: number; index: number }) {
-  if (event.key !== 'Enter' && event.key !== ' ') return
-  event.preventDefault()
-  selectItem(item)
-}
 </script>
 
 <template>
@@ -54,13 +48,12 @@ function onKeydown(event: KeyboardEvent, item: { label: string; value: number; i
     data-component="RadarChart"
     role="group"
     :aria-label="titleText"
-    :aria-busy="loading || undefined"
   >
     <h3 class="vp-radar-chart__title">{{ titleText }}</h3>
     <p v-if="description" class="vp-radar-chart__muted">{{ description }}</p>
-    <p v-if="loading" class="vp-radar-chart__muted" role="status">{{ t('common.loading') }}</p>
+    <p v-if="loading" class="vp-radar-chart__muted" role="status" aria-busy="true">{{ t('common.loading') }}</p>
     <p v-else-if="!hasData" class="vp-radar-chart__muted" role="status">{{ emptyText }}</p>
-    <svg v-else class="vp-radar-chart__chart" viewBox="0 0 240 160" role="img" :aria-label="titleText">
+    <svg v-else class="vp-radar-chart__chart" viewBox="0 0 240 160">
       <polygon
         v-for="r in levelList"
         :key="r"
@@ -79,11 +72,7 @@ function onKeydown(event: KeyboardEvent, item: { label: string; value: number; i
         :cx="a.pointX"
         :cy="a.pointY"
         r="4"
-        tabindex="0"
-        role="button"
-        :aria-label="`${a.label}: ${a.value}`"
         @click="selectItem(a, $event)"
-        @keydown="onKeydown($event, a)"
       />
       <text v-for="(a, i) in axes" :key="'t' + i" :x="a.labelX" :y="a.labelY" text-anchor="middle" font-size="9" fill="var(--text-secondary)">{{ a.label }}</text>
       <text v-for="(a, i) in axes" v-show="showValues" :key="'v' + i" :x="a.pointX" :y="a.pointY - 6" text-anchor="middle" class="vp-radar-chart__value">{{ a.value }}</text>

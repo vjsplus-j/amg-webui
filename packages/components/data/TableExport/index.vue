@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import { useTableState, type TableColumn } from '@amg-webui/utils/data-display/useTableState'
 import type { TableExportProps, TableExportEmits } from './types'
 import './style.scss'
@@ -48,38 +49,63 @@ function exportSelected() {
   emit('change', rows)
 }
 
-const titleText = computed(() => props.title ?? t('component.table-export.title'))
+function rowLabel(row: Record<string, unknown>, index: number) {
+  const firstCol = visibleColumns.value[0]?.field
+  const value = firstCol ? row[firstCol] : undefined
+  return value != null ? String(value) : `Row ${index + 1}`
+}
+
+const titleText = computed(() => props.title ?? t(LocaleKeys.component.tableExport.title))
 </script>
 
 <template>
-  <div role="region" aria-label="TableExport" :class="['vp-table-export', 'vp-table-export__panel', { 'vp-table-export--disabled': disabled }, props.class]" :style="style">
+  <div
+    role="region"
+    :aria-label="titleText"
+    :class="['vp-table-export', 'vp-table-export__panel', { 'vp-table-export--disabled': disabled }, props.class]"
+    :style="style"
+    data-component="TableExport"
+  >
     <div class="vp-table-export__toolbar">
       <strong class="vp-table-export__heading">{{ titleText }}</strong>
-      <input v-model="keyword" class="vp-table-export__filter" type="search" :placeholder="t('common.search')" />
+      <input
+        v-model="keyword"
+        class="vp-table-export__filter"
+        type="search"
+        :placeholder="t(LocaleKeys.common.search)"
+        :aria-label="t(LocaleKeys.component.tableExport.searchAria)"
+      />
       <button type="button" class="vp-table-export__control" :disabled="disabled" @click="exportCsv()">
-        {{ t('common.export') }}
+        {{ t(LocaleKeys.common.export) }}
       </button>
       <button type="button" class="vp-table-export__control" :disabled="disabled || !selected.size" @click="exportSelected">
-        {{ t('common.selectAll') }}
+        {{ t(LocaleKeys.common.selectAll) }}
       </button>
     </div>
     <div class="vp-table-export__scroll">
       <table class="vp-table-export__grid">
         <thead>
           <tr>
-            <th class="vp-table-export__head" />
-            <th v-for="c in visibleColumns" :key="c.field" class="vp-table-export__head">{{ c.header }}</th>
+            <th class="vp-table-export__head" scope="col">
+              <span class="vp-table-export__sr-only">{{ t(LocaleKeys.component.tableExport.selectColumn) }}</span>
+            </th>
+            <th v-for="c in visibleColumns" :key="c.field" class="vp-table-export__head" scope="col">{{ c.header }}</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(row, i) in filteredRows" :key="i" class="vp-table-export__row">
             <td class="vp-table-export__cell">
-              <input type="checkbox" :checked="selected.has(i)" @change="toggleRow(i)" />
+              <input
+                type="checkbox"
+                :checked="selected.has(i)"
+                :aria-label="t(LocaleKeys.component.tableExport.selectRow, { label: rowLabel(row, i) })"
+                @change="toggleRow(i)"
+              />
             </td>
             <td v-for="c in visibleColumns" :key="c.field" class="vp-table-export__cell">{{ row[c.field] }}</td>
           </tr>
           <tr v-if="!filteredRows.length">
-            <td :colspan="visibleColumns.length + 1" class="vp-table-export__empty">{{ t('common.noData') }}</td>
+            <td :colspan="visibleColumns.length + 1" class="vp-table-export__empty">{{ t(LocaleKeys.common.noData) }}</td>
           </tr>
         </tbody>
       </table>
@@ -119,5 +145,16 @@ const titleText = computed(() => props.title ?? t('component.table-export.title'
 .vp-table-export__empty {
   padding: var(--spacing-sm) var(--spacing-md);
   border-bottom: 1px solid var(--ds-border);
+}
+.vp-table-export__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 </style>

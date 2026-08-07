@@ -27,6 +27,7 @@ export interface TimelineContext {
   selectable: ComputedRef<boolean>;
   claimIndex: () => number;
   select: (key: TimelineKey, event: MouseEvent | KeyboardEvent) => void;
+  inList?: boolean;
 }
 export const TIMELINE_INJECTION_KEY: InjectionKey<TimelineContext> =
   Symbol("vp-timeline");

@@ -10,7 +10,7 @@ export * from './components'
 export * from './hooks'
 export * from './telemetry'
 export * from './security'
-export * from './lowcode'
+/** Lowcode is opt-in via `amg-webui/lowcode` — not part of the root barrel (bundle budget). */
 export * from './theme'
 /** Catalog + resolver only — named Lucide glyphs live on `@amg-webui/icons` to avoid clashing with UI components */
 export {

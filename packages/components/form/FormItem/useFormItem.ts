@@ -40,6 +40,12 @@ export function useFormItem(options: UseFormItemOptions = {}) {
 
   const isRequired = computed(() => Boolean(activeFormItem.value?.required.value))
 
+  const hasVisibleLabel = computed(() => Boolean(activeFormItem.value?.hasLabel.value))
+
+  const ariaLabelledby = computed(() =>
+    hasVisibleLabel.value ? activeFormItem.value?.labelId : undefined
+  )
+
   const ariaDescribedby = computed(() =>
     activeFormItem.value?.error.value ? activeFormItem.value.errorId : undefined
   )
@@ -65,6 +71,8 @@ export function useFormItem(options: UseFormItemOptions = {}) {
     isDisabled,
     isInvalid,
     isRequired,
+    hasVisibleLabel,
+    ariaLabelledby,
     ariaDescribedby,
     name,
     validateOnBlur,

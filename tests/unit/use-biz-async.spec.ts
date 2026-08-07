@@ -240,6 +240,28 @@ describe('useBizAsync', () => {
     dispose()
   })
 
+  it('aborts in-flight list when a newer load starts', async () => {
+    let firstSignal: AbortSignal | undefined
+    let secondSignal: AbortSignal | undefined
+    const adapter: BizCrudAdapter<Row> = {
+      list(_query, req) {
+        if (!firstSignal) firstSignal = req?.signal
+        else secondSignal = req?.signal
+        return new Promise(() => undefined)
+      }
+    }
+    const { api, dispose } = withHook(() =>
+      useBizAsync({ adapter, immediate: false, keywordDebounceMs: 0 })
+    )
+
+    void api.load()
+    expect(firstSignal?.aborted).toBe(false)
+    void api.load()
+    expect(firstSignal?.aborted).toBe(true)
+    expect(secondSignal?.aborted).toBe(false)
+    dispose()
+  })
+
   it('aborts in-flight mutation when scope disposes', async () => {
     let seenSignal: AbortSignal | undefined
     const adapter: BizCrudAdapter<Row> = {
