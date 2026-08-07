@@ -5,8 +5,11 @@ export type {
   FilterInputOptions,
   SecurityConfig,
   SecurityAlert,
+  SecurityAlertInput,
   SecurityAlertListener
 } from './types'
+
+export { hashDetail } from './hashDetail'
 
 export { escapeHtml, unescapeHtml } from './escape'
 export {
@@ -29,3 +32,8 @@ export {
   sanitizeModelStrings
 } from './sanitizeInput'
 export { SecurityService, type SecurityServiceApi } from './SecurityService'
+export {
+  SECURE_INPUT_PRESET,
+  SECURE_FORM_PRESET,
+  SECURE_FORM_KIT
+} from './presets'

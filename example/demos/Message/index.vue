@@ -3,7 +3,8 @@
  * Curated demo — feedback wave1 Message
  */
 import { computed, ref } from 'vue'
-import { Message, Button, Space } from '@amg-webui/components/base'
+import { Message } from '@amg-webui/overlay'
+import { Button, Space } from '@amg-webui/core'
 import type { Severity } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -33,7 +34,7 @@ function remountShow() {
 }
 
 const codeBasic = demoSfc({
-  imports: [`import { Message } from '@amg-webui/components/base'`],
+  imports: [`import { Message } from '@amg-webui/overlay'`],
   template: [
     `  <Message severity="info">{{ t('example.doc.message.sample.info') }}</Message>`,
     `  <Message severity="success">{{ t('example.doc.message.sample.success') }}</Message>`

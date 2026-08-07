@@ -17,6 +17,11 @@ export interface VirtualListOptions {
   containerHeight?: MaybeRefOrGetter<number>;
   overscan?: MaybeRefOrGetter<number>;
   containerRef?: Ref<HTMLElement | null>;
+  /**
+   * Optional element (e.g. first rendered row) observed via ResizeObserver.
+   * Measured height wins over the estimate when available.
+   */
+  itemMeasureRef?: Ref<HTMLElement | null>;
 }
 
 export function useVirtualList<T>(
@@ -25,12 +30,17 @@ export function useVirtualList<T>(
 ) {
   const scrollTop = ref(0);
   const measuredHeight = ref(0);
+  const measuredItemHeight = ref(0);
   let scrollElement: HTMLElement | null = null;
   let resizeObserver: ResizeObserver | null = null;
+  let itemResizeObserver: ResizeObserver | null = null;
   let rafId = 0;
 
-  const itemHeightValue = computed(() =>
+  const estimatedItemHeight = computed(() =>
     Math.max(1, Number(toValue(options.itemHeight) ?? DEFAULT_ITEM_HEIGHT)),
+  );
+  const itemHeightValue = computed(() =>
+    Math.max(1, measuredItemHeight.value || estimatedItemHeight.value),
   );
   const containerHeightValue = computed(() =>
     Math.max(
@@ -97,8 +107,30 @@ export function useVirtualList<T>(
     resizeObserver.observe(element);
   }
 
+  function syncItemMeasure(element: HTMLElement | null) {
+    itemResizeObserver?.disconnect();
+    if (!element) {
+      measuredItemHeight.value = 0;
+      return;
+    }
+    const apply = () => {
+      const next = Math.round(element.getBoundingClientRect().height);
+      if (next > 0) measuredItemHeight.value = next;
+    };
+    apply();
+    if (typeof ResizeObserver === "undefined") return;
+    itemResizeObserver = new ResizeObserver(() => apply());
+    itemResizeObserver.observe(element);
+  }
+
   if (options.containerRef)
     watch(options.containerRef, syncContainer, {
+      immediate: true,
+      flush: "post",
+    });
+
+  if (options.itemMeasureRef)
+    watch(options.itemMeasureRef, syncItemMeasure, {
       immediate: true,
       flush: "post",
     });
@@ -169,11 +201,15 @@ export function useVirtualList<T>(
     if (rafId && typeof cancelAnimationFrame !== "undefined")
       cancelAnimationFrame(rafId);
     resizeObserver?.disconnect();
+    itemResizeObserver?.disconnect();
   });
 
   return {
     itemHeight: itemHeightValue,
+    estimatedItemHeight,
+    measuredItemHeight,
     containerHeight: containerHeightValue,
+    measuredContainerHeight: measuredHeight,
     scrollTop,
     startIndex,
     endIndex,

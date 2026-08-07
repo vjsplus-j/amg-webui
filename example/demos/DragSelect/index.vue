@@ -3,7 +3,7 @@
  * Curated demo — Form wave2 DragSelect
  */
 import { computed, ref } from 'vue'
-import { DragSelect } from '@amg-webui/components/base'
+import { DragSelect } from '@amg-webui/lowcode'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -38,7 +38,7 @@ const orderLabel = computed(() =>
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { DragSelect } from '@amg-webui/components/base'`
+    `import { DragSelect } from '@amg-webui/lowcode'`
   ],
   script: [
     `const selected = ref(['b'])`,

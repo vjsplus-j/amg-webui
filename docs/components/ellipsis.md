@@ -6,7 +6,7 @@
 
 ```vue
 <script setup>
-import { Ellipsis } from '@amg-webui/components/base'
+import { Ellipsis } from '@amg-webui/core'
 </script>
 
 <template>

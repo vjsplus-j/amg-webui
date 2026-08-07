@@ -13,11 +13,11 @@ describe('SSR module imports', () => {
         import('@amg-webui/utils/env'),
         import('@amg-webui/utils/dom'),
         import('@amg-webui/theme/core'),
-        import('@amg-webui/components/base/MessageBox/service'),
-        import('@amg-webui/components/base/Affix/useAffix'),
-        import('@amg-webui/components/base/InfiniteScroll/directive'),
-        import('@amg-webui/components/base/Button/index.vue'),
-        import('@amg-webui/components/base/Select/useSelect')
+        import('@amg-webui/overlay/MessageBox/service'),
+        import('@amg-webui/core/Affix/useAffix'),
+        import('@amg-webui/data/InfiniteScroll/directive'),
+        import('@amg-webui/core/Button/index.vue'),
+        import('@amg-webui/form/Select/useSelect')
       ])
 
       for (const mod of modules) {

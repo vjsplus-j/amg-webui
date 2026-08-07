@@ -3,8 +3,9 @@
  * Curated demo — Data wave1 Transfer
  */
 import { computed, ref } from 'vue'
-import { Transfer, Space } from '@amg-webui/components/base'
-import type { TransferItem } from '@amg-webui/components/base/Transfer'
+import { Transfer } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
+import type { TransferItem } from '@amg-webui/form/Transfer'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -30,7 +31,7 @@ const transferData = computed<TransferItem[]>(() => [
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { Transfer } from '@amg-webui/components/base'`
+    `import { Transfer } from '@amg-webui/form'`
   ],
   script: [
     `const selected = ref(['a'])`,

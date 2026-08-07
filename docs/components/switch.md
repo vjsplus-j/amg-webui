@@ -16,7 +16,7 @@
 
 import { ref } from 'vue'
 
-import { Switch } from '@amg-webui/components/base'
+import { Switch } from '@amg-webui/form'
 
 const on = ref(true)
 

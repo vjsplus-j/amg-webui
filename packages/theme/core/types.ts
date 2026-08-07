@@ -61,7 +61,13 @@ export interface ThemeRuntime {
   setScheme(scheme: ColorScheme): void
   setFont(font: FontName): void
   setIconStyle(style: IconStyleName): void
+  /** Merge CSS-var overlay (incremental; does not remove missing keys). */
   applyCustom(tokens: Record<string, string>): void
+  /**
+   * Replace the entire CSS-var overlay. Keys absent from `tokens` are removed
+   * from both state and the host (avoids stale vars after prop shrink).
+   */
+  replaceCustom(tokens: Record<string, string>): void
   clearCustom(): void
   /**
    * Derive primary → `--primary-50…900` + semantic bridges and apply as overlay.

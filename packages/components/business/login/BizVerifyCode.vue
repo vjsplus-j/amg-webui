@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Button, InputText } from '@amg-webui/components/base'
+import { Button } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { BizVerifyCodeEmits, BizVerifyCodeProps } from './types'

@@ -16,7 +16,7 @@
 
 import { ref } from 'vue'
 
-import { Checkbox, CheckboxGroup } from '@amg-webui/components/base'
+import { Checkbox, CheckboxGroup } from '@amg-webui/form'
 
 const ok = ref(true)
 

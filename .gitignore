@@ -16,6 +16,10 @@ playwright-report
 .trae
 backup
 
+# Local agent / typecheck scratch (never commit)
+tmp-*.txt
+tmp-*.log
+
 # Windows reserved device name artifact
 NUL
 nul

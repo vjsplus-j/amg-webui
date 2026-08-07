@@ -6,7 +6,7 @@ Layout 组件 API（v0.1 子集）。
 
 ```vue
 <script setup>
-import { Layout, Header, Sider, Main, Footer } from '@amg-webui/components/base'
+import { Layout, Header, Sider, Main, Footer } from '@amg-webui/core'
 </script>
 
 <template>

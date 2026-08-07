@@ -5,42 +5,12 @@
  */
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import {
-  Block,
-  Button,
-  Card,
-  CardGrid,
-  Center,
-  Col,
-  ColumnLayout,
-  Container,
-  EmbedLayout,
-  FixedLayout,
-  FlowLayout,
-  FormLayout,
-  InputText,
-  Layout,
-  Main,
-  Header,
-  Footer,
-  Menu,
-  ResizeBox,
-  Row,
-  ScaleLayout,
-  Sider,
-  Space,
-  Spacer,
-  Split,
-  StackLayout,
-  Tag,
-  TabsNav,
-  TopNav,
-  Dropdown,
-  Breadcrumb
-} from '@amg-webui/components/base'
-import type { MenuItem } from '@amg-webui/components/base/Menu'
+import { Block, Button, Card, CardGrid, Center, Col, ColumnLayout, Container, EmbedLayout, FixedLayout, FlowLayout, FormLayout, Layout, Main, Header, Footer, Menu, ResizeBox, Row, ScaleLayout, Sider, Space, Spacer, Split, StackLayout, Tag, TabsNav, TopNav, Breadcrumb } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'
+import { Dropdown } from '@amg-webui/overlay'
+import type { MenuItem } from '@amg-webui/core/Menu'
 import type { NavItem } from '@amg-webui/utils/nav'
-import type { BreadcrumbItemData } from '@amg-webui/components/base/Breadcrumb'
+import type { BreadcrumbItemData } from '@amg-webui/core/Breadcrumb'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import ComponentGallery from '../../components/ComponentGallery.vue'

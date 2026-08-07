@@ -1,4 +1,4 @@
-export default {
+﻿export default {
   'component.qrcode.title': 'Qrcode',
   'component.qrcode.lead': 'Qrcode component preview',
   'component.qrcode.invalid': 'Invalid {standard} QR Code data. Check characters, length, or error correction.',
@@ -479,6 +479,13 @@ export default {
   'component.preview.fullscreen': 'Fullscreen',
   'component.drag-canvas.empty': 'Drag materials onto canvas',
   'component.prop-panel.empty': 'Select a node to edit props',
+  'component.prop-panel.field.parentNone': 'None (root)',
+  'component.prop-panel.field.parentId': 'Parent',
+  'component.prop-panel.field.y': 'Y',
+  'component.prop-panel.field.w': 'Width',
+  'component.prop-panel.field.nodeLabel': 'Node label',
+  'component.prop-panel.field.x': 'X',
+  'component.prop-panel.field.h': 'Height',
   'component.drag-wrapper.hint': 'Drop child components here',
   'component.canvas-layer.show': 'Show',
   'component.canvas-layer.hide': 'Hide',
@@ -520,7 +527,7 @@ export default {
   'component.exception.offline.title': 'You are offline',
   'component.exception.offline.lead': 'Check your network connection and try again.',
   'component.datatable.title': 'Data table',
-  'component.datatable.lead': 'Virtual-scroll table (on by default)',
+  'component.datatable.lead': 'Fixed-row virtual scroll on by default; viewport and row height drive the math',
   'component.datatable.showing': 'Showing {from}–{to} of {total}',
   'component.datatable.rowsPerPage': 'Rows per page',
   'component.datatable.firstPage': 'First page',

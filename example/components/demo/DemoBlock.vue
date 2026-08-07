@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
-import { Button } from '@amg-webui/components/base'
+import { Button } from '@amg-webui/core'
 import { ToastService } from '@amg-webui/theme'
 import DemoCode from './DemoCode.vue'
 

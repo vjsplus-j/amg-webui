@@ -112,7 +112,7 @@
 
 1. Design Token 原子（尺寸 / 圆角 / 阴影 / 动效）  
 2. **色阶系统**：`generatePrimaryScale(primary)` → `--primary-50…900` + `--ds-accent` / focus 语义桥（`runtime.setPrimary` / ThemeProvider `primary`）  
-3. **运行时 overlay**：`applyCustom` / Provider `tokens` 热更新 CSS 变量，无需重打包  
+3. **运行时 overlay**：`applyCustom`（增量）/ `replaceCustom`（全量，删缺 key）/ Provider `tokens` 热更新 CSS 变量，无需重打包  
 
 运行时分层：Theme Core 多实例 + Host/Storage；`ThemeService` 仅应用默认单例；同页 / 微前端用 `ThemeProvider` · `ConfigProvider` · `useThemeRuntime()`。SSR：`serializeAttrs` + `toStyleTag`；Shadow：`createShadowHost`（host 写 attr/var）。  
 

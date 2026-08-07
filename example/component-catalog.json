@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-06T03:25:03.474Z",
+  "generatedAt": "2026-08-07T06:48:28.201Z",
   "total": 287,
   "categories": [
     "general",
@@ -320,1436 +320,1723 @@
   "components": {
     "AdvancedSearch": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.advanced-search.title",
       "leadKey": "component.advanced-search.lead"
     },
     "Affix": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.affix.title",
       "leadKey": "component.affix.lead"
     },
     "Alert": {
       "category": "feedback",
+      "package": "core",
       "titleKey": "component.alert.title",
       "leadKey": "component.alert.lead"
     },
     "Anchor": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.anchor.title",
       "leadKey": "component.anchor.lead"
     },
     "AudioPlay": {
       "category": "other",
+      "package": "media",
       "titleKey": "component.audio-play.title",
       "leadKey": "component.audio-play.lead"
     },
     "AudioTalk": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.audio-talk.title",
       "leadKey": "component.audio-talk.lead"
     },
     "AutoComplete": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.auto-complete.title",
       "leadKey": "component.auto-complete.lead"
     },
     "Avatar": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.avatar.title",
       "leadKey": "component.avatar.lead"
     },
     "AvatarGroup": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.avatar-group.title",
       "leadKey": "component.avatar-group.lead"
     },
     "BackTop": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.back-top.title",
       "leadKey": "component.back-top.lead"
     },
     "Badge": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.badge.title",
       "leadKey": "component.badge.lead"
     },
     "BarChart": {
       "category": "data-display",
+      "package": "charts",
       "titleKey": "component.bar-chart.title",
       "leadKey": "component.bar-chart.lead"
     },
     "Barcode": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.barcode.title",
       "leadKey": "component.barcode.lead"
     },
     "BatchPanel": {
       "category": "data-entry",
+      "package": "data",
       "titleKey": "component.batch-panel.title",
       "leadKey": "component.batch-panel.lead"
     },
     "BatchUpload": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.batch-upload.title",
       "leadKey": "component.batch-upload.lead"
     },
     "Block": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.block.title",
       "leadKey": "component.block.lead"
     },
     "Breadcrumb": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.breadcrumb.title",
       "leadKey": "component.breadcrumb.lead"
     },
     "BreadcrumbItem": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.breadcrumb-item.title",
       "leadKey": "component.breadcrumb-item.lead"
     },
     "BrowserDetect": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.browser-detect.title",
       "leadKey": "component.browser-detect.lead"
     },
     "Business404": {
       "category": "industry",
+      "package": "core",
       "titleKey": "component.business404.title",
       "leadKey": "component.business404.lead"
     },
     "Button": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.button.title",
       "leadKey": "component.button.lead"
     },
     "ButtonGroup": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.button-group.title",
       "leadKey": "component.button-group.lead"
     },
     "Calendar": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.calendar.title",
       "leadKey": "component.calendar.lead"
     },
     "CanvasIo": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.canvas-io.title",
       "leadKey": "component.canvas-io.lead"
     },
     "CanvasLayer": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.canvas-layer.title",
       "leadKey": "component.canvas-layer.lead"
     },
     "CanvasNode": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.canvas-node.title",
       "leadKey": "component.canvas-node.lead"
     },
     "CanvasPreview": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.canvas-preview.title",
       "leadKey": "component.canvas-preview.lead"
     },
     "CanvasShortcut": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.canvas-shortcut.title",
       "leadKey": "component.canvas-shortcut.lead"
     },
     "Card": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.card.title",
       "leadKey": "component.card.lead"
     },
     "CardGrid": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.card-grid.title",
       "leadKey": "component.card-grid.lead"
     },
     "CardList": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.card-list.title",
       "leadKey": "component.card-list.lead"
     },
     "CardNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.card-nav.title",
       "leadKey": "component.card-nav.lead"
     },
     "CardWidgets": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.card-widgets.title",
       "leadKey": "component.card-widgets.lead"
     },
     "Carousel": {
       "category": "data-display",
+      "package": "core",
       "titleKey": "component.carousel.title",
       "leadKey": "component.carousel.lead"
     },
     "Cartoon404": {
       "category": "industry",
+      "package": "core",
       "titleKey": "component.cartoon404.title",
       "leadKey": "component.cartoon404.lead"
     },
     "Cascader": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.cascader.title",
       "leadKey": "component.cascader.lead"
     },
     "CategoryNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.category-nav.title",
       "leadKey": "component.category-nav.lead"
     },
     "Center": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.center.title",
       "leadKey": "component.center.lead"
     },
     "Checkbox": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.checkbox.title",
       "leadKey": "component.checkbox.lead"
     },
     "CheckboxGroup": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.checkbox-group.title",
       "leadKey": "component.checkbox-group.lead"
     },
     "ChunkUpload": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.chunk-upload.title",
       "leadKey": "component.chunk-upload.lead"
     },
     "Clipboard": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.clipboard.title",
       "leadKey": "component.clipboard.lead"
     },
     "CodeEditor": {
       "category": "data-entry",
+      "package": "editor",
       "titleKey": "component.code-editor.title",
       "leadKey": "component.code-editor.lead"
     },
     "Col": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.col.title",
       "leadKey": "component.col.lead"
     },
     "Collapse": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.collapse.title",
       "leadKey": "component.collapse.lead"
     },
     "ColorInput": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.color-input.title",
       "leadKey": "component.color-input.lead"
     },
     "ColorPicker": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.color-picker.title",
       "leadKey": "component.color-picker.lead"
     },
     "ColumnLayout": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.column-layout.title",
       "leadKey": "component.column-layout.lead"
     },
     "ConfigProvider": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.config-provider.title",
       "leadKey": "component.config-provider.lead"
     },
     "Confirm": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.confirm.title",
       "leadKey": "component.confirm.lead"
     },
     "ConfirmDialog": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.confirm-dialog.title",
       "leadKey": "component.confirm-dialog.lead"
     },
     "Container": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.container.title",
       "leadKey": "component.container.lead"
     },
     "ContextMenu": {
       "category": "navigation",
+      "package": "overlay",
       "titleKey": "component.context-menu.title",
       "leadKey": "component.context-menu.lead"
     },
     "CopyText": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.copy-text.title",
       "leadKey": "component.copy-text.lead"
     },
     "Countdown": {
       "category": "data-display",
+      "package": "core",
       "titleKey": "component.countdown.title",
       "leadKey": "component.countdown.lead"
     },
     "CryptoBox": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.crypto-box.title",
       "leadKey": "component.crypto-box.lead"
     },
     "Dashboard": {
       "category": "data-entry",
+      "package": "data",
       "titleKey": "component.dashboard.title",
       "leadKey": "component.dashboard.lead"
     },
     "DataCard": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.data-card.title",
       "leadKey": "component.data-card.lead"
     },
     "DataTable": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.data-table.title",
       "leadKey": "component.data-table.lead"
     },
     "DatePicker": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.date-picker.title",
       "leadKey": "component.date-picker.lead"
     },
     "DateTimePicker": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.date-time-picker.title",
       "leadKey": "component.date-time-picker.lead"
     },
     "Descriptions": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.descriptions.title",
       "leadKey": "component.descriptions.lead"
     },
     "DescriptionsItem": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.descriptions-item.title",
       "leadKey": "component.descriptions-item.lead"
     },
     "DetailPanel": {
       "category": "data-entry",
+      "package": "data",
       "titleKey": "component.detail-panel.title",
       "leadKey": "component.detail-panel.lead"
     },
     "Dialog": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.dialog.title",
       "leadKey": "component.dialog.lead"
     },
     "Divider": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.divider.title",
       "leadKey": "component.divider.lead"
     },
     "Doodle404": {
       "category": "industry",
+      "package": "core",
       "titleKey": "component.doodle404.title",
       "leadKey": "component.doodle404.lead"
     },
     "DragCanvas": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.drag-canvas.title",
       "leadKey": "component.drag-canvas.lead"
     },
     "DragMaterial": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.drag-material.title",
       "leadKey": "component.drag-material.lead"
     },
     "DragRuler": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.drag-ruler.title",
       "leadKey": "component.drag-ruler.lead"
     },
     "DragSelect": {
       "category": "data-entry",
+      "package": "lowcode",
       "titleKey": "component.drag-select.title",
       "leadKey": "component.drag-select.lead"
     },
     "DragSortNode": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.drag-sort-node.title",
       "leadKey": "component.drag-sort-node.lead"
     },
     "DragVerify": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.drag-verify.title",
       "leadKey": "component.drag-verify.lead"
     },
     "DragWrapper": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.drag-wrapper.title",
       "leadKey": "component.drag-wrapper.lead"
     },
     "Drawer": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.drawer.title",
       "leadKey": "component.drawer.lead"
     },
     "DrillTable": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.drill-table.title",
       "leadKey": "component.drill-table.lead"
     },
     "Dropdown": {
       "category": "navigation",
+      "package": "overlay",
       "titleKey": "component.dropdown.title",
       "leadKey": "component.dropdown.lead"
     },
     "DynamicForm": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.dynamic-form.title",
       "leadKey": "component.dynamic-form.lead"
     },
     "EditTable": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.edit-table.title",
       "leadKey": "component.edit-table.lead"
     },
     "EditTree": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.edit-tree.title",
       "leadKey": "component.edit-tree.lead"
     },
     "Ellipsis": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.ellipsis.title",
       "leadKey": "component.ellipsis.lead"
     },
     "EmbedLayout": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.embed-layout.title",
       "leadKey": "component.embed-layout.lead"
     },
     "Empty": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.empty.title",
       "leadKey": "component.empty.lead"
     },
     "ErrorModal": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.error-modal.title",
       "leadKey": "component.error-modal.lead"
     },
     "ExcelIo": {
       "category": "other",
+      "package": "data",
       "titleKey": "component.excel-io.title",
       "leadKey": "component.excel-io.lead"
     },
     "Exception": {
       "category": "feedback",
+      "package": "core",
       "titleKey": "component.exception.title",
       "leadKey": "component.exception.lead"
     },
     "FilePreview": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.file-preview.title",
       "leadKey": "component.file-preview.lead"
     },
     "FilterBar": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.filter-bar.title",
       "leadKey": "component.filter-bar.lead"
     },
     "FixedLayout": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.fixed-layout.title",
       "leadKey": "component.fixed-layout.lead"
     },
     "FloatButton": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.float-button.title",
       "leadKey": "component.float-button.lead"
     },
     "FloatNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.float-nav.title",
       "leadKey": "component.float-nav.lead"
     },
     "FlowLayout": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.flow-layout.title",
       "leadKey": "component.flow-layout.lead"
     },
     "FlowPanel": {
       "category": "data-entry",
+      "package": "data",
       "titleKey": "component.flow-panel.title",
       "leadKey": "component.flow-panel.lead"
     },
     "FolderTree": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.folder-tree.title",
       "leadKey": "component.folder-tree.lead"
     },
     "Footer": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.footer.title",
       "leadKey": "component.footer.lead"
     },
     "FooterNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.footer-nav.title",
       "leadKey": "component.footer-nav.lead"
     },
     "Form": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.form.title",
       "leadKey": "component.form.lead"
     },
     "FormGroup": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.form-group.title",
       "leadKey": "component.form-group.lead"
     },
     "FormItem": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.form-item.title",
       "leadKey": "component.form-item.lead"
     },
     "FormLayout": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.form-layout.title",
       "leadKey": "component.form-layout.lead"
     },
     "FormTabs": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.form-tabs.title",
       "leadKey": "component.form-tabs.lead"
     },
     "FreeLayoutDrag": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.free-layout-drag.title",
       "leadKey": "component.free-layout-drag.lead"
     },
     "GaugeChart": {
       "category": "data-display",
+      "package": "charts",
       "titleKey": "component.gauge-chart.title",
       "leadKey": "component.gauge-chart.lead"
     },
     "GbsAlarmModal": {
       "category": "industry",
+      "package": "gb28181",
       "titleKey": "component.gbs-alarm-modal.title",
       "leadKey": "component.gbs-alarm-modal.lead"
     },
     "GbsCascadePanel": {
       "category": "industry",
+      "package": "gb28181",
       "titleKey": "component.gbs-cascade-panel.title",
       "leadKey": "component.gbs-cascade-panel.lead"
     },
     "GbsDeviceTree": {
       "category": "industry",
+      "package": "gb28181",
       "titleKey": "component.gbs-device-tree.title",
       "leadKey": "component.gbs-device-tree.lead"
     },
     "GbsGatewayForm": {
       "category": "industry",
+      "package": "gb28181",
       "titleKey": "component.gbs-gateway-form.title",
       "leadKey": "component.gbs-gateway-form.lead"
     },
     "GbsRegisterForm": {
       "category": "industry",
+      "package": "gb28181",
       "titleKey": "component.gbs-register-form.title",
       "leadKey": "component.gbs-register-form.lead"
     },
     "GbsSignMonitor": {
       "category": "industry",
+      "package": "gb28181",
       "titleKey": "component.gbs-sign-monitor.title",
       "leadKey": "component.gbs-sign-monitor.lead"
     },
     "GbsStatusCard": {
       "category": "industry",
+      "package": "gb28181",
       "titleKey": "component.gbs-status-card.title",
       "leadKey": "component.gbs-status-card.lead"
     },
     "GbsTimeSync": {
       "category": "industry",
+      "package": "gb28181",
       "titleKey": "component.gbs-time-sync.title",
       "leadKey": "component.gbs-time-sync.lead"
     },
     "GraphChart": {
       "category": "data-display",
+      "package": "charts",
       "titleKey": "component.graph-chart.title",
       "leadKey": "component.graph-chart.lead"
     },
     "GridLayoutDrag": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.grid-layout-drag.title",
       "leadKey": "component.grid-layout-drag.lead"
     },
     "GroupNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.group-nav.title",
       "leadKey": "component.group-nav.lead"
     },
     "Header": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.header.title",
       "leadKey": "component.header.lead"
     },
     "HeatMap": {
       "category": "data-display",
+      "package": "charts",
       "titleKey": "component.heat-map.title",
       "leadKey": "component.heat-map.lead"
     },
     "Highlight": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.highlight.title",
       "leadKey": "component.highlight.lead"
     },
     "Icon": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.icon.title",
       "leadKey": "component.icon.lead"
     },
     "Image": {
       "category": "data-display",
+      "package": "core",
       "titleKey": "component.image.title",
       "leadKey": "component.image.lead"
     },
     "ImageCrop": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.image-crop.title",
       "leadKey": "component.image-crop.lead"
     },
     "ImageGroup": {
       "category": "data-display",
+      "package": "core",
       "titleKey": "component.image-group.title",
       "leadKey": "component.image-group.lead"
     },
     "ImageUpload": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.image-upload.title",
       "leadKey": "component.image-upload.lead"
     },
     "ImageViewer": {
       "category": "data-display",
+      "package": "core",
       "titleKey": "component.image-viewer.title",
       "leadKey": "component.image-viewer.lead"
     },
     "IndexNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.index-nav.title",
       "leadKey": "component.index-nav.lead"
     },
     "InfiniteScroll": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.infinite-scroll.title",
       "leadKey": "component.infinite-scroll.lead"
     },
     "InfoModal": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.info-modal.title",
       "leadKey": "component.info-modal.lead"
     },
     "Ink404": {
       "category": "industry",
+      "package": "core",
       "titleKey": "component.ink404.title",
       "leadKey": "component.ink404.lead"
     },
     "InputCaptcha": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.input-captcha.title",
       "leadKey": "component.input-captcha.lead"
     },
     "InputNumber": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.input-number.title",
       "leadKey": "component.input-number.lead"
     },
     "InputOTP": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.input-otp.title",
       "leadKey": "component.input-otp.lead"
     },
     "InputText": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.input-text.title",
       "leadKey": "component.input-text.lead"
     },
     "Layout": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.layout.title",
       "leadKey": "component.layout.lead"
     },
     "LazyTree": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.lazy-tree.title",
       "leadKey": "component.lazy-tree.lead"
     },
     "LineChart": {
       "category": "data-display",
+      "package": "charts",
       "titleKey": "component.line-chart.title",
       "leadKey": "component.line-chart.lead"
     },
     "Link": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.link.title",
       "leadKey": "component.link.lead"
     },
     "Loading": {
       "category": "feedback",
+      "package": "core",
       "titleKey": "component.loading.title",
       "leadKey": "component.loading.lead"
     },
     "LoadingTip": {
       "category": "feedback",
+      "package": "core",
       "titleKey": "component.loading-tip.title",
       "leadKey": "component.loading-tip.lead"
     },
     "LoginPanel": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.login-panel.title",
       "leadKey": "component.login-panel.lead"
     },
     "Machine404": {
       "category": "industry",
+      "package": "core",
       "titleKey": "component.machine404.title",
       "leadKey": "component.machine404.lead"
     },
     "Main": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.main.title",
       "leadKey": "component.main.lead"
     },
     "Mask": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.mask.title",
       "leadKey": "component.mask.lead"
     },
     "MatrixCode": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.matrix-code.title",
       "leadKey": "component.matrix-code.lead"
     },
     "MdEditor": {
       "category": "data-entry",
+      "package": "editor",
       "titleKey": "component.md-editor.title",
       "leadKey": "component.md-editor.lead"
     },
     "Mention": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.mention.title",
       "leadKey": "component.mention.lead"
     },
     "Menu": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.menu.title",
       "leadKey": "component.menu.lead"
     },
     "MenuBar": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.menu-bar.title",
       "leadKey": "component.menu-bar.lead"
     },
     "MergeTable": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.merge-table.title",
       "leadKey": "component.merge-table.lead"
     },
     "Message": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.message.title",
       "leadKey": "component.message.lead"
     },
     "MessageBox": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.message-box.title",
       "leadKey": "component.message-box.lead"
     },
     "MiniNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.mini-nav.title",
       "leadKey": "component.mini-nav.lead"
     },
     "MonthPicker": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.month-picker.title",
       "leadKey": "component.month-picker.lead"
     },
     "NoticeBar": {
       "category": "feedback",
+      "package": "core",
       "titleKey": "component.notice-bar.title",
       "leadKey": "component.notice-bar.lead"
     },
     "Notification": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.notification.title",
       "leadKey": "component.notification.lead"
     },
     "OcrScan": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.ocr-scan.title",
       "leadKey": "component.ocr-scan.lead"
     },
     "OnvifAlarmPanel": {
       "category": "industry",
+      "package": "onvif",
       "titleKey": "component.onvif-alarm-panel.title",
       "leadKey": "component.onvif-alarm-panel.lead"
     },
     "OnvifChannelManage": {
       "category": "industry",
+      "package": "onvif",
       "titleKey": "component.onvif-channel-manage.title",
       "leadKey": "component.onvif-channel-manage.lead"
     },
     "OnvifDeviceList": {
       "category": "industry",
+      "package": "onvif",
       "titleKey": "component.onvif-device-list.title",
       "leadKey": "component.onvif-device-list.lead"
     },
     "OnvifGroupTree": {
       "category": "industry",
+      "package": "onvif",
       "titleKey": "component.onvif-group-tree.title",
       "leadKey": "component.onvif-group-tree.lead"
     },
     "OnvifRecordPlan": {
       "category": "industry",
+      "package": "onvif",
       "titleKey": "component.onvif-record-plan.title",
       "leadKey": "component.onvif-record-plan.lead"
     },
     "OnvifSearch": {
       "category": "industry",
+      "package": "onvif",
       "titleKey": "component.onvif-search.title",
       "leadKey": "component.onvif-search.lead"
     },
     "OnvifSettingPanel": {
       "category": "industry",
+      "package": "onvif",
       "titleKey": "component.onvif-setting-panel.title",
       "leadKey": "component.onvif-setting-panel.lead"
     },
     "OnvifUrlForm": {
       "category": "industry",
+      "package": "onvif",
       "titleKey": "component.onvif-url-form.title",
       "leadKey": "component.onvif-url-form.lead"
     },
     "PTZControl": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.ptz-control.title",
       "leadKey": "component.ptz-control.lead"
     },
     "PageHeader": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.page-header.title",
       "leadKey": "component.page-header.lead"
     },
     "PagerNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.pager-nav.title",
       "leadKey": "component.pager-nav.lead"
     },
     "Pagination": {
       "category": "navigation",
+      "package": "data",
       "titleKey": "component.pagination.title",
       "leadKey": "component.pagination.lead"
     },
     "Password": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.password.title",
       "leadKey": "component.password.lead"
     },
     "PdfPreview": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.pdf-preview.title",
       "leadKey": "component.pdf-preview.lead"
     },
     "PermissionPanel": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.permission-panel.title",
       "leadKey": "component.permission-panel.lead"
     },
     "PieChart": {
       "category": "data-display",
+      "package": "charts",
       "titleKey": "component.pie-chart.title",
       "leadKey": "component.pie-chart.lead"
     },
     "PivotTable": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.pivot-table.title",
       "leadKey": "component.pivot-table.lead"
     },
     "Pixel404": {
       "category": "industry",
+      "package": "core",
       "titleKey": "component.pixel404.title",
       "leadKey": "component.pixel404.lead"
     },
     "Plant404": {
       "category": "industry",
+      "package": "core",
       "titleKey": "component.plant404.title",
       "leadKey": "component.plant404.lead"
     },
     "Popconfirm": {
       "category": "feedback",
+      "package": "core",
       "titleKey": "component.popconfirm.title",
       "leadKey": "component.popconfirm.lead"
     },
     "Popover": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.popover.title",
       "leadKey": "component.popover.lead"
     },
     "Preview": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.preview.title",
       "leadKey": "component.preview.lead"
     },
     "Print": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.print.title",
       "leadKey": "component.print.lead"
     },
     "ProTable": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.pro-table.title",
       "leadKey": "component.pro-table.lead"
     },
     "Progress": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.progress.title",
       "leadKey": "component.progress.lead"
     },
     "ProgressTip": {
       "category": "feedback",
+      "package": "core",
       "titleKey": "component.progress-tip.title",
       "leadKey": "component.progress-tip.lead"
     },
     "PropPanel": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.prop-panel.title",
       "leadKey": "component.prop-panel.lead"
     },
     "Qrcode": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.qrcode.title",
       "leadKey": "component.qrcode.lead"
     },
     "QuarterPicker": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.quarter-picker.title",
       "leadKey": "component.quarter-picker.lead"
     },
     "QuickNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.quick-nav.title",
       "leadKey": "component.quick-nav.lead"
     },
     "RadarChart": {
       "category": "data-display",
+      "package": "charts",
       "titleKey": "component.radar-chart.title",
       "leadKey": "component.radar-chart.lead"
     },
     "Radio": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.radio.title",
       "leadKey": "component.radio.lead"
     },
     "RadioGroup": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.radio-group.title",
       "leadKey": "component.radio-group.lead"
     },
     "RangeInput": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.range-input.title",
       "leadKey": "component.range-input.lead"
     },
     "Ranking": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.ranking.title",
       "leadKey": "component.ranking.lead"
     },
     "Rate": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.rate.title",
       "leadKey": "component.rate.lead"
     },
     "ResizeBox": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.resize-box.title",
       "leadKey": "component.resize-box.lead"
     },
     "Result": {
       "category": "feedback",
+      "package": "core",
       "titleKey": "component.result.title",
       "leadKey": "component.result.lead"
     },
     "RichText": {
       "category": "data-entry",
+      "package": "editor",
       "titleKey": "component.rich-text.title",
       "leadKey": "component.rich-text.lead"
     },
     "RouterNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.router-nav.title",
       "leadKey": "component.router-nav.lead"
     },
     "Row": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.row.title",
       "leadKey": "component.row.lead"
     },
     "ScaleLayout": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.scale-layout.title",
       "leadKey": "component.scale-layout.lead"
     },
     "SchemaRenderer": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.schema-renderer.title",
       "leadKey": "component.schema-renderer.lead"
     },
     "ScrollNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.scroll-nav.title",
       "leadKey": "component.scroll-nav.lead"
     },
     "ScrollNotice": {
       "category": "data-display",
+      "package": "core",
       "titleKey": "component.scroll-notice.title",
       "leadKey": "component.scroll-notice.lead"
     },
     "Scrollbar": {
       "category": "data-display",
+      "package": "core",
       "titleKey": "component.scrollbar.title",
       "leadKey": "component.scrollbar.lead"
     },
     "Search": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.search.title",
       "leadKey": "component.search.lead"
     },
     "SearchFilterPanel": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.search-filter-panel.title",
       "leadKey": "component.search-filter-panel.lead"
     },
     "Segmented": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.segmented.title",
       "leadKey": "component.segmented.lead"
     },
     "Select": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.select.title",
       "leadKey": "component.select.lead"
     },
     "SelectNav": {
       "category": "navigation",
+      "package": "form",
       "titleKey": "component.select-nav.title",
       "leadKey": "component.select-nav.lead"
     },
     "SettingPanel": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.setting-panel.title",
       "leadKey": "component.setting-panel.lead"
     },
     "Sider": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.sider.title",
       "leadKey": "component.sider.lead"
     },
     "Simple404": {
       "category": "industry",
+      "package": "core",
       "titleKey": "component.simple404.title",
       "leadKey": "component.simple404.lead"
     },
     "Skeleton": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.skeleton.title",
       "leadKey": "component.skeleton.lead"
     },
     "Slider": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.slider.title",
       "leadKey": "component.slider.lead"
     },
     "SmsCode": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.sms-code.title",
       "leadKey": "component.sms-code.lead"
     },
     "Space": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.space.title",
       "leadKey": "component.space.lead"
     },
     "Space404": {
       "category": "industry",
+      "package": "core",
       "titleKey": "component.space404.title",
       "leadKey": "component.space404.lead"
     },
     "Spacer": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.spacer.title",
       "leadKey": "component.spacer.lead"
     },
     "Spin": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.spin.title",
       "leadKey": "component.spin.lead"
     },
     "Split": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.split.title",
       "leadKey": "component.split.lead"
     },
     "SplitVideoWall": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.split-video-wall.title",
       "leadKey": "component.split-video-wall.lead"
     },
     "StackLayout": {
       "category": "layout",
+      "package": "core",
       "titleKey": "component.stack-layout.title",
       "leadKey": "component.stack-layout.lead"
     },
     "Statistic": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.statistic.title",
       "leadKey": "component.statistic.lead"
     },
     "StatusTip": {
       "category": "feedback",
+      "package": "core",
       "titleKey": "component.status-tip.title",
       "leadKey": "component.status-tip.lead"
     },
     "StepForm": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.step-form.title",
       "leadKey": "component.step-form.lead"
     },
     "StepItem": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.step-item.title",
       "leadKey": "component.step-item.lead"
     },
     "StepNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.step-nav.title",
       "leadKey": "component.step-nav.lead"
     },
     "Steps": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.steps.title",
       "leadKey": "component.steps.lead"
     },
     "StickyTable": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.sticky-table.title",
       "leadKey": "component.sticky-table.lead"
     },
     "SuccessModal": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.success-modal.title",
       "leadKey": "component.success-modal.lead"
     },
     "Switch": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.switch.title",
       "leadKey": "component.switch.lead"
     },
     "TabPane": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.tab-pane.title",
       "leadKey": "component.tab-pane.lead"
     },
     "TableAction": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.table-action.title",
       "leadKey": "component.table-action.lead"
     },
     "TableDrag": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.table-drag.title",
       "leadKey": "component.table-drag.lead"
     },
     "TableExport": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.table-export.title",
       "leadKey": "component.table-export.lead"
     },
     "TablePrint": {
       "category": "other",
+      "package": "data",
       "titleKey": "component.table-print.title",
       "leadKey": "component.table-print.lead"
     },
     "Tabs": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.tabs.title",
       "leadKey": "component.tabs.lead"
     },
     "TabsNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.tabs-nav.title",
       "leadKey": "component.tabs-nav.lead"
     },
     "Tag": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.tag.title",
       "leadKey": "component.tag.lead"
     },
     "TagInput": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.tag-input.title",
       "leadKey": "component.tag-input.lead"
     },
     "Tech404": {
       "category": "industry",
+      "package": "core",
       "titleKey": "component.tech404.title",
       "leadKey": "component.tech404.lead"
     },
     "TelemetryProvider": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.telemetry-provider.title",
       "leadKey": "component.telemetry-provider.lead"
     },
     "TemplateDrag": {
       "category": "other",
+      "package": "lowcode",
       "titleKey": "component.template-drag.title",
       "leadKey": "component.template-drag.lead"
     },
     "TemplateSelect": {
       "category": "data-entry",
+      "package": "lowcode",
       "titleKey": "component.template-select.title",
       "leadKey": "component.template-select.lead"
     },
     "Textarea": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.textarea.title",
       "leadKey": "component.textarea.lead"
     },
     "ThemeProvider": {
       "category": "other",
+      "package": "core",
       "titleKey": "component.theme-provider.title",
       "leadKey": "component.theme-provider.lead"
     },
     "Thumbnail": {
       "category": "data-display",
+      "package": "core",
       "titleKey": "component.thumbnail.title",
       "leadKey": "component.thumbnail.lead"
     },
     "TimePicker": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.time-picker.title",
       "leadKey": "component.time-picker.lead"
     },
     "TimeRangeInput": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.time-range-input.title",
       "leadKey": "component.time-range-input.lead"
     },
     "TimeSelect": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.time-select.title",
       "leadKey": "component.time-select.lead"
     },
     "Timeline": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.timeline.title",
       "leadKey": "component.timeline.lead"
     },
     "TimelineItem": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.timeline-item.title",
       "leadKey": "component.timeline-item.lead"
     },
     "TimelineList": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.timeline-list.title",
       "leadKey": "component.timeline-list.lead"
     },
     "Toast": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.toast.title",
       "leadKey": "component.toast.lead"
     },
     "Tooltip": {
       "category": "data-display",
+      "package": "core",
       "titleKey": "component.tooltip.title",
       "leadKey": "component.tooltip.lead"
     },
     "TopNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.top-nav.title",
       "leadKey": "component.top-nav.lead"
     },
     "Tour": {
       "category": "navigation",
+      "package": "overlay",
       "titleKey": "component.tour.title",
       "leadKey": "component.tour.lead"
     },
     "Transfer": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.transfer.title",
       "leadKey": "component.transfer.lead"
     },
     "TransferTree": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.transfer-tree.title",
       "leadKey": "component.transfer-tree.lead"
     },
     "Tree": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.tree.title",
       "leadKey": "component.tree.lead"
     },
     "TreeChart": {
       "category": "data-display",
+      "package": "charts",
       "titleKey": "component.tree-chart.title",
       "leadKey": "component.tree-chart.lead"
     },
     "TreeForm": {
       "category": "data-display",
+      "package": "form",
       "titleKey": "component.tree-form.title",
       "leadKey": "component.tree-form.lead"
     },
     "TreeSelect": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.tree-select.title",
       "leadKey": "component.tree-select.lead"
     },
     "TreeTable": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.tree-table.title",
       "leadKey": "component.tree-table.lead"
     },
     "TreeTransfer": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.tree-transfer.title",
       "leadKey": "component.tree-transfer.lead"
     },
     "Typography": {
       "category": "general",
+      "package": "core",
       "titleKey": "component.typography.title",
       "leadKey": "component.typography.lead"
     },
     "Upload": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.upload.title",
       "leadKey": "component.upload.lead"
     },
     "UserInfoCard": {
       "category": "data-entry",
+      "package": "core",
       "titleKey": "component.user-info-card.title",
       "leadKey": "component.user-info-card.lead"
     },
     "VcrBackupTask": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.vcr-backup-task.title",
       "leadKey": "component.vcr-backup-task.lead"
     },
     "VcrClipCut": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.vcr-clip-cut.title",
       "leadKey": "component.vcr-clip-cut.lead"
     },
     "VcrDownloadPanel": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.vcr-download-panel.title",
       "leadKey": "component.vcr-download-panel.lead"
     },
     "VcrMarkPoint": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.vcr-mark-point.title",
       "leadKey": "component.vcr-mark-point.lead"
     },
     "VcrSearchPanel": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.vcr-search-panel.title",
       "leadKey": "component.vcr-search-panel.lead"
     },
     "VcrSpeedControl": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.vcr-speed-control.title",
       "leadKey": "component.vcr-speed-control.lead"
     },
     "VcrStorageDashboard": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.vcr-storage-dashboard.title",
       "leadKey": "component.vcr-storage-dashboard.lead"
     },
     "VcrTimelinePlayer": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.vcr-timeline-player.title",
       "leadKey": "component.vcr-timeline-player.lead"
     },
     "VerticalStepNav": {
       "category": "navigation",
+      "package": "core",
       "titleKey": "component.vertical-step-nav.title",
       "leadKey": "component.vertical-step-nav.lead"
     },
     "VideoAdjust": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.video-adjust.title",
       "leadKey": "component.video-adjust.lead"
     },
     "VideoPlayer": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.video-player.title",
       "leadKey": "component.video-player.lead"
     },
     "VideoPreview": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.video-preview.title",
       "leadKey": "component.video-preview.lead"
     },
     "VideoSnapshot": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.video-snapshot.title",
       "leadKey": "component.video-snapshot.lead"
     },
     "VideoVolume": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.video-volume.title",
       "leadKey": "component.video-volume.lead"
     },
     "VideoWatermark": {
       "category": "industry",
+      "package": "media",
       "titleKey": "component.video-watermark.title",
       "leadKey": "component.video-watermark.lead"
     },
     "VirtualTable": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.virtual-table.title",
       "leadKey": "component.virtual-table.lead"
     },
     "VirtualTree": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.virtual-tree.title",
       "leadKey": "component.virtual-tree.lead"
     },
     "WarnModal": {
       "category": "feedback",
+      "package": "overlay",
       "titleKey": "component.warn-modal.title",
       "leadKey": "component.warn-modal.lead"
     },
     "Waterfall": {
       "category": "data-display",
+      "package": "data",
       "titleKey": "component.waterfall.title",
       "leadKey": "component.waterfall.lead"
     },
     "Watermark": {
       "category": "data-display",
+      "package": "core",
       "titleKey": "component.watermark.title",
       "leadKey": "component.watermark.lead"
     },
     "WeekPicker": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.week-picker.title",
       "leadKey": "component.week-picker.lead"
     },
     "WordCloud": {
       "category": "data-display",
+      "package": "charts",
       "titleKey": "component.word-cloud.title",
       "leadKey": "component.word-cloud.lead"
     },
     "YearPicker": {
       "category": "data-entry",
+      "package": "form",
       "titleKey": "component.year-picker.title",
       "leadKey": "component.year-picker.lead"
     }

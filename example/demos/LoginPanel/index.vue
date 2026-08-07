@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { LoginPanel, StatusTip } from '@amg-webui/components/base'
+import { LoginPanel } from '@amg-webui/form'
+import { StatusTip } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -13,7 +14,7 @@ const model = ref({ username: '', password: '', remember: true, captcha: '' })
 const eventLog = ref('')
 
 const codeBasic = demoSfc({
-  imports: [`import { LoginPanel } from '@amg-webui/components/base'`],
+  imports: [`import { LoginPanel } from '@amg-webui/form'`],
   template: [
     '  <LoginPanel',
     '    v-model="model"',

@@ -3,15 +3,7 @@
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts`).
  */
 import { computed, ref } from 'vue'
-import {
-  Avatar,
-  Button,
-  Card,
-  Collapse,
-  Progress,
-  Space,
-  Tag
-} from '@amg-webui/components/base'
+import { Avatar, Button, Card, Collapse, Progress, Space, Tag } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -85,7 +77,7 @@ function onCollapse(payload: { key: string; activeKeys: string | string[] }) {
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Collapse } from '@amg-webui/components/base'`
+    `import { Collapse } from '@amg-webui/core'`
   ],
   script: [
     `const open = ref('a')`,

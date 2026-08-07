@@ -3,7 +3,7 @@
  * Curated demo — Form wave2 StepForm
  */
 import { computed, ref } from 'vue'
-import { StepForm } from '@amg-webui/components/base'
+import { StepForm } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import { ToastService } from '@amg-webui/theme'
@@ -42,7 +42,7 @@ const steps = computed(() => [
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { StepForm } from '@amg-webui/components/base'`
+    `import { StepForm } from '@amg-webui/form'`
   ],
   script: [
     `const step = ref(0)`,

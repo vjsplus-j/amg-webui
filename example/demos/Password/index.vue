@@ -3,7 +3,8 @@
  * Curated demo — Form wave1 Password
  */
 import { computed, ref } from 'vue'
-import { Password, Space } from '@amg-webui/components/base'
+import { Password } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -19,7 +20,7 @@ const hidden = ref('amg-webui')
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Password } from '@amg-webui/components/base'`
+    `import { Password } from '@amg-webui/form'`
   ],
   script: [`const secret = ref('')`],
   template: [

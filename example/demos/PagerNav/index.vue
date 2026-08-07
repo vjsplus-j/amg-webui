@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { PagerNav, Space } from '@amg-webui/components/base'
+import { PagerNav, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -12,7 +12,7 @@ const { t } = useLocale()
 const page = ref(1)
 
 const codeBasic = demoSfc({
-  imports: [`import { PagerNav } from '@amg-webui/components/base'`],
+  imports: [`import { PagerNav } from '@amg-webui/core'`],
   template: ['  <PagerNav v-model="page" :total-pages="8" />']
 })
 

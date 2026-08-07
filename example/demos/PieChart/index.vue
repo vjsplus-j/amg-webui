@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { PieChart } from "@amg-webui/components/base";
+import { PieChart } from '@amg-webui/charts';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
 import PropsTable from "../../components/demo/PropsTable.vue";
@@ -16,7 +16,7 @@ const selected = ref<string | number | null>(0);
 
 const codeBasic = demoSfc({
   imports: [
-    `import { PieChart } from '@amg-webui/components/base'`,
+    `import { PieChart } from '@amg-webui/charts'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`,
   ],
   script: [

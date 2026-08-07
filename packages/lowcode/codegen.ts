@@ -1,12 +1,11 @@
 import type { CanvasNodeData, CanvasSchema } from '@amg-webui/utils'
+import { splitMetaProps } from './meta'
 import { buildCanvasTree, type CanvasTreeNode } from './tree'
-import {
-  LOWCODE_BINDINGS_KEY,
-  LOWCODE_EVENTS_KEY,
-  type CodegenOptions,
-  type ComponentRegistry,
-  type LowcodeBindings,
-  type LowcodeEvents
+import type {
+  CodegenOptions,
+  ComponentRegistry,
+  LowcodeBindings,
+  LowcodeEvents
 } from './types'
 
 function serializePropValue(value: unknown): string {
@@ -15,28 +14,6 @@ function serializePropValue(value: unknown): string {
   if (typeof value === 'string') return JSON.stringify(value)
   if (typeof value === 'number' || typeof value === 'boolean') return String(value)
   return JSON.stringify(value)
-}
-
-function splitMetaProps(props: Record<string, unknown>): {
-  attrs: Record<string, unknown>
-  bindings: LowcodeBindings
-  events: LowcodeEvents
-} {
-  const attrs: Record<string, unknown> = {}
-  let bindings: LowcodeBindings = {}
-  let events: LowcodeEvents = {}
-  for (const [key, value] of Object.entries(props)) {
-    if (key === LOWCODE_BINDINGS_KEY && value && typeof value === 'object') {
-      bindings = value as LowcodeBindings
-      continue
-    }
-    if (key === LOWCODE_EVENTS_KEY && value && typeof value === 'object') {
-      events = value as LowcodeEvents
-      continue
-    }
-    attrs[key] = value
-  }
-  return { attrs, bindings, events }
 }
 
 function propsToAttrs(props: Record<string, unknown>, bindings: LowcodeBindings, events: LowcodeEvents): string {
@@ -86,7 +63,7 @@ function resolveExportName(type: string, registry?: ComponentRegistry): string {
 }
 
 function resolveImportFrom(type: string, registry?: ComponentRegistry): string {
-  return registry?.get(type)?.importFrom ?? '@amg-webui/components/base'
+  return registry?.get(type)?.importFrom ?? '@amg-webui/core'
 }
 
 function renderTreeNode(

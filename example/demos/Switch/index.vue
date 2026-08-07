@@ -3,7 +3,8 @@
  * Curated demo — Form wave1 Switch
  */
 import { computed, ref } from 'vue'
-import { Switch, Space } from '@amg-webui/components/base'
+import { Switch } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -29,7 +30,7 @@ const sizeVals = ref<Record<Size, boolean>>({
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Switch } from '@amg-webui/components/base'`
+    `import { Switch } from '@amg-webui/form'`
   ],
   script: ['const on = ref(true)'],
   template: [`  <Switch v-model="on" />`, `  <Switch v-model="on" disabled />`]

@@ -1,26 +1,26 @@
 import { describe, expect, it, vi } from "vitest";
 import { mount } from "@vue/test-utils";
-import GbsDeviceTree from "../../../packages/components/base/GbsDeviceTree/index.vue";
-import OnvifGroupTree from "../../../packages/components/base/OnvifGroupTree/index.vue";
-import TemplateDrag from "../../../packages/components/base/TemplateDrag/index.vue";
-import TopNav from "../../../packages/components/base/TopNav/index.vue";
-import ScrollNotice from "../../../packages/components/base/ScrollNotice/index.vue";
-import TablePrint from "../../../packages/components/base/TablePrint/index.vue";
-import ColumnLayout from "../../../packages/components/base/ColumnLayout/index.vue";
-import RangeInput from "../../../packages/components/base/RangeInput/index.vue";
-import InputNumber from "../../../packages/components/base/InputNumber/index.vue";
-import BrowserDetect from "../../../packages/components/base/BrowserDetect/index.vue";
-import Main from "../../../packages/components/base/Main/index.vue";
-import DescriptionsItem from "../../../packages/components/base/DescriptionsItem/index.vue";
-import ScaleLayout from "../../../packages/components/base/ScaleLayout/index.vue";
-import FlowLayout from "../../../packages/components/base/FlowLayout/index.vue";
-import MenuBar from "../../../packages/components/base/MenuBar/index.vue";
-import Row from "../../../packages/components/base/Row/index.vue";
-import CanvasIo from "../../../packages/components/base/CanvasIo/index.vue";
-import CardNav from "../../../packages/components/base/CardNav/index.vue";
-import Center from "../../../packages/components/base/Center/index.vue";
-import Col from "../../../packages/components/base/Col/index.vue";
-import FormLayout from "../../../packages/components/base/FormLayout/index.vue";
+import GbsDeviceTree from "../../../packages/components/gb28181/GbsDeviceTree/index.vue";
+import OnvifGroupTree from "../../../packages/components/onvif/OnvifGroupTree/index.vue";
+import TemplateDrag from "../../../packages/lowcode/ui/TemplateDrag/index.vue";
+import TopNav from "../../../packages/components/core/TopNav/index.vue";
+import ScrollNotice from "../../../packages/components/core/ScrollNotice/index.vue";
+import TablePrint from "../../../packages/components/data/TablePrint/index.vue";
+import ColumnLayout from "../../../packages/components/core/ColumnLayout/index.vue";
+import RangeInput from "../../../packages/components/form/RangeInput/index.vue";
+import InputNumber from "../../../packages/components/form/InputNumber/index.vue";
+import BrowserDetect from "../../../packages/components/core/BrowserDetect/index.vue";
+import Main from "../../../packages/components/core/Main/index.vue";
+import DescriptionsItem from "../../../packages/components/data/DescriptionsItem/index.vue";
+import ScaleLayout from "../../../packages/components/core/ScaleLayout/index.vue";
+import FlowLayout from "../../../packages/components/core/FlowLayout/index.vue";
+import MenuBar from "../../../packages/components/core/MenuBar/index.vue";
+import Row from "../../../packages/components/core/Row/index.vue";
+import CanvasIo from "../../../packages/lowcode/ui/CanvasIo/index.vue";
+import CardNav from "../../../packages/components/core/CardNav/index.vue";
+import Center from "../../../packages/components/core/Center/index.vue";
+import Col from "../../../packages/components/core/Col/index.vue";
+import FormLayout from "../../../packages/components/core/FormLayout/index.vue";
 
 describe("lowest beta wave behavior", () => {
   it("does not fabricate GBS devices and cascades leaf selection", async () => {

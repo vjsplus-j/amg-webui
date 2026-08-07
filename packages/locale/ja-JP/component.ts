@@ -1,4 +1,4 @@
-export default {
+﻿export default {
   'component.qrcode.title': 'Qrcode',
   'component.qrcode.lead': 'Qrcode コンポーネントプレビュー',
   'component.qrcode.invalid': '{standard} QR コードのデータが無効です。文字、長さ、誤り訂正レベルを確認してください。',
@@ -479,6 +479,13 @@ export default {
   'component.preview.fullscreen': '全画面',
   'component.drag-canvas.empty': '素材をキャンバスにドラッグ',
   'component.prop-panel.empty': 'ノードを選択して属性を編集',
+  'component.prop-panel.field.parentNone': 'なし（ルート）',
+  'component.prop-panel.field.parentId': '親ノード',
+  'component.prop-panel.field.y': 'Y',
+  'component.prop-panel.field.w': '幅',
+  'component.prop-panel.field.nodeLabel': 'ノード名',
+  'component.prop-panel.field.x': 'X',
+  'component.prop-panel.field.h': '高さ',
   'component.drag-wrapper.hint': '子コンポーネントをドロップ',
   'component.canvas-layer.show': '表示',
   'component.canvas-layer.hide': '非表示',
@@ -520,7 +527,7 @@ export default {
   'component.exception.offline.title': 'オフラインです',
   'component.exception.offline.lead': 'ネットワーク接続を確認して再試行してください。',
   'component.datatable.title': 'データテーブル',
-  'component.datatable.lead': '仮想スクロール表（デフォルト ON）',
+  'component.datatable.lead': 'Fixed-row virtual scroll on by default; viewport and row height drive the math',
   'component.datatable.showing': '{total} 件中 {from}–{to} 件',
   'component.datatable.rowsPerPage': 'ページあたり行数',
   'component.datatable.firstPage': '最初のページ',

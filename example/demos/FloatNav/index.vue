@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { FloatNav, Space } from '@amg-webui/components/base'
+import { FloatNav, Space } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -19,7 +19,7 @@ const items = computed<NavItem[]>(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { FloatNav } from '@amg-webui/components/base'`],
+  imports: [`import { FloatNav } from '@amg-webui/core'`],
   template: [
     '  <FloatNav',
     '    v-model="active"',

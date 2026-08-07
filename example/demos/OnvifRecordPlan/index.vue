@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { OnvifRecordPlan } from '@amg-webui/components/base'
+import { OnvifRecordPlan } from '@amg-webui/onvif'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('OnvifRecordPlan'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { OnvifRecordPlan } from '@amg-webui/components/base'`,
+    `import { OnvifRecordPlan } from '@amg-webui/onvif'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('OnvifRecordPlan')`],

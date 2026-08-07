@@ -12,18 +12,20 @@ Skill Runtime: `docs/SKILL_RUNTIME.md` · locked rule: `vue3-amg-webui-skill-run
 ## Scripts (required)
 | npm | purpose |
 |-----|---------|
-| `create:component` | scaffold base/business (`vp-` class, types, style, stubs) |
-| `generate:entry` | scan & rewrite component barrel `index.ts` — no manual mega-exports |
+| `create:component` | scaffold `core|form|data|overlay|charts|editor|media|gb28181|onvif|business` (`vp-` class, types, style, stubs) |
+| `generate:entry` | scan package map & rewrite per-package barrels + legacy `base→core` |
 | `extract:i18n` | scan copy → regenerate `LocaleKey` schema + align **all** locale packs; missing key = bug/CI |
+| `check:dist` | after `build:lib`: on-demand rewrite, six brand CSS, runtime entry, coarse size budgets |
 | `generate:locale-types` | emit `message-schema.ts` (`LocaleKey` / `LocaleMessages`) from zh-CN |
-| `validate:catalog` | catalog ↔ base coverage |
-| `score:maturity` | component depth score |
+| `validate:catalog` | catalog ↔ mapped component coverage |
+| `check:boundaries` | foundation must not import industry packages |
+| `score:maturity` | component **dev inventory** heuristic (not a quality certificate) |
 | `generate:icons` | refresh icon catalog |
 | `generate:vitepress-api` | regenerate docs component API stubs |
 | `sync:example-zones` | sync example zone metadata |
 | `build:skill` | build optional `amg-webui/skill` + `amg-webui/skill/core` entries |
 | `build:theme` | build `amg-webui/theme` + `amg-webui/theme/core` + `theme/style.css` |
-| `build:runtime` | build runtime subpackages → `dist/{security,telemetry,lowcode,hooks,utils,…}/` |
+| `build:runtime` | build runtime subpackages → `dist/{security,telemetry,lowcode,runtime,hooks,utils,…}/` |
 | `build:ondemand` | multi-entry ESM → `dist/es/**`; rewrite `@amg-webui/*` → `amg-webui/*` |
 | `build:themes` | per-brand CSS → `dist/themes/<brand>.css` (`multi-theme` mode) |
 | `build:dts` | types-only emit (`dts` mode) |
@@ -31,7 +33,7 @@ Skill Runtime: `docs/SKILL_RUNTIME.md` · locked rule: `vue3-amg-webui-skill-run
 | `generate:exports` | rewrite `package.json` `exports`/`files` to **dist-only** public contract |
 | `test:consumers` | `npm pack` + build `tests/consumer-{vite,webpack,nuxt}` |
 
-Long-lived files under `scripts/`: `create-component` · `generate-entry` · `extract-i18n` · `generate-icon-catalog` · `generate-component-catalog` · `validate-component-catalog` · `score-component-maturity` · `sync-example-zones` · `generate-vitepress-api` · `classify-mvp` · `check-coverage` · `lucide-meta/`.  
+Long-lived files under `scripts/`: `create-component` · `generate-entry` · `extract-i18n` · `check-dist-artifacts` · `generate-icon-catalog` · `generate-component-catalog` · `validate-component-catalog` · `score-component-maturity` · `sync-example-zones` · `generate-vitepress-api` · `classify-mvp` · `check-coverage` · `lucide-meta/`.  
 **Do not** keep one-off `patch-*` / `upgrade-*` / `fix-*` / `inject-*` / demo-gen scripts in the repo after use — see `docs/ENGINEERING.md`.
 
 Aliases:
@@ -43,7 +45,7 @@ Public Skill exports are `amg-webui/skill` and `amg-webui/skill/core`. The root 
 
 Public Theme exports are `amg-webui/theme`, `amg-webui/theme/core`, and `amg-webui/theme/style.css`. Theme Core must not touch `document` / `localStorage` directly — use Host / Storage adapters.
 
-**Publish contract:** every public `exports` entry must resolve to compiled `dist/**` (JS + `.d.ts` + stable CSS). Never ship `packages/**/*.ts` / `.vue` as the consumer import target. On-demand chunks must import `amg-webui/*` (not `@amg-webui/*`). CI runs `test:consumers` after `build:lib`. This advances the package contract — it does **not** mark Overlay / industry-base / maturity / E2E as solved.
+**Publish contract:** every public `exports` entry must resolve to compiled `dist/**` (JS + `.d.ts` + stable CSS). Never ship `packages/**/*.ts` / `.vue` as the consumer import target. On-demand chunks must import `amg-webui/*` (not `@amg-webui/*`). CI runs `extract:i18n` · `test:ssr` · `test:consumers` · `check:dist` after `build:lib`; E2E matrix = Chromium deep + Firefox/WebKit/Mobile smoke — see `docs/ENGINEERING.md` § CI. Overlay UI kernel: `amg-webui/runtime` + `useOverlay` — see `docs/OVERLAY.md`. Remaining honesty gaps: industry-base maturity / pixel baselines / Nuxt hydration / Lighthouse / per-component CSS entry completeness. `score:maturity` JSON is **dev inventory only** — not a11y/perf/SSR/API quality proof.
 
 ## Performance (non-negotiable defaults)
 - **All list-like components** (DataTable, Tree, Select dropdown, infinite lists, virtualized menus): **virtual scroll ON by default** (opt-out only with explicit prop + docs warning).

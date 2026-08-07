@@ -6,7 +6,7 @@
 
 ```vue
 <script setup>
-import { Icon } from '@amg-webui/components/base'
+import { Icon } from '@amg-webui/core'
 </script>
 
 <template>

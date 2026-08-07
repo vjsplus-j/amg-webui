@@ -1,15 +1,7 @@
 ﻿<script setup lang="ts">
 import { ref } from 'vue'
-import {
-  Card,
-  Form,
-  FormItem,
-  InputText,
-  Password,
-  Switch,
-  Rate,
-  Button
-} from '@amg-webui/components/base'
+import { Card, Button } from '@amg-webui/core'
+import { Form, FormItem, InputText, Password, Switch, Rate } from '@amg-webui/form'
 import { ToastService } from '@amg-webui/theme'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'

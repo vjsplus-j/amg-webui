@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { GridLayoutDrag } from '@amg-webui/components/base'
+import { GridLayoutDrag } from '@amg-webui/lowcode'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('GridLayoutDrag'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { GridLayoutDrag } from '@amg-webui/components/base'`,
+    `import { GridLayoutDrag } from '@amg-webui/lowcode'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('GridLayoutDrag')`],

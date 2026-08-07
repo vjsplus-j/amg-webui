@@ -6,7 +6,7 @@
 
 ```vue
 <script setup>
-import { Button, ButtonGroup } from '@amg-webui/components/base'
+import { Button, ButtonGroup } from '@amg-webui/core'
 </script>
 
 <template>

@@ -6,7 +6,7 @@ Select 组件 API（v0.1 子集）。
 
 ```vue
 <script setup>
-import { Select } from '@amg-webui/components/base'
+import { Select } from '@amg-webui/form'
 </script>
 
 <template>

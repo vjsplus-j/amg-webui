@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { TimelineList } from "@amg-webui/components/base";
+import { TimelineList } from '@amg-webui/data';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
 import PropsTable from "../../components/demo/PropsTable.vue";
@@ -16,7 +16,7 @@ const selected = ref<string | number | null>("review");
 
 const codeBasic = demoSfc({
   imports: [
-    `import { TimelineList } from '@amg-webui/components/base'`,
+    `import { TimelineList } from '@amg-webui/data'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`,
   ],
   script: [

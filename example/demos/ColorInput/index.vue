@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { ColorInput } from '@amg-webui/components/base'
+import { ColorInput } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -17,7 +17,7 @@ const smColor = ref('#6366F1')
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { ColorInput } from '@amg-webui/components/base'`
+    `import { ColorInput } from '@amg-webui/form'`
   ],
   script: [`const color = ref('#3B82F6')`],
   template: [`  <ColorInput v-model="color" />`]

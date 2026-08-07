@@ -7,7 +7,7 @@ Form 组件 API（v0.1 子集）。
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { Form, FormItem, InputText } from '@amg-webui/components/base'
+import { Form, FormItem, InputText } from '@amg-webui/form'
 
 const model = ref({ name: '' })
 </script>
@@ -27,7 +27,7 @@ const model = ref({ name: '' })
 - Boolean: `Checkbox` / `Radio` / `Switch`
 - Composite: `Select` / `Cascader` / `TreeSelect` / `DatePicker` / `DateTimePicker` / `TimePicker` / `TimeSelect` / `ColorPicker` / `Slider` / `Rate` / `Transfer`
 
-Native attrs such as `autocomplete` are forwarded onto the real control (not the wrapper host) where applicable.
+Undeclared native attrs (`pattern`, `inputmode`, `minlength`, `aria-labelledby`, …) are forwarded onto the real control via `useNativeInputAttrs` — not the wrapper host. Declared props never appear in `$attrs`; the helper only excludes keys the caller opts out of, so it does not maintain a prop-name blacklist that drifts from each component’s bindings.
 
 ## 常用 API
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Icon from "../base/Icon/index.vue";
+import Icon from '@amg-webui/core/Icon/index.vue';
 export interface SelectableTreeNode {
   label: string;
   value: string | number;

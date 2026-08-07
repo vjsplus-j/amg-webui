@@ -3,7 +3,7 @@
  * Curated demo — Data wave2 ProTable
  */
 import { computed, ref } from 'vue'
-import { ProTable } from '@amg-webui/components/base'
+import { ProTable } from '@amg-webui/data'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -34,7 +34,7 @@ const selected = ref<Record<string, unknown> | null>(null)
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { ProTable } from '@amg-webui/components/base'`
+    `import { ProTable } from '@amg-webui/data'`
   ],
   script: [`const rows = ref([/* … */])`, `const columns = computed(() => [/* … */])`],
   template: [

@@ -6,7 +6,7 @@ Alert 组件 API（v0.1 子集）。
 
 ```vue
 <script setup>
-import { Alert } from '@amg-webui/components/base'
+import { Alert } from '@amg-webui/core'
 </script>
 
 <template>

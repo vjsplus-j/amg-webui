@@ -3,7 +3,7 @@
  * Curated demo — Nav wave1 Anchor
  */
 import { computed, ref } from 'vue'
-import { Anchor } from '@amg-webui/components/base'
+import { Anchor } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -32,7 +32,7 @@ const inlineItems = computed<NavItem[]>(() => [
 const codeAffix = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { Anchor } from '@amg-webui/components/base'`
+    `import { Anchor } from '@amg-webui/core'`
   ],
   script: [`const active = ref('intro')`],
   template: [

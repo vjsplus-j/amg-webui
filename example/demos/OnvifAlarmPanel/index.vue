@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { OnvifAlarmPanel } from '@amg-webui/components/base'
+import { OnvifAlarmPanel } from '@amg-webui/onvif'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('OnvifAlarmPanel'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { OnvifAlarmPanel } from '@amg-webui/components/base'`,
+    `import { OnvifAlarmPanel } from '@amg-webui/onvif'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('OnvifAlarmPanel')`],

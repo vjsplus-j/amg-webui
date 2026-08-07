@@ -6,7 +6,7 @@
 
 ```vue
 <script setup>
-import { Empty } from '@amg-webui/components/base'
+import { Empty } from '@amg-webui/core'
 </script>
 
 <template>

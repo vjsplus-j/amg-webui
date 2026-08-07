@@ -1,18 +1,10 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import {
-  Button,
-  InputText,
-  Select,
-  Dialog,
-  DataTable,
-  Card,
-  Icon,
-  ProTable,
-  Tree,
-  BarChart,
-  Carousel
-} from '@amg-webui/components/base'
+import { Button, Card, Icon, Carousel } from '@amg-webui/core'
+import { InputText, Select } from '@amg-webui/form'
+import { Dialog } from '@amg-webui/overlay'
+import { DataTable, ProTable, Tree } from '@amg-webui/data'
+import { BarChart } from '@amg-webui/charts'
 import { ToastService, ConfirmService } from '@amg-webui/theme'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'

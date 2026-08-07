@@ -1,17 +1,9 @@
 <script setup lang="ts">
 import { computed, ref, watch, useAttrs } from 'vue'
-import {
-  Button,
-  InputText,
-  Select,
-  DataTable,
-  Card,
-  Icon,
-  Pagination,
-  Empty,
-  Message,
-  Drawer
-} from '@amg-webui/components/base'
+import { Button, Card, Icon, Empty } from '@amg-webui/core'
+import { InputText, Select } from '@amg-webui/form'
+import { DataTable, Pagination } from '@amg-webui/data'
+import { Message, Drawer } from '@amg-webui/overlay'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { BizOrdersProps, BizOrdersEmits, BizOrder } from './types'
@@ -45,14 +37,18 @@ const access = computed(() => ({
 }))
 
 const usingAdapter = computed(() => Boolean(props.adapter))
+const fallbackAdapter = {
+  async list() {
+    return { list: props.orders ?? [], total: (props.orders ?? []).length }
+  }
+}
 const asyncApi = useBizAsync<BizOrder>({
-  adapter: props.adapter ?? {
-    async list() {
-      return { list: props.orders ?? [], total: (props.orders ?? []).length }
-    }
-  },
+  adapter: () => props.adapter ?? fallbackAdapter,
   initialQuery: { page: props.page, pageSize: props.pageSize },
-  immediate: Boolean(props.adapter)
+  immediate: Boolean(props.adapter),
+  keywordDebounceMs: 300,
+  cache: { max: 32, ttlMs: 30_000 },
+  getItemId: (item) => item.id
 })
 
 const { keyword, status, filtered, stats } = useOrdersFilter(() =>
@@ -83,6 +79,9 @@ const tableRows = computed(() => {
 })
 const tableLoading = computed(() => (usingAdapter.value ? asyncApi.loading.value : props.loading))
 const tableError = computed(() => (usingAdapter.value ? asyncApi.error.value : props.error))
+const mutationError = computed(() =>
+  usingAdapter.value ? asyncApi.mutation.value.error : null
+)
 const tableTotal = computed(() =>
   usingAdapter.value ? asyncApi.total.value : (props.total ?? filtered.value.length)
 )
@@ -194,6 +193,14 @@ function canRefund(order: BizOrder) {
 }
 
 function onCancel(id: string) {
+  void runCancel(id)
+}
+
+async function runCancel(id: string) {
+  if (usingAdapter.value && props.adapter?.remove) {
+    await asyncApi.remove(id, { optimistic: true })
+    if (asyncApi.mutation.value.error) return
+  }
   emit('cancel', id)
 }
 
@@ -212,13 +219,31 @@ function onBatchCancel() {
 }
 
 function onRefresh() {
-  if (usingAdapter.value) void asyncApi.load()
+  if (usingAdapter.value) {
+    asyncApi.invalidateCache()
+    void asyncApi.load({ force: true })
+  }
   emit('refresh')
 }
 
 function onPageChange(payload: { page: number; pageSize: number }) {
-  currentPage.value = payload.page
-  currentPageSize.value = payload.pageSize
+  if (usingAdapter.value) {
+    asyncApi.setPagination(payload)
+    return
+  }
+  const pageChanged = payload.page !== localPage.value
+  const sizeChanged = payload.pageSize !== localPageSize.value
+  if (!pageChanged && !sizeChanged) return
+  localPage.value = payload.page
+  localPageSize.value = payload.pageSize
+  if (pageChanged) emit('update:page', payload.page)
+  if (sizeChanged) emit('update:pageSize', payload.pageSize)
+  emit('page-change', {
+    page: payload.page,
+    pageSize: payload.pageSize,
+    keyword: keyword.value,
+    filters: { status: status.value }
+  })
 }
 </script>
 
@@ -268,6 +293,9 @@ function onPageChange(payload: { page: number; pageSize: number }) {
 
     <Message v-if="tableError" severity="danger" :closable="false">
       <slot name="error" :error="tableError">{{ tableError }}</slot>
+    </Message>
+    <Message v-if="mutationError" severity="danger" :closable="false">
+      <slot name="mutation-error" :error="mutationError">{{ mutationError }}</slot>
     </Message>
 
     <Card>

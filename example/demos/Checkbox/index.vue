@@ -3,7 +3,8 @@
  * Curated demo — Form wave1 Checkbox + CheckboxGroup
  */
 import { computed, ref } from 'vue'
-import { Checkbox, CheckboxGroup, Space } from '@amg-webui/components/base'
+import { Checkbox, CheckboxGroup } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -28,7 +29,7 @@ const featureOptions = computed(() => [
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Checkbox } from '@amg-webui/components/base'`
+    `import { Checkbox } from '@amg-webui/form'`
   ],
   script: [`const solo = ref(true)`],
   template: [

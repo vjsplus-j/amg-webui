@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Header, Button, Space, InputText, Avatar, Tag } from '@amg-webui/components/base'
+import { Header, Button, Space, Avatar, Tag } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +16,8 @@ const size = ref<'sm' | 'md' | 'lg'>('md')
 const query = ref('')
 
 const codeSlots = demoSfc({
-  imports: [`import { Header, Button, InputText, Avatar } from '@amg-webui/components/base'`],
+  imports: [`import { Header, Button, Avatar } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'`],
   template: [
     '  <Header sticky bordered size="md">',
     `    <template #title>{{ t('example.doc.header.sample.title') }}</template>`,
@@ -30,7 +32,7 @@ const codeSlots = demoSfc({
 })
 
 const codeSticky = demoSfc({
-  imports: [`import { Header } from '@amg-webui/components/base'`],
+  imports: [`import { Header } from '@amg-webui/core'`],
   template: [
     '  <div class="scroll-host">',
     '    <Header sticky>',

@@ -166,6 +166,12 @@
   --height-lg: 40px;
   --height-xl: 48px;
 
+  /* Table body row stride — keep in sync with DataTable virtual math */
+  --theme-table-row-height: calc(
+    var(--font-size-sm) * var(--line-height-body) + var(--spacing-md) * 2 + 1px
+  );
+  --theme-table-col-min-width: calc(var(--spacing-2xl) * 5);
+
   --width-xs: 24px;
   --width-sm: 32px;
   --width-md: 40px;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { Button, Card, ThemeProvider, ConfigProvider } from '@amg-webui/components/base'
+import { Button, Card, ThemeProvider, ConfigProvider } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import {
   createThemeRuntime,

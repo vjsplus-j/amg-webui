@@ -4,19 +4,56 @@
 
 试用发包（pre-1.0）。**API 可变**；正式 1.0 见 `docs/LIBRARY_PLAN.md` P4–P5。
 
+### 组件包边界拆分（破坏性）
+
+- 拆除扁平 `packages/components/base` 胖 barrel：按领域迁入 `core` / `form` / `data` / `overlay` / `charts` / `editor` / `media` / `gb28181` / `onvif`；lowcode UI → `packages/lowcode/ui/`
+- 公开别名：`@amg-webui/core|form|data|overlay|charts|editor|media|gb28181|onvif|business`
+- **硬切**：`@amg-webui/components/base` **仅再导出 core**；从旧路径导入 Gbs/Onvif/Video 等将失败
+- 根 `amg-webui` barrel **不**再导出行业三包与 charts/editor（须显式子路径）
+- SSOT：`scripts/component-package-map.mjs`；门禁：`npm run check:boundaries`
+- **原则**：基础组件库不知道 GB28181；行业扩展可依赖 foundation，反向禁止
+
+### CI 门禁加深（公开库骨架 → 可辩护覆盖）
+
+- Workflow：`extract:i18n` schema drift · `test:ssr` · `check:dist`（on-demand 改写 / 六品牌 CSS / 粗体积）· consumer fixtures（已有）
+- Playwright：Chromium 加深 Dialog focus trap / Escape / axe serious+ / RTL 截图附件 / 六品牌 `data-design`；Firefox · WebKit · Mobile Chrome 跑 smoke
+- **诚实边界**：仍非像素全矩阵、全组件键盘、Nuxt hydration、Lighthouse 性能基准（见 `docs/ENGINEERING.md` § CI 覆盖）
+
+### DataTable 虚拟滚动契约（本轮）
+
+- **修根因**：`virtualHeight` 与硬编码 `containerHeight: 320` / `itemHeight: 44` 脱节 → 视口 fallback 改为 `virtualHeight × --spacing-xs`，行高走 `--theme-table-row-height` + 首行 `ResizeObserver`
+- 横向列窗口（`useVirtualColumns`）· `Column.fixed` · 表头列宽测量 · ≥5k 本地排序 Worker
+- example `perf/massive`：10k / 100k 实测 + DOM/FPS/堆内存采样
+- **仍未交付**：逐行动态行高、分组/展开行虚拟化、分片内核；docs 已写明诚实口径
+
+### Biz 异步内核（useBizAsync）
+
+- 修复 users / orders / content：`Pagination @change` 双写 `page`+`pageSize` 导致 `setPageSize` 把页码打回 1、重复请求
+- `useBizAsync`：请求序号 + Abort、`setPagination` 原子分页、keyword debounce、list cache、create/update/remove + mutation 状态 / optimistic、adapter `MaybeRefOrGetter` 可热切换
+- `BizCrudAdapter` 方法支持可选 `BizRequestOptions.signal`；单测 `tests/unit/use-biz-async.spec.ts`
+
 ### 包发布契约（本轮主路径，未宣称完全解决全部架构债）
 
-- `build:lib` 现串联：主库 → **runtime 分包**（security / telemetry / lowcode / icons / hooks / utils / locale / …）→ on-demand → skill → theme → `generate:exports`
+- `build:lib` 现串联：主库 → **runtime 分包**（security / telemetry / lowcode / **overlay runtime** / icons / hooks / utils / locale / …）→ on-demand → skill → theme → `generate:exports`
 - 公共 `exports` **全部指向 `dist/**`**；`files` 不再打包 `packages/` 源码树
-- 按需入口：`amg-webui/button` · `amg-webui/data-table` · …；深路径显式导出（如 `amg-webui/utils/env` · `amg-webui/hooks/useFocusTrap`）
+- 按需入口：`amg-webui/button` · `amg-webui/data-table` · …；深路径显式导出（如 `amg-webui/utils/env` · `amg-webui/hooks/useFocusTrap` · `amg-webui/runtime`）
 - on-demand / runtime 产物将 `@amg-webui/*` **改写**为 `amg-webui/*`，避免干净消费者依赖仓库 alias
 - Consumer fixtures：`tests/consumer-vite` · `consumer-webpack` · `consumer-nuxt` + CI `test:consumers`
-- **诚实边界**：Overlay 统一内核、行业件出 base、成熟度算法、E2E 深度、按需 CSS 独立入口 **仍未完全解决**
+- **诚实边界**：成熟度算法、E2E 深度、按需 CSS 独立入口 **仍未完全解决**（行业件已迁出 base）
+
+### Overlay 统一内核（本轮交付）
+
+- 新增 `packages/runtime`（`amg-webui/runtime`）：栈 · ZIndex · ScrollLock（引用计数）· FocusTrap · Escape LIFO · Teleport · ClickOutside · Positioning
+- Vue：`useOverlay`；`useFocusTrap` / `useBodyScrollLock` 委托 runtime
+- 已接入：Dialog / Drawer / Mask / Confirm / ConfirmDialog / MessageBox / ImageViewer / Popover / Tooltip / Dropdown / Menu(popup) / Popconfirm / Tour / ContextMenu
+- Dialog 修复：唯一 title id、trap/restore/autofocus、`aria-modal` 随 modal、栈内 z-index、Escape 与 scroll lock 走内核
+- 文档：`docs/OVERLAY.md`
 
 ### Theme 运行时（多实例 / 色阶 / SSR / Shadow）
 
-- Theme Core：`generatePrimaryScale` · `createShadowHost` · `serializeThemeStyle` / `toStyleTag` · `runtime.setPrimary`
+- Theme Core：`generatePrimaryScale` · `createShadowHost` · `serializeThemeStyle` / `toStyleTag` · `runtime.setPrimary` · **`replaceCustom`（全量替换 overlay，删除缺失 key）**
 - Vue：`ThemeProvider` + `THEME_RUNTIME_KEY` + `useThemeRuntime()`（inject 优先）；`ConfigProvider` 支持 `design` / `scheme` / `tokens` / `primary` 局部 Runtime
+- 修复局部主题生命周期：`createThemeScope` 在 setup 同步 `inject`；`ThemeProvider` `change` 经 `runtime.subscribe` 稳定触发；`tokens` 收缩走 `replaceCustom`
 - `ThemeService` 仍为应用默认单例；同页多主题勿用 `configure` 抢单例
 - example：`lab/micro-fe` 双 ThemeProvider + ConfigProvider + Shadow host 演示
 - 文档：`docs/theme/index.md` · `packages/theme/README.md` · OVERTAKE / TOKENS 诚实边界（Teleport / adoptedStyleSheets / Studio UI 未交付）
@@ -38,6 +75,17 @@
 - Schema/Preview 组件模式 a11y（避免嵌套 `role=button`）；Shortcut 输入框焦点守卫
 - `CanvasIo` 导入走校验；RichText 扩展标题/有序列表/引用/代码 + 历史合并
 - 文档诚实边界：SSR 不等价、codegen 草图、未交付清单写明
+- **Schema 运行时闭环**：`SchemaNodeRenderer` 任意深度递归；`resolveRuntimeRender` 对齐 `__bindings`/`__events`（路径白名单、v-model 写回、handlers）；与 `generateVueSfc` 共用 `splitMetaProps`
+- **严格 Validator**：重复 id / parent / 循环 / 尺寸坐标 / props 类型与枚举 / Binding·Event·Handler / 节点数·深度·体积上限
+- **Registry 冲突**：默认 `throw`（`skip` / `replace` 可选）；`RegistryConflictError`
+- **PropPanel 实时更新**：消除 layout `label` 与 `props.label` 键冲突；`updateNode` 不可变替换 + DragCanvas 发出新数组引用
+- **嵌套布局**：`CanvasPreview` / `DragCanvas` / `SchemaRenderer` 按 `parentId` 树渲染；子节点流式排布，不再把局部 x/y 当画布绝对坐标堆叠
+
+### 安全层设计纠正
+
+- **输入默认不改写**：`InputText` / `Textarea` / `Password` 的 `sanitizeInput` 默认改为 `false`；`undefined` → `off`。`filterDangerousInput` 仅为可配置字段过滤器，不是 XSS 防御
+- **告警脱敏**：`SecurityService` 默认只存 `detailHash` / `detailLength` / `matchedRule`，不落原文；`includeDetail: true` 才保留截断 `detail`
+- **RichText**：sync / commit / paste / history / read 统一走 `sanitizeHtml(value, sanitizeOptions)`
 
 ### 安全 / 低代码继续超越
 

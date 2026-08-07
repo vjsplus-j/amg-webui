@@ -1,18 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import {
-  Card,
-  Barcode,
-  Qrcode,
-  Clipboard,
-  ImageCrop,
-  Print,
-  ExcelIo,
-  DragCanvas,
-  DragMaterial,
-  PropPanel,
-  CanvasIo
-} from '@amg-webui/components/base'
+import { Card, Barcode, Qrcode, Clipboard, ImageCrop, Print } from '@amg-webui/core'
+import { ExcelIo } from '@amg-webui/data'
+import { DragCanvas, DragMaterial, PropPanel, CanvasIo } from '@amg-webui/lowcode'
 import { useLocale } from '@amg-webui/hooks'
 import ComponentGallery from '../../components/ComponentGallery.vue'
 

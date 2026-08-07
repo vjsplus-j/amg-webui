@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Mention, Space } from '@amg-webui/components/base'
+import { Mention } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -19,12 +20,12 @@ const options = computed(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { Mention } from '@amg-webui/components/base'`],
+  imports: [`import { Mention } from '@amg-webui/form'`],
   template: ['  <Mention v-model="text" :options="options" />']
 })
 
 const codeSelect = demoSfc({
-  imports: [`import { Mention } from '@amg-webui/components/base'`],
+  imports: [`import { Mention } from '@amg-webui/form'`],
   template: ['  <Mention v-model="text" :options="options" @select="onSelect" />']
 })
 

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref, watch } from 'vue'
-import { Button, Card, Checkbox, InputText, Tag, Textarea } from '@amg-webui/components/base'
+import { Button, Card, Tag } from '@amg-webui/core'
+import { Checkbox, InputText, Textarea } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import ExamplePageHero from '../../components/ExamplePageHero.vue'

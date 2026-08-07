@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Split, Button, Space } from '@amg-webui/components/base'
+import { Split, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -13,7 +13,7 @@ const size = ref<number | string>('40%')
 const direction = ref<'horizontal' | 'vertical'>('horizontal')
 
 const codeBasic = demoSfc({
-  imports: [`import { Split } from '@amg-webui/components/base'`],
+  imports: [`import { Split } from '@amg-webui/core'`],
   template: [
     '  <Split v-model:size="size" :direction="direction" class="demo-split">',
     '    <template #first><div class="pane">A</div></template>',

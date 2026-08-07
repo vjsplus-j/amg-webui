@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Button, Card, Message } from '@amg-webui/components/base'
+import { Button, Card } from '@amg-webui/core'
+import { Message } from '@amg-webui/overlay'
 import {
   ThemeService,
   type ColorScheme,

@@ -3,8 +3,8 @@ import { computed, getCurrentInstance, ref } from "vue";
 import { useAutoDismiss, useLocale } from "@amg-webui/hooks";
 import { LocaleKeys } from "@amg-webui/locale";
 import { trackEmit } from "@amg-webui/telemetry";
-import Button from "../base/Button/index.vue";
-import Icon from "../base/Icon/index.vue";
+import Button from '@amg-webui/core/Button/index.vue';
+import Icon from '@amg-webui/core/Icon/index.vue';
 import type { NoticeCloseReason, NoticeEmits, NoticeProps } from "./notice";
 import "./feedback-notice.scss";
 

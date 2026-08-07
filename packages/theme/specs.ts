@@ -59,6 +59,12 @@ export const CONTROL_HEIGHT = {
   lg: 'var(--height-lg)'
 } as const
 
+/** DataTable / virtual table stride tokens */
+export const TABLE_LAYOUT = {
+  rowHeight: 'var(--theme-table-row-height)',
+  colMinWidth: 'var(--theme-table-col-min-width)'
+} as const
+
 export const CHROME_LAYOUT = {
   sidebarWidth: '244px',
   sidebarCollapsed: '64px',

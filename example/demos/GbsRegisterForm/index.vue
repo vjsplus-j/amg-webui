@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { GbsRegisterForm } from '@amg-webui/components/base'
+import { GbsRegisterForm } from '@amg-webui/gb28181'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('GbsRegisterForm'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { GbsRegisterForm } from '@amg-webui/components/base'`,
+    `import { GbsRegisterForm } from '@amg-webui/gb28181'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('GbsRegisterForm')`],

@@ -6,7 +6,7 @@
 
 ```vue
 <script setup>
-import { Divider } from '@amg-webui/components/base'
+import { Divider } from '@amg-webui/core'
 </script>
 
 <template>

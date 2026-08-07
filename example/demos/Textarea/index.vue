@@ -3,7 +3,7 @@
  * Curated demo — Form wave1 Textarea
  */
 import { computed, ref } from 'vue'
-import { Textarea } from '@amg-webui/components/base'
+import { Textarea } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -19,7 +19,7 @@ const counter = ref('')
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Textarea } from '@amg-webui/components/base'`
+    `import { Textarea } from '@amg-webui/form'`
   ],
   script: [`const notes = ref('')`],
   template: [

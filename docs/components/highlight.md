@@ -6,7 +6,7 @@
 
 ```vue
 <script setup>
-import { Highlight } from '@amg-webui/components/base'
+import { Highlight } from '@amg-webui/core'
 </script>
 
 <template>

@@ -24,7 +24,7 @@ export interface LowcodeComponentMeta {
   defaultSize?: { w: number; h: number }
   /** Lightweight JSON Schema for PropPanel / docs. */
   propsSchema?: Record<string, LowcodePropSchema>
-  /** Preferred import specifier for codegen (default `@amg-webui/components/base`). */
+  /** Preferred import specifier for codegen (default `@amg-webui/core`). */
   importFrom?: string
   /** Export name used in codegen (defaults to `type`). */
   exportName?: string
@@ -41,8 +41,22 @@ export const LOWCODE_EVENTS_KEY = '__events'
 export type LowcodeBindings = Record<string, string>
 export type LowcodeEvents = Record<string, string>
 
+/** Policy when `register()` hits an existing `type`. Default: `throw`. */
+export type RegistryConflictPolicy = 'throw' | 'skip' | 'replace'
+
+export interface CreateComponentRegistryOptions {
+  onConflict?: RegistryConflictPolicy
+}
+
+export interface RegistryRegisterResult {
+  registered: string[]
+  skipped: string[]
+  replaced: string[]
+}
+
 export interface ComponentRegistry {
-  register(meta: LowcodeComponentMeta | LowcodeComponentMeta[]): void
+  /** Register materials. Conflict policy from `createComponentRegistry` (default throw). */
+  register(meta: LowcodeComponentMeta | LowcodeComponentMeta[]): RegistryRegisterResult
   unregister(type: string): void
   has(type: string): boolean
   get(type: string): LowcodeComponentMeta | undefined
@@ -50,18 +64,49 @@ export interface ComponentRegistry {
   /** Materials for DragMaterial. */
   toMaterials(): CanvasMaterialItem[]
   clear(): void
+  /** Active conflict policy. */
+  readonly onConflict: RegistryConflictPolicy
 }
 
 export interface ValidateCanvasOptions {
-  /** When set, unknown `node.type` values are errors. */
+  /** When set, unknown `node.type` values are errors; enables propsSchema checks. */
   registry?: ComponentRegistry
-  /** Fail when required props from propsSchema are missing. */
+  /**
+   * Fail when required props from propsSchema are missing.
+   * Defaults to `true` when `registry` is provided.
+   */
   checkRequiredProps?: boolean
+  maxNodes?: number
+  maxDepth?: number
+  maxSchemaChars?: number
+  minSize?: number
+  maxCoord?: number
 }
+
+export type CanvasValidationCode =
+  | 'invalid-root'
+  | 'invalid-node'
+  | 'unknown-type'
+  | 'missing-prop'
+  | 'bad-version'
+  | 'duplicate-id'
+  | 'missing-parent'
+  | 'invalid-parent'
+  | 'cycle'
+  | 'invalid-size'
+  | 'out-of-bounds'
+  | 'invalid-prop-type'
+  | 'invalid-enum'
+  | 'invalid-binding'
+  | 'invalid-event'
+  | 'invalid-handler'
+  | 'too-many-nodes'
+  | 'too-deep'
+  | 'schema-too-large'
 
 export interface CanvasValidationIssue {
   path: string
-  code: 'invalid-root' | 'invalid-node' | 'unknown-type' | 'missing-prop' | 'bad-version'
+  code: CanvasValidationCode
   message: string
 }
 
@@ -90,4 +135,37 @@ export interface ResolveNodePropsResult {
   meta: LowcodeComponentMeta | undefined
 }
 
+/** Runtime context bag for `__bindings` path reads / v-model writes. */
+export type LowcodeRenderContext = Record<string, unknown>
+
+/** Named handlers for `__events` (same names codegen stubs). */
+export type LowcodeEventHandlers = Record<string, (...args: unknown[]) => unknown>
+
+export interface LowcodeNodeEventPayload {
+  nodeId: string
+  event: string
+  handler: string
+  args: unknown[]
+}
+
+export interface RuntimeRenderOptions {
+  registry?: ComponentRegistry
+  /** Reactive-friendly state for binding paths (`form.name`, `count`, …). */
+  context?: LowcodeRenderContext
+  /** Map of handler name → function for `__events` / declared `meta.events`. */
+  handlers?: LowcodeEventHandlers
+  /** Fired for every wired schema event (after handler, if any). */
+  onNodeEvent?: (payload: LowcodeNodeEventPayload) => void
+}
+
+export interface RuntimeRenderResult extends ResolveNodePropsResult {
+  /** Vue `onXxx` listeners derived from bindings + events. */
+  on: Record<string, (...args: unknown[]) => void>
+  bindings: LowcodeBindings
+  events: LowcodeEvents
+}
+
 export type { CanvasNodeData, CanvasSchema, CanvasMaterialItem }
+
+/** Re-export tree node shape for UI cluster imports from `../../types`. */
+export type { CanvasTreeNode } from './tree'

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { DragWrapper } from '@amg-webui/components/base'
+import { DragWrapper } from '@amg-webui/lowcode'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('DragWrapper'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { DragWrapper } from '@amg-webui/components/base'`,
+    `import { DragWrapper } from '@amg-webui/lowcode'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('DragWrapper')`],

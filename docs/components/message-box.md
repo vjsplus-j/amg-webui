@@ -5,7 +5,7 @@
 ## 基础用法
 
 ```ts
-import { MessageBox } from '@amg-webui/components/base'
+import { MessageBox } from '@amg-webui/overlay'
 
 const result = await MessageBox.confirm(
   'Proceed with this action?',

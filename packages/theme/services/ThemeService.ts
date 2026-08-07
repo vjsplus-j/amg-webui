@@ -57,9 +57,14 @@ export class ThemeService {
     getDefaultThemeRuntime().setScheme(scheme)
   }
 
-  /** Hot-apply CSS variable overlay without remounting. */
+  /** Hot-apply CSS variable overlay without remounting (incremental merge). */
   static applyCustom(tokens: Record<string, string>): void {
     getDefaultThemeRuntime().applyCustom(tokens)
+  }
+
+  /** Replace the entire CSS-var overlay; absent keys are removed from host. */
+  static replaceCustom(tokens: Record<string, string>): void {
+    getDefaultThemeRuntime().replaceCustom(tokens)
   }
 
   static clearCustom(): void {
@@ -145,6 +150,7 @@ export function useTheme() {
     setDesign: ThemeService.setDesign,
     setScheme: ThemeService.setScheme,
     applyCustom: ThemeService.applyCustom,
+    replaceCustom: ThemeService.replaceCustom,
     clearCustom: ThemeService.clearCustom,
     setPrimary: ThemeService.setPrimary,
     getTheme: ThemeService.getCurrentTheme,

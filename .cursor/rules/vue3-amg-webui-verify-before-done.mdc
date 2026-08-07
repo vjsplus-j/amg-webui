@@ -11,8 +11,9 @@ alwaysApply: true
 After implementing or changing `packages/` or `example/` code:
 
 1. **Typecheck (minimum):** `npx vue-tsc --noEmit` — must exit 0.
-2. **Touched surfaces:** run the scripts that match what you changed (examples: `npm run validate:catalog` after catalog edits; i18n extract/locale packs if copy changed).
-3. **Smoke:** if example UI was touched, scan the running `npm run dev` terminal for Pre-transform / Internal server errors on the files you edited — fix before reporting done.
+2. **Package boundaries:** after component package moves / new industry comps — `npm run check:boundaries`.
+3. **Touched surfaces:** run the scripts that match what you changed (examples: `npm run validate:catalog` after catalog edits; i18n extract/locale packs if copy changed).
+4. **Smoke:** if example UI was touched, scan the running `npm run dev` terminal for Pre-transform / Internal server errors on the files you edited — fix before reporting done.
 
 ## Hard stops
 - Do **not** mark todos `completed` while `vue-tsc` fails.

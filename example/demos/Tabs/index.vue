@@ -3,7 +3,7 @@
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
 import { computed, ref } from 'vue'
-import { TabPane, Tabs } from '@amg-webui/components/base'
+import { TabPane, Tabs } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -24,7 +24,7 @@ function noteEvent(kind: string, name?: string | number) {
 /* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
 
 const codeBasic = demoSfc({
-  imports: [`import { Tabs, TabPane } from '@amg-webui/components/base'`],
+  imports: [`import { Tabs, TabPane } from '@amg-webui/core'`],
   template: [
     `  <Tabs v-model="active" :aria-label="t('example.doc.tabs.sample.group')">`,
     `    <TabPane name="a" :label="t('example.doc.tabs.sample.tabA')">`,

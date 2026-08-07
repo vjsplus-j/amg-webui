@@ -6,29 +6,41 @@
 
 | 包 / 目录 | 别名 | 说明 |
 |-----------|------|------|
-| `components/base` | `@amg-webui/components/base` | 纯 UI 原语；**禁止**依赖 business |
-| `components/business` | `@amg-webui/components/business` | 五大域：`login` · `users` · `orders` · `content` · `settings` |
+| `components/core` | `@amg-webui/core` | 真正的 UI 原语 / 布局 / 导航 / 页面态；**不知** GB28181/ONVIF |
+| `components/form` | `@amg-webui/form` | 表单与录入控件 |
+| `components/data` | `@amg-webui/data` | 表格 / 树 / 列表 / 分页等数据展示 |
+| `components/overlay` | `@amg-webui/overlay` | Dialog / Drawer / Message 等浮层 UI（内核见 `runtime`） |
+| `components/charts` | `@amg-webui/charts` | 图表（Bar/Line/Pie/…） |
+| `components/editor` | `@amg-webui/editor` | CodeEditor / MdEditor / RichText |
+| `components/media` | `@amg-webui/media` | 音视频 / VCR / PTZ / 电视墙（**行业 opt-in**） |
+| `components/gb28181` | `@amg-webui/gb28181` | GB28181 套件（**行业 opt-in**） |
+| `components/onvif` | `@amg-webui/onvif` | ONVIF 套件（**行业 opt-in**） |
+| `components/business` | `@amg-webui/business` · `@amg-webui/components/business` | 五大域：`login` · `users` · `orders` · `content` · `settings` |
+| `components/base` | `@amg-webui/components/base` | **已废弃**：仅再导出 `@amg-webui/core`（硬切，无胖 shim） |
 | `telemetry` | `@amg-webui/telemetry` | Vp Telemetry 交互观测内核（**默认关闭**） |
 | `security` | `@amg-webui/security` | 安全防护层：消毒 / 协议拦截 / 表单过滤 |
-| `lowcode` | `@amg-webui/lowcode` | 低代码 Schema：注册表 / 校验 / 代码生成 |
+| `lowcode` | `@amg-webui/lowcode` | Schema 引擎 + `ui/`（SchemaRenderer / Canvas*） |
+| `runtime` | `@amg-webui/runtime` | UI Overlay 统一内核（栈 / Focus / ScrollLock / Escape） |
 | `skill` | `@amg-webui/skill` · `@amg-webui/skill/core` | Skill Runtime（**experimental**；独立可选） |
 | `theme` | `@amg-webui/theme` | 六套 designmd 主题 · Token · Theme Studio |
-| `locale` | `@amg-webui/locale` | 7 语种 · `LocaleKeys` · `LocaleService` |
+| `locale` | `@amg-webui/locale` | 8 语种 · `LocaleKeys` · `LocaleService` |
 | `hooks` | `@amg-webui/hooks` | `useTheme` / `useLocale` / `useTrackedEmit` … |
 | `icons` | `@amg-webui/icons` | Lucide / SVG 目录 |
 | `animations` | `@amg-webui/animations` | 过渡 · motion · neon · shimmer |
 | `utils` · `types` · `constants` | `@amg-webui/utils` 等 | 工具、公共类型、常量 |
 
-根再导出：`import { Button, TelemetryService } from 'amg-webui'`（或子路径 `amg-webui/telemetry`）。**Skill Runtime 是例外**：根入口不导出，只允许从 `amg-webui/skill` 或 `amg-webui/skill/core` 显式导入。
+根再导出：foundation（`core` + `form` + `data` + `overlay`）+ business + hooks/theme/…。**不**从根泄漏 `gb28181` / `onvif` / `media` / `charts` / `editor`。**Skill Runtime** 只允许从 `amg-webui/skill` 或 `/skill/core` 显式导入。
 
 ## 分层硬规则
 
-- **base → 不可 import business**
-- **business → 只吃 base / hooks / theme / utils / locale / telemetry（旁路）**
+- **core / form / data / overlay 绝不能 import 行业包**（`gb28181` / `onvif` / `media`）；门禁：`npm run check:boundaries`
+- **行业包可依赖 foundation**；基础组件库不知道 GB28181 是什么
+- **business → 只吃 foundation / hooks / theme / utils / locale / telemetry（旁路）**
 - 类名前缀 **`vp-`**；样式只消费语义 Token（`--ds-*` · `--theme-*` · spacing / type / radius）
-- 用户可见文案只走 i18n key（7 语种齐套）
+- 用户可见文案只走 i18n key（8 语种齐套）
 - 列表类组件：**虚拟滚动默认开启**
 - Skill 不进入组件源码、不渲染 UI；组件不得硬编码依赖 Skill Runtime
+- 组件归属 SSOT：`scripts/component-package-map.mjs`
 
 ## Skill Runtime 状态
 
@@ -47,8 +59,11 @@ Avatar · AvatarGroup · Badge · Button · ButtonGroup · Card · **CardWidgets
 ## 新增组件
 
 ```bash
-npm run create:component -- base Foo
+npm run create:component -- core Foo
+npm run create:component -- form MyField
+npm run create:component -- gb28181 GbsFoo   # 行业扩展
 npm run generate:entry
+npm run check:boundaries
 npm run extract:i18n
 npm run validate:catalog   # 若登记了 catalog
 ```

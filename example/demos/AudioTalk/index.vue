@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { AudioTalk } from '@amg-webui/components/base'
+import { AudioTalk } from '@amg-webui/media'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('AudioTalk'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { AudioTalk } from '@amg-webui/components/base'`,
+    `import { AudioTalk } from '@amg-webui/media'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('AudioTalk')`],

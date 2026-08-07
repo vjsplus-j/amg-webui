@@ -1,5 +1,5 @@
 /**
- * Generate VitePress component API stubs from base component types.ts.
+ * Generate VitePress component API stubs from component types.ts.
  * Usage: node scripts/generate-vitepress-api.mjs [--force]
  *
  * - Writes docs/components/<kebab>.md if missing (or with --force)
@@ -8,12 +8,22 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve, dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {
+  componentDirRel,
+  componentToPackage,
+  packageAlias
+} from './component-package-map.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const baseDir = resolve(root, 'packages/components/base')
 const docsComponentsDir = resolve(root, 'docs/components')
 const vitepressConfigPath = resolve(root, 'vitepress.config.ts')
 const force = process.argv.includes('--force')
+
+function importAliasForComponent(name) {
+  const pkg = componentToPackage.get(name)
+  if (!pkg) return '@amg-webui/core'
+  return packageAlias(pkg)
+}
 
 /** v0.1 core API pages — priority for Release Step 4 */
 export const V01_PRIORITY = [
@@ -67,8 +77,8 @@ const DISPLAY_NAMES = {
 }
 
 const USAGE_TEMPLATES = {
-  MessageBox: `\`\`\`ts
-import { MessageBox } from '@amg-webui/components/base'
+  MessageBox: () => `\`\`\`ts
+import { MessageBox } from '${importAliasForComponent('MessageBox')}'
 
 const result = await MessageBox.confirm({
   title: 'Confirm',
@@ -78,10 +88,10 @@ if (result === 'confirm') {
   /* … */
 }
 \`\`\``,
-  Form: `\`\`\`vue
+  Form: () => `\`\`\`vue
 <script setup>
 import { ref } from 'vue'
-import { Form, FormItem, InputText } from '@amg-webui/components/base'
+import { Form, FormItem, InputText } from '${importAliasForComponent('Form')}'
 
 const model = ref({ name: '' })
 </script>
@@ -94,10 +104,10 @@ const model = ref({ name: '' })
   </Form>
 </template>
 \`\`\``,
-  Tabs: `\`\`\`vue
+  Tabs: () => `\`\`\`vue
 <script setup>
 import { ref } from 'vue'
-import { Tabs, TabPane } from '@amg-webui/components/base'
+import { Tabs, TabPane } from '${importAliasForComponent('Tabs')}'
 
 const active = ref('a')
 </script>
@@ -109,9 +119,9 @@ const active = ref('a')
   </Tabs>
 </template>
 \`\`\``,
-  Layout: `\`\`\`vue
+  Layout: () => `\`\`\`vue
 <script setup>
-import { Layout, Header, Sider, Main, Footer } from '@amg-webui/components/base'
+import { Layout, Header, Sider, Main, Footer } from '${importAliasForComponent('Layout')}'
 </script>
 
 <template>
@@ -125,10 +135,10 @@ import { Layout, Header, Sider, Main, Footer } from '@amg-webui/components/base'
   </Layout>
 </template>
 \`\`\``,
-  DataTable: `\`\`\`vue
+  DataTable: () => `\`\`\`vue
 <script setup>
 import { ref } from 'vue'
-import { DataTable } from '@amg-webui/components/base'
+import { DataTable } from '${importAliasForComponent('DataTable')}'
 
 const rows = ref([
   { id: 1, name: 'Alpha' },
@@ -156,7 +166,7 @@ function toTitle(name) {
 }
 
 function readTypes(name) {
-  const p = join(baseDir, name, 'types.ts')
+  const p = join(root, componentDirRel(name), 'types.ts')
   if (!existsSync(p)) return ''
   return readFileSync(p, 'utf8')
 }
@@ -232,10 +242,12 @@ function parseEmits(content, name) {
 }
 
 function defaultUsage(name) {
-  if (USAGE_TEMPLATES[name]) return USAGE_TEMPLATES[name]
+  const template = USAGE_TEMPLATES[name]
+  if (template) return template()
+  const alias = importAliasForComponent(name)
   return `\`\`\`vue
 <script setup>
-import { ${name} } from '@amg-webui/components/base'
+import { ${name} } from '${alias}'
 </script>
 
 <template>
@@ -303,7 +315,7 @@ function writeStub(name) {
     console.log(`[skip] ${kebab}.md exists`)
     return false
   }
-  if (!existsSync(join(baseDir, name))) {
+  if (!existsSync(join(root, componentDirRel(name)))) {
     console.warn(`[warn] component folder missing: ${name}`)
     return false
   }

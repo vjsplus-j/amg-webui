@@ -3,7 +3,8 @@
  * Curated demo — Data wave1 Descriptions
  */
 import { computed, ref } from 'vue'
-import { Descriptions, DescriptionsItem, Space } from '@amg-webui/components/base'
+import { Descriptions, DescriptionsItem } from '@amg-webui/data'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -17,7 +18,7 @@ const density = ref<'sm' | 'md' | 'lg'>('md')
 
 const codeBasic = demoSfc({
   imports: [
-    `import { Descriptions, DescriptionsItem } from '@amg-webui/components/base'`
+    `import { Descriptions, DescriptionsItem } from '@amg-webui/data'`
   ],
   template: [
     `  <Descriptions bordered :column="2" :title="t('example.doc.descriptions.sample.title')">`,

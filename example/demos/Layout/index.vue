@@ -3,26 +3,15 @@
  * Layout — shell composition with Menu ↔ TabsNav ↔ Main interaction.
  */
 import { computed, ref, watch } from 'vue'
-import {
-  Layout,
-  Sider,
-  Header,
-  Main,
-  Footer,
-  Menu,
-  TabsNav,
-  Space,
-  Button,
-  Card
-} from '@amg-webui/components/base'
+import { Layout, Sider, Header, Main, Footer, Menu, TabsNav, Space, Button, Card } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
 import type { PropRow } from '../../components/demo/types'
-import type { MenuItem } from '@amg-webui/components/base/Menu'
-import type { TabsNavItem } from '@amg-webui/components/base/TabsNav'
+import type { MenuItem } from '@amg-webui/core/Menu'
+import type { TabsNavItem } from '@amg-webui/core/TabsNav'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -119,7 +108,7 @@ const panelBody = computed(() =>
 
 const codeShell = demoSfc({
   imports: [
-    `import { Layout, Sider, Header, Main, Footer, Menu, TabsNav } from '@amg-webui/components/base'`
+    `import { Layout, Sider, Header, Main, Footer, Menu, TabsNav } from '@amg-webui/core'`
   ],
   template: [
     '  <Layout has-sider fill>',
@@ -137,7 +126,7 @@ const codeShell = demoSfc({
 })
 
 const codeStack = demoSfc({
-  imports: [`import { Layout, Header, Main, Footer } from '@amg-webui/components/base'`],
+  imports: [`import { Layout, Header, Main, Footer } from '@amg-webui/core'`],
   template: [
     '  <Layout fill>',
     '    <Header>…</Header>',

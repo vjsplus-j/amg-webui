@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { DragRuler } from '@amg-webui/components/base'
+import { DragRuler } from '@amg-webui/lowcode'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('DragRuler'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { DragRuler } from '@amg-webui/components/base'`,
+    `import { DragRuler } from '@amg-webui/lowcode'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('DragRuler')`],

@@ -1,14 +1,6 @@
 ﻿<script setup lang="ts">
 import { ref } from 'vue'
-import {
-  Button,
-  Card,
-  Tag,
-  Badge,
-  Avatar,
-  Link,
-  Icon
-} from '@amg-webui/components/base'
+import { Button, Card, Tag, Badge, Avatar, Link, Icon } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'

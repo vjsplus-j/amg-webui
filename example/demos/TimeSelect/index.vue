@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { TimeSelect, Space } from '@amg-webui/components/base'
+import { TimeSelect } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -13,12 +14,12 @@ const time = ref<string | null>('09:00')
 const step = ref('00:30')
 
 const codeBasic = demoSfc({
-  imports: [`import { TimeSelect } from '@amg-webui/components/base'`],
+  imports: [`import { TimeSelect } from '@amg-webui/form'`],
   template: ['  <TimeSelect v-model="time" start="08:00" end="18:00" step="00:30" />']
 })
 
 const codeStep = demoSfc({
-  imports: [`import { TimeSelect } from '@amg-webui/components/base'`],
+  imports: [`import { TimeSelect } from '@amg-webui/form'`],
   template: ['  <TimeSelect v-model="time" start="08:00" end="12:00" step="00:15" />']
 })
 

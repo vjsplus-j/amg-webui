@@ -3,7 +3,7 @@
  * Lab: EventService + AnimationService smoke (local debug only).
  */
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { Button, Icon, Space } from '@amg-webui/components/base'
+import { Button, Icon, Space } from '@amg-webui/core'
 import { useEventBus, useLocale } from '@amg-webui/hooks'
 import { EventService } from '@amg-webui/utils'
 import { AnimationService } from '@amg-webui/animations'

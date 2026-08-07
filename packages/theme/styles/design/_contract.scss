@@ -65,6 +65,10 @@
   --height-sm: #{$control-h-sm};
   --height-md: #{$control-h-md};
   --height-lg: #{$control-h-lg};
+  --theme-table-row-height: calc(
+    var(--font-size-sm) * var(--line-height-body) + var(--spacing-md) * 2 + 1px
+  );
+  --theme-table-col-min-width: calc(var(--spacing-2xl) * 5);
 }
 
 @mixin theme-shape($radius-sm, $radius-md, $radius-lg, $radius-xl, $radius-pill: 9999px) {

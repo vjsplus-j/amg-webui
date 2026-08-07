@@ -6,7 +6,7 @@ Pagination 组件 API（v0.1 子集）。
 
 ```vue
 <script setup>
-import { Pagination } from '@amg-webui/components/base'
+import { Pagination } from '@amg-webui/data'
 </script>
 
 <template>

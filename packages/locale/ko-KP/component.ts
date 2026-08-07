@@ -1,4 +1,4 @@
-export default {
+﻿export default {
   'component.qrcode.title': 'Qrcode',
   'component.qrcode.lead': 'Qrcode 구성요소 미리보기',
   'component.qrcode.invalid': '{standard} QR 코드 자료가 정확하지 않습니다. 문자, 길이 또는 오유정정 수준을 확인하십시오.',
@@ -479,6 +479,13 @@ export default {
   'component.preview.fullscreen': '전체화면',
   'component.drag-canvas.empty': '캔버스에 자재를 끌어다 놓으십시오',
   'component.prop-panel.empty': '노드를 선택하여 속성을 편집하십시오',
+  'component.prop-panel.field.parentNone': '없음(루트)',
+  'component.prop-panel.field.parentId': '부모',
+  'component.prop-panel.field.y': 'Y',
+  'component.prop-panel.field.w': '너비',
+  'component.prop-panel.field.nodeLabel': '노드 이름',
+  'component.prop-panel.field.x': 'X',
+  'component.prop-panel.field.h': '높이',
   'component.drag-wrapper.hint': '하위 구성요소를 놓으십시오',
   'component.canvas-layer.show': '보이기',
   'component.canvas-layer.hide': '감추기',
@@ -520,7 +527,7 @@ export default {
   'component.exception.offline.title': '오프라인',
   'component.exception.offline.lead': '망련결을 확인한 뒤 다시 시도하십시오.',
   'component.datatable.title': '자료표',
-  'component.datatable.lead': '가상 스크롤 표(기본 ON)',
+  'component.datatable.lead': 'Fixed-row virtual scroll on by default; viewport and row height drive the math',
   'component.datatable.showing': '전체 {total}개중 {from}–{to}',
   'component.datatable.rowsPerPage': '페지당 행',
   'component.datatable.firstPage': '첫 페지',

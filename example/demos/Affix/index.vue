@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Affix, Tag, Space, Button } from '@amg-webui/components/base'
+import { Affix, Tag, Space, Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -13,7 +13,7 @@ const affixed = ref(false)
 const offset = ref(8)
 
 const codeBasic = demoSfc({
-  imports: [`import { Affix } from '@amg-webui/components/base'`],
+  imports: [`import { Affix } from '@amg-webui/core'`],
   template: [
     '  <div data-affix-demo class="scroll">',
     '    <Affix target="[data-affix-demo]" :offset-top="8">…</Affix>',
@@ -22,7 +22,7 @@ const codeBasic = demoSfc({
 })
 
 const codeOffset = demoSfc({
-  imports: [`import { Affix } from '@amg-webui/components/base'`],
+  imports: [`import { Affix } from '@amg-webui/core'`],
   template: ['  <Affix :offset-top="24">…</Affix>']
 })
 

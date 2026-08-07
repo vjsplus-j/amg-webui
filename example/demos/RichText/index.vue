@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { RichText } from '@amg-webui/components/base'
+import { RichText } from '@amg-webui/editor'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -12,7 +12,7 @@ const { t } = useLocale()
 const html = ref('<p><strong>AMG</strong> RichText</p>')
 
 const codeBasic = demoSfc({
-  imports: [`import { ref } from 'vue'`, `import { RichText } from '@amg-webui/components/base'`],
+  imports: [`import { ref } from 'vue'`, `import { RichText } from '@amg-webui/editor'`],
   script: [`const html = ref('<p><strong>AMG</strong> RichText</p>')`],
   template: [`  <RichText v-model="html" />`]
 })

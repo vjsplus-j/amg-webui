@@ -3,7 +3,8 @@
  * Curated demo — Nav wave1 Dropdown
  */
 import { computed, ref } from 'vue'
-import { Dropdown, Space } from '@amg-webui/components/base'
+import { Dropdown } from '@amg-webui/overlay'
+import { Space } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -42,7 +43,7 @@ const nestedItems = computed<NavItem[]>(() => [
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { Dropdown } from '@amg-webui/components/base'`
+    `import { Dropdown } from '@amg-webui/overlay'`
   ],
   script: [`const active = ref('edit')`],
   template: [

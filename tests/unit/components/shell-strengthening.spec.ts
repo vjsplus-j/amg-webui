@@ -5,17 +5,17 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { LocaleService } from '@amg-webui/locale'
 import { TelemetryService } from '@amg-webui/telemetry'
-import CategoryNav from '../../../packages/components/base/CategoryNav/index.vue'
-import FooterNav from '../../../packages/components/base/FooterNav/index.vue'
-import IndexNav from '../../../packages/components/base/IndexNav/index.vue'
-import MessageBoxHost from '../../../packages/components/base/MessageBox/MessageBoxHost.vue'
-import { MessageBox } from '../../../packages/components/base/MessageBox/service'
-import MiniNav from '../../../packages/components/base/MiniNav/index.vue'
-import QuickNav from '../../../packages/components/base/QuickNav/index.vue'
-import TabPane from '../../../packages/components/base/TabPane/index.vue'
-import Tabs from '../../../packages/components/base/Tabs/index.vue'
-import TelemetryProvider from '../../../packages/components/base/TelemetryProvider/index.vue'
-import VerticalStepNav from '../../../packages/components/base/VerticalStepNav/index.vue'
+import CategoryNav from '../../../packages/components/core/CategoryNav/index.vue'
+import FooterNav from '../../../packages/components/core/FooterNav/index.vue'
+import IndexNav from '../../../packages/components/core/IndexNav/index.vue'
+import MessageBoxHost from '../../../packages/components/overlay/MessageBox/MessageBoxHost.vue'
+import { MessageBox } from '../../../packages/components/overlay/MessageBox/service'
+import MiniNav from '../../../packages/components/core/MiniNav/index.vue'
+import QuickNav from '../../../packages/components/core/QuickNav/index.vue'
+import TabPane from '../../../packages/components/core/TabPane/index.vue'
+import Tabs from '../../../packages/components/core/Tabs/index.vue'
+import TelemetryProvider from '../../../packages/components/core/TelemetryProvider/index.vue'
+import VerticalStepNav from '../../../packages/components/core/VerticalStepNav/index.vue'
 
 beforeAll(() => {
   LocaleService.init()
@@ -104,7 +104,7 @@ describe('strengthened navigation components', () => {
 describe('provider, tabs and message box behavior', () => {
   it('keeps TabPane emits resolvable by compiler-sfc in dev mode', () => {
     const source = readFileSync(
-      resolve('packages/components/base/TabPane/types.ts'),
+      resolve('packages/components/core/TabPane/types.ts'),
       'utf8'
     )
     expect(source).toMatch(/activate:\s*\[name:/)

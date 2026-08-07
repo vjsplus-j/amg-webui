@@ -1,6 +1,8 @@
 ﻿<script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { Button, InputText, Select, Card, Message, Icon } from '@amg-webui/components/base'
+import { Button, Card, Icon } from '@amg-webui/core'
+import { InputText, Select } from '@amg-webui/form'
+import { Message } from '@amg-webui/overlay'
 import {
   ThemeService,
   designStyles,

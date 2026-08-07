@@ -3,7 +3,7 @@
  * Curated demo — Form wave1 Slider
  */
 import { computed, ref } from 'vue'
-import { Slider } from '@amg-webui/components/base'
+import { Slider } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -19,7 +19,7 @@ const range = ref<[number, number]>([20, 70])
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Slider } from '@amg-webui/components/base'`
+    `import { Slider } from '@amg-webui/form'`
   ],
   script: [`const volume = ref(40)`],
   template: [`  <Slider v-model="volume" :min="0" :max="100" />`]

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { ConfigProvider, Button, Tag, Space } from '@amg-webui/components/base'
+import { ConfigProvider, Button, Tag, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -13,7 +13,7 @@ const size = ref<'sm' | 'md' | 'lg'>('lg')
 const zIndex = ref(2000)
 
 const codeBasic = demoSfc({
-  imports: [`import { ConfigProvider, Button, Tag } from '@amg-webui/components/base'`],
+  imports: [`import { ConfigProvider, Button, Tag } from '@amg-webui/core'`],
   template: [
     '  <ConfigProvider :button="{ size: \'lg\' }">',
     '    <Button label="Primary" />',
@@ -22,7 +22,7 @@ const codeBasic = demoSfc({
 })
 
 const codeZ = demoSfc({
-  imports: [`import { ConfigProvider } from '@amg-webui/components/base'`],
+  imports: [`import { ConfigProvider } from '@amg-webui/core'`],
   template: ['  <ConfigProvider :z-index="2000"><slot /></ConfigProvider>']
 })
 

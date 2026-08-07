@@ -98,7 +98,14 @@ export function provideCanvasEditor(options: ProvideCanvasEditorOptions): Canvas
   const updateNode = (id: string, patch: Partial<CanvasNodeData>) => {
     const idx = options.nodes.value.findIndex((n) => n.id === id)
     if (idx < 0) return
-    options.nodes.value[idx] = { ...options.nodes.value[idx], ...patch }
+    const prev = options.nodes.value[idx]!
+    const next: CanvasNodeData = {
+      ...prev,
+      ...patch,
+      // Always replace props object when patched so Vue + consumers see a new reference
+      props: patch.props ? { ...patch.props } : prev.props
+    }
+    options.nodes.value = options.nodes.value.map((n, i) => (i === idx ? next : n))
     pushHistory()
     touch()
   }
@@ -179,11 +186,7 @@ export function provideCanvasEditor(options: ProvideCanvasEditorOptions): Canvas
   const setParent = (id: string, parentId: string | null) => {
     if (readonly.value) return
     if (wouldCreateCycle(options.nodes.value, id, parentId)) return
-    const idx = options.nodes.value.findIndex((n) => n.id === id)
-    if (idx < 0) return
-    options.nodes.value[idx] = { ...options.nodes.value[idx], parentId }
-    pushHistory()
-    touch()
+    updateNode(id, { parentId })
   }
 
   const ctx: CanvasEditorContext = {

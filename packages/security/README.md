@@ -6,10 +6,11 @@
 
 ## Principles
 
+- **输出侧编码 / 注入点消毒**：普通文本输入默认不改写；`filterDangerousInput` 为可配置字段过滤器
 - **白名单优于黑名单**：`sanitizeHtml` 只保留允许的标签 / 属性
 - **协议拦截**：`javascript:` / `data:` / `vbscript:` / `file:` 一律拒绝；相对路径默认允许
 - **零第三方依赖**：不引入 DOMPurify，信创 / 离线友好
-- **告警旁路**：`SecurityService.alert` 失败不影响 UI
+- **告警旁路**：`SecurityService.alert` 失败不影响 UI；默认只存 `detailHash` / `detailLength` / `matchedRule`
 - **SSR 安全**：无 `document` 时 `sanitizeHtml` 退化为 `escapeHtml`
 
 ## Quick start
@@ -31,10 +32,15 @@ const href = sanitizeUrl(userHref) // undefined when blocked
 const name = filterDangerousInput(formField)
 ```
 
+### Secure preset (opt-in)
+
+See [`docs/SECURITY.md`](../../docs/SECURITY.md) — `SECURE_INPUT_PRESET` · `SECURE_FORM_PRESET` · `SECURE_FORM_KIT`.
+
 ## Used by
 
 - `Link` / `Button` — `isSafeHref`
-- `RichText` — `sanitizeHtml` on input / paste / model sync；链接走 `sanitizeUrl`
+- `RichText` — 统一 `sanitizeHtml(value, sanitizeOptions)`（sync / paste / commit / history）
+- `InputText` / `Textarea` / `Password` — `sanitizeInput` 默认关
 - Apps may call APIs directly for `v-html` / markdown preview
 
 ## Package boundary

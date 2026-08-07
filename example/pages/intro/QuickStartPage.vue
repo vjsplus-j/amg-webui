@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { Button, Message } from '@amg-webui/components/base'
+import { Button } from '@amg-webui/core'
+import { Message } from '@amg-webui/overlay'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import IntroPageShell from '../../components/intro/IntroPageShell.vue'

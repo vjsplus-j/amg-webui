@@ -3,7 +3,7 @@
  * Curated demo — Layout wave1 Col (with Row)
  */
 import { computed } from 'vue'
-import { Row, Col } from '@amg-webui/components/base'
+import { Row, Col } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -15,7 +15,7 @@ import '../../components/demo/curatedDemo.scss'
 const { t } = useLocale()
 
 const codeGrid = demoSfc({
-  imports: [`import { Row, Col } from '@amg-webui/components/base'`],
+  imports: [`import { Row, Col } from '@amg-webui/core'`],
   template: [
     '  <Row gutter="var(--spacing-md)">',
     '    <Col :span="8"><div>8</div></Col>',

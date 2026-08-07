@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { SuccessModal } from '@amg-webui/components/base'
+import { SuccessModal } from '@amg-webui/overlay'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('SuccessModal'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { SuccessModal } from '@amg-webui/components/base'`,
+    `import { SuccessModal } from '@amg-webui/overlay'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('SuccessModal')`],

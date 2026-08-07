@@ -36,13 +36,43 @@ export interface SecurityConfig {
   warnLevel?: SecurityWarnLevel
   /** App id for log prefixes. */
   appId?: string
+  /**
+   * When true, keep truncated raw `detail` on alerts (default false).
+   * Prefer `detailHash` / `detailLength` / `matchedRule` for monitoring.
+   */
+  includeDetail?: boolean
 }
 
 export interface SecurityAlert {
   kind: 'html-stripped' | 'url-blocked' | 'input-filtered'
   message: string
+  /**
+   * Truncated raw snippet — only present when `SecurityConfig.includeDetail` is true.
+   * Prefer `detailHash` for correlation.
+   */
   detail?: string
+  /** FNV-1a hex of the original detail string (always set when rawDetail was provided). */
+  detailHash?: string
+  /** Original detail string length before truncation. */
+  detailLength?: number
+  /** Which sanitizer rule fired (e.g. `strip-tags`, `blocked-protocol`). */
+  matchedRule?: string
   at: number
+}
+
+/** Input to `SecurityService.alert` — raw content is redacted unless `includeDetail`. */
+export type SecurityAlertInput = Omit<
+  SecurityAlert,
+  'at' | 'detailHash' | 'detailLength' | 'detail'
+> & {
+  at?: number
+  /** Original payload for hashing / optional detail; never stored unless includeDetail. */
+  rawDetail?: string
+  /** Truncation cap when includeDetail keeps a snippet (default 160). */
+  detailMaxLength?: number
+  matchedRule?: string
+  /** @deprecated Pass `rawDetail` instead; ignored unless includeDetail and no rawDetail. */
+  detail?: string
 }
 
 export type SecurityAlertListener = (alert: SecurityAlert) => void

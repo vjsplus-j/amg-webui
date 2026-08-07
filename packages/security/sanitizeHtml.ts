@@ -197,7 +197,9 @@ export function sanitizeHtml(dirty: string, options: SanitizeHtmlOptions = {}): 
     SecurityService.alert({
       kind: 'html-stripped',
       message: `Sanitizer removed ${stats.stripped} unsafe node(s) or attribute(s)`,
-      detail: dirty.slice(0, 160)
+      matchedRule: 'html-stripped',
+      rawDetail: dirty,
+      detailMaxLength: 160
     })
   }
 

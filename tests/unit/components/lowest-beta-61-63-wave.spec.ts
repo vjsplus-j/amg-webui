@@ -1,14 +1,14 @@
 import { mount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
-import FixedLayout from "../../../packages/components/base/FixedLayout/index.vue";
-import EmbedLayout from "../../../packages/components/base/EmbedLayout/index.vue";
-import DragSortNode from "../../../packages/components/base/DragSortNode/index.vue";
-import MergeTable from "../../../packages/components/base/MergeTable/index.vue";
-import CanvasPreview from "../../../packages/components/base/CanvasPreview/index.vue";
-import MonthPicker from "../../../packages/components/base/MonthPicker/index.vue";
-import YearPicker from "../../../packages/components/base/YearPicker/index.vue";
-import GbsSignMonitor from "../../../packages/components/base/GbsSignMonitor/index.vue";
-import VcrStorageDashboard from "../../../packages/components/base/VcrStorageDashboard/index.vue";
+import FixedLayout from "../../../packages/components/core/FixedLayout/index.vue";
+import EmbedLayout from "../../../packages/components/core/EmbedLayout/index.vue";
+import DragSortNode from "../../../packages/lowcode/ui/DragSortNode/index.vue";
+import MergeTable from "../../../packages/components/data/MergeTable/index.vue";
+import CanvasPreview from "../../../packages/lowcode/ui/CanvasPreview/index.vue";
+import MonthPicker from "../../../packages/components/form/MonthPicker/index.vue";
+import YearPicker from "../../../packages/components/form/YearPicker/index.vue";
+import GbsSignMonitor from "../../../packages/components/gb28181/GbsSignMonitor/index.vue";
+import VcrStorageDashboard from "../../../packages/components/media/VcrStorageDashboard/index.vue";
 
 const node = (id: string, locked = false) => ({
   id,

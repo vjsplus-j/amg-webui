@@ -3,7 +3,7 @@
  * Curated demo — Display wave2 Countdown
  */
 import { computed, ref } from 'vue'
-import { Countdown, Button, Space } from '@amg-webui/components/base'
+import { Countdown, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -19,7 +19,7 @@ const finished = ref(false)
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Countdown } from '@amg-webui/components/base'`
+    `import { Countdown } from '@amg-webui/core'`
   ],
   script: [`const target = ref(Date.now() + 90_000)`],
   template: [`  <Countdown :value="target" @finish="onFinish" />`]

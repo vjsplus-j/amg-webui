@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { QuickNav, Space } from '@amg-webui/components/base'
+import { QuickNav, Space } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -18,7 +18,7 @@ const items = computed(() => getSampleMountProps('QuickNav').items as NavItem[])
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { QuickNav } from '@amg-webui/components/base'`
+    `import { QuickNav } from '@amg-webui/core'`
   ],
   script: [`const selected = ref('dashboard')`, `const items = [/* NavItem[] */]`],
   template: [`  <QuickNav v-model="selected" :items="items" />`]

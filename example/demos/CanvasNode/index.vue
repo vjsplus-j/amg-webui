@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { CanvasNode } from '@amg-webui/components/base'
+import { CanvasNode } from '@amg-webui/lowcode'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -23,7 +23,7 @@ const sampleNode: CanvasNodeData = {
 }
 
 const codeBasic = demoSfc({
-  imports: [`import { CanvasNode } from '@amg-webui/components/base'`],
+  imports: [`import { CanvasNode } from '@amg-webui/lowcode'`],
   template: ['  <CanvasNode :node="sampleNode" />']
 })
 

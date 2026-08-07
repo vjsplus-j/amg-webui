@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Card, Icon, InputText, Tag } from '@amg-webui/components/base'
+import { Card, Icon, Tag } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import ExamplePageHero from '../../components/ExamplePageHero.vue'

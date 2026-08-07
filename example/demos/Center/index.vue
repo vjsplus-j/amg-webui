@@ -3,10 +3,11 @@
  * Curated demo — Layout wave2 Center
  */
 import { computed, ref } from 'vue'
-import { Center, Button, Space } from '@amg-webui/components/base'
-import type { CenterAxis } from '@amg-webui/components/base/Center'
+import { Center, Button, Space } from '@amg-webui/core'
+import type { CenterAxis } from '@amg-webui/core/Center'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
+import type { LocaleKey } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
@@ -19,9 +20,19 @@ const flush = ref(true)
 const fill = ref(false)
 const axes: CenterAxis[] = ['both', 'horizontal', 'vertical', 'top', 'bottom', 'left', 'right']
 
+const AXIS_KEYS = {
+  both: 'example.doc.center.sample.axis.both',
+  horizontal: 'example.doc.center.sample.axis.horizontal',
+  vertical: 'example.doc.center.sample.axis.vertical',
+  top: 'example.doc.center.sample.axis.top',
+  bottom: 'example.doc.center.sample.axis.bottom',
+  left: 'example.doc.center.sample.axis.left',
+  right: 'example.doc.center.sample.axis.right'
+} as const satisfies Record<CenterAxis, LocaleKey>
+
 const bodyText = computed(() =>
   t('example.doc.center.sample.bodyState', {
-    axis: t(`example.doc.center.sample.axis.${axis.value}`),
+    axis: t(AXIS_KEYS[axis.value]),
     flush: flush.value
       ? t('example.doc.center.sample.flushOn')
       : t('example.doc.center.sample.flushOff')
@@ -29,7 +40,7 @@ const bodyText = computed(() =>
 )
 
 const codeBasic = demoSfc({
-  imports: [`import { Center } from '@amg-webui/components/base'`],
+  imports: [`import { Center } from '@amg-webui/core'`],
   template: [
     '  <Center axis="top" :flush="false" class="stage">',
     `    <p>{{ t('example.doc.center.sample.body') }}</p>`,
@@ -82,7 +93,7 @@ const propRows = computed<PropRow[]>(() => [
             :variant="axis === a ? 'solid' : 'outlined'"
             @click="axis = a"
           >
-            {{ t(`example.doc.center.sample.axis.${a}`) }}
+            {{ t(AXIS_KEYS[a]) }}
           </Button>
         </Space>
         <Space wrap>

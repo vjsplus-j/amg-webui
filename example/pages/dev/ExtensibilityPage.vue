@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, defineComponent, h, ref, type PropType, type VNodeChild } from 'vue'
-import { Button, Card, DataTable, Icon, Switch, Tag, Textarea } from '@amg-webui/components/base'
+import { Button, Card, Icon, Tag } from '@amg-webui/core'
+import { DataTable } from '@amg-webui/data'
+import { Switch, Textarea } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import { ToastService } from '@amg-webui/theme'

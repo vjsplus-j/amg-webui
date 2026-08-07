@@ -3,8 +3,8 @@
  * Curated TabsNav demo — chrome multi-tabs + overflow + drag reorder.
  */
 import { computed, ref, watch } from 'vue'
-import { TabsNav, Button, Space } from '@amg-webui/components/base'
-import type { TabsNavItem } from '@amg-webui/components/base/TabsNav'
+import { TabsNav, Button, Space } from '@amg-webui/core'
+import type { TabsNavItem } from '@amg-webui/core/TabsNav'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -58,17 +58,17 @@ function resetTabs() {
 }
 
 const codeBasic = demoSfc({
-  imports: [`import { TabsNav } from '@amg-webui/components/base'`],
+  imports: [`import { TabsNav } from '@amg-webui/core'`],
   template: ['  <TabsNav v-model="active" :items="items" closable @close="onClose" />']
 })
 
 const codeOverflow = demoSfc({
-  imports: [`import { TabsNav } from '@amg-webui/components/base'`],
+  imports: [`import { TabsNav } from '@amg-webui/core'`],
   template: ['  <TabsNav v-model="active" :items="many" closable overflow />']
 })
 
 const codeDrag = demoSfc({
-  imports: [`import { TabsNav } from '@amg-webui/components/base'`],
+  imports: [`import { TabsNav } from '@amg-webui/core'`],
   template: [
     '  <TabsNav',
     '    v-model="active"',

@@ -3,7 +3,7 @@
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
 import { computed, ref } from 'vue'
-import { Button, Card, Spin } from '@amg-webui/components/base'
+import { Button, Card, Spin } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -31,7 +31,7 @@ function onVisibleChange(v: boolean) {
 /* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
 
 const codeBasic = demoSfc({
-  imports: [`import { Spin } from '@amg-webui/components/base'`],
+  imports: [`import { Spin } from '@amg-webui/core'`],
   template: [
     `  <Spin size="sm" />`,
     `  <Spin size="md" />`,

@@ -3,7 +3,8 @@
  * Curated demo — Form wave1 Search
  */
 import { computed, ref } from 'vue'
-import { Search, Space } from '@amg-webui/components/base'
+import { Search } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -19,7 +20,7 @@ const cleared = ref('')
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Search } from '@amg-webui/components/base'`
+    `import { Search } from '@amg-webui/form'`
   ],
   script: [`const keyword = ref('')`],
   template: [

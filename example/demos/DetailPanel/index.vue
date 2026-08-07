@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { DetailPanel, Button, Tag } from '@amg-webui/components/base'
+import { DetailPanel } from '@amg-webui/data'
+import { Button, Tag } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -32,7 +33,7 @@ const sections = computed(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { DetailPanel } from '@amg-webui/components/base'`],
+  imports: [`import { DetailPanel } from '@amg-webui/data'`],
   template: [
     '  <DetailPanel :title="title" :sections="sections">',
     '    <template #extra><Tag label="Live" severity="success" size="sm" /></template>',

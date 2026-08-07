@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { TopNav, CardNav, MiniNav, GroupNav, Space } from '@amg-webui/components/base'
+import { TopNav, CardNav, MiniNav, GroupNav, Space } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -48,22 +48,22 @@ const groupItems = computed<NavItem[]>(() => [
 ])
 
 const codeTop = demoSfc({
-  imports: [`import { TopNav } from '@amg-webui/components/base'`],
+  imports: [`import { TopNav } from '@amg-webui/core'`],
   template: ['  <TopNav v-model="active" :items="items" />']
 })
 
 const codeCard = demoSfc({
-  imports: [`import { CardNav } from '@amg-webui/components/base'`],
+  imports: [`import { CardNav } from '@amg-webui/core'`],
   template: ['  <CardNav v-model="active" :items="items" />']
 })
 
 const codeMini = demoSfc({
-  imports: [`import { MiniNav } from '@amg-webui/components/base'`],
+  imports: [`import { MiniNav } from '@amg-webui/core'`],
   template: ['  <MiniNav v-model="active" :items="items" />']
 })
 
 const codeGroup = demoSfc({
-  imports: [`import { GroupNav } from '@amg-webui/components/base'`],
+  imports: [`import { GroupNav } from '@amg-webui/core'`],
   template: ['  <GroupNav v-model="active" :items="groups" />']
 })
 

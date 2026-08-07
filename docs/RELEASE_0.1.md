@@ -47,7 +47,7 @@ import { Button, ThemeService } from 'amg-webui'
 
 ```bash
 npm run build:lib      # → 主库 + runtime 分包 + on-demand + skill + theme + generate:exports
-npm run build:runtime  # → 仅 dist/{security,telemetry,lowcode,hooks,utils,…}
+npm run build:runtime  # → 仅 dist/{security,telemetry,lowcode,runtime,hooks,utils,…}
 npm run build:ondemand # → dist/es/** + exports 刷新
 npm run build:skill    # → 仅 dist/skill/
 npm run test:consumers # → npm pack 后在 vite / webpack / nuxt fixture 中安装并构建
@@ -94,8 +94,9 @@ npm run test:consumers # → npm pack 后在 vite / webpack / nuxt fixture 中�
 
 ## 尚未完全解决（诚实边界）
 
-- Overlay / Focus / Teleport / ScrollLock **统一内核**仍未交付
+- Overlay / Focus / Teleport / ScrollLock **统一内核已交付**（`amg-webui/runtime` + `useOverlay`；见 `docs/OVERLAY.md`）
 - 按需组件 CSS 可能仍依赖根 `style.css`（非整文件稳定 side-entry）
-- Consumer fixtures 是 **安装+构建冒烟**，不是视觉 / a11y / SSR 边界全覆盖
-- 行业组件仍在 `base`；成熟度启发式仍在；E2E 仍浅
+- Consumer fixtures 是 **安装+构建冒烟**，不是视觉 / a11y / SSR hydration 全覆盖
+- 行业组件仍在 `base`；成熟度 JSON 仅开发盘点启发式（**≠** 质量证书）
+- E2E：多浏览器 smoke + Chromium Dialog trap/axe/RTL 附件已进 CI；**仍非**全组件键盘矩阵 / 像素基线 / 性能基准
 - 本轮只推进「包发布契约」主路径：**源码导出 → dist 导出 + consumer 验证**；不宣称 1.0 / 超越 Element Plus

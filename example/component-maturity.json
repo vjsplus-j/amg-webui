@@ -1,19 +1,21 @@
 {
   "version": 2,
-  "generatedAt": "2026-08-06T03:45:14.246Z",
+  "generatedAt": "2026-08-07T06:36:04.227Z",
   "total": 287,
-  "disclaimer": "total is directory inventory. Maturity is by capability tier + depth level. Not 1.0-ready.",
+  "role": "dev-inventory",
+  "notACertificate": true,
+  "disclaimer": "Dev inventory / triage only — not a product quality certificate. total is directory count. Scores are static heuristics (lines/props/string presence). They do not prove keyboard, multi-instance, async races, SSR hydration, leaks, screen reader, API stability, or performance. Capability tier + depth level help prioritize work; ready ≠ ship / 1.0.",
   "summary": {
     "stub": 0,
     "shell": 56,
-    "beta": 199,
-    "ready": 32
+    "beta": 198,
+    "ready": 33
   },
   "byCapability": {
-    "thin": 240,
+    "thin": 238,
     "form": 21,
     "interaction": 5,
-    "composite": 21
+    "composite": 23
   },
   "capabilities": [
     "thin",
@@ -492,7 +494,7 @@
     "CanvasNode": {
       "level": "beta",
       "capability": "thin",
-      "score": 61,
+      "score": 67,
       "signals": [
         "emits",
         "handlers:2",
@@ -501,28 +503,28 @@
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 154,
-      "styleLines": 47,
-      "propCount": 6,
+      "vueLines": 195,
+      "styleLines": 67,
+      "propCount": 8,
       "formIntegrated": false,
       "nativeAttrs": false
     },
     "CanvasPreview": {
-      "level": "beta",
-      "capability": "thin",
-      "score": 80,
+      "level": "ready",
+      "capability": "composite",
+      "score": 86,
       "signals": [
         "emits",
+        "provide-inject",
         "v-model",
         "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
-        "telemetry",
-        "thin-cap:no-ready"
+        "telemetry"
       ],
-      "vueLines": 231,
-      "styleLines": 103,
+      "vueLines": 201,
+      "styleLines": 123,
       "propCount": 18,
       "formIntegrated": false,
       "nativeAttrs": false
@@ -922,9 +924,9 @@
         "tokens",
         "behavior-test"
       ],
-      "vueLines": 182,
+      "vueLines": 209,
       "styleLines": 37,
-      "propCount": 23,
+      "propCount": 25,
       "formIntegrated": false,
       "nativeAttrs": false
     },
@@ -940,7 +942,7 @@
         "delegate",
         "thin-cap:no-ready"
       ],
-      "vueLines": 175,
+      "vueLines": 176,
       "styleLines": 195,
       "propCount": 8,
       "formIntegrated": false,
@@ -958,7 +960,7 @@
         "delegate",
         "thin-cap:no-ready"
       ],
-      "vueLines": 232,
+      "vueLines": 236,
       "styleLines": 184,
       "propCount": 10,
       "formIntegrated": false,
@@ -994,7 +996,7 @@
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 168,
+      "vueLines": 171,
       "styleLines": 117,
       "propCount": 3,
       "formIntegrated": false,
@@ -1099,16 +1101,16 @@
       "score": 79,
       "signals": [
         "emits",
-        "handlers:10",
+        "handlers:11",
         "a11y",
         "tokens",
         "behavior-test",
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 677,
-      "styleLines": 334,
-      "propCount": 21,
+      "vueLines": 1002,
+      "styleLines": 369,
+      "propCount": 25,
       "formIntegrated": false,
       "nativeAttrs": false
     },
@@ -1212,9 +1214,9 @@
         "delegate",
         "thin-cap:no-ready"
       ],
-      "vueLines": 216,
+      "vueLines": 236,
       "styleLines": 188,
-      "propCount": 11,
+      "propCount": 16,
       "formIntegrated": false,
       "nativeAttrs": false
     },
@@ -1263,7 +1265,7 @@
         "tokens",
         "delegate"
       ],
-      "vueLines": 122,
+      "vueLines": 127,
       "styleLines": 36,
       "propCount": 7,
       "formIntegrated": false,
@@ -1386,10 +1388,10 @@
     "Drawer": {
       "level": "beta",
       "capability": "thin",
-      "score": 81,
+      "score": 79,
       "signals": [
         "emits",
-        "handlers:3",
+        "handlers:2",
         "a11y",
         "tokens",
         "behavior-test",
@@ -1397,7 +1399,7 @@
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 189,
+      "vueLines": 184,
       "styleLines": 151,
       "propCount": 20,
       "formIntegrated": false,
@@ -1431,7 +1433,7 @@
         "delegate",
         "thin-cap:no-ready"
       ],
-      "vueLines": 360,
+      "vueLines": 393,
       "styleLines": 151,
       "propCount": 5,
       "formIntegrated": false,
@@ -2249,7 +2251,7 @@
         "delegate",
         "thin-cap:no-ready"
       ],
-      "vueLines": 246,
+      "vueLines": 255,
       "styleLines": 112,
       "propCount": 10,
       "formIntegrated": false,
@@ -2580,16 +2582,16 @@
     "Mask": {
       "level": "beta",
       "capability": "thin",
-      "score": 66,
+      "score": 64,
       "signals": [
         "emits",
-        "handlers:2",
+        "handlers:1",
         "a11y",
         "tokens",
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 123,
+      "vueLines": 125,
       "styleLines": 57,
       "propCount": 15,
       "formIntegrated": false,
@@ -2668,7 +2670,7 @@
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 460,
+      "vueLines": 467,
       "styleLines": 239,
       "propCount": 9,
       "formIntegrated": false,
@@ -2740,14 +2742,14 @@
       "score": 69,
       "signals": [
         "emits",
-        "handlers:4",
+        "handlers:5",
         "a11y",
         "tokens",
         "delegate",
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 370,
+      "vueLines": 361,
       "styleLines": 246,
       "propCount": 4,
       "formIntegrated": false,
@@ -3217,7 +3219,7 @@
         "telemetry",
         "confirm"
       ],
-      "vueLines": 307,
+      "vueLines": 297,
       "styleLines": 96,
       "propCount": 20,
       "formIntegrated": false,
@@ -3237,7 +3239,7 @@
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 238,
+      "vueLines": 232,
       "styleLines": 123,
       "propCount": 16,
       "formIntegrated": false,
@@ -3349,7 +3351,7 @@
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 192,
+      "vueLines": 210,
       "styleLines": 56,
       "propCount": 6,
       "formIntegrated": false,
@@ -3575,7 +3577,7 @@
         "telemetry",
         "permission"
       ],
-      "vueLines": 356,
+      "vueLines": 359,
       "styleLines": 58,
       "propCount": 5,
       "formIntegrated": false,
@@ -3636,18 +3638,18 @@
     },
     "SchemaRenderer": {
       "level": "beta",
-      "capability": "thin",
-      "score": 63,
+      "capability": "composite",
+      "score": 69,
       "signals": [
         "emits",
+        "provide-inject",
         "a11y",
         "tokens",
-        "telemetry",
-        "thin-cap:no-ready"
+        "telemetry"
       ],
-      "vueLines": 185,
-      "styleLines": 85,
-      "propCount": 10,
+      "vueLines": 172,
+      "styleLines": 87,
+      "propCount": 12,
       "formIntegrated": false,
       "nativeAttrs": false
     },
@@ -3721,7 +3723,7 @@
         "thin-cap:no-ready"
       ],
       "vueLines": 88,
-      "styleLines": 97,
+      "styleLines": 106,
       "propCount": 5,
       "formIntegrated": false,
       "nativeAttrs": false
@@ -4449,6 +4451,7 @@
         "handlers:5",
         "a11y",
         "tokens",
+        "behavior-test",
         "form-item",
         "native-attrs",
         "telemetry"
@@ -4462,14 +4465,14 @@
     "ThemeProvider": {
       "level": "beta",
       "capability": "composite",
-      "score": 50,
+      "score": 52,
       "signals": [
         "emits",
         "provide-inject",
         "a11y",
         "tokens"
       ],
-      "vueLines": 70,
+      "vueLines": 83,
       "styleLines": 25,
       "propCount": 13,
       "formIntegrated": false,
@@ -4680,7 +4683,7 @@
         "telemetry",
         "thin-cap:no-ready"
       ],
-      "vueLines": 270,
+      "vueLines": 297,
       "styleLines": 112,
       "propCount": 6,
       "formIntegrated": false,
@@ -5170,7 +5173,7 @@
         "behavior-test",
         "thin-cap:no-ready"
       ],
-      "vueLines": 266,
+      "vueLines": 268,
       "styleLines": 76,
       "propCount": 13,
       "formIntegrated": false,

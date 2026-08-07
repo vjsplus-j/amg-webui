@@ -4,7 +4,7 @@
  * Other play demos should mirror this layout (see `demoCode.ts` header).
  */
 import { computed, onMounted, ref } from 'vue'
-import { Avatar, AvatarGroup, Button, Icon } from '@amg-webui/components/base'
+import { Avatar, AvatarGroup, Button, Icon } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -65,7 +65,7 @@ onMounted(() => {
 /* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
 
 const codeBasic = demoSfc({
-  imports: [`import { Avatar } from '@amg-webui/components/base'`],
+  imports: [`import { Avatar } from '@amg-webui/core'`],
   template: [
     '  <!-- image -->',
     `  <Avatar`,

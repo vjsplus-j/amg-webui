@@ -63,6 +63,22 @@ export function buildCanvasTree(nodes: CanvasNodeData[]): CanvasTreeNode[] {
   return roots
 }
 
+/** Bounding box of root nodes only (nested x/y are parent-local, not canvas-absolute). */
+export function rootContentBounds(
+  nodes: CanvasNodeData[],
+  fallback: { width: number; height: number } = { width: 1, height: 1 }
+): { width: number; height: number } {
+  const roots = getRootNodes(nodes.filter((n) => !n.hidden))
+  if (!roots.length) return { ...fallback }
+  let width = fallback.width
+  let height = fallback.height
+  for (const n of roots) {
+    width = Math.max(width, n.x + n.w)
+    height = Math.max(height, n.y + n.h)
+  }
+  return { width, height }
+}
+
 /** Detect whether assigning parentId would create a cycle. */
 export function wouldCreateCycle(
   nodes: CanvasNodeData[],

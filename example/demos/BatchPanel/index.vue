@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { BatchPanel } from '@amg-webui/components/base'
+import { BatchPanel } from '@amg-webui/data'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -20,7 +20,7 @@ const onAction = (key: string) => {
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { BatchPanel } from '@amg-webui/components/base'`
+    `import { BatchPanel } from '@amg-webui/data'`
   ],
   script: [`const selectedCount = ref(3)`],
   template: [

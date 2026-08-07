@@ -3,9 +3,10 @@
  * Curated demo — Data wave2 AdvancedSearch
  */
 import { computed, ref } from 'vue'
-import { AdvancedSearch, Space } from '@amg-webui/components/base'
-import type { FilterCondition } from '@amg-webui/components/base/FilterBar/types'
-import type { SearchLogic } from '@amg-webui/components/base/AdvancedSearch/types'
+import { AdvancedSearch } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
+import type { FilterCondition } from '@amg-webui/form/FilterBar/types'
+import type { SearchLogic } from '@amg-webui/form/AdvancedSearch/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -42,7 +43,7 @@ const templates = computed(() => [
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { AdvancedSearch } from '@amg-webui/components/base'`
+    `import { AdvancedSearch } from '@amg-webui/form'`
   ],
   script: [
     `const conditions = ref([{ id: '1', field: 'name', operator: 'contains', value: '' }])`,
@@ -54,7 +55,7 @@ const codeBasic = demoSfc({
 })
 
 const codeLogic = demoSfc({
-  imports: [`import { AdvancedSearch } from '@amg-webui/components/base'`],
+  imports: [`import { AdvancedSearch } from '@amg-webui/form'`],
   template: [
     `  <AdvancedSearch`,
     `    v-model="conditions"`,

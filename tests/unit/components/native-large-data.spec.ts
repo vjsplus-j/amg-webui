@@ -2,13 +2,13 @@ import { beforeAll, afterEach, describe, expect, it, vi } from "vitest";
 import { flushPromises, mount } from "@vue/test-utils";
 import { nextTick } from "vue";
 import { LocaleService } from "@amg-webui/locale";
-import DataTable from "../../../packages/components/base/DataTable/index.vue";
-import VirtualTable from "../../../packages/components/base/VirtualTable/index.vue";
-import Tree from "../../../packages/components/base/Tree/index.vue";
-import LazyTree from "../../../packages/components/base/LazyTree/index.vue";
-import VirtualTree from "../../../packages/components/base/VirtualTree/index.vue";
-import Select from "../../../packages/components/base/Select/index.vue";
-import Transfer from "../../../packages/components/base/Transfer/index.vue";
+import DataTable from "@amg-webui/data/DataTable/index.vue";
+import VirtualTable from "@amg-webui/data/VirtualTable/index.vue";
+import Tree from "@amg-webui/data/Tree/index.vue";
+import LazyTree from "@amg-webui/data/LazyTree/index.vue";
+import VirtualTree from "@amg-webui/data/VirtualTree/index.vue";
+import Select from "@amg-webui/form/Select/index.vue";
+import Transfer from "@amg-webui/form/Transfer/index.vue";
 
 beforeAll(() => LocaleService.init());
 afterEach(() => vi.useRealTimers());
@@ -38,11 +38,14 @@ describe("native large-data readiness", () => {
       props: {
         value: rows,
         columns: [{ field: "name", header: "Name" }],
+        virtualHeight: 100,
+        rowHeight: 40,
+        virtualColumns: false,
       },
     });
 
     expect(wrapper.findAll(".vp-datatable__body tbody tr").length).toBeLessThan(
-      30,
+      40,
     );
     const body = wrapper.get(".vp-datatable__body");
     body.element.scrollTop = 400_000;
@@ -53,6 +56,25 @@ describe("native large-data readiness", () => {
 
     expect(body.element.scrollTop).toBe(0);
     expect(wrapper.findAll(".vp-datatable__body tbody tr")).toHaveLength(5);
+  });
+
+  it("DataTable keeps virtual window bounded when virtualHeight changes", async () => {
+    const wrapper = mount(DataTable, {
+      props: {
+        value: rows.slice(0, 500),
+        columns: [{ field: "name", header: "Name", width: "8rem" }],
+        virtualHeight: 40,
+        rowHeight: 40,
+        virtualColumns: false,
+      },
+    });
+    const before = wrapper.findAll(".vp-datatable__body tbody tr").length;
+    expect(before).toBeLessThan(30);
+    await wrapper.setProps({ virtualHeight: 120 });
+    await nextTick();
+    const after = wrapper.findAll(".vp-datatable__body tbody tr").length;
+    expect(after).toBeLessThan(50);
+    expect(after).toBeGreaterThanOrEqual(before);
   });
 
   it("DataTable lazy mode emits debounced filters without reprocessing server rows", async () => {

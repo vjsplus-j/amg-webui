@@ -1,13 +1,13 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { flushPromises, mount } from "@vue/test-utils";
-import Drawer from "../../../packages/components/base/Drawer/index.vue";
-import ErrorModal from "../../../packages/components/base/ErrorModal/index.vue";
-import Exception from "../../../packages/components/base/Exception/index.vue";
-import Message from "../../../packages/components/base/Message/index.vue";
-import Popconfirm from "../../../packages/components/base/Popconfirm/index.vue";
-import Popover from "../../../packages/components/base/Popover/index.vue";
-import Toast from "../../../packages/components/base/Toast/index.vue";
-import Button from "../../../packages/components/base/Button/index.vue";
+import Drawer from "../../../packages/components/overlay/Drawer/index.vue";
+import ErrorModal from "../../../packages/components/overlay/ErrorModal/index.vue";
+import Exception from "../../../packages/components/core/Exception/index.vue";
+import Message from "../../../packages/components/overlay/Message/index.vue";
+import Popconfirm from "../../../packages/components/core/Popconfirm/index.vue";
+import Popover from "../../../packages/components/overlay/Popover/index.vue";
+import Toast from "../../../packages/components/overlay/Toast/index.vue";
+import Button from "../../../packages/components/core/Button/index.vue";
 
 afterEach(() => {
   vi.useRealTimers();

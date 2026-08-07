@@ -1,13 +1,19 @@
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve, dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { FOUNDATION_PACKAGES } from './component-package-map.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const base = resolve(root, 'packages/components/base')
-const dirs = readdirSync(base, { withFileTypes: true })
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name)
-  .sort()
+
+const dirs = []
+for (const pkg of FOUNDATION_PACKAGES) {
+  const pkgDir = resolve(root, 'packages/components', pkg)
+  if (!existsSync(pkgDir)) continue
+  for (const d of readdirSync(pkgDir, { withFileTypes: true })) {
+    if (d.isDirectory()) dirs.push({ name: d.name, dir: join(pkgDir, d.name) })
+  }
+}
+dirs.sort((a, b) => a.name.localeCompare(b.name))
 
 const waves = {
   w1_form: [],
@@ -43,8 +49,10 @@ function isMvp(vue) {
   return false
 }
 
-for (const name of dirs) {
-  const vue = readFileSync(join(base, name, 'index.vue'), 'utf8')
+for (const { name, dir } of dirs) {
+  const vuePath = join(dir, 'index.vue')
+  if (!existsSync(vuePath)) continue
+  const vue = readFileSync(vuePath, 'utf8')
   const mvp = isMvp(vue)
   if (!mvp) {
     waves.solid.push(name)

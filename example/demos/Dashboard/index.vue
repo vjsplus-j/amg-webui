@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Dashboard, Card, StatusTip } from '@amg-webui/components/base'
+import { Dashboard } from '@amg-webui/data'
+import { Card, StatusTip } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -26,7 +27,7 @@ const widgets = computed(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { Dashboard } from '@amg-webui/components/base'`],
+  imports: [`import { Dashboard } from '@amg-webui/data'`],
   template: [
     '  <Dashboard :stats="stats" :columns="3" @select-stat="onSelect" @refresh="onRefresh" />'
   ]

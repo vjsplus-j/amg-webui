@@ -4,16 +4,7 @@
  * CardWidgets full page is Wave5; this page only teasers it with complete code.
  */
 import { computed, ref } from 'vue'
-import {
-  Avatar,
-  Button,
-  Card,
-  CardWidgets,
-  Progress,
-  Space,
-  Statistic,
-  Tag
-} from '@amg-webui/components/base'
+import { Avatar, Button, Card, CardWidgets, Progress, Space, Statistic, Tag } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -87,7 +78,7 @@ function onCardClick() {
 
 const codeBasic = demoSfc({
   imports: [
-    `import { Avatar, Button, Card, Progress, Space, Tag } from '@amg-webui/components/base'`
+    `import { Avatar, Button, Card, Progress, Space, Tag } from '@amg-webui/core'`
   ],
   template: [
     '  <Card :header="t(\'example.doc.card.sample.header\')">',

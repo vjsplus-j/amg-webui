@@ -3,7 +3,8 @@
  * Curated demo — Data wave1 Pagination
  */
 import { computed, ref } from 'vue'
-import { Pagination, Space } from '@amg-webui/components/base'
+import { Pagination } from '@amg-webui/data'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -20,7 +21,7 @@ const total = 128
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Pagination } from '@amg-webui/components/base'`
+    `import { Pagination } from '@amg-webui/data'`
   ],
   script: [`const page = ref(1)`, `const pageSize = ref(10)`],
   template: [

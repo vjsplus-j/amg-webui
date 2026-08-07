@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { MessageBox, Button, Space } from '@amg-webui/components/base'
+import { MessageBox } from '@amg-webui/overlay'
+import { Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -36,12 +37,13 @@ async function openPrompt() {
 }
 
 const codeBasic = demoSfc({
-  imports: [`import { MessageBox, Button } from '@amg-webui/components/base'`],
+  imports: [`import { MessageBox } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`],
   template: ['  <Button @click="() => MessageBox.confirm(msg, title)" />']
 })
 
 const codeAlert = demoSfc({
-  imports: [`import { MessageBox } from '@amg-webui/components/base'`],
+  imports: [`import { MessageBox } from '@amg-webui/overlay'`],
   template: ['  await MessageBox.alert(msg, title)']
 })
 

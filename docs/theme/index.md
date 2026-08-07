@@ -25,7 +25,7 @@ npm run build:theme   # → dist/theme/
 | **ThemeProvider / ConfigProvider** | 同页局部主题：自建 Runtime + `provide(THEME_RUNTIME_KEY)` |
 | **useThemeRuntime()** | inject 优先，否则回落到默认单例 |
 
-**同页多主题禁止**用 `ThemeService.configure` 抢全局单例——请用 `ThemeProvider` 或自建 `createThemeRuntime`。
+**同页多主题禁止**用 `ThemeService.configure` 抢全局单例——请用 `ThemeProvider` 或自建 `createThemeRuntime`。嵌套 Scope 由 `useThemeScope` 管理：仅本地主题轴才绑定宿主；卸载 / 撤轴会 `dispose` 并清掉宿主上的 `data-*` 与自定义 CSS 变量，避免泄漏到 `documentElement` 或父级 Runtime。
 
 ## ThemeService（应用默认）
 
@@ -36,7 +36,8 @@ import 'amg-webui/theme/style.css'
 ThemeService.init({ overrides: { design: 'linear', scheme: 'light' } })
 ThemeService.setDesign('mercedes')
 ThemeService.setScheme('dark')
-ThemeService.applyCustom({ '--ds-accent': '#3b82f6' })
+ThemeService.applyCustom({ '--ds-accent': '#3b82f6' }) // 增量合并
+ThemeService.replaceCustom({ '--ds-accent': '#3b82f6' }) // 全量替换（缺 key 会从宿主移除）
 ThemeService.setPrimary('#3b82f6') // → --primary-50…900 + 语义桥
 ```
 

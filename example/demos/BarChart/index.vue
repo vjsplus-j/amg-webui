@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { BarChart } from '@amg-webui/components/base'
+import { BarChart } from '@amg-webui/charts'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -11,7 +11,7 @@ import '../../components/demo/curatedDemo.scss'
 const { t } = useLocale()
 const chartData = ref([40, 65, 30, 80, 55, 70])
 const codeBasic = demoSfc({
-  imports: [`import { BarChart } from '@amg-webui/components/base'`],
+  imports: [`import { BarChart } from '@amg-webui/charts'`],
   template: [`  <BarChart :data="chartData" />`]
 })
 const propRows = computed<PropRow[]>(() => [

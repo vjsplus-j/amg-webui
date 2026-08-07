@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
-import { Icon } from '@amg-webui/components/base'
+import { Icon } from '@amg-webui/core'
 import { resolveComponentBadges } from '../nav-component-badges'
 
 const props = defineProps<{

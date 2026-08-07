@@ -3,8 +3,8 @@
  * Curated demo — Form wave1 FilterBar
  */
 import { computed, ref } from 'vue'
-import { FilterBar } from '@amg-webui/components/base'
-import type { FilterCondition } from '@amg-webui/components/base/FilterBar/types'
+import { FilterBar } from '@amg-webui/form'
+import type { FilterCondition } from '@amg-webui/form/FilterBar/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -27,7 +27,7 @@ const fields = computed(() => [
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { FilterBar } from '@amg-webui/components/base'`
+    `import { FilterBar } from '@amg-webui/form'`
   ],
   script: [
     `const conditions = ref([])`,

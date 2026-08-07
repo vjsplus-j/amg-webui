@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync, existsSync } from 'node:fs'
-import { resolve, dirname } from 'node:path'
+import { resolve, dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { FOUNDATION_PACKAGES } from './component-package-map.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const docName = readdirSync(root).find((f) => f.includes('全量组件') && f.endsWith('.md'))
@@ -16,15 +17,18 @@ for (const line of doc.split(/\r?\n/)) {
   if (m) names.push(m[1])
 }
 const uniq = [...new Set(names)]
-const impl = new Set(
-  readdirSync(resolve(root, 'packages/components/base'), { withFileTypes: true })
-    .filter((d) => d.isDirectory())
-    .map((d) => d.name)
-)
+const impl = new Set()
+for (const pkg of FOUNDATION_PACKAGES) {
+  const pkgDir = resolve(root, 'packages/components', pkg)
+  if (!existsSync(pkgDir)) continue
+  for (const d of readdirSync(pkgDir, { withFileTypes: true })) {
+    if (d.isDirectory()) impl.add(d.name)
+  }
+}
 const alias = { Input: 'InputText', Modal: 'Dialog', Table: 'DataTable' }
 const missing = uniq.filter((n) => !impl.has(alias[n] || n) && !impl.has(n))
 console.log('doc headings parsed:', names.length, 'unique:', uniq.length)
-console.log('implemented base folders:', impl.size)
+console.log('implemented foundation folders:', impl.size)
 console.log('still missing:', missing.length)
 if (missing.length) console.log(missing.join('\n'))
 else console.log('coverage COMPLETE (aliases Input→InputText, Modal→Dialog, Table→DataTable)')

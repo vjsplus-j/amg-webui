@@ -3,8 +3,8 @@
  * Curated demo — feedback wave1 Loading
  */
 import { computed, ref } from 'vue'
-import { Loading, Button, Space } from '@amg-webui/components/base'
-import type { LoadingSize } from '@amg-webui/components/base/Loading/types'
+import { Loading, Button, Space } from '@amg-webui/core'
+import type { LoadingSize } from '@amg-webui/core/Loading/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -29,7 +29,7 @@ function toggleFullscreen() {
 const codeToggle = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Loading, Button } from '@amg-webui/components/base'`
+    `import { Loading, Button } from '@amg-webui/core'`
   ],
   script: [`const visible = ref(false)`],
   template: [

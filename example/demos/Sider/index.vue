@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Layout, Sider, Main, Menu, Button, Space, Avatar } from '@amg-webui/components/base'
+import { Layout, Sider, Main, Menu, Button, Space, Avatar } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
 import type { PropRow } from '../../components/demo/types'
-import type { MenuItem } from '@amg-webui/components/base/Menu'
+import type { MenuItem } from '@amg-webui/core/Menu'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -31,7 +31,7 @@ const menuItems = computed<MenuItem[]>(() => [
 ])
 
 const codeSider = demoSfc({
-  imports: [`import { Layout, Sider, Main, Menu } from '@amg-webui/components/base'`],
+  imports: [`import { Layout, Sider, Main, Menu } from '@amg-webui/core'`],
   template: [
     '  <Layout has-sider fill>',
     '    <Sider v-model:collapsed="collapsed" collapsible>',

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Footer, Button, Space, Link } from '@amg-webui/components/base'
+import { Footer, Button, Space, Link } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -14,7 +14,7 @@ const size = ref<'sm' | 'md' | 'lg'>('md')
 const bordered = ref(true)
 
 const codeAlign = demoSfc({
-  imports: [`import { Footer } from '@amg-webui/components/base'`],
+  imports: [`import { Footer } from '@amg-webui/core'`],
   template: [
     '  <Footer align="center" size="md" bordered>',
     `    <p>{{ t('example.doc.footer.sample.legal') }}</p>`,
@@ -23,7 +23,7 @@ const codeAlign = demoSfc({
 })
 
 const codeRich = demoSfc({
-  imports: [`import { Footer, Link, Space } from '@amg-webui/components/base'`],
+  imports: [`import { Footer, Link, Space } from '@amg-webui/core'`],
   template: [
     '  <Footer align="start" size="lg">',
     '    <Space wrap>',

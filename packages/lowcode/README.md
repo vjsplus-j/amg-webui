@@ -15,7 +15,8 @@
 
 ```ts
 import { createComponentRegistry, validateCanvasSchema, generateVueSfc } from '@amg-webui/lowcode'
-import { Button, InputText } from '@amg-webui/components/base'
+import { Button } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'
 
 const registry = createComponentRegistry([
   { type: 'Button', label: 'Button', component: Button, defaultProps: { label: 'OK' } },
@@ -35,4 +36,7 @@ const sfc = generateVueSfc(schema, { registry })
 
 - Alias：`@amg-webui/lowcode` · 发包子路径 `amg-webui/lowcode`
 - 根入口可再导出；**不**进入 `skill/core`
-- UI 组件（`SchemaRenderer`）在 `packages/components/base/SchemaRenderer`
+- UI 组件（`SchemaRenderer` / `SchemaNodeRenderer`）在 `packages/lowcode/ui/SchemaRenderer`
+- Binding / Event：`__bindings` + `__events` 由 `resolveRuntimeRender` 与 `generateVueSfc` 共用 `splitMetaProps`；表达式仅白名单路径
+- Registry 默认冲突策略 `throw`；校验默认启用限额与图完整性检查
+- **诚实口径**：当前是 MVP 骨架，不是生产闭环（见 `docs/LOWCODE.md`）

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { ResizeBox, Button, Space } from '@amg-webui/components/base'
+import { ResizeBox, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -14,7 +14,7 @@ const height = ref(160)
 const last = ref('')
 
 const codeBasic = demoSfc({
-  imports: [`import { ResizeBox } from '@amg-webui/components/base'`],
+  imports: [`import { ResizeBox } from '@amg-webui/core'`],
   template: [
     '  <ResizeBox :width="width" :height="height" :min-width="160" :min-height="120" @resize="onResize">',
     `    {{ t('example.doc.resizeBox.sample.body') }}`,

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { DragCanvas, DragMaterial } from '@amg-webui/components/base'
+import { DragCanvas, DragMaterial } from '@amg-webui/lowcode'
 import type { CanvasNodeData } from '@amg-webui/utils'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -18,7 +18,7 @@ const materials = [
 ]
 
 const codeBasic = demoSfc({
-  imports: [`import { DragCanvas, DragMaterial } from '@amg-webui/components/base'`],
+  imports: [`import { DragCanvas, DragMaterial } from '@amg-webui/lowcode'`],
   template: [
     '  <Space>',
     '    <DragMaterial :materials="materials" />',

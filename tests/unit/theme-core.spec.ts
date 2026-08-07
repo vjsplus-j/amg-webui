@@ -54,6 +54,60 @@ describe('Theme Core (SSR-safe)', () => {
     expect(styles.get('--ds-accent')).toBe('#123456')
   })
 
+  it('replaceCustom removes tokens absent from the next map', async () => {
+    const core = await import('@amg-webui/theme/core')
+    const styles = new Map<string, string | null>()
+    const host = {
+      setAttribute() {},
+      setStyleProperty(name: string, value: string | null) {
+        if (value === null) styles.delete(name)
+        else styles.set(name, value)
+      }
+    }
+    const runtime = core.createThemeRuntime({
+      host,
+      storage: core.createMemoryStorage(),
+      persist: false
+    })
+    runtime.applyCustom({
+      '--surface': '#000',
+      '--text': '#fff'
+    })
+    expect(styles.get('--surface')).toBe('#000')
+    expect(styles.get('--text')).toBe('#fff')
+
+    runtime.replaceCustom({ '--surface': '#eee' })
+    expect(styles.get('--surface')).toBe('#eee')
+    expect(styles.has('--text')).toBe(false)
+    expect(runtime.getState().customTokens).toEqual({ '--surface': '#eee' })
+
+    // Incremental merge must not wipe siblings
+    runtime.applyCustom({ '--ds-accent': '#123456' })
+    expect(runtime.getState().customTokens['--surface']).toBe('#eee')
+    expect(runtime.getState().customTokens['--ds-accent']).toBe('#123456')
+  })
+
+  it('subscribe fires on setDesign / setScheme / applyCustom', async () => {
+    const core = await import('@amg-webui/theme/core')
+    const runtime = core.createThemeRuntime({
+      host: core.createNullHost(),
+      storage: core.createMemoryStorage(),
+      persist: false
+    })
+    const snaps: string[] = []
+    const stop = runtime.subscribe((state) => {
+      snaps.push(`${state.design}:${state.scheme}:${Object.keys(state.customTokens).length}`)
+    })
+    runtime.setDesign('porsche')
+    runtime.setScheme('light')
+    runtime.applyCustom({ '--ds-accent': '#abc' })
+    expect(snaps.length).toBeGreaterThanOrEqual(3)
+    expect(snaps.at(-1)).toContain('porsche:light:1')
+    stop()
+    runtime.setDesign('ferrari')
+    expect(snaps.at(-1)).toContain('porsche:light:1')
+  })
+
   it('boot script is self-contained', async () => {
     const { createThemeBootScript, themeBootScriptTag } = await import('@amg-webui/theme/core')
     const script = createThemeBootScript({ namespace: 'amg-webui' })

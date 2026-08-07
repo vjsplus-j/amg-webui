@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Block, Button, Space } from '@amg-webui/components/base'
-import type { BlockBg, BlockMargin } from '@amg-webui/components/base/Block'
+import { Block, Button, Space } from '@amg-webui/core'
+import type { BlockBg, BlockMargin } from '@amg-webui/core/Block'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -23,7 +23,7 @@ const bgs: BlockBg[] = ['transparent', 'surface-0', 'surface-1', 'surface-2', 'e
 const raised = ref(false)
 
 const codeBasic = demoSfc({
-  imports: [`import { Block } from '@amg-webui/components/base'`],
+  imports: [`import { Block } from '@amg-webui/core'`],
   template: [
     '  <Block bordered padded margin="md" bg="surface-1">',
     `    <p>{{ t('example.doc.block.sample.body') }}</p>`,

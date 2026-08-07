@@ -1,16 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import {
-  Card,
-  Button,
-  Alert,
-  Drawer,
-  Result,
-  Dialog,
-  Notification,
-  Toast,
-  Loading
-} from '@amg-webui/components/base'
+import { Card, Button, Alert, Result, Loading } from '@amg-webui/core'
+import { Drawer, Dialog, Notification, Toast } from '@amg-webui/overlay'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import ComponentGallery from '../../components/ComponentGallery.vue'

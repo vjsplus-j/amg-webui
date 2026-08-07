@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { CardNav } from '@amg-webui/components/base'
+import { CardNav } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('CardNav'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { CardNav } from '@amg-webui/components/base'`,
+    `import { CardNav } from '@amg-webui/core'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('CardNav')`],

@@ -14,6 +14,7 @@ export { useEventBus } from "./useEventBus";
 export { usePopover } from "./usePopover";
 export { useFocusTrap } from "./useFocusTrap";
 export { useBodyScrollLock } from "./useBodyScrollLock";
+export { useOverlay, type UseOverlayOptions, type UseOverlayResult } from "./useOverlay";
 export { useFloatingPanel } from "./useFloatingPanel";
 export { useAutoDismiss } from "./useAutoDismiss";
 export { useObjectUrl } from "./useObjectUrl";

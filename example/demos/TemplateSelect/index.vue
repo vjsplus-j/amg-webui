@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { TemplateSelect, StatusTip } from '@amg-webui/components/base'
+import { TemplateSelect } from '@amg-webui/lowcode'
+import { StatusTip } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -40,7 +41,7 @@ const templates = computed(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { TemplateSelect } from '@amg-webui/components/base'`],
+  imports: [`import { TemplateSelect } from '@amg-webui/lowcode'`],
   template: [
     '  <TemplateSelect v-model="id" :templates="templates" @apply="onApply" />'
   ]

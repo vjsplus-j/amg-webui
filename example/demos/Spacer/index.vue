@@ -3,8 +3,8 @@
  * Curated demo — Layout wave2 Spacer
  */
 import { computed, ref } from 'vue'
-import { Spacer, Button, Space } from '@amg-webui/components/base'
-import type { SpacerSize } from '@amg-webui/components/base/Spacer'
+import { Spacer, Button, Space } from '@amg-webui/core'
+import type { SpacerSize } from '@amg-webui/core/Spacer'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -18,7 +18,7 @@ const flex = ref(true)
 const size = ref<SpacerSize>('xl')
 
 const codeFlex = demoSfc({
-  imports: [`import { Spacer, Button } from '@amg-webui/components/base'`],
+  imports: [`import { Spacer, Button } from '@amg-webui/core'`],
   template: [
     '  <div class="row">',
     `    <Button size="sm">{{ t('example.doc.spacer.sample.left') }}</Button>`,

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { CardGrid, Card, Button, Space, Tag } from '@amg-webui/components/base'
+import { CardGrid, Card, Button, Space, Tag } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -43,7 +43,7 @@ const selectedLabel = computed(() =>
 )
 
 const codeAuto = demoSfc({
-  imports: [`import { CardGrid, Card } from '@amg-webui/components/base'`],
+  imports: [`import { CardGrid, Card } from '@amg-webui/core'`],
   template: [
     '  <CardGrid min-track="md" gap="lg" equal-height>',
     '    <Card',

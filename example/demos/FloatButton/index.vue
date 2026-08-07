@@ -3,7 +3,7 @@
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
 import { computed, ref } from 'vue'
-import { Button, FloatButton, Icon } from '@amg-webui/components/base'
+import { Button, FloatButton, Icon } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -30,7 +30,7 @@ function noteOpenChange(open: boolean) {
 /* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
 
 const codeBasic = demoSfc({
-  imports: [`import { FloatButton } from '@amg-webui/components/base'`],
+  imports: [`import { FloatButton } from '@amg-webui/core'`],
   template: [
     `  <FloatButton`,
     `    icon="Plus"`,

@@ -1,16 +1,14 @@
 /**
- * Partition packages/components/base into example zone lists → example/component-zones.json
+ * Partition mapped UI components into example zone lists → example/component-zones.json
  */
-import { readdirSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { execFileSync } from 'node:child_process'
+import { allMappedComponentNames } from './component-package-map.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const names = readdirSync(resolve(root, 'packages/components/base'), { withFileTypes: true })
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name)
-  .sort()
+const names = allMappedComponentNames()
 
 const zones = {
   atoms: [],

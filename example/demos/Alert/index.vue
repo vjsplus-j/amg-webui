@@ -3,8 +3,8 @@
  * Curated demo — feedback wave1 Alert
  */
 import { computed, ref } from 'vue'
-import { Alert, Button, Space } from '@amg-webui/components/base'
-import type { AlertSeverity } from '@amg-webui/components/base/Alert/types'
+import { Alert, Button, Space } from '@amg-webui/core'
+import type { AlertSeverity } from '@amg-webui/core/Alert/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -31,7 +31,7 @@ function resetClosable() {
 }
 
 const codeBasic = demoSfc({
-  imports: [`import { Alert } from '@amg-webui/components/base'`],
+  imports: [`import { Alert } from '@amg-webui/core'`],
   template: [
     `  <Alert severity="info">{{ t('example.doc.alert.sample.info') }}</Alert>`,
     `  <Alert severity="success">{{ t('example.doc.alert.sample.success') }}</Alert>`,

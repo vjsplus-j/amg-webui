@@ -107,7 +107,7 @@
 | 并行 | W2 | 38 数据展示（树/表/图）深化；共享 `data-display` utils |
 | 并行 | W3 | 32 反馈/导航组件深化（Teleport/队列/ESC） |
 | 并行 | W4 | 30 第三方+低代码画布深化 |
-| 并行 | W5 | 43 行业套件（404/Video/ONVIF/GB/VCR）深化 + industry i18n |
+| 并行 | W5 | 行业套件深化（现位于 `@amg-webui/media|gb28181|onvif`，不再塞进 core）+ industry i18n |
 | 收口 | W6 | example：`/base/catalog` · `/base/industry`；`vue-tsc`/`build` 绿；覆盖 257/257 |
 | 2026-07-30 | A1.1 | 导航/反馈壳层 + DataTable 虚拟默认；maturity shell 56→48；`vue-tsc` 绿 |
 | 2026-07-30 | A1.2 | Form/FormItem/FormGroup/FormTabs + Descriptions(+Item) + Loading/Status/ProgressTip；校验 i18n；curated demos；shell 48→42 / ready 88→95；`vue-tsc` 绿 |

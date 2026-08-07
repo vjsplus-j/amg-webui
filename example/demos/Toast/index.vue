@@ -3,7 +3,8 @@
  * Curated demo — feedback wave1 Toast
  */
 import { computed, ref } from 'vue'
-import { Toast, Button, Space } from '@amg-webui/components/base'
+import { Toast } from '@amg-webui/overlay'
+import { Button, Space } from '@amg-webui/core'
 import type { Severity } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -25,7 +26,8 @@ function openToast(sev: Severity) {
 const codeTrigger = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Toast, Button } from '@amg-webui/components/base'`
+    `import { Toast } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`
   ],
   script: [
     `const visible = ref(false)`,

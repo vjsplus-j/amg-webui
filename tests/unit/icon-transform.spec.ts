@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import Icon from '../../packages/components/base/Icon/index.vue'
+import Icon from '../../packages/components/core/Icon/index.vue'
 import { resolveMotionKind, MOTION_CLASS } from '../../packages/animations/motion'
 
 describe('resolveMotionKind', () => {

@@ -1,4 +1,4 @@
-export default {
+﻿export default {
   'component.qrcode.title': 'Qrcode',
   'component.qrcode.lead': 'Qrcode 组件调试预览',
   'component.qrcode.invalid': '{standard} 二维码内容无效，请检查字符、长度或纠错级别',
@@ -479,6 +479,13 @@ export default {
   'component.preview.fullscreen': '全屏',
   'component.drag-canvas.empty': '拖拽物料到画布',
   'component.prop-panel.empty': '选中节点以编辑属性',
+  'component.prop-panel.field.parentNone': '无（根）',
+  'component.prop-panel.field.parentId': '父节点',
+  'component.prop-panel.field.y': 'Y',
+  'component.prop-panel.field.w': '宽度',
+  'component.prop-panel.field.nodeLabel': '节点名称',
+  'component.prop-panel.field.x': 'X',
+  'component.prop-panel.field.h': '高度',
   'component.drag-wrapper.hint': '拖入子组件',
   'component.canvas-layer.show': '显示',
   'component.canvas-layer.hide': '隐藏',
@@ -520,7 +527,7 @@ export default {
   'component.exception.offline.title': '网络已断开',
   'component.exception.offline.lead': '请检查网络连接后重试。',
   'component.datatable.title': '数据表格',
-  'component.datatable.lead': '虚拟滚动表格（默认开启）',
+  'component.datatable.lead': '默认开启固定行高虚拟滚动；视口高度与行高均参与虚拟计算',
   'component.datatable.showing': '第 {from}–{to} 条，共 {total} 条',
   'component.datatable.rowsPerPage': '每页行数',
   'component.datatable.firstPage': '第一页',

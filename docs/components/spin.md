@@ -6,7 +6,7 @@
 
 ```vue
 <script setup>
-import { Spin } from '@amg-webui/components/base'
+import { Spin } from '@amg-webui/core'
 </script>
 
 <template>

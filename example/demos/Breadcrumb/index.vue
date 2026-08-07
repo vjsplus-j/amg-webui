@@ -3,8 +3,8 @@
  * Curated demo — Nav wave1 Breadcrumb
  */
 import { computed, ref } from 'vue'
-import { Breadcrumb, BreadcrumbItem } from '@amg-webui/components/base'
-import type { BreadcrumbItemData } from '@amg-webui/components/base/Breadcrumb'
+import { Breadcrumb, BreadcrumbItem } from '@amg-webui/core'
+import type { BreadcrumbItemData } from '@amg-webui/core/Breadcrumb'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -25,7 +25,7 @@ const items = computed<BreadcrumbItemData[]>(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { Breadcrumb, BreadcrumbItem } from '@amg-webui/components/base'`],
+  imports: [`import { Breadcrumb, BreadcrumbItem } from '@amg-webui/core'`],
   template: [
     `  <Breadcrumb>`,
     `    <BreadcrumbItem href="#">{{ t('example.doc.breadcrumb.sample.home') }}</BreadcrumbItem>`,
@@ -36,7 +36,7 @@ const codeBasic = demoSfc({
 })
 
 const codeItems = demoSfc({
-  imports: [`import { Breadcrumb } from '@amg-webui/components/base'`],
+  imports: [`import { Breadcrumb } from '@amg-webui/core'`],
   template: [`  <Breadcrumb :items="items" @click="onClick" />`]
 })
 

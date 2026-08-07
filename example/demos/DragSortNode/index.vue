@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { DragSortNode } from "@amg-webui/components/base";
+import { DragSortNode } from '@amg-webui/lowcode';
 import type { CanvasNodeData } from "@amg-webui/utils";
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
@@ -17,7 +17,7 @@ const nodes = ref(mountProps.value.nodes as CanvasNodeData[]);
 
 const codeBasic = demoSfc({
   imports: [
-    `import { DragSortNode } from '@amg-webui/components/base'`,
+    `import { DragSortNode } from '@amg-webui/lowcode'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`,
   ],
   script: [`const mountProps = getSampleMountProps('DragSortNode')`],

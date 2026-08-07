@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { GroupNav } from '@amg-webui/components/base'
+import { GroupNav } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('GroupNav'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { GroupNav } from '@amg-webui/components/base'`,
+    `import { GroupNav } from '@amg-webui/core'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('GroupNav')`],

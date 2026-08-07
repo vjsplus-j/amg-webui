@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, toRef, watch, useAttrs } from 'vue'
-import { Button, InputText, Card, Select, Message } from '@amg-webui/components/base'
+import { Button, Card } from '@amg-webui/core'
+import { InputText, Select } from '@amg-webui/form'
+import { Message } from '@amg-webui/overlay'
 import { ThemeService, designStyles } from '@amg-webui/theme'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys, LOCALE_CODES, LOCALE_META, type LocaleCode } from '@amg-webui/locale'

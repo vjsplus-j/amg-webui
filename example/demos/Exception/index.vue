@@ -3,7 +3,7 @@
  * Curated demo — Feedback wave2 Exception
  */
 import { computed, ref } from 'vue'
-import { Exception } from '@amg-webui/components/base'
+import { Exception } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -17,7 +17,7 @@ const status = ref<'403' | '404' | '500' | 'offline'>('404')
 const last = ref('')
 
 const codeBasic = demoSfc({
-  imports: [`import { ref } from 'vue'`, `import { Exception } from '@amg-webui/components/base'`],
+  imports: [`import { ref } from 'vue'`, `import { Exception } from '@amg-webui/core'`],
   script: [`const status = ref('404')`],
   template: [`  <Exception :status="status" @action="last = status" />`]
 })

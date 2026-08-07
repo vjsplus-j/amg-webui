@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { HeatMap } from '@amg-webui/components/base'
+import { HeatMap } from '@amg-webui/charts'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('HeatMap'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { HeatMap } from '@amg-webui/components/base'`,
+    `import { HeatMap } from '@amg-webui/charts'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('HeatMap')`],

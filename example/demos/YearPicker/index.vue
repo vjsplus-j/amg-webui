@@ -3,7 +3,8 @@
  * Curated demo — Form wave2 YearPicker
  */
 import { computed, ref } from "vue";
-import { YearPicker, Space } from "@amg-webui/components/base";
+import { YearPicker } from '@amg-webui/form'
+import { Space } from '@amg-webui/core';
 import { useLocale } from "@amg-webui/hooks";
 import { LocaleKeys } from "@amg-webui/locale";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
@@ -19,7 +20,7 @@ const empty = ref<number | null>(null);
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { YearPicker } from '@amg-webui/components/base'`,
+    `import { YearPicker } from '@amg-webui/form'`,
   ],
   script: [`const year = ref(2026)`],
   template: [

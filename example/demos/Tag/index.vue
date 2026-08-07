@@ -3,7 +3,7 @@
  * Curated demo — aligned with Avatar gold standard (demoCode / demoSfc / API thirds).
  */
 import { computed, ref } from 'vue'
-import { Icon, Tag } from '@amg-webui/components/base'
+import { Icon, Tag } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys, type LocaleKey } from '@amg-webui/locale'
@@ -64,7 +64,7 @@ function noteEvent(kind: string) {
 }
 
 const codeBasic = demoSfc({
-  imports: [`import { Tag } from '@amg-webui/components/base'`],
+  imports: [`import { Tag } from '@amg-webui/core'`],
   template: [
     `  <Tag effect="light" severity="success">{{ t('example.doc.tag.sample.status') }}</Tag>`,
     `  <Tag effect="solid" severity="primary">{{ t('example.doc.tag.sample.solid') }}</Tag>`,

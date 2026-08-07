@@ -3,7 +3,8 @@
  * Curated demo — Form wave1 FormItem
  */
 import { computed, reactive, ref } from 'vue'
-import { Form, FormItem, InputText, Button, StatusTip } from '@amg-webui/components/base'
+import { Form, FormItem, InputText } from '@amg-webui/form'
+import { Button, StatusTip } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -30,7 +31,8 @@ function onValidate(valid: boolean) {
 const codeValidate = demoSfc({
   imports: [
     `import { reactive, computed } from 'vue'`,
-    `import { Form, FormItem, InputText, Button } from '@amg-webui/components/base'`
+    `import { Form, FormItem, InputText } from '@amg-webui/form'
+import { Button } from '@amg-webui/core'`
   ],
   script: [
     `const model = reactive({ name: '' })`,

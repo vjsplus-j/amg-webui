@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { PermissionPanel } from '@amg-webui/components/base'
+import { PermissionPanel } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('PermissionPanel'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { PermissionPanel } from '@amg-webui/components/base'`,
+    `import { PermissionPanel } from '@amg-webui/form'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('PermissionPanel')`],

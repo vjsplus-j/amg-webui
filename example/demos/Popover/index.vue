@@ -3,7 +3,8 @@
  * Curated demo — feedback wave1 Popover
  */
 import { computed, ref } from 'vue'
-import { Popover, Button, Space } from '@amg-webui/components/base'
+import { Popover } from '@amg-webui/overlay'
+import { Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -16,7 +17,8 @@ const { t } = useLocale()
 const controlled = ref(false)
 
 const codeBasic = demoSfc({
-  imports: [`import { Popover, Button } from '@amg-webui/components/base'`],
+  imports: [`import { Popover } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`],
   template: [
     `  <Popover :title="t('example.doc.popover.sample.title')">`,
     `    <template #trigger>`,

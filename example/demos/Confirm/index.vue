@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Confirm, Button } from '@amg-webui/components/base'
+import { Confirm } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -17,7 +18,8 @@ const openSecondary = ref(false)
 const openContrast = ref(false)
 
 const codeBasic = demoSfc({
-  imports: [`import { ref } from 'vue'`, `import { Confirm, Button } from '@amg-webui/components/base'`],
+  imports: [`import { ref } from 'vue'`, `import { Confirm } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`],
   script: ['const open = ref(false)'],
   template: [
     `  <Button @click="open = true">{{ t('example.doc.confirm.sample.open') }}</Button>`,
@@ -31,7 +33,8 @@ const codeBasic = demoSfc({
 })
 
 const codeDanger = demoSfc({
-  imports: [`import { ref } from 'vue'`, `import { Confirm, Button } from '@amg-webui/components/base'`],
+  imports: [`import { ref } from 'vue'`, `import { Confirm } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`],
   script: ['const open = ref(false)'],
   template: [
     `  <Button severity="danger" @click="open = true">{{ t('example.doc.confirm.sample.openDanger') }}</Button>`,
@@ -45,7 +48,8 @@ const codeDanger = demoSfc({
 })
 
 const codeSuccess = demoSfc({
-  imports: [`import { ref } from 'vue'`, `import { Confirm, Button } from '@amg-webui/components/base'`],
+  imports: [`import { ref } from 'vue'`, `import { Confirm } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`],
   script: ['const open = ref(false)'],
   template: [
     `  <Button severity="success" @click="open = true">{{ t('example.doc.confirm.sample.openSuccess') }}</Button>`,
@@ -59,7 +63,8 @@ const codeSuccess = demoSfc({
 })
 
 const codeTones = demoSfc({
-  imports: [`import { ref } from 'vue'`, `import { Confirm, Button } from '@amg-webui/components/base'`],
+  imports: [`import { ref } from 'vue'`, `import { Confirm } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`],
   script: [
     'const openInfo = ref(false)',
     'const openSecondary = ref(false)',

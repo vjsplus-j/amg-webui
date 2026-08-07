@@ -91,6 +91,18 @@ export function createThemeRuntime(options: ThemeRuntimeOptions = {}): ThemeRunt
     storage.removeItem(storageKey(namespace, THEME_STORAGE_SUFFIX.legacyDesignV2))
   }
 
+  function clearHostPaint() {
+    if (disposed) return
+    host.setAttribute(DESIGN_ATTR, null)
+    host.setAttribute(FONT_ATTR, null)
+    host.setAttribute(ICON_STYLE_ATTR, null)
+    host.setAttribute(SCHEME_ATTR, null)
+    host.setStyleProperty('--icon-stroke-width', null)
+    for (const key of Object.keys(state.customTokens)) {
+      host.setStyleProperty(key, null)
+    }
+  }
+
   function paint() {
     if (disposed) return
     applyLegacyThemeClassCleanup(host)
@@ -170,6 +182,24 @@ export function createThemeRuntime(options: ThemeRuntimeOptions = {}): ThemeRunt
         const prop = normalizeCssVarName(key)
         state.customTokens[prop] = value
         host.setStyleProperty(prop, value)
+      }
+      notify()
+    },
+
+    replaceCustom(tokens) {
+      if (disposed) return
+      const next: Record<string, string> = {}
+      for (const [key, value] of Object.entries(tokens)) {
+        next[normalizeCssVarName(key)] = value
+      }
+      for (const key of Object.keys(state.customTokens)) {
+        if (!(key in next)) {
+          host.setStyleProperty(key, null)
+        }
+      }
+      state.customTokens = next
+      for (const [key, value] of Object.entries(next)) {
+        host.setStyleProperty(key, value)
       }
       notify()
     },
@@ -255,6 +285,8 @@ export function createThemeRuntime(options: ThemeRuntimeOptions = {}): ThemeRunt
     },
 
     dispose() {
+      if (disposed) return
+      clearHostPaint()
       disposed = true
       listeners.clear()
       host = createNullHost()

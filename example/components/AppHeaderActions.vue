@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { Button, Search, Select } from '@amg-webui/components/base'
-import type { SelectModelValue } from '@amg-webui/components/base/Select/types'
+import { Button } from '@amg-webui/core'
+import { Search, Select } from '@amg-webui/form'
+import type { SelectModelValue } from '@amg-webui/form/Select/types'
 import {
   ThemeService,
   designStyles,

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { BatchUpload } from '@amg-webui/components/base'
+import { BatchUpload } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('BatchUpload'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { BatchUpload } from '@amg-webui/components/base'`,
+    `import { BatchUpload } from '@amg-webui/form'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('BatchUpload')`],

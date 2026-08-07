@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { ImageViewer, Button, Space } from '@amg-webui/components/base'
+import { ImageViewer, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -17,7 +17,7 @@ const urls = [
 ]
 
 const codeBasic = demoSfc({
-  imports: [`import { ImageViewer, Button } from '@amg-webui/components/base'`],
+  imports: [`import { ImageViewer, Button } from '@amg-webui/core'`],
   template: [
     '  <Button @click="visible = true" />',
     '  <ImageViewer v-model:visible="visible" :url-list="urls" />'
@@ -25,7 +25,7 @@ const codeBasic = demoSfc({
 })
 
 const codeIndex = demoSfc({
-  imports: [`import { ImageViewer } from '@amg-webui/components/base'`],
+  imports: [`import { ImageViewer } from '@amg-webui/core'`],
   template: ['  <ImageViewer v-model:visible="visible" :url-list="urls" :initial-index="1" />']
 })
 

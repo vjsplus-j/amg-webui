@@ -3,8 +3,9 @@
  * Curated demo — Form wave1 ImageUpload
  */
 import { computed, ref } from 'vue'
-import { ImageUpload, Space } from '@amg-webui/components/base'
-import type { ImageFileItem } from '@amg-webui/components/base/ImageUpload/types'
+import { ImageUpload } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
+import type { ImageFileItem } from '@amg-webui/form/ImageUpload/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -44,7 +45,7 @@ const emptyList = ref<ImageFileItem[]>([])
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { ImageUpload } from '@amg-webui/components/base'`
+    `import { ImageUpload } from '@amg-webui/form'`
   ],
   script: [`const fileList = ref([/* ImageFileItem mock list */])`],
   template: [`  <ImageUpload v-model="fileList" :max-count="5" />`]

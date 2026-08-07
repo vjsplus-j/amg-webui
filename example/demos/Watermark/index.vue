@@ -3,7 +3,7 @@
  * Curated demo — Display wave2 Watermark
  */
 import { computed, ref } from 'vue'
-import { Watermark } from '@amg-webui/components/base'
+import { Watermark } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -16,7 +16,7 @@ const { t } = useLocale()
 const opacity = ref(0.15)
 
 const codeBasic = demoSfc({
-  imports: [`import { Watermark } from '@amg-webui/components/base'`],
+  imports: [`import { Watermark } from '@amg-webui/core'`],
   template: [
     `  <Watermark :content="t('example.doc.watermark.sample.text')">`,
     `    <div class="panel">{{ t('example.doc.watermark.sample.body') }}</div>`,

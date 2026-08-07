@@ -3,8 +3,8 @@
  * Curated demo — Navigation wave2 MenuBar
  */
 import { computed, ref } from 'vue'
-import { MenuBar, Space } from '@amg-webui/components/base'
-import type { MenuBarItem } from '@amg-webui/components/base/MenuBar'
+import { MenuBar, Space } from '@amg-webui/core'
+import type { MenuBarItem } from '@amg-webui/core/MenuBar'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -53,7 +53,7 @@ const compactItems = computed<MenuBarItem[]>(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { ref, computed } from 'vue'`, `import { MenuBar } from '@amg-webui/components/base'`],
+  imports: [`import { ref, computed } from 'vue'`, `import { MenuBar } from '@amg-webui/core'`],
   script: [`const active = ref('file-new')`, `const items = computed(() => [/* … */])`],
   template: [`  <MenuBar v-model="active" :items="items" @command="onCommand" />`]
 })

@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import { LocaleService } from '@amg-webui/locale'
 import QrcodeDemo from '../../example/demos/Qrcode/index.vue'
-import Qrcode from '../../packages/components/base/Qrcode/index.vue'
+import Qrcode from '../../packages/components/core/Qrcode/index.vue'
 import {
   generateQrcodeSvg,
   QRCODE_STANDARDS,

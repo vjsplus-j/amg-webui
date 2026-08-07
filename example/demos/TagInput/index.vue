@@ -3,7 +3,8 @@
  * Curated demo — Form wave1 TagInput
  */
 import { computed, ref } from 'vue'
-import { TagInput, Space } from '@amg-webui/components/base'
+import { TagInput } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -19,7 +20,7 @@ const limited = ref<string[]>(['alpha'])
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { TagInput } from '@amg-webui/components/base'`
+    `import { TagInput } from '@amg-webui/form'`
   ],
   script: [`const tags = ref(['vue', 'amg'])`],
   template: [

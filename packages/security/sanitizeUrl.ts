@@ -57,7 +57,9 @@ export function sanitizeUrl(
   SecurityService.alert({
     kind: 'url-blocked',
     message: 'Blocked unsafe URL protocol',
-    detail: trimmed.slice(0, 120)
+    matchedRule: 'blocked-protocol',
+    rawDetail: trimmed,
+    detailMaxLength: 120
   })
   return undefined
 }
@@ -69,6 +71,8 @@ export function reportBlockedHref(href: string | undefined | null): void {
   SecurityService.alert({
     kind: 'url-blocked',
     message: 'Blocked unsafe URL protocol',
-    detail: href.trim().slice(0, 120)
+    matchedRule: 'blocked-protocol',
+    rawDetail: href.trim(),
+    detailMaxLength: 120
   })
 }

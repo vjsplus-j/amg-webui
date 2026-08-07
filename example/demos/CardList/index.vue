@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { CardList } from '@amg-webui/components/base'
+import { CardList } from '@amg-webui/data'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('CardList'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { CardList } from '@amg-webui/components/base'`,
+    `import { CardList } from '@amg-webui/data'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('CardList')`],

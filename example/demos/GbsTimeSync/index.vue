@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { GbsTimeSync } from '@amg-webui/components/base'
+import { GbsTimeSync } from '@amg-webui/gb28181'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('GbsTimeSync'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { GbsTimeSync } from '@amg-webui/components/base'`,
+    `import { GbsTimeSync } from '@amg-webui/gb28181'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('GbsTimeSync')`],

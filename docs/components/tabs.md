@@ -7,7 +7,7 @@
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { Tabs, TabPane } from '@amg-webui/components/base'
+import { Tabs, TabPane } from '@amg-webui/core'
 
 const active = ref('a')
 </script>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent, type Component, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Card, InputText, Tag, Button } from '@amg-webui/components/base'
+import { Card, Tag, Button } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { LocaleKey } from '@amg-webui/locale'
@@ -43,10 +44,10 @@ const keyword = ref('')
 const maturityFilter = ref<MaturityLevel | 'all' | 'v01'>('all')
 const v01Count = computed(() => names.value.filter((n) => isV01Component(n)).length)
 
-const modules = import.meta.glob('../../../packages/components/base/*/index.vue') as Record<
-  string,
-  () => Promise<Component>
->
+const modules = import.meta.glob([
+  '../../../packages/components/{core,form,data,overlay,charts,editor,media,gb28181,onvif}/*/index.vue',
+  '../../../packages/lowcode/ui/*/index.vue'
+]) as Record<string, () => Promise<Component>>
 
 const names = computed(() => {
   void locale.value
@@ -132,7 +133,9 @@ function galleryModel(name: string) {
 }
 
 function load(name: string) {
-  const key = Object.keys(modules).find((p) => p.includes(`/base/${name}/`))
+  const key = Object.keys(modules).find(
+    (p) => p.includes(`/${name}/index.vue`) || p.endsWith(`/${name}/index.vue`)
+  )
   if (!key) return null
   return defineAsyncComponent(modules[key])
 }

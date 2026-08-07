@@ -4,6 +4,43 @@
 
 ---
 
+## 2026-08-07 — 子系统成熟度冲刺（合格线 90）
+
+合格标准：**子系统能力证明 ≥ 90**（类型检查 + 契约单测 / 关键 E2E + 文档诚实边界）；`score:maturity` 仍只是盘点启发式。
+
+本轮已落地：
+
+| 子系统 | 动作 |
+|--------|------|
+| Overlay/A11Y | StatusModal · GbsAlarmModal 迁入 `useOverlay`；嵌套 Dialog demo + `overlay-stack` E2E；runtime 单测 |
+| DataTable | 虚拟列 / worker 排序契约单测；`native-large-data` 路径对齐 `data/` |
+| Business Kits | mutation.error 表面化（Users/Orders/Content）+ 乐观回滚单测 |
+| Security | `SECURE_*` 预设 + InputText sanitize 挂载单测 |
+| Telemetry | 独立 `telemetry.spec.ts`（禁用早退 / redact / buffer / analyze / sink 隔离） |
+| Form | `form-contract.spec.ts`（validate → aria-invalid / describedby） |
+| Packaging | `check:dist` 兼容 `core`/`base` on-demand Button 路径；CI 加 `check:boundaries` |
+| i18n | 嵌套 Dialog 文案八语种对齐；`extract:i18n` 绿 |
+| Form System | 叶子/复合控件全面 `useFormItem`（含 Search/Upload/Picker/Group/ColorInput/SmsCode/TimeRange）；`form-contract` 单测；`skipFormItem` 防双重注入 |
+| Lowcode | SchemaRenderer slot 类型修复；`vite.runtime` 接入 `@vitejs/plugin-vue`（lowcode/ui SFC 可编） |
+| Theme Core | Scope 泄漏 / 宿主劫持 / dispose 清宿主：5 项修复 + `theme-scope.spec.ts`（20/20 含 core） |
+| 迁移 | `rewrite-consumer-imports` 深路径改写；`vue-tsc --noEmit` 绿 |
+
+仍未宣称全表 90：基础组件整体尾部、按需 CSS side-entry、Skill SR3、Theme Studio UI 导出门禁等见各文档诚实边界。
+
+## 2026-08-07 — CI 覆盖加深（公开库骨架）
+
+- Workflow 增补：`extract:i18n` schema drift · `test:ssr` · `check:dist`（on-demand 改写 / 六品牌 CSS / 粗体积）
+- Playwright：Chromium Dialog focus trap / Escape / axe serious+ / RTL 截图附件 / 六品牌 `data-design`；Firefox · WebKit · Mobile Chrome smoke
+- 诚实边界写明：仍非像素全矩阵、Nuxt hydration、Lighthouse（见 `docs/ENGINEERING.md` § CI 覆盖）
+
+## 2026-08-07 — 成熟度评分：盘点工具 ≠ 质量证书
+
+- 明确 `score:maturity` / `component-maturity.json` 角色为 **dev inventory / triage**（`role: "dev-inventory"` · `notACertificate: true`）。
+- 契约文案补齐：静态启发式（行数 / Props / 字符串信号）不能证明键盘、多实例、竞态、SSR、泄漏、读屏、API 稳定或性能。
+- 同步：`docs/ENGINEERING.md` · `docs/components/index.md` · `docs/RELEASE_0.1.md` · Gallery i18n lead · engineering rule。
+
+---
+
 ## 2026-08-05 — Skill Runtime SR1 / SR2（experimental）
 
 - 新增独立可选 `packages/skill`，根 `amg-webui` 入口不导出；公开子路径为 `amg-webui/skill` 与 `amg-webui/skill/core`。

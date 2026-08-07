@@ -24,11 +24,22 @@ Host / example
 | 符号 | 作用 |
 |------|------|
 | `BizPageQuery` / `BizPageResult` | 分页查询契约 |
-| `BizAsyncState` | loading / error |
+| `BizRequestOptions` | 可选 `signal`（Abort） |
+| `BizAsyncState` / `BizMutationState` | list loading / mutation 状态 |
 | `BizAccess` / `DEFAULT_BIZ_ACCESS` | UI 动作门控 |
-| `BizCrudAdapter` | 宿主数据适配器 |
-| `useBizAsync` | adapter 驱动的分页异步状态 |
+| `BizCrudAdapter` | 宿主数据适配器（`list/get/create/update/remove`） |
+| `useBizAsync` | adapter 驱动的分页异步状态（竞态序号 · Abort · keyword debounce · cache · mutation · adapter 可切换） |
 | `BIZ_SLOT_NAMES` | 标准槽名：`toolbar` · `filters` · `table` · `list` · `detail` · `empty` · `error` · `loading` · `actions` |
+
+### `useBizAsync` 要点
+
+- **分页**：用 `setPagination({ page, pageSize })` 原子更新；禁止先 `setPage` 再 `setPageSize`（后者会把 page 重置为 1）。
+- **竞态**：每次 `list` 带递增序号；可选 `AbortSignal`；过期响应丢弃。
+- **搜索**：`setKeyword` 默认 debounce 300ms（`keywordDebounceMs: 0` 关闭）。
+- **缓存**：`cache: true | { max, ttlMs }`；`load({ force: true })` / `invalidateCache()` 绕过。
+- **Mutation**：`create` / `update` / `remove` + `mutating` / `mutation`；可选 `optimistic`。
+- **Adapter**：`MaybeRefOrGetter`；身份变化后自动清缓存并重载。
+- **受控模式**：无 adapter 时仍走 props + emits；分页 `@change` 只 emit 一次。
 
 ## 五大模块
 
@@ -55,7 +66,7 @@ import 'amg-webui/style.css'
 
 | 域 | 必达能力 | 状态 |
 | --- | --- | --- |
-| **_shared** | `BizPageQuery` · `BizCrudAdapter` · `useBizAsync` · 标准槽名 | 已实现 |
+| **_shared** | `BizPageQuery` · `BizCrudAdapter` · `useBizAsync`（竞态 / debounce / cache / mutation） · 标准槽名 | 已实现 |
 | **users** | Avatar；详情 Dialog 与编辑 Dialog 分离；权限展示/门控；Pagination；`empty`/`error`；标准插槽；表单校验；可选 adapter | 已实现 |
 | **orders** | 详情 Drawer；状态筛选；退款；批量取消；Pagination；标准插槽；可选 adapter；文案走 i18n | 已实现 |
 | **content** | 分类 Tree + 列表；编辑 Dialog + `#editor` 槽；草稿 / 发布 / 归档；Pagination；标准插槽 | 已实现 |

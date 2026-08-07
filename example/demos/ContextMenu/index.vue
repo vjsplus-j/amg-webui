@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { ContextMenu, Space } from '@amg-webui/components/base'
-import type { ContextMenuItem } from '@amg-webui/components/base/ContextMenu'
+import { ContextMenu } from '@amg-webui/overlay'
+import { Space } from '@amg-webui/core'
+import type { ContextMenuItem } from '@amg-webui/overlay/ContextMenu'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -26,7 +27,7 @@ const items = computed<ContextMenuItem[]>(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { ContextMenu } from '@amg-webui/components/base'`],
+  imports: [`import { ContextMenu } from '@amg-webui/overlay'`],
   template: [
     '  <ContextMenu :items="items" @command="onCommand">',
     `    <div class="area">{{ t('example.doc.contextMenu.sample.area') }}</div>`,

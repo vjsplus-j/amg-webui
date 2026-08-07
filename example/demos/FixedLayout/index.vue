@@ -1,15 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import {
-  Avatar,
-  Button,
-  Card,
-  FixedLayout,
-  Icon,
-  InputText,
-  Space,
-  Tag,
-} from "@amg-webui/components/base";
+import { Avatar, Button, Card, FixedLayout, Icon, Space, Tag } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
 import PropsTable from "../../components/demo/PropsTable.vue";
@@ -53,7 +45,7 @@ const navItems = computed(() =>
 );
 
 const codeBasic = demoSfc({
-  imports: [`import { FixedLayout, Button } from '@amg-webui/components/base'`],
+  imports: [`import { FixedLayout, Button } from '@amg-webui/core'`],
   template: [
     '  <div class="frame frame--top">',
     '    <FixedLayout mode="absolute" position="top">',
@@ -69,7 +61,7 @@ const codeBasic = demoSfc({
 
 const codeSide = demoSfc({
   imports: [
-    `import { FixedLayout, Button, Icon } from '@amg-webui/components/base'`,
+    `import { FixedLayout, Button, Icon } from '@amg-webui/core'`,
   ],
   template: [
     '  <div class="frame frame--left">',
@@ -88,7 +80,8 @@ const codeSide = demoSfc({
 
 const codeShell = demoSfc({
   imports: [
-    `import { FixedLayout, Button, Icon, InputText, Card, Tag, Avatar } from '@amg-webui/components/base'`,
+    `import { FixedLayout, Button, Icon, Card, Tag, Avatar } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'`,
   ],
   template: [
     '  <div class="shell">',
@@ -102,7 +95,7 @@ const codeShell = demoSfc({
 });
 
 const codeFooter = demoSfc({
-  imports: [`import { FixedLayout, Button } from '@amg-webui/components/base'`],
+  imports: [`import { FixedLayout, Button } from '@amg-webui/core'`],
   template: [
     '  <div class="frame frame--bottom">',
     '    <div class="body">…</div>',

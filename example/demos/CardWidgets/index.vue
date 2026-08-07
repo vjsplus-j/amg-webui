@@ -3,16 +3,7 @@
  * Curated demo — aligned to Avatar gold standard (`demoCode` / `demoSfc`).
  */
 import { computed, onMounted, ref } from 'vue'
-import {
-  Avatar,
-  Button,
-  Card,
-  CardWidgets,
-  Progress,
-  Space,
-  Statistic,
-  Tag
-} from '@amg-webui/components/base'
+import { Avatar, Button, Card, CardWidgets, Progress, Space, Statistic, Tag } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import { ToastService } from '@amg-webui/theme'
@@ -176,7 +167,7 @@ function widgetSlotLines(indent: number): string[] {
 
 const codeBasic = demoSfc({
   imports: [
-    `import { Avatar, Button, CardWidgets, Progress, Space, Statistic } from '@amg-webui/components/base'`,
+    `import { Avatar, Button, CardWidgets, Progress, Space, Statistic } from '@amg-webui/core'`,
     `import { ref } from 'vue'`
   ],
   script: [

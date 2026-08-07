@@ -3,7 +3,7 @@
  * Curated demo — Layout wave1 Container
  */
 import { computed, ref } from 'vue'
-import { Container, Space, Button } from '@amg-webui/components/base'
+import { Container, Space, Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -21,7 +21,7 @@ const sizes = ['sm', 'md', 'lg', 'xl'] as const
 const codeSize = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Container } from '@amg-webui/components/base'`
+    `import { Container } from '@amg-webui/core'`
   ],
   script: [`const size = ref('lg')`],
   template: [

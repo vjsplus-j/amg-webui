@@ -1,12 +1,12 @@
 import { nextTick } from "vue";
 import { mount } from "@vue/test-utils";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import GbsAlarmModal from "../../../packages/components/base/GbsAlarmModal/index.vue";
-import PieChart from "../../../packages/components/base/PieChart/index.vue";
-import TableDrag from "../../../packages/components/base/TableDrag/index.vue";
-import TimelineList from "../../../packages/components/base/TimelineList/index.vue";
-import VideoSnapshot from "../../../packages/components/base/VideoSnapshot/index.vue";
-import Watermark from "../../../packages/components/base/Watermark/index.vue";
+import GbsAlarmModal from "../../../packages/components/gb28181/GbsAlarmModal/index.vue";
+import PieChart from "../../../packages/components/charts/PieChart/index.vue";
+import TableDrag from "../../../packages/components/data/TableDrag/index.vue";
+import TimelineList from "../../../packages/components/data/TimelineList/index.vue";
+import VideoSnapshot from "../../../packages/components/media/VideoSnapshot/index.vue";
+import Watermark from "../../../packages/components/core/Watermark/index.vue";
 
 describe("lowest beta score-64 wave behavior", () => {
   afterEach(() => {

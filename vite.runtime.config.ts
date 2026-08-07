@@ -2,8 +2,10 @@
  * Runtime packages → dist/{telemetry,security,lowcode,icons,hooks,utils,locale,types,constants,animations}/
  * preserveModules so deep imports (`amg-webui/utils/env`) resolve after publish.
  * Emitted imports use `amg-webui/*` (not `@amg-webui/*`).
+ * Vue plugin required: `packages/lowcode/ui/**` ships SFC entrypoints.
  */
 import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 import {
   root,
   packageAlias,
@@ -16,6 +18,7 @@ const RUNTIME_DIRS = [
   'telemetry',
   'security',
   'lowcode',
+  'runtime',
   'icons',
   'hooks',
   'utils',
@@ -31,6 +34,7 @@ const entries = Object.assign(
 )
 
 export default defineConfig({
+  plugins: [vue()],
   resolve: { alias: packageAlias },
   build: {
     lib: {

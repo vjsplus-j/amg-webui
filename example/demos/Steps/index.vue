@@ -3,7 +3,7 @@
  * Curated demo — Nav wave1 Steps
  */
 import { computed, ref } from 'vue'
-import { Steps, StepItem, Button, Space } from '@amg-webui/components/base'
+import { Steps, StepItem, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -19,7 +19,7 @@ const stepCount = 3
 const codeInteractive = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Steps, StepItem, Button } from '@amg-webui/components/base'`
+    `import { Steps, StepItem, Button } from '@amg-webui/core'`
   ],
   script: [`const active = ref(1)`],
   template: [

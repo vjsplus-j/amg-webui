@@ -3,7 +3,8 @@
  * Curated demo — Form wave1 AutoComplete
  */
 import { computed, ref } from 'vue'
-import { AutoComplete, Space } from '@amg-webui/components/base'
+import { AutoComplete } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -44,7 +45,7 @@ function onFetchSuggestions(
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { AutoComplete } from '@amg-webui/components/base'`
+    `import { AutoComplete } from '@amg-webui/form'`
   ],
   script: [
     `const query = ref('')`,

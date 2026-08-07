@@ -14,6 +14,7 @@ import {
   createDocumentHost,
   createMemoryStorage,
   createAutoStorage,
+  createNullHost,
   THEME_RUNTIME_KEY,
   type ThemeRuntime,
   type DesignStyleName,
@@ -62,13 +63,26 @@ function hasThemeAxes(opts: ThemeScopeOptions): boolean {
   )
 }
 
-function syncRuntime(rt: ThemeRuntime, opts: ThemeScopeOptions) {
+/** True when this scope owns the host binding (local or injected runtime), not inherited. */
+function shouldBindHost(opts: ThemeScopeOptions, ownsRuntime: boolean): boolean {
+  return Boolean(hasThemeAxes(opts) && (ownsRuntime || opts.runtime))
+}
+
+function syncRuntime(
+  rt: ThemeRuntime,
+  opts: ThemeScopeOptions,
+  tokenAxis: { lastApplied: Record<string, string> | null | undefined }
+) {
   if (opts.design) rt.setDesign(opts.design as DesignStyleName)
   if (opts.scheme) rt.setScheme(opts.scheme)
   if (opts.font) rt.setFont(opts.font as FontName)
   if (opts.iconStyle) rt.setIconStyle(opts.iconStyle as IconStyleName)
-  if (opts.tokens && Object.keys(opts.tokens).length > 0) {
-    rt.applyCustom(opts.tokens)
+  if (opts.tokens !== undefined) {
+    rt.replaceCustom(opts.tokens ?? {})
+    tokenAxis.lastApplied = opts.tokens ?? {}
+  } else if (tokenAxis.lastApplied !== undefined) {
+    rt.replaceCustom({})
+    tokenAxis.lastApplied = undefined
   }
   if (opts.primary) rt.setPrimary(opts.primary)
 }
@@ -81,30 +95,56 @@ export function createThemeScope(options: () => ThemeScopeOptions): ThemeScopeHa
   const rootRef = shallowRef<HTMLElement | null>(null)
   const runtime = shallowRef<ThemeRuntime | null>(null)
   const ownsRuntime = shallowRef(false)
+  const tokenAxis = { lastApplied: undefined as Record<string, string> | null | undefined }
+
+  // inject() must run synchronously during setup — not inside onMounted / watchers.
+  const inheritedRuntime = getCurrentInstance()
+    ? inject(THEME_RUNTIME_KEY, null)
+    : null
+
+  function resolveInherited(): ThemeRuntime | null {
+    return inheritedRuntime ? unref(inheritedRuntime) : null
+  }
+
+  function disposeOwnedRuntime() {
+    if (ownsRuntime.value && runtime.value) {
+      runtime.value.dispose()
+    }
+  }
 
   function ensureRuntime() {
     const opts = options()
     if (!hasThemeAxes(opts)) {
-      const parent = inject(THEME_RUNTIME_KEY, null)
-      runtime.value = parent ? unref(parent) : null
+      if (ownsRuntime.value) {
+        disposeOwnedRuntime()
+      }
+      runtime.value = resolveInherited()
       ownsRuntime.value = false
+      tokenAxis.lastApplied = undefined
       return
     }
 
     if (opts.runtime) {
+      if (ownsRuntime.value) {
+        disposeOwnedRuntime()
+      }
       runtime.value = opts.runtime
       ownsRuntime.value = false
-      syncRuntime(opts.runtime, opts)
+      syncRuntime(opts.runtime, opts, tokenAxis)
       return
     }
 
     if (runtime.value && ownsRuntime.value) {
-      syncRuntime(runtime.value, opts)
+      syncRuntime(runtime.value, opts, tokenAxis)
       return
     }
 
+    if (ownsRuntime.value) {
+      disposeOwnedRuntime()
+    }
+
     const next = createThemeRuntime({
-      host: createDocumentHost(null),
+      host: createNullHost(),
       storage: opts.persist ? createAutoStorage() : createMemoryStorage(),
       storageNamespace: opts.storageNamespace ?? 'amg-webui-scope',
       persist: opts.persist === true,
@@ -121,16 +161,20 @@ export function createThemeScope(options: () => ThemeScopeOptions): ThemeScopeHa
     })
     runtime.value = next
     ownsRuntime.value = true
-    syncRuntime(next, opts)
+    syncRuntime(next, opts, tokenAxis)
   }
 
   function paintHost() {
     const el = rootRef.value
     const rt = runtime.value
-    if (!el || !rt) return
+    const opts = options()
+    if (!el || !rt || !shouldBindHost(opts, ownsRuntime.value)) return
     rt.bindHost(createDocumentHost(el))
-    syncRuntime(rt, options())
+    syncRuntime(rt, opts, tokenAxis)
   }
+
+  // Resolve runtime during setup so provide/inject and expose see it immediately.
+  ensureRuntime()
 
   if (getCurrentInstance()) {
     onMounted(() => {
@@ -147,16 +191,29 @@ export function createThemeScope(options: () => ThemeScopeOptions): ThemeScopeHa
       { deep: true }
     )
 
+    watch(
+      () => resolveInherited(),
+      (parentRt) => {
+        if (!hasThemeAxes(options())) {
+          if (ownsRuntime.value) {
+            disposeOwnedRuntime()
+          }
+          runtime.value = parentRt
+          ownsRuntime.value = false
+          tokenAxis.lastApplied = undefined
+        }
+      }
+    )
+
     watch(rootRef, () => {
       paintHost()
     })
 
     onBeforeUnmount(() => {
-      if (ownsRuntime.value && runtime.value) {
-        runtime.value.dispose()
-      }
+      disposeOwnedRuntime()
       runtime.value = null
       ownsRuntime.value = false
+      tokenAxis.lastApplied = undefined
     })
   }
 

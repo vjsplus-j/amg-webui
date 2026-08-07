@@ -5,19 +5,9 @@ import { useAuth } from '../stores/auth'
 import { ToastService } from '@amg-webui/theme'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys, type LocaleKey } from '@amg-webui/locale'
-import {
-  Layout,
-  Sider,
-  Header,
-  Main,
-  Footer,
-  Menu,
-  TabsNav,
-  Avatar,
-  Button,
-  Search
-} from '@amg-webui/components/base'
-import type { MenuItem } from '@amg-webui/components/base/Menu'
+import { Layout, Sider, Header, Main, Footer, Menu, TabsNav, Avatar, Button } from '@amg-webui/core'
+import { Search } from '@amg-webui/form'
+import type { MenuItem } from '@amg-webui/core/Menu'
 import AppHeaderActions from '../components/AppHeaderActions.vue'
 import {
   getShellNavItems,
@@ -346,17 +336,19 @@ void isAdmin
           v-model="navFilter"
           size="sm"
           fluid
-          :placeholder="t(LocaleKeys.common.search)"
+          :placeholder="t('example.doc.catalog.navFilterHint')"
         />
       </div>
 
-      <Menu
-        :model-value="menuModel"
-        :items="menuItems"
-        v-model:open-keys="openKeys"
-        :collapsed="collapsed"
-        @select="onMenuSelect"
-      />
+      <div class="vp-app-shell__nav">
+        <Menu
+          :model-value="menuModel"
+          :items="menuItems"
+          v-model:open-keys="openKeys"
+          :collapsed="collapsed"
+          @select="onMenuSelect"
+        />
+      </div>
 
       <template #footer>
         <div class="vp-app-shell__user" :title="collapsed ? currentUser?.username : undefined">
@@ -433,11 +425,26 @@ void isAdmin
   min-width: var(--ln-sidebar-width);
 }
 
+.vp-app-shell__sider :deep(.vp-sider__body) {
+  overflow: hidden;
+}
+
 .vp-app-shell__filter {
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  padding: 0 var(--spacing-sm);
+  padding: 0 var(--spacing-sm) var(--spacing-sm);
+  border-bottom: 1px solid var(--ds-border, var(--border-color));
+}
+
+.vp-app-shell__nav {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 
 .vp-app-shell__brand {

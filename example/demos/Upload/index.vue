@@ -3,8 +3,8 @@
  * Curated demo — Form wave1 Upload
  */
 import { computed, ref } from 'vue'
-import { Upload } from '@amg-webui/components/base'
-import type { UploadFile } from '@amg-webui/components/base/Upload/types'
+import { Upload } from '@amg-webui/form'
+import type { UploadFile } from '@amg-webui/form/Upload/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -39,7 +39,7 @@ function onChange(list: UploadFile[]) {
 const codeDrag = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Upload } from '@amg-webui/components/base'`
+    `import { Upload } from '@amg-webui/form'`
   ],
   script: [`const files = ref([])`],
   template: [`  <Upload v-model="files" drag multiple />`]

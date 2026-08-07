@@ -3,16 +3,17 @@ import type { FilterInputOptions } from './types'
 
 /**
  * When to run `filterDangerousInput` on plain text controls.
- * - `true` / `'blur'` (default when enabled): filter on blur — avoids mid-tag cursor fights
+ * Opt-in field filter (usernames, search terms) — not XSS defense.
+ * - `false` / `'off'` / `undefined` (default): no filter
+ * - `true` / `'blur'`: filter on blur — avoids mid-tag cursor fights
  * - `'input'`: filter every keystroke (strict)
- * - `false` / `'off'`: no filter
  */
 export type SanitizeInputMode = boolean | 'blur' | 'input' | 'off'
 
 export function resolveSanitizeInputMode(
   mode: SanitizeInputMode | undefined
 ): 'blur' | 'input' | 'off' {
-  if (mode === undefined || mode === true || mode === 'blur') return 'blur'
+  if (mode === true || mode === 'blur') return 'blur'
   if (mode === 'input') return 'input'
   return 'off'
 }

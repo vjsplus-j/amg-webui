@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { TableDrag } from "@amg-webui/components/base";
+import { TableDrag } from '@amg-webui/data';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
 import PropsTable from "../../components/demo/PropsTable.vue";
@@ -16,7 +16,7 @@ const rows = ref([...(mountProps.value.rows as Record<string, unknown>[])]);
 
 const codeBasic = demoSfc({
   imports: [
-    `import { TableDrag } from '@amg-webui/components/base'`,
+    `import { TableDrag } from '@amg-webui/data'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`,
   ],
   script: [

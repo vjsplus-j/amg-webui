@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { MiniNav, Space } from '@amg-webui/components/base'
+import { MiniNav, Space } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -18,7 +18,7 @@ const items = computed(() => getSampleMountProps('MiniNav').items as NavItem[])
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { MiniNav } from '@amg-webui/components/base'`
+    `import { MiniNav } from '@amg-webui/core'`
   ],
   script: [`const selected = ref('home')`, `const items = [/* NavItem[] */]`],
   template: [`  <MiniNav v-model="selected" :items="items" />`]

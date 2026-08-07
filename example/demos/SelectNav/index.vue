@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { SelectNav, Space } from '@amg-webui/components/base'
-import type { SelectNavItem } from '@amg-webui/components/base/SelectNav'
+import { SelectNav } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
+import type { SelectNavItem } from '@amg-webui/form/SelectNav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -19,7 +20,7 @@ const options = computed<SelectNavItem[]>(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { SelectNav } from '@amg-webui/components/base'`],
+  imports: [`import { SelectNav } from '@amg-webui/form'`],
   template: ['  <SelectNav v-model="active" :options="options" />']
 })
 

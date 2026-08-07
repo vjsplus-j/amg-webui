@@ -3,7 +3,8 @@
  * Curated demo — Data wave2 TreeTable
  */
 import { computed, ref } from 'vue'
-import { TreeTable, Space } from '@amg-webui/components/base'
+import { TreeTable } from '@amg-webui/data'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -40,14 +41,14 @@ const selectedLabel = computed(() => {
 const codeBasic = demoSfc({
   imports: [
     `import { computed } from 'vue'`,
-    `import { TreeTable } from '@amg-webui/components/base'`
+    `import { TreeTable } from '@amg-webui/data'`
   ],
   script: [`const rows = computed(() => [/* tree rows */])`],
   template: [`  <TreeTable :rows="rows" @change="onSelect" />`]
 })
 
 const codeSearch = demoSfc({
-  imports: [`import { TreeTable } from '@amg-webui/components/base'`],
+  imports: [`import { TreeTable } from '@amg-webui/data'`],
   template: [
     `  <TreeTable`,
     `    :title="t('example.doc.treeTable.sample.customTitle')"`,

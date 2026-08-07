@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Button, CanvasPreview, Tag } from '@amg-webui/components/base'
+import { Button, Tag } from '@amg-webui/core'
+import { CanvasPreview } from '@amg-webui/lowcode'
 import { useLocale } from '@amg-webui/hooks'
 import { createComponentRegistry } from '@amg-webui/lowcode'
 import { createCanvasNode } from '@amg-webui/utils'
@@ -48,7 +49,8 @@ const nodes = ref([
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Button, CanvasPreview, Tag } from '@amg-webui/components/base'`,
+    `import { Button, Tag } from '@amg-webui/core'
+import { CanvasPreview } from '@amg-webui/lowcode'`,
     `import { createComponentRegistry } from '@amg-webui/lowcode'`,
     `import { createCanvasNode } from '@amg-webui/utils'`
   ],

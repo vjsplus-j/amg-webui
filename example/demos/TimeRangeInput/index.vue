@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { TimeRangeInput } from '@amg-webui/components/base'
+import { TimeRangeInput } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -16,7 +16,7 @@ const invalidRange = ref({ start: '20:00', end: '08:00' })
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { TimeRangeInput } from '@amg-webui/components/base'`
+    `import { TimeRangeInput } from '@amg-webui/form'`
   ],
   script: [`const range = ref({ start: '09:00', end: '18:00' })`],
   template: [`  <TimeRangeInput v-model="range" clearable />`]

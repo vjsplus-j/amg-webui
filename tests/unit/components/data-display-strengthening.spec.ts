@@ -1,8 +1,8 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { LocaleService } from '@amg-webui/locale'
-import GraphChart from '../../../packages/components/base/GraphChart/index.vue'
-import TreeChart from '../../../packages/components/base/TreeChart/index.vue'
+import GraphChart from '../../../packages/components/charts/GraphChart/index.vue'
+import TreeChart from '../../../packages/components/charts/TreeChart/index.vue'
 
 beforeAll(() => LocaleService.init())
 

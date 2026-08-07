@@ -3,7 +3,7 @@
  * Curated demo — mirrors Avatar gold standard (demoCode / demoSfc / API sections).
  */
 import { computed } from 'vue'
-import { Button, ButtonGroup } from '@amg-webui/components/base'
+import { Button, ButtonGroup } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -19,7 +19,7 @@ const sizes: Size[] = ['xs', 'sm', 'md', 'lg', 'xl']
 /* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
 
 const codeBasic = demoSfc({
-  imports: [`import { Button, ButtonGroup } from '@amg-webui/components/base'`],
+  imports: [`import { Button, ButtonGroup } from '@amg-webui/core'`],
   template: [
     '  <ButtonGroup>',
     `    <Button>{{ t('button.cancel') }}</Button>`,

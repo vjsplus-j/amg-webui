@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { FooterNav } from '@amg-webui/components/base'
+import { FooterNav } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -18,7 +18,7 @@ const items = computed(() => getSampleMountProps('FooterNav').items as NavItem[]
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { FooterNav } from '@amg-webui/components/base'`
+    `import { FooterNav } from '@amg-webui/core'`
   ],
   script: [`const selected = ref('docs')`, `const items = [/* NavItem[] */]`],
   template: [`  <FooterNav v-model="selected" :items="items" dividers />`]

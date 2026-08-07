@@ -3,7 +3,7 @@
  * Curated demo — Data wave2 VirtualTable
  */
 import { computed, ref } from 'vue'
-import { VirtualTable } from '@amg-webui/components/base'
+import { VirtualTable } from '@amg-webui/data'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -37,7 +37,7 @@ const smallRows = ref(makeRows(8))
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { VirtualTable } from '@amg-webui/components/base'`
+    `import { VirtualTable } from '@amg-webui/data'`
   ],
   script: [
     `const rows = ref(/* 500 rows */)`,

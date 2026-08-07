@@ -3,7 +3,7 @@
  * Curated demo — aligned with Avatar gold standard (demoCode / demoSfc / API thirds).
  */
 import { computed, ref } from 'vue'
-import { Button, ButtonGroup, Icon } from '@amg-webui/components/base'
+import { Button, ButtonGroup, Icon } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -70,7 +70,7 @@ function noteEvent(kind: string) {
 /* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
 
 const codeBasic = demoSfc({
-  imports: [`import { Button } from '@amg-webui/components/base'`],
+  imports: [`import { Button } from '@amg-webui/core'`],
   template: [
     `  <Button severity="primary">{{ t('button.confirm') }}</Button>`,
     `  <Button severity="success">{{ t('common.success') }}</Button>`,

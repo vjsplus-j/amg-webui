@@ -6,7 +6,7 @@ ConfigProvider 组件 API（v0.1 子集）。
 
 ```vue
 <script setup>
-import { ConfigProvider } from '@amg-webui/components/base'
+import { ConfigProvider } from '@amg-webui/core'
 </script>
 
 <template>

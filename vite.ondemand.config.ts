@@ -1,5 +1,5 @@
 /**
- * On-demand ESM — one entry per base component / biz domain → dist/es/**
+ * On-demand ESM — one entry per UI component / biz domain → dist/es/**
  * Shared `@amg-webui/*` deps stay external and are rewritten to `amg-webui/*`
  * so clean consumers resolve them via package.json exports (not monorepo aliases).
  */
@@ -13,15 +13,22 @@ import {
   listBaseComponentNames,
   BIZ_DOMAINS,
   isPublishExternal,
-  publicizePaths
+  publicizePaths,
+  componentDirRel
 } from './build/shared.mjs'
+import { componentToPackage } from './scripts/component-package-map.mjs'
 
 function collectEntries() {
   const entries = {}
   for (const name of listBaseComponentNames()) {
-    const indexTs = resolve(root, 'packages/components/base', name, 'index.ts')
-    if (existsSync(indexTs)) {
-      entries[`components/base/${name}/index`] = indexTs
+    const rel = componentDirRel(name)
+    const indexTs = resolve(root, rel, 'index.ts')
+    if (!existsSync(indexTs)) continue
+    const pkg = componentToPackage.get(name)
+    if (pkg === 'lowcode') {
+      entries[`lowcode/ui/${name}/index`] = indexTs
+    } else {
+      entries[`components/${pkg}/${name}/index`] = indexTs
     }
   }
   for (const domain of BIZ_DOMAINS) {

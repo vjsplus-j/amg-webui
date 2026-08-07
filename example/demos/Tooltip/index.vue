@@ -3,8 +3,8 @@
  * Curated demo — feedback wave1 Tooltip
  */
 import { computed } from 'vue'
-import { Tooltip, Button, Space } from '@amg-webui/components/base'
-import type { TooltipPlacement } from '@amg-webui/components/base/Tooltip/types'
+import { Tooltip, Button, Space } from '@amg-webui/core'
+import type { TooltipPlacement } from '@amg-webui/core/Tooltip/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -17,7 +17,7 @@ const { t } = useLocale()
 const placements: TooltipPlacement[] = ['top', 'bottom', 'left', 'right']
 
 const codeBasic = demoSfc({
-  imports: [`import { Tooltip, Button } from '@amg-webui/components/base'`],
+  imports: [`import { Tooltip, Button } from '@amg-webui/core'`],
   template: [
     `  <Tooltip :content="t('example.doc.tooltip.sample.content')">`,
     `    <Button :label="t('example.doc.tooltip.sample.trigger')" />`,

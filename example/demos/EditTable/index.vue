@@ -3,7 +3,8 @@
  * Curated demo — Data wave2 EditTable
  */
 import { computed, ref } from 'vue'
-import { EditTable, Space } from '@amg-webui/components/base'
+import { EditTable } from '@amg-webui/data'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -37,7 +38,7 @@ function onChange(data: unknown) {
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { EditTable } from '@amg-webui/components/base'`
+    `import { EditTable } from '@amg-webui/data'`
   ],
   script: [
     `const columns = computed(() => [/* … */])`,
@@ -49,7 +50,7 @@ const codeBasic = demoSfc({
 })
 
 const codeFilter = demoSfc({
-  imports: [`import { EditTable } from '@amg-webui/components/base'`],
+  imports: [`import { EditTable } from '@amg-webui/data'`],
   template: [
     `  <EditTable`,
     `    :title="t('example.doc.editTable.sample.customTitle')"`,

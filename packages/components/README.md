@@ -1,20 +1,40 @@
 # packages/components
 
-Vue 3 组件源码。**base** 与 **business** 强制隔离。
+Vue 3 组件源码。按**包边界**隔离；行业扩展不得进入 core。
 
 ```
 components/
-├── base/          # 纯 UI · 目录库存 ~280+（含行业扩展；库存 ≠ 成熟度）
-├── business/      # login · users · orders · content · settings
-└── index.ts       # generate:entry 维护；禁止手改巨型 barrel
+├── core/          # @amg-webui/core — 真正的 UI 原语
+├── form/          # @amg-webui/form
+├── data/          # @amg-webui/data
+├── overlay/       # @amg-webui/overlay（浮层 UI；内核在 packages/runtime）
+├── charts/        # @amg-webui/charts
+├── editor/        # @amg-webui/editor
+├── media/         # @amg-webui/media（opt-in）
+├── gb28181/       # @amg-webui/gb28181（opt-in）
+├── onvif/         # @amg-webui/onvif（opt-in）
+├── business/      # @amg-webui/business — login · users · orders · content · settings
+├── base/          # 废弃薄入口：仅 re-export core
+├── internal/      # 包内共享实现（非公开 API）
+└── index.ts       # foundation + business；不含行业三包
 ```
 
-## base
+Lowcode Vue UI（`SchemaRenderer` / `Canvas*`）在 `packages/lowcode/ui/`，由 `@amg-webui/lowcode` 导出。
 
-- 路径别名：`@amg-webui/components/base`
-- 类名：`vp-*`（遗留 `p-*` 分批迁移）
-- 新组件：`npm run create:component -- base Name`
-- Provider 类：`TelemetryProvider`（配置遥测，后续可并入 `VpConfigProvider`）
+归属 SSOT：`scripts/component-package-map.mjs`（`npm run generate:entry` / `check:boundaries`）。
+
+## foundation
+
+| 包 | 别名 | 要点 |
+|----|------|------|
+| core | `@amg-webui/core` | Button / Icon / Layout / Empty / `*404` / Providers… |
+| form | `@amg-webui/form` | Form / Input* / Select / Upload / Date*… |
+| data | `@amg-webui/data` | DataTable / Tree / Pagination / Dashboard… |
+| overlay | `@amg-webui/overlay` | Dialog / Drawer / Message* / Toast… |
+
+- 类名：`vp-*`
+- 新组件：`npm run create:component -- <core|form|data|overlay|…> Name`
+- **禁止** foundation import `@amg-webui/{gb28181,onvif,media}`
 
 ### 通用区（example catalog `general`）
 
@@ -29,7 +49,11 @@ components/
 
 ## business
 
-只依赖 base + hooks + theme + utils（+ locale）。调试页在 `example/pages/biz/`，不在本目录放 `*Page.vue`。
+只依赖 foundation + hooks + theme + utils（+ locale）。调试页在 `example/pages/biz/`，不在本目录放 `*Page.vue`。
+
+## 行业包（opt-in）
+
+`media` · `gb28181` · `onvif` — 显式 `import from '@amg-webui/…'`；**不进根 barrel**。基础库不知道 GB28181。
 
 ## 相关
 

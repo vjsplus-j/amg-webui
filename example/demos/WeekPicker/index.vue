@@ -3,7 +3,8 @@
  * Curated demo — Form wave2 WeekPicker
  */
 import { computed, ref } from 'vue'
-import { WeekPicker, Space } from '@amg-webui/components/base'
+import { WeekPicker } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -19,7 +20,7 @@ const empty = ref<string | null>(null)
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { WeekPicker } from '@amg-webui/components/base'`
+    `import { WeekPicker } from '@amg-webui/form'`
   ],
   script: [`const week = ref('2026-W30')`],
   template: [`  <WeekPicker v-model="week" />`]

@@ -3,7 +3,8 @@
  * Curated demo — Data wave2 VirtualTree
  */
 import { computed, ref } from 'vue'
-import { VirtualTree, Space, Button } from '@amg-webui/components/base'
+import { VirtualTree } from '@amg-webui/data'
+import { Space, Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { TreeNode } from '@amg-webui/utils/data-display/tree-types'
@@ -65,7 +66,7 @@ const loading = ref(false)
 const codeLarge = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { VirtualTree } from '@amg-webui/components/base'`
+    `import { VirtualTree } from '@amg-webui/data'`
   ],
   script: [
     `const checked = ref(['a-1'])`,
@@ -75,7 +76,7 @@ const codeLarge = demoSfc({
 })
 
 const codeStrict = demoSfc({
-  imports: [`import { VirtualTree } from '@amg-webui/components/base'`],
+  imports: [`import { VirtualTree } from '@amg-webui/data'`],
   template: [
     `  <VirtualTree`,
     `    v-model="strictChecked"`,
@@ -87,7 +88,7 @@ const codeStrict = demoSfc({
 })
 
 const codeBrowse = demoSfc({
-  imports: [`import { VirtualTree } from '@amg-webui/components/base'`],
+  imports: [`import { VirtualTree } from '@amg-webui/data'`],
   template: [
     `  <VirtualTree`,
     `    v-model="browseChecked"`,

@@ -3,7 +3,7 @@
  * Curated demo — aligned with Avatar gold standard (demoCode / demoSfc / API thirds).
  */
 import { computed, ref } from 'vue'
-import { Link } from '@amg-webui/components/base'
+import { Link } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -45,7 +45,7 @@ async function beforeClickGuard(): Promise<boolean> {
 }
 
 const codeBasic = demoSfc({
-  imports: [`import { Link } from '@amg-webui/components/base'`],
+  imports: [`import { Link } from '@amg-webui/core'`],
   template: [
     `  <Link href="https://example.com" target="_blank">`,
     `    {{ t('example.doc.link.sample.external') }}`,

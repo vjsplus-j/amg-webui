@@ -1,16 +1,14 @@
 /**
- * Validate example/component-catalog.json covers every packages/components/base dir exactly once.
+ * Validate example/component-catalog.json covers every mapped UI component exactly once.
  * Usage: node scripts/validate-component-catalog.mjs
  */
-import { readdirSync, readFileSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { allMappedComponentNames } from './component-package-map.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const names = readdirSync(resolve(root, 'packages/components/base'), { withFileTypes: true })
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name)
-  .sort()
+const names = allMappedComponentNames()
 
 const catalog = JSON.parse(readFileSync(resolve(root, 'example/component-catalog.json'), 'utf8'))
 const byCategory = catalog.byCategory ?? catalog

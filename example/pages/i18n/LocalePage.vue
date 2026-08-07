@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Card } from '@amg-webui/components/base'
+import { Card } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys, getLocaleMeta } from '@amg-webui/locale'
 import ExamplePageHero from '../../components/ExamplePageHero.vue'

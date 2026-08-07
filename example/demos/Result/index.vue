@@ -3,8 +3,8 @@
  * Curated demo — feedback wave1 Result
  */
 import { computed } from "vue";
-import { Result, Button } from "@amg-webui/components/base";
-import type { ResultStatus } from "@amg-webui/components/base/Result/types";
+import { Result, Button } from '@amg-webui/core';
+import type { ResultStatus } from "@amg-webui/core/Result/types";
 import { useLocale } from "@amg-webui/hooks";
 import { LocaleKeys } from "@amg-webui/locale";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
@@ -28,7 +28,7 @@ const subKey: Record<(typeof statuses)[number], string> = {
 };
 
 const codeBasic = demoSfc({
-  imports: [`import { Result, Button } from '@amg-webui/components/base'`],
+  imports: [`import { Result, Button } from '@amg-webui/core'`],
   template: [
     `  <Result status="success" :sub-title="t('example.doc.result.sample.sub')">`,
     `    <template #extra>`,

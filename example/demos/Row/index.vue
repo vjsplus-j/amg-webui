@@ -3,17 +3,8 @@
  * Row / Col curated demos — page-grade complex grids (not span swatches).
  */
 import { computed, ref } from 'vue'
-import {
-  Row,
-  Col,
-  Button,
-  Space,
-  Card,
-  Tag,
-  InputText,
-  Divider,
-  Block
-} from '@amg-webui/components/base'
+import { Row, Col, Button, Space, Card, Tag, Divider, Block } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -74,7 +65,8 @@ const kpis = computed(() =>
 
 const codePage = demoSfc({
   imports: [
-    `import { Row, Col, Card, Button, Space, Tag, InputText } from '@amg-webui/components/base'`
+    `import { Row, Col, Card, Button, Space, Tag } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'`
   ],
   template: [
     '  <!-- shell: header 24 → sider 5 + main 19 (nested toolbar / content / aside) -->',
@@ -94,7 +86,7 @@ const codePage = demoSfc({
 })
 
 const codeMixed = demoSfc({
-  imports: [`import { Row, Col } from '@amg-webui/components/base'`],
+  imports: [`import { Row, Col } from '@amg-webui/core'`],
   template: [
     '  <Row gutter="var(--spacing-md)">',
     '    <Col :span="16">…</Col>',

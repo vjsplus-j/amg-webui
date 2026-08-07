@@ -43,9 +43,12 @@ VUE3-AMG-WEBUI/
 ├── build/                      # 库打包脚本
 ├── docs/                       # 对外官方文档（VitePress，可部署）
 ├── packages/                   # 组件库源码（无路由）
-│   ├── components/base/        # 纯 UI（含通用区 Button / CardWidgets / CopyText …）
-│   ├── components/business/  # 五大业务域
-│   ├── telemetry/              # Vp Telemetry 交互观测内核（默认关闭）
+│   ├── components/core|form|data|overlay/  # foundation（@amg-webui/*）
+│   ├── components/charts|editor|media|gb28181|onvif/  # 专用 / 行业 opt-in
+│   ├── components/business/    # 五大业务域
+│   ├── lowcode/                # Schema 引擎 + ui/
+│   ├── runtime/                # Overlay 内核
+│   ├── telemetry/              # Vp Telemetry（默认关闭）
 │   ├── skill/                  # Skill Runtime（experimental；独立可选子路径）
 │   ├── theme/ · hooks/ · locale/ · icons/ · animations/ · utils/ · types/
 ├── example/                       # 开发调试工具（仅本地，不上线）
@@ -91,7 +94,7 @@ TelemetryService.configure({
 })
 ```
 
-子路径导出见 `package.json` → `exports`：`.` · `./style.css` · `./telemetry` · `./theme` · `./icons` · `./components/base` · `./components/business` · experimental `./skill` · `./skill/core`。Skill Runtime 不从 `.` 导出。
+子路径导出见 `package.json` → `exports`：`.` · `./style.css` · `./core` · `./form` · `./data` · `./overlay` · `./media` · `./gb28181` · `./onvif` · `./telemetry` · `./theme` · `./icons` · `./components/base`（legacy→core）· `./components/business` · experimental `./skill` · `./skill/core`。行业包与 Skill 不从根 `.` 隐式泄漏。
 
 ## 近期能力（摘要）
 

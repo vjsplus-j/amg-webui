@@ -3,7 +3,8 @@
  * Curated demo — Form wave1 InputNumber
  */
 import { computed, ref } from 'vue'
-import { InputNumber, Space } from '@amg-webui/components/base'
+import { InputNumber } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -28,7 +29,7 @@ const sizeVals = ref<Record<Size, number | null>>({
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { InputNumber } from '@amg-webui/components/base'`
+    `import { InputNumber } from '@amg-webui/form'`
   ],
   script: [`const qty = ref(1)`],
   template: [

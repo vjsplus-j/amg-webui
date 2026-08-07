@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Button, Slider, Switch } from '@amg-webui/components/base'
+import { Button } from '@amg-webui/core'
+import { Slider, Switch } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 
 export interface MotionLiveState {

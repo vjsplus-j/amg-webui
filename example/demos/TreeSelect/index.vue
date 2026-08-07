@@ -3,8 +3,9 @@
  * Curated demo — Data wave1 TreeSelect
  */
 import { computed, ref } from 'vue'
-import { TreeSelect, Space } from '@amg-webui/components/base'
-import type { TreeSelectOption } from '@amg-webui/components/base/TreeSelect'
+import { TreeSelect } from '@amg-webui/data'
+import { Space } from '@amg-webui/core'
+import type { TreeSelectOption } from '@amg-webui/data/TreeSelect'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -39,7 +40,7 @@ const treeOptions = computed<TreeSelectOption[]>(() => [
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { TreeSelect } from '@amg-webui/components/base'`
+    `import { TreeSelect } from '@amg-webui/data'`
   ],
   script: [
     `const picked = ref('a1')`,
@@ -58,7 +59,7 @@ const codeFilter = demoCode(
 )
 
 const codeMultiple = demoSfc({
-  imports: [`import { TreeSelect } from '@amg-webui/components/base'`],
+  imports: [`import { TreeSelect } from '@amg-webui/data'`],
   template: [
     `  <TreeSelect`,
     `    v-model="multiPicked"`,

@@ -58,10 +58,21 @@ export const packageAlias = {
   '@amg-webui/components/base': resolve(root, 'packages/components/base'),
   '@amg-webui/components/business': resolve(root, 'packages/components/business'),
   '@amg-webui/components': resolve(root, 'packages/components'),
+  '@amg-webui/business': resolve(root, 'packages/components/business'),
+  '@amg-webui/core': resolve(root, 'packages/components/core'),
+  '@amg-webui/form': resolve(root, 'packages/components/form'),
+  '@amg-webui/data': resolve(root, 'packages/components/data'),
+  '@amg-webui/overlay': resolve(root, 'packages/components/overlay'),
+  '@amg-webui/charts': resolve(root, 'packages/components/charts'),
+  '@amg-webui/editor': resolve(root, 'packages/components/editor'),
+  '@amg-webui/media': resolve(root, 'packages/components/media'),
+  '@amg-webui/gb28181': resolve(root, 'packages/components/gb28181'),
+  '@amg-webui/onvif': resolve(root, 'packages/components/onvif'),
   '@amg-webui/hooks': resolve(root, 'packages/hooks'),
   '@amg-webui/telemetry': resolve(root, 'packages/telemetry/index.ts'),
   '@amg-webui/security': resolve(root, 'packages/security/index.ts'),
-  '@amg-webui/lowcode': resolve(root, 'packages/lowcode/index.ts'),
+  '@amg-webui/lowcode': resolve(root, 'packages/lowcode'),
+  '@amg-webui/runtime': resolve(root, 'packages/runtime/index.ts'),
   '@amg-webui/skill/core': resolve(root, 'packages/skill/core.ts'),
   '@amg-webui/skill': resolve(root, 'packages/skill/index.ts'),
   '@amg-webui/theme/core': resolve(root, 'packages/theme/core.ts'),
@@ -108,28 +119,41 @@ export function collectTsEntries(pkgRelDir, { skip = [] } = {}) {
   return entries
 }
 
-/** Base component dirs that have index.ts */
+import {
+  allMappedComponentNames,
+  componentToPackage,
+  componentDirRel
+} from '../scripts/component-package-map.mjs'
+
+/** All UI component names across packages (excludes business domains) */
 export function listBaseComponentNames() {
-  const baseRoot = resolve(root, 'packages/components/base')
-  const names = []
-  for (const name of readdirSync(baseRoot)) {
-    const dir = resolve(baseRoot, name)
-    if (!statSync(dir).isDirectory()) continue
-    if (existsSync(resolve(dir, 'index.ts'))) names.push(name)
-  }
-  return names.sort()
+  return allMappedComponentNames()
+}
+
+export function componentPackageOf(pascalName) {
+  return componentToPackage.get(pascalName)
 }
 
 export const BIZ_DOMAINS = ['login', 'users', 'orders', 'content', 'settings']
 
-/** Dist path for a base component on-demand entry */
+/** Dist path for a component on-demand entry */
 export function componentEsImportPath(pascalName) {
-  return `./dist/es/components/base/${pascalName}/index.js`
+  const pkg = componentToPackage.get(pascalName)
+  if (pkg === 'lowcode') {
+    return `./dist/es/lowcode/ui/${pascalName}/index.js`
+  }
+  return `./dist/es/components/${pkg}/${pascalName}/index.js`
 }
 
 export function componentTypesPath(pascalName) {
-  return `./dist/components/base/${pascalName}/index.d.ts`
+  const pkg = componentToPackage.get(pascalName)
+  if (pkg === 'lowcode') {
+    return `./dist/lowcode/ui/${pascalName}/index.d.ts`
+  }
+  return `./dist/components/${pkg}/${pascalName}/index.d.ts`
 }
+
+export { componentDirRel }
 
 export function bizEsImportPath(domain) {
   return `./dist/es/components/business/${domain}/index.js`

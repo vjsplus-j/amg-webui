@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Main, Button, Space, Tag, Card } from '@amg-webui/components/base'
+import { Main, Button, Space, Tag, Card } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -19,7 +19,7 @@ function onScroll(e: Event) {
 }
 
 const codePad = demoSfc({
-  imports: [`import { Main } from '@amg-webui/components/base'`],
+  imports: [`import { Main } from '@amg-webui/core'`],
   template: [
     '  <div class="main-host">',
     '    <Main :padded="padded" overflow="auto" @scroll="onScroll">',

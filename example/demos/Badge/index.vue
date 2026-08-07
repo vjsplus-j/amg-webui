@@ -3,7 +3,7 @@
  * Curated demo — aligned with Avatar gold standard (demoCode / demoSfc / API thirds).
  */
 import { computed, ref } from 'vue'
-import { Avatar, Badge, Button, Icon } from '@amg-webui/components/base'
+import { Avatar, Badge, Button, Icon } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -52,7 +52,7 @@ function noteEvent(kind: string) {
 
 const codeBasic = demoSfc({
   imports: [
-    `import { Badge, Icon } from '@amg-webui/components/base'`
+    `import { Badge, Icon } from '@amg-webui/core'`
   ],
   template: [
     `  <Badge :value="5">`,

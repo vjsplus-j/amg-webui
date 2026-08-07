@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { LineChart } from '@amg-webui/components/base'
+import { LineChart } from '@amg-webui/charts'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('LineChart'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { LineChart } from '@amg-webui/components/base'`,
+    `import { LineChart } from '@amg-webui/charts'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('LineChart')`],

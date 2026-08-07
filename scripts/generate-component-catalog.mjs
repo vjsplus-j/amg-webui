@@ -1,17 +1,13 @@
 /**
- * Regenerate Ant-style example/component-catalog.json (base dirs × 8 categories, no missing/extra).
+ * Regenerate Ant-style example/component-catalog.json (mapped components × 8 categories).
  * node scripts/generate-component-catalog.mjs
  */
 import fs from 'node:fs'
 import path from 'node:path'
+import { allMappedComponentNames, componentToPackage } from './component-package-map.mjs'
 
 const root = process.cwd()
-const baseDir = path.join(root, 'packages', 'components', 'base')
-const names = fs
-  .readdirSync(baseDir, { withFileTypes: true })
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name)
-  .sort()
+const names = allMappedComponentNames()
 
 function toKebab(name) {
   return name
@@ -356,6 +352,7 @@ for (const n of names) {
   byCategory[category].push(n)
   components[n] = {
     category,
+    package: componentToPackage.get(n),
     titleKey: `component.${toKebab(n)}.title`,
     leadKey: `component.${toKebab(n)}.lead`
   }

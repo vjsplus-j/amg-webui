@@ -3,7 +3,7 @@
  * Curated demo — Display wave2 NoticeBar
  */
 import { computed, ref } from 'vue'
-import { NoticeBar, Space } from '@amg-webui/components/base'
+import { NoticeBar, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -16,7 +16,7 @@ const { t } = useLocale()
 const closed = ref(false)
 
 const codeBasic = demoSfc({
-  imports: [`import { NoticeBar } from '@amg-webui/components/base'`],
+  imports: [`import { NoticeBar } from '@amg-webui/core'`],
   template: [
     `  <NoticeBar`,
     `    :message="t('example.doc.noticeBar.sample.message')"`,

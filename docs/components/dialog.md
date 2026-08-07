@@ -6,7 +6,7 @@ Dialog 组件 API（v0.1 子集）。
 
 ```vue
 <script setup>
-import { Dialog } from '@amg-webui/components/base'
+import { Dialog } from '@amg-webui/overlay'
 </script>
 
 <template>

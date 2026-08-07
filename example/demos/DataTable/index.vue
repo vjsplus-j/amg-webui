@@ -3,7 +3,7 @@
  * Curated demo — Data wave1 DataTable
  */
 import { computed, ref } from 'vue'
-import { DataTable } from '@amg-webui/components/base'
+import { DataTable } from '@amg-webui/data'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -45,7 +45,7 @@ const selectionKeys = ref<(string | number)[]>([1, 3, 5])
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { DataTable } from '@amg-webui/components/base'`
+    `import { DataTable } from '@amg-webui/data'`
   ],
   script: [`const virtualRows = ref(/* 200 rows */)`, `const columns = computed(() => [/* … */])`],
   template: [
@@ -63,7 +63,7 @@ const codeBasic = demoSfc({
 const codeSelection = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { DataTable } from '@amg-webui/components/base'`
+    `import { DataTable } from '@amg-webui/data'`
   ],
   script: [
     `const rows = ref([{ id: 1, name: 'A' }, { id: 2, name: 'B' }])`,
@@ -81,7 +81,7 @@ const codeSelection = demoSfc({
 })
 
 const codePaginator = demoSfc({
-  imports: [`import { DataTable } from '@amg-webui/components/base'`],
+  imports: [`import { DataTable } from '@amg-webui/data'`],
   template: [
     `  <DataTable`,
     `    :value="rows"`,

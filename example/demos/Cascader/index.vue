@@ -3,8 +3,9 @@
  * Curated demo — Form wave1 Cascader
  */
 import { computed, ref } from 'vue'
-import { Cascader, Space } from '@amg-webui/components/base'
-import type { CascaderOption } from '@amg-webui/components/base/Cascader/types'
+import { Cascader } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
+import type { CascaderOption } from '@amg-webui/form/Cascader/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -36,7 +37,7 @@ const options = computed<CascaderOption[]>(() => [
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { Cascader } from '@amg-webui/components/base'`
+    `import { Cascader } from '@amg-webui/form'`
   ],
   script: [
     `const region = ref(['east', 'sh'])`,

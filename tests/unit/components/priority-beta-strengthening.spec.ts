@@ -1,15 +1,15 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { flushPromises, mount } from "@vue/test-utils";
-import DataCard from "../../../packages/components/base/DataCard/index.vue";
-import Calendar from "../../../packages/components/base/Calendar/index.vue";
-import PivotTable from "../../../packages/components/base/PivotTable/index.vue";
-import Timeline from "../../../packages/components/base/Timeline/index.vue";
-import TimelineItem from "../../../packages/components/base/TimelineItem/index.vue";
-import NoticeBar from "../../../packages/components/base/NoticeBar/index.vue";
-import LoadingTip from "../../../packages/components/base/LoadingTip/index.vue";
-import Result from "../../../packages/components/base/Result/index.vue";
-import StatusTip from "../../../packages/components/base/StatusTip/index.vue";
-import Tooltip from "../../../packages/components/base/Tooltip/index.vue";
+import DataCard from "../../../packages/components/data/DataCard/index.vue";
+import Calendar from "../../../packages/components/data/Calendar/index.vue";
+import PivotTable from "../../../packages/components/data/PivotTable/index.vue";
+import Timeline from "../../../packages/components/data/Timeline/index.vue";
+import TimelineItem from "../../../packages/components/data/TimelineItem/index.vue";
+import NoticeBar from "../../../packages/components/core/NoticeBar/index.vue";
+import LoadingTip from "../../../packages/components/core/LoadingTip/index.vue";
+import Result from "../../../packages/components/core/Result/index.vue";
+import StatusTip from "../../../packages/components/core/StatusTip/index.vue";
+import Tooltip from "../../../packages/components/core/Tooltip/index.vue";
 
 afterEach(() => {
   vi.useRealTimers();

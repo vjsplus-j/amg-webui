@@ -3,7 +3,7 @@
  * Curated demo — Form wave1 FormGroup
  */
 import { computed, reactive, ref } from 'vue'
-import { Form, FormGroup, FormItem, InputText } from '@amg-webui/components/base'
+import { Form, FormGroup, FormItem, InputText } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -23,7 +23,7 @@ const model = reactive({
 const codeCollapsible = demoSfc({
   imports: [
     `import { ref, reactive } from 'vue'`,
-    `import { FormGroup, Form, FormItem, InputText } from '@amg-webui/components/base'`
+    `import { FormGroup, Form, FormItem, InputText } from '@amg-webui/form'`
   ],
   script: [
     `const collapsed = ref(false)`,

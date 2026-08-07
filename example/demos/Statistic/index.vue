@@ -3,7 +3,7 @@
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
 import { computed, ref } from 'vue'
-import { Icon, Space, Statistic } from '@amg-webui/components/base'
+import { Icon, Space, Statistic } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -22,7 +22,7 @@ function noteFinish(value: number | string) {
 /* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
 
 const codeBasic = demoSfc({
-  imports: [`import { Space, Statistic } from '@amg-webui/components/base'`],
+  imports: [`import { Space, Statistic } from '@amg-webui/core'`],
   template: [
     `  <Space size="xl" wrap>`,
     `    <Statistic`,

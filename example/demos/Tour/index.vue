@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Tour, Button, Space, Card } from '@amg-webui/components/base'
+import { Tour } from '@amg-webui/overlay'
+import { Button, Space, Card } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -19,7 +20,8 @@ const steps = computed(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { Tour, Button } from '@amg-webui/components/base'`],
+  imports: [`import { Tour } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`],
   template: [
     '  <Button @click="open = true" />',
     '  <Tour v-model:open="open" v-model="current" :steps="steps" />'
@@ -27,7 +29,7 @@ const codeBasic = demoSfc({
 })
 
 const codeMask = demoSfc({
-  imports: [`import { Tour } from '@amg-webui/components/base'`],
+  imports: [`import { Tour } from '@amg-webui/overlay'`],
   template: ['  <Tour v-model:open="open" :steps="steps" :mask="true" />']
 })
 

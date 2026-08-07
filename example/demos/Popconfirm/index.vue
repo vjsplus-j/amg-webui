@@ -3,7 +3,7 @@
  * Curated demo — feedback wave1 Popconfirm
  */
 import { computed, ref } from 'vue'
-import { Popconfirm, Button, Space } from '@amg-webui/components/base'
+import { Popconfirm, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -23,7 +23,7 @@ function onConfirm() {
 }
 
 const codeBasic = demoSfc({
-  imports: [`import { Popconfirm, Button } from '@amg-webui/components/base'`],
+  imports: [`import { Popconfirm, Button } from '@amg-webui/core'`],
   template: [
     `  <Popconfirm :title="t('example.doc.popconfirm.sample.title')">`,
     `    <template #trigger>`,
@@ -34,7 +34,7 @@ const codeBasic = demoSfc({
 })
 
 const codeEvent = demoSfc({
-  imports: [`import { Popconfirm, Button } from '@amg-webui/components/base'`],
+  imports: [`import { Popconfirm, Button } from '@amg-webui/core'`],
   script: [`function onConfirm() { /* handle confirm */ }`],
   template: [
     `  <Popconfirm :title="t('example.doc.popconfirm.sample.title')" @confirm="onConfirm">`,

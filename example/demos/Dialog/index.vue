@@ -3,7 +3,8 @@
  * Curated demo — Dialog
  */
 import { computed, ref } from 'vue'
-import { Dialog, Button } from '@amg-webui/components/base'
+import { Dialog } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -16,11 +17,14 @@ const { t } = useLocale()
 const basicOpen = ref(false)
 const footerOpen = ref(false)
 const maxOpen = ref(false)
+const nestedOuterOpen = ref(false)
+const nestedInnerOpen = ref(false)
 
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Dialog, Button } from '@amg-webui/components/base'`
+    `import { Dialog } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`
   ],
   script: ['const open = ref(false)'],
   template: [
@@ -34,7 +38,8 @@ const codeBasic = demoSfc({
 const codeFooter = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Dialog, Button } from '@amg-webui/components/base'`
+    `import { Dialog } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`
   ],
   script: ['const open = ref(false)'],
   template: [
@@ -52,7 +57,8 @@ const codeFooter = demoSfc({
 const codeMax = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Dialog, Button } from '@amg-webui/components/base'`
+    `import { Dialog } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`
   ],
   script: ['const open = ref(false)'],
   template: [
@@ -196,6 +202,38 @@ const slotRows = computed<ApiRow[]>(() => [
         :title="t('example.doc.dialog.sample.title')"
       >
         {{ t('example.doc.dialog.sample.body') }}
+      </Dialog>
+    </DemoBlock>
+
+    <DemoBlock
+      :title="t('example.doc.dialog.demo.nested')"
+      :description="t('example.doc.dialog.demo.nestedDesc')"
+    >
+      <div class="vp-curated__row" data-demo="dialog-nested-stack">
+        <Button
+          severity="primary"
+          :label="t('example.doc.dialog.sample.open')"
+          @click="nestedOuterOpen = true"
+        />
+      </div>
+      <Dialog
+        v-model:visible="nestedOuterOpen"
+        :title="t('example.doc.dialog.sample.title')"
+      >
+        {{ t('example.doc.dialog.sample.body') }}
+        <div class="vp-curated__row">
+          <Button
+            severity="secondary"
+            :label="t('example.doc.dialog.sample.openInner')"
+            @click="nestedInnerOpen = true"
+          />
+        </div>
+        <Dialog
+          v-model:visible="nestedInnerOpen"
+          :title="t('example.doc.dialog.sample.innerTitle')"
+        >
+          {{ t('example.doc.dialog.sample.innerBody') }}
+        </Dialog>
       </Dialog>
     </DemoBlock>
 

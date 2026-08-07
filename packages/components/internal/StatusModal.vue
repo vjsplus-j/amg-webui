@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, useId, watch } from "vue";
-import { useBodyScrollLock, useFocusTrap, useLocale } from "@amg-webui/hooks";
+import { computed, nextTick, ref, watch } from "vue";
+import { useLocale, useOverlay } from "@amg-webui/hooks";
 import { LocaleKeys } from "@amg-webui/locale";
 import { trackEmit } from "@amg-webui/telemetry";
-import Icon from "../base/Icon/index.vue";
-import Button from "../base/Button/index.vue";
+import Icon from '@amg-webui/core/Icon/index.vue';
+import Button from '@amg-webui/core/Button/index.vue';
 import type {
   StatusModalAction,
   StatusModalCloseReason,
@@ -32,19 +32,34 @@ const props = withDefaults(defineProps<StatusModalProps>(), {
 
 const emit = defineEmits<StatusModalEmits>();
 const { t } = useLocale();
-const uid = useId();
 const dialogRef = ref<HTMLElement | null>(null);
 const confirmRef = ref<{ $el?: HTMLElement } | null>(null);
 const cancelRef = ref<{ $el?: HTMLElement } | null>(null);
 const pending = ref<StatusModalAction | null>(null);
 const visibleRef = computed(() => props.visible);
-const lockScrollRef = computed(() => props.lockScroll);
+const closeOnEscape = computed(
+  () => props.closeOnPressEscape ?? props.dismissible,
+);
 
-useFocusTrap(dialogRef, visibleRef);
-useBodyScrollLock(visibleRef, lockScrollRef);
+const overlay = useOverlay({
+  visible: visibleRef,
+  kind: "modal",
+  container: dialogRef,
+  modal: true,
+  lockScroll: () => props.lockScroll,
+  trapFocus: true,
+  restoreFocus: true,
+  closeOnEscape,
+  zIndex: () => props.zIndex,
+  teleportTo: () => props.teleportTo,
+  autoFocus: false,
+  onEscape: () => {
+    if (closeOnEscape.value) void requestClose("escape");
+  },
+});
 
-const titleId = `${uid}-title`;
-const descriptionId = `${uid}-description`;
+const titleId = overlay.titleId;
+const descriptionId = `${titleId}-description`;
 const confirmText = computed(
   () => props.confirmLabel || t(LocaleKeys.button.confirm),
 );
@@ -54,9 +69,6 @@ const cancelText = computed(
 const closeLabel = computed(() => t(LocaleKeys.common.close));
 const closeOnOverlay = computed(
   () => props.closeOnClickOverlay ?? props.dismissible,
-);
-const closeOnEscape = computed(
-  () => props.closeOnPressEscape ?? props.dismissible,
 );
 const busy = computed(() => props.loading || pending.value !== null);
 
@@ -79,9 +91,10 @@ const panelStyle = computed(() => ({
   ...(props.width ? { width: props.width } : {}),
 }));
 
-const overlayStyle = computed(() =>
-  props.zIndex === undefined ? undefined : { zIndex: String(props.zIndex) },
-);
+const overlayStyle = computed(() => {
+  const z = overlay.zIndex.value ?? props.zIndex;
+  return z === undefined ? undefined : { zIndex: String(z) };
+});
 
 async function runGuard(
   action: StatusModalAction,
@@ -147,14 +160,6 @@ function onOverlay(event: MouseEvent) {
   }
 }
 
-function onKeydown(event: KeyboardEvent) {
-  if (closeOnEscape.value && event.key === "Escape") {
-    event.preventDefault();
-    event.stopPropagation();
-    void requestClose("escape", event);
-  }
-}
-
 function focusInitial() {
   if (props.initialFocus === "none") return;
   if (props.initialFocus === "dialog") {
@@ -177,7 +182,7 @@ watch(
 </script>
 
 <template>
-  <Teleport :to="teleportTo">
+  <Teleport :to="overlay.teleportTo">
     <Transition
       name="vp-status-modal"
       @after-enter="emit('open')"
@@ -195,7 +200,7 @@ watch(
           :class="rootClass"
           :style="panelStyle"
           role="alertdialog"
-          aria-modal="true"
+          :aria-modal="overlay.ariaModal.value"
           :aria-labelledby="titleId"
           :aria-describedby="
             message || $slots.default ? descriptionId : undefined
@@ -204,7 +209,6 @@ watch(
           tabindex="-1"
           data-component="StatusModal"
           @click.stop
-          @keydown="onKeydown"
         >
           <div class="vp-status-modal__accent" aria-hidden="true" />
           <header class="vp-status-modal__header">

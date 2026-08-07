@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { Button, InputText, Icon } from '@amg-webui/components/base'
+import { Button, Icon } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'
 import { BizLogin, type BizLoginCredentials } from '@amg-webui/components/business'
 import {
   ToastService,

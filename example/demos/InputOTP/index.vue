@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { InputOTP, Space } from '@amg-webui/components/base'
+import { InputOTP } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -13,12 +14,12 @@ const code = ref('')
 const done = ref('')
 
 const codeBasic = demoSfc({
-  imports: [`import { InputOTP } from '@amg-webui/components/base'`],
+  imports: [`import { InputOTP } from '@amg-webui/form'`],
   template: ['  <InputOTP v-model="code" :length="6" @complete="onComplete" />']
 })
 
 const codeMask = demoSfc({
-  imports: [`import { InputOTP } from '@amg-webui/components/base'`],
+  imports: [`import { InputOTP } from '@amg-webui/form'`],
   template: ['  <InputOTP v-model="code" :length="6" mask />']
 })
 

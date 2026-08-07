@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { EditTree } from '@amg-webui/components/base'
+import { EditTree } from '@amg-webui/data'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('EditTree'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { EditTree } from '@amg-webui/components/base'`,
+    `import { EditTree } from '@amg-webui/data'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('EditTree')`],

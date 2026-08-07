@@ -80,6 +80,8 @@ Primitive（原色/原始尺）  →  Semantic（用途别名）  →  Component
 | `--theme-page-pad` | 页面内边距 |
 | `--theme-section-gap` | 区块垂直间距 |
 | `--theme-card-pad` | 卡片内边距 |
+| `--theme-table-row-height` | DataTable / 虚拟表固定行高（与虚拟数学同源） |
+| `--theme-table-col-min-width` | 未声明 `width` 时的列最小宽度估计 |
 
 ### 2.4 圆角 Radius
 

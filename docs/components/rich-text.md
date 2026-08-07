@@ -9,7 +9,7 @@
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { RichText } from '@amg-webui/components/base'
+import { RichText } from '@amg-webui/editor'
 
 const html = ref('<p><strong>AMG</strong></p>')
 </script>

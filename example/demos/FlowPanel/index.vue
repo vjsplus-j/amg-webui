@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { FlowPanel, StatusTip } from '@amg-webui/components/base'
+import { FlowPanel } from '@amg-webui/data'
+import { StatusTip } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -36,7 +37,7 @@ const steps = computed(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { FlowPanel } from '@amg-webui/components/base'`],
+  imports: [`import { FlowPanel } from '@amg-webui/data'`],
   template: [
     '  <FlowPanel v-model:current="current" :steps="steps" show-nav @prev="onPrev" @next="onNext" />'
   ]

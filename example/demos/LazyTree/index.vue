@@ -3,7 +3,8 @@
  * Curated demo — Data wave2 LazyTree
  */
 import { computed, ref } from 'vue'
-import { LazyTree, Space } from '@amg-webui/components/base'
+import { LazyTree } from '@amg-webui/data'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { LazyLoadContext, TreeNode } from '@amg-webui/utils/data-display/tree-types'
@@ -50,7 +51,7 @@ const propNodes = ref<TreeNode[]>([
 const codeLazy = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { LazyTree } from '@amg-webui/components/base'`
+    `import { LazyTree } from '@amg-webui/data'`
   ],
   script: [
     `const nodes = ref([/* root + branch */])`,
@@ -62,12 +63,12 @@ const codeLazy = demoSfc({
 })
 
 const codeProp = demoSfc({
-  imports: [`import { LazyTree } from '@amg-webui/components/base'`],
+  imports: [`import { LazyTree } from '@amg-webui/data'`],
   template: [`  <LazyTree :options="propNodes" :load="loadProp" />`]
 })
 
 const codeBrowse = demoSfc({
-  imports: [`import { LazyTree } from '@amg-webui/components/base'`],
+  imports: [`import { LazyTree } from '@amg-webui/data'`],
   template: [`  <LazyTree v-model="active" :options="nodes" :checkable="false" @load="onLoad" />`]
 })
 

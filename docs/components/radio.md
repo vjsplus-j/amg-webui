@@ -16,7 +16,7 @@
 
 import { ref } from 'vue'
 
-import { Radio, RadioGroup } from '@amg-webui/components/base'
+import { Radio, RadioGroup } from '@amg-webui/form'
 
 const val = ref('a')
 

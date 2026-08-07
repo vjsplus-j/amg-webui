@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import { LocaleKeys } from '@amg-webui/locale'
 import { hasLucideIcon } from '@amg-webui/icons'
-import Menu from '../../../packages/components/base/Menu/index.vue'
+import Menu from '../../../packages/components/core/Menu/index.vue'
 import { resolveComponentBadges } from '../../../example/nav-component-badges'
 
 describe('Menu compact badges', () => {

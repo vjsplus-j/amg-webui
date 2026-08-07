@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { InfiniteScroll, Button, Space } from '@amg-webui/components/base'
+import { InfiniteScroll } from '@amg-webui/data'
+import { Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -31,7 +32,7 @@ function reset() {
 }
 
 const codeBasic = demoSfc({
-  imports: [`import { InfiniteScroll } from '@amg-webui/components/base'`],
+  imports: [`import { InfiniteScroll } from '@amg-webui/data'`],
   template: [
     '  <InfiniteScroll :loading="loading" :finished="finished" @load="onLoad">',
     '    <div v-for="n in items" :key="n">{{ n }}</div>',
@@ -40,7 +41,8 @@ const codeBasic = demoSfc({
 })
 
 const codeReset = demoSfc({
-  imports: [`import { InfiniteScroll, Button } from '@amg-webui/components/base'`],
+  imports: [`import { InfiniteScroll } from '@amg-webui/data'
+import { Button } from '@amg-webui/core'`],
   template: ['  <Button @click="reset" />']
 })
 

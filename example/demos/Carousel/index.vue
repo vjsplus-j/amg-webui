@@ -3,7 +3,7 @@
  * Curated demo — Data wave1 Carousel
  */
 import { computed, ref } from 'vue'
-import { Carousel, Button, Space } from '@amg-webui/components/base'
+import { Carousel, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -38,7 +38,7 @@ const slides = computed(() => [
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { Carousel } from '@amg-webui/components/base'`
+    `import { Carousel } from '@amg-webui/core'`
   ],
   script: [
     `const slideIndex = ref(0)`,

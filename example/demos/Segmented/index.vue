@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Segmented, Space } from '@amg-webui/components/base'
+import { Segmented, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -19,12 +19,12 @@ const options = computed(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { Segmented } from '@amg-webui/components/base'`],
+  imports: [`import { Segmented } from '@amg-webui/core'`],
   template: ['  <Segmented v-model="value" :options="options" />']
 })
 
 const codeBlock = demoSfc({
-  imports: [`import { Segmented } from '@amg-webui/components/base'`],
+  imports: [`import { Segmented } from '@amg-webui/core'`],
   template: ['  <Segmented v-model="value" :options="options" block />']
 })
 

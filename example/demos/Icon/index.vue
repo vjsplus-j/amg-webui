@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { Icon, Slider, Switch } from '@amg-webui/components/base'
+import { Icon } from '@amg-webui/core'
+import { Slider, Switch } from '@amg-webui/form'
 import type { Size } from '@amg-webui/types'
 import {
   ICON_CATEGORY_IDS,
@@ -509,7 +510,7 @@ function onInteractiveClick() {
 }
 
 const codeBasic = demoSfc({
-  imports: [`import { Icon } from '@amg-webui/components/base'`],
+  imports: [`import { Icon } from '@amg-webui/core'`],
   template: [
     '  <Icon name="Settings" />',
     '  <Icon name="Search" size="lg" />',
@@ -528,7 +529,7 @@ const codeGrid = demoCode(
 
 const codeLibrary = demoCode(
   `import { listIcons } from '@amg-webui/icons'`,
-  `import { Icon } from '@amg-webui/components/base'`,
+  `import { Icon } from '@amg-webui/core'`,
   ``,
   `<Icon name="Search" />`,
   `listIcons({ query: 'user', category: 'account' })`

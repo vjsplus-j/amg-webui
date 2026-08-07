@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { Button, GbsAlarmModal } from "@amg-webui/components/base";
+import { Button } from '@amg-webui/core'
+import { GbsAlarmModal } from '@amg-webui/gb28181';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
 import PropsTable from "../../components/demo/PropsTable.vue";
@@ -16,7 +17,7 @@ const open = ref(true);
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { GbsAlarmModal } from '@amg-webui/components/base'`,
+    `import { GbsAlarmModal } from '@amg-webui/gb28181'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`,
   ],
   script: [

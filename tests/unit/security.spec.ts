@@ -1,4 +1,8 @@
-import { describe, expect, it, beforeEach } from 'vitest'
+import { describe, expect, it, beforeEach, beforeAll } from 'vitest'
+import { mount } from '@vue/test-utils'
+import { nextTick } from 'vue'
+import { LocaleService } from '@amg-webui/locale'
+import InputText from '@amg-webui/form/InputText/index.vue'
 import {
   SecurityService,
   applySanitizeInput,
@@ -8,8 +12,14 @@ import {
   sanitizeHtml,
   sanitizeModelStrings,
   sanitizeUrl,
-  unescapeHtml
+  unescapeHtml,
+  SECURE_FORM_KIT,
+  SECURE_INPUT_PRESET
 } from '@amg-webui/security'
+
+beforeAll(() => {
+  LocaleService.init()
+})
 
 describe('security layer', () => {
   beforeEach(() => {
@@ -84,7 +94,9 @@ describe('security layer', () => {
     expect(filterDangerousInput('<b>admin</b> javascript:void(0)')).not.toMatch(/javascript/i)
   })
 
-  it('applySanitizeInput respects blur vs input mode', () => {
+  it('applySanitizeInput respects blur vs input mode; undefined/false are off', () => {
+    expect(applySanitizeInput('<b>x</b>', undefined, 'blur')).toBe('<b>x</b>')
+    expect(applySanitizeInput('<b>x</b>', false, 'blur')).toBe('<b>x</b>')
     expect(applySanitizeInput('<b>x</b>', true, 'input')).toBe('<b>x</b>')
     expect(applySanitizeInput('<b>x</b>', true, 'blur')).not.toContain('<')
     expect(applySanitizeInput('<b>x</b>', 'input', 'input')).not.toContain('<')
@@ -133,14 +145,88 @@ describe('security layer', () => {
     }
   })
 
-  it('records alerts when stripping / blocking', () => {
+  it('records alerts when stripping / blocking without raw detail by default', () => {
     SecurityService.configure({ warnOnStrip: false })
     sanitizeUrl('javascript:1')
     sanitizeHtml('<script>x</script>')
     filterDangerousInput('<x>')
-    const kinds = SecurityService.getRecentAlerts().map((a) => a.kind)
+    const alerts = SecurityService.getRecentAlerts()
+    const kinds = alerts.map((a) => a.kind)
     expect(kinds).toContain('url-blocked')
     expect(kinds).toContain('html-stripped')
     expect(kinds).toContain('input-filtered')
+    for (const a of alerts) {
+      expect(a.detail).toBeUndefined()
+      expect(a.detailHash).toBeTruthy()
+      expect(typeof a.detailLength).toBe('number')
+      expect(a.matchedRule).toBeTruthy()
+    }
+  })
+
+  it('keeps truncated detail only when includeDetail is true', () => {
+    SecurityService.configure({ warnOnStrip: false, includeDetail: true })
+    sanitizeUrl('javascript:alert(1)')
+    const [alert] = SecurityService.getRecentAlerts()
+    expect(alert?.detail).toContain('javascript:')
+    expect(alert?.detailHash).toBeTruthy()
+    expect(alert?.matchedRule).toBe('blocked-protocol')
+  })
+})
+
+describe('security presets', () => {
+  it('exports opt-in secure presets without changing defaults', () => {
+    expect(SECURE_INPUT_PRESET.sanitizeInput).toBe('blur')
+    expect(SECURE_FORM_KIT.sanitizeOnSubmit).toBe(true)
+    expect(SECURE_FORM_KIT.sanitizeInput).toBe('blur')
+  })
+})
+
+describe('InputText sanitizeInput mount', () => {
+  it('filters dangerous input on blur when sanitizeInput is true', async () => {
+    const wrapper = mount(InputText, {
+      props: {
+        modelValue: '<b>x</b> javascript:void(0)',
+        sanitizeInput: true
+      }
+    })
+    await nextTick()
+
+    const input = wrapper.get('input')
+    await input.trigger('blur')
+    await nextTick()
+
+    expect(wrapper.emitted('update:modelValue')?.at(-1)).toEqual([
+      expect.not.stringContaining('<')
+    ])
+    expect(String(wrapper.emitted('update:modelValue')?.at(-1)?.[0])).not.toMatch(/javascript/i)
+  })
+
+  it('filters on input phase when sanitizeInput is input', async () => {
+    const wrapper = mount(InputText, {
+      props: {
+        modelValue: '',
+        sanitizeInput: 'input'
+      }
+    })
+    await nextTick()
+
+    const input = wrapper.get('input')
+    await input.setValue('<script>x</script>')
+    await nextTick()
+
+    expect(wrapper.emitted('update:modelValue')?.at(-1)?.[0]).not.toContain('<')
+  })
+
+  it('leaves value unchanged by default (sanitizeInput false)', async () => {
+    const wrapper = mount(InputText, {
+      props: {
+        modelValue: '<device-id>',
+        sanitizeInput: false
+      }
+    })
+    await nextTick()
+    await wrapper.get('input').trigger('blur')
+    await nextTick()
+    expect(wrapper.emitted('update:modelValue')).toBeUndefined()
   })
 })

@@ -1,4 +1,4 @@
-export default {
+﻿export default {
   'component.qrcode.title': 'Qrcode',
   'component.qrcode.lead': 'Qrcode 元件調試預覽',
   'component.qrcode.invalid': '{standard} 二維碼內容無效，請檢查字元、長度或糾錯級別',
@@ -479,6 +479,13 @@ export default {
   'component.preview.fullscreen': '全螢幕',
   'component.drag-canvas.empty': '拖曳物料到畫布',
   'component.prop-panel.empty': '選中節點以編輯屬性',
+  'component.prop-panel.field.parentNone': '無（根）',
+  'component.prop-panel.field.parentId': '父節點',
+  'component.prop-panel.field.y': 'Y',
+  'component.prop-panel.field.w': '寬度',
+  'component.prop-panel.field.nodeLabel': '節點名稱',
+  'component.prop-panel.field.x': 'X',
+  'component.prop-panel.field.h': '高度',
   'component.drag-wrapper.hint': '拖入子元件',
   'component.canvas-layer.show': '顯示',
   'component.canvas-layer.hide': '隱藏',
@@ -520,7 +527,7 @@ export default {
   'component.exception.offline.title': '網路已中斷',
   'component.exception.offline.lead': '請檢查網路連線後重試。',
   'component.datatable.title': '資料表格',
-  'component.datatable.lead': '虛擬捲動表格（預設開啟）',
+  'component.datatable.lead': '預設開啟固定行高虛擬滾動；視口高度與行高均參與虛擬計算',
   'component.datatable.showing': '第 {from}–{to} 筆，共 {total} 筆',
   'component.datatable.rowsPerPage': '每頁列數',
   'component.datatable.firstPage': '第一頁',

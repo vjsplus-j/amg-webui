@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { CodeEditor } from '@amg-webui/components/base'
+import { CodeEditor } from '@amg-webui/editor'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -15,7 +15,7 @@ const mountProps = computed(() => getSampleMountProps('CodeEditor'))
 
 const codeBasic = demoSfc({
   imports: [
-    `import { CodeEditor } from '@amg-webui/components/base'`,
+    `import { CodeEditor } from '@amg-webui/editor'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`
   ],
   script: [`const mountProps = getSampleMountProps('CodeEditor')`],

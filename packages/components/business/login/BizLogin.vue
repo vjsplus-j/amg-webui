@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, useAttrs } from 'vue'
-import { Button, InputText, Card, Message, Icon } from '@amg-webui/components/base'
+import { Button, Card, Icon } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'
+import { Message } from '@amg-webui/overlay'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { BizLoginEmits, BizLoginProps, BizLoginMode } from './types'

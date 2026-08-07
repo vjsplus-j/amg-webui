@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Button, Icon, Message } from '@amg-webui/components/base'
+import { Button, Icon } from '@amg-webui/core'
+import { Message } from '@amg-webui/overlay'
 import { ThemeService, designStyles, type DesignStyleName } from '@amg-webui/theme'
 import { useLocale } from '@amg-webui/hooks'
 import IntroPageShell from '../../components/intro/IntroPageShell.vue'

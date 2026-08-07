@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref, watch } from 'vue'
-import {
-  Alert, Button, Card, ConfigProvider, InputNumber, InputText,
-  Select, Switch, Tag, Textarea
-} from '@amg-webui/components/base'
+import { Alert, Button, Card, ConfigProvider, Tag } from '@amg-webui/core'
+import { InputNumber, InputText, Select, Switch, Textarea } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LOCALE_CODES, LOCALE_META, LocaleKeys, type LocaleCode } from '@amg-webui/locale'
 import { designStyles, type DesignStyleName } from '@amg-webui/theme'
 import type { Size } from '@amg-webui/types'
-import type { ConfigProviderDensity, ConfigProviderDirection } from '@amg-webui/components/base/ConfigProvider'
+import type { ConfigProviderDensity, ConfigProviderDirection } from '@amg-webui/core/ConfigProvider'
 import ExamplePageHero from '../../components/ExamplePageHero.vue'
 
 type Severity = 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info'

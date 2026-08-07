@@ -1,4 +1,4 @@
-export default {
+﻿export default {
   'component.qrcode.title': 'رمز QR (Qrcode)',
   'component.qrcode.lead': 'معاينة مكوّن Qrcode',
   'component.qrcode.invalid': 'بيانات رمز QR من نوع {standard} غير صالحة. تحقق من الأحرف أو الطول أو تصحيح الأخطاء.',
@@ -479,6 +479,13 @@ export default {
   'component.preview.fullscreen': 'ملء الشاشة',
   'component.drag-canvas.empty': 'اسحب المواد إلى اللوحة',
   'component.prop-panel.empty': 'حدّد عقدة لتحرير الخصائص',
+  'component.prop-panel.field.parentNone': 'لا شيء (جذر)',
+  'component.prop-panel.field.parentId': 'الأصل',
+  'component.prop-panel.field.y': 'Y',
+  'component.prop-panel.field.w': 'العرض',
+  'component.prop-panel.field.nodeLabel': 'اسم العقدة',
+  'component.prop-panel.field.x': 'X',
+  'component.prop-panel.field.h': 'الارتفاع',
   'component.drag-wrapper.hint': 'أفلت المكوّنات الفرعية هنا',
   'component.canvas-layer.show': 'إظهار',
   'component.canvas-layer.hide': 'إخفاء',
@@ -520,7 +527,7 @@ export default {
   'component.exception.offline.title': 'أنت غير متصل',
   'component.exception.offline.lead': 'تحقق من اتصال الشبكة وحاول مجددًا.',
   'component.datatable.title': 'جدول بيانات (DataTable)',
-  'component.datatable.lead': 'جدول بتمرير افتراضي (مفعّل افتراضيًا)',
+  'component.datatable.lead': 'Fixed-row virtual scroll on by default; viewport and row height drive the math',
   'component.datatable.showing': 'عرض {from}–{to} من {total}',
   'component.datatable.rowsPerPage': 'صفوف لكل صفحة',
   'component.datatable.firstPage': 'الصفحة الأولى',

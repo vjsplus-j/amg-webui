@@ -1,12 +1,12 @@
 import { nextTick } from "vue";
 import { mount } from "@vue/test-utils";
 import { afterEach, describe, expect, it } from "vitest";
-import DragMaterial from "../../../packages/components/base/DragMaterial/index.vue";
-import Loading from "../../../packages/components/base/Loading/index.vue";
-import OcrScan from "../../../packages/components/base/OcrScan/index.vue";
-import Rate from "../../../packages/components/base/Rate/index.vue";
-import StackLayout from "../../../packages/components/base/StackLayout/index.vue";
-import Waterfall from "../../../packages/components/base/Waterfall/index.vue";
+import DragMaterial from "../../../packages/lowcode/ui/DragMaterial/index.vue";
+import Loading from "../../../packages/components/core/Loading/index.vue";
+import OcrScan from "../../../packages/components/core/OcrScan/index.vue";
+import Rate from "../../../packages/components/form/Rate/index.vue";
+import StackLayout from "../../../packages/components/core/StackLayout/index.vue";
+import Waterfall from "../../../packages/components/data/Waterfall/index.vue";
 
 describe("lowest beta score-60 wave behavior", () => {
   afterEach(() => {

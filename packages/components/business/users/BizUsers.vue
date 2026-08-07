@@ -1,19 +1,9 @@
 <script setup lang="ts">
 import { computed, ref, watch, useAttrs } from 'vue'
-import {
-  Button,
-  InputText,
-  Select,
-  Dialog,
-  DataTable,
-  Card,
-  Icon,
-  Avatar,
-  Pagination,
-  Empty,
-  Message,
-  Tag
-} from '@amg-webui/components/base'
+import { Button, Card, Icon, Avatar, Empty, Tag } from '@amg-webui/core'
+import { InputText, Select } from '@amg-webui/form'
+import { Dialog, Message } from '@amg-webui/overlay'
+import { DataTable, Pagination } from '@amg-webui/data'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import type { BizUsersProps, BizUsersEmits, BizUser, BizUserCreate } from './types'
@@ -43,14 +33,18 @@ const { t, locale } = useLocale()
 const access = computed(() => ({ ...DEFAULT_BIZ_ACCESS, ...props.access }))
 
 const usingAdapter = computed(() => Boolean(props.adapter))
+const fallbackAdapter = {
+  async list() {
+    return { list: props.users ?? [], total: (props.users ?? []).length }
+  }
+}
 const asyncApi = useBizAsync<BizUser, BizUserCreate, BizUser>({
-  adapter: props.adapter ?? {
-    async list() {
-      return { list: props.users ?? [], total: (props.users ?? []).length }
-    }
-  },
+  adapter: () => props.adapter ?? fallbackAdapter,
   initialQuery: { page: props.page, pageSize: props.pageSize },
-  immediate: Boolean(props.adapter)
+  immediate: Boolean(props.adapter),
+  keywordDebounceMs: 300,
+  cache: { max: 32, ttlMs: 30_000 },
+  getItemId: (item) => item.id
 })
 
 const { keyword, role, filtered } = useUsersTable(() =>
@@ -83,6 +77,9 @@ const tableRows = computed(() => {
 })
 const tableLoading = computed(() => (usingAdapter.value ? asyncApi.loading.value : props.loading))
 const tableError = computed(() => (usingAdapter.value ? asyncApi.error.value : props.error))
+const mutationError = computed(() =>
+  usingAdapter.value ? asyncApi.mutation.value.error : null
+)
 const tableTotal = computed(() =>
   usingAdapter.value ? asyncApi.total.value : (props.total ?? filtered.value.length)
 )
@@ -260,14 +257,14 @@ async function save() {
   if (editing.value) {
     const next = { ...editing.value, ...payload }
     if (usingAdapter.value && props.adapter?.update) {
-      await props.adapter.update(next)
-      await asyncApi.load()
+      await asyncApi.update(next, { optimistic: next })
+      if (asyncApi.mutation.value.error) return
     }
     emit('update', next)
   } else {
     if (usingAdapter.value && props.adapter?.create) {
-      await props.adapter.create(payload)
-      await asyncApi.load()
+      await asyncApi.create(payload)
+      if (asyncApi.mutation.value.error) return
     }
     emit('create', payload)
   }
@@ -277,20 +274,38 @@ async function save() {
 async function onDelete(id: BizUser['id']) {
   if (!access.value.delete) return
   if (usingAdapter.value && props.adapter?.remove) {
-    await props.adapter.remove(id)
-    await asyncApi.load()
+    await asyncApi.remove(id, { optimistic: true })
+    if (asyncApi.mutation.value.error) return
   }
   emit('delete', id)
 }
 
 function onRefresh() {
-  if (usingAdapter.value) void asyncApi.load()
+  if (usingAdapter.value) {
+    asyncApi.invalidateCache()
+    void asyncApi.load({ force: true })
+  }
   emit('refresh')
 }
 
 function onPageChange(payload: { page: number; pageSize: number }) {
-  currentPage.value = payload.page
-  currentPageSize.value = payload.pageSize
+  if (usingAdapter.value) {
+    asyncApi.setPagination(payload)
+    return
+  }
+  const pageChanged = payload.page !== localPage.value
+  const sizeChanged = payload.pageSize !== localPageSize.value
+  if (!pageChanged && !sizeChanged) return
+  localPage.value = payload.page
+  localPageSize.value = payload.pageSize
+  if (pageChanged) emit('update:page', payload.page)
+  if (sizeChanged) emit('update:pageSize', payload.pageSize)
+  emit('page-change', {
+    page: payload.page,
+    pageSize: payload.pageSize,
+    keyword: keyword.value,
+    filters: { role: role.value }
+  })
 }
 </script>
 
@@ -329,6 +344,9 @@ function onPageChange(payload: { page: number; pageSize: number }) {
 
     <Message v-if="tableError" severity="danger" :closable="false">
       <slot name="error" :error="tableError">{{ tableError }}</slot>
+    </Message>
+    <Message v-if="mutationError" severity="danger" :closable="false">
+      <slot name="mutation-error" :error="mutationError">{{ mutationError }}</slot>
     </Message>
 
     <Card>

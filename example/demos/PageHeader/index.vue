@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { PageHeader, Button, Space } from '@amg-webui/components/base'
+import { PageHeader, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -13,7 +13,7 @@ const backLog = ref('')
 const withBack = ref(true)
 
 const codeBasic = demoSfc({
-  imports: [`import { PageHeader, Button } from '@amg-webui/components/base'`],
+  imports: [`import { PageHeader, Button } from '@amg-webui/core'`],
   template: [
     '  <PageHeader back :title="title" :subtitle="subtitle">',
     '    <template #extra><Button size="sm" /></template>',
@@ -22,7 +22,7 @@ const codeBasic = demoSfc({
 })
 
 const codePlain = demoSfc({
-  imports: [`import { PageHeader } from '@amg-webui/components/base'`],
+  imports: [`import { PageHeader } from '@amg-webui/core'`],
   template: ['  <PageHeader :title="title" />']
 })
 

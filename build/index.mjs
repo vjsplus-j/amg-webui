@@ -23,7 +23,7 @@ Modes:
   dts          Types only → dist/**/*.d.ts (no JS/CSS rebundle)
   skill        Optional Skill Runtime → dist/skill/
   theme        Theme runtime package → dist/theme/
-  runtime      telemetry/security/lowcode/icons/hooks/utils/locale/… → dist/
+  runtime      telemetry/security/lowcode/runtime(overlay)/icons/hooks/utils/locale/… → dist/
 `
 
 function runVite(configFile) {
@@ -62,7 +62,9 @@ switch (mode) {
     // 4) optional subpackages
     runVite('vite.skill.config.ts')
     runVite('vite.theme.config.ts')
-    // 5) refresh public export map (dist-only)
+    // 5) per-brand CSS (after emptyOutDir — must follow main lib)
+    runVite('vite.themes.config.ts')
+    // 6) refresh public export map (dist-only)
     runNode('scripts/generate-package-exports.mjs')
     break
   case 'on-demand':

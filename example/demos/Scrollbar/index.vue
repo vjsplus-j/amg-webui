@@ -3,7 +3,7 @@
  * Curated demo — Layout wave2 Scrollbar
  */
 import { computed } from 'vue'
-import { Scrollbar } from '@amg-webui/components/base'
+import { Scrollbar } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -17,7 +17,7 @@ const lines = Array.from({ length: 24 }, (_, i) => i + 1)
 const wideItems = Array.from({ length: 12 }, (_, i) => i + 1)
 
 const codeBasic = demoSfc({
-  imports: [`import { Scrollbar } from '@amg-webui/components/base'`],
+  imports: [`import { Scrollbar } from '@amg-webui/core'`],
   template: [
     '  <Scrollbar :max-height="40">',
     `    <p v-for="n in 24" :key="n">{{ t('example.doc.scrollbar.sample.line', { n }) }}</p>`,

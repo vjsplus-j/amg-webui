@@ -6,7 +6,7 @@ Segmented 组件 API（v0.1 子集）。
 
 ```vue
 <script setup>
-import { Segmented } from '@amg-webui/components/base'
+import { Segmented } from '@amg-webui/core'
 </script>
 
 <template>

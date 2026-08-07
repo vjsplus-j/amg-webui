@@ -3,8 +3,8 @@
  * Curated demo — Layout wave2 StackLayout
  */
 import { computed, ref } from 'vue'
-import { StackLayout, Button, Space } from '@amg-webui/components/base'
-import type { StackAlign, StackGap, StackJustify } from '@amg-webui/components/base/StackLayout'
+import { StackLayout, Button, Space } from '@amg-webui/core'
+import type { StackAlign, StackGap, StackJustify } from '@amg-webui/core/StackLayout'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -21,7 +21,7 @@ const justify = ref<StackJustify>('start')
 const wrap = ref(false)
 
 const codeStack = demoSfc({
-  imports: [`import { StackLayout } from '@amg-webui/components/base'`],
+  imports: [`import { StackLayout } from '@amg-webui/core'`],
   template: [
     '  <StackLayout direction="vertical" gap="md">',
     `    <div class="item">{{ t('example.doc.stackLayout.sample.a') }}</div>`,
@@ -32,7 +32,7 @@ const codeStack = demoSfc({
 })
 
 const codeAlign = demoSfc({
-  imports: [`import { StackLayout } from '@amg-webui/components/base'`],
+  imports: [`import { StackLayout } from '@amg-webui/core'`],
   template: [
     '  <StackLayout direction="horizontal" gap="md" align="center" justify="space-between" wrap>',
     '    <div class="item">A</div>',

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { BackTop } from '@amg-webui/components/base'
+import { BackTop } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -11,7 +11,7 @@ import '../../components/demo/curatedDemo.scss'
 const { t } = useLocale()
 
 const codeBasic = demoSfc({
-  imports: [`import { BackTop } from '@amg-webui/components/base'`],
+  imports: [`import { BackTop } from '@amg-webui/core'`],
   template: [
     '  <div class="scroll-box" data-backtop-demo>',
     '    <!-- long content -->',

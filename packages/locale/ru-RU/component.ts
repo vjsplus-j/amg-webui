@@ -1,4 +1,4 @@
-export default {
+﻿export default {
   'component.qrcode.title': 'Qrcode',
   'component.qrcode.lead': 'Превью компонента Qrcode',
   'component.qrcode.invalid': 'Недопустимые данные QR Code {standard}. Проверьте символы, длину или уровень коррекции.',
@@ -479,6 +479,13 @@ export default {
   'component.preview.fullscreen': 'Полный экран',
   'component.drag-canvas.empty': 'Перетащите материалы на холст',
   'component.prop-panel.empty': 'Выберите узел для редактирования',
+  'component.prop-panel.field.parentNone': 'Нет (корень)',
+  'component.prop-panel.field.parentId': 'Родитель',
+  'component.prop-panel.field.y': 'Y',
+  'component.prop-panel.field.w': 'Ширина',
+  'component.prop-panel.field.nodeLabel': 'Имя узла',
+  'component.prop-panel.field.x': 'X',
+  'component.prop-panel.field.h': 'Высота',
   'component.drag-wrapper.hint': 'Перетащите дочерние компоненты',
   'component.canvas-layer.show': 'Показать',
   'component.canvas-layer.hide': 'Скрыть',
@@ -520,7 +527,7 @@ export default {
   'component.exception.offline.title': 'Нет сети',
   'component.exception.offline.lead': 'Проверьте подключение и повторите попытку.',
   'component.datatable.title': 'Таблица данных',
-  'component.datatable.lead': 'Таблица с виртуальным скроллом (по умолчанию ВКЛ)',
+  'component.datatable.lead': 'Fixed-row virtual scroll on by default; viewport and row height drive the math',
   'component.datatable.showing': '{from}–{to} из {total}',
   'component.datatable.rowsPerPage': 'Строк на странице',
   'component.datatable.firstPage': 'Первая страница',

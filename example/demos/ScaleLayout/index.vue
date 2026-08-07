@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { ScaleLayout, Button, Space, Tag, Card, Statistic } from '@amg-webui/components/base'
+import { ScaleLayout, Button, Space, Tag, Card, Statistic } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
 import type { PropRow } from '../../components/demo/types'
-import type { ScaleLayoutFit } from '@amg-webui/components/base/ScaleLayout'
+import type { ScaleLayoutFit } from '@amg-webui/core/ScaleLayout'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -14,7 +14,7 @@ const scale = ref(1)
 const fit = ref<ScaleLayoutFit>('contain')
 
 const codeFit = demoSfc({
-  imports: [`import { ScaleLayout } from '@amg-webui/components/base'`],
+  imports: [`import { ScaleLayout } from '@amg-webui/core'`],
   template: [
     '  <div class="stage">',
     '    <ScaleLayout :width="1280" :height="720" fit="contain" fill>',
@@ -25,7 +25,7 @@ const codeFit = demoSfc({
 })
 
 const codeManual = demoSfc({
-  imports: [`import { ScaleLayout } from '@amg-webui/components/base'`],
+  imports: [`import { ScaleLayout } from '@amg-webui/core'`],
   template: [
     '  <div class="stage">',
     '    <ScaleLayout :scale="0.85" fill>',

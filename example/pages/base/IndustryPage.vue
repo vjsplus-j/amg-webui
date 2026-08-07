@@ -1,14 +1,8 @@
 <script setup lang="ts">
-import {
-  VideoPlayer,
-  SplitVideoWall,
-  PTZControl,
-  OnvifSearch,
-  GbsStatusCard,
-  VcrTimelinePlayer,
-  Simple404,
-  Tech404
-} from '@amg-webui/components/base'
+import { VideoPlayer, SplitVideoWall, PTZControl, VcrTimelinePlayer } from '@amg-webui/media'
+import { OnvifSearch } from '@amg-webui/onvif'
+import { GbsStatusCard } from '@amg-webui/gb28181'
+import { Simple404, Tech404 } from '@amg-webui/core'
 import ComponentGallery from '../../components/ComponentGallery.vue'
 </script>
 

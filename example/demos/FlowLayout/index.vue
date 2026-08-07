@@ -3,8 +3,8 @@
  * Curated demo — Layout wave2 FlowLayout
  */
 import { computed, ref } from 'vue'
-import { FlowLayout, Button, Space, Tag } from '@amg-webui/components/base'
-import type { FlowAlign, FlowGap, FlowJustify } from '@amg-webui/components/base/FlowLayout'
+import { FlowLayout, Button, Space, Tag } from '@amg-webui/core'
+import type { FlowAlign, FlowGap, FlowJustify } from '@amg-webui/core/FlowLayout'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -26,7 +26,7 @@ const chips = computed(() =>
 )
 
 const codeWrap = demoSfc({
-  imports: [`import { FlowLayout, Tag } from '@amg-webui/components/base'`],
+  imports: [`import { FlowLayout, Tag } from '@amg-webui/core'`],
   template: [
     '  <FlowLayout gap="md" class="host">',
     '    <Tag v-for="n in 8" :key="n" :label="`Tag ${n}`" />',
@@ -35,7 +35,7 @@ const codeWrap = demoSfc({
 })
 
 const codeAlign = demoSfc({
-  imports: [`import { FlowLayout } from '@amg-webui/components/base'`],
+  imports: [`import { FlowLayout } from '@amg-webui/core'`],
   template: [
     '  <FlowLayout gap="lg" justify="space-between" align="center" class="host">',
     '    <div class="item">A</div>',

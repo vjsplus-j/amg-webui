@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { Button, Card, InputText, Link, RichText } from '@amg-webui/components/base'
+import { Button, Card, Link } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'
+import { RichText } from '@amg-webui/editor'
 import { useLocale } from '@amg-webui/hooks'
 import {
   SecurityService,

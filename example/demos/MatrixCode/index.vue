@@ -1,16 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import {
-  Card,
-  CardGrid,
-  InputText,
-  MatrixCode,
-  Select,
-  Space,
-  Tag,
-  Typography
-} from '@amg-webui/components/base'
-import type { MatrixCodeFormat } from '@amg-webui/components/base/MatrixCode'
+import { Card, CardGrid, MatrixCode, Space, Tag, Typography } from '@amg-webui/core'
+import { InputText, Select } from '@amg-webui/form'
+import type { MatrixCodeFormat } from '@amg-webui/core/MatrixCode'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -125,7 +117,7 @@ const groups = computed(() => [
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { MatrixCode } from '@amg-webui/components/base'`
+    `import { MatrixCode } from '@amg-webui/core'`
   ],
   script: [
     `const format = ref('datamatrix')`,

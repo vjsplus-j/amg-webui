@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { SettingPanel, StatusTip } from '@amg-webui/components/base'
-import type { SettingGroup } from '@amg-webui/components/base/SettingPanel/types'
+import { SettingPanel } from '@amg-webui/form'
+import { StatusTip } from '@amg-webui/core'
+import type { SettingGroup } from '@amg-webui/form/SettingPanel/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LOCALE_META } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -43,7 +44,7 @@ const groups = computed<SettingGroup[]>(() => [
 ])
 
 const codeBasic = demoSfc({
-  imports: [`import { SettingPanel } from '@amg-webui/components/base'`],
+  imports: [`import { SettingPanel } from '@amg-webui/form'`],
   template: [
     '  <SettingPanel v-model="settings" :groups="groups" :default-value="defaults" @save="onSave" @reset="onReset" />'
   ]

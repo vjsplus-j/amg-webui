@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { LoadingTip, StatusTip, ProgressTip, Button } from '@amg-webui/components/base'
+import { LoadingTip, StatusTip, ProgressTip, Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -12,7 +12,7 @@ const { t } = useLocale()
 const pct = ref(42)
 
 const codeTips = demoSfc({
-  imports: [`import { LoadingTip, StatusTip, ProgressTip } from '@amg-webui/components/base'`],
+  imports: [`import { LoadingTip, StatusTip, ProgressTip } from '@amg-webui/core'`],
   template: [
     '  <LoadingTip />',
     '  <StatusTip severity="success" closable>{{ t(\'example.doc.statusTip.sample.ok\') }}</StatusTip>',

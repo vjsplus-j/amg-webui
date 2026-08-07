@@ -3,7 +3,8 @@
  * Curated demo — Feedback wave2 ConfirmDialog
  */
 import { computed, ref } from 'vue'
-import { ConfirmDialog, Button, Space } from '@amg-webui/components/base'
+import { ConfirmDialog } from '@amg-webui/overlay'
+import { Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -22,7 +23,8 @@ const lastAction = ref('')
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { ConfirmDialog, Button } from '@amg-webui/components/base'`
+    `import { ConfirmDialog } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`
   ],
   script: ['const open = ref(false)'],
   template: [

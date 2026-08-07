@@ -1,28 +1,15 @@
 import { onUnmounted, type Ref, watch } from 'vue'
-import { KEYS } from '@amg-webui/utils/keyboard'
+import {
+  createFocusTrap,
+  focusInitial as runtimeFocusInitial,
+  listFocusable
+} from '@amg-webui/runtime'
 import { getDocument } from '@amg-webui/utils/env'
-
-const FOCUSABLE =
-  'a[href],button:not([disabled]),textarea:not([disabled]),input:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"]),[role="menuitem"]:not([disabled])'
-
-function listFocusable(root: HTMLElement): HTMLElement[] {
-  const seen = new Set<HTMLElement>()
-  const out: HTMLElement[] = []
-  for (const el of root.querySelectorAll<HTMLElement>(FOCUSABLE)) {
-    if (seen.has(el)) continue
-    if (el.hasAttribute('disabled') || el.getAttribute('aria-disabled') === 'true') continue
-    // Include role=menuitem even when tabindex=-1 (roving tabindex menus)
-    if (el.tabIndex < 0 && el.getAttribute('role') !== 'menuitem') continue
-    if (el.offsetParent === null && getComputedStyle(el).position !== 'fixed') continue
-    seen.add(el)
-    out.push(el)
-  }
-  return out
-}
 
 /**
  * Trap Tab / Shift+Tab inside `container` while `active` is true.
  * Restores focus to the previously focused element on deactivate.
+ * Implementation delegates to `@amg-webui/runtime` focus-trap primitives.
  */
 export function useFocusTrap(
   container: Ref<HTMLElement | null | undefined>,
@@ -30,49 +17,27 @@ export function useFocusTrap(
   opts?: { restoreFocus?: boolean }
 ) {
   const restoreFocus = opts?.restoreFocus !== false
+  const trap = createFocusTrap()
   let previouslyFocused: HTMLElement | null = null
-
-  function onKeydown(e: KeyboardEvent) {
-    if (!active.value || e.key !== KEYS.TAB) return
-    const root = container.value
-    if (!root) return
-    const nodes = listFocusable(root)
-    if (!nodes.length) {
-      e.preventDefault()
-      return
-    }
-    const first = nodes[0]
-    const last = nodes[nodes.length - 1]
-    const current = document.activeElement as HTMLElement | null
-
-    if (e.shiftKey) {
-      if (current === first || !root.contains(current)) {
-        e.preventDefault()
-        last.focus()
-      }
-    } else if (current === last || !root.contains(current)) {
-      e.preventDefault()
-      first.focus()
-    }
-  }
 
   function activate() {
     const doc = getDocument()
-    if (!doc) return
+    const root = container.value
+    if (!doc || !root) return
     previouslyFocused = doc.activeElement as HTMLElement | null
-    doc.addEventListener('keydown', onKeydown, true)
+    trap.activate(root)
   }
 
   function deactivate() {
-    getDocument()?.removeEventListener('keydown', onKeydown, true)
+    trap.deactivate()
     if (restoreFocus) previouslyFocused?.focus?.()
     previouslyFocused = null
   }
 
   watch(
-    active,
-    (on) => {
-      if (on) activate()
+    [active, container],
+    ([on, el]) => {
+      if (on && el) activate()
       else deactivate()
     },
     { immediate: true }
@@ -82,3 +47,5 @@ export function useFocusTrap(
     deactivate()
   })
 }
+
+export { runtimeFocusInitial as focusInitial, listFocusable }

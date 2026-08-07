@@ -6,7 +6,7 @@ Tree 组件 API（v0.1 子集）。
 
 ```vue
 <script setup>
-import { Tree } from '@amg-webui/components/base'
+import { Tree } from '@amg-webui/data'
 </script>
 
 <template>

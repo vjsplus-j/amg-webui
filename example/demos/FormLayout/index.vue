@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { FormLayout, InputText, Button, Space } from '@amg-webui/components/base'
+import { FormLayout, Button, Space } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
 import type { PropRow } from '../../components/demo/types'
-import type { FormLayoutColumns, FormLayoutMode } from '@amg-webui/components/base/FormLayout'
+import type { FormLayoutColumns, FormLayoutMode } from '@amg-webui/core/FormLayout'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -21,7 +22,8 @@ const phone = ref('')
 const city = ref('')
 
 const codeBasic = demoSfc({
-  imports: [`import { FormLayout, InputText } from '@amg-webui/components/base'`],
+  imports: [`import { FormLayout } from '@amg-webui/core'
+import { InputText } from '@amg-webui/form'`],
   template: [
     '  <FormLayout layout="horizontal" :colon="true" columns="2">',
     '    <div class="vp-form-layout__row">',

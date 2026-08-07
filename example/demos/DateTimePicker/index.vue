@@ -3,7 +3,8 @@
  * Curated demo — Form wave1 DateTimePicker
  */
 import { computed, ref } from 'vue'
-import { DateTimePicker, Space } from '@amg-webui/components/base'
+import { DateTimePicker } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -19,7 +20,7 @@ const empty = ref<string | null>(null)
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { DateTimePicker } from '@amg-webui/components/base'`
+    `import { DateTimePicker } from '@amg-webui/form'`
   ],
   script: [`const datetime = ref('2026-07-30T14:30:00')`],
   template: [

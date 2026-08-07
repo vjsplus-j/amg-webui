@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import {
-  Button,
-  Card,
-  CopyText,
-  Tag,
-  TelemetryProvider
-} from '@amg-webui/components/base'
+import { Button, Card, CopyText, Tag, TelemetryProvider } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import {
   TelemetryService,

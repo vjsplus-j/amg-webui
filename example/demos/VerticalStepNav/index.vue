@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { VerticalStepNav } from '@amg-webui/components/base'
-import type { VerticalStepNavItem } from '@amg-webui/components/base/VerticalStepNav/types'
+import { VerticalStepNav } from '@amg-webui/core'
+import type { VerticalStepNavItem } from '@amg-webui/core/VerticalStepNav/types'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -20,7 +20,7 @@ const items = computed(
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { VerticalStepNav } from '@amg-webui/components/base'`
+    `import { VerticalStepNav } from '@amg-webui/core'`
   ],
   script: [`const selected = ref(0)`, `const items = [/* VerticalStepNavItem[] */]`],
   template: [`  <VerticalStepNav v-model="selected" :items="items" />`]

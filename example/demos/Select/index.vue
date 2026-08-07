@@ -3,7 +3,8 @@
  * Curated demo — Form wave1 Select
  */
 import { computed, ref } from 'vue'
-import { Select, Space } from '@amg-webui/components/base'
+import { Select } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -62,7 +63,7 @@ const largeOptions = computed(() =>
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { Select } from '@amg-webui/components/base'`
+    `import { Select } from '@amg-webui/form'`
   ],
   script: [
     `const value = ref('a')`,

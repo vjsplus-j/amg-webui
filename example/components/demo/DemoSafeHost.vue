@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent, onErrorCaptured, ref, shallowRef, watch, type Component } from 'vue'
-import { Alert } from '@amg-webui/components/base'
+import { Alert } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import { getSampleMountProps } from '../../demos/_shared/sampleMountProps'
@@ -21,13 +21,15 @@ const { t, locale } = useLocale()
 const errorMessage = shallowRef('')
 const hasError = ref(false)
 
-const modules = import.meta.glob('../../../packages/components/base/*/index.vue') as Record<
-  string,
-  () => Promise<{ default: Component }>
->
+const modules = import.meta.glob([
+  '../../../packages/components/{core,form,data,overlay,charts,editor,media,gb28181,onvif}/*/index.vue',
+  '../../../packages/lowcode/ui/*/index.vue'
+]) as Record<string, () => Promise<{ default: Component }>>
 
 function loadMount(name: string) {
-  const key = Object.keys(modules).find((p) => p.includes(`/base/${name}/`))
+  const key = Object.keys(modules).find(
+    (p) => p.includes(`/${name}/index.vue`) || p.endsWith(`/${name}/index.vue`)
+  )
   if (!key) return null
   return defineAsyncComponent(modules[key])
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Mask, Button } from '@amg-webui/components/base'
+import { Mask } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -13,7 +14,8 @@ const { t } = useLocale()
 const open = ref(false)
 
 const codeBasic = demoSfc({
-  imports: [`import { Mask, Button } from '@amg-webui/components/base'`],
+  imports: [`import { Mask } from '@amg-webui/overlay'
+import { Button } from '@amg-webui/core'`],
   template: [
     '  <Button @click="open = true">{{ t(\'example.doc.mask.sample.open\') }}</Button>',
     '  <Mask v-model:visible="open">',

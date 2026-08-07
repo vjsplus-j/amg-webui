@@ -6,7 +6,7 @@ Button 组件 API（v0.1 子集）。
 
 ```vue
 <script setup>
-import { Button } from '@amg-webui/components/base'
+import { Button } from '@amg-webui/core'
 </script>
 
 <template>

@@ -3,7 +3,7 @@
  * Curated demo — Nav wave1 ScrollNav
  */
 import { computed, ref } from 'vue'
-import { ScrollNav, Space } from '@amg-webui/components/base'
+import { ScrollNav, Space } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -50,7 +50,7 @@ const compactItems = computed<NavItem[]>(() =>
 const codeOverflow = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { ScrollNav } from '@amg-webui/components/base'`
+    `import { ScrollNav } from '@amg-webui/core'`
   ],
   script: [
     `const active = ref('tab1')`,

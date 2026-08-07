@@ -80,12 +80,52 @@ const exportsMap = {
   ),
 
   './components/base': subpath(
-    './dist/components/base/index.d.ts',
+    './dist/components/core/index.d.ts',
     './dist/es/components/base-barrel.js'
   ),
   './components/business': subpath(
     './dist/components/business/index.d.ts',
     './dist/es/components/business-barrel.js'
+  ),
+  './business': subpath(
+    './dist/components/business/index.d.ts',
+    './dist/es/components/business-barrel.js'
+  ),
+  './core': subpath(
+    './dist/components/core/index.d.ts',
+    './dist/es/components/core-barrel.js'
+  ),
+  './components/form': subpath(
+    './dist/components/form/index.d.ts',
+    './dist/es/components/form-barrel.js'
+  ),
+  './data': subpath(
+    './dist/components/data/index.d.ts',
+    './dist/es/components/data-barrel.js'
+  ),
+  './overlay': subpath(
+    './dist/components/overlay/index.d.ts',
+    './dist/es/components/overlay-barrel.js'
+  ),
+  './charts': subpath(
+    './dist/components/charts/index.d.ts',
+    './dist/es/components/charts-barrel.js'
+  ),
+  './editor': subpath(
+    './dist/components/editor/index.d.ts',
+    './dist/es/components/editor-barrel.js'
+  ),
+  './media': subpath(
+    './dist/components/media/index.d.ts',
+    './dist/es/components/media-barrel.js'
+  ),
+  './gb28181': subpath(
+    './dist/components/gb28181/index.d.ts',
+    './dist/es/components/gb28181-barrel.js'
+  ),
+  './onvif': subpath(
+    './dist/components/onvif/index.d.ts',
+    './dist/es/components/onvif-barrel.js'
   ),
 
   './themes/*': './dist/themes/*',
@@ -96,6 +136,7 @@ for (const pkgDir of [
   'telemetry',
   'security',
   'lowcode',
+  'runtime',
   'icons',
   'hooks',
   'utils',

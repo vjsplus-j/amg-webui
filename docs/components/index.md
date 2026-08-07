@@ -57,7 +57,7 @@
 A: 通用 / 展示关键子集已关闭；docs 本阶段薄 stub + FAQ 边界已齐。后续按深化计划分波推进。
 
 **Q: 能不能一口气做完全库？**  
-A: **不能。** 当前 catalog 约 **285** 是**目录库存**，不是成熟组件数，更不是 1.0。启发式评分 v2 以 **capability**（thin / form / interaction / composite）为主轴，深度 stub→ready 为副轴（`npm run score:maturity`）；`ready` 只表示该能力档基线。子集外仍按 experimental 管理。覆盖核对：`node scripts/check-coverage.mjs`。
+A: **不能。** 当前 catalog 约 **285** 是**目录库存**，不是成熟组件数，更不是 1.0。`npm run score:maturity` 产出的是**开发盘点**启发式（能力档 thin/form/interaction/composite + 深度 stub→ready），**不是**产品质量证书——静态信号（行数 / Props / 字符串 / composable 文件）不能证明键盘、多实例、竞态、SSR、泄漏、读屏、API 稳定或性能。`ready` 只表示该能力档启发式基线。子集外仍按 experimental 管理。覆盖核对：`node scripts/check-coverage.mjs`。
 
 **Q: 为什么 docs 没有每个组件的完整 FAQ？**  
 A: 本阶段明确将深度 Demo / FAQ 放在 example 调试壳；对外 docs 保证关键组件有可检索 API stub。完整 FAQ 列入后续阶段。
@@ -68,7 +68,7 @@ A: Telemetry 存在且**默认关闭**（[`TELEMETRY.md`](../TELEMETRY.md)）；
 **Q: 安全防护层 / 低代码 Schema 现状？**  
 A: 安全层见 [`SECURITY.md`](../SECURITY.md)（`@amg-webui/security`）；低代码见 [`LOWCODE.md`](../LOWCODE.md)（`@amg-webui/lowcode` + `SchemaRenderer`）。example：`lab/security` · `lab/lowcode`。
 **Q: Icon 能否与 Button / Link 同口径宣称「满分闭环」？**  
-A: 可以。Icon 已具备 `useIcon`、交互态（`interactive` / `@click`）、键盘与 a11y、curated demo + 薄 docs stub；成熟度评分与 Button / Link 同属满分档。
+A: Icon 已具备 `useIcon`、交互态、键盘与 a11y、curated demo + 薄 docs stub，可与 Button / Link 同档作为**可验收实现参照**。成熟度 JSON 的高分只是盘点信号，**不能**单独当作质量证书；闭环仍以类型检查、单测 / curated 行为与文档为准。
 
 **Q: Spin 与 Skeleton / Button loading 如何选型？**  
 A: Spin 用于区域 / 全屏遮罩加载；Skeleton 用于内容占位骨架；按钮内忙碌态用 `Button` 的 `loading`。Spin 尊重 `AnimationService` 总开关，且**不**走 Telemetry。

@@ -1,9 +1,16 @@
 /**
- * Score packages/components/base maturity → example/component-maturity.json
+ * Score mapped UI components maturity → example/component-maturity.json
  *
  * HONEST CONTRACT (v2):
- * - Directory / catalog count ≠ product maturity. ~280 folders is inventory, not 1.0 readiness.
+ * - Role: **dev inventory / triage** for authors (what is thin vs wired, where to deepen next).
+ * - Not a **product quality certificate**. Do not cite scores as ship / 1.0 / a11y / perf proof.
+ * - Directory / catalog count ≠ product maturity. ~280 folders is inventory, not readiness.
  * - Primary axis is **capability tier**, then depth level (stub/shell/beta/ready).
+ * - Scoring is static heuristics (line counts, prop counts, string/file presence:
+ *   useFormItem, useNativeInputAttrs, trackEmit, aria, composable dir, behavior test paths…).
+ * - Those signals cannot prove: correct keyboard UX, multi-instance isolation, async races,
+ *   SSR hydration safety, no memory leaks, screen-reader usability, API stability, or perf budgets.
+ * - Real quality still needs: vue-tsc, unit/e2e, consumer builds, manual a11y, profiling, release review.
  *
  * Capability tiers:
  *   thin         — native/slot wrapper or scaffold; missing form/interaction contracts
@@ -28,8 +35,12 @@ import {
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import {
+  allMappedComponentNames,
+  componentDirRel,
+} from "./component-package-map.mjs";
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const baseDir = resolve(root, "packages/components/base");
 
 const LEVELS = ["stub", "shell", "beta", "ready"];
 const CAPABILITIES = ["thin", "form", "interaction", "composite"];
@@ -138,7 +149,7 @@ function fileLines(path) {
 }
 
 function scoreOne(name) {
-  const dir = join(baseDir, name);
+  const dir = resolve(root, componentDirRel(name));
   const primaryVuePath = join(dir, "index.vue");
   const vueCandidates = readdirSync(dir)
     .filter((file) => file.endsWith(".vue"))
@@ -176,7 +187,8 @@ function scoreOne(name) {
       style + vue,
     );
   const hasBehaviorTest = new RegExp(
-    `components/base/${name}/index\\.vue`,
+    `components/(core|form|data|overlay|charts|editor|media|gb28181|onvif)/${name}/index\\.vue`,
+    `lowcode/ui/${name}/index\\.vue`,
   ).test(testSource.replaceAll("\\\\", "/"));
   const delegatesComponent =
     /import\s+\w+\s+from\s+['"]\.\.\/\w+\/index\.vue['"]/.test(vue);
@@ -440,10 +452,7 @@ function scoreOne(name) {
   };
 }
 
-const names = readdirSync(baseDir, { withFileTypes: true })
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name)
-  .sort();
+const names = allMappedComponentNames();
 
 const components = {};
 const summary = { stub: 0, shell: 0, beta: 0, ready: 0 };
@@ -470,8 +479,15 @@ const out = {
   generatedAt,
   /** Inventory size only — NOT a maturity or 1.0 claim */
   total: names.length,
+  /** What this JSON is for (and is not). */
+  role: "dev-inventory",
+  notACertificate: true,
   disclaimer:
-    "total is directory inventory. Maturity is by capability tier + depth level. Not 1.0-ready.",
+    "Dev inventory / triage only — not a product quality certificate. " +
+    "total is directory count. Scores are static heuristics (lines/props/string presence). " +
+    "They do not prove keyboard, multi-instance, async races, SSR hydration, leaks, " +
+    "screen reader, API stability, or performance. Capability tier + depth level help prioritize work; " +
+    "ready ≠ ship / 1.0.",
   summary,
   byCapability,
   capabilities: CAPABILITIES,
@@ -483,7 +499,7 @@ const out = {
 const outPath = resolve(root, "example/component-maturity.json");
 writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`);
 
-console.log("[score-component-maturity] capability-first (v2)");
+console.log("[score-component-maturity] capability-first (v2) — DEV INVENTORY, not quality proof");
 console.log("  inventory (directories):", out.total, "← not a maturity metric");
 console.log("  byCapability:", byCapability);
 console.log("  byDepth:", summary);
@@ -492,5 +508,5 @@ if (thinFormGaps.length) {
 }
 console.log("  out: example/component-maturity.json");
 console.log(
-  "  note: ready ≠ 1.0 ship; thin never reaches ready; form requires FormItem (+ native attrs for text controls)",
+  "  note: heuristic signals only; ready ≠ ship/1.0/a11y/perf; thin never ready; form needs FormItem (+ native attrs for text)",
 );

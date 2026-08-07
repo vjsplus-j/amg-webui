@@ -3,7 +3,8 @@
  * Curated demo — Form wave1 DatePicker
  */
 import { computed, ref } from 'vue'
-import { DatePicker, Space } from '@amg-webui/components/base'
+import { DatePicker } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -19,7 +20,7 @@ const empty = ref<string | null>(null)
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { DatePicker } from '@amg-webui/components/base'`
+    `import { DatePicker } from '@amg-webui/form'`
   ],
   script: [`const date = ref('2026-07-30')`],
   template: [

@@ -3,7 +3,7 @@
  * Curated demo — Layout wave2 EmbedLayout
  */
 import { computed, ref } from "vue";
-import { EmbedLayout, Button, Space } from "@amg-webui/components/base";
+import { EmbedLayout, Button, Space } from '@amg-webui/core';
 import { useLocale } from "@amg-webui/hooks";
 import { LocaleKeys } from "@amg-webui/locale";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
@@ -18,7 +18,7 @@ const fill = ref(false);
 const bordered = ref(true);
 
 const codeBasic = demoSfc({
-  imports: [`import { EmbedLayout } from '@amg-webui/components/base'`],
+  imports: [`import { EmbedLayout } from '@amg-webui/core'`],
   template: [
     '  <div class="embed-host">',
     '    <EmbedLayout aspect-ratio="16 / 9">',

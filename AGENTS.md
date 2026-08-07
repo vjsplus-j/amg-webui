@@ -54,6 +54,9 @@ example：`lab/lowcode`。与 Skill Pipeline（逻辑编排）分离。
 
 见 `.cursor/rules/vue3-amg-webui-structure.mdc` · [`README.md`](./README.md) · [`packages/README.md`](./packages/README.md) · [`example/README.md`](./example/README.md)。
 
+组件按包拆分：`@amg-webui/core|form|data|overlay`（foundation）· `charts|editor` · 行业 `media|gb28181|onvif`（opt-in）· `business`。  
+`@amg-webui/components/base` **仅再导出 core**。根 barrel **不**泄漏行业包。SSOT：`scripts/component-package-map.mjs` · 门禁：`npm run check:boundaries`。
+
 ## 视觉与布局规范（锁定）
 
 见 **`packages/theme/SPEC.md`**（布局/密度）与 **`packages/theme/TOKENS.md`**（全局视觉 · Token · 变量）。
@@ -83,7 +86,7 @@ Cursor：`vue3-amg-webui-design-specs.mdc` · `vue3-amg-webui-tokens.mdc`。
 
 0. **口号**：对标并超越 Element Plus —— 最强国产 WebUI；迭代走 `OVERTAKE_ELEMENT_PLUS.md` 独家赛道，禁止「EP 换皮」。
 1. 源码主战场是 `packages/`；**example 仅本地调试不上线**；**docs 才是对外文档站**；禁止再加 `src/` / 根级 `demo/` 遗留层；npm 发包只出 `dist/`。
-2. base ↔ business 隔离；business 只吃 base / hooks / theme / utils。
+2. base/foundation ↔ business 隔离；business 只吃 foundation / hooks / theme / utils。行业包（gb28181/onvif/media）opt-in，不得进入 core。
 3. 五大业务模块：`login` · `users` · `orders` · `content` · `settings`；biz 调试页在 `example/pages/biz/`。
 4. example 用 **vue-router**（禁止 `currentPage` 字符串导航）。
 5. 主题六套锁定于 `packages/theme`（designmd）。
@@ -93,7 +96,7 @@ Cursor：`vue3-amg-webui-design-specs.mdc` · `vue3-amg-webui-tokens.mdc`。
 9. 按 LIBRARY_PLAN 分期推进；不破坏分层、Token、`vp-`、**列表默认虚拟滚动**、Theme Studio 契约、**Telemetry 默认关闭**与 i18n 基线。
 10. 视觉：现代产品感优先，拒绝传统灰底厚框后台套路。
 11. **压测 / bug 复现只进 example**；docs 只保留简洁标准示例与 API。
-12. **完成必验**：改完 `packages/` / `example/` 必须先跑通检查再宣称完成（至少 `npx vue-tsc --noEmit`）；见 `.cursor/rules/vue3-amg-webui-verify-before-done.mdc`。
+12. **完成必验**：改完 `packages/` / `example/` 必须先跑通检查再宣称完成（至少 `npx vue-tsc --noEmit` + `npm run check:boundaries`）；见 `.cursor/rules/vue3-amg-webui-verify-before-done.mdc`。
 13. **Telemetry**：交互组件旁路 `trackEmit`；`telemetry` prop 默认 `undefined`（勿依赖 Vue Boolean 省略）；纯展示件不伪造事件。
 14. **example Demo 铺满**：`DemoBlock` / `DemoCode` / curated 演示铺满 `.ln-content` 内容列；禁止阅读栏 `max-width` 套在代码示例上、禁止 `DemoCode` 嵌套 `max-height`。见 `.cursor/rules/vue3-amg-webui-example-demo-layout.mdc`。
 15. **Skill Runtime**：保持 experimental、独立可选、UI 零硬依赖；只从 `amg-webui/skill` 或 `amg-webui/skill/core` 接入，根入口禁止导出。SR1 / SR2 当前仅为已验证最小基线，不得冒充 stable；SR3 built-ins / example 未实现前禁止占位式宣传。

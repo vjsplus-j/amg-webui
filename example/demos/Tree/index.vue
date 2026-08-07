@@ -3,7 +3,9 @@
  * Curated demo — Data wave1 Tree
  */
 import { computed, ref } from 'vue'
-import { Tree, Space, Switch } from '@amg-webui/components/base'
+import { Tree } from '@amg-webui/data'
+import { Space } from '@amg-webui/core'
+import { Switch } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -39,7 +41,7 @@ const lastEvent = ref('—')
 const codeCheckable = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { Tree } from '@amg-webui/components/base'`
+    `import { Tree } from '@amg-webui/data'`
   ],
   script: [
     `const checked = ref(['a1'])`,

@@ -1,12 +1,12 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { LocaleService } from '@amg-webui/locale'
-import InputNumber from '../../../packages/components/base/InputNumber/index.vue'
-import RangeInput from '../../../packages/components/base/RangeInput/index.vue'
-import TimePicker from '../../../packages/components/base/TimePicker/index.vue'
-import InputCaptcha from '../../../packages/components/base/InputCaptcha/index.vue'
-import SmsCode from '../../../packages/components/base/SmsCode/index.vue'
-import Transfer from '../../../packages/components/base/Transfer/index.vue'
+import InputNumber from '../../../packages/components/form/InputNumber/index.vue'
+import RangeInput from '../../../packages/components/form/RangeInput/index.vue'
+import TimePicker from '../../../packages/components/form/TimePicker/index.vue'
+import InputCaptcha from '../../../packages/components/form/InputCaptcha/index.vue'
+import SmsCode from '../../../packages/components/form/SmsCode/index.vue'
+import Transfer from '../../../packages/components/form/Transfer/index.vue'
 
 beforeAll(() => LocaleService.init())
 

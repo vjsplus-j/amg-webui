@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { MergeTable } from "@amg-webui/components/base";
+import { MergeTable } from '@amg-webui/data';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
 import PropsTable from "../../components/demo/PropsTable.vue";
@@ -16,7 +16,7 @@ const selected = ref<Record<string, unknown> | null>(null);
 
 const codeBasic = demoSfc({
   imports: [
-    `import { MergeTable } from '@amg-webui/components/base'`,
+    `import { MergeTable } from '@amg-webui/data'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`,
   ],
   script: [`const mountProps = getSampleMountProps('MergeTable')`],

@@ -3,7 +3,8 @@
  * Curated demo — Form wave1 Radio + RadioGroup
  */
 import { computed, ref } from 'vue'
-import { Radio, RadioGroup, Space } from '@amg-webui/components/base'
+import { Radio, RadioGroup } from '@amg-webui/form'
+import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -27,7 +28,7 @@ const langOptions = computed(() => [
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Radio } from '@amg-webui/components/base'`
+    `import { Radio } from '@amg-webui/form'`
   ],
   script: [`const solo = ref('a')`],
   template: [

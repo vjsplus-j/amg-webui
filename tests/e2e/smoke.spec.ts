@@ -1,21 +1,5 @@
-import { test, expect, type Page } from '@playwright/test'
-
-/**
- * Example shell gates most routes behind auth.
- * Login page is public — use mock credentials (admin / admin123).
- */
-async function loginAsAdmin(page: Page) {
-  await page.goto('/login')
-  await expect(page.locator('.biz-login')).toBeVisible()
-
-  const password = page.locator('.biz-login__form input[type="password"]')
-  await password.fill('admin123')
-
-  await page.locator('.biz-captcha__check').click()
-  await page.locator('.biz-login__submit').click()
-
-  await page.waitForURL(/\/dashboard/, { timeout: 15_000 })
-}
+import { test, expect } from '@playwright/test'
+import { loginAsAdmin } from './helpers'
 
 test.describe('example shell smoke', () => {
   test.beforeEach(async ({ page }) => {

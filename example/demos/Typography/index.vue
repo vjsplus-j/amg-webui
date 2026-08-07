@@ -3,7 +3,7 @@
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
 import { computed, ref } from 'vue'
-import { Typography } from '@amg-webui/components/base'
+import { Typography } from '@amg-webui/core'
 import type { Severity } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -42,7 +42,7 @@ const codeMotionLive = computed(() =>
 /* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
 
 const codeBasic = demoSfc({
-  imports: [`import { Typography } from '@amg-webui/components/base'`],
+  imports: [`import { Typography } from '@amg-webui/core'`],
   template: [
     `  <Typography type="h2">{{ t('example.doc.typography.sample.heading', { level: 'h2' }) }}</Typography>`,
     `  <Typography type="body">{{ t('example.doc.typography.sample.body') }}</Typography>`,

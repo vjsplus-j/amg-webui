@@ -3,7 +3,7 @@
  * Curated demo — Form wave1 FormTabs
  */
 import { computed, ref } from 'vue'
-import { FormTabs } from '@amg-webui/components/base'
+import { FormTabs } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -37,7 +37,7 @@ const fieldLabels = computed(() => ({
 const codeBasic = demoSfc({
   imports: [
     `import { ref, computed } from 'vue'`,
-    `import { FormTabs } from '@amg-webui/components/base'`
+    `import { FormTabs } from '@amg-webui/form'`
   ],
   script: [
     `const activeTab = ref('profile')`,

@@ -13,7 +13,7 @@ import {
   type BizRegisterPayload,
   type BizForgotPasswordPayload
 } from '@amg-webui/components/business'
-import { Button } from '@amg-webui/components/base'
+import { Button } from '@amg-webui/core'
 import { ToastService } from '@amg-webui/theme'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'

@@ -3,7 +3,7 @@
  * Curated demo — Display wave2 Calendar
  */
 import { computed, ref } from 'vue'
-import { Calendar } from '@amg-webui/components/base'
+import { Calendar } from '@amg-webui/data'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
@@ -19,7 +19,7 @@ const picked = ref<string | null>(null)
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Calendar } from '@amg-webui/components/base'`
+    `import { Calendar } from '@amg-webui/data'`
   ],
   script: [`const date = ref('2026-07-30')`],
   template: [`  <Calendar v-model="date" value-format="iso" />`]
