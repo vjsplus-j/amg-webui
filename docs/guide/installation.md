@@ -39,7 +39,7 @@ import 'amg-webui/dist/style.css'
 | `amg-webui/icons` · `hooks` · `utils` · `locale` | 运行时包 / 深路径（显式 exports） |
 | `amg-webui/components/base` | **legacy**：仅再导出 `core`（不含 Select/Form） |
 | `amg-webui/core` · `form` · `data` · `overlay` | Foundation barrels（推荐） |
-| `amg-webui/components/business` | 五大业务域套件 |
+| `amg-webui/components/business` | 六大业务域套件 |
 
 > 公共子路径一律指向编译产物；消费者不需要仓库 alias / 编译 Vue SFC / 处理内部 SCSS。
 

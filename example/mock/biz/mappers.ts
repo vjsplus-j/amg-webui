@@ -2,7 +2,8 @@ import type { BizUser } from '@amg-webui/components/business'
 import type { BizOrder } from '@amg-webui/components/business'
 import type { BizContentItem, BizContentStatus } from '@amg-webui/components/business'
 import type { BizSettingsProfile, BizAuthResult } from '@amg-webui/components/business'
-import type { UserDto, OrderDto, ContentDto, SettingsDto, AuthResultDto } from './dtos'
+import type { BizTenant, BizTenantPlan, BizTenantStatus } from '@amg-webui/components/business'
+import type { UserDto, OrderDto, ContentDto, SettingsDto, AuthResultDto, TenantDto } from './dtos'
 
 type OrderStatus = BizOrder['status']
 
@@ -134,5 +135,54 @@ export function mapAuthResultDto(dto: AuthResultDto): BizAuthResult {
     token: dto.access_token,
     userId: dto.user_id,
     displayName: dto.display_name
+  }
+}
+
+const TENANT_STATUS: Record<string, BizTenantStatus> = {
+  active: 'active',
+  trial: 'trial',
+  suspended: 'suspended',
+  archived: 'archived'
+}
+
+const TENANT_PLAN: Record<string, BizTenantPlan> = {
+  free: 'free',
+  pro: 'pro',
+  enterprise: 'enterprise'
+}
+
+export function mapTenantDto(dto: TenantDto): BizTenant {
+  return {
+    id: dto.tenant_id,
+    name: dto.display_name,
+    slug: dto.slug,
+    plan: TENANT_PLAN[dto.plan_code] ?? 'free',
+    status: TENANT_STATUS[dto.status_code] ?? 'trial',
+    members: dto.member_count,
+    region: dto.region_code,
+    domain: dto.custom_domain,
+    createdAt: dto.created_at,
+    usage: {
+      users: dto.usage_users ?? 0,
+      orders: dto.usage_orders ?? 0,
+      storageGb: dto.usage_storage_gb
+    }
+  }
+}
+
+export function mapTenantToDto(tenant: BizTenant): TenantDto {
+  return {
+    tenant_id: String(tenant.id),
+    display_name: tenant.name,
+    slug: tenant.slug,
+    plan_code: tenant.plan,
+    status_code: tenant.status,
+    member_count: tenant.members,
+    region_code: tenant.region,
+    custom_domain: tenant.domain,
+    created_at: tenant.createdAt,
+    usage_users: tenant.usage?.users,
+    usage_orders: tenant.usage?.orders,
+    usage_storage_gb: tenant.usage?.storageGb
   }
 }

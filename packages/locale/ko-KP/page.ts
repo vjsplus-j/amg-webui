@@ -21,6 +21,7 @@ export default {
   'page.biz.orders.title': 'Biz · Orders',
   'page.biz.content.title': 'Biz · Content',
   'page.biz.settings.title': 'Biz · Settings',
+  'page.biz.tenants.title': 'Biz · Tenants',
   'page.i18n.title': 'i18n Lab',
   'page.perf.massive.title': 'Perf · Massive data',
   'page.perf.highFrequency.title': 'Perf · High frequency',

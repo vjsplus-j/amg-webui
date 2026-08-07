@@ -1,6 +1,6 @@
 # 业务模块
 
-AMG-WebUI 提供 **五大业务域套件**（`packages/components/business/`），每个域为页面级复合模块，只依赖 base / hooks / theme / utils，**不**反向依赖其他 business 域。
+AMG-WebUI 提供 **六大业务域套件**（`packages/components/business/`），每个域为页面级复合模块，只依赖 base / hooks / theme / utils，**不**反向依赖其他 business 域。
 
 > 对外 docs：概览 + DoD 对照 + 导入路径。完整页面联调在本地 **example**（`meta.group: 'biz'`），不上线。
 
@@ -41,7 +41,7 @@ Host / example
 - **Adapter**：`MaybeRefOrGetter`；身份变化后自动清缓存并重载。
 - **受控模式**：无 adapter 时仍走 props + emits；分页 `@change` 只 emit 一次。
 
-## 五大模块
+## 六大模块
 
 | 域 | 路径 | 主导出 | APP_WORKFLOW 场景 |
 | --- | --- | --- | --- |
@@ -50,6 +50,7 @@ Host / example
 | **orders** | `business/orders` | `BizOrders` | 详情 / 退款 / 批量 |
 | **content** | `business/content` | `BizContent` | 分类树 / 编辑 / 草稿上下架 |
 | **settings** | `business/settings` | `BizSettings` | 主题 / 语言 / 安全 / 全局参数 |
+| **tenants** | `business/tenants` | `BizTenants` | 租户上下文切换 / 套餐状态 / 隔离用量 |
 
 ```ts
 import { BizLogin, BizUsers, useBizAsync } from '@amg-webui/components/business'
@@ -72,18 +73,20 @@ import 'amg-webui/style.css'
 | **content** | 分类 Tree + 列表；编辑 Dialog + `#editor` 槽；草稿 / 发布 / 归档；Pagination；标准插槽 | 已实现 |
 | **settings** | 主题切换；locale；改密（security）；全局 params（`v-model`/emit）；profile 由 props 注入（无写死资料） | 已实现 |
 | **login** | password + sms 双模；`#qr` / `#oauth` 槽；必填校验；模式切换 | 已实现 |
-| **五域共性** | 标准插槽（含 `loading`）+ `$attrs` 透传；loading / empty / error 可替换；列表域无 adapter 时客户端分页切片（`total` 未传） | 已实现 |
+| **tenants** | 当前租户上下文；套餐/状态筛选；进入租户；停用/启用；隔离用量详情；Pagination；标准插槽；可选 adapter | 已实现 |
+| **六域共性** | 标准插槽（含 `loading`）+ `$attrs` 透传；loading / empty / error 可替换；列表域无 adapter 时客户端分页切片（`total` 未传） | 已实现 |
 
 ### 验收清单（人工 / CI）
 
 1. `npx vue-tsc --noEmit` 通过。
-2. `npm run dev` → example 专区 **biz**：五页覆盖上表场景行。
-3. users / orders / content：分页可翻页；有 adapter 时列表来自 mock store。
+2. `npm run dev` → example 专区 **biz**：六页覆盖上表场景行。
+3. users / orders / content / tenants：分页可翻页；有 adapter 时列表来自 mock store。
 4. orders：打开详情 → 退款 / 批量取消可触发宿主事件或 adapter 副作用。
 5. content：树节点筛选列表；编辑 Dialog 默认或 `#editor` 槽可见；发布/归档可点。
 6. settings：切换 locale / 改密 / 改 params 有 emit；无硬编码账号资料。
 7. login：password ↔ sms；未填必填项不可提交；`#qr` / `#oauth` 可被宿主替换。
-8. 本文档表格与实现一致（改 API 须同步本页）。
+8. tenants：进入租户切换上下文；停用后不可进入；详情展示隔离用量。
+9. 本文档表格与实现一致（改 API 须同步本页）。
 
 ## example 联调
 
@@ -91,7 +94,7 @@ import 'amg-webui/style.css'
 npm run dev   # → meta.group: 'biz'
 ```
 
-Mock adapters：`example/mock/biz/adapters.ts`（users / orders / content 真分页 CRUD；settings / login 走 props+emits）。沙箱：`example/components/BusinessExampleSandbox.vue`。
+Mock adapters：`example/mock/biz/adapters.ts`（users / orders / content / tenants 真分页 CRUD；settings / login 走 props+emits）。沙箱：`example/components/BusinessExampleSandbox.vue`。
 
 **禁止**将 example 业务调试页部署为对外官网。
 

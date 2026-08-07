@@ -10,9 +10,10 @@ import type {
 import type { BizUser, BizUserCreate } from '@amg-webui/components/business'
 import type { BizOrder } from '@amg-webui/components/business'
 import type { BizContentItem, BizContentCreate } from '@amg-webui/components/business'
+import type { BizTenant, BizTenantCreate } from '@amg-webui/components/business'
 import type { TreeNode } from '@amg-webui/utils/data-display/tree-types'
 import { ref } from 'vue'
-import type { AuthResultDto, ContentDto, OrderDto, SettingsDto, UserDto } from './dtos'
+import type { AuthResultDto, ContentDto, OrderDto, SettingsDto, TenantDto, UserDto } from './dtos'
 import { assertNotAborted, simDelay } from './fetch-utils'
 import {
   mapAuthResultDto,
@@ -22,6 +23,8 @@ import {
   mapOrderToDto,
   mapSettingsDto,
   mapSettingsToDto,
+  mapTenantDto,
+  mapTenantToDto,
   mapUserDto,
   mapUserToDto
 } from './mappers'
@@ -400,6 +403,145 @@ export function createSettingsMockStore() {
   }
 
   return { adapter, dto }
+}
+
+const SEED_TENANTS: TenantDto[] = [
+  {
+    tenant_id: 't1',
+    display_name: 'AMG HQ',
+    slug: 'amg-hq',
+    plan_code: 'enterprise',
+    status_code: 'active',
+    member_count: 48,
+    region_code: 'cn-east',
+    custom_domain: 'hq.amg.io',
+    created_at: '2025-11-01',
+    usage_users: 42,
+    usage_orders: 1280,
+    usage_storage_gb: 86
+  },
+  {
+    tenant_id: 't2',
+    display_name: 'North Retail',
+    slug: 'north-retail',
+    plan_code: 'pro',
+    status_code: 'active',
+    member_count: 12,
+    region_code: 'cn-north',
+    created_at: '2026-01-18',
+    usage_users: 11,
+    usage_orders: 340,
+    usage_storage_gb: 12
+  },
+  {
+    tenant_id: 't3',
+    display_name: 'Pilot Lab',
+    slug: 'pilot-lab',
+    plan_code: 'free',
+    status_code: 'trial',
+    member_count: 3,
+    region_code: 'cn-south',
+    created_at: '2026-06-02',
+    usage_users: 3,
+    usage_orders: 18,
+    usage_storage_gb: 1
+  },
+  {
+    tenant_id: 't4',
+    display_name: 'Legacy Ops',
+    slug: 'legacy-ops',
+    plan_code: 'pro',
+    status_code: 'suspended',
+    member_count: 7,
+    region_code: 'cn-east',
+    created_at: '2024-08-20',
+    usage_users: 7,
+    usage_orders: 90,
+    usage_storage_gb: 4
+  },
+  {
+    tenant_id: 't5',
+    display_name: 'APAC Partner',
+    slug: 'apac-partner',
+    plan_code: 'enterprise',
+    status_code: 'active',
+    member_count: 26,
+    region_code: 'ap-southeast',
+    custom_domain: 'apac.partner.amg.io',
+    created_at: '2025-03-12',
+    usage_users: 24,
+    usage_orders: 620,
+    usage_storage_gb: 33
+  }
+]
+
+export function createTenantsMockStore() {
+  const dtos = ref<TenantDto[]>(SEED_TENANTS.map((d) => ({ ...d })))
+  const tenants = ref<BizTenant[]>(dtos.value.map(mapTenantDto))
+  const activeTenantId = ref<string | null>('t1')
+
+  const adapter: BizCrudAdapter<BizTenant, BizTenantCreate, BizTenant> = {
+    async list(query, options) {
+      await simDelay(120, options?.signal)
+      assertNotAborted(options?.signal)
+      let rows = dtos.value.map(mapTenantDto)
+      const kw = query.keyword?.trim().toLowerCase()
+      if (kw) {
+        rows = rows.filter(
+          (row) =>
+            row.name.toLowerCase().includes(kw) ||
+            row.slug.toLowerCase().includes(kw) ||
+            (row.domain?.toLowerCase().includes(kw) ?? false)
+        )
+      }
+      const status = query.filters?.status
+      if (status) rows = rows.filter((row) => row.status === status)
+      const plan = query.filters?.plan
+      if (plan) rows = rows.filter((row) => row.plan === plan)
+      return paginate(rows, query)
+    },
+    async get(id, options) {
+      await simDelay(80, options?.signal)
+      assertNotAborted(options?.signal)
+      const hit = dtos.value.find((row) => row.tenant_id === String(id))
+      return hit ? mapTenantDto(hit) : null
+    },
+    async create(payload, options) {
+      await simDelay(100, options?.signal)
+      assertNotAborted(options?.signal)
+      const domain: BizTenant = {
+        id: `t${Date.now()}`,
+        createdAt: new Date().toISOString().slice(0, 10),
+        usage: { users: 0, orders: 0, storageGb: 0 },
+        ...payload
+      }
+      const dto = mapTenantToDto(domain)
+      dtos.value = [...dtos.value, dto]
+      tenants.value = [...tenants.value, domain]
+      return domain
+    },
+    async update(payload, options) {
+      await simDelay(100, options?.signal)
+      assertNotAborted(options?.signal)
+      const dto = mapTenantToDto(payload)
+      dtos.value = dtos.value.map((row) => (row.tenant_id === dto.tenant_id ? dto : row))
+      tenants.value = tenants.value.map((row) => (row.id === payload.id ? payload : row))
+      return payload
+    },
+    async remove(id, options) {
+      await simDelay(100, options?.signal)
+      assertNotAborted(options?.signal)
+      dtos.value = dtos.value.filter((row) => row.tenant_id !== String(id))
+      tenants.value = tenants.value.filter((row) => row.id !== id)
+      if (activeTenantId.value === String(id)) activeTenantId.value = null
+    }
+  }
+
+  function setActive(id: string | null) {
+    activeTenantId.value = id
+  }
+
+  return { tenants, adapter, activeTenantId, setActive }
 }
 
 export function createAuthMockAdapter(): BizAuthAdapter {

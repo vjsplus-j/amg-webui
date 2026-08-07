@@ -20,7 +20,7 @@ npm run build:example   # 本地冒烟 → example-dist/（勿当官网）
 | overview | `/` · dashboard | 调试总览 |
 | intro | `/intro/quick-start` · design · theme · font · icon | 快速入门与设计/主题/字体/图标介绍 |
 | base | `/base/overview` · `/base/:name` | Ant 式组件目录 + DemoBlock |
-| biz | `/biz/users` … | 五大业务页 |
+| biz | `/biz/users` … `/biz/tenants` | 六大业务页 |
 | theme | `/theme` · `/theme/custom` | 官方主题（含 WeChat / Alipay）+ Theme Studio |
 | i18n | `/i18n` | 多语言专项 |
 | perf | `/perf/*` | 压测 / 泄漏（仅 example） |

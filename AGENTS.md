@@ -111,7 +111,7 @@ Cursor：`.cursor/rules/20-design-system.mdc`。
 0. **口号**：对标并超越 Element Plus —— 最强国产 WebUI；迭代走 `OVERTAKE_ELEMENT_PLUS.md` 独家赛道，禁止「EP 换皮」。
 1. 源码主战场是 `packages/`；**example 仅本地调试不上线**；**docs 才是对外文档站**；禁止再加 `src/` / 根级 `demo/` 遗留层；npm 发包只出 `dist/`。
 2. base/foundation ↔ business 隔离；business 只吃 foundation / hooks / theme / utils。行业包（gb28181/onvif/media）opt-in，不得进入 core。
-3. 五大业务模块：`login` · `users` · `orders` · `content` · `settings`；biz 调试页在 `example/pages/biz/`。
+3. 六大业务模块：`login` · `users` · `orders` · `content` · `settings` · `tenants`；biz 调试页在 `example/pages/biz/`。
 4. example 用 **vue-router**（禁止 `currentPage` 字符串导航）。
 5. 主题官方清单锁定于 `packages/theme`（designmd 六套 + WeChat / Alipay）。
 6. UI 只消费语义 token；用户可见文案只走 i18n key。**禁止硬编码**文案 / 色值 / 尺寸（含 example）：见 `.cursor/rules/20-design-system.mdc` · `21-i18n-copy.mdc` · `I18N.md` · `TOKENS.md`。

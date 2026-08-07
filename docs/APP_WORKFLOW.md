@@ -217,7 +217,7 @@ Chrome 视觉规格仍服从 `packages/theme/SPEC.md` §7（侧栏宽 / 顶栏�
 | 专区 | path 前缀 | name 示例 |
 |------|-----------|-----------|
 | base | `/base/overview` · `/base/:Name` | `base-overview` · `base-component`（tab id `base:Name`） |
-| biz | `/biz/login\|users\|orders\|content\|settings` | `biz-*` |
+| biz | `/biz/login\|users\|orders\|content\|settings\|tenants` | `biz-*` |
 | theme | `/theme` · `/theme/custom` | `theme` · `theme-custom` |
 | i18n | `/i18n` | `i18n` |
 | perf | `/perf/massive\|high-frequency\|lazy` | `perf-*` |

@@ -13,7 +13,7 @@ components/
 ├── media/         # @amg-webui/media（opt-in）
 ├── gb28181/       # @amg-webui/gb28181（opt-in）
 ├── onvif/         # @amg-webui/onvif（opt-in）
-├── business/      # @amg-webui/business — login · users · orders · content · settings
+├── business/      # @amg-webui/business — login · users · orders · content · settings · tenants
 ├── base/          # 废弃薄入口：仅 re-export core
 ├── internal/      # 包内共享实现（非公开 API）
 └── index.ts       # foundation + business；不含行业三包

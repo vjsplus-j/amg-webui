@@ -46,3 +46,18 @@ export interface AuthResultDto {
   user_id: string | number
   display_name?: string
 }
+
+export interface TenantDto {
+  tenant_id: string
+  display_name: string
+  slug: string
+  plan_code: string
+  status_code: string
+  member_count: number
+  region_code?: string
+  custom_domain?: string
+  created_at: string
+  usage_users?: number
+  usage_orders?: number
+  usage_storage_gb?: number
+}

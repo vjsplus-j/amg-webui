@@ -53,7 +53,7 @@ VUE3-AMG-WEBUI/
 ├── packages/                   # 组件库源码（无路由）
 │   ├── components/core|form|data|overlay/   # foundation
 │   ├── components/charts|editor|media|gb28181|onvif/
-│   ├── components/business/    # 五大业务域
+│   ├── components/business/    # 六大业务域
 │   ├── lowcode/                # Schema + Studio + ui/
 │   ├── runtime/ · telemetry/ · skill/ · security/
 │   ├── theme/ · hooks/ · locale/ · icons/ · utils/ · types/

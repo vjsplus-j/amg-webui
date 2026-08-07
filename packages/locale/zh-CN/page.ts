@@ -21,6 +21,7 @@ export default {
   'page.biz.orders.title': '业务 · 订单',
   'page.biz.content.title': '业务 · 内容',
   'page.biz.settings.title': '业务 · 设置',
+  'page.biz.tenants.title': '业务 · 多租户',
   'page.i18n.title': '国际化调试',
   'page.perf.massive.title': '性能 · 海量数据',
   'page.perf.highFrequency.title': '性能 · 高频交互',

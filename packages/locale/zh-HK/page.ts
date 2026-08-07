@@ -21,6 +21,7 @@ export default {
   'page.biz.orders.title': '業務 · 訂單',
   'page.biz.content.title': '業務 · 內容',
   'page.biz.settings.title': '業務 · 設定',
+  'page.biz.tenants.title': '業務 · 多租戶',
   'page.i18n.title': '國際化除錯',
   'page.perf.massive.title': '效能 · 海量資料',
   'page.perf.highFrequency.title': '效能 · 高頻互動',

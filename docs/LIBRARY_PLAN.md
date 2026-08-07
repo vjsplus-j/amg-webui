@@ -97,11 +97,11 @@
 
 权威契约：`docs/SKILL_RUNTIME.md`。
 
-### 2. 五大业务复合模块（锁定）
+### 2. 六大业务复合模块（锁定）
 
-`login` · `users` · `orders` · `content` · `settings`  
+`login` · `users` · `orders` · `content` · `settings` · `tenants`  
 
-每模块：完整表单 + 筛选 + 列表 + 详情弹窗；插槽 / render / 属性透传可定制。
+每模块：完整表单 + 筛选 + 列表 + 详情弹窗；插槽 / render / 属性透传可定制。`tenants` 另含租户上下文切换与隔离用量。
 
 ### 3. 多主题（硬性）
 

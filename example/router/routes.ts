@@ -254,6 +254,16 @@ export const routes: RouteRecordRaw[] = [
           icon: 'Settings'
         }
       },
+      {
+        path: 'biz/tenants',
+        name: 'biz-tenants',
+        component: () => import('../pages/biz/TenantsBizPage.vue'),
+        meta: {
+          titleKey: 'page.biz.tenants.title',
+          group: 'biz',
+          icon: 'Building2'
+        }
+      },
 
       {
         path: 'theme',

@@ -9,9 +9,11 @@ import {
   BizOrders,
   BizContent,
   BizSettings,
+  BizTenants,
   type BizLoginCredentials,
   type BizRegisterPayload,
-  type BizForgotPasswordPayload
+  type BizForgotPasswordPayload,
+  type BizTenant
 } from '@amg-webui/components/business'
 import { Button } from '@amg-webui/core'
 import { ToastService } from '@amg-webui/theme'
@@ -22,10 +24,11 @@ import {
   createOrdersMockStore,
   createContentMockStore,
   createSettingsMockStore,
+  createTenantsMockStore,
   createAuthMockAdapter
 } from '../mock/biz/adapters'
 
-defineProps<{ module: 'login' | 'users' | 'orders' | 'content' | 'settings' }>()
+defineProps<{ module: 'login' | 'users' | 'orders' | 'content' | 'settings' | 'tenants' }>()
 const router = useRouter()
 const { t } = useLocale()
 
@@ -36,7 +39,17 @@ const usersStore = createUsersMockStore()
 const ordersStore = createOrdersMockStore()
 const contentStore = createContentMockStore()
 const settingsStore = createSettingsMockStore()
+const tenantsStore = createTenantsMockStore()
+const activeTenantId = tenantsStore.activeTenantId
 const authAdapter = createAuthMockAdapter()
+
+function onTenantSwitch(tenant: BizTenant) {
+  tenantsStore.setActive(tenant.id)
+  ToastService.success({
+    summary: t('biz.tenants.switch'),
+    detail: `${tenant.name} · ${tenant.slug}`
+  })
+}
 
 function onLoginSubmit(payload: BizLoginCredentials) {
   ToastService.success({
@@ -176,6 +189,15 @@ function onParamsUpdate(p: Record<string, string | number | boolean>) {
     :page-size="4"
     @publish="contentStore.publish"
     @archive="contentStore.archive"
+  />
+
+  <BizTenants
+    v-else-if="module === 'tenants'"
+    :adapter="tenantsStore.adapter"
+    :active-tenant-id="activeTenantId"
+    :page-size="5"
+    @update:active-tenant-id="tenantsStore.setActive"
+    @switch="onTenantSwitch"
   />
 
   <BizSettings

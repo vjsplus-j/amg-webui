@@ -546,7 +546,8 @@ export const LocaleKeys = {
     usersTitle: 'biz.users.title',
     ordersTitle: 'biz.orders.title',
     contentTitle: 'biz.content.title',
-    settingsTitle: 'biz.settings.title'
+    settingsTitle: 'biz.settings.title',
+    tenantsTitle: 'biz.tenants.title'
   },
   nav: {
     overview: 'nav.overview',

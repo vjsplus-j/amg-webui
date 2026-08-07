@@ -15,7 +15,7 @@
 | `components/media` | `@amg-webui/media` | 音视频 / VCR / PTZ / 电视墙（**行业 opt-in**） |
 | `components/gb28181` | `@amg-webui/gb28181` | GB28181 套件（**行业 opt-in**） |
 | `components/onvif` | `@amg-webui/onvif` | ONVIF 套件（**行业 opt-in**） |
-| `components/business` | `@amg-webui/business` · `@amg-webui/components/business` | 五大域：`login` · `users` · `orders` · `content` · `settings` |
+| `components/business` | `@amg-webui/business` · `@amg-webui/components/business` | 六大域：`login` · `users` · `orders` · `content` · `settings` · `tenants` |
 | `components/base` | `@amg-webui/components/base` | **已废弃**：仅再导出 `@amg-webui/core`（硬切，无胖 shim） |
 | `telemetry` | `@amg-webui/telemetry` | Vp Telemetry 交互观测内核（**默认关闭**） |
 | `security` | `@amg-webui/security` | 安全防护层：消毒 / 协议拦截 / 表单过滤 |
