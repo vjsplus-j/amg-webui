@@ -21,7 +21,7 @@ export interface CanvasEditorContext {
   canRedo: ComputedRef<boolean>
   selectNode: (id: string, multi?: boolean) => void
   clearSelection: () => void
-  updateNode: (id: string, patch: Partial<CanvasNodeData>) => void
+  updateNode: (id: string, patch: Partial<CanvasNodeData>, recordHistory?: boolean) => void
   removeNodes: (ids: string[]) => void
   addNode: (node: CanvasNodeData) => void
   moveNodeLayer: (id: string, dir: 'up' | 'down' | 'top' | 'bottom') => void
@@ -32,6 +32,10 @@ export interface CanvasEditorContext {
   replaceNodes: (nodes: CanvasNodeData[], pushHistory?: boolean) => void
   /** Reparent node; no-ops when cycle would form. */
   setParent: (id: string, parentId: string | null) => void
+  beginTransaction: () => void
+  previewTransaction: (nodes: CanvasNodeData[]) => void
+  commitTransaction: () => void
+  cancelTransaction: () => void
 }
 
 export const CanvasEditorKey: InjectionKey<CanvasEditorContext> = Symbol('vp-canvas-editor')
@@ -95,18 +99,41 @@ export function provideCanvasEditor(options: ProvideCanvasEditorOptions): Canvas
     touch()
   }
 
-  const updateNode = (id: string, patch: Partial<CanvasNodeData>) => {
+  const updateNode = (id: string, patch: Partial<CanvasNodeData>, recordHistory = true) => {
     const idx = options.nodes.value.findIndex((n) => n.id === id)
     if (idx < 0) return
     const prev = options.nodes.value[idx]!
     const next: CanvasNodeData = {
       ...prev,
       ...patch,
-      // Always replace props object when patched so Vue + consumers see a new reference
       props: patch.props ? { ...patch.props } : prev.props
     }
     options.nodes.value = options.nodes.value.map((n, i) => (i === idx ? next : n))
+    if (recordHistory) pushHistory()
+    touch()
+  }
+
+  /** Begin a drag/resize transaction — only one undo on endTransaction. */
+  let txBaseline: CanvasNodeData[] | null = null
+  const beginTransaction = () => {
+    if (txBaseline) return
+    txBaseline = snapshot(options.nodes.value)
+  }
+  const previewTransaction = (nodes: CanvasNodeData[]) => {
+    if (!txBaseline) return
+    options.nodes.value = snapshot(nodes)
+    touch()
+  }
+  const commitTransaction = () => {
+    if (!txBaseline) return
+    txBaseline = null
     pushHistory()
+    touch()
+  }
+  const cancelTransaction = () => {
+    if (!txBaseline) return
+    options.nodes.value = snapshot(txBaseline)
+    txBaseline = null
     touch()
   }
 
@@ -208,7 +235,11 @@ export function provideCanvasEditor(options: ProvideCanvasEditorOptions): Canvas
     copySelection,
     pasteClipboard,
     replaceNodes,
-    setParent
+    setParent,
+    beginTransaction,
+    previewTransaction,
+    commitTransaction,
+    cancelTransaction
   }
 
   provide(CanvasEditorKey, ctx)

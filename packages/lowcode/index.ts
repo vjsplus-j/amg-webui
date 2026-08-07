@@ -47,6 +47,16 @@ export {
   type CanvasTreeNode
 } from './tree'
 
+/** Editor Core (Studio 0.1) */
+export * from './editor'
+/** Material Protocol v2 */
+export * from './materials'
+/** Page runtime / actions / data sources */
+export * from './runtime'
+/** Document persistence */
+export * from './document'
+/** Studio shell UI */
+export * from './studio'
+
 /** Vue UI cluster (SchemaRenderer / Canvas* / drag canvas) */
 export * from './ui'
-

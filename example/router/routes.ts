@@ -357,6 +357,16 @@ export const routes: RouteRecordRaw[] = [
           icon: 'LayoutTemplate'
         }
       },
+      {
+        path: 'lab/lowcode-studio',
+        name: 'lab-lowcode-studio',
+        component: () => import('../pages/lab/LowcodeStudioPage.vue'),
+        meta: {
+          titleKey: 'page.lab.lowcodeStudio.title',
+          group: 'lab',
+          icon: 'PanelsTopLeft'
+        }
+      },
 
       {
         path: 'dev/config',

@@ -1,17 +1,39 @@
-# 低代码 Schema 引擎
+# 低代码 Schema 引擎 · Lowcode Studio 0.1
 
-画布 Schema 注册表 · 校验 / 迁移 · Schema 渲染 · Vue 代码生成。
+画布 Schema 注册表 · 校验 / 迁移 · Schema 渲染 · Vue 代码生成 · **Studio 设计器（重建中）**。
 
 对标 [OVERTAKE_ELEMENT_PLUS.md](./OVERTAKE_ELEMENT_PLUS.md)「低代码 Schema」。包：[`packages/lowcode`](../packages/lowcode/README.md)。
 
 > **与 Skill Pipeline 分离**：本引擎负责 **UI 页面级** Schema；Skill Pipeline JSON v1 是逻辑编排（见 [SKILL_RUNTIME.md](./SKILL_RUNTIME.md)），禁止把代码字符串当协议。
 
+## 产品定位（Studio 0.1）
+
+**基于 AMG-WebUI 的企业后台页面可视化设计器**——不是万能低代码平台。
+
+黄金路径：用户管理 CRUD（搜索 + DataTable + Dialog + REST/Mock）。表单页 / Dashboard 仅作物料扩展位。
+
+**状态：Prototype → Studio 0.1 重建中。** 引擎零件可用；设计器产品未 Ready。禁止宣传「生产可用 / Lowcode ready」。
+
+组件冻结清单见 [`packages/lowcode/INVENTORY.md`](../packages/lowcode/INVENTORY.md)。
+
 ## Principles
 
-- **Schema 是数据**：`CanvasSchema` JSON，无函数 / 无 eval
-- **注册表驱动**：`type → Vue Component`，编辑器与预览共用
+- **Schema 是数据**：`CanvasSchema` / `LowcodeDocument` JSON，无函数 / 无 eval
+- **注册表驱动**：`type → Vue Component`，Editor / Preview / Runtime 共用同一 Renderer
+- **Command + Transaction**：一次拖动 / 一次 Resize = 一条 Undo
 - **代码生成输出源码文本**：`generateVueSfc` 不执行生成结果
-- **拖拽编排**：`DragMaterial` + `DragCanvas` + `PropPanel` + `CanvasIo` + `CanvasShortcut`（undo/redo/copy/paste 已接线）
+- Chrome（选中框、Handle、Guide）只包在 Editor 外层，不污染业务组件语义
+
+## 架构包
+
+| 路径 | 职责 |
+|------|------|
+| `packages/lowcode/editor/` | `createLowcodeEditor` · Command · Tree · Selection · Viewport |
+| `packages/lowcode/materials/` | Material Protocol v2 · 内置物料子集 |
+| `packages/lowcode/runtime/` | PageContext · ActionEngine · DataSource |
+| `packages/lowcode/document/` | LowcodeDocument · localStorage · migrate |
+| `packages/lowcode/studio/` | Studio 壳 Vue（Toolbar / Canvas / Inspector） |
+| `packages/lowcode/ui/` | 既有零件（KEEP/REFACTOR/DEPRECATE 见 INVENTORY） |
 
 ## Schema 形状
 
@@ -23,114 +45,55 @@ interface CanvasSchema {
 }
 ```
 
-`CanvasNodeData`：`id` · `type` · `label` · 几何（`x/y/w/h` 或 grid 字段）· `props` · `locked` / `hidden` / `zIndex` / `parentId`。
+`CanvasNodeData`：`id` · `type` · `label` · 几何 · `props` · `locked` / `hidden` / `zIndex` / `parentId`。
 
-## Quick start
+文档级：`LowcodeDocument` 含 `variables` · `dataSources` · `actions` · `theme` · 时间戳。
 
-```ts
-import {
-  createComponentRegistry,
-  validateCanvasSchema,
-  migrateCanvasSchema,
-  generateVueSfc
-} from '@amg-webui/lowcode'
-import { Button, Tag } from '@amg-webui/core'
-import { InputText } from '@amg-webui/form'
+## Binding / Event / Action
 
-const registry = createComponentRegistry([
-  {
-    type: 'Button',
-    label: 'Button',
-    component: Button,
-    group: 'general',
-    defaultProps: { label: 'OK' },
-    defaultSize: { w: 120, h: 40 },
-    propsSchema: {
-      label: { type: 'string', title: 'Label', required: true }
-    }
-  },
-  { type: 'InputText', label: 'Input', component: InputText, group: 'form' },
-  { type: 'Tag', label: 'Tag', component: Tag, group: 'general', defaultProps: { value: 'Tag' } }
-])
-
-const { ok, schema, issues } = validateCanvasSchema(raw, { registry, checkRequiredProps: true })
-const migrated = migrateCanvasSchema(raw)
-const sfc = generateVueSfc(schema, { registry, componentName: 'MyPage' })
-```
-
-## 渲染
-
-```vue
-<SchemaRenderer
-  :schema="schema"
-  :registry="registry"
-  render-mode="component"
-  :context="state"
-  :handlers="{ onSave }"
-/>
-```
-
-| 组件 | 角色 |
+| 机制 | 说明 |
 |------|------|
-| `SchemaRenderer` | Schema → 真实组件树（任意深度 `parentId`；或 chrome 占位） |
-| `SchemaNodeRenderer` | 递归节点；由 `SchemaRenderer` 提供 context / handlers |
-| `CanvasPreview` | 缩放预览；`renderMode: 'component' \| 'chrome'` |
-| `DragCanvas` | 放置面；`registry` + `renderMode: component` 时 **WYSIWYG** 真组件 |
-| `DragMaterial` | 物料面板（`registry.toMaterials()`） |
-| `PropPanel` | 选中节点属性；传入 `registry` 时读取 `propsSchema` |
-| `CanvasIo` | JSON 导入导出；导入经 `validateCanvasSchema` |
-| `CanvasShortcut` | 键盘：复制 / 粘贴 / 撤销 / 重做 / 删除（输入框内不抢快捷键） |
-
-### Binding / Event（运行时 ↔ Codegen 同语义）
-
-节点 `props` 保留键：
-
-| Key | 含义 |
-|-----|------|
-| `__bindings` | `Record<prop, pathExpr>` — 路径白名单：`form.name` / `count`（无 eval） |
-| `__events` | `Record<event, handlerName>` — 映射到 `handlers` / Codegen stub |
-
-```ts
-props: {
-  __bindings: { modelValue: 'form.title' }, // → v-model / 运行时读写 context
-  __events: { click: 'onSave' }             // → @click="onSave" / handlers.onSave
-}
-```
-
-- **运行时**：`SchemaRenderer` 的 `context` + `handlers`；`modelValue` 绑定写回 context；`nodeEvent` 旁路上报。
-- **Codegen**：同一键输出 `v-model` / `@event` 与 handler stubs。
-- **禁止**：`eval` / `new Function` / 括号下标 / 运算符表达式。
-
-## API（`@amg-webui/lowcode`）
-
-| API | 作用 |
-|-----|------|
-| `createComponentRegistry` | 注册 / 查询 / `toMaterials()`；`onConflict: throw\|skip\|replace` |
-| `validateCanvasSchema` | 严格结构 + 图完整性 + props/binding/event + 限额 |
-| `migrateCanvasSchema` | 旧版 → 当前 `CANVAS_SCHEMA_VERSION` |
-| `LOWCODE_LIMITS` | 默认 maxNodes / maxDepth / maxSchemaChars / 坐标尺寸 |
-| `resolveNodeRender` | `type` → `{ component, props, meta }`（剥离 meta 键） |
-| `resolveRuntimeRender` | 绑定 context + 映射 events（白名单路径） |
-| `isSafePathExpr` / `getByPath` / `setByPath` | Binding 路径工具 |
-| `generateVueSfc` / `generateVueTemplate` | Schema → Vue 源码字符串 |
+| `__bindings` | `Record<prop, pathExpr>` — 白名单路径，无 eval |
+| `__events` | 映射到 Action 链（`SetState` / `CallApi` / …） |
+| PageContext | `{ page, state, form, data, route, user, env }` |
 
 ## example
 
-本地调试：`lab/lowcode`（`example/pages/lab/LowcodeLabPage.vue`）— **不上线**。
+| 路由 | 角色 |
+|------|------|
+| `lab/lowcode-studio` | **Studio 0.1 主入口**（全屏设计器）— 不上线 |
+| `lab/lowcode` | 零件调试 Lab — 不上线 |
 
-## 诚实边界（当前交付）
+## 19 步验收（LC-012）
 
-**定位：MVP 骨架，不是生产闭环。** lab 物料为抽样控件，非全量 base 目录自动接入。
+缺一条不得写「Lowcode ready」：
 
-已交付：注册表（冲突策略默认 `throw`）· **严格校验**（重复 id / parent / 循环 / 尺寸坐标 / props 类型与枚举 / Binding·Event·Handler / 节点数·深度·体积）· Schema 任意深度递归 · `__bindings`/`__events` 运行时与 Codegen 对齐 · `PropPanel` 键冲突修复（编辑实时刷新）· WYSIWYG / 迁移 / undo·redo / SFC 草图。
+1. 创建空白页面  
+2. 拖 Container  
+3. 拖 Form  
+4. 拖 InputText  
+5. 修改 label  
+6. 绑定 `state.keyword`  
+7. 添加 Button  
+8. click → call queryUsers  
+9. 拖 DataTable  
+10. value → `data.queryUsers.list`  
+11. 点击 Preview  
+12. 页面真实工作  
+13. Save  
+14. Refresh Browser  
+15. 页面恢复  
+16. Export JSON  
+17. Import JSON  
+18. Generate Vue  
+19. Generated Vue 可编译  
 
-未交付（后续，勿宣传为已发货）：
+## DoD（Studio Ready）
 
-- 完整 per-component JSON Schema 目录自动生成 / `unplugin-amg-webui`
-- 文档站拖拽器上线；全量物料一键注册
-- 对齐磁吸 / 多页 Schema / 可视化数据源绑定 UI
-- 深嵌套拖入体验（drop-into-container 命中区）仍粗
-- Codegen 仍是布局草图（无 slots / 完整响应式系统）
-- 表达式仅支持白名单路径，不支持任意 JS
-- 生成结果可部署性 / 热更新闭环未交付
-- `CanvasPreview` / `CanvasNode` 编辑态仍用静态 `resolveNodeRender`（不跑 Binding；预览以 `SchemaRenderer` 为准）
+Engine · Interaction · Runtime · Persistence · Production · Test 六维全过。见落地计划。
+
+## 诚实边界
+
+**当前：Studio 0.1 重建交付中。** 产品成熟度按设计器标准计，不等于引擎零件分。
+
+未交付（勿宣传）：云端版本库、协作、GraphQL/WS、设备管理/Dashboard 完整模板、AI 生成页、文档站拖拽器上线、全量物料自动目录。

@@ -1,42 +1,35 @@
-# Low-code Schema 引擎
+# Low-code Schema 引擎 · Studio 0.1
 
-画布 Schema 注册表 · 校验 / 迁移 · Schema → Vue 代码生成。配合 `SchemaRenderer` / `CanvasPreview` / `DragCanvas` 使用。
+画布 Schema 注册表 · 校验 / 迁移 · Schema → Vue 代码生成 · **Studio 设计器（重建中）**。
 
-完整契约见 [`docs/LOWCODE.md`](../../docs/LOWCODE.md) · 对标 [`docs/OVERTAKE_ELEMENT_PLUS.md`](../../docs/OVERTAKE_ELEMENT_PLUS.md)「低代码 Schema」。
+完整契约见 [`docs/LOWCODE.md`](../../docs/LOWCODE.md)。组件冻结清单见 [`INVENTORY.md`](./INVENTORY.md)。
 
 ## Principles
 
-- **Schema 是数据**：`CanvasSchema` JSON，无函数 / 无 eval
-- **注册表驱动渲染**：`type → Vue Component`，预览与编辑共用
-- **代码生成是源码文本**：`generateVueSfc` 输出 SFC 字符串，不执行
-- **与 Skill Pipeline 分离**：UI 低代码 ≠ Skill Pipeline JSON（逻辑编排另见 `SKILL_RUNTIME.md`）
+- **Schema 是数据**：无函数 / 无 eval
+- **Editor / Preview / Runtime 同一 Renderer**
+- **Command + Transaction**：一次拖动 = 一条 Undo
+- **与 Skill Pipeline 分离**
+
+## Packages
+
+| Path | Role |
+|------|------|
+| `editor/` | `createLowcodeEditor` · Command · Tree · Viewport · Snap |
+| `materials/` | Material Protocol v2 · `createStudioRegistry` |
+| `runtime/` | PageContext · ActionEngine · DataSource |
+| `document/` | `LowcodeDocument` · localStorage · user template |
+| `studio/` | `StudioShell` / `EditorCanvas` / `StudioInspector` |
+| `ui/` | Legacy parts (KEEP / REFACTOR / DEPRECATE) |
 
 ## Quick start
 
 ```ts
-import { createComponentRegistry, validateCanvasSchema, generateVueSfc } from '@amg-webui/lowcode'
-import { Button } from '@amg-webui/core'
-import { InputText } from '@amg-webui/form'
-
-const registry = createComponentRegistry([
-  { type: 'Button', label: 'Button', component: Button, defaultProps: { label: 'OK' } },
-  { type: 'InputText', label: 'Input', component: InputText, group: 'form' }
-])
-
-const { ok, schema, issues } = validateCanvasSchema(rawJson, { registry })
-const sfc = generateVueSfc(schema, { registry })
+import { createLowcodeEditor, createStudioRegistry, StudioShell } from '@amg-webui/lowcode'
 ```
 
-```vue
-<SchemaRenderer :schema="schema" :registry="registry" />
-<CanvasPreview :nodes="schema.nodes" :registry="registry" render-mode="component" />
-```
+example：`lab/lowcode-studio`（主入口）· `lab/lowcode`（零件 Lab）。
 
-## Package boundary
+## Honesty
 
-- Alias：`@amg-webui/lowcode` · 发包子路径 `amg-webui/lowcode`
-- 根入口可再导出；**不**进入 `skill/core`
-- UI 组件（`SchemaRenderer` / `SchemaNodeRenderer`）在 `packages/lowcode/ui/SchemaRenderer`
-- Binding / Event：`__bindings` + `__events` 由 `resolveRuntimeRender` 与 `generateVueSfc` 共用 `splitMetaProps`；表达式仅白名单路径
-- Registry 默认冲突策略 `throw`；校验默认启用限额与图完整性检查
-- **诚实口径**：当前是 MVP 骨架，不是生产闭环（见 `docs/LOWCODE.md`）
+Studio 0.1 重建中。LC-012 19 步验收未全部人工签核前，禁止宣传 Ready / 生产可用。
