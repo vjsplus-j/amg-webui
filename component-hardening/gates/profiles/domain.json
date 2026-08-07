@@ -1,0 +1,23 @@
+{
+  "id": "domain",
+  "gates": {
+    "api-props": "mandatory",
+    "api-emits": "mandatory",
+    "api-slots": "mandatory",
+    "api-docs": "mandatory",
+    "package": "mandatory",
+    "ssr": "mandatory",
+    "cleanup": "mandatory",
+    "tokens": "mandatory",
+    "i18n": "mandatory",
+    "visual": "optional",
+    "a11y": "optional",
+    "keyboard": "optional",
+    "perf": "na",
+    "theme": "optional",
+    "rtl": "optional",
+    "adapter": "mandatory",
+    "mock": "mandatory",
+    "no-backend-dto": "mandatory"
+  }
+}

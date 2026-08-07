@@ -52,7 +52,7 @@ const titleText = computed(() => props.title ?? t('component.table-export.title'
 </script>
 
 <template>
-  <div :class="['vp-table-export', 'vp-table-export__panel', { 'vp-table-export--disabled': disabled }, props.class]" :style="style">
+  <div role="region" aria-label="TableExport" :class="['vp-table-export', 'vp-table-export__panel', { 'vp-table-export--disabled': disabled }, props.class]" :style="style">
     <div class="vp-table-export__toolbar">
       <strong class="vp-table-export__heading">{{ titleText }}</strong>
       <input v-model="keyword" class="vp-table-export__filter" type="search" :placeholder="t('common.search')" />

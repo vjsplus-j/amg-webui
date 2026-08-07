@@ -20,7 +20,7 @@ import {
   saveDocumentLocal,
   type LowcodeDocument
 } from '../document'
-import { generateVueSfc } from '../codegen'
+import { generateVueSfc, assertGeneratedSfcShape } from '../codegen'
 import SchemaRenderer from '../ui/SchemaRenderer/index.vue'
 import EditorCanvas from './EditorCanvas.vue'
 import StudioInspector from './StudioInspector.vue'
@@ -89,16 +89,58 @@ const zoomPct = computed(() => Math.round(editor.viewport.zoom.value * 100))
 
 function syncDocToEditor(next: LowcodeDocument) {
   doc.value = next
+  breakpoint.value = next.page.breakpoint ?? 'pc'
   editor.document.mode.value = next.page.mode
   editor.document.replaceAll(next.nodes)
-  // Reset history baseline without command noise
   editor.selection.clear()
   runtime.dataSources.value = [...next.dataSources]
   for (const ds of next.dataSources) {
     runtime.registerDataSource(ds)
   }
-  Object.assign(runtime.context.state, next.variables)
-  // Load actions into handler map via handlersFromActions
+  Object.assign(runtime.context.state, {
+    keyword: '',
+    createOpen: false,
+    ...next.variables
+  })
+}
+
+function setBreakpoint(bp: 'pc' | 'tablet' | 'mobile') {
+  breakpoint.value = bp
+  doc.value = {
+    ...doc.value,
+    page: { ...doc.value.page, breakpoint: bp }
+  }
+  // Viewport width hint for design surface
+  const widths = { pc: 1, tablet: 0.85, mobile: 0.55 }
+  editor.viewport.setZoom(widths[bp])
+}
+
+function onActionsUpdate(actions: LowcodeDocument['actions']) {
+  doc.value = { ...doc.value, actions }
+}
+
+function onDataSourcesUpdate(dataSources: LowcodeDocument['dataSources']) {
+  doc.value = { ...doc.value, dataSources }
+  for (const ds of dataSources) runtime.registerDataSource(ds)
+}
+
+function generateCode() {
+  const schema = documentToSchema({
+    ...doc.value,
+    nodes: editor.nodes.value.map((n) => ({ ...n, props: { ...n.props } }))
+  })
+  codegenText.value = generateVueSfc(schema, {
+    registry,
+    componentName: 'GeneratedPage',
+    actions: doc.value.actions
+  })
+  const check = assertGeneratedSfcShape(codegenText.value)
+  toast.value = check.ok
+    ? t('lowcode.studio.codegenOk')
+    : t('lowcode.studio.codegenFail')
+  window.setTimeout(() => {
+    toast.value = ''
+  }, 2000)
 }
 
 function loadTemplate() {
@@ -174,17 +216,6 @@ function onImportChange(e: Event) {
   input.value = ''
 }
 
-function generateCode() {
-  const schema = documentToSchema({
-    ...doc.value,
-    nodes: editor.nodes.value.map((n) => ({ ...n, props: { ...n.props } }))
-  })
-  codegenText.value = generateVueSfc(schema, {
-    registry,
-    componentName: 'GeneratedPage'
-  })
-}
-
 function onMaterialDragStart(e: DragEvent, m: LowcodeMaterial) {
   if (!e.dataTransfer) return
   e.dataTransfer.setData('application/vp-material-type', m.type)
@@ -248,13 +279,34 @@ const fileInput = ref<HTMLInputElement | null>(null)
           :label="t('lowcode.studio.breakpoint.pc')"
           :severity="breakpoint === 'pc' ? 'primary' : 'default'"
           size="sm"
-          @click="breakpoint = 'pc'"
+          @click="setBreakpoint('pc')"
         />
         <Button
           :label="t('lowcode.studio.breakpoint.tablet')"
           :severity="breakpoint === 'tablet' ? 'primary' : 'default'"
           size="sm"
-          @click="breakpoint = 'tablet'"
+          @click="setBreakpoint('tablet')"
+        />
+        <Button
+          :label="t('lowcode.studio.breakpoint.mobile')"
+          :severity="breakpoint === 'mobile' ? 'primary' : 'default'"
+          size="sm"
+          @click="setBreakpoint('mobile')"
+        />
+        <Button
+          :label="t('lowcode.studio.align.left')"
+          size="sm"
+          @click="editor.alignSelection('left')"
+        />
+        <Button
+          :label="t('lowcode.studio.align.center')"
+          size="sm"
+          @click="editor.alignSelection('center')"
+        />
+        <Button
+          :label="t('lowcode.studio.distribute.h')"
+          size="sm"
+          @click="editor.distributeSelection('horizontal')"
         />
         <Button
           :label="t('lowcode.studio.undo')"
@@ -329,6 +381,8 @@ const fileInput = ref<HTMLInputElement | null>(null)
         :editor="editor"
         :registry="registry"
         :materials="materials"
+        :context="runtime.context"
+        :handlers="actionHandlers"
       />
       <div v-if="preview" class="vp-studio-preview-layer">
         <SchemaRenderer
@@ -348,6 +402,10 @@ const fileInput = ref<HTMLInputElement | null>(null)
         :registry="registry"
         :materials="materials"
         :runtime="runtime"
+        :actions="doc.actions"
+        :data-sources="doc.dataSources"
+        @update:actions="onActionsUpdate"
+        @update:data-sources="onDataSourcesUpdate"
       />
       <div v-if="codegenText" class="vp-studio-checklist">
         <div class="vp-studio-material__group">{{ t('lowcode.studio.codegen') }}</div>

@@ -25,15 +25,6 @@ if (design) ThemeService.setStyle(design)
 if (icon) IconStyleService.setStyle(icon)
 if (font) FontService.setFont(font)
 
-/** Example debug shell only — disable browser context menu (does not affect library consumers). */
-document.addEventListener(
-  'contextmenu',
-  (e) => {
-    e.preventDefault()
-  },
-  { capture: true }
-)
-
 const app = createApp(App)
 app.use(router)
 app.mount('#app')

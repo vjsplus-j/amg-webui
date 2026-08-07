@@ -2,37 +2,42 @@
 import { provide, ref, computed, toRef } from 'vue'
 import { trackEmit } from '@amg-webui/telemetry'
 import { sanitizeModelStrings } from '@amg-webui/security'
-import { FORM_INJECTION_KEY } from './types'
+import {
+  FORM_INJECTION_KEY,
+  type FormProps,
+  type FormEmits,
+  type FormRules
+} from './types'
 import { validateRules } from './useFormValidate'
 import './style.scss'
 
-const props = withDefaults(
-  defineProps<{
-    model?: Record<string, unknown>
-    rules?: Record<string, import('./types').FormRule | import('./types').FormRule[]>
-    disabled?: boolean
-    labelWidth?: string
-    labelPosition?: 'left' | 'top'
-    sanitizeOnSubmit?: boolean
-    trackId?: string
-    telemetry?: boolean
-    class?: string
-    style?: Record<string, string>
-  }>(),
-  {
-    model: () => ({}),
-    labelPosition: 'left',
-    sanitizeOnSubmit: false,
-    telemetry: undefined
-  }
-)
+defineOptions({ name: 'Form', inheritAttrs: false })
 
-const emit = defineEmits<{
-  validate: [valid: boolean, errors: Record<string, string>]
-  submit: []
-}>()
+const props = withDefaults(defineProps<FormProps>(), {
+  model: () => ({}),
+  labelPosition: 'left',
+  sanitizeOnSubmit: false,
+  telemetry: undefined
+})
+
+const emit = defineEmits<FormEmits>()
 
 const errors = ref<Record<string, string>>({})
+const initialModel = ref<Record<string, unknown> | null>(null)
+
+function cloneModel(model: Record<string, unknown>): Record<string, unknown> {
+  try {
+    return JSON.parse(JSON.stringify(model)) as Record<string, unknown>
+  } catch {
+    return { ...model }
+  }
+}
+
+function snapshotModel() {
+  initialModel.value = props.model ? cloneModel(props.model) : {}
+}
+
+snapshotModel()
 
 async function validateField(prop: string): Promise<string | null> {
   const value = props.model?.[prop]
@@ -72,10 +77,28 @@ function clearValidate(prop?: string) {
   errors.value = {}
 }
 
+function resetFields(prop?: string) {
+  if (!props.model) return
+  const snap = initialModel.value ?? {}
+  if (prop) {
+    props.model[prop] = cloneModel({ v: snap[prop] }).v
+    clearValidate(prop)
+    return
+  }
+  const next = cloneModel(snap)
+  for (const key of Object.keys(props.model)) {
+    if (!Object.prototype.hasOwnProperty.call(next, key)) {
+      delete props.model[key]
+    }
+  }
+  Object.assign(props.model, next)
+  clearValidate()
+}
+
 async function validate(): Promise<boolean> {
   const propsToValidate = Object.keys(props.rules ?? {})
-  for (const prop of propsToValidate) {
-    await validateField(prop)
+  for (const field of propsToValidate) {
+    await validateField(field)
   }
   const valid = Object.keys(errors.value).length === 0
   trackEmit({
@@ -94,7 +117,7 @@ provide(FORM_INJECTION_KEY, {
     return props.model ?? {}
   },
   get rules() {
-    return props.rules
+    return props.rules as FormRules | undefined
   },
   disabled: toRef(props, 'disabled'),
   labelWidth: toRef(props, 'labelWidth'),
@@ -130,11 +153,16 @@ const handleSubmit = async (event: Event) => {
   }
 }
 
-defineExpose({ validate, validateField, clearValidate })
+defineExpose({
+  validate,
+  validateField,
+  clearValidate,
+  resetFields
+})
 </script>
 
 <template>
-  <form :class="rootClass" :style="style" @submit="handleSubmit">
+  <form :class="rootClass" :style="style" data-component="Form" @submit="handleSubmit">
     <slot />
   </form>
 </template>

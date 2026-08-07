@@ -1,0 +1,121 @@
+{
+  "name": "MonthPicker",
+  "generatedAt": "2026-08-07T12:37:37.630Z",
+  "source": {
+    "types": "packages/components/form/MonthPicker/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | Date | null",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "valueFormat",
+      "optional": true,
+      "type": "\"date\" | \"iso\"",
+      "description": ""
+    },
+    {
+      "name": "min",
+      "optional": true,
+      "type": "string | Date",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "optional": true,
+      "type": "string | Date",
+      "description": ""
+    },
+    {
+      "name": "clearable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | Date | null",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string | Date | null",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "openChange",
+      "payload": "open: boolean",
+      "description": ""
+    },
+    {
+      "name": "focus",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "payload": "event: FocusEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "MonthPickerProps",
+    "MonthPickerEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

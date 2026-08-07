@@ -1,0 +1,61 @@
+{
+  "name": "VcrDownloadPanel",
+  "generatedAt": "2026-08-07T12:42:17.058Z",
+  "source": {
+    "types": "packages/components/media/VcrDownloadPanel/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "items",
+      "optional": true,
+      "type": "VcrDownloadItem[]",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "download",
+      "payload": "id: string",
+      "description": ""
+    },
+    {
+      "name": "cancel",
+      "payload": "id: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "VcrDownloadItem",
+    "VcrDownloadPanelProps",
+    "VcrDownloadPanelEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

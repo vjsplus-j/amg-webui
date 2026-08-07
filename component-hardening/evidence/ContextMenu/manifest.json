@@ -1,0 +1,7 @@
+{
+  "component": "ContextMenu",
+  "family": "navigation",
+  "batch": "B10",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:41:03.673Z"
+}

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuth } from '../stores/auth'
 import { ToastService } from '@amg-webui/theme'
@@ -7,6 +7,7 @@ import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys, type LocaleKey } from '@amg-webui/locale'
 import { Layout, Sider, Header, Main, Footer, Menu, TabsNav, Avatar, Button } from '@amg-webui/core'
 import { Search } from '@amg-webui/form'
+import { Drawer } from '@amg-webui/overlay'
 import type { MenuItem } from '@amg-webui/core/Menu'
 import AppHeaderActions from '../components/AppHeaderActions.vue'
 import {
@@ -19,6 +20,9 @@ import {
 import { getCatalogEntry } from '../component-catalog'
 import { resolveComponentBadges } from '../nav-component-badges'
 
+/** Align with `.vp-layout--shell .vp-sider` hide breakpoint in Sider/style.scss */
+const MOBILE_SHELL_MQ = '(max-width: 768px)'
+
 const route = useRoute()
 const router = useRouter()
 const { logout, isAdmin, currentUser } = useAuth()
@@ -27,6 +31,26 @@ const { t, locale } = useLocale()
 const collapsed = ref(localStorage.getItem('ln-sidebar-collapsed') === '1')
 const tabs = ref<{ name: string; titleKey?: LocaleKey; fallback: string }[]>([])
 const navFilter = ref('')
+const isMobileShell = ref(false)
+const mobileNavOpen = ref(false)
+let mobileShellMq: MediaQueryList | null = null
+
+function syncMobileShell() {
+  isMobileShell.value = Boolean(mobileShellMq?.matches)
+  if (!isMobileShell.value) mobileNavOpen.value = false
+}
+
+onMounted(() => {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return
+  mobileShellMq = window.matchMedia(MOBILE_SHELL_MQ)
+  syncMobileShell()
+  mobileShellMq.addEventListener('change', syncMobileShell)
+})
+
+onBeforeUnmount(() => {
+  mobileShellMq?.removeEventListener('change', syncMobileShell)
+  mobileShellMq = null
+})
 
 const openCategories = ref<Record<string, boolean>>(
   JSON.parse(localStorage.getItem('ln-nav-open-cats-v2') || '{}')
@@ -268,6 +292,11 @@ function onMenuSelect(item: MenuItem) {
   const routeName = item.meta?.routeName as string | undefined
   const params = item.meta?.params as Record<string, string> | undefined
   openNavItem({ key: item.key, routeName, params })
+  mobileNavOpen.value = false
+}
+
+function openMobileNav() {
+  mobileNavOpen.value = true
 }
 
 function openTab(name: string) {
@@ -307,7 +336,15 @@ function handleLogout() {
 
 function goDashboard() {
   openTab('dashboard')
+  mobileNavOpen.value = false
 }
+
+watch(
+  () => route.fullPath,
+  () => {
+    mobileNavOpen.value = false
+  }
+)
 
 void isAdmin
 </script>
@@ -328,14 +365,12 @@ void isAdmin
       </template>
 
       <div v-if="!collapsed" class="vp-app-shell__filter">
-        <label class="vp-app-shell__filter-label" for="vp-nav-base-filter">{{
-          t('example.doc.catalog.navFilter')
-        }}</label>
         <Search
           id="vp-nav-base-filter"
           v-model="navFilter"
           size="sm"
           fluid
+          :aria-label="t('example.doc.catalog.navFilter')"
           :placeholder="t('example.doc.catalog.navFilterHint')"
         />
       </div>
@@ -389,6 +424,19 @@ void isAdmin
 
     <Layout>
       <Header>
+        <template v-if="isMobileShell" #start>
+          <Button
+            icon="Menu"
+            variant="text"
+            size="sm"
+            shape="square"
+            class="vp-app-shell__nav-trigger"
+            :aria-label="t(LocaleKeys.common.expandMenu)"
+            :aria-expanded="mobileNavOpen"
+            aria-controls="vp-app-shell-mobile-nav"
+            @click="openMobileNav"
+          />
+        </template>
         <template #title>
           <h1 :title="pageTitle">{{ pageTitle }}</h1>
         </template>
@@ -417,6 +465,66 @@ void isAdmin
         <span>{{ t(LocaleKeys.chrome.stackLayers) }}</span>
       </Footer>
     </Layout>
+
+    <Drawer
+      v-model:visible="mobileNavOpen"
+      placement="left"
+      :title="t(LocaleKeys.common.expandMenu)"
+      width="min(20rem, 90vw)"
+      class="vp-app-shell__mobile-drawer"
+    >
+      <div id="vp-app-shell-mobile-nav" class="vp-app-shell__mobile-panel">
+        <a class="vp-app-shell__brand" href="#" @click.prevent="goDashboard">
+          <span class="vp-app-shell__brand-mark">VP</span>
+          <span class="vp-app-shell__brand-text">AMG-WebUI</span>
+        </a>
+
+        <div class="vp-app-shell__filter">
+          <Search
+            id="vp-nav-base-filter-mobile"
+            v-model="navFilter"
+            size="sm"
+            fluid
+            :aria-label="t('example.doc.catalog.navFilter')"
+            :placeholder="t('example.doc.catalog.navFilterHint')"
+          />
+        </div>
+
+        <div class="vp-app-shell__nav">
+          <Menu
+            :model-value="menuModel"
+            :items="menuItems"
+            v-model:open-keys="openKeys"
+            @select="onMenuSelect"
+          />
+        </div>
+
+        <div class="vp-app-shell__user">
+          <Avatar
+            :text="userInitial"
+            :alt="currentUser?.username"
+            size="sm"
+            shape="circle"
+          />
+          <div class="vp-app-shell__meta">
+            <div class="vp-app-shell__account-row">
+              <span class="vp-app-shell__name" :title="currentUser?.username">{{
+                currentUser?.username
+              }}</span>
+              <Button
+                variant="text"
+                size="xs"
+                :label="t(LocaleKeys.auth.signOut)"
+                @click="handleLogout"
+              />
+            </div>
+            <span class="vp-app-shell__role">{{
+              isAdmin ? t(LocaleKeys.common.admin) : t(LocaleKeys.common.user)
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </Drawer>
   </Layout>
 </template>
 
@@ -479,11 +587,6 @@ void isAdmin
   color: var(--text-primary);
 }
 
-.vp-app-shell__filter-label {
-  font-size: var(--font-size-xs);
-  color: var(--text-muted);
-}
-
 .vp-app-shell__user {
   display: flex;
   align-items: center;
@@ -519,5 +622,33 @@ void isAdmin
 .vp-app-shell__role {
   font-size: var(--font-size-xs);
   color: var(--text-muted);
+}
+
+.vp-app-shell__mobile-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  min-height: 0;
+  height: 100%;
+}
+
+.vp-app-shell__mobile-panel .vp-app-shell__brand {
+  flex-shrink: 0;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--ds-border, var(--border-color));
+}
+
+.vp-app-shell__mobile-panel .vp-app-shell__user {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--ds-border, var(--border-color));
+}
+
+.vp-app-shell__mobile-drawer :deep(.vp-drawer__body) {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
 }
 </style>

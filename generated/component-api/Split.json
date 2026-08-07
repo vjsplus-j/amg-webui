@@ -1,0 +1,56 @@
+{
+  "name": "Split",
+  "generatedAt": "2026-08-07T12:41:56.157Z",
+  "source": {
+    "types": "packages/components/core/Split/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "SplitDirection",
+      "description": ""
+    },
+    {
+      "name": "min",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "number | string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:size",
+      "payload": "value: number | string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "SplitDirection",
+    "SplitProps",
+    "SplitEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

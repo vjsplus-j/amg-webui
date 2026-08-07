@@ -2,15 +2,13 @@
 /**
  * Curated demo — mirrors Avatar gold standard (demoCode / demoSfc / API sections).
  */
-import { computed } from 'vue'
+import {  } from 'vue'
 import { Button, ButtonGroup } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -126,67 +124,6 @@ const codeSlots = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'size',
-    description: t('example.doc.buttonGroup.prop.size'),
-    type: 'Size',
-    defaultValue: '-'
-  },
-  {
-    name: 'severity',
-    description: t('example.doc.buttonGroup.prop.severity'),
-    type: 'ButtonSeverity',
-    defaultValue: '-'
-  },
-  {
-    name: 'variant',
-    description: t('example.doc.buttonGroup.prop.variant'),
-    type: 'ButtonVariant',
-    defaultValue: '-'
-  },
-  {
-    name: 'block',
-    description: t('example.doc.buttonGroup.prop.block'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'direction',
-    description: t('example.doc.buttonGroup.prop.direction'),
-    type: "'horizontal' | 'vertical'",
-    defaultValue: "'horizontal'"
-  },
-  {
-    name: 'disabled',
-    description: t('example.doc.buttonGroup.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'loading',
-    description: t('example.doc.buttonGroup.prop.loading'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'ariaLabel',
-    description: t('example.doc.buttonGroup.prop.ariaLabel'),
-    type: 'string',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.buttonGroup.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [])
 </script>
 
 <template>
@@ -332,20 +269,7 @@ const eventRows = computed<ApiRow[]>(() => [])
         <Button>{{ t(LocaleKeys.button.cancel) }}</Button>
         <Button severity="primary">{{ t(LocaleKeys.button.confirm) }}</Button>
       </ButtonGroup>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -368,23 +292,5 @@ const eventRows = computed<ApiRow[]>(() => [])
 .vp-curated__block-host {
   width: 100%;
   max-width: 28rem;
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-  line-height: var(--line-height-body);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
 }
 </style>

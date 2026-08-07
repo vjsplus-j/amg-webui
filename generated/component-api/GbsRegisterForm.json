@@ -1,0 +1,77 @@
+{
+  "name": "GbsRegisterForm",
+  "generatedAt": "2026-08-07T12:41:13.604Z",
+  "source": {
+    "types": "packages/components/gb28181/GbsRegisterForm/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "GbsRegister",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "compact",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showPassword",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "v: GbsRegister",
+      "description": ""
+    },
+    {
+      "name": "register",
+      "payload": "v: GbsRegister",
+      "description": ""
+    },
+    {
+      "name": "reset",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "GbsRegister",
+    "GbsRegisterFormProps",
+    "GbsRegisterFormEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

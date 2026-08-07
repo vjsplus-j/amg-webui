@@ -3,8 +3,8 @@
 > 源码契约：`packages/theme/styles/design/_contract.scss`  
 > Token 全文：`packages/theme/TOKENS.md`  
 > 机器可读：`packages/theme/specs.ts`  
-> Agent 记忆：`.cursor/rules/vue3-amg-webui-design-specs.mdc` · `vue3-amg-webui-tokens.mdc`  
-> 六套主题可覆盖字阶/圆角/控件高，但**不得绕过语义 token 硬编码魔法数**。
+> Agent 记忆：`.cursor/rules/20-design-system.mdc`  
+> 官方主题可覆盖字阶/圆角/控件高，但**不得绕过语义 token 硬编码魔法数**。
 
 ---
 
@@ -257,5 +257,5 @@ Porsche 可将 `--theme-page-pad` 提到 2rem；Lamborghini 1.75rem。
 
 1. 改规格先更新本文件 + `specs.ts` + `_contract.scss` 默认值  
 2. 同步各主题 SCSS 覆盖  
-3. 更新 `.cursor/rules/vue3-amg-webui-design-specs.mdc`  
+3. 更新 `.cursor/rules/20-design-system.mdc`
 4. 在 play ThemePage / 业务页目检六主题

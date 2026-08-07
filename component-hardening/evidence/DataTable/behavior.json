@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "detail": "template-five.spec.ts + curated Basic.vue?raw demo",
+  "tests": [
+    "tests/unit/hardening/template-five.spec.ts"
+  ]
+}

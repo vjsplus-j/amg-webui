@@ -2,14 +2,11 @@
 /**
  * Curated demo — Layout wave1 Container
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Container, Space, Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -37,26 +34,6 @@ const codeFluid = demoCode(
   `</Container>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'size',
-    description: t('example.doc.container.prop.size'),
-    type: "'sm' | 'md' | 'lg' | 'xl' | 'fluid'",
-    defaultValue: "'lg'"
-  },
-  {
-    name: 'fluid',
-    description: t('example.doc.container.prop.fluid'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'padded / align / gap',
-    description: t('example.doc.container.prop.layout'),
-    type: 'boolean / string / token gap',
-    defaultValue: 'padded=true'
-  }
-])
 </script>
 
 <template>
@@ -113,12 +90,6 @@ const propRows = computed<PropRow[]>(() => [
         </div>
       </Space>
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-    </section>
   </div>
 </template>
 
@@ -158,19 +129,5 @@ const propRows = computed<PropRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

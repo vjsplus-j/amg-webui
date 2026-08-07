@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { QuickNav, Space } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import { getSampleMountProps } from '../_shared/sampleMountProps'
 import '../../components/demo/curatedDemo.scss'
 
@@ -24,13 +22,6 @@ const codeBasic = demoSfc({
   template: [`  <QuickNav v-model="selected" :items="items" />`]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'class / style',
-    type: 'BaseProps',
-    description: t('example.doc.quickNav.prop.base')
-  }
-])
 </script>
 
 <template>
@@ -47,6 +38,5 @@ const propRows = computed<PropRow[]>(() => [
         <QuickNav v-model="selected" :items="items" variant="pills" />
       </Space>
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

@@ -1,0 +1,7 @@
+{
+  "component": "Alert",
+  "family": "feedback",
+  "batch": "B09",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:39:26.446Z"
+}

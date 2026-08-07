@@ -1,0 +1,92 @@
+{
+  "name": "TablePrint",
+  "family": "table",
+  "package": "data",
+  "profile": "data",
+  "gates": [
+    {
+      "id": "package",
+      "status": "PASS",
+      "detail": "vue=true types=true style=true"
+    },
+    {
+      "id": "api-props",
+      "status": "PASS",
+      "detail": "Props interface or defineProps"
+    },
+    {
+      "id": "api-emits",
+      "status": "PASS",
+      "detail": "Emits typed or none"
+    },
+    {
+      "id": "api-slots",
+      "status": "PASS",
+      "detail": "Slots contract present or N/A"
+    },
+    {
+      "id": "i18n",
+      "status": "PASS",
+      "detail": "no hardcoded CJK literals"
+    },
+    {
+      "id": "tokens",
+      "status": "PASS",
+      "detail": "no raw hex/rgb in component scss"
+    },
+    {
+      "id": "cleanup",
+      "status": "PASS",
+      "detail": "cleanup patterns found"
+    },
+    {
+      "id": "behavior",
+      "status": "PASS",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TablePrint mounts and renders public surface"
+    },
+    {
+      "id": "visual",
+      "status": "PASS",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TablePrint renders DOM for visual gate"
+    },
+    {
+      "id": "a11y",
+      "status": "PASS",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TablePrint mount tree available for a11y contract"
+    },
+    {
+      "id": "keyboard",
+      "status": "PASS",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TablePrint interactive surface present (keyboard applicable)"
+    },
+    {
+      "id": "theme",
+      "status": "PASS",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TablePrint uses package styles / semantic tokens gate"
+    },
+    {
+      "id": "rtl",
+      "status": "N/A",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TablePrint RTL covered by theme/dir provider"
+    },
+    {
+      "id": "perf",
+      "status": "N/A",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TablePrint perf gate not mandatory for this capability"
+    },
+    {
+      "id": "docs",
+      "status": "PASS",
+      "detail": "VitePress docs page + generated API extract (table-print.md)"
+    },
+    {
+      "id": "ssr",
+      "status": "PASS",
+      "detail": "structural=PASS; evidence=tests/unit/hardening/real-mount-remaining.spec.ts TablePrint client mount OK; no required browser-only top-level in package gate"
+    }
+  ],
+  "failCount": 0,
+  "status": "PASS",
+  "stable": false,
+  "verifiedAt": "2026-08-07T12:42:35.556Z"
+}

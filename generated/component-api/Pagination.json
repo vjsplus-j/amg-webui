@@ -1,0 +1,71 @@
+{
+  "name": "Pagination",
+  "generatedAt": "2026-08-07T12:41:35.043Z",
+  "source": {
+    "types": "packages/components/data/Pagination/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "total",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "page",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "pageSize",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "pageSizes",
+      "optional": true,
+      "type": "number[]",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:page",
+      "payload": "value: number",
+      "description": ""
+    },
+    {
+      "name": "update:pageSize",
+      "payload": "value: number",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "payload: { page: number; pageSize: number }",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "PaginationProps",
+    "PaginationEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

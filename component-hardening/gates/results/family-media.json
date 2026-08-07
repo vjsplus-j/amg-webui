@@ -1,0 +1,64 @@
+{
+  "family": "media",
+  "engines": [
+    {
+      "engine": "media-adapter",
+      "path": "packages/utils/engines/mediaAdapter.ts",
+      "status": "PASS"
+    }
+  ],
+  "components": [
+    {
+      "name": "AudioPlay",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "AudioTalk",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "PTZControl",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "SplitVideoWall",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "VideoAdjust",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "VideoPlayer",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "VideoPreview",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "VideoSnapshot",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "VideoVolume",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "VideoWatermark",
+      "status": "PASS",
+      "stable": true
+    }
+  ],
+  "status": "PASS",
+  "verifiedAt": "2026-08-07T10:00:06.009Z"
+}

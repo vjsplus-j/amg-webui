@@ -1,0 +1,144 @@
+{
+  "name": "Popover",
+  "generatedAt": "2026-08-07T12:41:35.058Z",
+  "source": {
+    "types": "packages/components/overlay/Popover/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "visible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "placement",
+      "optional": true,
+      "type": "FloatingPlacement",
+      "description": ""
+    },
+    {
+      "name": "trigger",
+      "optional": true,
+      "type": "PopoverTrigger",
+      "description": ""
+    },
+    {
+      "name": "dismissible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "offset",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "zIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "openDelay",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "closeDelay",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "showArrow",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "focusOnOpen",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "teleportTo",
+      "optional": true,
+      "type": "string | HTMLElement",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:visible",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "open",
+      "payload": "event?: Event",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "payload": "reason: PopoverCloseReason, event?: Event",
+      "description": ""
+    },
+    {
+      "name": "openChange",
+      "payload": "value: boolean, reason?: PopoverCloseReason",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "PopoverTrigger",
+    "PopoverCloseReason",
+    "PopoverProps",
+    "PopoverEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

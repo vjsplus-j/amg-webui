@@ -12,4 +12,4 @@
 
 当前阶段：SR1 / SR2 experimental 最小基线已实现并通过当前类型、单测、构建和包形基础门禁；稳定化 DoD 继续推进。SR3 官方 built-ins 与 example 调试页尚未实现，后续按“实现 + 测试 + 文档”闭环推进。
 
-近期落地摘要见 [LIBRARY_PLAN.md «近期落地»](./LIBRARY_PLAN.md) · [CHANGELOG.md](./CHANGELOG.md)。
+近期落地摘要见 [LIBRARY_PLAN.md «近期落地»](./LIBRARY_PLAN.md) · [CHANGELOG.md](./CHANGELOG.md) · [COMPONENT_HARDENING.md](./COMPONENT_HARDENING.md)。

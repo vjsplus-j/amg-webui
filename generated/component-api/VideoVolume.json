@@ -1,0 +1,76 @@
+{
+  "name": "VideoVolume",
+  "generatedAt": "2026-08-07T12:42:38.275Z",
+  "source": {
+    "types": "packages/components/media/VideoVolume/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "muted",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "v: number",
+      "description": ""
+    },
+    {
+      "name": "update:muted",
+      "payload": "v: boolean",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "v: number",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "VideoVolumeProps",
+    "VideoVolumeEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

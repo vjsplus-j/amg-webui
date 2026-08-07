@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { computed, ref, onBeforeUnmount } from 'vue';
 import { useLocale } from "@amg-webui/hooks";
 import { trackEmit } from "@amg-webui/telemetry";
 import { LocaleKeys } from "@amg-webui/locale";
@@ -168,6 +169,11 @@ function download() {
 }
 
 defineExpose({ capture, clear, download, result });
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

@@ -2,7 +2,7 @@
 
 > 参照能力范式：[designmd Build / Custom Remix](https://designmd.santiagoalonso.com/build?cat=Dev+Tools%2CSaaS&sort=popular)  
 > 实现落点：`example/pages/system/ThemeStudioPage.vue`（规划）· `packages/theme/studio/`（规划）  
-> Agent 记忆：`.cursor/rules/vue3-amg-webui-theme-studio.mdc`
+> Agent 记忆：`.cursor/rules/42-theme-runtime.mdc`
 
 ---
 
@@ -10,7 +10,7 @@
 
 提供 **可视化定制** 的主题生成器：从官方锁定主题 / Token 组装出发，让团队像 Remix 一样组合视觉语言，实时预览并导出可落地的主题包，**差异化传统后台「灰底表格」观感**，提升现代质感（产品级表面、清晰层次、精致排版与动效克制）。
 
-官方六套 designmd 主题仍为**只读基线**；Studio 产出为用户自定义主题（`custom-*` 或导出文件），不得覆盖锁定清单中的 mercedes / linear / porsche / lamborghini / ferrari / apple 源码语义。
+官方主题基线为 **designmd 六套** + **WeChat / Alipay**（只读源码语义）；Studio 产出为用户自定义主题（`custom-*` 或导出文件），不得覆盖锁定清单中的官方主题源码。
 
 ---
 
@@ -86,7 +86,7 @@ scripts/export-theme.mjs            # CLI：JSON → scss/css（可选）
 **Do**
 
 - 先改 Token，再映到预览组件；导出与运行时走同一变量契约  
-- 保留六套官方主题只读，自定义另存  
+- 保留官方主题只读，自定义另存  
 - 预览使用真实 base 组件（Button / Card / Table…），避免假图  
 
 **Don't**
@@ -103,4 +103,4 @@ scripts/export-theme.mjs            # CLI：JSON → scss/css（可选）
 2. Studio 模型增加对应字段  
 3. 预览区加样例  
 4. 导出模板同步  
-5. 更新本文与 `vue3-amg-webui-theme-studio.mdc`  
+5. 更新本文与 `.cursor/rules/42-theme-runtime.mdc`  

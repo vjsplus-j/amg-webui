@@ -1,0 +1,7 @@
+{
+  "component": "ImageCrop",
+  "family": "upload",
+  "batch": "B15",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:41:31.542Z"
+}

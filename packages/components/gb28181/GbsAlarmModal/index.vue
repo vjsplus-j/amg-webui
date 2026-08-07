@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from "vue";
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { computed, nextTick, ref, watch, onBeforeUnmount } from 'vue';
 import { useLocale, useOverlay } from "@amg-webui/hooks";
 import { trackEmit } from "@amg-webui/telemetry";
 import { LocaleKeys } from "@amg-webui/locale";
@@ -111,6 +112,11 @@ function acknowledge() {
 function maskClick() {
   if (props.maskClosable) close("mask");
 }
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

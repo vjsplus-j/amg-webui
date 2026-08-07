@@ -46,6 +46,7 @@ const labelClass = computed(() => [
   `vp-descriptions-item__label--align-${props.labelAlign}`,
   { "vp-descriptions-item__label--colon": props.colon },
 ]);
+
 </script>
 
 <template>
@@ -54,8 +55,7 @@ const labelClass = computed(() => [
     :style="itemStyle"
     role="group"
     :aria-labelledby="label || $slots.label ? labelId : undefined"
-    data-component="DescriptionsItem"
-  >
+    data-component="DescriptionsItem">
     <div
       v-if="label || $slots.label"
       :id="labelId"

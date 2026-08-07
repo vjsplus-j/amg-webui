@@ -72,6 +72,11 @@ export const LocaleKeys = {
       unknown: 'component.schema-renderer.unknown',
       empty: 'component.schema-renderer.empty'
     },
+    stepForm: {
+      title: 'component.step-form.title',
+      navAria: 'component.step-form.navAria',
+      lead: 'component.step-form.lead'
+    },
     pagination: {
       /** Pagination nav landmark label */
       aria: 'component.pagination.aria'
@@ -415,13 +420,21 @@ export const LocaleKeys = {
     font: 'chrome.font',
     schemeLight: 'chrome.schemeLight',
     schemeDark: 'chrome.schemeDark',
+    direction: 'chrome.direction',
+    dirLtr: 'chrome.dirLtr',
+    dirRtl: 'chrome.dirRtl',
     primaryBtn: 'chrome.primaryBtn',
     secondaryBtn: 'chrome.secondaryBtn',
     sampleInput: 'chrome.sampleInput',
     toggle: 'chrome.toggle',
     current: 'chrome.current',
     brandFoot: 'chrome.brandFoot',
-    stackLayers: 'chrome.stackLayers'
+    stackLayers: 'chrome.stackLayers',
+    contextCopy: 'chrome.contextCopy',
+    contextPaste: 'chrome.contextPaste',
+    contextSelect: 'chrome.contextSelect',
+    contextSelectAll: 'chrome.contextSelectAll',
+    contextInspect: 'chrome.contextInspect'
   },
   biz: {
     loginTitle: 'biz.login.title',
@@ -473,6 +486,8 @@ export const LocaleKeys = {
     props: 'example.doc.props',
     events: 'example.doc.events',
     slots: 'example.doc.slots',
+    expose: 'example.doc.expose',
+    models: 'example.doc.models',
     propName: 'example.doc.propName',
     propDesc: 'example.doc.propDesc',
     propType: 'example.doc.propType',

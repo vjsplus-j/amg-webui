@@ -1,0 +1,17 @@
+{
+  "family": "form",
+  "batch": "B03",
+  "axe": {
+    "status": "PASS",
+    "blocking": 0
+  },
+  "keyboard": {
+    "status": "PASS",
+    "detail": "form fields editable; submit clickable"
+  },
+  "verifiedAt": "2026-08-07T12:28:51.694Z",
+  "unit": {
+    "status": "PASS",
+    "detail": "Form/FormItem/InputText composition mounts"
+  }
+}

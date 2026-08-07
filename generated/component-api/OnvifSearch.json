@@ -1,0 +1,78 @@
+{
+  "name": "OnvifSearch",
+  "generatedAt": "2026-08-07T12:41:35.037Z",
+  "source": {
+    "types": "packages/components/onvif/OnvifSearch/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "devices",
+      "optional": true,
+      "type": "OnvifDevice[]",
+      "description": ""
+    },
+    {
+      "name": "filter",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "pageSize",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:filter",
+      "payload": "v: string",
+      "description": ""
+    },
+    {
+      "name": "discover",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "device: OnvifDevice",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "OnvifDevice",
+    "OnvifSearchProps",
+    "OnvifSearchEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { ConfigProvider, Button, Tag, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -26,11 +24,6 @@ const codeZ = demoSfc({
   template: ['  <ConfigProvider :z-index="2000"><slot /></ConfigProvider>']
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'size', type: 'Size', defaultValue: '—', description: t('example.doc.configProvider.prop.size') },
-  { name: 'zIndex', type: 'number', defaultValue: '—', description: t('example.doc.configProvider.prop.zIndex') },
-  { name: 'button / tag / badge / avatar', type: 'GlobalConfig', defaultValue: '—', description: t('example.doc.configProvider.prop.nested') }
-])
 </script>
 
 <template>
@@ -70,9 +63,7 @@ const propRows = computed<PropRow[]>(() => [
         <Button size="sm" :label="String(zIndex)" @click="zIndex += 100" />
       </ConfigProvider>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

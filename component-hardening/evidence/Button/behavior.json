@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "detail": "template-five.spec.ts + Button types Props/Emits/Slots/Expose",
+  "tests": [
+    "tests/unit/hardening/template-five.spec.ts"
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "name": "ConfigProvider",
+  "generatedAt": "2026-08-07T12:40:46.803Z",
+  "source": {
+    "types": "packages/components/core/ConfigProvider/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "zIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "namespace",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "overlayTeleportTo",
+      "optional": true,
+      "type": "TeleportTarget",
+      "description": ""
+    },
+    {
+      "name": "overlayRuntime",
+      "optional": true,
+      "type": "OverlayRuntimeApi",
+      "description": ""
+    },
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "ConfigProviderDirection",
+      "description": ""
+    },
+    {
+      "name": "density",
+      "optional": true,
+      "type": "ConfigProviderDensity",
+      "description": ""
+    },
+    {
+      "name": "theme",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "design",
+      "optional": true,
+      "type": "DesignStyleName | string",
+      "description": ""
+    },
+    {
+      "name": "scheme",
+      "optional": true,
+      "type": "ColorScheme",
+      "description": ""
+    },
+    {
+      "name": "font",
+      "optional": true,
+      "type": "FontName | string",
+      "description": ""
+    },
+    {
+      "name": "iconStyle",
+      "optional": true,
+      "type": "IconStyleName | string",
+      "description": ""
+    },
+    {
+      "name": "tokens",
+      "optional": true,
+      "type": "Record<string, string>",
+      "description": ""
+    },
+    {
+      "name": "primary",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "themeRuntime",
+      "optional": true,
+      "type": "ThemeRuntime",
+      "description": ""
+    },
+    {
+      "name": "themePersist",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "themeStorageNamespace",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "locale",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "validateMessages",
+      "optional": true,
+      "type": "Record<string, string>",
+      "description": ""
+    },
+    {
+      "name": "componentDefaults",
+      "optional": true,
+      "type": "Record<string, Record<string, unknown> | undefined>",
+      "description": ""
+    },
+    {
+      "name": "empty",
+      "optional": true,
+      "type": "ConfigProviderEmptyConfig",
+      "description": ""
+    },
+    {
+      "name": "button",
+      "optional": true,
+      "type": "ButtonGlobalConfig",
+      "description": ""
+    },
+    {
+      "name": "tag",
+      "optional": true,
+      "type": "TagGlobalConfig",
+      "description": ""
+    },
+    {
+      "name": "badge",
+      "optional": true,
+      "type": "BadgeGlobalConfig",
+      "description": ""
+    },
+    {
+      "name": "avatar",
+      "optional": true,
+      "type": "AvatarGlobalConfig",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "payload": "config: ConfigProviderResolvedConfig",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ConfigProviderDirection",
+    "ConfigProviderDensity",
+    "ConfigProviderResolvedConfig",
+    "ConfigProviderEmptyConfig",
+    "ConfigProviderRuntimeConfig",
+    "ConfigProviderProps",
+    "ConfigProviderEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

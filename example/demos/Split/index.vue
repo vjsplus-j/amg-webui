@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Split, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -22,26 +20,6 @@ const codeBasic = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'direction',
-    type: "'horizontal' | 'vertical'",
-    defaultValue: "'horizontal'",
-    description: t('example.doc.split.prop.direction')
-  },
-  {
-    name: 'size / v-model:size',
-    type: 'number | string',
-    defaultValue: "'50%'",
-    description: t('example.doc.split.prop.size')
-  },
-  {
-    name: 'min / max',
-    type: 'number',
-    defaultValue: '48 / -',
-    description: t('example.doc.split.prop.minMax')
-  }
-])
 </script>
 
 <template>
@@ -84,8 +62,7 @@ const propRows = computed<PropRow[]>(() => [
         </Split>
       </Space>
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

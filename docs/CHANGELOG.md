@@ -4,6 +4,14 @@
 
 ---
 
+## 2026-08-07 — 文档同步与根目录清理
+
+- npm 仍为 **0.1.0**（未升 1.0）；README / AGENTS 对齐 Hardening、Lowcode Studio、~287 库存
+- 权威治理：`docs/COMPONENT_HARDENING.md` + `component-hardening/`；Example 方向：`docs/EXAMPLE_DOCUMENTATION.md`
+- 删除根目录过期 V1/V2/V3 计划草稿与任务 CSV；`COMPONENT_DEEPEN_PLAN` 改为历史指针
+- example 窄屏：`≤768px` 侧栏隐藏后顶栏菜单 + Drawer 导航；APP_WORKFLOW / example README / DoD §23 已同步
+- 废弃 `vue3-amg-webui-*.mdc`；繁体包迁 `zh-HK`（删除 `zh-TW` 实体目录）
+
 ## 2026-08-07 — 子系统成熟度冲刺（合格线 90）
 
 合格标准：**子系统能力证明 ≥ 90**（类型检查 + 契约单测 / 关键 E2E + 文档诚实边界）；`score:maturity` 仍只是盘点启发式。
@@ -81,7 +89,7 @@
 - 新增包 `packages/telemetry`（`@amg-webui/telemetry` / `amg-webui/telemetry`）
 - `TelemetryService`（`globalThis` 单例）· `trackEmit` · redact · ring buffer · sinks（console / buffer / custom）· `summarizeHabits` / `findAlerts` / `findErrors`
 - `TelemetryProvider`（base）· `BaseProps.trackId` / `telemetry`
-- example：`/lab/telemetry` · 文档：`docs/TELEMETRY.md` · rule：`vue3-amg-webui-telemetry.mdc`
+- example：`/lab/telemetry` · 文档：`docs/TELEMETRY.md` · rule：`.cursor/rules/41-telemetry.mdc`
 - 第一期挂钩：Button / Link / Tag / Badge / Avatar / AvatarGroup / Card / FloatButton / Collapse / CopyText / Progress / Statistic / Ellipsis / Typography / CardWidgets
 - 修正：Vue Boolean 省略导致 `telemetry===false` 跳过全部 track → 组件 `withDefaults` 默认 `undefined`
 

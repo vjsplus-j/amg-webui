@@ -1,0 +1,79 @@
+{
+  "family": "selection",
+  "engines": [
+    {
+      "engine": "form-control",
+      "path": "packages/utils/engines/formControl.ts",
+      "status": "PASS"
+    },
+    {
+      "engine": "selection",
+      "path": "packages/utils/engines/selection.ts",
+      "status": "PASS"
+    },
+    {
+      "engine": "keyboard",
+      "path": "packages/utils/engines/keyboardNav.ts",
+      "status": "PASS"
+    },
+    {
+      "engine": "floating",
+      "path": "packages/utils/engines/floating.ts",
+      "status": "PASS"
+    },
+    {
+      "engine": "virtualizer",
+      "path": "packages/utils/engines/virtualizer.ts",
+      "status": "PASS"
+    }
+  ],
+  "components": [
+    {
+      "name": "AutoComplete",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Cascader",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "DragSelect",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Mention",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Select",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "SelectNav",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "TemplateSelect",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Transfer",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "TreeSelect",
+      "status": "PASS",
+      "stable": true
+    }
+  ],
+  "status": "PASS",
+  "verifiedAt": "2026-08-07T10:00:04.862Z"
+}

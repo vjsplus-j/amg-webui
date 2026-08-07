@@ -1,0 +1,81 @@
+{
+  "name": "Dropdown",
+  "generatedAt": "2026-08-07T12:41:13.576Z",
+  "source": {
+    "types": "packages/components/overlay/Dropdown/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "items",
+      "optional": true,
+      "type": "NavItem[]",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "item: NavItem, event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "openChange",
+      "payload": "open: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "DropdownProps",
+    "DropdownEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

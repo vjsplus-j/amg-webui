@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/image-upload.md",
+  "api": "generated/component-api/ImageUpload.json",
+  "demo": "example/demos/ImageUpload/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

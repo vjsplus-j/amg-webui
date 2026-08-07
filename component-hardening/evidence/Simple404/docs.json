@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/simple404.md",
+  "api": "generated/component-api/Simple404.json",
+  "demo": "example/demos/Simple404/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

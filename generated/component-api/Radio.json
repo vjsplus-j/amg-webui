@@ -1,0 +1,90 @@
+{
+  "name": "Radio",
+  "generatedAt": "2026-08-07T12:41:56.118Z",
+  "source": {
+    "types": "packages/components/form/Radio/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "optional": false,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "skipFormItem",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: unknown",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: unknown",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "RadioGroupContext",
+    "RadioProps",
+    "RadioEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

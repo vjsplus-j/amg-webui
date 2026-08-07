@@ -1,0 +1,102 @@
+{
+  "name": "DragVerify",
+  "generatedAt": "2026-08-07T12:40:46.824Z",
+  "source": {
+    "types": "packages/components/core/DragVerify/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "threshold",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "width",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "resetOnFail",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "keyboardStep",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "success",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "fail",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "payload: { passed: boolean; offset: number; progress: number }",
+      "description": ""
+    },
+    {
+      "name": "reset",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "focus",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "payload": "event: FocusEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "DragVerifyProps",
+    "DragVerifyEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

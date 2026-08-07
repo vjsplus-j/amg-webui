@@ -1,0 +1,160 @@
+{
+  "name": "Popconfirm",
+  "generatedAt": "2026-08-07T12:41:35.057Z",
+  "source": {
+    "types": "packages/components/core/Popconfirm/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "visible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "placement",
+      "optional": true,
+      "type": "FloatingPlacement",
+      "description": ""
+    },
+    {
+      "name": "dismissible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "confirmLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "cancelLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "severity",
+      "optional": true,
+      "type": "Severity",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showIcon",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "offset",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "zIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "teleportTo",
+      "optional": true,
+      "type": "string | HTMLElement",
+      "description": ""
+    },
+    {
+      "name": "beforeConfirm",
+      "optional": true,
+      "type": "(event: MouseEvent) => boolean | Promise<boolean>",
+      "description": ""
+    },
+    {
+      "name": "beforeCancel",
+      "optional": true,
+      "type": "( reason: PopconfirmCloseReason, event?: Event, ) => boolean | Promise<boolean>",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:visible",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "confirm",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "cancel",
+      "payload": "event: Event, reason: PopconfirmCloseReason",
+      "description": ""
+    },
+    {
+      "name": "openChange",
+      "payload": "value: boolean, reason?: PopconfirmCloseReason",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "error: unknown, action: \"confirm\" | \"cancel\"",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "PopconfirmCloseReason",
+    "PopconfirmProps",
+    "PopconfirmEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

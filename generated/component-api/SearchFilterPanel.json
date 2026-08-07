@@ -1,0 +1,109 @@
+{
+  "name": "SearchFilterPanel",
+  "generatedAt": "2026-08-07T12:41:56.138Z",
+  "source": {
+    "types": "packages/components/form/SearchFilterPanel/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "keyword",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "FilterCondition[]",
+      "description": ""
+    },
+    {
+      "name": "fields",
+      "optional": true,
+      "type": "FilterFieldOption[]",
+      "description": ""
+    },
+    {
+      "name": "collapsed",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "debounce",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "searchOnInput",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:keyword",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "update:modelValue",
+      "payload": "value: FilterCondition[]",
+      "description": ""
+    },
+    {
+      "name": "update:collapsed",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "search",
+      "payload": "payload: { keyword: string; conditions: FilterCondition[] },",
+      "description": ""
+    },
+    {
+      "name": "reset",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "payload: { keyword: string; conditions: FilterCondition[] },",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "SearchFilterPanelProps",
+    "SearchFilterPanelEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
+import {
+  moveRovingIndex,
+  resolveKeyboardNavAction
+} from '@amg-webui/utils'
 import Checkbox from '@amg-webui/form/Checkbox/index.vue'
 import Button from '@amg-webui/core/Button/index.vue'
 import type { DragSelectProps, DragSelectEmits, DragSelectItem } from './types'
@@ -21,6 +25,7 @@ const { t } = useLocale()
 const items = ref<DragSelectItem[]>([...props.options])
 const dragIndex = ref<number | null>(null)
 const focusIndex = ref(0)
+const listRef = ref<HTMLElement | null>(null)
 
 watch(
   () => props.options,
@@ -87,21 +92,28 @@ const onDragEnd = () => {
   dragIndex.value = null
 }
 
+function focusItem(index: number) {
+  const nodes = listRef.value?.querySelectorAll<HTMLElement>('.vp-drag-select__item')
+  nodes?.[index]?.focus()
+}
+
 const onItemKeydown = (event: KeyboardEvent, index: number, item: DragSelectItem) => {
   if (isItemDisabled(item)) return
-  if (event.key === ' ' || event.key === 'Enter') {
+  const action = resolveKeyboardNavAction(event, { orientation: 'vertical' })
+  if (action === 'select') {
     event.preventDefault()
     toggle(item.id, !selected.value.has(item.id))
     return
   }
-  if (event.key === 'ArrowDown') {
+  if (
+    action === 'next' ||
+    action === 'prev' ||
+    action === 'first' ||
+    action === 'last'
+  ) {
     event.preventDefault()
-    focusIndex.value = Math.min(index + 1, items.value.length - 1)
-    return
-  }
-  if (event.key === 'ArrowUp') {
-    event.preventDefault()
-    focusIndex.value = Math.max(index - 1, 0)
+    focusIndex.value = moveRovingIndex(index, action, items.value.length, true)
+    void nextTick(() => focusItem(focusIndex.value))
   }
 }
 </script>
@@ -126,6 +138,7 @@ const onItemKeydown = (event: KeyboardEvent, index: number, item: DragSelectItem
     </div>
 
     <ul
+      ref="listRef"
       class="vp-drag-select__list"
       role="listbox"
       :aria-label="t(LocaleKeys.component.dragSelect.listAria)"

@@ -1,0 +1,17 @@
+{
+  "family": "input",
+  "batch": "B02",
+  "axe": {
+    "status": "PASS",
+    "blocking": 0
+  },
+  "keyboard": {
+    "status": "PASS",
+    "detail": "CJK fill retained; disabled respected"
+  },
+  "verifiedAt": "2026-08-07T12:28:51.680Z",
+  "unit": {
+    "status": "PASS",
+    "detail": "CJK retained; disabled attribute present; textarea works"
+  }
+}

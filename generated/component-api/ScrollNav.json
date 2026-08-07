@@ -1,0 +1,88 @@
+{
+  "name": "ScrollNav",
+  "generatedAt": "2026-08-07T12:41:56.132Z",
+  "source": {
+    "types": "packages/components/core/ScrollNav/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "items",
+      "optional": true,
+      "type": "NavItem[]",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "'horizontal' | 'vertical'",
+      "description": ""
+    },
+    {
+      "name": "fadeEdges",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "item: NavItem, event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "ScrollNavProps",
+    "ScrollNavEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

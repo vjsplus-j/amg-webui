@@ -1,0 +1,221 @@
+{
+  "name": "Badge",
+  "generatedAt": "2026-08-07T12:39:09.859Z",
+  "source": {
+    "types": "packages/components/core/Badge/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "spin",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "heartbeat",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bounce",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "blink",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "breathe",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "glow",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "marqueeLeft",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "marqueeRight",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollUp",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollDown",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "dampOut",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "animationDuration",
+      "optional": true,
+      "type": "number | string",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "dot",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "hidden",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "optional": true,
+      "type": "BadgeSeverity",
+      "description": ""
+    },
+    {
+      "name": "severity",
+      "optional": true,
+      "type": "BadgeSeverity",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "BadgeSize",
+      "description": ""
+    },
+    {
+      "name": "position",
+      "optional": true,
+      "type": "BadgePosition",
+      "description": ""
+    },
+    {
+      "name": "offset",
+      "optional": true,
+      "type": "[number, number]",
+      "description": ""
+    },
+    {
+      "name": "colorBg",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "colorText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "color",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "tooltip",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "tooltipDelay",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "pulse",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "decorative",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "props": "props: Record<string, never>",
+      "description": ""
+    }
+  ],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "BadgeSize",
+    "BadgeSeverity",
+    "BadgePosition",
+    "BadgeProps",
+    "BadgeEmits",
+    "BadgeSlots"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": true,
+    "expose": false,
+    "models": false
+  }
+}

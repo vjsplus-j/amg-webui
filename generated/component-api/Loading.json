@@ -1,0 +1,131 @@
+{
+  "name": "Loading",
+  "generatedAt": "2026-08-07T12:41:35.010Z",
+  "source": {
+    "types": "packages/components/core/Loading/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "visible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "text",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "fullscreen",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "LoadingSize",
+      "description": ""
+    },
+    {
+      "name": "indicator",
+      "optional": true,
+      "type": "LoadingIndicator",
+      "description": ""
+    },
+    {
+      "name": "lockScroll",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "backdrop",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "delay",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "progress",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "cancellable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "cancelText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "zIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "live",
+      "optional": true,
+      "type": "\"polite\" | \"assertive\" | \"off\"",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:visible",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "visibleChange",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "cancel",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "after-enter",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "after-leave",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "LoadingSize",
+    "LoadingIndicator",
+    "LoadingProps",
+    "LoadingEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

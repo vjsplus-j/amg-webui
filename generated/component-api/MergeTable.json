@@ -1,0 +1,150 @@
+{
+  "name": "MergeTable",
+  "generatedAt": "2026-08-07T12:41:35.022Z",
+  "source": {
+    "types": "packages/components/data/MergeTable/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "MergeTableRow[]",
+      "description": ""
+    },
+    {
+      "name": "rows",
+      "optional": true,
+      "type": "MergeTableRow[]",
+      "description": ""
+    },
+    {
+      "name": "columns",
+      "optional": true,
+      "type": "MergeTableColumn[]",
+      "description": ""
+    },
+    {
+      "name": "mergeField",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "mergeFields",
+      "optional": true,
+      "type": "string[]",
+      "description": ""
+    },
+    {
+      "name": "rowKey",
+      "optional": true,
+      "type": "MergeTableRowKey",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | number | MergeTableRow | null",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bordered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "striped",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "stickyHeader",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | number | MergeTableRow",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "row: MergeTableRow, rowIndex: number",
+      "description": ""
+    },
+    {
+      "name": "rowClick",
+      "payload": "row: MergeTableRow, rowIndex: number, event: MouseEvent | KeyboardEvent,",
+      "description": ""
+    },
+    {
+      "name": "sortChange",
+      "payload": "field: string | null, direction: \"asc\" | \"desc\" | null,",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "MergeTableRow",
+    "MergeTableRowKey",
+    "MergeTableColumn",
+    "MergeTableProps",
+    "MergeTableEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

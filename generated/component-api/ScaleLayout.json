@@ -1,0 +1,75 @@
+{
+  "name": "ScaleLayout",
+  "generatedAt": "2026-08-07T12:41:56.130Z",
+  "source": {
+    "types": "packages/components/core/ScaleLayout/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "scale",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "width",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "height",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "fit",
+      "optional": true,
+      "type": "ScaleLayoutFit",
+      "description": ""
+    },
+    {
+      "name": "origin",
+      "optional": true,
+      "type": "ScaleLayoutOrigin",
+      "description": ""
+    },
+    {
+      "name": "fill",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "scaleChange",
+      "payload": "scale: number, hostSize: { width: number; height: number },",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ScaleLayoutFit",
+    "ScaleLayoutOrigin",
+    "ScaleLayoutProps",
+    "ScaleLayoutEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

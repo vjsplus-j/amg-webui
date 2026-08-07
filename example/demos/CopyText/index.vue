@@ -2,14 +2,11 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { CopyText } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -72,74 +69,6 @@ const codeEvents = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'text',
-    description: t('example.doc.copyText.prop.text'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'label',
-    description: t('example.doc.copyText.prop.label'),
-    type: 'string',
-    defaultValue: 'text'
-  },
-  {
-    name: 'truncate / maxWidth',
-    description: t('example.doc.copyText.prop.truncate'),
-    type: 'boolean / string',
-    defaultValue: 'true / -'
-  },
-  {
-    name: 'size',
-    description: t('example.doc.copyText.prop.size'),
-    type: 'Size',
-    defaultValue: "'md'"
-  },
-  {
-    name: 'showButton',
-    description: t('example.doc.copyText.prop.showButton'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'copyTooltip',
-    description: t('example.doc.copyText.prop.copyTooltip'),
-    type: 'string',
-    defaultValue: 'common.copy'
-  },
-  {
-    name: 'trackId / telemetry',
-    description: t('example.doc.copyText.prop.telemetry'),
-    type: 'string / boolean',
-    defaultValue: '- / undefined'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'copy',
-    description: t('example.doc.copyText.emit.copy'),
-    type: '(text: string) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'copyError / error',
-    description: t('example.doc.copyText.emit.copyError'),
-    type: '(error: unknown) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.copyText.slot.default'),
-    type: 'VNode',
-    defaultValue: 'label ?? text'
-  }
-])
 </script>
 
 <template>
@@ -217,19 +146,7 @@ const slotRows = computed<ApiRow[]>(() => [
       </div>
     </DemoBlock>
 
-    <!-- 5. API: Props → Events → Slots -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 5. API: Props → Events → Slots -->
   </div>
 </template>
 
@@ -239,25 +156,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-copy-stack {
   display: flex;
   flex-direction: column;

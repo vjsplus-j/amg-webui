@@ -1,0 +1,60 @@
+{
+  "name": "CodeEditor",
+  "generatedAt": "2026-08-07T12:40:46.797Z",
+  "source": {
+    "types": "packages/components/editor/CodeEditor/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "language",
+      "optional": true,
+      "type": "CodeLanguage",
+      "description": ""
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "CodeLanguage",
+    "CodeEditorProps",
+    "CodeEditorEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

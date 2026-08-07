@@ -52,6 +52,9 @@ export default {
   'chrome.font': 'Font',
   'chrome.schemeLight': 'Light',
   'chrome.schemeDark': 'Dark',
+  'chrome.direction': 'Text direction',
+  'chrome.dirLtr': 'LTR',
+  'chrome.dirRtl': 'RTL',
   'chrome.primaryBtn': 'Primary',
   'chrome.secondaryBtn': 'Secondary',
   'chrome.sampleInput': 'Follows current design',
@@ -59,5 +62,10 @@ export default {
   'chrome.current': 'Current: {label}',
   'chrome.brandFoot': 'AMG-WebUI · packages architecture',
   'chrome.stackLayers': 'base · business · theme · hooks',
+  'chrome.contextCopy': 'Copy',
+  'chrome.contextPaste': 'Paste',
+  'chrome.contextSelect': 'Select',
+  'chrome.contextSelectAll': 'Select all',
+  'chrome.contextInspect': 'Inspect',
   'common.today': 'Today',
-}
+} as const

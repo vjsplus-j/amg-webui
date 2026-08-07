@@ -1,0 +1,73 @@
+{
+  "name": "TabPane",
+  "generatedAt": "2026-08-07T12:41:56.167Z",
+  "source": {
+    "types": "packages/components/core/TabPane/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "name",
+      "optional": false,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "lazy",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "forceRender",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "destroyInactive",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "tabindex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "TabPaneProps",
+    "TabPaneEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

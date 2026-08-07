@@ -1,0 +1,92 @@
+{
+  "name": "TreeChart",
+  "family": "charts",
+  "package": "charts",
+  "profile": "general",
+  "gates": [
+    {
+      "id": "package",
+      "status": "PASS",
+      "detail": "vue=true types=true style=true"
+    },
+    {
+      "id": "api-props",
+      "status": "PASS",
+      "detail": "Props interface or defineProps"
+    },
+    {
+      "id": "api-emits",
+      "status": "PASS",
+      "detail": "Emits typed or none"
+    },
+    {
+      "id": "api-slots",
+      "status": "PASS",
+      "detail": "Slots contract present or N/A"
+    },
+    {
+      "id": "i18n",
+      "status": "PASS",
+      "detail": "no hardcoded CJK literals"
+    },
+    {
+      "id": "tokens",
+      "status": "PASS",
+      "detail": "no raw hex/rgb in component scss"
+    },
+    {
+      "id": "cleanup",
+      "status": "PASS",
+      "detail": "no side-effect APIs detected"
+    },
+    {
+      "id": "behavior",
+      "status": "PASS",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TreeChart mounts and renders public surface"
+    },
+    {
+      "id": "visual",
+      "status": "PASS",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TreeChart renders DOM for visual gate"
+    },
+    {
+      "id": "a11y",
+      "status": "PASS",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TreeChart mount tree available for a11y contract"
+    },
+    {
+      "id": "keyboard",
+      "status": "N/A",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TreeChart non-interactive display — keyboard N/A"
+    },
+    {
+      "id": "theme",
+      "status": "PASS",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TreeChart uses package styles / semantic tokens gate"
+    },
+    {
+      "id": "rtl",
+      "status": "N/A",
+      "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TreeChart RTL covered by theme/dir provider"
+    },
+    {
+      "id": "perf",
+      "status": "N/A",
+      "detail": "not applicable"
+    },
+    {
+      "id": "docs",
+      "status": "PASS",
+      "detail": "VitePress docs page + generated API extract (tree-chart.md)"
+    },
+    {
+      "id": "ssr",
+      "status": "PASS",
+      "detail": "structural=PASS; evidence=tests/unit/hardening/real-mount-remaining.spec.ts TreeChart client mount OK; no required browser-only top-level in package gate"
+    }
+  ],
+  "failCount": 0,
+  "status": "PASS",
+  "stable": false,
+  "verifiedAt": "2026-08-07T12:42:36.853Z"
+}

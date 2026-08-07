@@ -4,6 +4,21 @@
 
 试用发包（pre-1.0）。**API 可变**；正式 1.0 见 `docs/LIBRARY_PLAN.md` P4–P5。
 
+### 文档与治理（同步）
+
+- README / AGENTS 对齐当前能力：Hardening 流水线、Family 证据 lab、Lowcode Studio 0.1、~287 库存
+- 权威治理文档收敛为 `docs/COMPONENT_HARDENING.md` + `component-hardening/`；Example 文档化方向：`docs/EXAMPLE_DOCUMENTATION.md`
+- 删除根目录过期专项草稿（V1/V2/V3 计划 md、任务 CSV、核心分析等）；`COMPONENT_DEEPEN_PLAN` 改为历史指针
+- Cursor rules 收敛为编号集（`00`–`42`）；废弃 `vue3-amg-webui-*.mdc` 旧名；AGENTS / README / APP_WORKFLOW 已改指向
+- example AppShell chrome：去掉侧栏「筛选组」可见标题（仅 Search + `aria-label`）；顶栏 actions 隐藏原生横向滚动条轨道
+- example 窄屏导航：`≤768px` docked 侧栏隐藏后，顶栏菜单按钮 + 左侧 Drawer 承载同一套导航（修手机 / iPad 无侧栏无入口）
+- **语种与阅读方向解耦**：`LocaleService` 默认 `dir=ltr`；`ar-SA` 只换文案；顶栏独立 LTR/RTL + `?dir=` + `toggleDirection()`；E2E / 单测已改
+- **新增主题 WeChat / Alipay**：`data-design=wechat|alipay`；微信绿 / 支付宝蓝 Token 皮肤；注册表 + brand CSS + `/?design=`
+- **WeChat / Alipay 官方复刻**：WeUI 2.x 与 antd-mobile 5 色板/字号/圆角/控件高对齐；禁误用 LINK 蓝作 secondary；boot script 补登记；支持亮暗 scheme
+- **WeChat / Alipay 交互态**：选中/高亮/默认色与图标描边·色值对齐（侧栏去 Linear 竖条；微信绿字绿标、支付宝水色底主蓝；Icon 继承 `--icon-stroke-width`）
+- **语种扩展**：繁体改为 `zh-HK`（`zh-TW` 别名兼容）；新增 `hi-IN`（印地语）· `ug-CN`（维吾尔语）；内置十语种
+- DoD 权威：`docs/engineering/definition-of-done.md` 已对齐八套主题、语种/方向解耦、Theme Registry / i18n / example chrome 专项清单与编号 Cursor rules
+
 ### 组件包边界拆分（破坏性）
 
 - 拆除扁平 `packages/components/base` 胖 barrel：按领域迁入 `core` / `form` / `data` / `overlay` / `charts` / `editor` / `media` / `gb28181` / `onvif`；lowcode UI → `packages/lowcode/ui/`
@@ -144,7 +159,7 @@
 ### 强类型 i18n + 原生 RTL
 
 - `LocaleKey` / `LocaleMessages` 由 zh-CN 生成（`message-schema.ts`）；`t()` 仅接受 `LocaleKey`；语种包 `satisfies LocaleMessages`（缺 key 编译失败）
-- 内置八语种含 **`ar-SA`（RTL，独立阿语包）** · `LocaleService.setDirection` · `ConfigProvider` 跟随 `getDir()` · 主题 `rtl.scss` + chrome 逻辑属性
+- 内置十语种含 **`ar-SA`（RTL，独立阿语包）** · `LocaleService.setDirection` · `ConfigProvider` 跟随 `getDir()` · 主题 `rtl.scss` + chrome 逻辑属性
 - `ja-JP` / `ko-*` / `ru-RU` `biz.ts` 正文本地化；`npm run generate:locale-types` / `extract:i18n` 对齐校验；动态 key 用 `tDyn`
 
 ### Theme Core

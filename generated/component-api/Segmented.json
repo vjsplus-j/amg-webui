@@ -1,0 +1,78 @@
+{
+  "name": "Segmented",
+  "generatedAt": "2026-08-07T12:41:56.140Z",
+  "source": {
+    "types": "packages/components/core/Segmented/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | number | boolean",
+      "description": ""
+    },
+    {
+      "name": "options",
+      "optional": true,
+      "type": "SegmentedOption[]",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "block",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | number | boolean",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string | number | boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "SegmentedOption",
+    "SegmentedProps",
+    "SegmentedEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

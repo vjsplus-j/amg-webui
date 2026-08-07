@@ -37,7 +37,7 @@ const titleText = computed(() => props.title ?? t('component.ranking.title'))
 </script>
 
 <template>
-  <div :class="['vp-ranking', 'vp-ranking__panel', { 'vp-ranking--disabled': disabled }, props.class]" :style="style">
+  <div role="region" aria-label="Ranking" :class="['vp-ranking', 'vp-ranking__panel', { 'vp-ranking--disabled': disabled }, props.class]" :style="style">
     <div class="vp-ranking__toolbar">
       <h3 class="vp-ranking__heading">{{ titleText }}</h3>
       <button type="button" class="vp-ranking__control" @click="sortDesc = !sortDesc">

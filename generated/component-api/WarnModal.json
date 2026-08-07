@@ -1,0 +1,24 @@
+{
+  "name": "WarnModal",
+  "generatedAt": "2026-08-07T12:45:59.838Z",
+  "source": {
+    "types": "packages/components/overlay/WarnModal/types.ts",
+    "vue": true
+  },
+  "props": [],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "WarnModalProps",
+    "WarnModalEmits"
+  ],
+  "completeness": {
+    "props": false,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

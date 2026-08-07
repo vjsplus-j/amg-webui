@@ -1,6 +1,20 @@
 # Button
 
-Button 组件 API（v0.1 子集）。
+Button 为 **Stable** 公共组件（API frozen）。本文档由 `generate-vitepress-api.mjs` 从 `generated/component-api` 生成。
+
+## 概览
+
+Button 已通过 Component Hardening 证据门禁；完整交互演示见本地 example curated demo。
+
+## 何时使用 / 何时不用
+
+- **适用**：生产可用的 Stable 组件场景。
+- **不适用**：需要未实现能力（如分组虚拟化、复杂低代码编排）时请查阅 example 或等待后续阶段。
+
+## 相关组件
+
+- [ButtonGroup](./button-group)
+- [Dialog](./dialog)
 
 ## 基础用法
 
@@ -14,42 +28,96 @@ import { Button } from '@amg-webui/core'
 </template>
 ```
 
-## 常用 API
+Curated demo：`example/demos/Button/index.vue`
+
+## Props
 
 | Prop | 类型 | 默认 | 说明 |
 | --- | --- | --- | --- |
-| `spin` | `boolean` | — | Continuous rotate — shared Motion |
-| `pulse` | `boolean` | — | Soft opacity pulse — shared Motion |
-| `heartbeat` | `boolean` | — | Scale heartbeat — shared Motion |
-| `bounce` | `boolean` | — | Jump upward — shared Motion |
-| `blink` | `boolean` | — | Sharp flash — shared Motion |
-| `breathe` | `boolean` | — | Breathing light — shared Motion |
-| `glow` | `boolean` | — | Fluorescent glow — shared Motion |
-| `marqueeLeft` | `boolean` | — | Marquee scroll left — shared Motion |
-| `marqueeRight` | `boolean` | — | Marquee scroll right — shared Motion |
-| `scrollUp` | `boolean` | — | Vertical scroll up — shared Motion |
-| `scrollDown` | `boolean` | — | Vertical scroll down — shared Motion |
-| `dampOut` | `boolean` | — | Damped zoom then fade out — shared Motion |
-| `animationDuration` | `number \| string` | — | Animation duration (ms or CSS time) — shared Motion |
+| `spin` | `boolean` | — | — |
+| `pulse` | `boolean` | — | — |
+| `heartbeat` | `boolean` | — | — |
+| `bounce` | `boolean` | — | — |
+| `blink` | `boolean` | — | — |
+| `breathe` | `boolean` | — | — |
+| `glow` | `boolean` | — | — |
+| `marqueeLeft` | `boolean` | — | — |
+| `marqueeRight` | `boolean` | — | — |
+| `scrollUp` | `boolean` | — | — |
+| `scrollDown` | `boolean` | — | — |
+| `dampOut` | `boolean` | — | — |
+| `animationDuration` | `number \| string` | — | — |
 | `label` | `string` | — | — |
-| `icon` | `string` | — | Lucide icon name (e.g. `Star`) — used when `#icon` slot is empty |
+| `icon` | `string` | — | — |
 | `iconPos` | `ButtonIconPos` | — | — |
-| `iconSize` | `Size` | — | Override icon size token (defaults to button size) |
-| `iconGap` | `Size \| string` | — | Gap between icon and label — Size token or CSS length |
+| `iconSize` | `Size` | — | — |
+| `iconGap` | `Size \| string` | — | — |
 | `severity` | `ButtonSeverity` | — | — |
 | `variant` | `ButtonVariant` | — | — |
-| `size` | `Size` | — | 极小 xs → 超大 xl，映射 `--height-*` |
-| `shape` | `ButtonShape` | — | 形状：矩形（默认）/ 方形 / 圆形 |
-| `rounded` | `boolean` | — | Pill / full radius |
-| `borderRadius` | `string` | — | Custom radius — CSS value (prefer token / `%`) |
+| `size` | `Size` | — | — |
+| `shape` | `ButtonShape` | — | — |
+| `rounded` | `boolean` | — | — |
+| `borderRadius` | `string` | — | — |
+| `raised` | `boolean` | — | — |
+| `link` | `boolean` | — | — |
+| `block` | `boolean` | — | — |
+| `fluid` | `boolean` | — | — |
+| `loading` | `boolean` | — | — |
+| `loadingText` | `string` | — | — |
+| `disabled` | `boolean` | — | — |
+| `disabledTitle` | `string` | — | — |
 
+## Events
 
-| 事件 | 说明 |
+| 事件 | Payload | 说明 |
+| --- | --- | --- |
+| `click` | `event: MouseEvent` | — |
+| `focus` | `event: FocusEvent` | — |
+| `blur` | `event: FocusEvent` | — |
+| `confirm` | `event: Event` | — |
+| `cancelConfirm` | `event: Event` | — |
+
+## Slots
+
+| Slot | Props | 说明 |
+| --- | --- | --- |
+| `default` | `props: Record<string, never>` | — |
+| `icon` | `props: Record<string, never>` | — |
+| `loading` | `props: Record<string, never>` | — |
+
+## Expose
+
+| Expose | 类型 | 说明 |
+| --- | --- | --- |
+| `el` | `HTMLElement \| null` | — |
+| `focus` | `() => void` | — |
+| `blur` | `() => void` | — |
+
+## Public types
+
+- `ButtonSeverity`
+- `ButtonIconPos`
+- `ButtonShape`
+- `ButtonVariant`
+- `ButtonClickGuard`
+- `ButtonPermissionMode`
+- `ButtonNativeType`
+- `ButtonInstance`
+- `ButtonProps`
+- `ButtonEmits`
+- `ButtonSlots`
+- `ButtonExpose`
+
+## 无障碍与键盘
+
+交互行为与键盘路径以 `component-hardening/evidence/Button/a11y.json` · `keyboard.json` 为准；本地可复现：`example/demos/Button/`。
+
+## 稳定性
+
+| 字段 | 值 |
 | --- | --- |
-| `click` | — |
-| `focus` | — |
-| `blur` | — |
-| `confirm` | — |
-| `cancelConfirm` | — |
+| maturity | `stable` |
+| apiFreeze | `frozen` |
+| API extract | `generated/component-api/Button.json` |
 
-> 完整 Demo 见 `example/demos/Button/`。本阶段对外 docs 为薄 API stub；交互预览仅在本地 example（不上线）。
+> 完整 Demo 见 `example/demos/Button`。对外 docs 为 API 导向页面；交互预览仅在本地 example（不上线）。

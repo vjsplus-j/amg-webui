@@ -7,11 +7,8 @@ import { Transfer } from '@amg-webui/form'
 import { Space } from '@amg-webui/core'
 import type { TransferItem } from '@amg-webui/form/Transfer'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -48,50 +45,6 @@ const codeFilterable = demoCode(
   `/>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'data',
-    description: t('example.doc.transfer.prop.data'),
-    type: 'TransferItem[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'modelValue',
-    description: t('example.doc.transfer.prop.modelValue'),
-    type: '(string | number)[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'filterable',
-    description: t('example.doc.transfer.prop.filterable'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'disabled',
-    description: t('example.doc.transfer.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:modelValue / change',
-    description: t('example.doc.transfer.event.change'),
-    type: '(keys: (string | number)[]) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'left-title / right-title',
-    description: t('example.doc.transfer.slot.titles'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -118,16 +71,6 @@ const slotRows = computed<ApiRow[]>(() => [
     >
       <Transfer v-model="filterSelected" :data="transferData" filterable />
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
   </div>
 </template>
 
@@ -141,19 +84,5 @@ const slotRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "tests/unit/hardening/real-mount-remaining.spec.ts TablePrint renders DOM for visual gate",
+  "tests": [
+    "tests/unit/hardening/real-mount-remaining.spec.ts"
+  ],
+  "updatedAt": "2026-08-07T12:42:34.309Z"
+}

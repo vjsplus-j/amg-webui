@@ -1,0 +1,233 @@
+{
+  "name": "Typography",
+  "generatedAt": "2026-08-07T12:42:17.053Z",
+  "source": {
+    "types": "packages/components/core/Typography/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "spin",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "pulse",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "heartbeat",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bounce",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "blink",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "breathe",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "glow",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "marqueeLeft",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "marqueeRight",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollUp",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollDown",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "dampOut",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "animationDuration",
+      "optional": true,
+      "type": "number | string",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "optional": true,
+      "type": "TypographyType",
+      "description": ""
+    },
+    {
+      "name": "typeColor",
+      "optional": true,
+      "type": "Severity",
+      "description": ""
+    },
+    {
+      "name": "color",
+      "optional": true,
+      "type": "Severity",
+      "description": ""
+    },
+    {
+      "name": "copyable",
+      "optional": true,
+      "type": "TypographyCopyable",
+      "description": ""
+    },
+    {
+      "name": "ellipsis",
+      "optional": true,
+      "type": "TypographyEllipsis",
+      "description": ""
+    },
+    {
+      "name": "strong",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "italic",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "underline",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "delete",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "mark",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "code",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "shimmer",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "clickable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "fontFamily",
+      "optional": true,
+      "type": "TypographyFontFamily",
+      "description": ""
+    },
+    {
+      "name": "lineHeight",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "content",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "copy",
+      "payload": "text: string",
+      "description": ""
+    },
+    {
+      "name": "copyError",
+      "payload": "error: Error",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "TypographyType",
+    "TypographyFontFamily",
+    "TypographyEllipsis",
+    "TypographyCopyable",
+    "TypographyEllipsisConfig",
+    "TypographyCopyableConfig",
+    "TypographyProps",
+    "TypographyEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

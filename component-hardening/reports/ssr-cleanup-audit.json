@@ -1,0 +1,2315 @@
+{
+  "summary": {
+    "generatedAt": "2026-08-07T12:46:59.385Z",
+    "scope": "packages/ public components (inventory SSOT)",
+    "componentsScanned": 287,
+    "filesScanned": 914,
+    "p0Count": 0,
+    "p1Count": 0,
+    "p0Components": [],
+    "p1Components": [],
+    "note": "P0 = module-scope browser global without guard; P1 = side effects without obvious cleanup"
+  },
+  "findings": {
+    "P0": [],
+    "P1": []
+  },
+  "components": [
+    {
+      "name": "AdvancedSearch",
+      "package": "form",
+      "path": "packages/components/form/AdvancedSearch",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Affix",
+      "package": "core",
+      "path": "packages/components/core/Affix",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Alert",
+      "package": "core",
+      "path": "packages/components/core/Alert",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Anchor",
+      "package": "core",
+      "path": "packages/components/core/Anchor",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "AudioPlay",
+      "package": "media",
+      "path": "packages/components/media/AudioPlay",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "AudioTalk",
+      "package": "media",
+      "path": "packages/components/media/AudioTalk",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "AutoComplete",
+      "package": "form",
+      "path": "packages/components/form/AutoComplete",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Avatar",
+      "package": "core",
+      "path": "packages/components/core/Avatar",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "AvatarGroup",
+      "package": "core",
+      "path": "packages/components/core/AvatarGroup",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "BackTop",
+      "package": "core",
+      "path": "packages/components/core/BackTop",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Badge",
+      "package": "core",
+      "path": "packages/components/core/Badge",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "BarChart",
+      "package": "charts",
+      "path": "packages/components/charts/BarChart",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Barcode",
+      "package": "core",
+      "path": "packages/components/core/Barcode",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "BatchPanel",
+      "package": "data",
+      "path": "packages/components/data/BatchPanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "BatchUpload",
+      "package": "form",
+      "path": "packages/components/form/BatchUpload",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Block",
+      "package": "core",
+      "path": "packages/components/core/Block",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Breadcrumb",
+      "package": "core",
+      "path": "packages/components/core/Breadcrumb",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "BreadcrumbItem",
+      "package": "core",
+      "path": "packages/components/core/BreadcrumbItem",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "BrowserDetect",
+      "package": "core",
+      "path": "packages/components/core/BrowserDetect",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Business404",
+      "package": "core",
+      "path": "packages/components/core/Business404",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Button",
+      "package": "core",
+      "path": "packages/components/core/Button",
+      "filesScanned": 6,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ButtonGroup",
+      "package": "core",
+      "path": "packages/components/core/ButtonGroup",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Calendar",
+      "package": "data",
+      "path": "packages/components/data/Calendar",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CanvasIo",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/CanvasIo",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CanvasLayer",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/CanvasLayer",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CanvasNode",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/CanvasNode",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CanvasPreview",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/CanvasPreview",
+      "filesScanned": 5,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CanvasShortcut",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/CanvasShortcut",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Card",
+      "package": "core",
+      "path": "packages/components/core/Card",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CardGrid",
+      "package": "core",
+      "path": "packages/components/core/CardGrid",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CardList",
+      "package": "data",
+      "path": "packages/components/data/CardList",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CardNav",
+      "package": "core",
+      "path": "packages/components/core/CardNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CardWidgets",
+      "package": "core",
+      "path": "packages/components/core/CardWidgets",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Carousel",
+      "package": "core",
+      "path": "packages/components/core/Carousel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Cartoon404",
+      "package": "core",
+      "path": "packages/components/core/Cartoon404",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Cascader",
+      "package": "form",
+      "path": "packages/components/form/Cascader",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CategoryNav",
+      "package": "core",
+      "path": "packages/components/core/CategoryNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Center",
+      "package": "core",
+      "path": "packages/components/core/Center",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Checkbox",
+      "package": "form",
+      "path": "packages/components/form/Checkbox",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CheckboxGroup",
+      "package": "form",
+      "path": "packages/components/form/CheckboxGroup",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ChunkUpload",
+      "package": "form",
+      "path": "packages/components/form/ChunkUpload",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Clipboard",
+      "package": "core",
+      "path": "packages/components/core/Clipboard",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CodeEditor",
+      "package": "editor",
+      "path": "packages/components/editor/CodeEditor",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Col",
+      "package": "core",
+      "path": "packages/components/core/Col",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Collapse",
+      "package": "core",
+      "path": "packages/components/core/Collapse",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ColorInput",
+      "package": "form",
+      "path": "packages/components/form/ColorInput",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ColorPicker",
+      "package": "form",
+      "path": "packages/components/form/ColorPicker",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ColumnLayout",
+      "package": "core",
+      "path": "packages/components/core/ColumnLayout",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ConfigProvider",
+      "package": "core",
+      "path": "packages/components/core/ConfigProvider",
+      "filesScanned": 5,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Confirm",
+      "package": "overlay",
+      "path": "packages/components/overlay/Confirm",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ConfirmDialog",
+      "package": "overlay",
+      "path": "packages/components/overlay/ConfirmDialog",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Container",
+      "package": "core",
+      "path": "packages/components/core/Container",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ContextMenu",
+      "package": "overlay",
+      "path": "packages/components/overlay/ContextMenu",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CopyText",
+      "package": "core",
+      "path": "packages/components/core/CopyText",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Countdown",
+      "package": "core",
+      "path": "packages/components/core/Countdown",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "CryptoBox",
+      "package": "core",
+      "path": "packages/components/core/CryptoBox",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Dashboard",
+      "package": "data",
+      "path": "packages/components/data/Dashboard",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DataCard",
+      "package": "data",
+      "path": "packages/components/data/DataCard",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DataTable",
+      "package": "data",
+      "path": "packages/components/data/DataTable",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DatePicker",
+      "package": "form",
+      "path": "packages/components/form/DatePicker",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DateTimePicker",
+      "package": "form",
+      "path": "packages/components/form/DateTimePicker",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Descriptions",
+      "package": "data",
+      "path": "packages/components/data/Descriptions",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DescriptionsItem",
+      "package": "data",
+      "path": "packages/components/data/DescriptionsItem",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DetailPanel",
+      "package": "data",
+      "path": "packages/components/data/DetailPanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Dialog",
+      "package": "overlay",
+      "path": "packages/components/overlay/Dialog",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Divider",
+      "package": "core",
+      "path": "packages/components/core/Divider",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Doodle404",
+      "package": "core",
+      "path": "packages/components/core/Doodle404",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DragCanvas",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/DragCanvas",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DragMaterial",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/DragMaterial",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DragRuler",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/DragRuler",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DragSelect",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/DragSelect",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DragSortNode",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/DragSortNode",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DragVerify",
+      "package": "core",
+      "path": "packages/components/core/DragVerify",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DragWrapper",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/DragWrapper",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Drawer",
+      "package": "overlay",
+      "path": "packages/components/overlay/Drawer",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DrillTable",
+      "package": "data",
+      "path": "packages/components/data/DrillTable",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Dropdown",
+      "package": "overlay",
+      "path": "packages/components/overlay/Dropdown",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "DynamicForm",
+      "package": "form",
+      "path": "packages/components/form/DynamicForm",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "EditTable",
+      "package": "data",
+      "path": "packages/components/data/EditTable",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "EditTree",
+      "package": "data",
+      "path": "packages/components/data/EditTree",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Ellipsis",
+      "package": "core",
+      "path": "packages/components/core/Ellipsis",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "EmbedLayout",
+      "package": "core",
+      "path": "packages/components/core/EmbedLayout",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Empty",
+      "package": "core",
+      "path": "packages/components/core/Empty",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ErrorModal",
+      "package": "overlay",
+      "path": "packages/components/overlay/ErrorModal",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ExcelIo",
+      "package": "data",
+      "path": "packages/components/data/ExcelIo",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Exception",
+      "package": "core",
+      "path": "packages/components/core/Exception",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FilePreview",
+      "package": "core",
+      "path": "packages/components/core/FilePreview",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FilterBar",
+      "package": "form",
+      "path": "packages/components/form/FilterBar",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FixedLayout",
+      "package": "core",
+      "path": "packages/components/core/FixedLayout",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FloatButton",
+      "package": "core",
+      "path": "packages/components/core/FloatButton",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FloatNav",
+      "package": "core",
+      "path": "packages/components/core/FloatNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FlowLayout",
+      "package": "core",
+      "path": "packages/components/core/FlowLayout",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FlowPanel",
+      "package": "data",
+      "path": "packages/components/data/FlowPanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FolderTree",
+      "package": "data",
+      "path": "packages/components/data/FolderTree",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Footer",
+      "package": "core",
+      "path": "packages/components/core/Footer",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FooterNav",
+      "package": "core",
+      "path": "packages/components/core/FooterNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Form",
+      "package": "form",
+      "path": "packages/components/form/Form",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FormGroup",
+      "package": "form",
+      "path": "packages/components/form/FormGroup",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FormItem",
+      "package": "form",
+      "path": "packages/components/form/FormItem",
+      "filesScanned": 5,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FormLayout",
+      "package": "core",
+      "path": "packages/components/core/FormLayout",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FormTabs",
+      "package": "form",
+      "path": "packages/components/form/FormTabs",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "FreeLayoutDrag",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/FreeLayoutDrag",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "GaugeChart",
+      "package": "charts",
+      "path": "packages/components/charts/GaugeChart",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "GbsAlarmModal",
+      "package": "gb28181",
+      "path": "packages/components/gb28181/GbsAlarmModal",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "GbsCascadePanel",
+      "package": "gb28181",
+      "path": "packages/components/gb28181/GbsCascadePanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "GbsDeviceTree",
+      "package": "gb28181",
+      "path": "packages/components/gb28181/GbsDeviceTree",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "GbsGatewayForm",
+      "package": "gb28181",
+      "path": "packages/components/gb28181/GbsGatewayForm",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "GbsRegisterForm",
+      "package": "gb28181",
+      "path": "packages/components/gb28181/GbsRegisterForm",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "GbsSignMonitor",
+      "package": "gb28181",
+      "path": "packages/components/gb28181/GbsSignMonitor",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "GbsStatusCard",
+      "package": "gb28181",
+      "path": "packages/components/gb28181/GbsStatusCard",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "GbsTimeSync",
+      "package": "gb28181",
+      "path": "packages/components/gb28181/GbsTimeSync",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "GraphChart",
+      "package": "charts",
+      "path": "packages/components/charts/GraphChart",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "GridLayoutDrag",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/GridLayoutDrag",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "GroupNav",
+      "package": "core",
+      "path": "packages/components/core/GroupNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Header",
+      "package": "core",
+      "path": "packages/components/core/Header",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "HeatMap",
+      "package": "charts",
+      "path": "packages/components/charts/HeatMap",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Highlight",
+      "package": "core",
+      "path": "packages/components/core/Highlight",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Icon",
+      "package": "core",
+      "path": "packages/components/core/Icon",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Image",
+      "package": "core",
+      "path": "packages/components/core/Image",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ImageCrop",
+      "package": "core",
+      "path": "packages/components/core/ImageCrop",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ImageGroup",
+      "package": "core",
+      "path": "packages/components/core/ImageGroup",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ImageUpload",
+      "package": "form",
+      "path": "packages/components/form/ImageUpload",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ImageViewer",
+      "package": "core",
+      "path": "packages/components/core/ImageViewer",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "IndexNav",
+      "package": "core",
+      "path": "packages/components/core/IndexNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "InfiniteScroll",
+      "package": "data",
+      "path": "packages/components/data/InfiniteScroll",
+      "filesScanned": 5,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "InfoModal",
+      "package": "overlay",
+      "path": "packages/components/overlay/InfoModal",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Ink404",
+      "package": "core",
+      "path": "packages/components/core/Ink404",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "InputCaptcha",
+      "package": "form",
+      "path": "packages/components/form/InputCaptcha",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "InputNumber",
+      "package": "form",
+      "path": "packages/components/form/InputNumber",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "InputOTP",
+      "package": "form",
+      "path": "packages/components/form/InputOTP",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "InputText",
+      "package": "form",
+      "path": "packages/components/form/InputText",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Layout",
+      "package": "core",
+      "path": "packages/components/core/Layout",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "LazyTree",
+      "package": "data",
+      "path": "packages/components/data/LazyTree",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "LineChart",
+      "package": "charts",
+      "path": "packages/components/charts/LineChart",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Link",
+      "package": "core",
+      "path": "packages/components/core/Link",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Loading",
+      "package": "core",
+      "path": "packages/components/core/Loading",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "LoadingTip",
+      "package": "core",
+      "path": "packages/components/core/LoadingTip",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "LoginPanel",
+      "package": "form",
+      "path": "packages/components/form/LoginPanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Machine404",
+      "package": "core",
+      "path": "packages/components/core/Machine404",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Main",
+      "package": "core",
+      "path": "packages/components/core/Main",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Mask",
+      "package": "overlay",
+      "path": "packages/components/overlay/Mask",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "MatrixCode",
+      "package": "core",
+      "path": "packages/components/core/MatrixCode",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "MdEditor",
+      "package": "editor",
+      "path": "packages/components/editor/MdEditor",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Mention",
+      "package": "form",
+      "path": "packages/components/form/Mention",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Menu",
+      "package": "core",
+      "path": "packages/components/core/Menu",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "MenuBar",
+      "package": "core",
+      "path": "packages/components/core/MenuBar",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "MergeTable",
+      "package": "data",
+      "path": "packages/components/data/MergeTable",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Message",
+      "package": "overlay",
+      "path": "packages/components/overlay/Message",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "MessageBox",
+      "package": "overlay",
+      "path": "packages/components/overlay/MessageBox",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "MiniNav",
+      "package": "core",
+      "path": "packages/components/core/MiniNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "MonthPicker",
+      "package": "form",
+      "path": "packages/components/form/MonthPicker",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "NoticeBar",
+      "package": "core",
+      "path": "packages/components/core/NoticeBar",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Notification",
+      "package": "overlay",
+      "path": "packages/components/overlay/Notification",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "OcrScan",
+      "package": "core",
+      "path": "packages/components/core/OcrScan",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "OnvifAlarmPanel",
+      "package": "onvif",
+      "path": "packages/components/onvif/OnvifAlarmPanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "OnvifChannelManage",
+      "package": "onvif",
+      "path": "packages/components/onvif/OnvifChannelManage",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "OnvifDeviceList",
+      "package": "onvif",
+      "path": "packages/components/onvif/OnvifDeviceList",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "OnvifGroupTree",
+      "package": "onvif",
+      "path": "packages/components/onvif/OnvifGroupTree",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "OnvifRecordPlan",
+      "package": "onvif",
+      "path": "packages/components/onvif/OnvifRecordPlan",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "OnvifSearch",
+      "package": "onvif",
+      "path": "packages/components/onvif/OnvifSearch",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "OnvifSettingPanel",
+      "package": "onvif",
+      "path": "packages/components/onvif/OnvifSettingPanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "OnvifUrlForm",
+      "package": "onvif",
+      "path": "packages/components/onvif/OnvifUrlForm",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "PTZControl",
+      "package": "media",
+      "path": "packages/components/media/PTZControl",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "PageHeader",
+      "package": "core",
+      "path": "packages/components/core/PageHeader",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "PagerNav",
+      "package": "core",
+      "path": "packages/components/core/PagerNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Pagination",
+      "package": "data",
+      "path": "packages/components/data/Pagination",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Password",
+      "package": "form",
+      "path": "packages/components/form/Password",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "PdfPreview",
+      "package": "core",
+      "path": "packages/components/core/PdfPreview",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "PermissionPanel",
+      "package": "form",
+      "path": "packages/components/form/PermissionPanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "PieChart",
+      "package": "charts",
+      "path": "packages/components/charts/PieChart",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "PivotTable",
+      "package": "data",
+      "path": "packages/components/data/PivotTable",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Pixel404",
+      "package": "core",
+      "path": "packages/components/core/Pixel404",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Plant404",
+      "package": "core",
+      "path": "packages/components/core/Plant404",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Popconfirm",
+      "package": "core",
+      "path": "packages/components/core/Popconfirm",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Popover",
+      "package": "overlay",
+      "path": "packages/components/overlay/Popover",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Preview",
+      "package": "core",
+      "path": "packages/components/core/Preview",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Print",
+      "package": "core",
+      "path": "packages/components/core/Print",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ProTable",
+      "package": "data",
+      "path": "packages/components/data/ProTable",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Progress",
+      "package": "core",
+      "path": "packages/components/core/Progress",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ProgressTip",
+      "package": "core",
+      "path": "packages/components/core/ProgressTip",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "PropPanel",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/PropPanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Qrcode",
+      "package": "core",
+      "path": "packages/components/core/Qrcode",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "QuarterPicker",
+      "package": "form",
+      "path": "packages/components/form/QuarterPicker",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "QuickNav",
+      "package": "core",
+      "path": "packages/components/core/QuickNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "RadarChart",
+      "package": "charts",
+      "path": "packages/components/charts/RadarChart",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Radio",
+      "package": "form",
+      "path": "packages/components/form/Radio",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "RadioGroup",
+      "package": "form",
+      "path": "packages/components/form/RadioGroup",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "RangeInput",
+      "package": "form",
+      "path": "packages/components/form/RangeInput",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Ranking",
+      "package": "data",
+      "path": "packages/components/data/Ranking",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Rate",
+      "package": "form",
+      "path": "packages/components/form/Rate",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ResizeBox",
+      "package": "core",
+      "path": "packages/components/core/ResizeBox",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Result",
+      "package": "core",
+      "path": "packages/components/core/Result",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "RichText",
+      "package": "editor",
+      "path": "packages/components/editor/RichText",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "RouterNav",
+      "package": "core",
+      "path": "packages/components/core/RouterNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Row",
+      "package": "core",
+      "path": "packages/components/core/Row",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ScaleLayout",
+      "package": "core",
+      "path": "packages/components/core/ScaleLayout",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "SchemaRenderer",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/SchemaRenderer",
+      "filesScanned": 5,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ScrollNav",
+      "package": "core",
+      "path": "packages/components/core/ScrollNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ScrollNotice",
+      "package": "core",
+      "path": "packages/components/core/ScrollNotice",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Scrollbar",
+      "package": "core",
+      "path": "packages/components/core/Scrollbar",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Search",
+      "package": "form",
+      "path": "packages/components/form/Search",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "SearchFilterPanel",
+      "package": "form",
+      "path": "packages/components/form/SearchFilterPanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Segmented",
+      "package": "core",
+      "path": "packages/components/core/Segmented",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Select",
+      "package": "form",
+      "path": "packages/components/form/Select",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "SelectNav",
+      "package": "form",
+      "path": "packages/components/form/SelectNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "SettingPanel",
+      "package": "form",
+      "path": "packages/components/form/SettingPanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Sider",
+      "package": "core",
+      "path": "packages/components/core/Sider",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Simple404",
+      "package": "core",
+      "path": "packages/components/core/Simple404",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Skeleton",
+      "package": "core",
+      "path": "packages/components/core/Skeleton",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Slider",
+      "package": "form",
+      "path": "packages/components/form/Slider",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "SmsCode",
+      "package": "form",
+      "path": "packages/components/form/SmsCode",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Space",
+      "package": "core",
+      "path": "packages/components/core/Space",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Space404",
+      "package": "core",
+      "path": "packages/components/core/Space404",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Spacer",
+      "package": "core",
+      "path": "packages/components/core/Spacer",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Spin",
+      "package": "core",
+      "path": "packages/components/core/Spin",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Split",
+      "package": "core",
+      "path": "packages/components/core/Split",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "SplitVideoWall",
+      "package": "media",
+      "path": "packages/components/media/SplitVideoWall",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "StackLayout",
+      "package": "core",
+      "path": "packages/components/core/StackLayout",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Statistic",
+      "package": "core",
+      "path": "packages/components/core/Statistic",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "StatusTip",
+      "package": "core",
+      "path": "packages/components/core/StatusTip",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "StepForm",
+      "package": "form",
+      "path": "packages/components/form/StepForm",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "StepItem",
+      "package": "core",
+      "path": "packages/components/core/StepItem",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "StepNav",
+      "package": "core",
+      "path": "packages/components/core/StepNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Steps",
+      "package": "core",
+      "path": "packages/components/core/Steps",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "StickyTable",
+      "package": "data",
+      "path": "packages/components/data/StickyTable",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "SuccessModal",
+      "package": "overlay",
+      "path": "packages/components/overlay/SuccessModal",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Switch",
+      "package": "form",
+      "path": "packages/components/form/Switch",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TabPane",
+      "package": "core",
+      "path": "packages/components/core/TabPane",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TableAction",
+      "package": "data",
+      "path": "packages/components/data/TableAction",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TableDrag",
+      "package": "data",
+      "path": "packages/components/data/TableDrag",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TableExport",
+      "package": "data",
+      "path": "packages/components/data/TableExport",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TablePrint",
+      "package": "data",
+      "path": "packages/components/data/TablePrint",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Tabs",
+      "package": "core",
+      "path": "packages/components/core/Tabs",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TabsNav",
+      "package": "core",
+      "path": "packages/components/core/TabsNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Tag",
+      "package": "core",
+      "path": "packages/components/core/Tag",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TagInput",
+      "package": "form",
+      "path": "packages/components/form/TagInput",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Tech404",
+      "package": "core",
+      "path": "packages/components/core/Tech404",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TelemetryProvider",
+      "package": "core",
+      "path": "packages/components/core/TelemetryProvider",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TemplateDrag",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/TemplateDrag",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TemplateSelect",
+      "package": "lowcode",
+      "path": "packages/lowcode/ui/TemplateSelect",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Textarea",
+      "package": "form",
+      "path": "packages/components/form/Textarea",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "ThemeProvider",
+      "package": "core",
+      "path": "packages/components/core/ThemeProvider",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Thumbnail",
+      "package": "core",
+      "path": "packages/components/core/Thumbnail",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TimePicker",
+      "package": "form",
+      "path": "packages/components/form/TimePicker",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TimeRangeInput",
+      "package": "form",
+      "path": "packages/components/form/TimeRangeInput",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TimeSelect",
+      "package": "form",
+      "path": "packages/components/form/TimeSelect",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Timeline",
+      "package": "data",
+      "path": "packages/components/data/Timeline",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TimelineItem",
+      "package": "data",
+      "path": "packages/components/data/TimelineItem",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TimelineList",
+      "package": "data",
+      "path": "packages/components/data/TimelineList",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Toast",
+      "package": "overlay",
+      "path": "packages/components/overlay/Toast",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Tooltip",
+      "package": "core",
+      "path": "packages/components/core/Tooltip",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TopNav",
+      "package": "core",
+      "path": "packages/components/core/TopNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Tour",
+      "package": "overlay",
+      "path": "packages/components/overlay/Tour",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Transfer",
+      "package": "form",
+      "path": "packages/components/form/Transfer",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TransferTree",
+      "package": "data",
+      "path": "packages/components/data/TransferTree",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Tree",
+      "package": "data",
+      "path": "packages/components/data/Tree",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TreeChart",
+      "package": "charts",
+      "path": "packages/components/charts/TreeChart",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TreeForm",
+      "package": "form",
+      "path": "packages/components/form/TreeForm",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TreeSelect",
+      "package": "data",
+      "path": "packages/components/data/TreeSelect",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TreeTable",
+      "package": "data",
+      "path": "packages/components/data/TreeTable",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "TreeTransfer",
+      "package": "data",
+      "path": "packages/components/data/TreeTransfer",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Typography",
+      "package": "core",
+      "path": "packages/components/core/Typography",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Upload",
+      "package": "form",
+      "path": "packages/components/form/Upload",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "UserInfoCard",
+      "package": "core",
+      "path": "packages/components/core/UserInfoCard",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VcrBackupTask",
+      "package": "media",
+      "path": "packages/components/media/VcrBackupTask",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VcrClipCut",
+      "package": "media",
+      "path": "packages/components/media/VcrClipCut",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VcrDownloadPanel",
+      "package": "media",
+      "path": "packages/components/media/VcrDownloadPanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VcrMarkPoint",
+      "package": "media",
+      "path": "packages/components/media/VcrMarkPoint",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VcrSearchPanel",
+      "package": "media",
+      "path": "packages/components/media/VcrSearchPanel",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VcrSpeedControl",
+      "package": "media",
+      "path": "packages/components/media/VcrSpeedControl",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VcrStorageDashboard",
+      "package": "media",
+      "path": "packages/components/media/VcrStorageDashboard",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VcrTimelinePlayer",
+      "package": "media",
+      "path": "packages/components/media/VcrTimelinePlayer",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VerticalStepNav",
+      "package": "core",
+      "path": "packages/components/core/VerticalStepNav",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VideoAdjust",
+      "package": "media",
+      "path": "packages/components/media/VideoAdjust",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VideoPlayer",
+      "package": "media",
+      "path": "packages/components/media/VideoPlayer",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VideoPreview",
+      "package": "media",
+      "path": "packages/components/media/VideoPreview",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VideoSnapshot",
+      "package": "media",
+      "path": "packages/components/media/VideoSnapshot",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VideoVolume",
+      "package": "media",
+      "path": "packages/components/media/VideoVolume",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VideoWatermark",
+      "package": "media",
+      "path": "packages/components/media/VideoWatermark",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VirtualTable",
+      "package": "data",
+      "path": "packages/components/data/VirtualTable",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "VirtualTree",
+      "package": "data",
+      "path": "packages/components/data/VirtualTree",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "WarnModal",
+      "package": "overlay",
+      "path": "packages/components/overlay/WarnModal",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Waterfall",
+      "package": "data",
+      "path": "packages/components/data/Waterfall",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "Watermark",
+      "package": "core",
+      "path": "packages/components/core/Watermark",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "WeekPicker",
+      "package": "form",
+      "path": "packages/components/form/WeekPicker",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "WordCloud",
+      "package": "charts",
+      "path": "packages/components/charts/WordCloud",
+      "filesScanned": 4,
+      "p0": 0,
+      "p1": 0
+    },
+    {
+      "name": "YearPicker",
+      "package": "form",
+      "path": "packages/components/form/YearPicker",
+      "filesScanned": 3,
+      "p0": 0,
+      "p1": 0
+    }
+  ]
+}

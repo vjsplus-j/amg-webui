@@ -1,0 +1,202 @@
+@import './contract';
+
+/**
+ * WeChat — WeUI 2.x 官方语义 Token 复刻
+ * @see https://github.com/Tencent/weui
+ * @see https://developers.weixin.qq.com/miniprogram/design/
+ *
+ * 色板 / 字号 / 选中·高亮 / 图标色对齐 WeUI（非「近似绿」换皮）。
+ */
+
+[data-design='wechat'] {
+  color-scheme: light;
+  --theme-name: wechat;
+  --theme-icon-set: lucide;
+  --theme-font: apple;
+
+  /* —— WeUI light primitives —— */
+  --wx-BG-0: #ededed;
+  --wx-BG-1: #f7f7f7;
+  --wx-BG-2: #ffffff;
+  --wx-BG-3: #f7f7f7;
+  --wx-BG-4: #4c4c4c;
+  --wx-BG-5: #ffffff;
+  --wx-BG-COLOR-ACTIVE: #ececec;
+  --wx-FG-0: rgba(0, 0, 0, 0.9);
+  --wx-FG-1: rgba(0, 0, 0, 0.5);
+  --wx-FG-2: rgba(0, 0, 0, 0.3);
+  --wx-FG-3: rgba(0, 0, 0, 0.1);
+  --wx-FG-4: rgba(0, 0, 0, 0.15);
+  --wx-BRAND: #07c160;
+  --wx-BRAND-ACTIVE: #06ad56;
+  --wx-BRAND-SOFT: rgba(7, 193, 96, 0.1);
+  --wx-TEXTGREEN: #06ae56;
+  --wx-LIGHTGREEN: #95ec69;
+  --wx-RED: #fa5151;
+  --wx-ORANGE: #fa9d3b;
+  --wx-YELLOW: #ffc300;
+  --wx-BLUE: #10aeff;
+  --wx-LINK: #576b95;
+  --wx-WHITE: #ffffff;
+  --wx-BTN-ACTIVE-MASK: rgba(0, 0, 0, 0.2);
+  --wx-BTN-DEFAULT-ACTIVE-BG: #e6e6e6;
+
+  --primary-500: var(--wx-BRAND);
+  --primary-400: #38cd7f;
+  --primary-600: var(--wx-BRAND-ACTIVE);
+  --primary-300: #7ddba3;
+  --success-500: var(--wx-BRAND);
+  --warning-500: var(--wx-ORANGE);
+  --danger-500: var(--wx-RED);
+  --info-500: var(--wx-BLUE);
+
+  --surface-0: var(--wx-BG-0);
+  --surface-1: var(--wx-BG-2);
+  --surface-2: var(--wx-BG-1);
+  --surface-3: var(--wx-BG-COLOR-ACTIVE);
+  --surface-4: #e0e0e0;
+  /* hover 面：用按压灰，勿塞 FG 文字色 */
+  --surface-5: var(--wx-BG-COLOR-ACTIVE);
+
+  --text-primary: var(--wx-FG-0);
+  --text-secondary: var(--wx-FG-1);
+  --text-muted: var(--wx-FG-2);
+  --text-link: var(--wx-LINK);
+  --text-on-primary: var(--wx-WHITE);
+
+  --border-color: var(--wx-FG-3);
+  --border-color-hover: var(--wx-FG-4);
+
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: 0 2px 16px color-mix(in srgb, #000 8%, transparent);
+
+  --ds-glow: transparent;
+  --ds-motion-lift: 0px;
+  --transition-normal: 200ms ease;
+  --focus-ring: color-mix(in srgb, var(--wx-BRAND) 35%, transparent);
+
+  /* 选中 / 高亮 / 按压 — WeUI cell & tab */
+  --theme-hover-bg: var(--wx-BG-COLOR-ACTIVE);
+  --theme-active-bg: var(--wx-BG-COLOR-ACTIVE);
+  --theme-selected-bg: transparent;
+  --theme-selected-fg: var(--wx-BRAND);
+  --theme-selected-border: transparent;
+  --theme-highlight-bg: var(--wx-BRAND-SOFT);
+  --theme-highlight-fg: var(--wx-TEXTGREEN);
+
+  /* 图标 — WeUI outlined 偏粗；默认 FG，选中品牌绿 */
+  --icon-stroke-width: 2;
+  --icon-color: var(--wx-FG-0);
+  --icon-color-muted: var(--wx-FG-1);
+  --icon-color-disabled: var(--wx-FG-2);
+  --icon-color-active: var(--wx-BRAND);
+  --icon-opacity: 1;
+  --icon-opacity-disabled: 0.3;
+
+  @include theme-type-scale(
+    $display-xl: 2.5rem,
+    $display-lg: 2rem,
+    $display: 1.5rem,
+    $h1: 1.375rem,
+    $h2: 1.0625rem,
+    $h3: 1.0625rem,
+    $body-lg: 1.0625rem,
+    $body: 1.0625rem,
+    $body-sm: 0.875rem,
+    $caption: 0.75rem,
+    $weight-display: 600,
+    $weight-heading: 500,
+    $weight-body: 400,
+    $tracking-display: 0,
+    $tracking-body: 0,
+    $leading: 1.4
+  );
+
+  @include theme-spacing(
+    $xs: 0.25rem,
+    $sm: 0.5rem,
+    $md: 0.75rem,
+    $lg: 1rem,
+    $xl: 1.5rem,
+    $xxl: 2rem,
+    $page: 0,
+    $section: 0.5rem,
+    $card: 1rem,
+    $control-h-sm: 32px,
+    $control-h-md: 40px,
+    $control-h-lg: 48px
+  );
+  @include theme-shape(4px, 8px, 8px, 12px, 9999px);
+  @include bridge-ds;
+
+  /* 覆盖 bridge 默认，对齐 WeUI 选中软底 */
+  --ds-accent-muted: var(--wx-BRAND-SOFT);
+  --ds-focus-ring: color-mix(in srgb, var(--wx-BRAND) 35%, transparent);
+
+  --theme-btn-solid-bg: var(--wx-BRAND);
+  --theme-btn-solid-fg: var(--wx-WHITE);
+  --theme-btn-solid-hover: var(--wx-BRAND-ACTIVE);
+  --theme-btn-ghost-hover: var(--wx-BG-COLOR-ACTIVE);
+  --theme-btn-radius: 8px;
+  --theme-btn-font-size: 1.0625rem;
+  --theme-btn-font-weight: 500;
+  --theme-input-radius: 0;
+  --theme-card-radius: 0;
+  --theme-card-pad: 1rem;
+  --theme-alert-info-bg: rgba(16, 174, 255, 0.1);
+  --theme-alert-success-bg: var(--wx-BRAND-SOFT);
+  --theme-alert-warn-bg: rgba(250, 157, 59, 0.1);
+  --theme-alert-danger-bg: rgba(250, 81, 81, 0.1);
+  --theme-nav-bg: var(--wx-BG-2);
+  --theme-nav-border: var(--wx-FG-3);
+  --theme-tab-active-bg: transparent;
+  --theme-tab-active-fg: var(--wx-BRAND);
+  --theme-tab-radius: 0;
+  --theme-stat-value-size: 1.375rem;
+  --theme-avatar-bg: var(--wx-BG-1);
+  --theme-slider-track: var(--wx-FG-3);
+  --theme-slider-fill: var(--wx-BRAND);
+  --theme-table-header-bg: var(--wx-BG-1);
+  --theme-menu-hover: var(--wx-BG-COLOR-ACTIVE);
+  --theme-badge-bg: var(--wx-BRAND-SOFT);
+  --theme-badge-fg: var(--wx-TEXTGREEN);
+  --theme-badge-radius: 4px;
+  --theme-chat-bubble-self: var(--wx-LIGHTGREEN);
+  --theme-chat-bubble-peer: var(--wx-BG-2);
+
+  color: var(--text-primary);
+  background-color: var(--surface-0);
+}
+
+[data-design='wechat'][data-scheme='dark'] {
+  color-scheme: dark;
+  --wx-BG-0: #111111;
+  --wx-BG-1: #1e1e1e;
+  --wx-BG-2: #191919;
+  --wx-BG-3: #202020;
+  --wx-BG-4: #404040;
+  --wx-BG-5: #2c2c2c;
+  --wx-BG-COLOR-ACTIVE: #2c2c2c;
+  --wx-FG-0: hsla(0, 0%, 100%, 0.8);
+  --wx-FG-1: hsla(0, 0%, 100%, 0.5);
+  --wx-FG-2: hsla(0, 0%, 100%, 0.3);
+  --wx-FG-3: hsla(0, 0%, 100%, 0.1);
+  --wx-FG-4: hsla(0, 0%, 100%, 0.15);
+  --wx-LINK: #7d90a9;
+  --wx-TEXTGREEN: #259c5c;
+  --wx-LIGHTGREEN: #28b561;
+  --wx-ORANGE: #c87d2f;
+  --wx-BTN-ACTIVE-MASK: hsla(0, 0%, 100%, 0.2);
+  --wx-BTN-DEFAULT-ACTIVE-BG: #373737;
+  --wx-BRAND-SOFT: rgba(7, 193, 96, 0.16);
+  --surface-4: #404040;
+  --surface-5: var(--wx-BG-COLOR-ACTIVE);
+  --theme-nav-bg: var(--wx-BG-2);
+  --theme-table-header-bg: var(--wx-BG-1);
+  --theme-menu-hover: var(--wx-BG-COLOR-ACTIVE);
+  --theme-avatar-bg: var(--wx-BG-3);
+  --theme-chat-bubble-self: var(--wx-LIGHTGREEN);
+  --theme-chat-bubble-peer: var(--wx-BG-3);
+  --ds-accent-muted: var(--wx-BRAND-SOFT);
+}

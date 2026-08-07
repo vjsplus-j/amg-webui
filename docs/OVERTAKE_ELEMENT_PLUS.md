@@ -2,7 +2,7 @@
 
 > **口号**：对标 Element Plus，超越 Element Plus —— 成为最强的国产 WebUI 库。  
 > 原则：**完全避开** Element Plus 常规优化路径，直击其底层硬伤、行业空白、下一代技术赛道。  
-> Agent 记忆：`.cursor/rules/vue3-amg-webui-overtake.mdc` · 愿景：`docs/VISION.md`
+> Agent 记忆：`.cursor/rules/00-amg-webui-vision.mdc` · 愿景：`docs/VISION.md`
 
 ---
 
@@ -200,4 +200,4 @@ Skill Runtime 采用并行 SR 轨道：**SR1 / SR2 experimental 已进入工程*
 4. 列表默认虚拟滚动；弹层销毁必须走统一回收。  
 5. 业务模块是产品壁垒，不得弱化为「几个零散 Demo 按钮」。  
 6. Skill Runtime 不侵入组件源码；Pipeline 禁止执行字符串代码；Core 不依赖 Vue / Telemetry / 后端。
-7. 变更同步本文 + `VISION.md` + `vue3-amg-webui-overtake.mdc` + `LIBRARY_PLAN.md` + `SKILL_RUNTIME.md`。
+7. 变更同步本文 + `VISION.md` + `.cursor/rules/00-amg-webui-vision.mdc` + `LIBRARY_PLAN.md` + `SKILL_RUNTIME.md`。

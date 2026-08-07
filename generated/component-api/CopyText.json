@@ -1,0 +1,83 @@
+{
+  "name": "CopyText",
+  "generatedAt": "2026-08-07T12:40:46.808Z",
+  "source": {
+    "types": "packages/components/core/CopyText/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "text",
+      "optional": false,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "truncate",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "maxWidth",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "showButton",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "copyTooltip",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "copy",
+      "payload": "text: string",
+      "description": ""
+    },
+    {
+      "name": "copyError",
+      "payload": "error: unknown",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "error: unknown",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "CopyTextProps",
+    "CopyTextEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

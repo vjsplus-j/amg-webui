@@ -1,0 +1,88 @@
+{
+  "name": "FooterNav",
+  "generatedAt": "2026-08-07T12:41:13.592Z",
+  "source": {
+    "types": "packages/components/core/FooterNav/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "items",
+      "optional": true,
+      "type": "NavItem[]",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "align",
+      "optional": true,
+      "type": "'start' | 'center' | 'end' | 'between'",
+      "description": ""
+    },
+    {
+      "name": "dividers",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "wrap",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "item: NavItem, event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "FooterNavProps",
+    "FooterNavEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

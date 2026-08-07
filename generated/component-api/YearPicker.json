@@ -1,0 +1,127 @@
+{
+  "name": "YearPicker",
+  "generatedAt": "2026-08-07T12:37:37.633Z",
+  "source": {
+    "types": "packages/components/form/YearPicker/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | Date | number | null",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "valueFormat",
+      "optional": true,
+      "type": "\"number\" | \"date\" | \"iso\"",
+      "description": ""
+    },
+    {
+      "name": "yearRange",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "min",
+      "optional": true,
+      "type": "string | Date | number",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "optional": true,
+      "type": "string | Date | number",
+      "description": ""
+    },
+    {
+      "name": "clearable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | Date | number | null",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string | Date | number | null",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "openChange",
+      "payload": "open: boolean",
+      "description": ""
+    },
+    {
+      "name": "focus",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "payload": "event: FocusEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "YearPickerProps",
+    "YearPickerEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,12 +1,20 @@
-﻿import { ref, computed, watch, nextTick, useId } from "vue";
+﻿import { ref, computed, watch, nextTick, useId, type Ref } from "vue";
 import { useVirtualList } from "@amg-webui/utils/data-display/useVirtualList";
 import { onUnmounted } from "vue";
+import {
+  useSelectionModel,
+  getFloatingPanelStyle,
+  moveRovingIndex,
+  type KeyboardNavAction,
+} from "@amg-webui/utils";
 import type { SelectProps, SelectModelValue } from "./types";
 import type { SelectOption } from "@amg-webui/types";
 
 const DEFAULT_VIRTUAL_THRESHOLD = 60;
 const PANEL_HEIGHT = 200;
 const ITEM_HEIGHT = 36;
+
+type Scalar = string | number | boolean | null | undefined;
 
 export function useSelect(
   props: SelectProps,
@@ -22,9 +30,29 @@ export function useSelect(
   const filterRef = ref<HTMLInputElement | null>(null);
   const listRef = ref<HTMLElement | null>(null);
   const listboxId = useId();
+  const floatingPanelStyle = ref<Record<string, string>>({});
   let filterTimer: ReturnType<typeof setTimeout> | undefined;
   let remoteController: AbortController | undefined;
   let remoteRequestId = 0;
+
+  /** Local mirror for ENG-002 selection model (restored after peek). */
+  const selectionValue = ref(props.modelValue) as Ref<
+    SelectModelValue | null | undefined
+  >;
+  watch(
+    () => props.modelValue,
+    (v) => {
+      selectionValue.value = v;
+    },
+  );
+
+  const selection = useSelectionModel<Scalar>({
+    multiple: computed(() => Boolean(props.multiple)),
+    modelValue: selectionValue as Ref<Scalar | Scalar[] | null | undefined>,
+    emitChange: (value) => {
+      selectionValue.value = value as SelectModelValue;
+    },
+  });
 
   const sourceOptions = computed(
     () => remoteOptions.value ?? props.options ?? [],
@@ -140,30 +168,59 @@ export function useSelect(
     return style;
   });
 
-  const isOptionSelected = (option: SelectOption): boolean => {
-    if (props.multiple) {
-      return selectedValues.value.includes(option.value as string | number);
-    }
-    return option.value === props.modelValue;
-  };
+  const panelMergedStyle = computed(() => ({
+    ...(props.panelStyle || {}),
+    ...floatingPanelStyle.value,
+  }));
+
+  const isOptionSelected = (option: SelectOption): boolean =>
+    selection.isSelected(option.value as Scalar);
 
   const resolveSelectValue = (option: SelectOption): SelectModelValue => {
-    if (props.multiple) {
-      const val = option.value as string | number;
-      const current = selectedValues.value;
-      if (current.includes(val)) {
-        return current.filter((v) => v !== val);
-      }
-      return [...current, val];
-    }
-    return option.value as SelectModelValue;
+    const before = selectionValue.value;
+    selection.select(option.value as Scalar);
+    const next = selectionValue.value as SelectModelValue;
+    selectionValue.value = before;
+    return next;
   };
 
-  const resolveClearValue = (): SelectModelValue =>
-    props.multiple ? [] : undefined;
+  const resolveClearValue = (): SelectModelValue => {
+    const before = selectionValue.value;
+    selection.clear();
+    const next = (selectionValue.value ??
+      (props.multiple ? [] : undefined)) as SelectModelValue;
+    selectionValue.value = before;
+    return next;
+  };
 
   const resolveRemoveTagValue = (value: string | number): SelectModelValue =>
     selectedValues.value.filter((v) => v !== value);
+
+  const syncFloating = () => {
+    if (!isOpen.value || !triggerRef.value) {
+      floatingPanelStyle.value = {};
+      return;
+    }
+    const { style } = getFloatingPanelStyle(triggerRef.value, panelRef.value, {
+      placement: "bottom-start",
+      matchTriggerWidth: true,
+      offset: 4,
+      zIndex: 1000,
+    });
+    floatingPanelStyle.value = style;
+  };
+
+  const bindFloatingListeners = () => {
+    if (typeof window === "undefined") return;
+    window.addEventListener("scroll", syncFloating, true);
+    window.addEventListener("resize", syncFloating);
+  };
+
+  const unbindFloatingListeners = () => {
+    if (typeof window === "undefined") return;
+    window.removeEventListener("scroll", syncFloating, true);
+    window.removeEventListener("resize", syncFloating);
+  };
 
   const toggle = () => {
     if (props.disabled || props.readonly) return;
@@ -177,20 +234,64 @@ export function useSelect(
       if (showFilter.value && filterRef.value) {
         filterRef.value.focus();
       }
+      syncFloating();
+      const idx = filteredOptions.value.findIndex((o) => isOptionSelected(o));
+      selection.setActiveIndex(idx >= 0 ? idx : 0);
     });
   };
 
   const close = () => {
+    const wasOpen = isOpen.value;
     isOpen.value = false;
     remoteController?.abort();
     remoteController = undefined;
     remoteLoading.value = false;
     filterText.value = "";
     appliedFilterText.value = "";
+    floatingPanelStyle.value = {};
+    selection.setActiveIndex(-1);
     virtual.reset();
+    if (wasOpen) {
+      nextTick(() => {
+        triggerRef.value?.focus();
+      });
+    }
   };
 
   const shouldCloseAfterSelect = () => !props.multiple;
+
+  function applyKeyboardAction(action: KeyboardNavAction): boolean {
+    if (action === "none") return false;
+    if (action === "close") {
+      close();
+      return true;
+    }
+    const len = filteredOptions.value.length;
+    if (
+      action === "next" ||
+      action === "prev" ||
+      action === "first" ||
+      action === "last"
+    ) {
+      const next = moveRovingIndex(
+        selection.activeIndex.value < 0 ? -1 : selection.activeIndex.value,
+        action,
+        len,
+        true,
+      );
+      selection.setActiveIndex(next);
+      return true;
+    }
+    if (action === "select") {
+      return Boolean(resolveActiveOption());
+    }
+    return false;
+  }
+
+  function resolveActiveOption(): SelectOption | null {
+    const opt = filteredOptions.value[selection.activeIndex.value];
+    return opt && !opt.disabled ? opt : null;
+  }
 
   async function runRemote(query: string) {
     if (!props.remote || !props.remoteMethod) return;
@@ -229,14 +330,31 @@ export function useSelect(
   });
 
   watch(isOpen, (openNow) => {
-    if (openNow) void runRemote(appliedFilterText.value);
+    if (openNow) {
+      void runRemote(appliedFilterText.value);
+      nextTick(() => {
+        syncFloating();
+        // Teleport + first layout: remeasure after panel has real height.
+        requestAnimationFrame(() => syncFloating());
+        bindFloatingListeners();
+        const idx = filteredOptions.value.findIndex((o) => isOptionSelected(o));
+        selection.setActiveIndex(idx >= 0 ? idx : 0);
+      });
+    } else {
+      unbindFloatingListeners();
+      floatingPanelStyle.value = {};
+    }
   });
 
-  watch(filteredOptions, virtual.reset);
+  watch(filteredOptions, () => {
+    virtual.reset();
+    if (isOpen.value) nextTick(syncFloating);
+  });
 
   onUnmounted(() => {
     if (filterTimer) clearTimeout(filterTimer);
     remoteController?.abort();
+    unbindFloatingListeners();
   });
 
   return {
@@ -257,17 +375,22 @@ export function useSelect(
     triggerClass,
     selectClass,
     selectStyle,
+    panelMergedStyle,
     useVirtualScroll,
     virtual,
     remoteLoading,
     showFilter,
+    activeIndex: selection.activeIndex,
     toggle,
     open,
     close,
+    syncFloating,
     shouldCloseAfterSelect,
     isOptionSelected,
     resolveSelectValue,
     resolveClearValue,
     resolveRemoveTagValue,
+    applyKeyboardAction,
+    resolveActiveOption,
   };
 }

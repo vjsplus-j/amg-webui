@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { Barcode, Card, CardGrid, Space, Tag, Typography } from '@amg-webui/core'
 import { InputText, Select } from '@amg-webui/form'
 import type { BarcodeFormat } from '@amg-webui/core/Barcode'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -72,13 +70,6 @@ const codeBasic = demoSfc({
   template: [`  <Barcode v-model="value" :format="format" />`]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'value / v-model', type: 'string', defaultValue: "''", description: t('example.doc.barcode.prop.value') },
-  { name: 'format', type: 'BarcodeFormat', defaultValue: 'code128', description: t('example.doc.barcode.prop.format') },
-  { name: 'editable', type: 'boolean', defaultValue: 'true', description: t('example.doc.barcode.prop.editable') },
-  { name: 'showLabel / barWidth / height / quietZone', type: 'boolean / number', description: t('example.doc.barcode.prop.render') },
-  { name: 'class / style', type: 'BaseProps', description: t('example.doc.barcode.prop.base') }
-])
 </script>
 
 <template>
@@ -126,7 +117,5 @@ const propRows = computed<PropRow[]>(() => [
         </section>
       </Space>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

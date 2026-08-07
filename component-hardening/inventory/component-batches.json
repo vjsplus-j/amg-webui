@@ -1,0 +1,657 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-07T10:05:37.151Z",
+  "rule": "Each batch 6–12 same-family components where possible",
+  "batches": [
+    {
+      "id": "B01",
+      "family": "foundation",
+      "title": "Foundation Core",
+      "priority": "P0",
+      "components": [
+        "Button",
+        "Icon",
+        "Link",
+        "Tag",
+        "Badge",
+        "Divider",
+        "Avatar",
+        "StatusTip"
+      ]
+    },
+    {
+      "id": "B02",
+      "family": "input",
+      "title": "Input Core",
+      "priority": "P0",
+      "components": [
+        "InputText",
+        "Textarea",
+        "Password",
+        "InputNumber",
+        "RangeInput",
+        "InputOTP"
+      ]
+    },
+    {
+      "id": "B03",
+      "family": "form",
+      "title": "Form Family",
+      "priority": "P0",
+      "components": [
+        "Form",
+        "FormItem",
+        "FormGroup",
+        "FormTabs",
+        "StepForm",
+        "DynamicForm"
+      ]
+    },
+    {
+      "id": "B04",
+      "family": "selection",
+      "title": "Selection Core",
+      "priority": "P0",
+      "components": [
+        "Select",
+        "AutoComplete",
+        "Mention",
+        "TemplateSelect"
+      ]
+    },
+    {
+      "id": "B05",
+      "family": "selection",
+      "title": "Selection Advanced",
+      "priority": "P0",
+      "components": [
+        "TreeSelect",
+        "Cascader",
+        "SelectNav",
+        "DragSelect"
+      ]
+    },
+    {
+      "id": "B06",
+      "family": "datetime",
+      "title": "Date Family",
+      "priority": "P0",
+      "components": [
+        "DatePicker",
+        "DateTimePicker",
+        "MonthPicker",
+        "YearPicker",
+        "WeekPicker",
+        "QuarterPicker"
+      ]
+    },
+    {
+      "id": "B07",
+      "family": "datetime",
+      "title": "Time Family",
+      "priority": "P0",
+      "components": [
+        "TimePicker",
+        "TimeSelect",
+        "TimeRangeInput",
+        "Calendar"
+      ]
+    },
+    {
+      "id": "B08",
+      "family": "overlay",
+      "title": "Overlay Family",
+      "priority": "P0",
+      "components": [
+        "Dialog",
+        "Drawer",
+        "Popover",
+        "Tooltip",
+        "Dropdown",
+        "Popconfirm"
+      ]
+    },
+    {
+      "id": "B09",
+      "family": "feedback",
+      "title": "Feedback Family",
+      "priority": "P1",
+      "components": [
+        "Message",
+        "Toast",
+        "Notification",
+        "Alert",
+        "Confirm",
+        "Loading",
+        "Result"
+      ]
+    },
+    {
+      "id": "B10",
+      "family": "navigation",
+      "title": "Navigation Family",
+      "priority": "P1",
+      "components": [
+        "Menu",
+        "Tabs",
+        "Breadcrumb",
+        "Pagination",
+        "Anchor",
+        "ContextMenu",
+        "RouterNav"
+      ]
+    },
+    {
+      "id": "B11",
+      "family": "layout",
+      "title": "Layout Family",
+      "priority": "P1",
+      "components": [
+        "Layout",
+        "Header",
+        "Footer",
+        "Main",
+        "Sider",
+        "Row",
+        "Col",
+        "Space",
+        "StackLayout",
+        "FlowLayout"
+      ]
+    },
+    {
+      "id": "B12",
+      "family": "tree",
+      "title": "Tree Core",
+      "priority": "P1",
+      "components": [
+        "Tree",
+        "VirtualTree",
+        "LazyTree"
+      ]
+    },
+    {
+      "id": "B13",
+      "family": "table",
+      "title": "Table Core",
+      "priority": "P1",
+      "components": [
+        "DataTable",
+        "VirtualTable",
+        "ProTable",
+        "Descriptions"
+      ]
+    },
+    {
+      "id": "B14",
+      "family": "table",
+      "title": "Table Advanced",
+      "priority": "P1",
+      "components": [
+        "TreeTable",
+        "EditTable",
+        "DrillTable",
+        "StickyTable",
+        "PivotTable"
+      ]
+    },
+    {
+      "id": "B15",
+      "family": "upload",
+      "title": "Upload Family",
+      "priority": "P1",
+      "components": [
+        "Upload",
+        "ImageUpload",
+        "ChunkUpload",
+        "BatchUpload",
+        "ImageCrop"
+      ]
+    },
+    {
+      "id": "B16",
+      "family": "editor",
+      "title": "Editor Family",
+      "priority": "P1",
+      "components": [
+        "RichText",
+        "MdEditor",
+        "CodeEditor"
+      ]
+    },
+    {
+      "id": "B17",
+      "family": "charts",
+      "title": "Charts Family",
+      "priority": "P2",
+      "components": [
+        "BarChart",
+        "LineChart",
+        "PieChart",
+        "GaugeChart",
+        "RadarChart",
+        "HeatMap",
+        "GraphChart",
+        "TreeChart",
+        "WordCloud"
+      ]
+    },
+    {
+      "id": "B18",
+      "family": "lowcode",
+      "title": "Lowcode Family",
+      "priority": "P2",
+      "components": [
+        "DragCanvas",
+        "CanvasPreview",
+        "PropPanel",
+        "SchemaRenderer",
+        "CanvasNode",
+        "CanvasLayer"
+      ]
+    },
+    {
+      "id": "B19",
+      "family": "media",
+      "title": "Media Core",
+      "priority": "P1",
+      "components": [
+        "VideoPlayer",
+        "VideoPreview",
+        "VideoSnapshot",
+        "VideoVolume",
+        "VideoAdjust",
+        "VideoWatermark",
+        "AudioTalk"
+      ]
+    },
+    {
+      "id": "B20",
+      "family": "media",
+      "title": "Media Control",
+      "priority": "P1",
+      "components": [
+        "PTZControl",
+        "SplitVideoWall",
+        "AudioPlay"
+      ]
+    },
+    {
+      "id": "B21",
+      "family": "gb28181",
+      "title": "GB28181 Domain",
+      "priority": "P2",
+      "components": [
+        "GbsAlarmModal",
+        "GbsCascadePanel",
+        "GbsDeviceTree",
+        "GbsGatewayForm",
+        "GbsRegisterForm",
+        "GbsSignMonitor",
+        "GbsStatusCard",
+        "GbsTimeSync"
+      ]
+    },
+    {
+      "id": "B22",
+      "family": "onvif",
+      "title": "ONVIF Domain",
+      "priority": "P2",
+      "components": [
+        "OnvifAlarmPanel",
+        "OnvifChannelManage",
+        "OnvifDeviceList",
+        "OnvifGroupTree",
+        "OnvifRecordPlan",
+        "OnvifSearch",
+        "OnvifSettingPanel",
+        "OnvifUrlForm"
+      ]
+    },
+    {
+      "id": "B23",
+      "family": "vcr",
+      "title": "VCR Domain",
+      "priority": "P2",
+      "components": [
+        "VcrBackupTask",
+        "VcrClipCut",
+        "VcrDownloadPanel",
+        "VcrMarkPoint",
+        "VcrSearchPanel",
+        "VcrSpeedControl",
+        "VcrStorageDashboard",
+        "VcrTimelinePlayer"
+      ]
+    },
+    {
+      "id": "B24",
+      "family": "special",
+      "title": "Special Components",
+      "priority": "P2",
+      "components": [
+        "Qrcode",
+        "Barcode",
+        "OcrScan",
+        "Business404",
+        "Simple404",
+        "Tech404"
+      ]
+    },
+    {
+      "id": "B25R",
+      "family": "feedback",
+      "title": "Feedback Remainder 1",
+      "priority": "P2",
+      "components": [
+        "Exception",
+        "LoadingTip"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B26R",
+      "family": "form",
+      "title": "Form Remainder 2",
+      "priority": "P2",
+      "components": [
+        "AdvancedSearch",
+        "FilterBar",
+        "LoginPanel",
+        "PermissionPanel",
+        "SearchFilterPanel",
+        "SettingPanel",
+        "TreeForm"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B27R",
+      "family": "foundation",
+      "title": "Foundation Remainder 3",
+      "priority": "P2",
+      "components": [
+        "Affix",
+        "AvatarGroup",
+        "BackTop",
+        "Block",
+        "BrowserDetect",
+        "ButtonGroup",
+        "Card",
+        "CardGrid",
+        "CardWidgets",
+        "Carousel"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B28R",
+      "family": "foundation",
+      "title": "Foundation Remainder 4",
+      "priority": "P2",
+      "components": [
+        "Clipboard",
+        "Collapse",
+        "ConfigProvider",
+        "CopyText",
+        "Countdown",
+        "CryptoBox",
+        "DragVerify",
+        "Ellipsis",
+        "Empty",
+        "FilePreview"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B29R",
+      "family": "foundation",
+      "title": "Foundation Remainder 5",
+      "priority": "P2",
+      "components": [
+        "FloatButton",
+        "Highlight",
+        "Image",
+        "ImageGroup",
+        "NoticeBar",
+        "PageHeader",
+        "PdfPreview",
+        "Preview",
+        "Print",
+        "Progress"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B30R",
+      "family": "foundation",
+      "title": "Foundation Remainder 6",
+      "priority": "P2",
+      "components": [
+        "ProgressTip",
+        "ResizeBox",
+        "ScrollNotice",
+        "Scrollbar",
+        "Segmented",
+        "Skeleton",
+        "Spacer",
+        "Spin",
+        "Split",
+        "Statistic"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B31R",
+      "family": "foundation",
+      "title": "Foundation Remainder 7",
+      "priority": "P2",
+      "components": [
+        "TelemetryProvider",
+        "ThemeProvider",
+        "Thumbnail",
+        "Typography",
+        "UserInfoCard",
+        "Watermark"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B32R",
+      "family": "input",
+      "title": "Input Remainder 8",
+      "priority": "P2",
+      "components": [
+        "Checkbox",
+        "CheckboxGroup",
+        "ColorInput",
+        "ColorPicker",
+        "InputCaptcha",
+        "Radio",
+        "RadioGroup",
+        "Rate",
+        "Search",
+        "Slider"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B33R",
+      "family": "input",
+      "title": "Input Remainder 9",
+      "priority": "P2",
+      "components": [
+        "SmsCode",
+        "Switch",
+        "TagInput"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B34R",
+      "family": "layout",
+      "title": "Layout Remainder 10",
+      "priority": "P2",
+      "components": [
+        "Center",
+        "ColumnLayout",
+        "Container",
+        "EmbedLayout",
+        "FixedLayout",
+        "FormLayout",
+        "ScaleLayout"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B35R",
+      "family": "lowcode",
+      "title": "Lowcode Remainder 11",
+      "priority": "P2",
+      "components": [
+        "CanvasIo",
+        "CanvasShortcut",
+        "DragMaterial",
+        "DragRuler",
+        "DragSortNode",
+        "DragWrapper",
+        "FreeLayoutDrag",
+        "GridLayoutDrag",
+        "TemplateDrag"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B36R",
+      "family": "navigation",
+      "title": "Navigation Remainder 12",
+      "priority": "P2",
+      "components": [
+        "BreadcrumbItem",
+        "CardNav",
+        "CategoryNav",
+        "FloatNav",
+        "FooterNav",
+        "GroupNav",
+        "IndexNav",
+        "MenuBar",
+        "MiniNav",
+        "PagerNav"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B37R",
+      "family": "navigation",
+      "title": "Navigation Remainder 13",
+      "priority": "P2",
+      "components": [
+        "QuickNav",
+        "ScrollNav",
+        "StepItem",
+        "StepNav",
+        "Steps",
+        "TabPane",
+        "TabsNav",
+        "TopNav",
+        "VerticalStepNav"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B38R",
+      "family": "overlay",
+      "title": "Overlay Remainder 14",
+      "priority": "P2",
+      "components": [
+        "ConfirmDialog",
+        "ErrorModal",
+        "ImageViewer",
+        "InfoModal",
+        "Mask",
+        "MessageBox",
+        "SuccessModal",
+        "Tour",
+        "WarnModal"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B39R",
+      "family": "selection",
+      "title": "Selection Remainder 15",
+      "priority": "P2",
+      "components": [
+        "Transfer"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B40R",
+      "family": "special",
+      "title": "Special Remainder 16",
+      "priority": "P2",
+      "components": [
+        "Cartoon404",
+        "Doodle404",
+        "Ink404",
+        "Machine404",
+        "MatrixCode",
+        "Pixel404",
+        "Plant404",
+        "Space404"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B41R",
+      "family": "table",
+      "title": "Table Remainder 17",
+      "priority": "P2",
+      "components": [
+        "BatchPanel",
+        "CardList",
+        "Dashboard",
+        "DataCard",
+        "DescriptionsItem",
+        "DetailPanel",
+        "ExcelIo",
+        "FlowPanel",
+        "InfiniteScroll",
+        "MergeTable"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B42R",
+      "family": "table",
+      "title": "Table Remainder 18",
+      "priority": "P2",
+      "components": [
+        "Ranking",
+        "TableAction",
+        "TableDrag",
+        "TableExport",
+        "TablePrint",
+        "Timeline",
+        "TimelineItem",
+        "TimelineList",
+        "Waterfall"
+      ],
+      "remainder": true
+    },
+    {
+      "id": "B43R",
+      "family": "tree",
+      "title": "Tree Remainder 19",
+      "priority": "P2",
+      "components": [
+        "EditTree",
+        "FolderTree",
+        "TransferTree",
+        "TreeTransfer"
+      ],
+      "remainder": true
+    }
+  ]
+}

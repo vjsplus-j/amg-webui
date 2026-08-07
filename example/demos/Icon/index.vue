@@ -12,9 +12,7 @@ import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import { ToastService } from '@amg-webui/theme'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -345,159 +343,6 @@ async function copyIconSnippet(name: string) {
     })
   }
 }
-
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'name',
-    description: t('example.doc.icon.prop.name'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'size',
-    description: t('example.doc.icon.prop.size'),
-    type: 'Size | number | string',
-    defaultValue: "'md'"
-  },
-  {
-    name: 'color',
-    description: t('example.doc.icon.prop.color'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'strokeWidth',
-    description: t('example.doc.icon.prop.strokeWidth'),
-    type: 'number',
-    defaultValue: 'from IconStyleService'
-  },
-  {
-    name: 'absoluteStrokeWidth',
-    description: t('example.doc.icon.prop.absoluteStrokeWidth'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'spin',
-    description: t('example.doc.icon.prop.spin'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'pulse',
-    description: t('example.doc.icon.prop.pulse'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'heartbeat',
-    description: t('example.doc.icon.prop.heartbeat'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'bounce',
-    description: t('example.doc.icon.prop.bounce'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'rotate',
-    description: t('example.doc.icon.prop.rotate'),
-    type: 'number',
-    defaultValue: '-'
-  },
-  {
-    name: 'flip / flipH / flipV',
-    description: t('example.doc.icon.prop.flip'),
-    type: "'horizontal' | 'vertical' | 'both' | boolean",
-    defaultValue: '-'
-  },
-  {
-    name: 'disabled',
-    description: t('example.doc.icon.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'loading',
-    description: t('example.doc.icon.prop.loading'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'selected',
-    description: t('example.doc.icon.prop.selected'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'animationDuration',
-    description: t('example.doc.icon.prop.animationDuration'),
-    type: 'number | string',
-    defaultValue: '-'
-  },
-  {
-    name: 'label / alt',
-    description: t('example.doc.icon.prop.label'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'title',
-    description: t('example.doc.icon.prop.title'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'interactive',
-    description: t('example.doc.icon.prop.interactive'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'opacity',
-    description: t('example.doc.icon.prop.opacity'),
-    type: 'number',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.icon.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'click',
-    description: t('example.doc.icon.event.click'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'focus',
-    description: t('example.doc.icon.event.focus'),
-    type: '(event: FocusEvent) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'blur',
-    description: t('example.doc.icon.event.blur'),
-    type: '(event: FocusEvent) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'keydown',
-    description: t('example.doc.icon.event.keydown'),
-    type: '(event: KeyboardEvent) => void',
-    defaultValue: '-'
-  }
-])
 
 const interactiveClicks = ref(0)
 
@@ -1099,20 +944,7 @@ const codeSlot = demoCode(
           <code class="vp-icon-sample__cap">slot</code>
         </div>
       </div>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -1122,24 +954,6 @@ const codeSlot = demoCode(
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-icon-browser {
   display: flex;
   flex-direction: column;

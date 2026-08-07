@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { ref, computed, onBeforeUnmount } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -42,6 +43,11 @@ function removeMark(id: string) {
   emit('remove', id)
   trackEmit({ component: 'VcrMarkPoint', type: 'remove', trackId: props.trackId, telemetry: props.telemetry })
 }
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

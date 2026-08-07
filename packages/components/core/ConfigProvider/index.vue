@@ -180,7 +180,7 @@ defineExpose({
 </script>
 
 <template>
-  <div
+  <div role="presentation"
     :ref="setRoot"
     class="vp-config-provider"
     :class="props.class"

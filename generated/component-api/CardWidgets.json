@@ -1,0 +1,83 @@
+{
+  "name": "CardWidgets",
+  "generatedAt": "2026-08-07T12:40:46.787Z",
+  "source": {
+    "types": "packages/components/core/CardWidgets/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "CardWidgetKey[]",
+      "description": ""
+    },
+    {
+      "name": "widgets",
+      "optional": true,
+      "type": "CardWidgetItem[]",
+      "description": ""
+    },
+    {
+      "name": "cols",
+      "optional": true,
+      "type": "1 | 2 | 3 | 4",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showHandle",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: CardWidgetKey[]",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: CardWidgetKey[]",
+      "description": ""
+    },
+    {
+      "name": "swap",
+      "payload": "payload: { from: CardWidgetKey; to: CardWidgetKey; order: CardWidgetKey[] }",
+      "description": ""
+    },
+    {
+      "name": "dragEnd",
+      "payload": "payload: { order: CardWidgetKey[] swapped: boolean from?: CardWidgetKey to?: CardWidgetKey }",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "CardWidgetKey",
+    "CardWidgetItem",
+    "CardWidgetsProps",
+    "CardWidgetsEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

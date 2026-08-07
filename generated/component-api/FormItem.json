@@ -1,0 +1,68 @@
+{
+  "name": "FormItem",
+  "generatedAt": "2026-08-07T12:34:13.537Z",
+  "source": {
+    "types": "packages/components/form/FormItem/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "prop",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "required",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "labelWidth",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "validate",
+      "payload": "error: string | null",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "FormItemContext",
+    "FormItemProps",
+    "FormItemEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

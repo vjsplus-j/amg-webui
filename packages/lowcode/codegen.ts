@@ -1,5 +1,6 @@
 import type { CanvasNodeData, CanvasSchema } from '@amg-webui/utils'
 import { splitMetaProps } from './meta'
+import type { LowcodeAction } from './runtime'
 import { buildCanvasTree, type CanvasTreeNode } from './tree'
 import type {
   CodegenOptions,
@@ -16,7 +17,11 @@ function serializePropValue(value: unknown): string {
   return JSON.stringify(value)
 }
 
-function propsToAttrs(props: Record<string, unknown>, bindings: LowcodeBindings, events: LowcodeEvents): string {
+function propsToAttrs(
+  props: Record<string, unknown>,
+  bindings: LowcodeBindings,
+  events: LowcodeEvents
+): string {
   const parts: string[] = []
   for (const [key, value] of Object.entries(props)) {
     if (value === undefined) continue
@@ -66,6 +71,22 @@ function resolveImportFrom(type: string, registry?: ComponentRegistry): string {
   return registry?.get(type)?.importFrom ?? '@amg-webui/core'
 }
 
+function actionComment(actions: LowcodeAction[] | undefined): string {
+  if (!actions?.length) return '  // no document actions'
+  return actions
+    .map((a) => {
+      const detail = [a.type, a.dataSourceId, a.target, a.path, a.message]
+        .filter(Boolean)
+        .join(' ')
+      return `  // action: ${detail}`
+    })
+    .join('\n')
+}
+
+function renderHandlerFn(name: string, actions: LowcodeAction[] | undefined): string {
+  return `function ${name}(): void {\n${actionComment(actions)}\n}`
+}
+
 function renderTreeNode(
   node: CanvasTreeNode,
   schema: CanvasSchema,
@@ -76,7 +97,6 @@ function renderTreeNode(
   const exp = resolveExportName(node.type, options.registry)
   const { attrs, bindings, events } = splitMetaProps(node.props ?? {})
   const meta = options.registry?.get(node.type)
-  // Auto-stub declared events if not wired
   const mergedEvents = { ...events }
   for (const ev of meta?.events ?? []) {
     if (!mergedEvents[ev]) mergedEvents[ev] = `on${node.type}${ev[0]!.toUpperCase()}${ev.slice(1)}`
@@ -94,14 +114,15 @@ function renderTreeNode(
 }
 
 /**
- * Generate a Vue SFC string from a canvas schema (docs drag → Vue codegen track).
- * Does not eval; output is static source text only. Honors parentId nesting + bindings/events.
+ * Generate a Vue SFC string from a canvas schema.
+ * Does not eval; output is static source text only.
  */
 export function generateVueSfc(schema: CanvasSchema, options: CodegenOptions = {}): string {
   const name = options.componentName ?? 'GeneratedCanvas'
   const scriptSetup = options.scriptSetup !== false
   const nodes = schema.nodes.filter((n) => !n.hidden)
   const tree = buildCanvasTree(nodes)
+  const actionMap = options.actions ?? {}
 
   const importMap = new Map<string, Set<string>>()
   const handlers = new Set<string>()
@@ -119,6 +140,7 @@ export function generateVueSfc(schema: CanvasSchema, options: CodegenOptions = {
       if (handler) handlers.add(handler)
     }
   }
+  for (const key of Object.keys(actionMap)) handlers.add(key)
 
   const importLines = [...importMap.entries()]
     .map(([from, names]) => `import { ${[...names].sort().join(', ')} } from '${from}'`)
@@ -126,7 +148,7 @@ export function generateVueSfc(schema: CanvasSchema, options: CodegenOptions = {
 
   const handlerLines = [...handlers]
     .sort()
-    .map((h) => `function ${h}() {\n  // TODO: wire ${h}\n}`)
+    .map((h) => renderHandlerFn(h, actionMap[h]))
     .join('\n\n')
 
   const nodeLines = tree.map((n) => renderTreeNode(n, schema, options, '    ', false)).join('\n')
@@ -161,7 +183,9 @@ export default defineComponent({
   name: '${name}',
   components: { ${[...new Set(nodes.map((n) => resolveExportName(n.type, options.registry)))].join(', ')} },
   methods: {
-${[...handlers].map((h) => `    ${h}() { /* TODO */ }`).join(',\n')}
+${[...handlers]
+  .map((h) => `    ${h}() {\n${actionComment(actionMap[h]).replace(/^/gm, '  ')}\n    }`)
+  .join(',\n')}
   }
 })
 </script>
@@ -179,4 +203,16 @@ export function generateVueTemplate(schema: CanvasSchema, options: CodegenOption
   const sfc = generateVueSfc(schema, options)
   const match = sfc.match(/<template>([\s\S]*?)<\/template>/)
   return match?.[1]?.trim() ?? ''
+}
+
+/** Lightweight structural check that generated SFC is compilable-shaped (no eval). */
+export function assertGeneratedSfcShape(sfc: string): { ok: boolean; issues: string[] } {
+  const issues: string[] = []
+  if (!sfc.includes('<script')) issues.push('missing-script')
+  if (!sfc.includes('<template>')) issues.push('missing-template')
+  if (/\/\/\s*TODO:\s*wire/.test(sfc)) issues.push('todo-stubs')
+  const openScript = (sfc.match(/<script[\s>]/g) || []).length
+  const closeScript = (sfc.match(/<\/script>/g) || []).length
+  if (openScript !== closeScript) issues.push('unbalanced-script')
+  return { ok: issues.length === 0, issues }
 }

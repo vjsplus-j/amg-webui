@@ -1,0 +1,87 @@
+{
+  "name": "AdvancedSearch",
+  "generatedAt": "2026-08-07T12:39:09.849Z",
+  "source": {
+    "types": "packages/components/form/AdvancedSearch/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "FilterCondition[]",
+      "description": ""
+    },
+    {
+      "name": "logic",
+      "optional": true,
+      "type": "SearchLogic",
+      "description": ""
+    },
+    {
+      "name": "fields",
+      "optional": true,
+      "type": "FilterFieldOption[]",
+      "description": ""
+    },
+    {
+      "name": "templates",
+      "optional": true,
+      "type": "{ id: string; name: string; conditions: FilterCondition[]; logic: SearchLogic }[]",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: FilterCondition[]",
+      "description": ""
+    },
+    {
+      "name": "update:logic",
+      "payload": "value: SearchLogic",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: FilterCondition[]",
+      "description": ""
+    },
+    {
+      "name": "search",
+      "payload": "payload: { conditions: FilterCondition[]; logic: SearchLogic }",
+      "description": ""
+    },
+    {
+      "name": "save-template",
+      "payload": "payload: { conditions: FilterCondition[]; logic: SearchLogic }",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "SearchLogic",
+    "AdvancedSearchProps",
+    "AdvancedSearchEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

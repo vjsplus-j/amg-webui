@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "detail": "nav aria-label i18n",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts",
+  "family": "form"
+}

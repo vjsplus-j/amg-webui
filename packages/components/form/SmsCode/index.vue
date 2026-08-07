@@ -112,6 +112,7 @@ const onInput = (val: string) => {
 }
 
 onUnmounted(clearTimer)
+
 </script>
 
 <template>
@@ -128,8 +129,7 @@ onUnmounted(clearTimer)
     :aria-label="ariaLabel"
     :aria-invalid="isInvalid || undefined"
     :aria-required="isRequired || undefined"
-    :aria-describedby="ariaDescribedby"
-  >
+    :aria-describedby="ariaDescribedby">
     <InputText
       class="vp-sms-code__input"
       :model-value="modelValue"

@@ -1362,6 +1362,7 @@ export default {
   'example.doc.errorModal.prop.base': "class / style 전달",
   'example.doc.errorModal.when': "ErrorModal 데모.",
   'example.doc.events': "Events",
+  'example.doc.expose': "Expose",
   'example.doc.excelIo.demo.basic': "기본 사용",
   'example.doc.excelIo.demo.basicDesc': "ExcelIo를 마운트해 기본 동작을 확인합니다.",
   'example.doc.excelIo.prop.base': "class / style 전달",
@@ -2209,6 +2210,7 @@ export default {
   'example.doc.monthPicker.prop.valueFormat': "출력 형식 date / iso",
   'example.doc.monthPicker.sample.placeholder': "월 선택",
   'example.doc.monthPicker.when': "MonthPicker 데모.",
+  'example.doc.models': "Models",
   'example.doc.motion.demo.badge': "Badge 공유 모션",
   'example.doc.motion.demo.desc': "서고 공통 호스트 모션: spin / bounce / heartbeat / marqueeLeft|Right / scrollUp|Down / dampOut / blink / pulse / breathe / glow. 우선순위: spin > bounce > heartbeat > marqueeLeft > marqueeRight > scrollUp > scrollDown > dampOut > blink > pulse > breathe > glow.",
   'example.doc.motion.demo.title': "공유 모션",
@@ -4074,4 +4076,5 @@ export default {
   'example.doc.virtualTree.event.interaction': 'Interaction',
   'example.doc.virtualTree.sample.toggleLoading': 'Toggle Loading',
   'example.doc.richText.prop.sanitize': 'HTML 살균（기본 켜짐）',
+  'example.doc.apiMissing': "API 추출 없음 — hardening:extract-api 실행",
 }

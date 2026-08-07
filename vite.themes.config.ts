@@ -3,7 +3,16 @@ import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const root = dirname(fileURLToPath(import.meta.url))
-const brands = ['mercedes', 'linear', 'porsche', 'lamborghini', 'ferrari', 'apple'] as const
+const brands = [
+  'mercedes',
+  'linear',
+  'porsche',
+  'lamborghini',
+  'ferrari',
+  'apple',
+  'wechat',
+  'alipay'
+] as const
 
 const entry: Record<string, string> = {}
 for (const brand of brands) {

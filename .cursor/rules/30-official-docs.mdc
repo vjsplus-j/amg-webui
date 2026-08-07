@@ -1,0 +1,24 @@
+---
+description: Official component documentation and demo rules
+globs: docs/**/*,example/docs/**/*,example/components/demo/**/*,example/demos/**/*
+alwaysApply: false
+---
+
+# Official Documentation
+`docs/` is the official public documentation. `example/` remains playground/debug infrastructure.
+
+Every STABLE public component must document:
+- Overview
+- When to use / when not to use
+- Related components
+- Complete demos
+- Props / Events / Slots / Expose / Models / Public types
+- Accessibility and keyboard behavior when interactive
+- Design tokens when customizable
+- Version/stability information
+
+- API tables should be generated from source contracts/metadata.
+- Do not hand-maintain partial API tables as source of truth.
+- Running demo source and displayed copyable source must be the same file.
+- Complex components require multiple scenario demos.
+- Documentation must fail CI when it drifts from public API contracts.

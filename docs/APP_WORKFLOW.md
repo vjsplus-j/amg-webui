@@ -1,7 +1,7 @@
 # example 调试工程规范（锁定）
 
-> Agent：`.cursor/rules/vue3-amg-webui-app-workflow.mdc` · 路由表：`example/router/routes.ts`  
-> 文档站索引：[`docs/index.md`](./index.md)
+> Agent：`.cursor/rules/01-repository-structure.mdc` · `.cursor/rules/30-official-docs.mdc` · 路由表：`example/router/routes.ts`  
+> 文档站索引：[`docs/index.md`](./index.md) · example 壳说明：[`example/README.md`](../example/README.md)
 
 ---
 
@@ -99,6 +99,21 @@ example/pages/
 
 文件：`XxxPage.vue`（路由级）；`packages` 禁止 `*Page.vue`。
 
+### 2.1 AppShell chrome（锁定）
+
+倒 L 壳：`example/layouts/AppShell.vue` + 顶栏 `example/components/AppHeaderActions.vue`。
+
+| 块 | 行为 |
+|----|------|
+| 侧栏筛选 | 品牌区下方仅保留 `Search`（placeholder「按组件名筛选…」）；**不渲染「筛选组」一类分区标题**；读屏名用 `aria-label`（`example.doc.catalog.navFilter`） |
+| 窄屏导航 | `≤768px` 时 docked `Sider` 隐藏（与 `Sider/style.scss` 对齐）；顶栏 `#start` 显示菜单按钮，打开左侧 `Drawer` 承载同一套筛选 / `Menu` / 用户区；路由切换或点选后关闭 |
+| 顶栏工具 | 语种 / designmd / 明暗 / **LTR·RTL（独立）** / 图标描边 / 字体；响应式隐藏搜索与次要 Select |
+| 顶栏溢出 | 控件过宽时允许横向平移，**隐藏原生滚动条轨道**（勿做成可见「进度条」观感） |
+| 语种 ≠ 方向 | `setLocale` / `?lang=` 只换文案；`setDirection` / 顶栏方向 / `?dir=` 控制壳层镜像；`ar-SA` **不**自动 RTL |
+| 右键菜单 | example `AppContextMenu`：系统风格；仅复制 / 粘贴 / 选择 / 全选 / 检查；`.vp-contextmenu__host` 内仍走组件 Demo |
+
+Chrome 视觉规格仍服从 `packages/theme/SPEC.md` §7（侧栏宽 / 顶栏高 / ghost 控件）。
+
 ---
 
 ## 3. 专区说明
@@ -110,7 +125,7 @@ example/pages/
 | 页面 / 路由 | 覆盖 |
 |------|------|
 | `/intro/quick-start` · `intro-quick-start` | 启动、顶栏切换、URL 深链、建议路径 |
-| `/intro/design` · `intro-design` | 六套 designmd 风格介绍 + 即时切换 + 宿主用法 |
+| `/intro/design` · `intro-design` | 官方设计风格（designmd + 微信 / 支付宝）介绍 + 即时切换 + 宿主用法 |
 | `/intro/theme` · `intro-theme` | 明暗 scheme、语义 Token、ThemeService |
 | `/intro/font` · `intro-font` | 品牌字体与系统栈、FontService |
 | `/intro/icon` · `intro-icon` | Lucide 描边风格、IconStyleService |
@@ -126,7 +141,7 @@ example/pages/
 | 侧栏分类 | 通用 · 布局 · 导航 · 数据录入 · 数据展示 · 反馈 · 其他 · 行业（`component-catalog`） |
 | 旧 zone 路径 | `/base/atoms\|forms\|…` → redirect `base-overview` |
 
-**Demo 铺满（锁定）：** `DemoBlock` / `DemoCode` / `PropsTable` / `.vp-curated` 必须横向铺满 `.ln-content` 内容列（仅壳层 `--theme-page-pad` 内边距）。禁止给代码示例外壳套阅读栏 `max-width`，禁止给 `DemoCode` 加嵌套 `max-height` 小滚动盒。详见 `.cursor/rules/vue3-amg-webui-example-demo-layout.mdc` · `example/components/demo/curatedDemo.scss`。
+**Demo 铺满（锁定）：** `DemoBlock` / `DemoCode` / `PropsTable` / `.vp-curated` 必须横向铺满 `.ln-content` 内容列（仅壳层 `--theme-page-pad` 内边距）。禁止给代码示例外壳套阅读栏 `max-width`，禁止给 `DemoCode` 加嵌套 `max-height` 小滚动盒。详见 `example/components/demo/curatedDemo.scss` · [`example/README.md`](../example/README.md)。
 
 ### 二、通用业务复合（`group: 'biz'`）
 
@@ -144,13 +159,13 @@ example/pages/
 
 ### 三、多主题专项（`group: 'theme'`）
 
-- 一键切换亮 / 暗与六套官方设计，实时看色彩、阴影、圆角、间距
+- 一键切换亮 / 暗与官方设计（含 WeChat / Alipay），实时看色彩、阴影、圆角、间距
 - 自定义主色 → 衍生色阶 → 全局预览（Theme Studio / Token overlay）
 - 持久化、切页无闪屏、多区域主题隔离等边界
 
 ### 四、国际化专项（`group: 'i18n'`）
 
-- 全局语种切换（8 语种全量 key，含 RTL `ar-SA`）
+- 全局语种切换（10 语种全量 key；`zh-HK` / `hi-IN` / `ug-CN`；方向独立）
 - 基础内置文案、校验提示、弹窗操作、业务词条同步跟随
 - 自定义词条扩展、远程动态加载（`registerLocale`）、**原生 RTL**（`ar-SA` · `setDirection` · `rtl.scss`）
 
@@ -267,7 +282,7 @@ Node ≥ 18。example Boot：Font → IconStyle → Theme → URL → app + rout
 
 ## 7. 变更流程
 
-1. 改约定先改本文 + `vue3-amg-webui-app-workflow.mdc` + `docs/workflow.md`
+1. 改约定先改本文 + `example/README.md` + `docs/workflow.md`（若有）+ 相关 Cursor rules
 2. 新调试页 → `example/pages/<zone>/` + `routes.ts` + 侧栏 `group`
 3. 新业务域 → business 包 + `biz/*BizPage.vue` + 路由
-4. 同步 `AGENTS.md` / structure rule 若影响分层叙述
+4. 同步 `AGENTS.md` / `.cursor/rules/01-repository-structure.mdc` 若影响分层叙述

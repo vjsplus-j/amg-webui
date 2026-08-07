@@ -2,13 +2,12 @@
 /**
  * Curated demo — aligned with Avatar gold standard (demoCode / demoSfc / API thirds).
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Icon, Tag } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys, type LocaleKey } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import MotionLivePanel from '../../components/demo/MotionLivePanel.vue'
 import {
   createMotionLiveState,
@@ -16,7 +15,6 @@ import {
   useMotionLiveBind
 } from '../../components/demo/motionLive'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -188,122 +186,6 @@ const codeEvents = demoCode(
   `</Tag>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'label',
-    description: t('example.doc.tag.prop.label'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'severity / type',
-    description: t('example.doc.tag.prop.severity'),
-    type: "'default' | Severity",
-    defaultValue: "'default'"
-  },
-  {
-    name: 'effect',
-    description: t('example.doc.tag.prop.effect'),
-    type: "'solid' | 'outlined' | 'light' | 'neon'",
-    defaultValue: "'light'"
-  },
-  {
-    name: 'size',
-    description: t('example.doc.tag.prop.size'),
-    type: 'Size',
-    defaultValue: "'md'"
-  },
-  {
-    name: 'icon / iconSize',
-    description: t('example.doc.tag.prop.icon'),
-    type: 'string / Size',
-    defaultValue: '-'
-  },
-  {
-    name: 'closable',
-    description: t('example.doc.tag.prop.closable'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'beforeClose',
-    description: t('example.doc.tag.prop.beforeClose'),
-    type: '(e) => boolean | Promise<boolean>',
-    defaultValue: '-'
-  },
-  {
-    name: 'wait',
-    description: t('example.doc.tag.prop.wait'),
-    type: 'number',
-    defaultValue: '300'
-  },
-  {
-    name: 'round / rounded / borderRadius',
-    description: t('example.doc.tag.prop.radius'),
-    type: 'boolean / string',
-    defaultValue: 'false'
-  },
-  {
-    name: 'color / colorBg / colorText / colorBorder',
-    description: t('example.doc.tag.prop.color'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'disabled / clickable',
-    description: t('example.doc.tag.prop.state'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'spin / pulse / heartbeat / bounce / …',
-    description: t('example.doc.motion.prop.heartbeat'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'animationDuration',
-    description: t('example.doc.motion.prop.animationDuration'),
-    type: 'number | string',
-    defaultValue: '-'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'close',
-    description: t('example.doc.tag.emit.close'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'click',
-    description: t('example.doc.tag.emit.click'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.tag.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'icon',
-    description: t('example.doc.tag.slot.icon'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'closeIcon',
-    description: t('example.doc.tag.slot.closeIcon'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -533,20 +415,7 @@ const slotRows = computed<ApiRow[]>(() => [
           />
         </template>
       </MotionLivePanel>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -556,24 +425,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-tag-row {
   display: flex;
   flex-wrap: wrap;

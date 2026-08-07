@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { useLocale, usePopover } from '@amg-webui/hooks'
 import {
   getCalendarDays,
+  getFloatingPanelStyle,
   getMonthYearLabel,
   getWeekdayLabels,
   parseISODate,
+  resolveKeyboardNavAction,
   sameDate,
   toISODate,
   toTimeString,
@@ -44,7 +46,26 @@ const {
 const { nativeAttrs } = useNativeInputAttrs()
 
 const { locale } = useLocale()
-const { isOpen, triggerRef, panelRef, toggle } = usePopover()
+const { isOpen, triggerRef, panelRef, toggle, close } = usePopover()
+const floatingPanelStyle = ref<Record<string, string>>({})
+
+const panelMergedStyle = computed(() => ({
+  ...floatingPanelStyle.value
+}))
+
+function syncFloating() {
+  const trigger = triggerRef.value
+  if (!isOpen.value || !trigger) {
+    floatingPanelStyle.value = {}
+    return
+  }
+  const { style } = getFloatingPanelStyle(trigger, panelRef.value, {
+    placement: 'bottom-start',
+    matchTriggerWidth: true,
+    offset: 4
+  })
+  floatingPanelStyle.value = style
+}
 
 const viewDate = ref(new Date())
 const selectedHour = ref(0)
@@ -138,6 +159,29 @@ const handleTriggerBlur = () => {
   void validateOnBlur()
 }
 
+function handleTriggerKeydown(event: KeyboardEvent) {
+  if (isDisabled.value) return
+  const action = resolveKeyboardNavAction(event, { orientation: 'vertical' })
+  if (!isOpen.value) {
+    if (action === 'next' || action === 'select' || event.key === 'ArrowDown') {
+      event.preventDefault()
+      toggle()
+    }
+    return
+  }
+  if (action === 'close') {
+    event.preventDefault()
+    close()
+    floatingPanelStyle.value = {}
+    triggerRef.value?.focus?.()
+  }
+}
+
+watch(isOpen, (open) => {
+  if (open) nextTick(syncFloating)
+  else floatingPanelStyle.value = {}
+})
+
 const selectDay = (day: Date | null) => {
   if (!day) return
   pickedDate.value = day
@@ -185,6 +229,7 @@ const selectSecond = (s: number) => {
       :disabled="isDisabled"
       @click="handleTriggerClick"
       @blur="handleTriggerBlur"
+      @keydown="handleTriggerKeydown"
     >
       <span
         :class="[
@@ -197,7 +242,13 @@ const selectSecond = (s: number) => {
       <span aria-hidden="true">v</span>
     </button>
 
-    <div v-if="isOpen" ref="panelRef" class="vp-datetimepicker__panel">
+    <div
+      v-if="isOpen"
+      ref="panelRef"
+      class="vp-datetimepicker__panel"
+      :style="panelMergedStyle"
+      @keydown="handleTriggerKeydown"
+    >
       <div class="vp-datetimepicker__body">
         <div class="vp-datetimepicker__date">
           <div class="vp-datepicker__header">

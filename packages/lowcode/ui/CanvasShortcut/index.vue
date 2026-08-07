@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted } from 'vue'
+import { getWindow, isClient } from '@amg-webui/utils/env'
 import { useLocale } from '@amg-webui/hooks'
 import { useCanvasEditor } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
@@ -72,8 +73,13 @@ function onKeyDown(e: KeyboardEvent) {
   }
 }
 
-onMounted(() => window.addEventListener('keydown', onKeyDown))
-onBeforeUnmount(() => window.removeEventListener('keydown', onKeyDown))
+onMounted(() => {
+  if (!isClient) return
+  getWindow()?.addEventListener('keydown', onKeyDown)
+})
+onBeforeUnmount(() => {
+  getWindow()?.removeEventListener('keydown', onKeyDown)
+})
 </script>
 
 <template>

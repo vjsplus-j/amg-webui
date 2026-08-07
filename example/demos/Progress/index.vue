@@ -2,14 +2,11 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
-import { computed, onUnmounted, ref } from 'vue'
+import { onUnmounted, ref } from 'vue'
 import { Button, Progress, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -95,61 +92,6 @@ const codeEvents = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'percentage',
-    description: t('example.doc.progress.prop.percentage'),
-    type: 'number',
-    defaultValue: '-'
-  },
-  {
-    name: 'type',
-    description: t('example.doc.progress.prop.type'),
-    type: "'line' | 'circle'",
-    defaultValue: "'line'"
-  },
-  {
-    name: 'status',
-    description: t('example.doc.progress.prop.status'),
-    type: "'normal' | 'success' | 'warning' | 'danger'",
-    defaultValue: "'normal'"
-  },
-  {
-    name: 'showText',
-    description: t('example.doc.progress.prop.showText'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'strokeWidth',
-    description: t('example.doc.progress.prop.strokeWidth'),
-    type: 'number | string',
-    defaultValue: '-'
-  },
-  {
-    name: 'trackId / telemetry',
-    description: t('example.doc.avatar.prop.telemetry'),
-    type: 'string / boolean',
-    defaultValue: '- / undefined'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'change',
-    description: t('example.doc.progress.emit.change'),
-    type: '(percentage: number) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'finish',
-    description: t('example.doc.progress.emit.finish'),
-    type: '() => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [])
 </script>
 
 <template>
@@ -252,19 +194,7 @@ const slotRows = computed<ApiRow[]>(() => [])
       </div>
     </DemoBlock>
 
-    <!-- 7. API -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 7. API -->
   </div>
 </template>
 
@@ -274,25 +204,6 @@ const slotRows = computed<ApiRow[]>(() => [])
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-progress-stack {
   display: flex;
   flex-direction: column;

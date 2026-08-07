@@ -2,14 +2,11 @@
 /**
  * Curated demo — Feedback wave2 Exception
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Exception } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -30,35 +27,6 @@ const codeCustom = demoCode(
   `/>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'status',
-    type: "'403' | '404' | '500' | 'offline'",
-    defaultValue: "'404'",
-    description: t('example.doc.exception.prop.status')
-  },
-  {
-    name: 'title',
-    type: 'string',
-    defaultValue: '-',
-    description: t('example.doc.exception.prop.title')
-  },
-  {
-    name: 'description',
-    type: 'string',
-    defaultValue: '-',
-    description: t('example.doc.exception.prop.description')
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'action',
-    description: t('example.doc.exception.event.action'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -99,15 +67,7 @@ const eventRows = computed<ApiRow[]>(() => [
         :title="t('example.doc.exception.sample.customTitle')"
         :description="t('example.doc.exception.sample.customDesc')"
       />
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -153,19 +113,5 @@ const eventRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

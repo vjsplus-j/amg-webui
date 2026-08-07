@@ -2,15 +2,12 @@
 /**
  * Curated demo — Layout wave2 Spacer
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Spacer, Button, Space } from '@amg-webui/core'
 import type { SpacerSize } from '@amg-webui/core/Spacer'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -36,20 +33,6 @@ const codeFixed = demoCode(
   `</div>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'flex / grow / shrink',
-    description: t('example.doc.spacer.prop.flex'),
-    type: 'boolean / number',
-    defaultValue: 'true / 1 / 1'
-  },
-  {
-    name: 'size / axis / minSize',
-    description: t('example.doc.spacer.prop.size'),
-    type: 'spacing token / horizontal|vertical|both',
-    defaultValue: '— / horizontal'
-  }
-])
 </script>
 
 <template>
@@ -94,12 +77,6 @@ const propRows = computed<PropRow[]>(() => [
         <Button size="sm" variant="outlined">{{ t('example.doc.spacer.sample.bottom') }}</Button>
       </div>
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-    </section>
   </div>
 </template>
 
@@ -132,19 +109,5 @@ const propRows = computed<PropRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

@@ -1,0 +1,100 @@
+{
+  "name": "CardGrid",
+  "generatedAt": "2026-08-07T12:40:46.784Z",
+  "source": {
+    "types": "packages/components/core/CardGrid/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "columns",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "minTrack",
+      "optional": true,
+      "type": "CardGridMinTrack",
+      "description": ""
+    },
+    {
+      "name": "fit",
+      "optional": true,
+      "type": "CardGridFit",
+      "description": ""
+    },
+    {
+      "name": "gap",
+      "optional": true,
+      "type": "CardGridGap",
+      "description": ""
+    },
+    {
+      "name": "equalHeight",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "as",
+      "optional": true,
+      "type": "\"div\" | \"section\" | \"ul\" | \"ol\"",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "skeletonCount",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "empty",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "layout-change",
+      "payload": "columns: number | null",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "CardGridMinTrack",
+    "CardGridGap",
+    "CardGridFit",
+    "CardGridProps",
+    "CardGridEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

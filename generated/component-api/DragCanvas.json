@@ -1,0 +1,88 @@
+{
+  "name": "DragCanvas",
+  "generatedAt": "2026-08-07T12:40:46.819Z",
+  "source": {
+    "types": "packages/lowcode/ui/DragCanvas/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "CanvasNodeData[]",
+      "description": ""
+    },
+    {
+      "name": "mode",
+      "optional": true,
+      "type": "'free' | 'grid'",
+      "description": ""
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "materials",
+      "optional": true,
+      "type": "CanvasMaterialItem[]",
+      "description": ""
+    },
+    {
+      "name": "gridCols",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "registry",
+      "optional": true,
+      "type": "ComponentRegistry",
+      "description": ""
+    },
+    {
+      "name": "renderMode",
+      "optional": true,
+      "type": "'chrome' | 'component'",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: CanvasNodeData[]",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "ids: string[]",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: CanvasNodeData[]",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "DragCanvasProps",
+    "DragCanvasEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

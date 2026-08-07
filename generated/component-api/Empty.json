@@ -1,0 +1,68 @@
+{
+  "name": "Empty",
+  "generatedAt": "2026-08-07T12:41:13.580Z",
+  "source": {
+    "types": "packages/components/core/Empty/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "image",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "imageAlt",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "imageSize",
+      "optional": true,
+      "type": "EmptyImageSize",
+      "description": ""
+    },
+    {
+      "name": "imageStyle",
+      "optional": true,
+      "type": "Record<string, string>",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "imageError",
+      "payload": "event: Event",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "EmptyImageSize",
+    "EmptyProps",
+    "EmptyEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/video-player.md",
+  "api": "generated/component-api/VideoPlayer.json",
+  "demo": "example/demos/VideoPlayer/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

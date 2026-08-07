@@ -91,9 +91,29 @@ export const routes: RouteRecordRaw[] = [
         }
       },
       {
+        path: 'intro/installation',
+        name: 'intro-installation',
+        component: () => import('../pages/intro/InstallationPage.vue'),
+        meta: {
+          titleKey: 'page.intro.installation.title',
+          group: 'intro',
+          icon: 'Package'
+        }
+      },
+      {
+        path: 'intro/app-config',
+        name: 'intro-app-config',
+        component: () => import('../pages/intro/AppConfigPage.vue'),
+        meta: {
+          titleKey: 'page.intro.appConfig.title',
+          group: 'intro',
+          icon: 'Settings2'
+        }
+      },
+      {
         path: 'intro/design',
         name: 'intro-design',
-        component: () => import('../pages/intro/DesignStylePage.vue'),
+        component: () => import('../pages/intro/DesignSystemPage.vue'),
         meta: {
           titleKey: 'page.intro.design.title',
           group: 'intro',
@@ -103,7 +123,7 @@ export const routes: RouteRecordRaw[] = [
       {
         path: 'intro/theme',
         name: 'intro-theme',
-        component: () => import('../pages/intro/ThemeGuidePage.vue'),
+        component: () => import('../pages/intro/ThemeTokensPage.vue'),
         meta: {
           titleKey: 'page.intro.theme.title',
           group: 'intro',
@@ -111,25 +131,36 @@ export const routes: RouteRecordRaw[] = [
         }
       },
       {
-        path: 'intro/font',
-        name: 'intro-font',
-        component: () => import('../pages/intro/FontGuidePage.vue'),
+        path: 'intro/i18n',
+        name: 'intro-i18n',
+        component: () => import('../pages/intro/I18nGuidePage.vue'),
         meta: {
-          titleKey: 'page.intro.font.title',
+          titleKey: 'page.intro.i18n.title',
           group: 'intro',
-          icon: 'Type'
+          icon: 'Globe'
         }
       },
       {
         path: 'intro/icon',
         name: 'intro-icon',
-        component: () => import('../pages/intro/IconStylePage.vue'),
+        component: () => import('../pages/intro/IconGuidePage.vue'),
         meta: {
           titleKey: 'page.intro.icon.title',
           group: 'intro',
           icon: 'Shapes'
         }
       },
+      {
+        path: 'intro/typography',
+        name: 'intro-typography',
+        component: () => import('../pages/intro/TypographyPage.vue'),
+        meta: {
+          titleKey: 'page.intro.typography.title',
+          group: 'intro',
+          icon: 'Type'
+        }
+      },
+      { path: 'intro/font', redirect: { name: 'intro-typography' } },
 
       {
         path: 'base/overview',
@@ -369,6 +400,17 @@ export const routes: RouteRecordRaw[] = [
       },
 
       {
+        path: 'lab/hardening',
+        name: 'lab-hardening',
+        component: () => import('../pages/lab/HardeningEvidencePage.vue'),
+        meta: {
+          titleKey: 'page.lab.hardening.title',
+          group: 'lab',
+          icon: 'ShieldCheck'
+        }
+      },
+
+      {
         path: 'dev/config',
         name: 'dev-config',
         component: () => import('../pages/dev/GlobalConfigPage.vue'),
@@ -396,6 +438,16 @@ export const routes: RouteRecordRaw[] = [
           titleKey: 'page.dev.bugRepro.title',
           group: 'dev',
           icon: 'Bug'
+        }
+      },
+      {
+        path: 'dev/example-boot',
+        name: 'dev-example-boot',
+        component: () => import('../pages/dev/ExampleBootPage.vue'),
+        meta: {
+          titleKey: 'page.dev.exampleBoot.title',
+          group: 'dev',
+          icon: 'Terminal'
         }
       },
 

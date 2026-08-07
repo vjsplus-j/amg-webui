@@ -1,0 +1,71 @@
+---
+description: Verification requirements before declaring work complete
+alwaysApply: true
+---
+
+# Verify Before Done
+
+Before completion, run the relevant checks:
+
+- typecheck
+- unit/behavior tests
+- SSR for public UI/runtime changes
+- A11Y/keyboard for interactive components
+- docs/API drift checks for public API changes
+- package/consumer checks for exports/styles
+- visual checks for rendering/style changes
+- performance benchmarks for data-heavy/virtualized behavior
+
+Use only PASS / FAIL / N/A / BLOCKED.
+
+A component may be STABLE only when all mandatory gates pass.
+
+Do not use vague completion language.
+
+## Definition of Done
+
+Before declaring any task complete, read and follow:
+
+`docs/engineering/definition-of-done.md`
+
+Rules:
+
+- All applicable Mandatory items must be verified.
+- Verification results must use only: PASS / FAIL / N/A / BLOCKED.
+- Any Mandatory FAIL means the task is not DONE.
+- Do not use vague completion language such as "mostly complete", "basically done", or "core work finished".
+- Before finishing, scan for remaining TODO, FIXME, NotImplemented, stub, placeholder, temporary, mock, console.log and unfinished branches.
+- If unfinished work remains, continue implementation instead of summarizing.
+- If blocked, mark the item BLOCKED with a concrete reason and continue other independent work.
+- If the "unfinished items" list is not empty, do not declare the task complete.
+
+## No Scope Shrinking
+
+Do not redefine scope to manufacture completion.
+
+Any discovered unfinished work that belongs to the current program must be added to the Program Backlog immediately.
+
+The following still count as unfinished:
+
+- deferred
+- next batch
+- next step
+- follow-up
+- not in original todo
+- discovered during implementation
+- missing gate evidence
+- known gaps
+
+`todo = []` is not proof of completion.
+
+Before stopping, perform a project-wide Completion Sweep.
+
+The task may stop only when:
+
+- Program Backlog = []
+- Deferred = []
+- Known Gaps = []
+- Mandatory Gate Failures = []
+- Missing Mandatory Evidence = []
+
+If any item remains, continue implementation.

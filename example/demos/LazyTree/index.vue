@@ -2,16 +2,13 @@
 /**
  * Curated demo — Data wave2 LazyTree
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { LazyTree } from '@amg-webui/data'
 import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import type { LazyLoadContext, TreeNode } from '@amg-webui/utils/data-display/tree-types'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -72,53 +69,6 @@ const codeBrowse = demoSfc({
   template: [`  <LazyTree v-model="active" :options="nodes" :checkable="false" @load="onLoad" />`]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'options / data',
-    description: t('example.doc.lazyTree.prop.data'),
-    type: 'TreeNode[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'load',
-    description: t('example.doc.lazyTree.prop.loadFn'),
-    type: '(node) => Promise<TreeNode[]>',
-    defaultValue: '—'
-  },
-  {
-    name: 'checkable / checkStrictly',
-    description: t('example.doc.lazyTree.prop.checkable'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'modelValue (v-model)',
-    description: t('example.doc.lazyTree.prop.model'),
-    type: 'string[]',
-    defaultValue: '[]'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'load',
-    description: t('example.doc.lazyTree.prop.load'),
-    type: '({ node, resolve }) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'update:modelValue / change',
-    description: t('example.doc.lazyTree.event.change'),
-    type: '(value: string[]) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'node-expand / check-change',
-    description: t('example.doc.lazyTree.event.expand'),
-    type: '(node) => void',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -154,14 +104,6 @@ const eventRows = computed<ApiRow[]>(() => [
     >
       <LazyTree v-model="active" :options="nodes" :checkable="false" @load="onLoad" />
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-    </section>
   </div>
 </template>
 
@@ -175,19 +117,5 @@ const eventRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

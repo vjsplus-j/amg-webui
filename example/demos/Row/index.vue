@@ -2,14 +2,12 @@
 /**
  * Row / Col curated demos — page-grade complex grids (not span swatches).
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Row, Col, Button, Space, Card, Tag, Divider, Block } from '@amg-webui/core'
 import { InputText } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc, demoCode } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t, tDyn } = useLocale()
@@ -150,44 +148,6 @@ const codeAlign = computed(() =>
   )
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'Row.gutter',
-    type: 'string | number',
-    defaultValue: 'var(--spacing-md)',
-    description: t('example.doc.row.prop.gutter')
-  },
-  {
-    name: 'Row.align / justify / wrap',
-    type: 'string / string / boolean',
-    defaultValue: "'stretch' / 'start' / true",
-    description: t('example.doc.row.prop.align')
-  },
-  {
-    name: 'Col.span',
-    type: 'number (1–24)',
-    defaultValue: '-',
-    description: t('example.doc.row.prop.span')
-  },
-  {
-    name: 'Col.offset',
-    type: 'number (0–23)',
-    defaultValue: '0',
-    description: t('example.doc.row.prop.offset')
-  },
-  {
-    name: 'Col.push / pull',
-    type: 'number',
-    defaultValue: '0',
-    description: t('example.doc.row.prop.pushPull')
-  },
-  {
-    name: 'Col.flex',
-    type: 'boolean',
-    defaultValue: 'false',
-    description: t('example.doc.row.prop.flex')
-  }
-])
 </script>
 
 <template>
@@ -699,9 +659,7 @@ const propRows = computed<PropRow[]>(() => [
         </Row>
       </Space>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

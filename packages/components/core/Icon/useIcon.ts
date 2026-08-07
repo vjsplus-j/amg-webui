@@ -65,7 +65,9 @@ export function useIcon(source: MaybeRefOrGetter<UseIconSource>) {
   const strokeWidth = computed(() => {
     const s = toValue(source)
     if (s.strokeWidth != null) return s.strokeWidth
-    return s.iconStyle === 'solid' ? 2.25 : 1.75
+    /* solid 仍加粗；outline 交给主题 --icon-stroke-width（WeUI=2 / Alipay=1.5） */
+    if (s.iconStyle === 'solid') return 2.25
+    return undefined
   })
 
   const a11yLabel = computed(() => {

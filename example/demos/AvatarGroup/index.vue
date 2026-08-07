@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Avatar, AvatarGroup } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -185,80 +182,6 @@ const codeEvents = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'max',
-    description: t('example.doc.avatarGroup.prop.max'),
-    type: 'number',
-    defaultValue: '3'
-  },
-  {
-    name: 'size',
-    description: t('example.doc.avatarGroup.prop.size'),
-    type: 'Size | number',
-    defaultValue: '-'
-  },
-  {
-    name: 'shape',
-    description: t('example.doc.avatarGroup.prop.shape'),
-    type: "'circle' | 'square'",
-    defaultValue: '-'
-  },
-  {
-    name: 'variant',
-    description: t('example.doc.avatarGroup.prop.variant'),
-    type: "'default' | 'neon'",
-    defaultValue: "'default'"
-  },
-  {
-    name: 'overlap',
-    description: t('example.doc.avatarGroup.prop.overlap'),
-    type: 'string',
-    defaultValue: 'var(--theme-avatar-group-overlap)'
-  },
-  {
-    name: 'maxTooltip',
-    description: t('example.doc.avatarGroup.prop.maxTooltip'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'disabled',
-    description: t('example.doc.avatarGroup.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'trackId / telemetry',
-    description: t('example.doc.avatarGroup.prop.telemetry'),
-    type: 'string / boolean',
-    defaultValue: '- / undefined'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'overflowClick',
-    description: t('example.doc.avatarGroup.emit.overflowClick'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.avatarGroup.slot.default'),
-    type: 'VNode (Avatar children)',
-    defaultValue: '-'
-  },
-  {
-    name: 'overflowTooltip',
-    description: t('example.doc.avatarGroup.slot.overflowTooltip'),
-    type: '{ overflowCount: number; labels: string[] }',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -512,19 +435,7 @@ const slotRows = computed<ApiRow[]>(() => [
       </div>
     </DemoBlock>
 
-    <!-- 5. API: Props → Events → Slots -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 5. API: Props → Events → Slots -->
   </div>
 </template>
 
@@ -534,24 +445,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-ag-stack {
   display: flex;
   flex-direction: column;

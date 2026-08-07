@@ -3,13 +3,12 @@
  * Curated demo gold standard — code-example structure template.
  * Other play demos should mirror this layout (see `demoCode.ts` header).
  */
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { Avatar, AvatarGroup, Button, Icon } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import MotionLivePanel from '../../components/demo/MotionLivePanel.vue'
 import {
   createMotionLiveState,
@@ -17,7 +16,6 @@ import {
   useMotionLiveBind
 } from '../../components/demo/motionLive'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t, tDyn } = useLocale()
 
@@ -216,152 +214,6 @@ const codeGroup = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'src',
-    description: t('example.doc.avatar.prop.src'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'alt',
-    description: t('example.doc.avatar.prop.alt'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'text',
-    description: t('example.doc.avatar.prop.text'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'textMaxLength',
-    description: t('example.doc.avatar.prop.textMaxLength'),
-    type: 'number',
-    defaultValue: '2'
-  },
-  {
-    name: 'icon / fallbackIcon',
-    description: t('example.doc.avatar.prop.icon'),
-    type: 'string',
-    defaultValue: 'User'
-  },
-  {
-    name: 'size',
-    description: t('example.doc.avatar.prop.size'),
-    type: "Size | number",
-    defaultValue: "'md'"
-  },
-  {
-    name: 'shape',
-    description: t('example.doc.avatar.prop.shape'),
-    type: "'circle' | 'square'",
-    defaultValue: "'circle'"
-  },
-  {
-    name: 'borderRadius',
-    description: t('example.doc.avatar.prop.borderRadius'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'bordered / borderColor / borderWidth',
-    description: t('example.doc.avatar.prop.border'),
-    type: 'boolean / string',
-    defaultValue: 'true / - / 1px'
-  },
-  {
-    name: 'variant',
-    description: t('example.doc.avatar.prop.variant'),
-    type: "'default' | 'neon'",
-    defaultValue: "'default'"
-  },
-  {
-    name: 'colorBg / colorText',
-    description: t('example.doc.avatar.prop.color'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'tooltip / tooltipDelay',
-    description: t('example.doc.avatar.prop.tooltip'),
-    type: 'string / number',
-    defaultValue: '- / 200'
-  },
-  {
-    name: 'fallbackSrc / fallbackText',
-    description: t('example.doc.avatar.prop.fallback'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'loading',
-    description: t('example.doc.avatar.prop.loading'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'disabled / clickable',
-    description: t('example.doc.avatar.prop.state'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'spin / pulse / heartbeat / bounce / …',
-    description: t('example.doc.motion.prop.heartbeat'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'animationDuration',
-    description: t('example.doc.motion.prop.animationDuration'),
-    type: 'number | string',
-    defaultValue: '-'
-  },
-  {
-    name: 'trackId / telemetry',
-    description: t('example.doc.avatar.prop.telemetry'),
-    type: 'string / boolean',
-    defaultValue: '- / undefined'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'load',
-    description: t('example.doc.avatar.emit.load'),
-    type: '(event: Event) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'error',
-    description: t('example.doc.avatar.emit.error'),
-    type: '(event: Event) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'click',
-    description: t('example.doc.avatar.emit.click'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.avatar.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'icon',
-    description: t('example.doc.avatar.slot.icon'),
-    type: 'VNode',
-    defaultValue: '<Icon name="User" />'
-  }
-])
 </script>
 
 <template>
@@ -693,18 +545,6 @@ const slotRows = computed<ApiRow[]>(() => [
     </DemoBlock>
 
     <!-- 7. API: Props → Events → Slots -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
   </div>
 </template>
 
@@ -714,24 +554,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-avatar-row {
   display: flex;
   flex-wrap: wrap;

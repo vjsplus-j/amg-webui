@@ -2,19 +2,17 @@
 /**
  * Curated demo — Form wave1 Select
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Select } from '@amg-webui/form'
 import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
+import { demoCode } from '../../components/demo/demoCode'
+import Basic from './parts/Basic.vue'
+import basicSource from './parts/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
-const value = ref<string | undefined>('a')
 const cleared = ref<string | undefined>()
 const multiValue = ref<(string | number)[]>(['a', 'b'])
 const remoteValue = ref<string | undefined>()
@@ -59,29 +57,6 @@ const largeOptions = computed(() =>
     value: `opt-${i + 1}`
   }))
 )
-
-const codeBasic = demoSfc({
-  imports: [
-    `import { ref, computed } from 'vue'`,
-    `import { Select } from '@amg-webui/form'`
-  ],
-  script: [
-    `const value = ref('a')`,
-    `const options = computed(() => [`,
-    `  { label: t('example.doc.select.sample.optA'), value: 'a' },`,
-    `  { label: t('example.doc.select.sample.optB'), value: 'b' },`,
-    `  { label: t('example.doc.select.sample.optC'), value: 'c' }`,
-    `])`
-  ],
-  template: [
-    `  <Select`,
-    `    v-model="value"`,
-    `    :options="options"`,
-    `    :placeholder="t('example.doc.select.sample.placeholder')"`,
-    `    fluid`,
-    `  />`
-  ]
-})
 
 const codeClearable = demoCode(
   `<Select`,
@@ -135,77 +110,6 @@ const codeVirtual = demoCode(
   `/>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'modelValue',
-    description: t('example.doc.select.prop.modelValue'),
-    type: 'string | number | boolean | (string | number)[]',
-    defaultValue: '—'
-  },
-  {
-    name: 'options',
-    description: t('example.doc.select.prop.options'),
-    type: 'SelectOption[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'multiple / collapseTags',
-    description: t('example.doc.select.prop.multiple'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'remote / remoteMethod / loading',
-    description: t('example.doc.select.prop.remote'),
-    type: 'boolean / fn / boolean',
-    defaultValue: 'false / — / false'
-  },
-  {
-    name: 'virtual / virtualThreshold',
-    description: t('example.doc.select.prop.virtual'),
-    type: 'boolean / number',
-    defaultValue: 'auto / 60'
-  },
-  {
-    name: 'placeholder / size',
-    description: t('example.doc.select.prop.placeholder'),
-    type: 'string / Size',
-    defaultValue: '— / md'
-  },
-  {
-    name: 'clearable / filterable',
-    description: t('example.doc.select.prop.clearable'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'disabled',
-    description: t('example.doc.select.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:modelValue / change',
-    description: t('example.doc.select.event.change'),
-    type: '(value) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'remove-tag',
-    description: t('example.doc.select.event.removeTag'),
-    type: '(value: string | number) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'clear',
-    description: t('example.doc.select.event.clear'),
-    type: '() => void',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -213,17 +117,10 @@ const eventRows = computed<ApiRow[]>(() => [
     <DemoBlock
       :title="t('example.doc.select.demo.basic')"
       :description="t('example.doc.select.demo.basicDesc')"
-      :code="codeBasic"
+      :code="basicSource"
       default-open
     >
-      <div class="vp-curated__row">
-        <Select
-          v-model="value"
-          :options="options"
-          :placeholder="t('example.doc.select.sample.placeholder')"
-          fluid
-        />
-      </div>
+      <Basic />
     </DemoBlock>
 
     <DemoBlock
@@ -303,14 +200,6 @@ const eventRows = computed<ApiRow[]>(() => [
         />
       </div>
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-    </section>
   </div>
 </template>
 
@@ -327,19 +216,5 @@ const eventRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

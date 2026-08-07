@@ -1,0 +1,71 @@
+{
+  "name": "FlowPanel",
+  "generatedAt": "2026-08-07T12:41:13.589Z",
+  "source": {
+    "types": "packages/components/data/FlowPanel/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "steps",
+      "optional": true,
+      "type": "FlowStep[]",
+      "description": ""
+    },
+    {
+      "name": "current",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "showNav",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "blockOnError",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "select",
+      "payload": "step: FlowStep",
+      "description": ""
+    },
+    {
+      "name": "prev",
+      "payload": "step: FlowStep | null",
+      "description": ""
+    },
+    {
+      "name": "next",
+      "payload": "step: FlowStep | null",
+      "description": ""
+    },
+    {
+      "name": "update:current",
+      "payload": "id: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "FlowStep",
+    "FlowPanelProps",
+    "FlowPanelEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

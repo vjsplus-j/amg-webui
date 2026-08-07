@@ -1,0 +1,18 @@
+---
+description: Engineering rules for reusable Vue components
+globs: packages/**/*.{ts,vue,tsx},build/**/*.mjs,scripts/**/*.mjs
+alwaysApply: false
+---
+
+# Component Engineering
+- Prefer composables/models/runtime services for shared behavior.
+- Never copy keyboard, selection, floating, validation, virtualization or async-state logic across components.
+- Preserve native attributes intentionally.
+- Clean up listeners, timers, observers, workers and abort controllers.
+- Avoid top-level browser globals in SSR-capable public code.
+- Async work must handle cancellation and stale-result races.
+- Public events must have stable typed payloads.
+- Controlled state and v-model semantics must be explicit.
+- Avoid `any` in public contracts unless unavoidable and documented.
+- Generated barrels/exports must use repository tooling.
+- Public package imports must resolve to built `dist` artifacts.

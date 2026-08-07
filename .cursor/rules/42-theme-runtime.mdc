@@ -1,0 +1,15 @@
+---
+description: Theme runtime and Theme Studio rules
+globs: packages/theme/**/*,packages/**/*theme*.*,example/pages/theme/**/*,docs/**/*theme*.*
+alwaysApply: false
+---
+
+# Theme Runtime
+- Theme state must support scoped providers and nested contexts.
+- Do not assume a single global document/runtime when scoped runtime is possible.
+- SSR must not require browser globals at module evaluation time.
+- Runtime changes must be reactive and subscription-safe.
+- Removing custom tokens must remove stale values.
+- Parent theme values must not be treated as new local overrides.
+- Theme Studio consumes Theme Runtime contracts; it is not a parallel implementation.
+- Brand themes use tokens, not component forks.

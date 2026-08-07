@@ -1,0 +1,115 @@
+{
+  "name": "Card",
+  "generatedAt": "2026-08-07T12:40:46.782Z",
+  "source": {
+    "types": "packages/components/core/Card/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "header",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "footer",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "subTitle",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "subtitle",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "raised",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "hover",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "hoverable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "selected",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "selectable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bordered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "skeleton",
+      "optional": true,
+      "type": "CardSkeleton",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "update:selected",
+      "payload": "value: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "CardSkeleton",
+    "CardProps",
+    "CardEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "name": "RadarChart",
+  "generatedAt": "2026-08-07T12:41:56.115Z",
+  "source": {
+    "types": "packages/components/charts/RadarChart/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | number | null",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "levels",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "showValues",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "selectable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: { label: string; value: number; index: number }",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "RadarChartProps",
+    "RadarChartEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

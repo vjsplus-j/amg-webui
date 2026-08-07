@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/error-modal.md",
+  "api": "generated/component-api/ErrorModal.json",
+  "demo": "example/demos/ErrorModal/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

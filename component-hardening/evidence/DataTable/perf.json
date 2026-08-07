@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "detail": "mount 2000 rows in 14ms",
+  "metric": {
+    "rows": 2000,
+    "mountMs": 14,
+    "budgetMs": 5000
+  },
+  "source": "tests/unit/hardening/select-engines-perf.spec.ts"
+}

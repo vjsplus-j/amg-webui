@@ -1,0 +1,17 @@
+{
+  "family": "overlay",
+  "batch": "B08",
+  "axe": {
+    "status": "PASS",
+    "blocking": 0
+  },
+  "keyboard": {
+    "status": "PASS",
+    "detail": "focus trap + footer close"
+  },
+  "verifiedAt": "2026-08-07T12:28:51.723Z",
+  "unit": {
+    "status": "PASS",
+    "detail": "Dialog visible mounts body content"
+  }
+}

@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { FooterNav } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import { getSampleMountProps } from '../_shared/sampleMountProps'
 import '../../components/demo/curatedDemo.scss'
 
@@ -24,13 +22,6 @@ const codeBasic = demoSfc({
   template: [`  <FooterNav v-model="selected" :items="items" dividers />`]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'class / style',
-    type: 'BaseProps',
-    description: t('example.doc.footerNav.prop.base')
-  }
-])
 </script>
 
 <template>
@@ -44,6 +35,5 @@ const propRows = computed<PropRow[]>(() => [
     >
       <FooterNav v-model="selected" :items="items" dividers />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

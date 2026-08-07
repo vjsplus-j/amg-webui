@@ -1,0 +1,56 @@
+{
+  "name": "OnvifAlarmPanel",
+  "generatedAt": "2026-08-07T12:41:35.032Z",
+  "source": {
+    "types": "packages/components/onvif/OnvifAlarmPanel/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "alarms",
+      "optional": true,
+      "type": "OnvifAlarm[]",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "acknowledge",
+      "payload": "id: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "OnvifAlarm",
+    "OnvifAlarmPanelProps",
+    "OnvifAlarmPanelEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

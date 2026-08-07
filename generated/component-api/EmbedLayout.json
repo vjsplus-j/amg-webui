@@ -1,0 +1,99 @@
+{
+  "name": "EmbedLayout",
+  "generatedAt": "2026-08-07T12:41:13.579Z",
+  "source": {
+    "types": "packages/components/core/EmbedLayout/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "aspectRatio",
+      "optional": true,
+      "type": "EmbedAspect",
+      "description": ""
+    },
+    {
+      "name": "fill",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "rounded",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bordered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "objectFit",
+      "optional": true,
+      "type": "EmbedObjectFit",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "caption",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "interactive",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "as",
+      "optional": true,
+      "type": "\"div\" | \"figure\" | \"section\"",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "frame-click",
+      "payload": "event: MouseEvent | KeyboardEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "EmbedAspect",
+    "EmbedObjectFit",
+    "EmbedLayoutProps",
+    "EmbedLayoutEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

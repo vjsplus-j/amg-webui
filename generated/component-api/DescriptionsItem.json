@@ -1,0 +1,54 @@
+{
+  "name": "DescriptionsItem",
+  "generatedAt": "2026-08-07T12:40:46.815Z",
+  "source": {
+    "types": "packages/components/data/DescriptionsItem/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "span",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "colon",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "labelAlign",
+      "optional": true,
+      "type": "\"start\" | \"end\"",
+      "description": ""
+    },
+    {
+      "name": "labelWidth",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "DescriptionsItemProps"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

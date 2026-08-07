@@ -1,0 +1,66 @@
+{
+  "name": "VcrMarkPoint",
+  "generatedAt": "2026-08-07T12:42:17.059Z",
+  "source": {
+    "types": "packages/components/media/VcrMarkPoint/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "marks",
+      "optional": true,
+      "type": "VcrMark[]",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "add",
+      "payload": "mark: Omit<VcrMark, 'id'>",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "id: string",
+      "description": ""
+    },
+    {
+      "name": "remove",
+      "payload": "id: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "VcrMark",
+    "VcrMarkPointProps",
+    "VcrMarkPointEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

@@ -1,0 +1,14 @@
+---
+description: AMG Skill Runtime architecture rules
+globs: packages/skill/**/*,packages/**/*skill*.*,example/**/*skill*.*
+alwaysApply: false
+---
+
+# Skill Runtime
+- Keep Skill Runtime independent from specific UI components and business domains.
+- Use explicit contracts, lifecycle and adapters.
+- Avoid hidden global state.
+- Runtime creation/disposal must be deterministic.
+- Support cancellation, error propagation and observable status where applicable.
+- Component internals must not leak into Skill public contracts.
+- Integrations depend on public runtime interfaces, not internal files.

@@ -1,0 +1,89 @@
+{
+  "name": "FormTabs",
+  "generatedAt": "2026-08-07T12:34:13.538Z",
+  "source": {
+    "types": "packages/components/form/FormTabs/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "tabs",
+      "optional": true,
+      "type": "FormTabItem[]",
+      "description": ""
+    },
+    {
+      "name": "tabData",
+      "optional": true,
+      "type": "Record<string, Record<string, unknown>>",
+      "description": ""
+    },
+    {
+      "name": "fieldLabels",
+      "optional": true,
+      "type": "Record<string, Record<string, string>>",
+      "description": ""
+    },
+    {
+      "name": "rules",
+      "optional": true,
+      "type": "FormRules",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "update:tabData",
+      "payload": "value: Record<string, Record<string, unknown>>",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "name: string | number",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "FormTabItem",
+    "FormTabsProps",
+    "FormTabsEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

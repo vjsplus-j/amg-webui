@@ -2,7 +2,7 @@
 import { computed, nextTick, ref, watch } from "vue";
 import { useLocale, usePopover } from "@amg-webui/hooks";
 import { trackEmit } from "@amg-webui/telemetry";
-import { toISODate } from "@amg-webui/utils";
+import { toISODate, getFloatingPanelStyle, resolveKeyboardNavAction } from "@amg-webui/utils";
 import type { YearPickerEmits, YearPickerProps } from "./types";
 import { useFormItem } from "../FormItem/useFormItem";
 import { useNativeInputAttrs } from "../FormItem/useNativeInputAttrs";
@@ -38,6 +38,21 @@ const { nativeAttrs } = useNativeInputAttrs();
 
 const { t } = useLocale();
 const { isOpen, triggerRef, panelRef, toggle, close, open } = usePopover();
+const floatingPanelStyle = ref<Record<string, string>>({});
+const panelMergedStyle = computed(() => ({ ...floatingPanelStyle.value }));
+function syncFloating() {
+  const trigger = triggerRef.value;
+  if (!isOpen.value || !trigger) {
+    floatingPanelStyle.value = {};
+    return;
+  }
+  const { style } = getFloatingPanelStyle(trigger, panelRef.value, {
+    placement: "bottom-start",
+    matchTriggerWidth: true,
+    offset: 4,
+  });
+  floatingPanelStyle.value = style;
+}
 function yearOf(value: string | Date | number | null | undefined) {
   if (value == null || value === "") return null;
   if (typeof value === "number")
@@ -61,7 +76,11 @@ const activeYear = ref(selectedYear.value ?? new Date().getFullYear());
 watch(selectedYear, (value) => {
   if (value != null) activeYear.value = value;
 });
-watch(isOpen, (value) => emit("openChange", value));
+watch(isOpen, (value) => {
+  emit("openChange", value);
+  if (value) void nextTick(syncFloating);
+  else floatingPanelStyle.value = {};
+});
 const years = computed(() =>
   Array.from(
     { length: rangeSize.value },
@@ -118,10 +137,20 @@ function togglePanel() {
 }
 function triggerKeydown(event: KeyboardEvent) {
   if (isDisabled.value || props.readonly) return;
-  if (event.key === "ArrowDown") {
+  const action = resolveKeyboardNavAction(event, { orientation: "vertical" });
+  if (!isOpen.value) {
+    if (action === "next" || action === "select" || event.key === "ArrowDown") {
+      event.preventDefault();
+      open();
+      void nextTick(focusActive);
+    }
+    return;
+  }
+  if (action === "close") {
     event.preventDefault();
-    open();
-    void nextTick(focusActive);
+    close();
+    floatingPanelStyle.value = {};
+    triggerRef.value?.focus?.();
   }
 }
 function gridKeydown(event: KeyboardEvent, year: number) {
@@ -195,6 +224,7 @@ function gridKeydown(event: KeyboardEvent, year: number) {
       ref="panelRef"
       class="vp-yearpicker__panel"
       role="dialog"
+      :style="panelMergedStyle"
       :aria-label="ariaLabel ?? placeholder"
     >
       <div class="vp-yearpicker__header">

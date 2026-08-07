@@ -1,6 +1,6 @@
 # 工程自动化脚本（锁定）
 
-> Agent 记忆：`.cursor/rules/vue3-amg-webui-engineering.mdc`  
+> Agent 记忆：`.cursor/rules/11-component-engineering.mdc` · DoD：`docs/engineering/definition-of-done.md`  
 > 总计划：`docs/LIBRARY_PLAN.md` § 工程 · 性能  
 > 遥测内核：`docs/TELEMETRY.md`
 > Skill Runtime：`docs/SKILL_RUNTIME.md`（experimental SR1 / SR2）
@@ -17,10 +17,15 @@
 | `npm run check:boundaries` | foundation 不得 import `gb28181/onvif/media`；core barrel 不得导出行业符号 |
 | `npm run generate:locale-types` | 从 zh-CN 生成 `LocaleKey` / `LocaleMessages`（`message-schema.ts`） |
 | `npm run extract:i18n` | 重生 schema + 校验全部语种 key 对齐 + `LocaleKeys` 叶子 ⊆ zh-CN（缺 key / 不对齐 = 失败） |
-| `npm run check:dist` | `build:lib` 后校验：on-demand `@amg-webui` 改写、六品牌 `dist/themes/*.css`、`dist/runtime`、粗粒度体积预算 |
+| `npm run check:dist` | `build:lib` 后校验：on-demand `@amg-webui` 改写、八品牌 `dist/themes/*.css`、`dist/runtime`、粗粒度体积预算 |
 | `npm run generate:icons` | 刷新图标目录 / 解析表 |
 | `npm run validate:catalog` | 校验 `example/component-catalog.json` ↔ 映射组件覆盖 |
 | `npm run score:maturity` | 组件**开发盘点**启发式（能力档 thin/form/interaction/composite + 深度 stub→ready；**≠** 产品质量证书） |
+| `npm run hardening:generate` | 300 组件治理 SSOT：inventory / family-map / batches / maturity v4 / contracts / gate profiles → `component-hardening/` |
+| `npm run audit:api` | API Contract 扫描（Props/Emits/Slots/Expose/Model） |
+| `npm run verify:component` | 单组件 Hard Gate（`verify:component Name` / `--all` / `--batch B01`） |
+| `npm run verify:family` | Family Engine + 组件聚合门禁 |
+| `npm run hardening:all` | 全量治理流水线（generate→audit→verify→promote→dashboard→release） |
 | `npm run sync:example-zones` | 同步 example 专区侧栏 / 区域元数据 |
 | `npm run generate:vitepress-api` | 根据 `types.ts` 生成 / 刷新 docs 组件 API stub |
 | `node scripts/classify-mvp.mjs` | 深化波次清单 → `scripts/.component-waves.json` |
@@ -28,7 +33,7 @@
 | `npm run build` / `build:lib` | **full**：主库 ESM+UMD+css+dts → `dist/`，再编 **runtime 分包**、on-demand、skill、theme，并 `generate:exports` |
 | `npm run build:runtime` | **runtime**：`telemetry` / `security` / `lowcode` / **`runtime`（Overlay 内核）** / `icons` / `hooks` / `utils` / `locale` / … → `dist/<pkg>/`（preserveModules） |
 | `npm run build:ondemand` | **on-demand**：多入口 ESM → `dist/es/**`；外部依赖改写为 `amg-webui/*` |
-| `npm run build:themes` | **multi-theme**：六品牌 CSS → `dist/themes/<brand>.css` |
+| `npm run build:themes` | **multi-theme**：八品牌 CSS → `dist/themes/<brand>.css` |
 | `npm run build:dts` | **dts**：仅刷新类型 → `dist/**/*.d.ts`（不重打 JS/CSS） |
 | `npm run build:skill` | 仅构建独立 Skill Runtime → `dist/skill/`（ESM + CJS + `.d.ts`） |
 | `npm run build:theme` | 仅构建主题运行时包 → `dist/theme/`（`index` / `core` + `style.css`） |
@@ -91,7 +96,7 @@ Workflow：`.github/workflows/ci.yml`。
 | `build:lib` + `check:dist` | ✅ | 隐式含 on-demand / multi-theme；`check:dist` 显式断言产物 + 粗体积预算 |
 | `test:consumers` | ✅ | vite / webpack / **nuxt 构建**冒烟；**≠** 生产 SSR hydration / 视觉回归 |
 | Docs build | ✅ | VitePress 可构建 |
-| Playwright | ✅ 骨架加深 | **Chromium**：smoke + Dialog focus trap / Escape / axe serious+ + RTL 截图附件 + 六品牌 `data-design`；**Firefox / WebKit / Mobile Chrome**：smoke only |
+| Playwright | ✅ 骨架加深 | **Chromium**：smoke + Dialog focus trap / Escape / axe serious+ + RTL 截图附件 + 八品牌 `data-design`；**Firefox / WebKit / Mobile Chrome**：smoke only |
 
 **仍未宣称覆盖（公开 1.0 前债）：**
 
@@ -114,7 +119,7 @@ Workflow：`.github/workflows/ci.yml`。
 | **full** | `build:lib` | `dist/amg-webui.{js,umd.cjs}` · `style.css` · types · `dist/{security,telemetry,…}/` · `dist/es/**` · `dist/skill/` · `dist/theme/` · 刷新 exports | main → runtime → ondemand → skill → theme → generate:exports |
 | **runtime** | `build:runtime` | `dist/security` · `telemetry` · `lowcode` · `runtime` · `icons` · `hooks` · `utils` · `locale` · … | `vite.runtime.config.ts` |
 | **on-demand** | `build:ondemand` | `dist/es/components/{core\|form\|data\|overlay}/<Name>/…` · biz domains；import 为 `amg-webui/*` | `vite.ondemand.config.ts` |
-| **multi-theme** | `build:themes` | `dist/themes/{mercedes,linear,porsche,lamborghini,ferrari,apple}.css`（与 `dist/theme/` JS 运行时分离） | `vite.themes.config.ts` |
+| **multi-theme** | `build:themes` | `dist/themes/{mercedes,linear,porsche,lamborghini,ferrari,apple,wechat,alipay}.css`（与 `dist/theme/` JS 运行时分离） | `vite.themes.config.ts` |
 | **dts** | `build:dts` | 刷新 `dist/**/*.d.ts`；不强制重编 JS/CSS | `build/emit-dts.mjs` + `tsconfig.dts.json` |
 | **skill** | `build:skill` | `dist/skill/` | `vite.skill.config.ts` |
 | **theme** | `build:theme` | `dist/theme/` | `vite.theme.config.ts` |
@@ -123,7 +128,7 @@ Workflow：`.github/workflows/ci.yml`。
 
 1. `node build/index.mjs on-demand` → 存在例如 `dist/es/components/core/Button/index.js`，且文件内 `import … from "amg-webui/…"`（无残留 `@amg-webui/`）
 2. `node build/index.mjs runtime` → `dist/security/index.js` · `dist/utils/env.js`
-3. `node build/index.mjs multi-theme` → 六品牌 CSS，内容/体积随品牌不同
+3. `node build/index.mjs multi-theme` → 八品牌 CSS，内容/体积随品牌不同
 4. `node build/index.mjs dts` → 更新 d.ts
 5. `node build/index.mjs nope` → exit ≠ 0 + usage
 6. `build:lib` + `test:consumers` 行为不回归
@@ -144,7 +149,7 @@ Workflow：`.github/workflows/ci.yml`。
 7. **Security**：富文本 / `v-html` / 链接出口走 `@amg-webui/security`；禁止裸 `innerHTML` 外部值。
 8. **Low-code**：画布 Schema 经注册表渲染；代码生成只输出源码文本，禁止 eval。
 9. **Skill Runtime**：Core 禁止依赖 Vue / components / telemetry / security / lowcode / DOM；Pipeline 条件只允许 `registerCondition()` 注册名，禁止执行配置字符串；实例与 Scope 销毁必须清理资源。
-10. **完成必验**：改完 `packages/` / `example/` 至少 `npx vue-tsc --noEmit`；关键路径用 example 打开验证（见 `vue3-amg-webui-verify-before-done.mdc`）。
+10. **完成必验**：改完 `packages/` / `example/` 至少 `npx vue-tsc --noEmit`；关键路径用 example 打开验证（见 `.cursor/rules/02-verify-before-done.mdc` · `docs/engineering/definition-of-done.md`）。
 
 ---
 
@@ -217,3 +222,12 @@ scripts/
 - **禁止**把 `ready` / 高分写成「产品质量已证明」或对外 1.0 证书。
 
 控制台会打印 `byCapability` 与 `thinFormGaps`。Gallery 仍可按 depth level 筛选；读报告时先看能力档，再决定加深与测试投入。
+
+## 组件治理 Hardening（maturity v4 + Stable）
+
+专项文档：`docs/COMPONENT_HARDENING.md` · SSOT：`component-hardening/`。
+
+- **Inventory SSOT**：`component-hardening/inventory/component-inventory.json`（统计只读此文件）。
+- **Maturity v4**：`capability` 与 `maturity` 解耦；`depthScore` **永不**直接决定 Stable。
+- **Stable**：仅当 `verify:component` mandatory gates PASS 且 contract `apiFreeze.frozen === true`。
+- Shared Engines：`packages/utils/engines`（FormControl / Selection / Keyboard / Floating / DateTime / Tree / Virtualizer / Table / Upload / Feedback / Navigation / MediaAdapter）。

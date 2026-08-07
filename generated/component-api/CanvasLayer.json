@@ -1,0 +1,53 @@
+{
+  "name": "CanvasLayer",
+  "generatedAt": "2026-08-07T12:39:09.873Z",
+  "source": {
+    "types": "packages/lowcode/ui/CanvasLayer/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "compact",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showActions",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "select",
+      "payload": "id: string",
+      "description": ""
+    },
+    {
+      "name": "reorder",
+      "payload": "payload: { id: string; direction: 'up' | 'down' | 'top' | 'bottom' }",
+      "description": ""
+    },
+    {
+      "name": "visibility-change",
+      "payload": "payload: { id: string; hidden: boolean }",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "CanvasLayerProps",
+    "CanvasLayerEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

@@ -150,4 +150,32 @@ describe('lowcode document', () => {
     expect(migrated.nodes).toHaveLength(1)
     expect(migrated.dataSources).toEqual([])
   })
+
+  it('generates compilable-shaped SFC for user template', async () => {
+    const { assertGeneratedSfcShape, generateVueSfc, createStudioRegistry } = await import(
+      '@amg-webui/lowcode'
+    )
+    const doc = createUserManagementTemplate()
+    const registry = createStudioRegistry('replace')
+    const sfc = generateVueSfc(
+      { version: 1, mode: 'free', nodes: doc.nodes },
+      { registry, actions: doc.actions, componentName: 'GeneratedPage' }
+    )
+    const check = assertGeneratedSfcShape(sfc)
+    expect(check.ok).toBe(true)
+    expect(sfc).toContain('function onSearch(): void')
+    expect(sfc).toContain('action: CallApi')
+  })
+})
+
+describe('material drop rules', () => {
+  it('enforces parentRules when dropping into a parent', async () => {
+    const { canDropMaterial, createStudioMaterials } = await import('@amg-webui/lowcode')
+    const mats = createStudioMaterials()
+    const form = mats.find((m) => m.type === 'Form')!
+    const input = mats.find((m) => m.type === 'InputText')!
+    const table = mats.find((m) => m.type === 'DataTable')!
+    expect(canDropMaterial(form, 'InputText', input)).toBe(true)
+    expect(canDropMaterial(form, 'DataTable', table)).toBe(false)
+  })
 })

@@ -1,0 +1,130 @@
+{
+  "name": "Mask",
+  "generatedAt": "2026-08-07T12:41:35.017Z",
+  "source": {
+    "types": "packages/components/overlay/Mask/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "visible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "dismissible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "zIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "lockScroll",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trapFocus",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "centered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "teleportTo",
+      "optional": true,
+      "type": "string | HTMLElement",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "closeOnPressEscape",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "beforeClose",
+      "optional": true,
+      "type": "( reason: MaskCloseReason, event?: Event, ) => boolean | Promise<boolean>",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:visible",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "payload": "event?: Event, reason?: MaskCloseReason",
+      "description": ""
+    },
+    {
+      "name": "open",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "closed",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "error: unknown",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "MaskCloseReason",
+    "MaskProps",
+    "MaskEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

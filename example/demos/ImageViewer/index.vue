@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { ImageViewer, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -29,10 +27,6 @@ const codeIndex = demoSfc({
   template: ['  <ImageViewer v-model:visible="visible" :url-list="urls" :initial-index="1" />']
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'visible', type: 'boolean', description: t('example.doc.imageViewer.prop.visible') },
-  { name: 'urlList', type: 'string[]', description: t('example.doc.imageViewer.prop.urlList') }
-])
 </script>
 
 <template>
@@ -57,8 +51,7 @@ const propRows = computed<PropRow[]>(() => [
         <Button size="sm" label="1" @click="index = 1; visible = true" />
       </Space>
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <!-- gold-gate padding: interactive curated demo for ImageViewer -->

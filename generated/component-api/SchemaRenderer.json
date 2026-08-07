@@ -1,0 +1,113 @@
+{
+  "name": "SchemaRenderer",
+  "generatedAt": "2026-08-07T12:45:59.836Z",
+  "source": {
+    "types": "packages/lowcode/ui/SchemaRenderer/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "schema",
+      "optional": true,
+      "type": "CanvasSchema | CanvasNodeData[] | null",
+      "description": ""
+    },
+    {
+      "name": "nodes",
+      "optional": true,
+      "type": "CanvasNodeData[]",
+      "description": ""
+    },
+    {
+      "name": "mode",
+      "optional": true,
+      "type": "'free' | 'grid'",
+      "description": ""
+    },
+    {
+      "name": "registry",
+      "optional": true,
+      "type": "ComponentRegistry",
+      "description": ""
+    },
+    {
+      "name": "renderMode",
+      "optional": true,
+      "type": "SchemaRenderMode",
+      "description": ""
+    },
+    {
+      "name": "columns",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "selectedId",
+      "optional": true,
+      "type": "string | null",
+      "description": ""
+    },
+    {
+      "name": "interactive",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "context",
+      "optional": true,
+      "type": "LowcodeRenderContext",
+      "description": ""
+    },
+    {
+      "name": "handlers",
+      "optional": true,
+      "type": "LowcodeEventHandlers",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "select",
+      "payload": "id: string",
+      "description": ""
+    },
+    {
+      "name": "nodeActivate",
+      "payload": "node: CanvasNodeData, event: MouseEvent | KeyboardEvent",
+      "description": ""
+    },
+    {
+      "name": "nodeEvent",
+      "payload": "payload: LowcodeNodeEventPayload",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "SchemaRendererProps",
+    "SchemaRendererEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

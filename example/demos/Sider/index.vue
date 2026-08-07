@@ -4,9 +4,7 @@ import { Layout, Sider, Main, Menu, Button, Space, Avatar } from '@amg-webui/cor
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import type { MenuItem } from '@amg-webui/core/Menu'
 import '../../components/demo/curatedDemo.scss'
 
@@ -44,10 +42,6 @@ const codeSider = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'collapsed / collapsible', type: 'boolean', defaultValue: 'false / true', description: t('example.doc.sider.prop.collapsed') },
-  { name: 'width / collapsedWidth', type: 'string', defaultValue: 'var(--ln-sidebar-width)', description: t('example.doc.sider.prop.width') }
-])
 </script>
 
 <template>
@@ -105,9 +99,7 @@ const propRows = computed<PropRow[]>(() => [
         </div>
       </Space>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

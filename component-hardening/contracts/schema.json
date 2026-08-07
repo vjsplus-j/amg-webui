@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amg-webui.local/schemas/component-contract.json",
+  "title": "AMG-WebUI Component Contract",
+  "type": "object",
+  "required": [
+    "name",
+    "family",
+    "maturity",
+    "api",
+    "gates"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "family": {
+      "type": "string"
+    },
+    "package": {
+      "type": "string"
+    },
+    "maturity": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "beta",
+        "rc",
+        "stable",
+        "experimental",
+        "deprecated"
+      ]
+    },
+    "capability": {
+      "type": "string",
+      "enum": [
+        "thin",
+        "form",
+        "interaction",
+        "composite"
+      ]
+    },
+    "api": {
+      "type": "object",
+      "properties": {
+        "props": {
+          "enum": [
+            "required",
+            "optional",
+            "not-applicable"
+          ]
+        },
+        "emits": {
+          "enum": [
+            "required",
+            "optional",
+            "not-applicable"
+          ]
+        },
+        "slots": {
+          "enum": [
+            "required",
+            "optional",
+            "not-applicable"
+          ]
+        },
+        "expose": {
+          "enum": [
+            "required",
+            "optional",
+            "not-applicable"
+          ]
+        },
+        "models": {
+          "enum": [
+            "required",
+            "optional",
+            "not-applicable"
+          ]
+        },
+        "instance": {
+          "enum": [
+            "required",
+            "optional",
+            "not-applicable"
+          ]
+        },
+        "service": {
+          "enum": [
+            "required",
+            "optional",
+            "not-applicable"
+          ]
+        },
+        "context": {
+          "enum": [
+            "internal",
+            "public",
+            "not-applicable"
+          ]
+        }
+      },
+      "required": [
+        "props",
+        "emits",
+        "slots"
+      ]
+    },
+    "requiredExpose": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredSlots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "clearValue": {},
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      }
+    },
+    "behavioralContract": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "states": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "keyboard": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "enum": [
+          "mandatory",
+          "optional",
+          "na"
+        ]
+      }
+    },
+    "apiFreeze": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "frozen": {
+          "type": "boolean"
+        },
+        "frozenAt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

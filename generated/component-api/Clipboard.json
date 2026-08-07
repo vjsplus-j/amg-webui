@@ -1,0 +1,70 @@
+{
+  "name": "Clipboard",
+  "generatedAt": "2026-08-07T12:40:46.796Z",
+  "source": {
+    "types": "packages/components/core/Clipboard/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "text",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "copied",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "error: Error",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "ClipboardProps",
+    "ClipboardEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

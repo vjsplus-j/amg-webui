@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "detail": "foundation family axe on /lab/hardening",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts",
+  "family": "foundation"
+}

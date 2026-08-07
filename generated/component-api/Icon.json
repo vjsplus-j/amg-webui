@@ -1,0 +1,229 @@
+{
+  "name": "Icon",
+  "generatedAt": "2026-08-07T12:41:13.615Z",
+  "source": {
+    "types": "packages/components/core/Icon/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "spin",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "pulse",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "heartbeat",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bounce",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "blink",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "breathe",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "glow",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "marqueeLeft",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "marqueeRight",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollUp",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollDown",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "dampOut",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "animationDuration",
+      "optional": true,
+      "type": "number | string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "IconName",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "IconSize",
+      "description": ""
+    },
+    {
+      "name": "color",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "strokeWidth",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "absoluteStrokeWidth",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "rotate",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "flip",
+      "optional": true,
+      "type": "IconFlip",
+      "description": ""
+    },
+    {
+      "name": "flipH",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "flipV",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "selected",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "opacity",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "alt",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "interactive",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "focus",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "keydown",
+      "payload": "event: KeyboardEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "IconName",
+    "IconSize",
+    "IconFlip",
+    "IconProps",
+    "IconEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

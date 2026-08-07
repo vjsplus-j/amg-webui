@@ -1,0 +1,102 @@
+{
+  "name": "Qrcode",
+  "generatedAt": "2026-08-07T12:41:56.112Z",
+  "source": {
+    "types": "packages/components/core/Qrcode/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "pixelSize",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "standard",
+      "optional": true,
+      "type": "QrcodeStandard",
+      "description": ""
+    },
+    {
+      "name": "errorCorrection",
+      "optional": true,
+      "type": "QrcodeErrorCorrectionLevel",
+      "description": ""
+    },
+    {
+      "name": "quietZone",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "editable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "QrcodeProps",
+    "QrcodeEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

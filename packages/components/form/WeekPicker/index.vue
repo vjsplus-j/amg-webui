@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
-import { formatWithIntl } from '@amg-webui/utils'
+import {
+  formatWithIntl,
+  moveRovingIndex,
+  resolveKeyboardNavAction
+} from '@amg-webui/utils'
 import type { WeekPickerProps, WeekPickerEmits } from './types'
 import { useFormItem } from '../FormItem/useFormItem'
 import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
@@ -35,6 +39,7 @@ const {
 const { nativeAttrs } = useNativeInputAttrs()
 
 const viewYear = ref(new Date().getFullYear())
+const focusWeek = ref(1)
 
 function getISOWeeksInYear(year: number): number {
   const d = new Date(year, 11, 31)
@@ -120,6 +125,26 @@ const handleBlur = (event: FocusEvent) => {
   emit('blur', event)
   void validateOnBlur()
 }
+
+function handleListKeydown(event: KeyboardEvent) {
+  if (isDisabled.value) return
+  const action = resolveKeyboardNavAction(event, { orientation: 'vertical' })
+  if (action === 'none') return
+  event.preventDefault()
+  if (action === 'select') {
+    selectWeek(focusWeek.value)
+    return
+  }
+  if (
+    action === 'next' ||
+    action === 'prev' ||
+    action === 'first' ||
+    action === 'last'
+  ) {
+    const next = moveRovingIndex(focusWeek.value - 1, action, weeksInYear.value, true)
+    focusWeek.value = next + 1
+  }
+}
 </script>
 
 <template>
@@ -141,16 +166,24 @@ const handleBlur = (event: FocusEvent) => {
       :aria-required="isRequired || undefined"
       :aria-describedby="ariaDescribedby"
       @blur="handleBlur"
+      @keydown="handleListKeydown"
     >
       <button
         v-for="item in weekOptions"
         :key="item.week"
         type="button"
         role="option"
-        :class="['vp-week-picker__row', { 'vp-week-picker__row--active': isSelected(item.week) }]"
+        :class="[
+          'vp-week-picker__row',
+          {
+            'vp-week-picker__row--active': isSelected(item.week),
+            'vp-week-picker__row--focused': focusWeek === item.week
+          }
+        ]"
         :disabled="isDisabled"
         :aria-selected="isSelected(item.week)"
         @click="selectWeek(item.week)"
+        @mouseenter="focusWeek = item.week"
       >
         <span class="vp-week-picker__week">W{{ item.week }}</span>
         <span class="vp-week-picker__range">{{ item.range }}</span>

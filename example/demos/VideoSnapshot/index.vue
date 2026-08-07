@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, shallowRef } from "vue";
+import { computed, onMounted, onUnmounted, shallowRef } from 'vue';
 import { VideoSnapshot } from '@amg-webui/media';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
-import PropsTable from "../../components/demo/PropsTable.vue";
 import { demoSfc } from "../../components/demo/demoCode";
-import type { PropRow } from "../../components/demo/types";
 import { getSampleMountProps } from "../_shared/sampleMountProps";
 import "../../components/demo/curatedDemo.scss";
 
@@ -60,28 +58,7 @@ const codeBasic = demoSfc({
   template: [`  <VideoSnapshot src="/sample.mp4" downloadable />`],
 });
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: "videoRef / src / stream",
-    type: "HTMLVideoElement | string | MediaStream",
-    description: t("example.doc.videoSnapshot.prop.base"),
-  },
-  {
-    name: "format / quality",
-    type: "image/png | image/jpeg | image/webp / number",
-    description: t("example.doc.videoSnapshot.prop.base"),
-  },
-  {
-    name: "maxWidth / maxHeight",
-    type: "number",
-    description: t("example.doc.videoSnapshot.prop.base"),
-  },
-  {
-    name: "preview / downloadable",
-    type: "boolean",
-    description: t("example.doc.videoSnapshot.prop.base"),
-  },
-]);
+;
 </script>
 
 <template>
@@ -95,6 +72,5 @@ const propRows = computed<PropRow[]>(() => [
     >
       <VideoSnapshot v-bind="mountProps" :stream="stream" />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

@@ -1,0 +1,71 @@
+{
+  "name": "MenuBar",
+  "generatedAt": "2026-08-07T12:41:35.022Z",
+  "source": {
+    "types": "packages/components/core/MenuBar/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "items",
+      "optional": true,
+      "type": "MenuBarItem[]",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "command",
+      "payload": "command: string, item: MenuBarItem",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "MenuBarItem",
+    "MenuBarProps",
+    "MenuBarEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

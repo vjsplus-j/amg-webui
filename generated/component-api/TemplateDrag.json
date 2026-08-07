@@ -1,0 +1,83 @@
+{
+  "name": "TemplateDrag",
+  "generatedAt": "2026-08-07T12:42:17.035Z",
+  "source": {
+    "types": "packages/lowcode/ui/TemplateDrag/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "templates",
+      "optional": true,
+      "type": "TemplateDragItem[]",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "apply",
+      "payload": "tpl: TemplateDragItem",
+      "description": ""
+    },
+    {
+      "name": "dragStart",
+      "payload": "tpl: TemplateDragItem, event: DragEvent",
+      "description": ""
+    },
+    {
+      "name": "dragEnd",
+      "payload": "tpl: TemplateDragItem, event: DragEvent",
+      "description": ""
+    },
+    {
+      "name": "refresh",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "TemplateDragItem",
+    "TemplateDragProps",
+    "TemplateDragEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

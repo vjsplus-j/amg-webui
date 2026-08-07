@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { computed, ref, watch, onBeforeUnmount } from 'vue';
 import { useLocale } from "@amg-webui/hooks";
 import { trackEmit } from "@amg-webui/telemetry";
 import SelectableTree from "../../internal/SelectableTree.vue";
@@ -87,6 +88,11 @@ function toggle(node: GbsDeviceNode) {
   emit("update:expandedKeys", expanded.value);
   emit("expand", node, open);
 }
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 <template>
   <section

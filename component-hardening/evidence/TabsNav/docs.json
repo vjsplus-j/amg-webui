@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/tabs-nav.md",
+  "api": "generated/component-api/TabsNav.json",
+  "demo": "example/demos/TabsNav/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

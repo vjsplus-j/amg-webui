@@ -5,11 +5,8 @@
 import { computed, ref } from 'vue'
 import { Menu, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import type { MenuItem } from '@amg-webui/core/Menu'
 import '../../components/demo/curatedDemo.scss'
 
@@ -58,47 +55,6 @@ const codeHorizontal = demoCode(
   `<Menu v-model="hActive" direction="horizontal" mode="popup" :items="items" />`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'items',
-    description: t('example.doc.menu.prop.items'),
-    type: 'MenuItem[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'modelValue',
-    description: t('example.doc.menu.prop.modelValue'),
-    type: 'string',
-    defaultValue: '—'
-  },
-  {
-    name: 'openKeys / collapsed',
-    description: t('example.doc.menu.prop.openKeys'),
-    type: 'string[] / boolean',
-    defaultValue: '[] / false'
-  },
-  {
-    name: 'direction / mode',
-    description: t('example.doc.menu.prop.direction'),
-    type: "'vertical' | 'horizontal' / 'auto' | 'inline' | 'popup'",
-    defaultValue: "'vertical' / 'auto'"
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:modelValue / change / select',
-    description: t('example.doc.menu.event.change'),
-    type: '(key | item) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'update:openKeys / openChange',
-    description: t('example.doc.menu.event.openChange'),
-    type: '(openKeys: string[]) => void',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -141,15 +97,7 @@ const eventRows = computed<ApiRow[]>(() => [
       <p class="vp-curated__hint">
         {{ t('example.doc.menu.sample.active', { key: hActive }) }}
       </p>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -190,19 +138,5 @@ const eventRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

@@ -1,0 +1,110 @@
+{
+  "name": "CanvasShortcut",
+  "generatedAt": "2026-08-07T12:39:09.877Z",
+  "source": {
+    "types": "packages/lowcode/ui/CanvasShortcut/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "enabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "commands",
+      "optional": true,
+      "type": "Array<{ key: string; label: string; shortcut?: string }>",
+      "description": ""
+    },
+    {
+      "name": "showCommands",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "keyboard",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "copy",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "paste",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "delete",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "undo",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "redo",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "execute",
+      "payload": "command: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "CanvasShortcutProps",
+    "CanvasShortcutEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

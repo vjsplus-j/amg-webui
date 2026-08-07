@@ -4,6 +4,9 @@ on:
   push:
     branches: [main, master, develop]
   pull_request:
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
@@ -73,8 +76,79 @@ jobs:
       - name: Consumer fixtures (vite · webpack · nuxt)
         run: npm run test:consumers
 
+      - name: Component hardening gates
+        run: |
+          npm run hardening:generate
+          npm run hardening:demote
+          npm run verify:component -- --all
+          npm run hardening:dashboard
+          node -e "const d=require('./component-hardening/dashboard/component-dashboard.json'); const fake=d.components.filter(c=>c.maturity==='stable'&&!c.stable); if(fake.length){console.error('Fake stable rows', fake.length); process.exit(1)} console.log('stable=', d.stableRatio+'%', 'gatePass=', d.gates?.pass+'/'+d.gates?.total)"
+
       - name: Build docs
         run: npm run docs:build
+
+  hardening-changed:
+    name: Changed component gates (PR)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Detect changed components
+        id: changed
+        run: |
+          npm run hardening:generate
+          node scripts/hardening/changed-components.mjs origin/${{ github.base_ref }}
+          comps=$(node -e "const j=require('./component-hardening/reports/changed-components.json'); process.stdout.write((j.components||[]).join(' '))")
+          echo "components=$comps" >> "$GITHUB_OUTPUT"
+
+      - name: Verify changed components
+        if: steps.changed.outputs.components != ''
+        run: |
+          for c in ${{ steps.changed.outputs.components }}; do
+            npm run verify:component -- "$c"
+          done
+
+  nightly-hardening:
+    name: Nightly visual / browser / benchmark matrix
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run hardening:generate
+      - run: npm run verify:component -- --all
+      - run: npm run hardening:ssr
+      - run: npm run hardening:visual
+      - run: npm run hardening:dashboard
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run build:example
+      - run: npm run test:e2e
+        env:
+          CI: true
+          PLAYWRIGHT_BASE_URL: http://127.0.0.1:4173
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hardening-dashboard
+          path: component-hardening/dashboard/
 
   e2e:
     name: E2E (Playwright · Chromium/Firefox/WebKit/Mobile)

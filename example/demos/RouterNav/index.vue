@@ -5,9 +5,7 @@ import { RouterNav, Space } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -24,15 +22,6 @@ const codeBasic = demoSfc({
   template: ['  <RouterNav :items="items" active-match="prefix" />']
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'items', type: 'NavItem[]', defaultValue: '[]', description: t('example.doc.routerNav.prop.items') },
-  {
-    name: 'activeMatch',
-    type: "'exact' | 'prefix'",
-    defaultValue: "'prefix'",
-    description: t('example.doc.routerNav.prop.activeMatch')
-  }
-])
 </script>
 
 <template>
@@ -50,9 +39,7 @@ const propRows = computed<PropRow[]>(() => [
         <p class="hint">{{ t('example.doc.routerNav.sample.path', { path: route.path }) }}</p>
       </Space>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

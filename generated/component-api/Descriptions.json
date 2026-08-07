@@ -1,0 +1,57 @@
+{
+  "name": "Descriptions",
+  "generatedAt": "2026-08-07T12:40:46.813Z",
+  "source": {
+    "types": "packages/components/data/Descriptions/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "column",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "bordered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "DescriptionsSize",
+      "description": ""
+    },
+    {
+      "name": "labelWidth",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "DescriptionsSize",
+    "DescriptionsContext",
+    "DescriptionsProps",
+    "DescriptionsItemProps"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

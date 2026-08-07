@@ -102,7 +102,7 @@ runtime.bindHost(createShadowHost(shadow))
 
 | Design | 参考 |
 | --- | --- |
-| mercedes · linear · porsche · lamborghini · ferrari · apple | designmd 锁定源 |
+| mercedes · linear · porsche · lamborghini · ferrari · apple · **wechat** · **alipay** | 官方主题源（designmd + CN） |
 
 源码锁定于 `packages/theme/styles/design/`，**不可**被业务直接 fork 覆盖；自定义主题走 CSS 变量 overlay（`applyCustom` / `setPrimary` / Theme Studio）。
 

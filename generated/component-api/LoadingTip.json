@@ -1,0 +1,108 @@
+{
+  "name": "LoadingTip",
+  "generatedAt": "2026-08-07T12:41:35.012Z",
+  "source": {
+    "types": "packages/components/core/LoadingTip/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "message",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "LoadingTipSize",
+      "description": ""
+    },
+    {
+      "name": "delay",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "block",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "overlay",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "persistent",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "live",
+      "optional": true,
+      "type": "\"polite\" | \"assertive\" | \"off\"",
+      "description": ""
+    },
+    {
+      "name": "progress",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "cancellable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "cancelText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "show",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "hide",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "cancel",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "LoadingTipSize",
+    "LoadingTipProps",
+    "LoadingTipEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

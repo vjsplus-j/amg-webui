@@ -2,14 +2,11 @@
 /**
  * Curated demo — Data wave2 VirtualTable
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { VirtualTable } from '@amg-webui/data'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -61,47 +58,6 @@ const codeCompact = demoCode(
   `/>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'columns',
-    description: t('example.doc.virtualTable.prop.columns'),
-    type: 'TableColumn[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'rows / data',
-    description: t('example.doc.virtualTable.prop.rows'),
-    type: 'Record<string, unknown>[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'virtual',
-    description: t('example.doc.virtualTable.prop.virtual'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'disabled',
-    description: t('example.doc.virtualTable.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'loading',
-    description: t('example.doc.virtualTable.prop.loading'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:modelValue / change',
-    description: t('example.doc.virtualTable.event.change'),
-    type: '(row: Record<string, unknown>) => void',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -132,14 +88,6 @@ const eventRows = computed<ApiRow[]>(() => [
     >
       <VirtualTable :columns="columns" :rows="smallRows" :virtual="false" />
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-    </section>
   </div>
 </template>
 
@@ -162,19 +110,5 @@ const eventRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Tour } from '@amg-webui/overlay'
 import { Button, Space, Card } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -33,10 +31,6 @@ const codeMask = demoSfc({
   template: ['  <Tour v-model:open="open" :steps="steps" :mask="true" />']
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'open', type: 'boolean', description: t('example.doc.tour.prop.open') },
-  { name: 'steps', type: 'TourStep[]', description: t('example.doc.tour.prop.steps') }
-])
 </script>
 
 <template>
@@ -62,8 +56,7 @@ const propRows = computed<PropRow[]>(() => [
     >
       <Button size="sm" :label="String(open)" @click="open = !open" />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

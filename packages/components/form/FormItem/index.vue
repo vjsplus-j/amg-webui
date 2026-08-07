@@ -1,34 +1,21 @@
 <script setup lang="ts">
 import { inject, computed, watch, onUnmounted, provide } from 'vue'
+import { createFieldId } from '@amg-webui/utils'
 import { FORM_INJECTION_KEY } from '../Form/types'
 import type { FormRule } from '../Form/types'
-import { FORM_ITEM_INJECTION_KEY } from './types'
+import { FORM_ITEM_INJECTION_KEY, type FormItemProps, type FormItemEmits } from './types'
 import './style.scss'
 
-let uidSeq = 0
+defineOptions({ name: 'FormItem', inheritAttrs: false })
 
-const props = withDefaults(
-  defineProps<{
-    prop?: string
-    label?: string
-    required?: boolean
-    labelWidth?: string
-    trackId?: string
-    telemetry?: boolean
-    class?: string
-    style?: Record<string, string>
-  }>(),
-  {
-    telemetry: undefined
-  }
-)
+const props = withDefaults(defineProps<FormItemProps>(), {
+  telemetry: undefined
+})
 
-const emit = defineEmits<{
-  validate: [error: string | null]
-}>()
+const emit = defineEmits<FormItemEmits>()
 
 const form = inject(FORM_INJECTION_KEY, null)
-const fieldId = `vp-form-item-${++uidSeq}`
+const fieldId = createFieldId('vp-form-item')
 const labelId = `${fieldId}-label`
 const errorId = `${fieldId}-error`
 
@@ -102,7 +89,7 @@ onUnmounted(() => {
   stopWatch?.()
 })
 
-defineExpose({ validate, fieldId })
+defineExpose({ validate, fieldId, clearValidate: () => form?.clearValidate(props.prop) })
 </script>
 
 <template>

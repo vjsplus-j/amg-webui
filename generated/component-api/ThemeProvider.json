@@ -1,0 +1,109 @@
+{
+  "name": "ThemeProvider",
+  "generatedAt": "2026-08-07T12:42:17.036Z",
+  "source": {
+    "types": "packages/components/core/ThemeProvider/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "design",
+      "optional": true,
+      "type": "DesignStyleName | string",
+      "description": ""
+    },
+    {
+      "name": "theme",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "scheme",
+      "optional": true,
+      "type": "ColorScheme",
+      "description": ""
+    },
+    {
+      "name": "font",
+      "optional": true,
+      "type": "FontName | string",
+      "description": ""
+    },
+    {
+      "name": "iconStyle",
+      "optional": true,
+      "type": "IconStyleName | string",
+      "description": ""
+    },
+    {
+      "name": "tokens",
+      "optional": true,
+      "type": "Record<string, string>",
+      "description": ""
+    },
+    {
+      "name": "primary",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "runtime",
+      "optional": true,
+      "type": "ThemeRuntime",
+      "description": ""
+    },
+    {
+      "name": "persist",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "storageNamespace",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "tag",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "display",
+      "optional": true,
+      "type": "'block' | 'contents' | 'inline'",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "payload": "state: ReturnType<ThemeRuntime['getState']>",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ThemeProviderProps",
+    "ThemeProviderEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

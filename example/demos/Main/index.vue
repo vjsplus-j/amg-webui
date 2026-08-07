@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Main, Button, Space, Tag, Card } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -29,11 +27,6 @@ const codePad = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'padded', type: 'boolean', defaultValue: 'true', description: t('example.doc.main.prop.padded') },
-  { name: 'overflow', type: "'auto'|'hidden'|'visible'", defaultValue: "'auto'", description: t('example.doc.main.prop.overflow') },
-  { name: 'label', type: 'string', defaultValue: '-', description: t('example.doc.main.prop.label') }
-])
 </script>
 
 <template>
@@ -105,9 +98,7 @@ const propRows = computed<PropRow[]>(() => [
         </Main>
       </div>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

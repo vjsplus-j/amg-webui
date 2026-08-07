@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { ResizeBox, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -28,26 +26,6 @@ function onResize(payload: { width: number; height: number }) {
   last.value = `${Math.round(payload.width)}×${Math.round(payload.height)}`
 }
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'width / height',
-    type: 'number | string',
-    defaultValue: "'100%' / 'auto'",
-    description: t('example.doc.resizeBox.prop.size')
-  },
-  {
-    name: 'minWidth / minHeight / max*',
-    type: 'number',
-    defaultValue: '120 / 80',
-    description: t('example.doc.resizeBox.prop.minMax')
-  },
-  {
-    name: 'directions',
-    type: 'ResizeDirection[]',
-    defaultValue: "['right','bottom','bottom-right']",
-    description: t('example.doc.resizeBox.prop.directions')
-  }
-])
 </script>
 
 <template>
@@ -75,8 +53,7 @@ const propRows = computed<PropRow[]>(() => [
         </div>
       </Space>
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

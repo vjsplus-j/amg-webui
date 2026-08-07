@@ -36,7 +36,7 @@ import 'amg-webui/style.css'
 
 ## 主题切换
 
-六套官方 designmd 主题只读；运行时通过 `ThemeService` 切换：
+官方主题（designmd 六套 + WeChat / Alipay）只读；运行时通过 `ThemeService` 切换：
 
 ```ts
 import { ThemeService } from 'amg-webui/theme'

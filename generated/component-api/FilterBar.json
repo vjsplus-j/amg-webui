@@ -1,0 +1,82 @@
+{
+  "name": "FilterBar",
+  "generatedAt": "2026-08-07T12:41:13.585Z",
+  "source": {
+    "types": "packages/components/form/FilterBar/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "FilterCondition[]",
+      "description": ""
+    },
+    {
+      "name": "fields",
+      "optional": true,
+      "type": "FilterFieldOption[]",
+      "description": ""
+    },
+    {
+      "name": "collapsed",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: FilterCondition[]",
+      "description": ""
+    },
+    {
+      "name": "update:collapsed",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: FilterCondition[]",
+      "description": ""
+    },
+    {
+      "name": "search",
+      "payload": "value: FilterCondition[]",
+      "description": ""
+    },
+    {
+      "name": "reset",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "FilterCondition",
+    "FilterFieldOption",
+    "FilterBarProps",
+    "FilterBarEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

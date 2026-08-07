@@ -1,7 +1,7 @@
 # 全局视觉规范 · 设计 Token · 设计变量（锁定）
 
 > 配套：`packages/theme/SPEC.md`（布局/密度）· `packages/theme/specs.ts`（可导入）· `_contract.scss` / `tokens.scss`  
-> Agent 记忆：`.cursor/rules/vue3-amg-webui-tokens.mdc`
+> Agent 记忆：`.cursor/rules/20-design-system.mdc`
 
 ---
 
@@ -20,7 +20,7 @@ Primitive（原色/原始尺）  →  Semantic（用途别名）  →  Component
 | Semantic | `_contract` bridge / 主题 | **base / business / example** |
 | Component | `theme-components.scss` · 组件 SCSS | 组件实现 |
 
-**禁止**：在业务、基础组件或 **example 调试页**写死 `#5e6ad2`、`14px`、`8px` 圆角等魔法数；一并禁止硬编码用户可见文案（见 `I18N.md` · `vue3-amg-webui-no-hardcode.mdc`）。
+**禁止**：在业务、基础组件或 **example 调试页**写死 `#5e6ad2`、`14px`、`8px` 圆角等魔法数；一并禁止硬编码用户可见文案（见 `I18N.md` · `.cursor/rules/20-design-system.mdc` · `.cursor/rules/21-i18n-copy.mdc`）。
 
 ---
 

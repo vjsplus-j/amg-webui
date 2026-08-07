@@ -1,0 +1,71 @@
+{
+  "name": "ColorPicker",
+  "generatedAt": "2026-08-07T12:34:13.528Z",
+  "source": {
+    "types": "packages/components/form/ColorPicker/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "presets",
+      "optional": true,
+      "type": "string[]",
+      "description": ""
+    },
+    {
+      "name": "skipFormItem",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "ColorPickerProps",
+    "ColorPickerEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

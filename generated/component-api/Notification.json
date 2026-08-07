@@ -1,0 +1,24 @@
+{
+  "name": "Notification",
+  "generatedAt": "2026-08-07T12:41:35.028Z",
+  "source": {
+    "types": "packages/components/overlay/Notification/types.ts",
+    "vue": true
+  },
+  "props": [],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "NotificationProps",
+    "NotificationEmits"
+  ],
+  "completeness": {
+    "props": false,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

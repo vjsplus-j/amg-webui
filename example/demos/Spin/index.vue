@@ -2,14 +2,11 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Button, Card, Spin } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -82,68 +79,6 @@ const codeIndicator = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'spinning',
-    description: t('example.doc.spin.prop.spinning'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'tip',
-    description: t('example.doc.spin.prop.tip'),
-    type: 'string',
-    defaultValue: 'common.loading'
-  },
-  {
-    name: 'size',
-    description: t('example.doc.spin.prop.size'),
-    type: 'Size',
-    defaultValue: "'md'"
-  },
-  {
-    name: 'delay',
-    description: t('example.doc.spin.prop.delay'),
-    type: 'number',
-    defaultValue: '0'
-  },
-  {
-    name: 'fullscreen',
-    description: t('example.doc.spin.prop.fullscreen'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'ariaLabel',
-    description: t('example.doc.spin.prop.ariaLabel'),
-    type: 'string',
-    defaultValue: '-'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'visibleChange',
-    description: t('example.doc.spin.event.visibleChange'),
-    type: '(visible: boolean) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.spin.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'indicator',
-    description: t('example.doc.spin.slot.indicator'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -222,20 +157,7 @@ const slotRows = computed<ApiRow[]>(() => [
           </template>
         </Spin>
       </div>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 

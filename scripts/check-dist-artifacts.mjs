@@ -11,7 +11,16 @@ import { fileURLToPath } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
-const BRANDS = ['mercedes', 'linear', 'porsche', 'lamborghini', 'ferrari', 'apple']
+const BRANDS = [
+  'mercedes',
+  'linear',
+  'porsche',
+  'lamborghini',
+  'ferrari',
+  'apple',
+  'wechat',
+  'alipay'
+]
 
 /** Soft ceilings (bytes) — tighten after measuring stable CI artifacts. */
 const BUDGETS = {

@@ -1,0 +1,88 @@
+{
+  "name": "TablePrint",
+  "generatedAt": "2026-08-07T12:42:17.025Z",
+  "source": {
+    "types": "packages/components/data/TablePrint/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "columns",
+      "optional": true,
+      "type": "{ key: string; label?: string; formatter?: ( value: unknown, row: Record<string, unknown>, index: number, ) => string; }[]",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "Record<string, unknown>[]",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bordered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showToolbar",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "print",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "before-print",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "after-print",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "error: Error",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "TablePrintProps",
+    "TablePrintEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

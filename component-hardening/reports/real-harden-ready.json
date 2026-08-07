@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-08-07T12:46:47.038Z",
+  "ready": [
+    "GbsDeviceTree",
+    "ImageViewer",
+    "OnvifGroupTree"
+  ],
+  "failed": []
+}

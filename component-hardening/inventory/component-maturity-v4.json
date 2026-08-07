@@ -1,0 +1,2310 @@
+{
+  "version": 4,
+  "generatedAt": "2026-08-07T10:05:37.152Z",
+  "contract": "Capability and maturity are decoupled. depthScore never promotes Stable. Stable only via verify:component gates.",
+  "summary": {
+    "stub": 1,
+    "shell": 10,
+    "beta": 264,
+    "rc-candidate": 12,
+    "stable": 0
+  },
+  "components": {
+    "AdvancedSearch": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B26R"
+    },
+    "Affix": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B27R"
+    },
+    "Alert": {
+      "capability": "thin",
+      "maturity": "shell",
+      "depthScore": 5,
+      "stableEligible": false,
+      "family": "feedback",
+      "batch": "B09"
+    },
+    "Anchor": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B10"
+    },
+    "AudioPlay": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "media",
+      "batch": "B20"
+    },
+    "AudioTalk": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "media",
+      "batch": "B19"
+    },
+    "AutoComplete": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "selection",
+      "batch": "B04"
+    },
+    "Avatar": {
+      "capability": "thin",
+      "maturity": "rc-candidate",
+      "depthScore": 8,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B01"
+    },
+    "AvatarGroup": {
+      "capability": "thin",
+      "maturity": "rc-candidate",
+      "depthScore": 8,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B27R"
+    },
+    "BackTop": {
+      "capability": "thin",
+      "maturity": "shell",
+      "depthScore": 5,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B27R"
+    },
+    "Badge": {
+      "capability": "thin",
+      "maturity": "rc-candidate",
+      "depthScore": 8,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B01"
+    },
+    "BarChart": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "charts",
+      "batch": "B17"
+    },
+    "Barcode": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B24"
+    },
+    "BatchPanel": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B41R"
+    },
+    "BatchUpload": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "upload",
+      "batch": "B15"
+    },
+    "Block": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B27R"
+    },
+    "Breadcrumb": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B10"
+    },
+    "BreadcrumbItem": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B36R"
+    },
+    "BrowserDetect": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B27R"
+    },
+    "Business404": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B24"
+    },
+    "Button": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B01"
+    },
+    "ButtonGroup": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B27R"
+    },
+    "Calendar": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "datetime",
+      "batch": "B07"
+    },
+    "CanvasIo": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B35R"
+    },
+    "CanvasLayer": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B18"
+    },
+    "CanvasNode": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B18"
+    },
+    "CanvasPreview": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B18"
+    },
+    "CanvasShortcut": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B35R"
+    },
+    "Card": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B27R"
+    },
+    "CardGrid": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B27R"
+    },
+    "CardList": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B41R"
+    },
+    "CardNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B36R"
+    },
+    "CardWidgets": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B27R"
+    },
+    "Carousel": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B27R"
+    },
+    "Cartoon404": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B40R"
+    },
+    "Cascader": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "selection",
+      "batch": "B05"
+    },
+    "CategoryNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B36R"
+    },
+    "Center": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B34R"
+    },
+    "Checkbox": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B32R"
+    },
+    "CheckboxGroup": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B32R"
+    },
+    "ChunkUpload": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "upload",
+      "batch": "B15"
+    },
+    "Clipboard": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B28R"
+    },
+    "CodeEditor": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "editor",
+      "batch": "B16"
+    },
+    "Col": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B11"
+    },
+    "Collapse": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B28R"
+    },
+    "ColorInput": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B32R"
+    },
+    "ColorPicker": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B32R"
+    },
+    "ColumnLayout": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B34R"
+    },
+    "ConfigProvider": {
+      "capability": "thin",
+      "maturity": "rc-candidate",
+      "depthScore": 8,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B28R"
+    },
+    "Confirm": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "feedback",
+      "batch": "B09"
+    },
+    "ConfirmDialog": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B38R"
+    },
+    "Container": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B34R"
+    },
+    "ContextMenu": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B10"
+    },
+    "CopyText": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B28R"
+    },
+    "Countdown": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B28R"
+    },
+    "CryptoBox": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B28R"
+    },
+    "Dashboard": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B41R"
+    },
+    "DataCard": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B41R"
+    },
+    "DataTable": {
+      "capability": "interaction",
+      "maturity": "rc-candidate",
+      "depthScore": 8,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B13"
+    },
+    "DatePicker": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "datetime",
+      "batch": "B06"
+    },
+    "DateTimePicker": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "datetime",
+      "batch": "B06"
+    },
+    "Descriptions": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B13"
+    },
+    "DescriptionsItem": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B41R"
+    },
+    "DetailPanel": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B41R"
+    },
+    "Dialog": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B08"
+    },
+    "Divider": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B01"
+    },
+    "Doodle404": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B40R"
+    },
+    "DragCanvas": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B18"
+    },
+    "DragMaterial": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B35R"
+    },
+    "DragRuler": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B35R"
+    },
+    "DragSelect": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "selection",
+      "batch": "B05"
+    },
+    "DragSortNode": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B35R"
+    },
+    "DragVerify": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B28R"
+    },
+    "DragWrapper": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B35R"
+    },
+    "Drawer": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B08"
+    },
+    "DrillTable": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B14"
+    },
+    "Dropdown": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B08"
+    },
+    "DynamicForm": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B03"
+    },
+    "EditTable": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B14"
+    },
+    "EditTree": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "tree",
+      "batch": "B43R"
+    },
+    "Ellipsis": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B28R"
+    },
+    "EmbedLayout": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B34R"
+    },
+    "Empty": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B28R"
+    },
+    "ErrorModal": {
+      "capability": "interaction",
+      "maturity": "shell",
+      "depthScore": 5,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B38R"
+    },
+    "ExcelIo": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B41R"
+    },
+    "Exception": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "feedback",
+      "batch": "B25R"
+    },
+    "FilePreview": {
+      "capability": "thin",
+      "maturity": "shell",
+      "depthScore": 5,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B28R"
+    },
+    "FilterBar": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B26R"
+    },
+    "FixedLayout": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B34R"
+    },
+    "FloatButton": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B29R"
+    },
+    "FloatNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B36R"
+    },
+    "FlowLayout": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B11"
+    },
+    "FlowPanel": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B41R"
+    },
+    "FolderTree": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "tree",
+      "batch": "B43R"
+    },
+    "Footer": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B11"
+    },
+    "FooterNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B36R"
+    },
+    "Form": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B03"
+    },
+    "FormGroup": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B03"
+    },
+    "FormItem": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B03"
+    },
+    "FormLayout": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B34R"
+    },
+    "FormTabs": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B03"
+    },
+    "FreeLayoutDrag": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B35R"
+    },
+    "GaugeChart": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "charts",
+      "batch": "B17"
+    },
+    "GbsAlarmModal": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "gb28181",
+      "batch": "B21"
+    },
+    "GbsCascadePanel": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "gb28181",
+      "batch": "B21"
+    },
+    "GbsDeviceTree": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "gb28181",
+      "batch": "B21"
+    },
+    "GbsGatewayForm": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "gb28181",
+      "batch": "B21"
+    },
+    "GbsRegisterForm": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "gb28181",
+      "batch": "B21"
+    },
+    "GbsSignMonitor": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "gb28181",
+      "batch": "B21"
+    },
+    "GbsStatusCard": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "gb28181",
+      "batch": "B21"
+    },
+    "GbsTimeSync": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "gb28181",
+      "batch": "B21"
+    },
+    "GraphChart": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "charts",
+      "batch": "B17"
+    },
+    "GridLayoutDrag": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B35R"
+    },
+    "GroupNav": {
+      "capability": "thin",
+      "maturity": "shell",
+      "depthScore": 5,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B36R"
+    },
+    "Header": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B11"
+    },
+    "HeatMap": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "charts",
+      "batch": "B17"
+    },
+    "Highlight": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B29R"
+    },
+    "Icon": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B01"
+    },
+    "Image": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B29R"
+    },
+    "ImageCrop": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "upload",
+      "batch": "B15"
+    },
+    "ImageGroup": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B29R"
+    },
+    "ImageUpload": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "upload",
+      "batch": "B15"
+    },
+    "ImageViewer": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B38R"
+    },
+    "IndexNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B36R"
+    },
+    "InfiniteScroll": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B41R"
+    },
+    "InfoModal": {
+      "capability": "interaction",
+      "maturity": "shell",
+      "depthScore": 5,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B38R"
+    },
+    "Ink404": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B40R"
+    },
+    "InputCaptcha": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B32R"
+    },
+    "InputNumber": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B02"
+    },
+    "InputOTP": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B02"
+    },
+    "InputText": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B02"
+    },
+    "Layout": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B11"
+    },
+    "LazyTree": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "tree",
+      "batch": "B12"
+    },
+    "LineChart": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "charts",
+      "batch": "B17"
+    },
+    "Link": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B01"
+    },
+    "Loading": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "feedback",
+      "batch": "B09"
+    },
+    "LoadingTip": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "feedback",
+      "batch": "B25R"
+    },
+    "LoginPanel": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B26R"
+    },
+    "Machine404": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B40R"
+    },
+    "Main": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B11"
+    },
+    "Mask": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B38R"
+    },
+    "MatrixCode": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B40R"
+    },
+    "MdEditor": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "editor",
+      "batch": "B16"
+    },
+    "Mention": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "selection",
+      "batch": "B04"
+    },
+    "Menu": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B10"
+    },
+    "MenuBar": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B36R"
+    },
+    "MergeTable": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B41R"
+    },
+    "Message": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "feedback",
+      "batch": "B09"
+    },
+    "MessageBox": {
+      "capability": "interaction",
+      "maturity": "stub",
+      "depthScore": 3,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B38R"
+    },
+    "MiniNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B36R"
+    },
+    "MonthPicker": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "datetime",
+      "batch": "B06"
+    },
+    "NoticeBar": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B29R"
+    },
+    "Notification": {
+      "capability": "interaction",
+      "maturity": "shell",
+      "depthScore": 5,
+      "stableEligible": false,
+      "family": "feedback",
+      "batch": "B09"
+    },
+    "OcrScan": {
+      "capability": "thin",
+      "maturity": "rc-candidate",
+      "depthScore": 8,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B24"
+    },
+    "OnvifAlarmPanel": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "onvif",
+      "batch": "B22"
+    },
+    "OnvifChannelManage": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "onvif",
+      "batch": "B22"
+    },
+    "OnvifDeviceList": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "onvif",
+      "batch": "B22"
+    },
+    "OnvifGroupTree": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "onvif",
+      "batch": "B22"
+    },
+    "OnvifRecordPlan": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "onvif",
+      "batch": "B22"
+    },
+    "OnvifSearch": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "onvif",
+      "batch": "B22"
+    },
+    "OnvifSettingPanel": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "onvif",
+      "batch": "B22"
+    },
+    "OnvifUrlForm": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "onvif",
+      "batch": "B22"
+    },
+    "PTZControl": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "media",
+      "batch": "B20"
+    },
+    "PageHeader": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B29R"
+    },
+    "PagerNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B36R"
+    },
+    "Pagination": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B10"
+    },
+    "Password": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B02"
+    },
+    "PdfPreview": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B29R"
+    },
+    "PermissionPanel": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B26R"
+    },
+    "PieChart": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "charts",
+      "batch": "B17"
+    },
+    "PivotTable": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B14"
+    },
+    "Pixel404": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B40R"
+    },
+    "Plant404": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B40R"
+    },
+    "Popconfirm": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B08"
+    },
+    "Popover": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B08"
+    },
+    "Preview": {
+      "capability": "thin",
+      "maturity": "rc-candidate",
+      "depthScore": 8,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B29R"
+    },
+    "Print": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B29R"
+    },
+    "ProTable": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B13"
+    },
+    "Progress": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B29R"
+    },
+    "ProgressTip": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B30R"
+    },
+    "PropPanel": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B18"
+    },
+    "Qrcode": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B24"
+    },
+    "QuarterPicker": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "datetime",
+      "batch": "B06"
+    },
+    "QuickNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B37R"
+    },
+    "RadarChart": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "charts",
+      "batch": "B17"
+    },
+    "Radio": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B32R"
+    },
+    "RadioGroup": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B32R"
+    },
+    "RangeInput": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B02"
+    },
+    "Ranking": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B42R"
+    },
+    "Rate": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B32R"
+    },
+    "ResizeBox": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B30R"
+    },
+    "Result": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "feedback",
+      "batch": "B09"
+    },
+    "RichText": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "editor",
+      "batch": "B16"
+    },
+    "RouterNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B10"
+    },
+    "Row": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B11"
+    },
+    "ScaleLayout": {
+      "capability": "thin",
+      "maturity": "rc-candidate",
+      "depthScore": 8,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B34R"
+    },
+    "SchemaRenderer": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B18"
+    },
+    "ScrollNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B37R"
+    },
+    "ScrollNotice": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B30R"
+    },
+    "Scrollbar": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B30R"
+    },
+    "Search": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B32R"
+    },
+    "SearchFilterPanel": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B26R"
+    },
+    "Segmented": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B30R"
+    },
+    "Select": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "selection",
+      "batch": "B04"
+    },
+    "SelectNav": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "selection",
+      "batch": "B05"
+    },
+    "SettingPanel": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B26R"
+    },
+    "Sider": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B11"
+    },
+    "Simple404": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B24"
+    },
+    "Skeleton": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B30R"
+    },
+    "Slider": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B32R"
+    },
+    "SmsCode": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B33R"
+    },
+    "Space": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B11"
+    },
+    "Space404": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B40R"
+    },
+    "Spacer": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B30R"
+    },
+    "Spin": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B30R"
+    },
+    "Split": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B30R"
+    },
+    "SplitVideoWall": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "media",
+      "batch": "B20"
+    },
+    "StackLayout": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "layout",
+      "batch": "B11"
+    },
+    "Statistic": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B30R"
+    },
+    "StatusTip": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B01"
+    },
+    "StepForm": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B03"
+    },
+    "StepItem": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B37R"
+    },
+    "StepNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B37R"
+    },
+    "Steps": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B37R"
+    },
+    "StickyTable": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B14"
+    },
+    "SuccessModal": {
+      "capability": "interaction",
+      "maturity": "shell",
+      "depthScore": 5,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B38R"
+    },
+    "Switch": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B33R"
+    },
+    "TabPane": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B37R"
+    },
+    "TableAction": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B42R"
+    },
+    "TableDrag": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B42R"
+    },
+    "TableExport": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B42R"
+    },
+    "TablePrint": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B42R"
+    },
+    "Tabs": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B10"
+    },
+    "TabsNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B37R"
+    },
+    "Tag": {
+      "capability": "thin",
+      "maturity": "rc-candidate",
+      "depthScore": 8,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B01"
+    },
+    "TagInput": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B33R"
+    },
+    "Tech404": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "special",
+      "batch": "B24"
+    },
+    "TelemetryProvider": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B31R"
+    },
+    "TemplateDrag": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "lowcode",
+      "batch": "B35R"
+    },
+    "TemplateSelect": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "selection",
+      "batch": "B04"
+    },
+    "Textarea": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "input",
+      "batch": "B02"
+    },
+    "ThemeProvider": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B31R"
+    },
+    "Thumbnail": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B31R"
+    },
+    "TimePicker": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "datetime",
+      "batch": "B07"
+    },
+    "TimeRangeInput": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "datetime",
+      "batch": "B07"
+    },
+    "TimeSelect": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "datetime",
+      "batch": "B07"
+    },
+    "Timeline": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B42R"
+    },
+    "TimelineItem": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B42R"
+    },
+    "TimelineList": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B42R"
+    },
+    "Toast": {
+      "capability": "interaction",
+      "maturity": "shell",
+      "depthScore": 5,
+      "stableEligible": false,
+      "family": "feedback",
+      "batch": "B09"
+    },
+    "Tooltip": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B08"
+    },
+    "TopNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B37R"
+    },
+    "Tour": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B38R"
+    },
+    "Transfer": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "selection",
+      "batch": "B39R"
+    },
+    "TransferTree": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "tree",
+      "batch": "B43R"
+    },
+    "Tree": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "tree",
+      "batch": "B12"
+    },
+    "TreeChart": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "charts",
+      "batch": "B17"
+    },
+    "TreeForm": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "form",
+      "batch": "B26R"
+    },
+    "TreeSelect": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "selection",
+      "batch": "B05"
+    },
+    "TreeTable": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B14"
+    },
+    "TreeTransfer": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "tree",
+      "batch": "B43R"
+    },
+    "Typography": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B31R"
+    },
+    "Upload": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "upload",
+      "batch": "B15"
+    },
+    "UserInfoCard": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B31R"
+    },
+    "VcrBackupTask": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "vcr",
+      "batch": "B23"
+    },
+    "VcrClipCut": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "vcr",
+      "batch": "B23"
+    },
+    "VcrDownloadPanel": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "vcr",
+      "batch": "B23"
+    },
+    "VcrMarkPoint": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "vcr",
+      "batch": "B23"
+    },
+    "VcrSearchPanel": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "vcr",
+      "batch": "B23"
+    },
+    "VcrSpeedControl": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "vcr",
+      "batch": "B23"
+    },
+    "VcrStorageDashboard": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "vcr",
+      "batch": "B23"
+    },
+    "VcrTimelinePlayer": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "vcr",
+      "batch": "B23"
+    },
+    "VerticalStepNav": {
+      "capability": "thin",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "navigation",
+      "batch": "B37R"
+    },
+    "VideoAdjust": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "media",
+      "batch": "B19"
+    },
+    "VideoPlayer": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "media",
+      "batch": "B19"
+    },
+    "VideoPreview": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "media",
+      "batch": "B19"
+    },
+    "VideoSnapshot": {
+      "capability": "composite",
+      "maturity": "rc-candidate",
+      "depthScore": 8,
+      "stableEligible": false,
+      "family": "media",
+      "batch": "B19"
+    },
+    "VideoVolume": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "media",
+      "batch": "B19"
+    },
+    "VideoWatermark": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "media",
+      "batch": "B19"
+    },
+    "VirtualTable": {
+      "capability": "interaction",
+      "maturity": "rc-candidate",
+      "depthScore": 8,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B13"
+    },
+    "VirtualTree": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "tree",
+      "batch": "B12"
+    },
+    "WarnModal": {
+      "capability": "interaction",
+      "maturity": "shell",
+      "depthScore": 5,
+      "stableEligible": false,
+      "family": "overlay",
+      "batch": "B38R"
+    },
+    "Waterfall": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "table",
+      "batch": "B42R"
+    },
+    "Watermark": {
+      "capability": "thin",
+      "maturity": "rc-candidate",
+      "depthScore": 8,
+      "stableEligible": false,
+      "family": "foundation",
+      "batch": "B31R"
+    },
+    "WeekPicker": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "datetime",
+      "batch": "B06"
+    },
+    "WordCloud": {
+      "capability": "composite",
+      "maturity": "beta",
+      "depthScore": 6,
+      "stableEligible": false,
+      "family": "charts",
+      "batch": "B17"
+    },
+    "YearPicker": {
+      "capability": "interaction",
+      "maturity": "beta",
+      "depthScore": 7,
+      "stableEligible": false,
+      "family": "datetime",
+      "batch": "B06"
+    }
+  }
+}

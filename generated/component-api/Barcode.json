@@ -1,0 +1,102 @@
+{
+  "name": "Barcode",
+  "generatedAt": "2026-08-07T12:39:09.860Z",
+  "source": {
+    "types": "packages/components/core/Barcode/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "barWidth",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "height",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "showLabel",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "format",
+      "optional": true,
+      "type": "BarcodeFormat",
+      "description": ""
+    },
+    {
+      "name": "editable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "quietZone",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "BarcodeProps",
+    "BarcodeEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

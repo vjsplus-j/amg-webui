@@ -11,8 +11,7 @@ import { isV01Component, V01_COMPONENTS } from '../../v0.1-subset'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import DemoSafeHost from '../../components/demo/DemoSafeHost.vue'
 import ExamplePageHero from '../../components/ExamplePageHero.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
-import type { PropRow } from '../../components/demo/types'
+import ApiRenderer from '../../components/docs/ApiRenderer.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -43,24 +42,6 @@ const whenToUse = computed(() => {
 })
 
 const maturity = computed(() => componentMaturity(componentName.value))
-
-const draftProps = computed((): PropRow[] => {
-  void locale.value
-  return [
-    {
-      name: 'class',
-      description: t(LocaleKeys.exampleDoc.propClass),
-      type: 'string',
-      defaultValue: '—'
-    },
-    {
-      name: 'style',
-      description: t(LocaleKeys.exampleDoc.propStyle),
-      type: 'CSSProperties',
-      defaultValue: '—'
-    }
-  ]
-})
 
 function levelLabel(level: MaturityLevel) {
   return t(LocaleKeys.page.gallery.maturity[level])
@@ -134,13 +115,12 @@ watch(
           <DemoSafeHost :name="componentName" />
         </DemoBlock>
       </section>
-
-      <section class="vp-doc-page__section">
-        <h2 class="vp-doc-page__h2">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-        <p class="vp-doc-page__hint">{{ t(LocaleKeys.exampleDoc.apiDraft) }}</p>
-        <PropsTable :rows="draftProps" />
-      </section>
     </template>
+
+    <section class="vp-doc-page__section">
+      <h2 class="vp-doc-page__h2">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
+      <ApiRenderer :component-name="componentName" />
+    </section>
   </div>
 </template>
 

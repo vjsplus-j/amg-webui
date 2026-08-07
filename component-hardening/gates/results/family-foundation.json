@@ -1,0 +1,284 @@
+{
+  "family": "foundation",
+  "engines": [
+    {
+      "engine": "form-control",
+      "path": "packages/utils/engines/formControl.ts",
+      "status": "PASS"
+    }
+  ],
+  "components": [
+    {
+      "name": "Affix",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Avatar",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "AvatarGroup",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "BackTop",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Badge",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Block",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "BrowserDetect",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Button",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "ButtonGroup",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Card",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "CardGrid",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "CardWidgets",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Carousel",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Clipboard",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Collapse",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "ConfigProvider",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "CopyText",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Countdown",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "CryptoBox",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Divider",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "DragVerify",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Ellipsis",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Empty",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "FilePreview",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "FloatButton",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Highlight",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Icon",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Image",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "ImageGroup",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Link",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "NoticeBar",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "PageHeader",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "PdfPreview",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Preview",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Print",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Progress",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "ProgressTip",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "ResizeBox",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "ScrollNotice",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Scrollbar",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Segmented",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Skeleton",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Spacer",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Spin",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Split",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Statistic",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "StatusTip",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Tag",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "TelemetryProvider",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "ThemeProvider",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Thumbnail",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Typography",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "UserInfoCard",
+      "status": "PASS",
+      "stable": true
+    },
+    {
+      "name": "Watermark",
+      "status": "PASS",
+      "stable": true
+    }
+  ],
+  "status": "PASS",
+  "verifiedAt": "2026-08-07T09:57:44.589Z"
+}

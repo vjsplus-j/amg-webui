@@ -1,0 +1,158 @@
+{
+  "name": "TableDrag",
+  "generatedAt": "2026-08-07T12:41:56.170Z",
+  "source": {
+    "types": "packages/components/data/TableDrag/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "rows",
+      "optional": true,
+      "type": "TableDragRow[]",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "TableDragRow[]",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "TableDragRow[]",
+      "description": ""
+    },
+    {
+      "name": "columns",
+      "optional": true,
+      "type": "TableDragColumn[]",
+      "description": ""
+    },
+    {
+      "name": "rowKey",
+      "optional": true,
+      "type": "string | ((row: TableDragRow, index: number) => TableDragKey)",
+      "description": ""
+    },
+    {
+      "name": "selectedKey",
+      "optional": true,
+      "type": "TableDragKey | null",
+      "description": ""
+    },
+    {
+      "name": "rowDisabled",
+      "optional": true,
+      "type": "(row: TableDragRow, index: number) => boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "striped",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: TableDragRow[]",
+      "description": ""
+    },
+    {
+      "name": "update:selectedKey",
+      "payload": "value: TableDragKey",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: TableDragRow[]",
+      "description": ""
+    },
+    {
+      "name": "reorder",
+      "payload": "value: TableDragRow[], row: TableDragRow, from: number, to: number,",
+      "description": ""
+    },
+    {
+      "name": "dragStart",
+      "payload": "row: TableDragRow, index: number, event: DragEvent",
+      "description": ""
+    },
+    {
+      "name": "dragEnd",
+      "payload": "row: TableDragRow, index: number, event: DragEvent",
+      "description": ""
+    },
+    {
+      "name": "rowClick",
+      "payload": "row: TableDragRow, index: number, event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "TableDragKey",
+    "TableDragRow",
+    "TableDragColumn",
+    "TableDragProps",
+    "TableDragEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

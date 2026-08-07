@@ -1,0 +1,67 @@
+{
+  "name": "InfiniteScroll",
+  "generatedAt": "2026-08-07T12:41:13.621Z",
+  "source": {
+    "types": "packages/components/data/InfiniteScroll/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "distance",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "immediate",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollTarget",
+      "optional": true,
+      "type": "string | HTMLElement",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "finished",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "load",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "InfiniteScrollProps",
+    "InfiniteScrollEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

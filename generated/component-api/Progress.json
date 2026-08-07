@@ -1,0 +1,68 @@
+{
+  "name": "Progress",
+  "generatedAt": "2026-08-07T12:41:35.062Z",
+  "source": {
+    "types": "packages/components/core/Progress/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "percentage",
+      "optional": false,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "optional": true,
+      "type": "ProgressType",
+      "description": ""
+    },
+    {
+      "name": "status",
+      "optional": true,
+      "type": "ProgressStatus",
+      "description": ""
+    },
+    {
+      "name": "showText",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "strokeWidth",
+      "optional": true,
+      "type": "number | string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "payload": "percentage: number",
+      "description": ""
+    },
+    {
+      "name": "finish",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ProgressType",
+    "ProgressStatus",
+    "ProgressProps",
+    "ProgressEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

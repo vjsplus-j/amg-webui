@@ -1,0 +1,121 @@
+{
+  "name": "Doodle404",
+  "generatedAt": "2026-08-07T12:40:46.818Z",
+  "source": {
+    "types": "packages/components/core/Doodle404/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "code",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "actions",
+      "optional": true,
+      "type": "Array<{ key: string; label: string; href?: string; disabled?: boolean }>",
+      "description": ""
+    },
+    {
+      "name": "homeHref",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "retryable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | number | null",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "action",
+      "payload": "action: { key: string; label: string; href?: string; disabled?: boolean }, event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "home",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "retry",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "Doodle404Props",
+    "Doodle404Emits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

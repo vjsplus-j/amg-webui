@@ -1,0 +1,7 @@
+{
+  "component": "Checkbox",
+  "family": "input",
+  "batch": "B32R",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:41:03.488Z"
+}

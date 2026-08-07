@@ -103,7 +103,7 @@ function onCanvasClick() {
 </script>
 
 <template>
-  <div :class="['vp-drag-canvas', { 'vp-drag-canvas--readonly': readonly, 'vp-drag-canvas--grid': mode === 'grid' }, props.class]" :style="style" data-component="DragCanvas">
+  <div role="region" aria-label="DragCanvas" :class="['vp-drag-canvas', { 'vp-drag-canvas--readonly': readonly, 'vp-drag-canvas--grid': mode === 'grid' }, props.class]" :style="style" data-component="DragCanvas">
     <div
       class="vp-drag-canvas__surface"
       :style="gridStyle"

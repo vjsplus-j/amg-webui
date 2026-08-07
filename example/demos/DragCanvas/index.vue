@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { DragCanvas, DragMaterial } from '@amg-webui/lowcode'
 import type { CanvasNodeData } from '@amg-webui/utils'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -27,10 +25,6 @@ const codeBasic = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'v-model', type: 'CanvasNodeData[]', defaultValue: '[]', description: t('example.doc.dragCanvas.prop.model') },
-  { name: 'mode', type: "'free' | 'grid'", defaultValue: "'free'", description: t('example.doc.dragCanvas.prop.mode') }
-])
 </script>
 
 <template>
@@ -42,8 +36,7 @@ const propRows = computed<PropRow[]>(() => [
         <DragCanvas v-model="nodes" class="lc-canvas" />
       </div>
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
+import {
+  getFloatingPanelStyle,
+  moveRovingIndex,
+  resolveKeyboardNavAction
+} from '@amg-webui/utils'
 import type { TimeSelectProps, TimeSelectEmits } from './types'
 import { useFormItem } from '../FormItem/useFormItem'
 import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
@@ -45,6 +50,25 @@ const isOpen = ref(false)
 const activeIndex = ref(-1)
 const triggerRef = ref<HTMLElement | null>(null)
 const panelRef = ref<HTMLElement | null>(null)
+const floatingPanelStyle = ref<Record<string, string>>({})
+
+const panelMergedStyle = computed(() => ({
+  ...floatingPanelStyle.value
+}))
+
+function syncFloating() {
+  const trigger = triggerRef.value
+  if (!isOpen.value || !trigger) {
+    floatingPanelStyle.value = {}
+    return
+  }
+  const { style } = getFloatingPanelStyle(trigger, panelRef.value, {
+    placement: 'bottom-start',
+    matchTriggerWidth: true,
+    offset: 4
+  })
+  floatingPanelStyle.value = style
+}
 
 const parseMinutes = (time: string): number => {
   const [h, m] = time.split(':').map(Number)
@@ -90,6 +114,7 @@ const rootClass = computed(() => [
 const close = () => {
   isOpen.value = false
   activeIndex.value = -1
+  floatingPanelStyle.value = {}
 }
 
 const open = () => {
@@ -97,6 +122,7 @@ const open = () => {
   isOpen.value = true
   const idx = timeOptions.value.indexOf(props.modelValue ?? '')
   activeIndex.value = idx >= 0 ? idx : 0
+  nextTick(syncFloating)
 }
 
 const toggle = () => {
@@ -142,9 +168,10 @@ const handleOutsideClick = (event: MouseEvent) => {
 
 const onTriggerKeydown = (event: KeyboardEvent) => {
   if (isDisabled.value) return
+  const action = resolveKeyboardNavAction(event, { orientation: 'vertical' })
 
   if (!isOpen.value) {
-    if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+    if (action === 'next' || action === 'select' || event.key === 'ArrowDown') {
       event.preventDefault()
       open()
     }
@@ -154,41 +181,43 @@ const onTriggerKeydown = (event: KeyboardEvent) => {
   const len = timeOptions.value.length
   if (!len) return
 
-  switch (event.key) {
-    case 'ArrowDown':
-      event.preventDefault()
-      activeIndex.value = (activeIndex.value + 1) % len
-      break
-    case 'ArrowUp':
-      event.preventDefault()
-      activeIndex.value = (activeIndex.value - 1 + len) % len
-      break
-    case 'Enter':
-    case ' ':
-      event.preventDefault()
-      if (activeIndex.value >= 0) {
-        selectTime(timeOptions.value[activeIndex.value])
-      }
-      break
-    case 'Escape':
-      event.preventDefault()
-      close()
-      triggerRef.value?.focus()
-      break
-    case 'Home':
-      event.preventDefault()
-      activeIndex.value = 0
-      break
-    case 'End':
-      event.preventDefault()
-      activeIndex.value = len - 1
-      break
+  if (action === 'close') {
+    event.preventDefault()
+    close()
+    triggerRef.value?.focus()
+    return
+  }
+  if (
+    action === 'next' ||
+    action === 'prev' ||
+    action === 'first' ||
+    action === 'last'
+  ) {
+    event.preventDefault()
+    activeIndex.value = moveRovingIndex(
+      Math.max(0, activeIndex.value),
+      action,
+      len,
+      true
+    )
+    return
+  }
+  if (action === 'select') {
+    event.preventDefault()
+    if (activeIndex.value >= 0) {
+      selectTime(timeOptions.value[activeIndex.value])
+    }
   }
 }
 
 const handleTriggerBlur = () => {
   void validateOnBlur()
 }
+
+watch(isOpen, (openState) => {
+  if (openState) nextTick(syncFloating)
+  else floatingPanelStyle.value = {}
+})
 
 onMounted(() => {
   document.addEventListener('click', handleOutsideClick)
@@ -251,6 +280,7 @@ onUnmounted(() => {
       ref="panelRef"
       class="vp-time-select__panel"
       role="listbox"
+      :style="panelMergedStyle"
       :aria-label="t(LocaleKeys.component.timeSelect.aria)"
     >
       <li

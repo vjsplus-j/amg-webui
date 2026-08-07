@@ -2,14 +2,11 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts`).
  */
-import { computed } from 'vue'
+import {  } from 'vue'
 import { Button, Divider, Link, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -73,67 +70,6 @@ const codeSlots = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'direction / type',
-    description: t('example.doc.divider.prop.direction'),
-    type: "'horizontal' | 'vertical'",
-    defaultValue: "'horizontal'"
-  },
-  {
-    name: 'contentPosition',
-    description: t('example.doc.divider.prop.contentPosition'),
-    type: "'left' | 'center' | 'right'",
-    defaultValue: "'center'"
-  },
-  {
-    name: 'dashed',
-    description: t('example.doc.divider.prop.dashed'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'borderStyle',
-    description: t('example.doc.divider.prop.borderStyle'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'plain',
-    description: t('example.doc.divider.prop.plain'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'margin',
-    description: t('example.doc.divider.prop.margin'),
-    type: "'none' | 'sm' | 'md' | 'lg'",
-    defaultValue: "'md'"
-  },
-  {
-    name: 'decorative',
-    description: t('example.doc.divider.prop.decorative'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'ariaLabel',
-    description: t('example.doc.divider.prop.ariaLabel'),
-    type: 'string',
-    defaultValue: '-'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.divider.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -212,19 +148,7 @@ const slotRows = computed<ApiRow[]>(() => [
       </div>
     </DemoBlock>
 
-    <!-- 4. API: Props → Events → Slots -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 4. API: Props → Events → Slots -->
   </div>
 </template>
 
@@ -234,25 +158,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-divider-demo__block {
   display: flex;
   flex-direction: column;

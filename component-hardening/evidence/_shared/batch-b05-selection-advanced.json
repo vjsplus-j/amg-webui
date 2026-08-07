@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "engines": [
+    "resolveKeyboardNavAction",
+    "moveRovingIndex",
+    "getFloatingPanelStyle"
+  ],
+  "components": [
+    "Cascader",
+    "TreeSelect",
+    "SelectNav"
+  ],
+  "source": "tests/unit/hardening/batch-b05-selection-advanced.spec.ts",
+  "verifiedAt": "2026-08-07T12:28:50.923Z"
+}

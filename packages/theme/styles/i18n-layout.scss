@@ -16,9 +16,13 @@ html[data-locale='en-US'],
 html[data-locale='en'],
 html[data-locale='ru-RU'],
 html[data-locale='ar-SA'],
+html[data-locale='hi-IN'],
+html[data-locale='ug-CN'],
 html:lang(en),
 html:lang(ru),
-html:lang(ar) {
+html:lang(ar),
+html:lang(hi),
+html:lang(ug) {
   --ln-sidebar-width: 280px;
   --ln-tabs-height: 44px;
   --i18n-btn-pad-extra: 0.35rem;

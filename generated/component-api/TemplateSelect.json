@@ -1,0 +1,77 @@
+{
+  "name": "TemplateSelect",
+  "generatedAt": "2026-08-07T12:37:37.636Z",
+  "source": {
+    "types": "packages/lowcode/ui/TemplateSelect/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | null",
+      "description": ""
+    },
+    {
+      "name": "templates",
+      "optional": true,
+      "type": "FormTemplate[]",
+      "description": ""
+    },
+    {
+      "name": "layout",
+      "optional": true,
+      "type": "'dropdown' | 'cards'",
+      "description": ""
+    },
+    {
+      "name": "searchable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "searchableMin",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | null",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "template: FormTemplate | null",
+      "description": ""
+    },
+    {
+      "name": "apply",
+      "payload": "data: Record<string, unknown>",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "FormTemplate",
+    "TemplateSelectProps",
+    "TemplateSelectEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

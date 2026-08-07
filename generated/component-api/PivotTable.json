@@ -1,0 +1,150 @@
+{
+  "name": "PivotTable",
+  "generatedAt": "2026-08-07T12:41:35.051Z",
+  "source": {
+    "types": "packages/components/data/PivotTable/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "PivotRecord[]",
+      "description": ""
+    },
+    {
+      "name": "rows",
+      "optional": true,
+      "type": "PivotRecord[]",
+      "description": ""
+    },
+    {
+      "name": "rowField",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "columnField",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "colField",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "valueField",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "valueFormatter",
+      "optional": true,
+      "type": "(value: number, cell?: PivotCell) => string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | null",
+      "description": ""
+    },
+    {
+      "name": "rowLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "showRowTotals",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showColumnTotals",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "stickyHeader",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | null",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string | null",
+      "description": ""
+    },
+    {
+      "name": "cellClick",
+      "payload": "cell: PivotCell, event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "rowClick",
+      "payload": "rowKey: string, event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "PivotRecord",
+    "PivotAggregator",
+    "PivotCell",
+    "PivotTableProps",
+    "PivotTableEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

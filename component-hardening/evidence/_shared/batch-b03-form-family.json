@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "engines": [
+    "createFieldId",
+    "validateRules"
+  ],
+  "components": [
+    "Form",
+    "FormItem",
+    "FormGroup",
+    "FormTabs",
+    "StepForm",
+    "DynamicForm"
+  ],
+  "source": "tests/unit/hardening/batch-b03-form-family.spec.ts",
+  "verifiedAt": "2026-08-07T12:28:51.071Z"
+}

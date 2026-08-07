@@ -1,0 +1,12 @@
+---
+description: Internationalization and user-visible copy rules
+globs: packages/**/*.{ts,vue},example/**/*.{ts,vue},docs/**/*.{ts,vue,md}
+alwaysApply: false
+---
+
+# I18n and Copy
+- Do not hardcode reusable user-visible text in public components.
+- Use typed locale keys for built-in labels, empty/loading states, validation text and accessibility labels.
+- Locale packs must remain structurally synchronized.
+- Prefer compile-time completeness (`satisfies`) where applicable.
+- Do not couple document `dir` to locale selection; reading direction is an independent runtime switch (`LocaleService.setDirection` / `?dir=`).

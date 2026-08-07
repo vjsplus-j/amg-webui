@@ -1,0 +1,63 @@
+{
+  "name": "FormLayout",
+  "generatedAt": "2026-08-07T12:41:13.593Z",
+  "source": {
+    "types": "packages/components/core/FormLayout/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "layout",
+      "optional": true,
+      "type": "FormLayoutMode",
+      "description": ""
+    },
+    {
+      "name": "columns",
+      "optional": true,
+      "type": "FormLayoutColumns",
+      "description": ""
+    },
+    {
+      "name": "colon",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "labelWidth",
+      "optional": true,
+      "type": "\"sm\" | \"md\" | \"lg\" | \"auto\"",
+      "description": ""
+    },
+    {
+      "name": "gap",
+      "optional": true,
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "layout-change",
+      "payload": "layout: FormLayoutMode",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "FormLayoutMode",
+    "FormLayoutColumns",
+    "FormLayoutProps",
+    "FormLayoutEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

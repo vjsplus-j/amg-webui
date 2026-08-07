@@ -1,0 +1,138 @@
+{
+  "name": "Tooltip",
+  "generatedAt": "2026-08-07T12:42:17.043Z",
+  "source": {
+    "types": "packages/components/core/Tooltip/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "content",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "placement",
+      "optional": true,
+      "type": "TooltipPlacement",
+      "description": ""
+    },
+    {
+      "name": "trigger",
+      "optional": true,
+      "type": "TooltipTrigger | TooltipTrigger[]",
+      "description": ""
+    },
+    {
+      "name": "visible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "openDelay",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "closeDelay",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "delay",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "offset",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "showArrow",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "enterable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "teleportTo",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "maxWidth",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "zIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "popperClass",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:visible",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "show",
+      "payload": "event?: Event",
+      "description": ""
+    },
+    {
+      "name": "hide",
+      "payload": "reason: \"blur\" | \"outside\" | \"escape\" | \"toggle\" | \"disabled\" | \"manual\", event?: Event,",
+      "description": ""
+    },
+    {
+      "name": "visibleChange",
+      "payload": "value: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "TooltipPlacement",
+    "TooltipTrigger",
+    "TooltipProps",
+    "TooltipEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

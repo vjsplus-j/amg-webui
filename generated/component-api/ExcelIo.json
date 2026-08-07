@@ -1,0 +1,89 @@
+{
+  "name": "ExcelIo",
+  "generatedAt": "2026-08-07T12:41:13.582Z",
+  "source": {
+    "types": "packages/components/data/ExcelIo/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "columns",
+      "optional": true,
+      "type": "string[]",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "Record<string, unknown>[]",
+      "description": ""
+    },
+    {
+      "name": "filename",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "encoding",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "maxPreviewRows",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "showPreview",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "import",
+      "payload": "rows: Record<string, string>[]",
+      "description": ""
+    },
+    {
+      "name": "export",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "error: Error",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ExcelIoProps",
+    "ExcelIoEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

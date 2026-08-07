@@ -1,0 +1,61 @@
+{
+  "name": "OnvifChannelManage",
+  "generatedAt": "2026-08-07T12:41:35.033Z",
+  "source": {
+    "types": "packages/components/onvif/OnvifChannelManage/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "channels",
+      "optional": true,
+      "type": "OnvifChannel[]",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "add",
+      "payload": "name: string",
+      "description": ""
+    },
+    {
+      "name": "remove",
+      "payload": "id: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "OnvifChannel",
+    "OnvifChannelManageProps",
+    "OnvifChannelManageEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

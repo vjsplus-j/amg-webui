@@ -2,15 +2,12 @@
 /**
  * Curated demo — aligned with Avatar gold standard (demoCode / demoSfc / API thirds).
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Link } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -149,98 +146,6 @@ const codeEvents = demoCode(
   `</Link>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'type',
-    description: t('example.doc.link.prop.type'),
-    type: "'default' | 'primary' | 'success' | 'warning' | 'danger' | 'link'",
-    defaultValue: "'default'"
-  },
-  {
-    name: 'size',
-    description: t('example.doc.link.prop.size'),
-    type: 'Size',
-    defaultValue: "'md'"
-  },
-  {
-    name: 'underline',
-    description: t('example.doc.link.prop.underline'),
-    type: "'hover' | 'always' | 'never' | boolean",
-    defaultValue: "'hover'"
-  },
-  {
-    name: 'href / to / target / replace',
-    description: t('example.doc.link.prop.href'),
-    type: 'string / Route path',
-    defaultValue: '-'
-  },
-  {
-    name: 'icon / iconPos / iconSize / iconGap',
-    description: t('example.doc.link.prop.icon'),
-    type: "string / 'left'|'right' / Size",
-    defaultValue: "- / 'left'"
-  },
-  {
-    name: 'disabled / readonly / loading',
-    description: t('example.doc.link.prop.state'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'beforeClick',
-    description: t('example.doc.link.prop.beforeClick'),
-    type: '(e) => boolean | Promise<boolean>',
-    defaultValue: '-'
-  },
-  {
-    name: 'clickGuard / wait',
-    description: t('example.doc.link.prop.clickGuard'),
-    type: "'none' | 'debounce' | 'throttle' / number",
-    defaultValue: "'none' / 300"
-  },
-  {
-    name: 'permission / permissionMode / permissionTip',
-    description: t('example.doc.link.prop.permission'),
-    type: 'boolean | () => boolean / hide | disable',
-    defaultValue: '-'
-  },
-  {
-    name: 'stopPropagation / tooltip / ariaLabel',
-    description: t('example.doc.link.prop.misc'),
-    type: 'boolean / string',
-    defaultValue: 'false / -'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'click',
-    description: t('example.doc.link.emit.click'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'focus',
-    description: t('example.doc.link.emit.focus'),
-    type: '(event: FocusEvent) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'blur',
-    description: t('example.doc.link.emit.blur'),
-    type: '(event: FocusEvent) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.link.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -403,20 +308,7 @@ const slotRows = computed<ApiRow[]>(() => [
           }}
         </p>
       </div>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -426,24 +318,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-link-row {
   display: flex;
   flex-wrap: wrap;

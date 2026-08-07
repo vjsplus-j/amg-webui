@@ -1,0 +1,143 @@
+{
+  "name": "FreeLayoutDrag",
+  "generatedAt": "2026-08-07T12:41:13.594Z",
+  "source": {
+    "types": "packages/lowcode/ui/FreeLayoutDrag/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "enabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "{ x: number; y: number }",
+      "description": ""
+    },
+    {
+      "name": "draggable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "axis",
+      "optional": true,
+      "type": "\"both\" | \"x\" | \"y\"",
+      "description": ""
+    },
+    {
+      "name": "constrainToParent",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "activeText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "inactiveText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "mode",
+      "payload": "mode: \"free\"",
+      "description": ""
+    },
+    {
+      "name": "toggle",
+      "payload": "enabled: boolean",
+      "description": ""
+    },
+    {
+      "name": "update:enabled",
+      "payload": "enabled: boolean",
+      "description": ""
+    },
+    {
+      "name": "update:modelValue",
+      "payload": "value: { x: number; y: number }",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: { x: number; y: number }",
+      "description": ""
+    },
+    {
+      "name": "drag-start",
+      "payload": "value: { x: number; y: number }, event: PointerEvent",
+      "description": ""
+    },
+    {
+      "name": "drag",
+      "payload": "value: { x: number; y: number }, event: PointerEvent",
+      "description": ""
+    },
+    {
+      "name": "drag-end",
+      "payload": "value: { x: number; y: number }, event: PointerEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "FreeLayoutDragProps",
+    "FreeLayoutDragEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

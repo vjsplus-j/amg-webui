@@ -45,6 +45,10 @@ export function useLocale() {
     LocaleService.setDirection(next)
   }
 
+  function toggleDirection() {
+    return LocaleService.toggleDirection()
+  }
+
   return {
     locale,
     dir,
@@ -53,6 +57,7 @@ export function useLocale() {
     tDyn,
     setLocale,
     setDirection,
+    toggleDirection,
     toggle: LocaleService.toggle
   }
 }

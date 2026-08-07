@@ -77,7 +77,7 @@
 
   &.vp-icon--selected,
   &.p-icon-selected {
-    color: var(--ds-accent, var(--primary-500, currentColor));
+    color: var(--icon-color-active, var(--ds-accent, var(--primary-500, currentColor)));
   }
 
   &.vp-icon--lucide,

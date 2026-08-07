@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "combobox/listbox/grid roles + aria-expanded/selected",
+  "tests": [
+    "tests/unit/hardening/batch-b06-datetime-lowcode-pickers.spec.ts"
+  ],
+  "family": "datetime"
+}

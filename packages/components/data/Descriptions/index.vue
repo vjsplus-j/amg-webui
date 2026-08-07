@@ -80,6 +80,7 @@ const rootClass = computed(() => [
 
 const titleId = computed(() => (props.title ? 'vp-descriptions-title' : undefined))
 
+
 </script>
 
 
@@ -96,9 +97,7 @@ const titleId = computed(() => (props.title ? 'vp-descriptions-title' : undefine
 
     role="region"
 
-    :aria-labelledby="titleId"
-
-  >
+    :aria-labelledby="titleId">
 
     <div v-if="title || $slots.title" :id="titleId" class="vp-descriptions__title">
 

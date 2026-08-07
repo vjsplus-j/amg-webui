@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-08-07T11:19:52.088Z",
+  "policy": "Critical/Serious must be 0 for interactive/form/overlay",
+  "familyEvidence": [
+    {
+      "family": "datetime",
+      "batch": "B06",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      }
+    },
+    {
+      "family": "form",
+      "batch": "B03",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      }
+    },
+    {
+      "family": "foundation",
+      "batch": "B01",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      }
+    },
+    {
+      "family": "input",
+      "batch": "B02",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      }
+    },
+    {
+      "family": "overlay",
+      "batch": "B08",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      }
+    },
+    {
+      "family": "selection",
+      "batch": "B04",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      }
+    },
+    {
+      "family": "table",
+      "batch": "B12",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      }
+    }
+  ],
+  "status": "family-deepened"
+}

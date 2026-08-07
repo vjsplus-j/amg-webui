@@ -1,0 +1,108 @@
+{
+  "name": "VcrStorageDashboard",
+  "generatedAt": "2026-08-07T12:42:17.061Z",
+  "source": {
+    "types": "packages/components/media/VcrStorageDashboard/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "volumes",
+      "optional": true,
+      "type": "VcrStorageVolume[]",
+      "description": ""
+    },
+    {
+      "name": "selectedId",
+      "optional": true,
+      "type": "string | null",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "warningThreshold",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "dangerThreshold",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "valueFormatter",
+      "optional": true,
+      "type": "(value: number) => string",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:selectedId",
+      "payload": "id: string | null",
+      "description": ""
+    },
+    {
+      "name": "refresh",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "export",
+      "payload": "volumes: VcrStorageVolume[], summary: VcrStorageSummary",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "volume: VcrStorageVolume",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "VcrStorageVolume",
+    "VcrStorageSummary",
+    "VcrStorageDashboardProps",
+    "VcrStorageDashboardEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

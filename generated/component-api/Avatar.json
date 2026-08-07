@@ -1,0 +1,265 @@
+{
+  "name": "Avatar",
+  "generatedAt": "2026-08-07T12:39:09.855Z",
+  "source": {
+    "types": "packages/components/core/Avatar/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "spin",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "pulse",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "heartbeat",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bounce",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "blink",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "breathe",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "glow",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "marqueeLeft",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "marqueeRight",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollUp",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollDown",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "dampOut",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "animationDuration",
+      "optional": true,
+      "type": "number | string",
+      "description": ""
+    },
+    {
+      "name": "src",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "alt",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "text",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "textMaxLength",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "AvatarSize",
+      "description": ""
+    },
+    {
+      "name": "shape",
+      "optional": true,
+      "type": "AvatarShape",
+      "description": ""
+    },
+    {
+      "name": "borderRadius",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "bordered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "borderColor",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "borderWidth",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "optional": true,
+      "type": "'default' | 'neon'",
+      "description": ""
+    },
+    {
+      "name": "colorBg",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "colorText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "tooltip",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "tooltipDelay",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "clickable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "fallbackSrc",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "fallbackText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "fallbackIcon",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "error",
+      "payload": "event: Event",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "load",
+      "payload": "event: Event",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "props": "props: Record<string, never>",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "props": "props: Record<string, never>",
+      "description": ""
+    }
+  ],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "AvatarSize",
+    "AvatarShape",
+    "AvatarProps",
+    "AvatarEmits",
+    "AvatarSlots"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": true,
+    "expose": false,
+    "models": false
+  }
+}

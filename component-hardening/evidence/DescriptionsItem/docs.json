@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/descriptions-item.md",
+  "api": "generated/component-api/DescriptionsItem.json",
+  "demo": "example/demos/DescriptionsItem/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

@@ -2,15 +2,12 @@
 /**
  * Curated demo — Data wave1 Descriptions
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Descriptions, DescriptionsItem } from '@amg-webui/data'
 import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -40,32 +37,6 @@ const codeSize = demoCode(
   `</Descriptions>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'column',
-    description: t('example.doc.descriptions.prop.column'),
-    type: 'number',
-    defaultValue: '3'
-  },
-  {
-    name: 'bordered',
-    description: t('example.doc.descriptions.prop.bordered'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'size',
-    description: t('example.doc.descriptions.prop.size'),
-    type: "'sm' | 'md' | 'lg'",
-    defaultValue: "'md'"
-  },
-  {
-    name: 'DescriptionsItem.label / span',
-    description: t('example.doc.descriptions.prop.label'),
-    type: 'string / number',
-    defaultValue: '—'
-  }
-])
 </script>
 
 <template>
@@ -139,13 +110,7 @@ const propRows = computed<PropRow[]>(() => [
           </DescriptionsItem>
         </Descriptions>
       </Space>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -181,19 +146,5 @@ const propRows = computed<PropRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

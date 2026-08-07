@@ -1,0 +1,104 @@
+{
+  "name": "Search",
+  "generatedAt": "2026-08-07T12:41:56.136Z",
+  "source": {
+    "types": "packages/components/form/Search/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "clearable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "fluid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "search",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "focus",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "payload": "event: FocusEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "SearchProps",
+    "SearchEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -97,6 +97,7 @@
     'component.form-tabs.title': 'Вкладки формы',
     'component.form-tabs.lead': 'Контейнер вкладок формы',
   'component.step-form.title': 'StepForm',
+  'component.step-form.navAria': 'Шаги',
   'component.step-form.lead': 'Превью компонента StepForm',
   'component.image-crop.title': 'ImageCrop',
   'component.image-crop.lead': 'Превью компонента ImageCrop',

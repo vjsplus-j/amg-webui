@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { computed, onBeforeUnmount } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -32,6 +33,11 @@ function selectDevice(device: (typeof props.devices)[number]) {
 function refreshList() {
   trackEmit({ component: 'OnvifDeviceList', type: 'refresh', trackId: props.trackId, telemetry: props.telemetry })
 }
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

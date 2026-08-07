@@ -2,14 +2,11 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Highlight } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -90,67 +87,6 @@ const codeVariant = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'text',
-    description: t('example.doc.highlight.prop.text'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'keyword',
-    description: t('example.doc.highlight.prop.keyword'),
-    type: 'string | string[]',
-    defaultValue: '-'
-  },
-  {
-    name: 'ignoreCase',
-    description: t('example.doc.highlight.prop.ignoreCase'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'matchWholeWord',
-    description: t('example.doc.highlight.prop.matchWholeWord'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'variant',
-    description: t('example.doc.highlight.prop.variant'),
-    type: "'mark' | 'underline' | 'background'",
-    defaultValue: "'mark'"
-  },
-  {
-    name: 'color',
-    description: t('example.doc.highlight.prop.color'),
-    type: 'string',
-    defaultValue: 'var(--ds-accent-muted)'
-  },
-  {
-    name: 'colorText',
-    description: t('example.doc.highlight.prop.colorText'),
-    type: 'string',
-    defaultValue: 'var(--text-primary)'
-  },
-  {
-    name: 'ariaLabel',
-    description: t('example.doc.highlight.prop.ariaLabel'),
-    type: 'string',
-    defaultValue: '-'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'matchChange',
-    description: t('example.doc.highlight.emit.matchChange'),
-    type: '(count: number) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [])
 </script>
 
 <template>
@@ -270,19 +206,7 @@ const slotRows = computed<ApiRow[]>(() => [])
       </div>
     </DemoBlock>
 
-    <!-- 7. API: Props → Events → Slots -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 7. API: Props → Events → Slots -->
   </div>
 </template>
 
@@ -295,24 +219,6 @@ const slotRows = computed<ApiRow[]>(() => [])
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-highlight-demo__stack {
   display: flex;
   flex-direction: column;

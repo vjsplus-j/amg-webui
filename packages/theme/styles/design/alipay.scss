@@ -1,0 +1,195 @@
+@import './contract';
+
+/**
+ * Alipay — antd-mobile / 支付宝产品语义 Token 复刻
+ * @see https://mobile.ant.design/
+ * @see https://ant.design/docs/spec/colors-cn
+ *
+ * 色板 / 选中·高亮 / 图标色对齐 antd-mobile 5（非 Ant Design Web 中后台）。
+ */
+
+[data-design='alipay'] {
+  color-scheme: light;
+  --theme-name: alipay;
+  --theme-icon-set: lucide;
+  --theme-font: apple;
+
+  /* —— antd-mobile :root primitives —— */
+  --ali-primary: #1677ff;
+  --ali-primary-hover: #0958d9;
+  --ali-primary-active: #003eb3;
+  --ali-primary-soft: #e7f1ff;
+  --ali-success: #00b578;
+  --ali-warning: #ff8f1f;
+  --ali-danger: #ff3141;
+  --ali-yellow: #ff9f18;
+  --ali-orange: #ff6430;
+  --ali-wathet: #e7f1ff;
+  --ali-text: #333333;
+  --ali-text-secondary: #666666;
+  --ali-weak: #999999;
+  --ali-light: #cccccc;
+  --ali-border: #eeeeee;
+  --ali-background: #ffffff;
+  --ali-box: #f5f5f5;
+  --ali-white: #ffffff;
+  --ali-fill-content: #f5f5f5;
+  --ali-fill-hover: #f0f0f0;
+
+  --primary-500: var(--ali-primary);
+  --primary-400: #4096ff;
+  --primary-600: var(--ali-primary-hover);
+  --primary-300: #69b1ff;
+  --success-500: var(--ali-success);
+  --warning-500: var(--ali-warning);
+  --danger-500: var(--ali-danger);
+  --info-500: var(--ali-primary);
+
+  --surface-0: var(--ali-box);
+  --surface-1: var(--ali-background);
+  --surface-2: var(--ali-fill-content);
+  --surface-3: var(--ali-wathet);
+  --surface-4: var(--ali-light);
+  --surface-5: var(--ali-fill-hover);
+
+  --text-primary: var(--ali-text);
+  --text-secondary: var(--ali-text-secondary);
+  --text-muted: var(--ali-weak);
+  --text-link: var(--ali-primary);
+  --text-on-primary: var(--ali-white);
+
+  --border-color: var(--ali-border);
+  --border-color-hover: #d9d9d9;
+
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #000 4%, transparent);
+  --shadow-md: 0 2px 8px color-mix(in srgb, #000 6%, transparent);
+  --shadow-lg: 0 8px 24px color-mix(in srgb, #000 10%, transparent);
+
+  --ds-glow: transparent;
+  --ds-motion-lift: 0px;
+  --transition-normal: 200ms cubic-bezier(0.34, 0.69, 0.1, 1);
+  --focus-ring: color-mix(in srgb, var(--ali-primary) 28%, transparent);
+
+  /* 选中 / 高亮 / 按压 — antd-mobile list & tabs */
+  --theme-hover-bg: var(--ali-fill-hover);
+  --theme-active-bg: var(--ali-fill-hover);
+  --theme-selected-bg: var(--ali-wathet);
+  --theme-selected-fg: var(--ali-primary);
+  --theme-selected-border: transparent;
+  --theme-highlight-bg: var(--ali-wathet);
+  --theme-highlight-fg: var(--ali-primary);
+
+  /* 图标 — Ant outlined 偏细；默认正文色，选中主蓝 */
+  --icon-stroke-width: 1.5;
+  --icon-color: var(--ali-text);
+  --icon-color-muted: var(--ali-text-secondary);
+  --icon-color-disabled: var(--ali-light);
+  --icon-color-active: var(--ali-primary);
+  --icon-opacity: 1;
+  --icon-opacity-disabled: 0.4;
+
+  @include theme-type-scale(
+    $display-xl: 2.25rem,
+    $display-lg: 1.875rem,
+    $display: 1.5rem,
+    $h1: 1.125rem,
+    $h2: 1.0625rem,
+    $h3: 1rem,
+    $body-lg: 0.9375rem,
+    $body: 0.8125rem,
+    $body-sm: 0.75rem,
+    $caption: 0.6875rem,
+    $weight-display: 600,
+    $weight-heading: 500,
+    $weight-body: 400,
+    $tracking-display: 0,
+    $tracking-body: 0,
+    $leading: 1.5
+  );
+
+  @include theme-spacing(
+    $xs: 0.25rem,
+    $sm: 0.5rem,
+    $md: 0.75rem,
+    $lg: 1rem,
+    $xl: 1.5rem,
+    $xxl: 2rem,
+    $page: 0.75rem,
+    $section: 0.75rem,
+    $card: 0.75rem,
+    $control-h-sm: 28px,
+    $control-h-md: 36px,
+    $control-h-lg: 44px
+  );
+  @include theme-shape(4px, 8px, 12px, 16px, 9999px);
+  @include bridge-ds;
+
+  --ds-accent-muted: var(--ali-wathet);
+  --ds-focus-ring: color-mix(in srgb, var(--ali-primary) 28%, transparent);
+
+  --theme-btn-solid-bg: var(--ali-primary);
+  --theme-btn-solid-fg: var(--ali-white);
+  --theme-btn-solid-hover: var(--ali-primary-hover);
+  --theme-btn-ghost-hover: var(--ali-wathet);
+  --theme-btn-radius: 8px;
+  --theme-btn-font-size: 0.9375rem;
+  --theme-btn-font-weight: 500;
+  --theme-input-radius: 8px;
+  --theme-card-radius: 12px;
+  --theme-card-pad: 0.75rem;
+  --theme-alert-info-bg: var(--ali-wathet);
+  --theme-alert-success-bg: color-mix(in srgb, var(--ali-success) 12%, #fff);
+  --theme-alert-warn-bg: color-mix(in srgb, var(--ali-warning) 12%, #fff);
+  --theme-alert-danger-bg: color-mix(in srgb, var(--ali-danger) 10%, #fff);
+  --theme-nav-bg: var(--ali-background);
+  --theme-nav-border: var(--ali-border);
+  --theme-tab-active-bg: transparent;
+  --theme-tab-active-fg: var(--ali-primary);
+  --theme-tab-radius: 0;
+  --theme-stat-value-size: 1.375rem;
+  --theme-avatar-bg: var(--ali-wathet);
+  --theme-slider-track: var(--ali-light);
+  --theme-slider-fill: var(--ali-primary);
+  --theme-table-header-bg: var(--ali-box);
+  --theme-menu-hover: var(--ali-wathet);
+  --theme-badge-bg: var(--ali-wathet);
+  --theme-badge-fg: var(--ali-primary);
+  --theme-badge-radius: 4px;
+
+  color: var(--text-primary);
+  background-color: var(--surface-0);
+}
+
+[data-design='alipay'][data-scheme='dark'] {
+  color-scheme: dark;
+  --ali-primary: #3086ff;
+  --ali-primary-hover: #1677ff;
+  --ali-primary-active: #0958d9;
+  --ali-primary-soft: #0d2543;
+  --ali-success: #34b368;
+  --ali-warning: #ffa930;
+  --ali-danger: #ff4a58;
+  --ali-yellow: #ffa930;
+  --ali-orange: #e65a2b;
+  --ali-wathet: #0d2543;
+  --ali-text: #e6e6e6;
+  --ali-text-secondary: #b3b3b3;
+  --ali-weak: #808080;
+  --ali-light: #4d4d4d;
+  --ali-border: #2b2b2b;
+  --ali-background: #1a1a1a;
+  --ali-box: #0a0a0a;
+  --ali-fill-content: #0a0a0a;
+  --ali-fill-hover: #2b2b2b;
+  --surface-4: #4d4d4d;
+  --surface-5: var(--ali-fill-hover);
+  --theme-selected-bg: var(--ali-wathet);
+  --theme-alert-success-bg: color-mix(in srgb, var(--ali-success) 18%, #1a1a1a);
+  --theme-alert-warn-bg: color-mix(in srgb, var(--ali-warning) 18%, #1a1a1a);
+  --theme-alert-danger-bg: color-mix(in srgb, var(--ali-danger) 16%, #1a1a1a);
+  --theme-nav-bg: var(--ali-background);
+  --theme-table-header-bg: #141414;
+  --theme-menu-hover: var(--ali-wathet);
+  --theme-avatar-bg: var(--ali-wathet);
+  --ds-accent-muted: var(--ali-wathet);
+}

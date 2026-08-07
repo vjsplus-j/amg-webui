@@ -97,6 +97,7 @@
     'component.form-tabs.title': '表单页签',
     'component.form-tabs.lead': '多页签表单容器',
   'component.step-form.title': 'StepForm',
+  'component.step-form.navAria': '步骤导航',
   'component.step-form.lead': 'StepForm 组件调试预览',
   'component.image-crop.title': 'ImageCrop',
   'component.image-crop.lead': 'ImageCrop 组件调试预览',

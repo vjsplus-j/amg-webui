@@ -2,14 +2,11 @@
 /**
  * Curated demo — Layout wave1 Col (with Row)
  */
-import { computed } from 'vue'
+import {  } from 'vue'
 import { Row, Col } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -43,32 +40,6 @@ const codeOffset = demoCode(
   `</Row>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'Col.span',
-    description: t('example.doc.col.prop.span'),
-    type: 'number (1–24)',
-    defaultValue: '—'
-  },
-  {
-    name: 'Col.offset',
-    description: t('example.doc.col.prop.offset'),
-    type: 'number (0–23)',
-    defaultValue: '0'
-  },
-  {
-    name: 'Col.flex',
-    description: t('example.doc.col.prop.flex'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'Row.gutter',
-    description: t('example.doc.col.prop.gutter'),
-    type: 'string | number',
-    defaultValue: 'var(--spacing-md)'
-  }
-])
 </script>
 
 <template>
@@ -135,12 +106,6 @@ const propRows = computed<PropRow[]>(() => [
         </Col>
       </Row>
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-    </section>
   </div>
 </template>
 
@@ -176,19 +141,5 @@ const propRows = computed<PropRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

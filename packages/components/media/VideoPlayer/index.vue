@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { getDocument, isClient } from '@amg-webui/utils/env'
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import type { VideoPlayerProps, VideoPlayerEmits } from './types'
@@ -43,17 +45,35 @@ function onVolume(e: Event) {
 }
 function toggleFs() {
   const el = videoRef.value?.parentElement
-  if (!el) return
-  if (!document.fullscreenElement) { el.requestFullscreen?.(); isFs.value = true }
-  else { document.exitFullscreen?.(); isFs.value = false }
+  const doc = getDocument()
+  if (!el || !doc) return
+  if (!doc.fullscreenElement) {
+    el.requestFullscreen?.()
+    isFs.value = true
+  } else {
+    doc.exitFullscreen?.()
+    isFs.value = false
+  }
   emit('fullscreen', isFs.value)
 }
-function onFsChange() { isFs.value = !!document.fullscreenElement }
+function onFsChange() {
+  isFs.value = !!getDocument()?.fullscreenElement
+}
 
-onMounted(() => document.addEventListener('fullscreenchange', onFsChange))
-onBeforeUnmount(() => document.removeEventListener('fullscreenchange', onFsChange))
+onMounted(() => {
+  if (!isClient) return
+  getDocument()?.addEventListener('fullscreenchange', onFsChange)
+})
+onBeforeUnmount(() => {
+  getDocument()?.removeEventListener('fullscreenchange', onFsChange)
+})
 watch(() => props.src, () => { playing.value = false; progress.value = 0 })
 defineExpose({ videoRef })
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

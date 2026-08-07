@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
+import {
+  moveRovingIndex,
+  resolveKeyboardNavAction
+} from '@amg-webui/utils'
 import Select from '@amg-webui/form/Select/index.vue'
 import Button from '@amg-webui/core/Button/index.vue'
 import InputText from '@amg-webui/form/InputText/index.vue'
@@ -23,6 +27,8 @@ const emit = defineEmits<TemplateSelectEmits>()
 const { t } = useLocale()
 
 const query = ref('')
+const focusCardIndex = ref(0)
+const cardsRef = ref<HTMLElement | null>(null)
 
 const showSearch = computed(
   () => props.searchable && props.templates.length >= (props.searchableMin ?? 4)
@@ -82,6 +88,34 @@ const applyTemplate = () => {
   track('apply', { templateId: selected.value.id })
   emit('apply', selected.value.data)
 }
+
+function focusActiveCard() {
+  const nodes = cardsRef.value?.querySelectorAll<HTMLElement>('.vp-template-select__card-host')
+  nodes?.[focusCardIndex.value]?.focus()
+}
+
+function handleCardsKeydown(event: KeyboardEvent) {
+  if (props.disabled) return
+  const count = filteredTemplates.value.length
+  if (!count) return
+  const action = resolveKeyboardNavAction(event, { orientation: 'vertical' })
+  if (action === 'none') return
+  event.preventDefault()
+  if (action === 'select') {
+    const tpl = filteredTemplates.value[focusCardIndex.value]
+    if (tpl) selectTemplate(tpl)
+    return
+  }
+  if (
+    action === 'next' ||
+    action === 'prev' ||
+    action === 'first' ||
+    action === 'last'
+  ) {
+    focusCardIndex.value = moveRovingIndex(focusCardIndex.value, action, count, true)
+    void nextTick(focusActiveCard)
+  }
+}
 </script>
 
 <template>
@@ -120,14 +154,25 @@ const applyTemplate = () => {
         @update:model-value="onSelect"
       />
 
-      <div v-else class="vp-template-select__cards" role="listbox" :aria-label="t('component.template-select.placeholder')">
       <div
-        v-for="tpl in filteredTemplates"
+        v-else
+        ref="cardsRef"
+        class="vp-template-select__cards"
+        role="listbox"
+        tabindex="0"
+        :aria-label="t('component.template-select.placeholder')"
+        @keydown="handleCardsKeydown"
+      >
+      <div
+        v-for="(tpl, index) in filteredTemplates"
         :key="tpl.id"
         :class="['vp-template-select__card-host', { 'vp-template-select__card--selected': tpl.id === modelValue }]"
         role="option"
+        :tabindex="index === focusCardIndex ? 0 : -1"
         :aria-selected="tpl.id === modelValue"
         @click="onCardClick(tpl)"
+        @focus="focusCardIndex = index"
+        @mouseenter="focusCardIndex = index"
       >
         <Card
           class="vp-template-select__card"

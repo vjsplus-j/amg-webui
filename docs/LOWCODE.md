@@ -2,7 +2,7 @@
 
 画布 Schema 注册表 · 校验 / 迁移 · Schema 渲染 · Vue 代码生成 · **Studio 设计器（重建中）**。
 
-对标 [OVERTAKE_ELEMENT_PLUS.md](./OVERTAKE_ELEMENT_PLUS.md)「低代码 Schema」。包：[`packages/lowcode`](../packages/lowcode/README.md)。
+对标 [OVERTAKE_ELEMENT_PLUS.md](./OVERTAKE_ELEMENT_PLUS.md)「低代码 Schema」。包：`packages/lowcode`（见仓库内 `packages/lowcode/README.md`）。
 
 > **与 Skill Pipeline 分离**：本引擎负责 **UI 页面级** Schema；Skill Pipeline JSON v1 是逻辑编排（见 [SKILL_RUNTIME.md](./SKILL_RUNTIME.md)），禁止把代码字符串当协议。
 
@@ -14,7 +14,7 @@
 
 **状态：Prototype → Studio 0.1 重建中。** 引擎零件可用；设计器产品未 Ready。禁止宣传「生产可用 / Lowcode ready」。
 
-组件冻结清单见 [`packages/lowcode/INVENTORY.md`](../packages/lowcode/INVENTORY.md)。
+组件冻结清单见仓库内 `packages/lowcode/INVENTORY.md`。
 
 ## Principles
 
@@ -90,10 +90,12 @@ interface CanvasSchema {
 
 ## DoD（Studio Ready）
 
-Engine · Interaction · Runtime · Persistence · Production · Test 六维全过。见落地计划。
+Engine · Interaction · Runtime · Persistence · Production · Test 六维全过。见 [`LOWCODE.md`](./LOWCODE.md) 与 `packages/lowcode/`。
 
 ## 诚实边界
 
-**当前：Studio 0.1 重建交付中。** 产品成熟度按设计器标准计，不等于引擎零件分。
+**当前：Studio 0.1 闭环增强中。** 已补：Action 链可视化、编辑态 `resolveRuntimeRender` 与 Preview 同语义、parentRules Drop、Align UI、DataSource 配置面板、Codegen 结构检查（`assertGeneratedSfcShape`）。
+
+仍未宣称 Ready：无 Playwright E2E 全量签核 19 步；编辑态仍扁平绝对定位（非 SchemaRenderer 树内嵌套 Chrome）；Codegen handler 为可编译空实现（注释记录 action，非运行时自动接入生成页）。
 
 未交付（勿宣传）：云端版本库、协作、GraphQL/WS、设备管理/Dashboard 完整模板、AI 生成页、文档站拖拽器上线、全量物料自动目录。

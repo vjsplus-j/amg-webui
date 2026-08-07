@@ -97,6 +97,7 @@
     'component.form-tabs.title': '서식 타브',
     'component.form-tabs.lead': '타브 서식 용기',
   'component.step-form.title': 'StepForm',
+  'component.step-form.navAria': '단계',
   'component.step-form.lead': 'StepForm 구성요소 미리보기',
   'component.image-crop.title': 'ImageCrop',
   'component.image-crop.lead': 'ImageCrop 구성요소 미리보기',

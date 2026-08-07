@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/confirm.md",
+  "api": "generated/component-api/Confirm.json",
+  "demo": "example/demos/Confirm/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

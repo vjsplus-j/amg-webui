@@ -1,0 +1,7 @@
+{
+  "component": "EditTree",
+  "family": "tree",
+  "batch": "B43R",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:41:30.701Z"
+}

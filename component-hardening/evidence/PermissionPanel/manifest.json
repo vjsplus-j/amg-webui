@@ -1,0 +1,7 @@
+{
+  "component": "PermissionPanel",
+  "family": "form",
+  "batch": "B26R",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:41:52.607Z"
+}

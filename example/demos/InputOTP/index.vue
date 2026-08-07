@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { InputOTP } from '@amg-webui/form'
 import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -23,11 +21,6 @@ const codeMask = demoSfc({
   template: ['  <InputOTP v-model="code" :length="6" mask />']
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'modelValue', type: 'string', description: t('example.doc.inputOTP.prop.modelValue') },
-  { name: 'length', type: 'number', defaultValue: '6', description: t('example.doc.inputOTP.prop.length') },
-  { name: 'mask', type: 'boolean', defaultValue: 'false', description: t('example.doc.inputOTP.prop.mask') }
-])
 </script>
 
 <template>
@@ -54,8 +47,7 @@ const propRows = computed<PropRow[]>(() => [
     >
       <InputOTP v-model="code" :length="6" mask />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

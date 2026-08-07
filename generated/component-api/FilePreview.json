@@ -1,0 +1,89 @@
+{
+  "name": "FilePreview",
+  "generatedAt": "2026-08-07T12:41:13.584Z",
+  "source": {
+    "types": "packages/components/core/FilePreview/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "src",
+      "optional": true,
+      "type": "string | File | Blob | null",
+      "description": ""
+    },
+    {
+      "name": "mime",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "height",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "load",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "err: Error",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "FilePreviewProps",
+    "FilePreviewEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

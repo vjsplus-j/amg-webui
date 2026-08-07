@@ -1,0 +1,70 @@
+{
+  "name": "CryptoBox",
+  "generatedAt": "2026-08-07T12:40:46.810Z",
+  "source": {
+    "types": "packages/components/core/CryptoBox/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "passphrase",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "masked",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "encrypted",
+      "payload": "cipher: string",
+      "description": ""
+    },
+    {
+      "name": "decrypted",
+      "payload": "plain: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "CryptoBoxProps",
+    "CryptoBoxEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

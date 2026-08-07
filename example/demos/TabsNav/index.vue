@@ -2,15 +2,13 @@
 /**
  * Curated TabsNav demo — chrome multi-tabs + overflow + drag reorder.
  */
-import { computed, ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { TabsNav, Button, Space } from '@amg-webui/core'
 import type { TabsNavItem } from '@amg-webui/core/TabsNav'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t, locale } = useLocale()
@@ -79,38 +77,6 @@ const codeDrag = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'modelValue',
-    type: 'string',
-    defaultValue: '-',
-    description: t('example.doc.tabsNav.prop.model')
-  },
-  {
-    name: 'items',
-    type: 'TabsNavItem[]',
-    defaultValue: '[]',
-    description: t('example.doc.tabsNav.prop.items')
-  },
-  {
-    name: 'closable',
-    type: 'boolean',
-    defaultValue: 'false',
-    description: t('example.doc.tabsNav.prop.closable')
-  },
-  {
-    name: 'overflow',
-    type: 'boolean',
-    defaultValue: 'true',
-    description: t('example.doc.tabsNav.prop.overflow')
-  },
-  {
-    name: 'draggable',
-    type: 'boolean',
-    defaultValue: 'false',
-    description: t('example.doc.tabsNav.prop.draggable')
-  }
-])
 </script>
 
 <template>
@@ -157,9 +123,7 @@ const propRows = computed<PropRow[]>(() => [
         />
       </div>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

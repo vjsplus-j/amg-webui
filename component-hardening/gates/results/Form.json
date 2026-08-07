@@ -1,0 +1,92 @@
+{
+  "name": "Form",
+  "family": "form",
+  "package": "form",
+  "profile": "form",
+  "gates": [
+    {
+      "id": "package",
+      "status": "PASS",
+      "detail": "vue=true types=true style=true"
+    },
+    {
+      "id": "api-props",
+      "status": "PASS",
+      "detail": "Props interface or defineProps"
+    },
+    {
+      "id": "api-emits",
+      "status": "PASS",
+      "detail": "Emits typed or none"
+    },
+    {
+      "id": "api-slots",
+      "status": "PASS",
+      "detail": "Slots contract present or N/A"
+    },
+    {
+      "id": "i18n",
+      "status": "PASS",
+      "detail": "no hardcoded CJK literals"
+    },
+    {
+      "id": "tokens",
+      "status": "PASS",
+      "detail": "no raw hex/rgb in component scss"
+    },
+    {
+      "id": "cleanup",
+      "status": "PASS",
+      "detail": "no side-effect APIs detected"
+    },
+    {
+      "id": "behavior",
+      "status": "PASS",
+      "detail": "validate/resetFields/clearValidate"
+    },
+    {
+      "id": "visual",
+      "status": "PASS",
+      "detail": "form family visual (lab form-default)"
+    },
+    {
+      "id": "a11y",
+      "status": "PASS",
+      "detail": "form family axe + role=form / error alerts"
+    },
+    {
+      "id": "keyboard",
+      "status": "PASS",
+      "detail": "native form submit + Tab through FormItem controls"
+    },
+    {
+      "id": "theme",
+      "status": "N/A",
+      "detail": "optional"
+    },
+    {
+      "id": "rtl",
+      "status": "N/A",
+      "detail": "optional"
+    },
+    {
+      "id": "perf",
+      "status": "N/A",
+      "detail": "not applicable"
+    },
+    {
+      "id": "docs",
+      "status": "PASS",
+      "detail": "VitePress docs page + generated API extract"
+    },
+    {
+      "id": "ssr",
+      "status": "PASS",
+      "detail": "structural=PASS; evidence=structural DOM + component entry"
+    }
+  ],
+  "failCount": 0,
+  "status": "PASS",
+  "stable": true,
+  "verifiedAt": "2026-08-07T12:51:55.966Z"
+}

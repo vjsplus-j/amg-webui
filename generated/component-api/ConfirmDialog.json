@@ -1,0 +1,97 @@
+{
+  "name": "ConfirmDialog",
+  "generatedAt": "2026-08-07T12:40:46.805Z",
+  "source": {
+    "types": "packages/components/overlay/ConfirmDialog/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "visible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "message",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "ConfirmDialogIcon",
+      "description": ""
+    },
+    {
+      "name": "confirmLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "cancelLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modal",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "draggable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "closable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "dismissible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "confirm",
+      "payload": "event: Event",
+      "description": ""
+    },
+    {
+      "name": "cancel",
+      "payload": "event: Event",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ConfirmDialogIcon",
+    "ConfirmDialogProps",
+    "ConfirmDialogEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "name": "Calendar",
+  "generatedAt": "2026-08-07T12:34:13.525Z",
+  "source": {
+    "types": "packages/components/data/Calendar/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "CalendarValue",
+      "description": ""
+    },
+    {
+      "name": "valueFormat",
+      "optional": true,
+      "type": "\"date\" | \"iso\"",
+      "description": ""
+    },
+    {
+      "name": "viewDate",
+      "optional": true,
+      "type": "CalendarValue",
+      "description": ""
+    },
+    {
+      "name": "min",
+      "optional": true,
+      "type": "CalendarValue",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "optional": true,
+      "type": "CalendarValue",
+      "description": ""
+    },
+    {
+      "name": "disabledDate",
+      "optional": true,
+      "type": "(date: Date) => boolean",
+      "description": ""
+    },
+    {
+      "name": "firstDayOfWeek",
+      "optional": true,
+      "type": "0 | 1 | 2 | 3 | 4 | 5 | 6",
+      "description": ""
+    },
+    {
+      "name": "showAdjacent",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showToday",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: CalendarValue",
+      "description": ""
+    },
+    {
+      "name": "update:viewDate",
+      "payload": "value: Date",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "value: string | Date",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: CalendarValue",
+      "description": ""
+    },
+    {
+      "name": "monthChange",
+      "payload": "value: Date",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "CalendarValue",
+    "CalendarProps",
+    "CalendarEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

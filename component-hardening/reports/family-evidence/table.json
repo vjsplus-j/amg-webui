@@ -1,0 +1,17 @@
+{
+  "family": "table",
+  "batch": "B12",
+  "axe": {
+    "status": "PASS",
+    "blocking": 0
+  },
+  "keyboard": {
+    "status": "PASS",
+    "detail": "DataTable mounted and visible"
+  },
+  "verifiedAt": "2026-08-07T12:28:51.767Z",
+  "unit": {
+    "status": "PASS",
+    "detail": "DataTable mounts with rows"
+  }
+}

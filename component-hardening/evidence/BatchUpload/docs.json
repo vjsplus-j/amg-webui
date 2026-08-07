@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/batch-upload.md",
+  "api": "generated/component-api/BatchUpload.json",
+  "demo": "example/demos/BatchUpload/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

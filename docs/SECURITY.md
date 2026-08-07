@@ -2,7 +2,7 @@
 
 企业基建独家赛道：HTML 白名单消毒、链接协议拦截、表单危险输入过滤、开发态告警。
 
-对标 [OVERTAKE_ELEMENT_PLUS.md](./OVERTAKE_ELEMENT_PLUS.md)「安全防护层」。包：[`packages/security`](../packages/security/README.md)。
+对标 [OVERTAKE_ELEMENT_PLUS.md](./OVERTAKE_ELEMENT_PLUS.md)「安全防护层」。包：`packages/security`（见仓库内 `packages/security/README.md`）。
 
 ## Principles
 

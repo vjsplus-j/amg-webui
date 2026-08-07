@@ -36,7 +36,7 @@ Run codemods / search-replace on app templates and global overrides before upgra
 ### i18n
 
 - Missing locale keys become **compile-time errors** in 1.0 toolchain (typed i18n).
-- Add keys to **all** packs: `zh-CN` · `zh-TW` · `en-US` · `ja-JP` · `ko-KR` · `ko-KP` · `ru-RU`.
+- Add keys to **all** packs: `zh-CN` · `zh-HK` · `en-US` · `hi-IN` · `ja-JP` · `ko-KR` · `ko-KP` · `ru-RU` · `ar-SA` · `ug-CN`.
 
 ### Telemetry
 

@@ -1,0 +1,90 @@
+{
+  "name": "Slider",
+  "generatedAt": "2026-08-07T12:41:56.149Z",
+  "source": {
+    "types": "packages/components/form/Slider/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "SliderValue",
+      "description": ""
+    },
+    {
+      "name": "min",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "step",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "range",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showTooltip",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: SliderValue",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: SliderValue",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "SliderValue",
+    "SliderProps",
+    "SliderEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

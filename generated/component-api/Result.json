@@ -1,0 +1,93 @@
+{
+  "name": "Result",
+  "generatedAt": "2026-08-07T12:41:56.125Z",
+  "source": {
+    "types": "packages/components/core/Result/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "status",
+      "optional": true,
+      "type": "ResultStatus",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "subTitle",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "string | false",
+      "description": ""
+    },
+    {
+      "name": "image",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "ResultSize",
+      "description": ""
+    },
+    {
+      "name": "fullScreen",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "actions",
+      "optional": true,
+      "type": "ResultAction[]",
+      "description": ""
+    },
+    {
+      "name": "live",
+      "optional": true,
+      "type": "\"polite\" | \"assertive\" | \"off\"",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "extra-click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "action",
+      "payload": "key: string, event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ResultStatus",
+    "ResultSize",
+    "ResultAction",
+    "ResultProps",
+    "ResultEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

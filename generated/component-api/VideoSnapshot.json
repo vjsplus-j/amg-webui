@@ -1,0 +1,164 @@
+{
+  "name": "VideoSnapshot",
+  "generatedAt": "2026-08-07T12:42:17.068Z",
+  "source": {
+    "types": "packages/components/media/VideoSnapshot/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "videoRef",
+      "optional": true,
+      "type": "HTMLVideoElement | null",
+      "description": ""
+    },
+    {
+      "name": "src",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "stream",
+      "optional": true,
+      "type": "MediaStream | null",
+      "description": ""
+    },
+    {
+      "name": "crossOrigin",
+      "optional": true,
+      "type": "\"\" | \"anonymous\" | \"use-credentials\"",
+      "description": ""
+    },
+    {
+      "name": "controls",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "autoplay",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "muted",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "format",
+      "optional": true,
+      "type": "VideoSnapshotFormat",
+      "description": ""
+    },
+    {
+      "name": "quality",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "maxWidth",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "maxHeight",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "preview",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "downloadable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "fileName",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "capture",
+      "payload": "dataUrl: string, result: VideoSnapshotResult",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "download",
+      "payload": "result: VideoSnapshotResult",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "error: VideoSnapshotError",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "VideoSnapshotFormat",
+    "VideoSnapshotErrorCode",
+    "VideoSnapshotResult",
+    "VideoSnapshotError",
+    "VideoSnapshotProps",
+    "VideoSnapshotEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

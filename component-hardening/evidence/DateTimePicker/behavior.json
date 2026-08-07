@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "detail": "open/Escape floating panel",
+  "tests": [
+    "tests/unit/hardening/eng-004b-datetime-color.spec.ts"
+  ]
+}

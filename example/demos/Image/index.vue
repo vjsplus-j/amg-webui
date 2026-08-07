@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import {  } from 'vue'
 import { Image, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -21,11 +19,6 @@ const codeContain = demoSfc({
   template: ['  <Image :src="src" fit="contain" />']
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'src', type: 'string', description: t('example.doc.image.prop.src') },
-  { name: 'fit', type: 'fill|contain|cover|none|scale-down', defaultValue: 'cover', description: t('example.doc.image.prop.fit') },
-  { name: 'preview', type: 'boolean', defaultValue: 'true', description: t('example.doc.image.prop.preview') }
-])
 </script>
 
 <template>
@@ -48,8 +41,7 @@ const propRows = computed<PropRow[]>(() => [
     >
       <Image :src="src" fit="contain" class="vp-img-demo" />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

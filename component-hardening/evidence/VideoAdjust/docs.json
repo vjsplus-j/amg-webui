@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/video-adjust.md",
+  "api": "generated/component-api/VideoAdjust.json",
+  "demo": "example/demos/VideoAdjust/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

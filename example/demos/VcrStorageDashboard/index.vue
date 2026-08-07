@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref } from 'vue';
 import { VcrStorageDashboard } from '@amg-webui/media';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
-import PropsTable from "../../components/demo/PropsTable.vue";
 import { demoSfc } from "../../components/demo/demoCode";
-import type { PropRow } from "../../components/demo/types";
 import { getSampleMountProps } from "../_shared/sampleMountProps";
 import "../../components/demo/curatedDemo.scss";
 
@@ -23,23 +21,7 @@ const codeBasic = demoSfc({
   template: [`  <VcrStorageDashboard v-bind="mountProps" />`],
 });
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: "volumes / selectedId",
-    type: "VcrStorageVolume[] / string | null",
-    description: t("example.doc.vcrStorageDashboard.prop.base"),
-  },
-  {
-    name: "warningThreshold / dangerThreshold / valueFormatter",
-    type: "number / formatter",
-    description: t("example.doc.vcrStorageDashboard.prop.base"),
-  },
-  {
-    name: "refresh / export / select",
-    type: "events",
-    description: t("example.doc.vcrStorageDashboard.prop.base"),
-  },
-]);
+;
 </script>
 
 <template>
@@ -58,6 +40,5 @@ const propRows = computed<PropRow[]>(() => [
         v-model:selected-id="selectedId"
       />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

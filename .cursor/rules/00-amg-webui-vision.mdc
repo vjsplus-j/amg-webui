@@ -1,0 +1,13 @@
+---
+description: AMG-WebUI global product and architecture direction
+alwaysApply: true
+---
+
+# AMG-WebUI Vision
+- AMG-WebUI is a Vue 3 enterprise UI infrastructure, not an Element Plus skin or component-count project.
+- Prefer stable shared runtimes and engines over duplicated component logic.
+- Keep foundation, business, industry, media, low-code, telemetry and skill capabilities separated.
+- Design for API stability, SSR, accessibility, theming, RTL, performance and package consumption.
+- Quality is determined by contracts and verified gates, not code size, demo count or heuristic score.
+- Do not add low-value components merely to increase inventory.
+- Architecture consistency has higher priority than short-term speed.

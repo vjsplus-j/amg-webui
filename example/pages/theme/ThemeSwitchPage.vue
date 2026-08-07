@@ -172,6 +172,26 @@ const paletteTokens = computed(() => {
       { label: 'primary', color: '#0071e3' },
       { label: 'link', color: '#0066cc' },
       { label: 'overlay', color: '#d2d2d7' }
+    ],
+    wechat: [
+      { label: 'BG-0', color: '#ededed' },
+      { label: 'BG-2', color: '#ffffff' },
+      { label: 'hover', color: '#ececec' },
+      { label: 'FG-0', color: '#191919' },
+      { label: 'BRAND', color: '#07c160' },
+      { label: 'selected', color: '#07c160' },
+      { label: 'LINK', color: '#576b95' },
+      { label: 'RED', color: '#fa5151' }
+    ],
+    alipay: [
+      { label: 'box', color: '#f5f5f5' },
+      { label: 'background', color: '#ffffff' },
+      { label: 'text', color: '#333333' },
+      { label: 'primary', color: '#1677ff' },
+      { label: 'selected-bg', color: '#e7f1ff' },
+      { label: 'hover', color: '#f0f0f0' },
+      { label: 'success', color: '#00b578' },
+      { label: 'danger', color: '#ff3141' }
     ]
   }
   return map[currentDesign.value]
@@ -183,6 +203,23 @@ const typeSamples = [
   { cls: 'theme-kit-heading', label: 'heading-section', sample: 'Engineered restraint' },
   { cls: 'theme-kit-body-lg', label: 'body-large', sample: 'Luxury engineering rendered in restraint — tokens map 1:1 to designmd.' }
 ]
+
+function isLightSwatch(color: string) {
+  const light = new Set([
+    '#ffffff',
+    '#f5f5f7',
+    '#f4f4f4',
+    '#f7f7f7',
+    '#ededed',
+    '#f5f5f5',
+    '#fafafa',
+    '#e6f4ff',
+    '#e8f8ef',
+    '#e7f1ff',
+    '#95ec69'
+  ])
+  return light.has(color.toLowerCase())
+}
 </script>
 
 <template>
@@ -230,7 +267,7 @@ const typeSamples = [
             <strong>{{ style.label }}</strong>
             <span>{{ style.category }} · {{ style.description }}</span>
             <a class="ref-link" :href="style.ref" target="_blank" rel="noopener" @click.stop>
-              designmd ↗
+              spec ↗
             </a>
           </div>
           <Icon v-if="currentDesign === style.name" name="Check" size="sm" class="check" />
@@ -257,7 +294,10 @@ const typeSamples = [
           v-for="t in paletteTokens"
           :key="t.label"
           class="theme-kit-swatch"
-          :style="{ background: t.color, color: t.color === '#ffffff' || t.color === '#f5f5f7' || t.color === '#f4f4f4' ? '#171717' : '#fff' }"
+          :style="{
+            background: t.color,
+            color: isLightSwatch(t.color) ? '#171717' : '#fff'
+          }"
         >
           <span>{{ t.label }}</span>
           <span>{{ t.color }}</span>

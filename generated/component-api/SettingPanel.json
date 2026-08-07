@@ -1,0 +1,77 @@
+{
+  "name": "SettingPanel",
+  "generatedAt": "2026-08-07T12:41:56.143Z",
+  "source": {
+    "types": "packages/components/form/SettingPanel/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "Record<string, unknown>",
+      "description": ""
+    },
+    {
+      "name": "items",
+      "optional": true,
+      "type": "SettingItem[]",
+      "description": ""
+    },
+    {
+      "name": "groups",
+      "optional": true,
+      "type": "SettingGroup[]",
+      "description": ""
+    },
+    {
+      "name": "defaultValue",
+      "optional": true,
+      "type": "Record<string, unknown>",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: Record<string, unknown>",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: Record<string, unknown>",
+      "description": ""
+    },
+    {
+      "name": "save",
+      "payload": "value: Record<string, unknown>",
+      "description": ""
+    },
+    {
+      "name": "reset",
+      "payload": "value: Record<string, unknown>",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "SettingItem",
+    "SettingGroup",
+    "SettingPanelProps",
+    "SettingPanelEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

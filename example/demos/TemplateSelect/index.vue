@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { TemplateSelect } from '@amg-webui/lowcode'
 import { StatusTip } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -47,12 +45,6 @@ const codeBasic = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'modelValue', type: 'string | null', description: t('example.doc.templateSelect.prop.modelValue') },
-  { name: 'templates', type: 'FormTemplate[]', description: t('example.doc.templateSelect.prop.templates') },
-  { name: 'layout', type: "'dropdown' | 'cards'", defaultValue: 'dropdown', description: t('example.doc.templateSelect.prop.layout') },
-  { name: 'searchable', type: 'boolean', defaultValue: 'true', description: t('example.doc.templateSelect.prop.searchable') }
-])
 </script>
 
 <template>
@@ -80,9 +72,7 @@ const propRows = computed<PropRow[]>(() => [
     <DemoBlock :title="t('example.doc.templateSelect.demo.empty')" :description="t('example.doc.templateSelect.demo.emptyDesc')">
       <TemplateSelect :templates="[]" />
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

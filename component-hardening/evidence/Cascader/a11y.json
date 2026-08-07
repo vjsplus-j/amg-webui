@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "detail": "selection family axe + Cascader combobox role",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts",
+  "family": "selection"
+}

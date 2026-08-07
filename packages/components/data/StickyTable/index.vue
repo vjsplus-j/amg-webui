@@ -29,7 +29,7 @@ const titleText = computed(() => props.title ?? t('component.sticky-table.title'
 </script>
 
 <template>
-  <div :class="['vp-sticky-table', 'vp-sticky-table__panel', { 'vp-sticky-table--disabled': disabled }, props.class]" :style="style">
+  <div role="region" aria-label="StickyTable" :class="['vp-sticky-table', 'vp-sticky-table__panel', { 'vp-sticky-table--disabled': disabled }, props.class]" :style="style">
     <div class="vp-sticky-table__toolbar">
       <strong class="vp-sticky-table__heading">{{ titleText }}</strong>
       <input v-model="keyword" class="vp-sticky-table__filter" type="search" :placeholder="t('common.search')" />

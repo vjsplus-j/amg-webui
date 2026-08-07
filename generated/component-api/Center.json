@@ -1,0 +1,81 @@
+{
+  "name": "Center",
+  "generatedAt": "2026-08-07T12:40:46.792Z",
+  "source": {
+    "types": "packages/components/core/Center/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "axis",
+      "optional": true,
+      "type": "CenterAxis",
+      "description": ""
+    },
+    {
+      "name": "flush",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "minHeight",
+      "optional": true,
+      "type": "CenterMinHeight",
+      "description": ""
+    },
+    {
+      "name": "fill",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "textAlign",
+      "optional": true,
+      "type": "\"start\" | \"center\" | \"end\" | \"inherit\"",
+      "description": ""
+    },
+    {
+      "name": "as",
+      "optional": true,
+      "type": "\"div\" | \"section\" | \"main\"",
+      "description": ""
+    },
+    {
+      "name": "contentAs",
+      "optional": true,
+      "type": "\"div\" | \"span\"",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "maxWidth",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "CenterAxis",
+    "CenterMinHeight",
+    "CenterEmits",
+    "CenterProps"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

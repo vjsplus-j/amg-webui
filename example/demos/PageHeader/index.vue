@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { PageHeader, Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -26,10 +24,6 @@ const codePlain = demoSfc({
   template: ['  <PageHeader :title="title" />']
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'title / subtitle', type: 'string', description: t('example.doc.pageHeader.prop.title') },
-  { name: 'back', type: 'boolean', defaultValue: 'false', description: t('example.doc.pageHeader.prop.back') }
-])
 </script>
 
 <template>
@@ -63,8 +57,7 @@ const propRows = computed<PropRow[]>(() => [
     >
       <Button size="sm" :label="String(withBack)" @click="withBack = !withBack" />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { ScaleLayout, Button, Space, Tag, Card, Statistic } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import type { ScaleLayoutFit } from '@amg-webui/core/ScaleLayout'
 import '../../components/demo/curatedDemo.scss'
 
@@ -35,13 +33,6 @@ const codeManual = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'fit', type: "'manual'|'contain'|'cover'|'width'|'height'", defaultValue: "'manual'", description: t('example.doc.scaleLayout.prop.fit') },
-  { name: 'width / height', type: 'number', defaultValue: '-', description: t('example.doc.scaleLayout.prop.design') },
-  { name: 'scale', type: 'number', defaultValue: '1', description: t('example.doc.scaleLayout.prop.scale') },
-  { name: 'fill', type: 'boolean', defaultValue: 'true', description: t('example.doc.scaleLayout.prop.fill') },
-  { name: 'origin', type: "'top-left'|'center'", defaultValue: "'center'", description: t('example.doc.scaleLayout.prop.origin') }
-])
 </script>
 
 <template>
@@ -120,9 +111,7 @@ const propRows = computed<PropRow[]>(() => [
         </div>
       </Space>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

@@ -1,0 +1,95 @@
+{
+  "name": "Switch",
+  "generatedAt": "2026-08-07T12:41:56.167Z",
+  "source": {
+    "types": "packages/components/form/Switch/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "inlinePrompt",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "activeText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "inactiveText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "SwitchProps",
+    "SwitchEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

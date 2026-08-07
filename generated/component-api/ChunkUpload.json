@@ -1,0 +1,83 @@
+{
+  "name": "ChunkUpload",
+  "generatedAt": "2026-08-07T12:40:46.795Z",
+  "source": {
+    "types": "packages/components/form/ChunkUpload/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "ChunkFileItem[]",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "chunkSize",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "accept",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "drag",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: ChunkFileItem[]",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: ChunkFileItem[]",
+      "description": ""
+    },
+    {
+      "name": "upload",
+      "payload": "file: ChunkFileItem",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "ChunkFileItem",
+    "ChunkUploadProps",
+    "ChunkUploadEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/footer.md",
+  "api": "generated/component-api/Footer.json",
+  "demo": "example/demos/Footer/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

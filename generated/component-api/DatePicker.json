@@ -1,0 +1,101 @@
+{
+  "name": "DatePicker",
+  "generatedAt": "2026-08-07T12:34:13.531Z",
+  "source": {
+    "types": "packages/components/form/DatePicker/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | Date | null",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "valueFormat",
+      "optional": true,
+      "type": "'date' | 'iso'",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | Date | null",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string | Date | null",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "props": "props: Record<string, never>",
+      "description": ""
+    }
+  ],
+  "expose": [
+    {
+      "name": "focus",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "open",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "type": "() => void",
+      "description": ""
+    }
+  ],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "DatePickerInstance",
+    "DatePickerProps",
+    "DatePickerEmits",
+    "DatePickerSlots",
+    "DatePickerExpose"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": true,
+    "expose": true,
+    "models": true
+  }
+}

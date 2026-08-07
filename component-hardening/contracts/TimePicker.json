@@ -1,0 +1,69 @@
+{
+  "name": "TimePicker",
+  "family": "datetime",
+  "package": "form",
+  "capability": "interaction",
+  "maturity": "stable",
+  "batch": "B07",
+  "api": {
+    "props": "required",
+    "emits": "required",
+    "slots": "required",
+    "expose": "required",
+    "models": "required",
+    "instance": "optional",
+    "service": "not-applicable",
+    "context": "internal"
+  },
+  "requiredExpose": [
+    "focus",
+    "blur",
+    "open",
+    "close"
+  ],
+  "requiredSlots": [
+    "default"
+  ],
+  "models": [],
+  "behavioralContract": {
+    "disabled": "Interactive actions no-op when disabled",
+    "unmount": "Listeners, timers, observers, and abort controllers must be released",
+    "batch": "B07 Time Family"
+  },
+  "states": [
+    "default",
+    "disabled"
+  ],
+  "keyboard": [],
+  "gates": {
+    "api-props": "mandatory",
+    "api-emits": "mandatory",
+    "api-slots": "mandatory",
+    "api-docs": "mandatory",
+    "package": "mandatory",
+    "ssr": "mandatory",
+    "cleanup": "mandatory",
+    "tokens": "mandatory",
+    "i18n": "mandatory",
+    "visual": "optional",
+    "a11y": "mandatory",
+    "keyboard": "mandatory",
+    "perf": "na",
+    "theme": "optional",
+    "rtl": "optional",
+    "form-contract": "mandatory",
+    "ime": "optional",
+    "behavior": "mandatory",
+    "docs": "mandatory"
+  },
+  "apiFreeze": {
+    "version": "1",
+    "frozen": true,
+    "frozenAt": "2026-08-07T11:34:20.481Z"
+  },
+  "generated": true,
+  "generatedAt": "2026-08-07T09:57:01.280Z",
+  "promoteStable": true,
+  "batchTitle": "Time Family",
+  "updatedAt": "2026-08-07T11:34:20.481Z"
+}

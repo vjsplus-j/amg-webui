@@ -1,0 +1,94 @@
+{
+  "name": "CanvasNode",
+  "generatedAt": "2026-08-07T12:39:09.874Z",
+  "source": {
+    "types": "packages/lowcode/ui/CanvasNode/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "node",
+      "optional": false,
+      "type": "CanvasNodeData",
+      "description": ""
+    },
+    {
+      "name": "nested",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "children",
+      "optional": true,
+      "type": "CanvasTreeNode[]",
+      "description": ""
+    },
+    {
+      "name": "selectable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "draggable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "keyboardStep",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "registry",
+      "optional": true,
+      "type": "ComponentRegistry",
+      "description": ""
+    },
+    {
+      "name": "renderMode",
+      "optional": true,
+      "type": "SchemaRenderMode",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "select",
+      "payload": "id: string",
+      "description": ""
+    },
+    {
+      "name": "move",
+      "payload": "payload: { id: string; x: number; y: number }",
+      "description": ""
+    },
+    {
+      "name": "moveStart",
+      "payload": "payload: { id: string; x: number; y: number }",
+      "description": ""
+    },
+    {
+      "name": "moveEnd",
+      "payload": "payload: { id: string; x: number; y: number }",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "CanvasNodeProps",
+    "CanvasNodeEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

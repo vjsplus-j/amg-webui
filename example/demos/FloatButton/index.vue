@@ -2,14 +2,12 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Button, FloatButton, Icon } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -96,92 +94,6 @@ const codeEvents = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'icon',
-    description: t('example.doc.floatButton.prop.icon'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'severity / type',
-    description: t('example.doc.floatButton.prop.severity'),
-    type: 'Severity',
-    defaultValue: "'primary'"
-  },
-  {
-    name: 'shape',
-    description: t('example.doc.floatButton.prop.shape'),
-    type: 'Shape',
-    defaultValue: "'circle'"
-  },
-  {
-    name: 'href',
-    description: t('example.doc.floatButton.prop.href'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'top / right / bottom / left',
-    description: t('example.doc.floatButton.prop.position'),
-    type: 'string | number',
-    defaultValue: 'token spacing'
-  },
-  {
-    name: 'open / v-model:open',
-    description: t('example.doc.floatButton.prop.open'),
-    type: 'boolean',
-    defaultValue: '-'
-  },
-  {
-    name: 'trackId / telemetry',
-    description: t('example.doc.floatButton.prop.telemetry'),
-    type: 'string / boolean',
-    defaultValue: '- / undefined'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'click',
-    description: t('example.doc.floatButton.emit.click'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'openChange / update:open',
-    description: t('example.doc.floatButton.emit.openChange'),
-    type: '(open: boolean) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.floatButton.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'icon',
-    description: t('example.doc.floatButton.slot.icon'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'menu',
-    description: t('example.doc.floatButton.slot.menu'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'description',
-    description: t('example.doc.floatButton.slot.description'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -301,19 +213,7 @@ const slotRows = computed<ApiRow[]>(() => [
       </div>
     </DemoBlock>
 
-    <!-- 5. API: Props → Events → Slots -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 5. API: Props → Events → Slots -->
   </div>
 </template>
 
@@ -323,24 +223,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-float-stage {
   position: relative;
   width: 100%;

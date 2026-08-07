@@ -1,0 +1,25 @@
+---
+description: Rules for the 300-component hardening program
+globs: packages/components/**/*,packages/core/**/*,packages/form/**/*,packages/data/**/*,packages/overlay/**/*,.component-hardening/**/*,docs/engineering/component-hardening/**/*
+alwaysApply: false
+---
+
+# Component Hardening
+For public component work:
+1. Read inventory, family, contract and batch state.
+2. Review the family API profile.
+3. Audit the public API.
+4. Improve shared engines before duplicating logic.
+5. Implement.
+6. Add/update behavior tests.
+7. Verify A11Y, SSR, cleanup, theme/RTL and package behavior as applicable.
+8. Update official docs/demos.
+9. Run component/family gates.
+10. Update hardening state only after verification.
+
+Audit Props, Emits, Slots, Expose, Models, Instance types, Programmatic APIs, Public types, Context/provider surface and behavioral semantics.
+
+- Capability and maturity are separate.
+- Wrapper components may be STABLE without artificial depth.
+- Score never determines STABLE.
+- Prefer 6-12 components from one family per batch.

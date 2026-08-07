@@ -1,0 +1,7 @@
+{
+  "component": "OnvifSettingPanel",
+  "family": "onvif",
+  "batch": "B22",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:41:52.472Z"
+}

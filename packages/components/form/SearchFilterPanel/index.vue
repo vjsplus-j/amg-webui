@@ -103,6 +103,7 @@ defineExpose({
   reset: onReset,
   cancelPendingSearch: clearDebounce,
 });
+
 </script>
 
 <template>
@@ -112,8 +113,7 @@ defineExpose({
     data-component="SearchFilterPanel"
     role="search"
     :aria-label="ariaLabel"
-    @submit.prevent="onSearch"
-  >
+    @submit.prevent="onSearch">
     <div class="vp-search-filter-panel__search">
       <InputText
         class="vp-search-filter-panel__keyword"

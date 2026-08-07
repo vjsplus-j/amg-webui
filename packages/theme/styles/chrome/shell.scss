@@ -672,3 +672,92 @@ html:has(.ln-shell) .app {
     display: none;
   }
 }
+
+/* —— WeChat / Alipay chrome：选中·高亮·图标色（去掉 Linear 侧栏条） —— */
+[data-design='wechat'],
+[data-design='alipay'] {
+  .ln-sidebar {
+    background: var(--surface-1);
+  }
+
+  .ln-sidebar__toggle:hover {
+    background: var(--theme-hover-bg, var(--surface-5));
+    color: var(--text-primary);
+  }
+
+  .ln-nav__link {
+    border-radius: 0;
+    border-color: transparent;
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+
+  .ln-nav__link:hover {
+    color: var(--text-primary);
+    background: var(--theme-hover-bg, var(--surface-5));
+  }
+
+  .ln-nav__link:active {
+    background: var(--theme-active-bg, var(--surface-5));
+  }
+
+  .ln-nav__link--active {
+    color: var(--theme-selected-fg, var(--primary-500));
+    background: var(--theme-selected-bg, transparent);
+    border-color: transparent;
+    box-shadow: none;
+    font-weight: 500;
+  }
+
+  .ln-nav__icon {
+    color: var(--icon-color-muted, var(--text-secondary));
+  }
+
+  .ln-nav__link:hover .ln-nav__icon {
+    color: var(--icon-color, var(--text-primary));
+  }
+
+  .ln-nav__link--active .ln-nav__icon {
+    color: var(--icon-color-active, var(--theme-selected-fg, var(--primary-500)));
+  }
+
+  .ln-nav__link--child {
+    color: var(--text-secondary);
+  }
+
+  .ln-nav__link--child.ln-nav__link--active {
+    color: var(--theme-selected-fg, var(--primary-500));
+    font-weight: 500;
+  }
+
+  .ln-nav__filter-input:focus {
+    border-color: var(--primary-500);
+    box-shadow: none;
+  }
+
+  .ln-sidebar__brand-mark {
+    background: var(--primary-500);
+    border-radius: 6px;
+  }
+}
+
+[data-design='wechat'] {
+  .ln-nav__link--active {
+    background: transparent;
+  }
+
+  .ln-nav__filter-input:focus {
+    border-color: var(--wx-BRAND);
+  }
+}
+
+[data-design='alipay'] {
+  .ln-nav__link--active {
+    background: var(--theme-selected-bg, var(--ali-wathet));
+  }
+
+  .ln-nav__filter-input:focus {
+    border-color: var(--ali-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--ali-primary) 18%, transparent);
+  }
+}

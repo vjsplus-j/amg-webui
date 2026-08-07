@@ -63,7 +63,7 @@ const titleText = computed(() => props.title ?? t('component.drill-table.title')
 </script>
 
 <template>
-  <div :class="['vp-drill-table', 'vp-drill-table__panel', { 'vp-drill-table--disabled': disabled }, props.class]" :style="style">
+  <div role="region" aria-label="DrillTable" :class="['vp-drill-table', 'vp-drill-table__panel', { 'vp-drill-table--disabled': disabled }, props.class]" :style="style">
     <div class="vp-drill-table__toolbar">
       <strong class="vp-drill-table__heading">{{ titleText }}</strong>
       <button v-if="breadcrumbs.length" type="button" class="vp-drill-table__control" @click="drillUp">

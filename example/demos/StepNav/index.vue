@@ -4,9 +4,7 @@ import { StepNav, VerticalStepNav, Space } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -29,26 +27,6 @@ const codeVertical = demoSfc({
   template: ['  <VerticalStepNav v-model="step" :items="items" />']
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'items',
-    type: 'NavItem[]',
-    defaultValue: '[]',
-    description: t('example.doc.stepNav.prop.items')
-  },
-  {
-    name: 'modelValue',
-    type: 'string | number',
-    defaultValue: '-',
-    description: t('example.doc.stepNav.prop.model')
-  },
-  {
-    name: 'direction',
-    type: "'horizontal' | 'vertical'",
-    defaultValue: "'horizontal'",
-    description: t('example.doc.stepNav.prop.direction')
-  }
-])
 </script>
 
 <template>
@@ -81,9 +59,7 @@ const propRows = computed<PropRow[]>(() => [
         </p>
       </Space>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

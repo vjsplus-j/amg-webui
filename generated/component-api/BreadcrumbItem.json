@@ -1,0 +1,67 @@
+{
+  "name": "BreadcrumbItem",
+  "generatedAt": "2026-08-07T12:39:09.866Z",
+  "source": {
+    "types": "packages/components/core/BreadcrumbItem/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "to",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "href",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "current",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "BreadcrumbItemProps",
+    "BreadcrumbItemEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

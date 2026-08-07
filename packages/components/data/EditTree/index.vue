@@ -61,7 +61,7 @@ const titleText = computed(() => props.title ?? t('component.edit-tree.title'))
 </script>
 
 <template>
-  <div :class="['vp-edit-tree', 'vp-edit-tree__panel', { 'vp-edit-tree--disabled': disabled }, props.class]" :style="style">
+  <div role="region" aria-label="EditTree" :class="['vp-edit-tree', 'vp-edit-tree__panel', { 'vp-edit-tree--disabled': disabled }, props.class]" :style="style">
     <div class="vp-edit-tree__toolbar">
       <strong class="vp-edit-tree__title">{{ titleText }}</strong>
       <input v-model="searchQuery" class="vp-edit-tree__search" type="search" :placeholder="t('common.search')" />

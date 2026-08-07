@@ -1,0 +1,87 @@
+{
+  "name": "Highlight",
+  "generatedAt": "2026-08-07T12:41:13.613Z",
+  "source": {
+    "types": "packages/components/core/Highlight/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "text",
+      "optional": false,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "keyword",
+      "optional": false,
+      "type": "string | string[]",
+      "description": ""
+    },
+    {
+      "name": "ignoreCase",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "matchWholeWord",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "optional": true,
+      "type": "HighlightVariant",
+      "description": ""
+    },
+    {
+      "name": "compact",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "color",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "colorText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "matchChange",
+      "payload": "count: number",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "HighlightVariant",
+    "HighlightProps",
+    "HighlightEmits",
+    "HighlightSegment"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

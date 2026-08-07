@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "detail": "structural DOM + component entry",
+  "checks": [
+    "gate-checks.checkTopLevelDom"
+  ]
+}

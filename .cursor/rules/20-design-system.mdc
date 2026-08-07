@@ -1,0 +1,14 @@
+---
+description: Design tokens, visual consistency and no-hardcode rules
+globs: packages/**/*.{vue,scss,css,ts},example/**/*.{vue,scss,css},docs/**/*.{vue,scss,css,md}
+alwaysApply: false
+---
+
+# Design System
+- Use semantic design tokens instead of hardcoded product colors, spacing, radius, shadow or typography.
+- Reusable visual values belong at the correct token layer.
+- Components must remain readable in light/dark themes.
+- Cover hover, active, focus, disabled and error states where applicable.
+- Prefer logical CSS properties for RTL.
+- Do not embed brand-specific styling in reusable components.
+- Component-local tokens must map to system tokens.

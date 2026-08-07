@@ -1,0 +1,78 @@
+{
+  "name": "Tree",
+  "generatedAt": "2026-08-07T12:42:17.048Z",
+  "source": {
+    "types": "packages/components/data/Tree/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "virtual",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "virtualThreshold",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: unknown",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: unknown",
+      "description": ""
+    },
+    {
+      "name": "node-click",
+      "payload": "node: TreeNode",
+      "description": ""
+    },
+    {
+      "name": "check-change",
+      "payload": "node: TreeNode, checked: boolean, indeterminate: boolean,",
+      "description": ""
+    },
+    {
+      "name": "node-expand",
+      "payload": "node: TreeNode",
+      "description": ""
+    },
+    {
+      "name": "node-collapse",
+      "payload": "node: TreeNode",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "BaseTreeProps",
+    "TreeProps",
+    "TreeEmits",
+    "VirtualTreeProps",
+    "VirtualTreeEmits",
+    "LazyTreeProps",
+    "LazyTreeEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

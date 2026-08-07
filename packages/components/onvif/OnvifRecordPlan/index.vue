@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { ref, watch, computed, onBeforeUnmount } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -36,6 +37,11 @@ function fillAll(on: boolean) {
   emit('update:slots', [...local.value])
   trackEmit({ component: 'OnvifRecordPlan', type: on ? 'fill' : 'clear', trackId: props.trackId, telemetry: props.telemetry })
 }
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

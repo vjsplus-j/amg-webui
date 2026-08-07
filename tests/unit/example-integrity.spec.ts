@@ -6,7 +6,7 @@ import { getSampleMountProps } from '../../example/demos/_shared/sampleMountProp
 const root = process.cwd()
 
 describe('locale exampleDoc integrity', () => {
-  const locales = ['zh-CN', 'zh-TW', 'en-US', 'ja-JP', 'ko-KR', 'ko-KP', 'ru-RU']
+  const locales = ['zh-CN', 'zh-HK', 'en-US', 'hi-IN', 'ja-JP', 'ko-KR', 'ko-KP', 'ru-RU', 'ar-SA', 'ug-CN']
 
   it('has zero U+FFFD replacement characters', () => {
     for (const loc of locales) {

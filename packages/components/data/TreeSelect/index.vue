@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { computed, ref, toRef } from 'vue'
+import { computed, nextTick, ref, toRef, watch } from 'vue'
 import { useLocale, usePopover } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
+import {
+  getFloatingPanelStyle,
+  moveRovingIndex,
+  resolveKeyboardNavAction
+} from '@amg-webui/utils'
 import type { TreeNode } from '@amg-webui/utils/data-display/tree-types'
 import { filterTreeNodes, useTreeState } from '@amg-webui/utils/data-display/useTreeState'
 import TreeCheckbox from '../Tree/TreeCheckbox.vue'
@@ -45,6 +50,8 @@ const { isOpen, triggerRef, panelRef, toggle, close } = usePopover()
 
 const filterText = ref('')
 const expanded = ref<Set<unknown>>(new Set())
+const focusIndex = ref(0)
+const floatingPanelStyle = ref<Record<string, string>>({})
 
 function toTreeNodes(opts: TreeSelectOption[]): TreeNode[] {
   return opts.map((o) => ({
@@ -110,6 +117,14 @@ const manualFlatNodes = computed(() => {
   return result
 })
 
+const navigableCount = computed(() =>
+  checkboxMode.value ? checkboxRows.value.length : manualFlatNodes.value.length
+)
+
+const panelMergedStyle = computed(() => ({
+  ...floatingPanelStyle.value
+}))
+
 const placeholderText = computed(
   () => props.placeholder ?? t(LocaleKeys.component.treeSelect.placeholder)
 )
@@ -137,9 +152,21 @@ const displayLabel = computed(() => {
 })
 
 const isPlaceholder = computed(() => !displayLabel.value)
-const hasPanelItems = computed(() =>
-  checkboxMode.value ? checkboxRows.value.length > 0 : manualFlatNodes.value.length > 0
-)
+const hasPanelItems = computed(() => navigableCount.value > 0)
+
+function syncFloating() {
+  const trigger = triggerRef.value
+  if (!isOpen.value || !trigger) {
+    floatingPanelStyle.value = {}
+    return
+  }
+  const { style } = getFloatingPanelStyle(trigger, panelRef.value, {
+    placement: 'bottom-start',
+    matchTriggerWidth: true,
+    offset: 4
+  })
+  floatingPanelStyle.value = style
+}
 
 function handleTriggerClick() {
   if (isDisabled.value) return
@@ -150,8 +177,8 @@ function handleTriggerBlur() {
   void validateOnBlur()
 }
 
-function toggleManualExpand(value: unknown, event: Event) {
-  event.stopPropagation()
+function toggleManualExpand(value: unknown, event?: Event) {
+  event?.stopPropagation()
   const next = new Set(expanded.value)
   if (next.has(value)) next.delete(value)
   else next.add(value)
@@ -164,6 +191,7 @@ function selectNode(node: TreeSelectOption) {
   emit('change', node.value)
   void validateOnChange()
   close()
+  floatingPanelStyle.value = {}
 }
 
 function clearValue(event: MouseEvent) {
@@ -173,6 +201,112 @@ function clearValue(event: MouseEvent) {
   emit('change', empty)
   void validateOnChange()
 }
+
+function expandFocused() {
+  if (checkboxMode.value) {
+    const row = checkboxRows.value[focusIndex.value]
+    if (!row || !(row.hasChildren || !row.node.isLeaf)) return
+    toggleExpand(row.id, row.node)
+    return
+  }
+  const entry = manualFlatNodes.value[focusIndex.value]
+  if (!entry?.node.children?.length) return
+  toggleManualExpand(entry.node.value)
+}
+
+function collapseFocused() {
+  if (checkboxMode.value) {
+    const row = checkboxRows.value[focusIndex.value]
+    if (!row?.expanded) return
+    toggleExpand(row.id, row.node)
+    return
+  }
+  const entry = manualFlatNodes.value[focusIndex.value]
+  if (!entry || !expanded.value.has(entry.node.value)) return
+  toggleManualExpand(entry.node.value)
+}
+
+function commitFocused() {
+  if (checkboxMode.value) {
+    const row = checkboxRows.value[focusIndex.value]
+    if (!row || row.node.disabled || isDisabled.value) return
+    toggleCheck(row.node)
+    return
+  }
+  const entry = manualFlatNodes.value[focusIndex.value]
+  if (!entry) return
+  if (entry.node.children?.length && !expanded.value.has(entry.node.value)) {
+    toggleManualExpand(entry.node.value)
+    return
+  }
+  selectNode(entry.node)
+}
+
+function handlePanelKeydown(event: KeyboardEvent) {
+  if (!isOpen.value) return
+  const action = resolveKeyboardNavAction(event, { orientation: 'vertical' })
+  if (action === 'none') {
+    if (event.key === 'ArrowRight') {
+      event.preventDefault()
+      expandFocused()
+      return
+    }
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault()
+      collapseFocused()
+      return
+    }
+    return
+  }
+  event.preventDefault()
+  if (action === 'close') {
+    close()
+    floatingPanelStyle.value = {}
+    triggerRef.value?.focus?.()
+    return
+  }
+  const count = navigableCount.value
+  if (
+    action === 'next' ||
+    action === 'prev' ||
+    action === 'first' ||
+    action === 'last'
+  ) {
+    focusIndex.value = moveRovingIndex(focusIndex.value, action, count, true)
+    return
+  }
+  if (action === 'select') commitFocused()
+}
+
+function handleTriggerKeydown(event: KeyboardEvent) {
+  if (isDisabled.value) return
+  const action = resolveKeyboardNavAction(event, { orientation: 'vertical' })
+  if (!isOpen.value) {
+    if (action === 'next' || action === 'select' || event.key === 'ArrowDown') {
+      event.preventDefault()
+      if (!isOpen.value) toggle()
+      focusIndex.value = 0
+    }
+    return
+  }
+  handlePanelKeydown(event)
+}
+
+watch(isOpen, (open) => {
+  if (open) {
+    focusIndex.value = 0
+    nextTick(syncFloating)
+  } else {
+    floatingPanelStyle.value = {}
+  }
+})
+
+watch([navigableCount, filterText, expanded, checkboxRows], () => {
+  if (isOpen.value) nextTick(syncFloating)
+  if (focusIndex.value >= navigableCount.value) {
+    focusIndex.value = Math.max(0, navigableCount.value - 1)
+  }
+})
 </script>
 
 <template>
@@ -192,6 +326,7 @@ function clearValue(event: MouseEvent) {
       :aria-describedby="ariaDescribedby"
       @click="handleTriggerClick"
       @blur="handleTriggerBlur"
+      @keydown="handleTriggerKeydown"
     >
       <span
         :class="['vp-treeselect__label', { 'vp-treeselect__label--placeholder': isPlaceholder }]"
@@ -210,7 +345,14 @@ function clearValue(event: MouseEvent) {
       <span class="vp-treeselect__caret" aria-hidden="true">▾</span>
     </button>
 
-    <div v-if="isOpen" ref="panelRef" class="vp-treeselect__panel" role="listbox">
+    <div
+      v-if="isOpen"
+      ref="panelRef"
+      class="vp-treeselect__panel"
+      role="listbox"
+      :style="panelMergedStyle"
+      @keydown="handlePanelKeydown"
+    >
       <div v-if="filterable" class="vp-treeselect__filter">
         <input
           v-model="filterText"
@@ -222,9 +364,12 @@ function clearValue(event: MouseEvent) {
 
       <template v-if="checkboxMode">
         <div
-          v-for="row in checkboxRows"
+          v-for="(row, rowIndex) in checkboxRows"
           :key="row.id"
-          class="vp-treeselect__node"
+          :class="[
+            'vp-treeselect__node',
+            { 'vp-treeselect__node--active': rowIndex === focusIndex }
+          ]"
           :style="{ paddingLeft: `calc(var(--spacing-md) + ${row.depth} * var(--spacing-lg))` }"
         >
           <button
@@ -249,13 +394,14 @@ function clearValue(event: MouseEvent) {
 
       <template v-else>
         <div
-          v-for="{ node, depth } in manualFlatNodes"
+          v-for="({ node, depth }, rowIndex) in manualFlatNodes"
           :key="String(node.value)"
           :class="[
             'vp-treeselect__node',
             {
               'vp-treeselect__node--selected': node.value === modelValue,
-              'vp-treeselect__node--disabled': node.disabled
+              'vp-treeselect__node--disabled': node.disabled,
+              'vp-treeselect__node--active': rowIndex === focusIndex
             }
           ]"
           :style="{ paddingLeft: `calc(var(--spacing-md) + ${depth} * var(--spacing-lg))` }"

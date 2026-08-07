@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "quarter grid select by year",
+  "tests": [
+    "tests/unit/hardening/batch-b06-datetime-lowcode-pickers.spec.ts"
+  ],
+  "demo": "example/demos/QuarterPicker/index.vue"
+}

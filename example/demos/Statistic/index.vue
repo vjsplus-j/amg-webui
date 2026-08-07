@@ -2,14 +2,11 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Icon, Space, Statistic } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -102,74 +99,6 @@ const codeEvents = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'value',
-    description: t('example.doc.statistic.prop.value'),
-    type: 'number | string',
-    defaultValue: '-'
-  },
-  {
-    name: 'title / prefix / suffix',
-    description: t('example.doc.statistic.prop.label'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'precision / groupSeparator / decimalSeparator',
-    description: t('example.doc.statistic.prop.format'),
-    type: 'number / string',
-    defaultValue: '- / "," / "."'
-  },
-  {
-    name: 'trend',
-    description: t('example.doc.statistic.prop.trend'),
-    type: "'up' | 'down' | 'none'",
-    defaultValue: "'none'"
-  },
-  {
-    name: 'animate / duration',
-    description: t('example.doc.statistic.prop.animate'),
-    type: 'boolean / number',
-    defaultValue: 'false / 1000'
-  },
-  {
-    name: 'trackId / telemetry',
-    description: t('example.doc.avatar.prop.telemetry'),
-    type: 'string / boolean',
-    defaultValue: '- / undefined'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'finish',
-    description: t('example.doc.statistic.emit.finish'),
-    type: '(value: number | string) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'title',
-    description: t('example.doc.statistic.slot.title'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'prefix',
-    description: t('example.doc.statistic.slot.prefix'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'suffix',
-    description: t('example.doc.statistic.slot.suffix'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -288,19 +217,7 @@ const slotRows = computed<ApiRow[]>(() => [
       </div>
     </DemoBlock>
 
-    <!-- 7. API -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 7. API -->
   </div>
 </template>
 
@@ -310,25 +227,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-statistic-events {
   display: flex;
   flex-direction: column;

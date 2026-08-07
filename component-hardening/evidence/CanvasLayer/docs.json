@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/canvas-layer.md",
+  "api": "generated/component-api/CanvasLayer.json",
+  "demo": "example/demos/CanvasLayer/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

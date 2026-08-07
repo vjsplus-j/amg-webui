@@ -1,0 +1,93 @@
+{
+  "name": "FixedLayout",
+  "generatedAt": "2026-08-07T12:41:13.585Z",
+  "source": {
+    "types": "packages/components/core/FixedLayout/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "mode",
+      "optional": true,
+      "type": "\"fixed\" | \"absolute\"",
+      "description": ""
+    },
+    {
+      "name": "position",
+      "optional": true,
+      "type": "FixedLayoutPosition",
+      "description": ""
+    },
+    {
+      "name": "offset",
+      "optional": true,
+      "type": "\"none\" | \"sm\" | \"md\" | \"lg\"",
+      "description": ""
+    },
+    {
+      "name": "zIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "safeArea",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "as",
+      "optional": true,
+      "type": "\"div\" | \"header\" | \"footer\" | \"aside\" | \"nav\"",
+      "description": ""
+    },
+    {
+      "name": "role",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "teleportTo",
+      "optional": true,
+      "type": "string | HTMLElement",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "resize",
+      "payload": "size: FixedLayoutSize",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "FixedLayoutPosition",
+    "FixedLayoutSize",
+    "FixedLayoutProps",
+    "FixedLayoutEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

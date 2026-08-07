@@ -87,10 +87,17 @@ export interface DataTableEmits<T = any> {
   ): void;
 }
 
-export interface DataTableSlots<T = any> {
-  header?: () => unknown;
-  footer?: () => unknown;
-  empty?: () => unknown;
-  loading?: () => unknown;
-  [key: `body-${string}`]: (props: { value: unknown; row: T }) => unknown;
+export interface DataTableSlots<T = unknown> {
+  header?: () => unknown
+  footer?: () => unknown
+  empty?: () => unknown
+  loading?: () => unknown
+  [key: `body-${string}`]: (props: { value: unknown; row: T }) => unknown
 }
+
+export interface DataTableExpose {
+  /** Scroll the virtual viewport to a row index or stable row key */
+  scrollTo: (options: { rowIndex?: number; key?: RowKey }) => void
+}
+
+export type DataTableInstance = DataTableExpose

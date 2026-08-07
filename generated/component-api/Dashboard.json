@@ -1,0 +1,62 @@
+{
+  "name": "Dashboard",
+  "generatedAt": "2026-08-07T12:40:46.811Z",
+  "source": {
+    "types": "packages/components/data/Dashboard/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "stats",
+      "optional": true,
+      "type": "DashboardStat[]",
+      "description": ""
+    },
+    {
+      "name": "widgets",
+      "optional": true,
+      "type": "DashboardWidget[]",
+      "description": ""
+    },
+    {
+      "name": "columns",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "refresh",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "select-stat",
+      "payload": "stat: DashboardStat",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "DashboardStat",
+    "DashboardWidget",
+    "DashboardProps",
+    "DashboardEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

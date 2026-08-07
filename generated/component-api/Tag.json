@@ -1,0 +1,248 @@
+{
+  "name": "Tag",
+  "generatedAt": "2026-08-07T12:42:17.029Z",
+  "source": {
+    "types": "packages/components/core/Tag/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "spin",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "pulse",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "heartbeat",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bounce",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "blink",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "breathe",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "glow",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "marqueeLeft",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "marqueeRight",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollUp",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollDown",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "dampOut",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "animationDuration",
+      "optional": true,
+      "type": "number | string",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "optional": true,
+      "type": "TagSeverity",
+      "description": ""
+    },
+    {
+      "name": "severity",
+      "optional": true,
+      "type": "TagSeverity",
+      "description": ""
+    },
+    {
+      "name": "effect",
+      "optional": true,
+      "type": "TagEffect",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "TagSize",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "iconSize",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "closable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "round",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "rounded",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "borderRadius",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "clickable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "wait",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "beforeClose",
+      "optional": true,
+      "type": "(event: MouseEvent) => boolean | void | Promise<boolean | void>",
+      "description": ""
+    },
+    {
+      "name": "colorBg",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "colorText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "colorBorder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "color",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "close",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "props": "props: Record<string, never>",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "props": "props: Record<string, never>",
+      "description": ""
+    },
+    {
+      "name": "closeIcon",
+      "props": "props: Record<string, never>",
+      "description": ""
+    }
+  ],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "TagEffect",
+    "TagSeverity",
+    "TagSize",
+    "TagProps",
+    "TagEmits",
+    "TagSlots"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": true,
+    "expose": false,
+    "models": false
+  }
+}

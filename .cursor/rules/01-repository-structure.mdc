@@ -1,0 +1,16 @@
+---
+description: AMG-WebUI repository boundaries and dependency direction
+alwaysApply: true
+---
+
+# Repository Structure
+- Foundation code must not depend on industry/domain packages.
+- Shared behavior belongs in shared hooks/models/runtime, not copied into individual components.
+- Public APIs must be intentionally exported from package entrypoints.
+- Internal implementation files must not become public APIs accidentally.
+- `example/` is the internal playground/debug/repro environment.
+- `docs/` is the official developer documentation source.
+- `component-hardening/` is the SSOT for machine-readable hardening state and evidence.
+- `.component-hardening/` is a pointer-only compatibility shim (no duplicated contracts).
+- `docs/engineering/component-hardening/` stores human-authored hardening standards entrypoints.
+- Avoid circular dependencies between packages and component families.

@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-08-07T10:05:40.199Z",
+  "program": "AMG-WebUI 300 Component Hardening",
+  "stableRatio": 100,
+  "stableTarget": 90,
+  "stableTargetMet": true,
+  "inventory": {
+    "total": 287,
+    "public": 287,
+    "target": 300
+  },
+  "gateSummary": {
+    "generatedAt": "2026-08-07T10:05:39.106Z",
+    "total": 287,
+    "pass": 287,
+    "fail": 0,
+    "stable": 287
+  },
+  "apiAvg": 78,
+  "ssr": {
+    "generatedAt": "2026-08-07T10:05:39.464Z",
+    "total": 287,
+    "pass": 287,
+    "fail": 0
+  },
+  "visual": {
+    "total": 287,
+    "scheduled": 287
+  },
+  "knownLimitations": [
+    "Per-component Playwright screenshot golden baselines are scheduled via visual-report matrix; expand nightly coverage family-by-family.",
+    "axe-core Critical/Serious=0 is enforced on overlay e2e samples today; full interactive inventory rolls out via nightly.",
+    "Benchmark gates (Select 10k / Tree 50k / Table 100k) require dedicated benchmark runners under benchmarks/.",
+    "Industry Media/GB/ONVIF Stable requires mock adapters — engines/mediaAdapter.ts is the contract; domain UIs must not bind real server DTOs."
+  ],
+  "verdict": "HARDENING_PROGRAM_CLOSE_READY — Stable Ratio met; continue deepening visual/axe/benchmark evidence."
+}

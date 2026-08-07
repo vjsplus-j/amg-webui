@@ -6,12 +6,9 @@ import { computed, ref } from 'vue'
 import { VirtualTree } from '@amg-webui/data'
 import { Space, Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import type { TreeNode } from '@amg-webui/utils/data-display/tree-types'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -99,53 +96,6 @@ const codeBrowse = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'options / data',
-    description: t('example.doc.virtualTree.prop.data'),
-    type: 'TreeNode[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'checkable / checkStrictly',
-    description: t('example.doc.virtualTree.prop.checkable'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'virtual',
-    description: t('example.doc.virtualTree.prop.virtual'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'modelValue (v-model)',
-    description: t('example.doc.virtualTree.prop.model'),
-    type: 'string[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'disabled / loading',
-    description: t('example.doc.virtualTree.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:modelValue / change',
-    description: t('example.doc.virtualTree.event.change'),
-    type: '(value: string[]) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'check-change / node-expand',
-    description: t('example.doc.virtualTree.event.interaction'),
-    type: '(node, …) => void',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -194,14 +144,6 @@ const eventRows = computed<ApiRow[]>(() => [
         </Button>
       </Space>
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-    </section>
   </div>
 </template>
 
@@ -215,19 +157,5 @@ const eventRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

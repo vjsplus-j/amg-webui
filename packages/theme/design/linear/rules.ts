@@ -63,7 +63,7 @@ export const COMPOSITION_RULES = [
   'Typography: Inter Variable for Latin; headings weight 510 + negative tracking. Icons: Lucide (Iconify lucide set), stroke ~1.75.',
   'Reduce accent chrome: accent for active nav, CTA, focus — not for large filled panels.',
   'List/table views: scroll inside viewport; shell height stays 100vh.',
-  'Locked themes: mercedes | linear | porsche | lamborghini | ferrari | apple (designmd). Default chrome remains Linear.'
+  'Locked themes: mercedes | linear | porsche | lamborghini | ferrari | apple | wechat | alipay. Default chrome remains Linear.'
 ] as const
 
 export const LINEAR_REFS = {
@@ -80,5 +80,7 @@ export const DESIGNMD_THEMES = {
   porsche: 'https://designmd.santiagoalonso.com/porsche',
   lamborghini: 'https://designmd.santiagoalonso.com/lamborghini',
   ferrari: 'https://designmd.santiagoalonso.com/ferrari',
-  apple: 'https://designmd.santiagoalonso.com/apple'
+  apple: 'https://designmd.santiagoalonso.com/apple',
+  wechat: 'https://developers.weixin.qq.com/miniprogram/design/',
+  alipay: 'https://mobile.ant.design/'
 } as const

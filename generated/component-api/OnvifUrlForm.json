@@ -1,0 +1,70 @@
+{
+  "name": "OnvifUrlForm",
+  "generatedAt": "2026-08-07T12:41:35.039Z",
+  "source": {
+    "types": "packages/components/onvif/OnvifUrlForm/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "v: string",
+      "description": ""
+    },
+    {
+      "name": "test",
+      "payload": "url: string",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "OnvifUrlFormProps",
+    "OnvifUrlFormEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "name": "DataTable",
+  "generatedAt": "2026-08-07T12:34:13.530Z",
+  "source": {
+    "types": "packages/components/data/DataTable/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "value",
+      "optional": true,
+      "type": "T[]",
+      "description": ""
+    },
+    {
+      "name": "columns",
+      "optional": false,
+      "type": "Column<T>[]",
+      "description": ""
+    },
+    {
+      "name": "rowKey",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "selection",
+      "optional": true,
+      "type": "RowKey[]",
+      "description": ""
+    },
+    {
+      "name": "selectionMode",
+      "optional": true,
+      "type": "\"single\" | \"multiple\"",
+      "description": ""
+    },
+    {
+      "name": "paginator",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "rows",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "first",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "totalRecords",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "sortField",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "sortOrder",
+      "optional": true,
+      "type": "SortOrder",
+      "description": ""
+    },
+    {
+      "name": "striped",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "fixedHeader",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "filterGlobal",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "lazy",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "filterDebounce",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "virtual",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "virtualHeight",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "rowHeight",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "virtualColumns",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "virtualColumnThreshold",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "sortWorkerThreshold",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:value",
+      "payload": "value: T[]",
+      "description": ""
+    },
+    {
+      "name": "update:selection",
+      "payload": "keys: RowKey[]",
+      "description": ""
+    },
+    {
+      "name": "update:sortField",
+      "payload": "field: string",
+      "description": ""
+    },
+    {
+      "name": "update:sortOrder",
+      "payload": "order: SortOrder",
+      "description": ""
+    },
+    {
+      "name": "update:first",
+      "payload": "first: number",
+      "description": ""
+    },
+    {
+      "name": "update:rows",
+      "payload": "rows: number",
+      "description": ""
+    },
+    {
+      "name": "sort",
+      "payload": "event: { field: string; order: SortOrder }",
+      "description": ""
+    },
+    {
+      "name": "row-select",
+      "payload": "event: { originalEvent: MouseEvent; data: T; checked: boolean },",
+      "description": ""
+    },
+    {
+      "name": "row-click",
+      "payload": "event: { originalEvent: MouseEvent; data: T }",
+      "description": ""
+    },
+    {
+      "name": "page",
+      "payload": "event: { first: number; rows: number; page: number; pageCount: number },",
+      "description": ""
+    },
+    {
+      "name": "filter",
+      "payload": "event: { global: string; fields: Record<string, string> },",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "header",
+      "props": "—",
+      "description": ""
+    },
+    {
+      "name": "footer",
+      "props": "—",
+      "description": ""
+    },
+    {
+      "name": "empty",
+      "props": "—",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "props": "—",
+      "description": ""
+    },
+    {
+      "name": "[key: `body-${string}`]",
+      "props": "props: { value: unknown; row: T }",
+      "description": "index signature slot"
+    }
+  ],
+  "expose": [
+    {
+      "name": "scrollTo",
+      "type": "(options: { rowIndex?: number; key?: RowKey }) => void",
+      "description": ""
+    }
+  ],
+  "models": [
+    {
+      "name": "selection",
+      "description": "v-model:selection"
+    }
+  ],
+  "publicTypes": [
+    "SortOrder",
+    "RowKey",
+    "DataTableInstance",
+    "Column",
+    "DataTableProps",
+    "DataTableEmits",
+    "DataTableSlots",
+    "DataTableExpose"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": true,
+    "expose": true,
+    "models": true
+  }
+}

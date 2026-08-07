@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "detail": "form family axe + tabs composition",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts",
+  "family": "form"
+}

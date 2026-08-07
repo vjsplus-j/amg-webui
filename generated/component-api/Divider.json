@@ -1,0 +1,81 @@
+{
+  "name": "Divider",
+  "generatedAt": "2026-08-07T12:40:46.817Z",
+  "source": {
+    "types": "packages/components/core/Divider/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "DividerDirection",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "optional": true,
+      "type": "DividerDirection",
+      "description": ""
+    },
+    {
+      "name": "contentPosition",
+      "optional": true,
+      "type": "DividerContentPosition",
+      "description": ""
+    },
+    {
+      "name": "dashed",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "borderStyle",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "plain",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "margin",
+      "optional": true,
+      "type": "DividerMargin",
+      "description": ""
+    },
+    {
+      "name": "decorative",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "DividerDirection",
+    "DividerContentPosition",
+    "DividerMargin",
+    "DividerProps"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

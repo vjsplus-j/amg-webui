@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/form.md",
+  "api": "generated/component-api/Form.json",
+  "demo": "example/demos/Form/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

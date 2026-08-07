@@ -1,0 +1,25 @@
+{
+  "family": "foundation",
+  "batch": "B01",
+  "axe": {
+    "status": "PASS",
+    "blocking": 0
+  },
+  "keyboard": {
+    "status": "PASS",
+    "detail": "focus + tab stays in section"
+  },
+  "visual": {
+    "status": "PASS",
+    "themes": [
+      "mercedes",
+      "linear",
+      "porsche"
+    ]
+  },
+  "verifiedAt": "2026-08-07T12:28:51.668Z",
+  "unit": {
+    "status": "PASS",
+    "detail": "Button/Tag/Badge/Divider/StatusTip mount + click"
+  }
+}

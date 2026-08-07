@@ -1,0 +1,123 @@
+{
+  "name": "Rate",
+  "generatedAt": "2026-08-07T12:41:56.122Z",
+  "source": {
+    "types": "packages/components/form/Rate/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "allowHalf",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "clearable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "RateSize",
+      "description": ""
+    },
+    {
+      "name": "showScore",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "texts",
+      "optional": true,
+      "type": "string[]",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: number",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: number",
+      "description": ""
+    },
+    {
+      "name": "hoverChange",
+      "payload": "value: number | null",
+      "description": ""
+    },
+    {
+      "name": "focus",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "payload": "event: FocusEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "RateSize",
+    "RateProps",
+    "RateEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "LazyTree",
+  "generatedAt": "2026-08-07T12:41:13.625Z",
+  "source": {
+    "types": "packages/components/data/LazyTree/types.ts",
+    "vue": true
+  },
+  "props": [],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [],
+  "completeness": {
+    "props": false,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

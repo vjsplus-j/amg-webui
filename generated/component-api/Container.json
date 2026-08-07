@@ -1,0 +1,92 @@
+{
+  "name": "Container",
+  "generatedAt": "2026-08-07T12:40:46.806Z",
+  "source": {
+    "types": "packages/components/core/Container/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "size",
+      "optional": true,
+      "type": "ContainerSize",
+      "description": ""
+    },
+    {
+      "name": "fluid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "padded",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "align",
+      "optional": true,
+      "type": "'start' | 'center' | 'end'",
+      "description": ""
+    },
+    {
+      "name": "gap",
+      "optional": true,
+      "type": "'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'section'",
+      "description": ""
+    },
+    {
+      "name": "tag",
+      "optional": true,
+      "type": "'div' | 'main' | 'section' | 'article'",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "fullBleed",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "maxWidth",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "class",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "style",
+      "optional": true,
+      "type": "Record<string, string>",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ContainerSize",
+    "ContainerProps",
+    "ContainerEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

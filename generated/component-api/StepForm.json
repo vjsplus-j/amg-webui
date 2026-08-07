@@ -1,0 +1,76 @@
+{
+  "name": "StepForm",
+  "generatedAt": "2026-08-07T12:34:13.550Z",
+  "source": {
+    "types": "packages/components/form/StepForm/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "steps",
+      "optional": true,
+      "type": "StepFormStep[]",
+      "description": ""
+    },
+    {
+      "name": "stepData",
+      "optional": true,
+      "type": "Record<string, Record<string, unknown>>",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: number",
+      "description": ""
+    },
+    {
+      "name": "update:stepData",
+      "payload": "value: Record<string, Record<string, unknown>>",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "step: number",
+      "description": ""
+    },
+    {
+      "name": "submit",
+      "payload": "data: Record<string, Record<string, unknown>>",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "StepFormStep",
+    "StepFormProps",
+    "StepFormEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

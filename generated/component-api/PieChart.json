@@ -1,0 +1,154 @@
+{
+  "name": "PieChart",
+  "generatedAt": "2026-08-07T12:41:35.048Z",
+  "source": {
+    "types": "packages/components/charts/PieChart/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "PieChartDatum[] | number[]",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "PieChartKey | null",
+      "description": ""
+    },
+    {
+      "name": "selectionValue",
+      "optional": true,
+      "type": "\"key\" | \"value\"",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "radius",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "innerRadius",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "startAngle",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "showLegend",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showLabels",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showPercent",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "valueFormatter",
+      "optional": true,
+      "type": "(value: number, datum: PieChartDatum) => string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: PieChartKey",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: PieChartKey, datum: PieChartDatum, index: number",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent | KeyboardEvent",
+      "description": ""
+    },
+    {
+      "name": "sliceClick",
+      "payload": "datum: PieChartDatum, index: number, event: MouseEvent | KeyboardEvent,",
+      "description": ""
+    },
+    {
+      "name": "legendClick",
+      "payload": "datum: PieChartDatum, index: number, event: MouseEvent | KeyboardEvent,",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "PieChartKey",
+    "PieChartDatum",
+    "PieChartProps",
+    "PieChartEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

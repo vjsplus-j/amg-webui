@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "detail": "table family axe",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts",
+  "family": "table"
+}

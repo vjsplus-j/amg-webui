@@ -1,0 +1,130 @@
+{
+  "name": "OcrScan",
+  "generatedAt": "2026-08-07T12:41:35.030Z",
+  "source": {
+    "types": "packages/components/core/OcrScan/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "accept",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "maxFileSize",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "maxPreviewWidth",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "showPreview",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "autoScan",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "recognizer",
+      "optional": true,
+      "type": "OcrRecognizer",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "scanText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "text: string",
+      "description": ""
+    },
+    {
+      "name": "scan",
+      "payload": "text: string, result: OcrScanResult",
+      "description": ""
+    },
+    {
+      "name": "ready",
+      "payload": "context: OcrScanContext",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "error: Error",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "file: File | null",
+      "description": ""
+    },
+    {
+      "name": "reset",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "OcrRecognizer",
+    "OcrScanResult",
+    "OcrScanContext",
+    "OcrScanProps",
+    "OcrScanEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "name": "ColumnLayout",
+  "generatedAt": "2026-08-07T12:40:46.802Z",
+  "source": {
+    "types": "packages/components/core/ColumnLayout/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "columns",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "gap",
+      "optional": true,
+      "type": "ColumnGap",
+      "description": ""
+    },
+    {
+      "name": "align",
+      "optional": true,
+      "type": "ColumnAlign",
+      "description": ""
+    },
+    {
+      "name": "dense",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "class",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "style",
+      "optional": true,
+      "type": "Record<string, string>",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "columns-change",
+      "payload": "count: number",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ColumnGap",
+    "ColumnAlign",
+    "ColumnLayoutProps",
+    "ColumnLayoutEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

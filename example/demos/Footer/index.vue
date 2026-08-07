@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Footer, Button, Space, Link } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -34,11 +32,6 @@ const codeRich = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'align', type: "'start'|'center'|'end'", defaultValue: "'center'", description: t('example.doc.footer.prop.align') },
-  { name: 'size', type: "'sm'|'md'|'lg'", defaultValue: "'md'", description: t('example.doc.footer.prop.size') },
-  { name: 'bordered', type: 'boolean', defaultValue: 'true', description: t('example.doc.footer.prop.bordered') }
-])
 </script>
 
 <template>
@@ -111,9 +104,7 @@ const propRows = computed<PropRow[]>(() => [
         </Footer>
       </div>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

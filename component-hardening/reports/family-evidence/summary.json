@@ -1,0 +1,125 @@
+{
+  "generatedAt": "2026-08-07T11:19:52.027Z",
+  "source": "unit+e2e family evidence shards",
+  "families": [
+    {
+      "family": "datetime",
+      "batch": "B06",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      },
+      "keyboard": {
+        "status": "PASS",
+        "detail": "open panel + Escape"
+      },
+      "verifiedAt": "2026-08-07T11:19:35.727Z"
+    },
+    {
+      "family": "form",
+      "batch": "B03",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      },
+      "keyboard": {
+        "status": "PASS",
+        "detail": "form fields editable; submit clickable"
+      },
+      "unit": {
+        "status": "PASS",
+        "detail": "Form/FormItem/InputText composition mounts"
+      },
+      "verifiedAt": "2026-08-07T11:19:30.174Z"
+    },
+    {
+      "family": "foundation",
+      "batch": "B01",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      },
+      "keyboard": {
+        "status": "PASS",
+        "detail": "focus + tab stays in section"
+      },
+      "visual": {
+        "status": "PASS",
+        "themes": [
+          "mercedes",
+          "linear",
+          "porsche"
+        ]
+      },
+      "unit": {
+        "status": "PASS",
+        "detail": "Button/Tag/Badge/Divider/StatusTip mount + click"
+      },
+      "verifiedAt": "2026-08-07T11:19:24.908Z"
+    },
+    {
+      "family": "input",
+      "batch": "B02",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      },
+      "keyboard": {
+        "status": "PASS",
+        "detail": "CJK fill retained; disabled respected"
+      },
+      "unit": {
+        "status": "PASS",
+        "detail": "CJK retained; disabled attribute present; textarea works"
+      },
+      "verifiedAt": "2026-08-07T11:19:27.513Z"
+    },
+    {
+      "family": "overlay",
+      "batch": "B08",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      },
+      "keyboard": {
+        "status": "PASS",
+        "detail": "focus trap + footer close"
+      },
+      "unit": {
+        "status": "PASS",
+        "detail": "Dialog visible mounts body content"
+      },
+      "verifiedAt": "2026-08-07T11:19:41.617Z"
+    },
+    {
+      "family": "selection",
+      "batch": "B04",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      },
+      "keyboard": {
+        "status": "PASS",
+        "detail": "open + ArrowDown + Enter"
+      },
+      "unit": {
+        "status": "PASS",
+        "detail": "Select trigger opens panel/listbox"
+      },
+      "verifiedAt": "2026-08-07T11:19:33.064Z"
+    },
+    {
+      "family": "table",
+      "batch": "B12",
+      "axe": {
+        "status": "PASS",
+        "blocking": 0
+      },
+      "keyboard": {
+        "status": "PASS",
+        "detail": "DataTable mounted and visible"
+      },
+      "verifiedAt": "2026-08-07T11:19:38.329Z"
+    }
+  ]
+}

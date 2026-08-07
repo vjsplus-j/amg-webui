@@ -1,0 +1,55 @@
+{
+  "name": "PageHeader",
+  "generatedAt": "2026-08-07T12:41:35.041Z",
+  "source": {
+    "types": "packages/components/core/PageHeader/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "subtitle",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "back",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "backLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "back",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "PageHeaderProps",
+    "PageHeaderEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

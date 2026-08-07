@@ -1,0 +1,131 @@
+{
+  "name": "GbsAlarmModal",
+  "generatedAt": "2026-08-07T12:45:59.832Z",
+  "source": {
+    "types": "packages/components/gb28181/GbsAlarmModal/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "open",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "alarm",
+      "optional": true,
+      "type": "GbsAlarmInfo | null",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "closable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "maskClosable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "closeOnEscape",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "lockScroll",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "destroyOnClose",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "teleportTo",
+      "optional": true,
+      "type": "string | HTMLElement",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:open",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "acknowledge",
+      "payload": "alarm: GbsAlarmInfo | null",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "payload": "reason: GbsAlarmCloseReason",
+      "description": ""
+    },
+    {
+      "name": "open",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "afterOpen",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "GbsAlarmCloseReason",
+    "GbsAlarmInfo",
+    "GbsAlarmModalProps",
+    "GbsAlarmModalEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

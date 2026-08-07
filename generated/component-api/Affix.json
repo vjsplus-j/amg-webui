@@ -1,0 +1,111 @@
+{
+  "name": "Affix",
+  "generatedAt": "2026-08-07T12:39:09.850Z",
+  "source": {
+    "types": "packages/components/core/Affix/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "offsetTop",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "offsetBottom",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "target",
+      "optional": true,
+      "type": "string | HTMLElement | Window",
+      "description": ""
+    },
+    {
+      "name": "zIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "affixedClass",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLive",
+      "optional": true,
+      "type": "'off' | 'polite' | 'assertive'",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "affixed: boolean",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "affixed: boolean",
+      "description": ""
+    },
+    {
+      "name": "scroll",
+      "payload": "payload: AffixScrollPayload",
+      "description": ""
+    },
+    {
+      "name": "focus",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "payload": "event: FocusEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "AffixProps",
+    "AffixScrollPayload",
+    "AffixEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

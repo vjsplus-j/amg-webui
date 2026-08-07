@@ -46,7 +46,7 @@ const titleText = computed(() => props.title ?? t('component.table-action.title'
 </script>
 
 <template>
-  <div :class="['vp-table-action', 'vp-table-action__panel', { 'vp-table-action--disabled': disabled }, props.class]" :style="style">
+  <div role="region" aria-label="TableAction" :class="['vp-table-action', 'vp-table-action__panel', { 'vp-table-action--disabled': disabled }, props.class]" :style="style">
     <strong class="vp-table-action__heading">{{ titleText }}</strong>
     <div class="vp-table-action__scroll">
       <table class="vp-table-action__grid">

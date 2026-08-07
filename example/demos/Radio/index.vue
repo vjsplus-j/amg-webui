@@ -2,15 +2,12 @@
 /**
  * Curated demo — Form wave1 Radio + RadioGroup
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Radio, RadioGroup } from '@amg-webui/form'
 import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -62,62 +59,6 @@ const codeVert = demoCode(
   `</RadioGroup>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'modelValue / value',
-    description: t('example.doc.radio.prop.modelValue'),
-    type: 'unknown',
-    defaultValue: '—'
-  },
-  {
-    name: 'label',
-    description: t('example.doc.radio.prop.label'),
-    type: 'string',
-    defaultValue: '—'
-  },
-  {
-    name: 'size',
-    description: t('example.doc.radio.prop.size'),
-    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
-    defaultValue: "'md'"
-  },
-  {
-    name: 'disabled',
-    description: t('example.doc.radio.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'RadioGroup.direction',
-    description: t('example.doc.radio.prop.direction'),
-    type: "'horizontal' | 'vertical'",
-    defaultValue: "'horizontal'"
-  },
-  {
-    name: 'RadioGroup.options',
-    description: t('example.doc.radio.prop.options'),
-    type: 'RadioOption[]',
-    defaultValue: '—'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:modelValue / change',
-    description: t('example.doc.radio.event.change'),
-    type: '(value: unknown) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.radio.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -182,17 +123,7 @@ const slotRows = computed<ApiRow[]>(() => [
           <Radio value="3" :label="t('example.doc.radio.sample.optC')" />
         </RadioGroup>
       </div>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -209,19 +140,5 @@ const slotRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

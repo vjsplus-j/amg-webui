@@ -2,21 +2,21 @@
 /**
  * Curated demo — aligned with Avatar gold standard (demoCode / demoSfc / API thirds).
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Button, ButtonGroup, Icon } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
+import Basic from './parts/Basic.vue'
+import basicSource from './parts/Basic.vue?raw'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import MotionLivePanel from '../../components/demo/MotionLivePanel.vue'
 import {
   createMotionLiveState,
   formatMotionLiveCode,
   useMotionLiveBind
 } from '../../components/demo/motionLive'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
+import { demoCode } from '../../components/demo/demoCode'
 
 const { t, tDyn } = useLocale()
 const loading = ref(false)
@@ -68,19 +68,6 @@ function noteEvent(kind: string) {
 }
 
 /* ─── Code snippets: must mirror preview 1:1 (no `…`) ─── */
-
-const codeBasic = demoSfc({
-  imports: [`import { Button } from '@amg-webui/core'`],
-  template: [
-    `  <Button severity="primary">{{ t('button.confirm') }}</Button>`,
-    `  <Button severity="success">{{ t('common.success') }}</Button>`,
-    `  <Button severity="warning">{{ t('button.edit') }}</Button>`,
-    `  <Button severity="danger">{{ t('button.delete') }}</Button>`,
-    `  <Button variant="outlined">{{ t('button.cancel') }}</Button>`,
-    `  <Button variant="text">{{ t('button.edit') }}</Button>`,
-    `  <Button link>{{ t('button.learnMore') }}</Button>`
-  ]
-})
 
 const codeDashed = demoCode(
   `<Button variant="dashed" severity="primary">{{ t('button.confirm') }}</Button>`,
@@ -248,224 +235,6 @@ const codeGroup = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'label',
-    description: t('example.doc.button.prop.label'),
-    type: 'string',
-    defaultValue: "''"
-  },
-  {
-    name: 'icon',
-    description: t('example.doc.button.prop.icon'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'iconPos',
-    description: t('example.doc.button.prop.iconPos'),
-    type: "'left' | 'right' | 'top'",
-    defaultValue: "'left'"
-  },
-  {
-    name: 'severity',
-    description: t('example.doc.button.prop.severity'),
-    type: "'default' | 'primary' | 'success' | 'warning' | 'danger' | 'link'",
-    defaultValue: "'default'"
-  },
-  {
-    name: 'variant',
-    description: t('example.doc.button.prop.variant'),
-    type: "'solid' | 'outlined' | 'dashed' | 'neon' | 'text'",
-    defaultValue: "'solid'"
-  },
-  {
-    name: 'size',
-    description: t('example.doc.button.prop.size'),
-    type: 'Size',
-    defaultValue: "'md'"
-  },
-  {
-    name: 'shape',
-    description: t('example.doc.button.prop.shape'),
-    type: "'rect' | 'square' | 'circle'",
-    defaultValue: "'rect'"
-  },
-  {
-    name: 'block',
-    description: t('example.doc.button.prop.block'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'loading',
-    description: t('example.doc.button.prop.loading'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'loadingText',
-    description: t('example.doc.button.prop.loadingText'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'disabled',
-    description: t('example.doc.button.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'readonly',
-    description: t('example.doc.button.prop.readonly'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'clickGuard',
-    description: t('example.doc.button.prop.clickGuard'),
-    type: "'none' | 'debounce' | 'throttle'",
-    defaultValue: "'none'"
-  },
-  {
-    name: 'wait',
-    description: t('example.doc.button.prop.wait'),
-    type: 'number',
-    defaultValue: '300'
-  },
-  {
-    name: 'permission / permissionMode',
-    description: t('example.doc.button.prop.permission'),
-    type: 'boolean | () => boolean / hide | disable',
-    defaultValue: '-'
-  },
-  {
-    name: 'confirm',
-    description: t('example.doc.button.prop.confirm'),
-    type: 'boolean | string',
-    defaultValue: 'false'
-  },
-  {
-    name: 'beforeClick',
-    description: t('example.doc.button.prop.beforeClick'),
-    type: '(e) => boolean | Promise<boolean>',
-    defaultValue: '-'
-  },
-  {
-    name: 'href / to / target',
-    description: t('example.doc.button.prop.href'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'ripple',
-    description: t('example.doc.button.prop.ripple'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'badge / star',
-    description: t('example.doc.button.prop.badge'),
-    type: 'string | number / boolean',
-    defaultValue: '-'
-  },
-  {
-    name: 'type',
-    description: t('example.doc.button.prop.type'),
-    type: "'button' | 'submit' | 'reset'",
-    defaultValue: "'button'"
-  },
-  {
-    name: 'spin / pulse / heartbeat / bounce / …',
-    description: t('example.doc.motion.prop.heartbeat'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'animationDuration',
-    description: t('example.doc.motion.prop.animationDuration'),
-    type: 'number | string',
-    defaultValue: '-'
-  },
-  {
-    name: 'trackId / telemetry',
-    description: t('example.doc.button.prop.telemetry'),
-    type: 'string / boolean',
-    defaultValue: '- / undefined'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'click',
-    description: t('example.doc.button.emit.click'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'focus',
-    description: t('example.doc.button.emit.focus'),
-    type: '(event: FocusEvent) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'blur',
-    description: t('example.doc.button.emit.blur'),
-    type: '(event: FocusEvent) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'confirm',
-    description: t('example.doc.button.emit.confirm'),
-    type: '(event: Event) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'cancelConfirm',
-    description: t('example.doc.button.emit.cancelConfirm'),
-    type: '(event: Event) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.button.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'icon',
-    description: t('example.doc.button.slot.icon'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'prefix',
-    description: t('example.doc.button.slot.prefix'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'suffix',
-    description: t('example.doc.button.slot.suffix'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'loading',
-    description: t('example.doc.button.slot.loading'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'dropdown',
-    description: t('example.doc.button.slot.dropdown'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -473,18 +242,10 @@ const slotRows = computed<ApiRow[]>(() => [
     <DemoBlock
       :title="t('example.doc.button.demo.basic')"
       :description="t('example.doc.button.demo.basicDesc')"
-      :code="codeBasic"
+      :code="basicSource"
       default-open
     >
-      <div class="vp-button-row">
-        <Button severity="primary" @click="flash">{{ t(LocaleKeys.button.confirm) }}</Button>
-        <Button severity="success" @click="flash">{{ t(LocaleKeys.common.success) }}</Button>
-        <Button severity="warning" @click="flash">{{ t(LocaleKeys.button.edit) }}</Button>
-        <Button severity="danger" @click="flash">{{ t(LocaleKeys.button.delete) }}</Button>
-        <Button variant="outlined" @click="flash">{{ t(LocaleKeys.button.cancel) }}</Button>
-        <Button variant="text" @click="flash">{{ t(LocaleKeys.button.edit) }}</Button>
-        <Button link @click="flash">{{ t(LocaleKeys.button.learnMore) }}</Button>
-      </div>
+      <Basic />
     </DemoBlock>
 
     <DemoBlock
@@ -778,20 +539,7 @@ const slotRows = computed<ApiRow[]>(() => [
           </template>
         </Button>
       </div>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -801,25 +549,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-  line-height: var(--line-height-body);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-button-row {
   display: flex;
   flex-wrap: wrap;

@@ -1,0 +1,91 @@
+{
+  "name": "Block",
+  "generatedAt": "2026-08-07T12:39:09.862Z",
+  "source": {
+    "types": "packages/components/core/Block/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "display",
+      "optional": true,
+      "type": "BlockDisplay",
+      "description": ""
+    },
+    {
+      "name": "padding",
+      "optional": true,
+      "type": "BlockPadding",
+      "description": ""
+    },
+    {
+      "name": "padded",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bordered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "gap",
+      "optional": true,
+      "type": "BlockGap",
+      "description": ""
+    },
+    {
+      "name": "margin",
+      "optional": true,
+      "type": "BlockMargin",
+      "description": ""
+    },
+    {
+      "name": "bg",
+      "optional": true,
+      "type": "BlockBg",
+      "description": ""
+    },
+    {
+      "name": "fullBleed",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "radius",
+      "optional": true,
+      "type": "BlockRadius",
+      "description": ""
+    },
+    {
+      "name": "raised",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "BlockMargin",
+    "BlockPadding",
+    "BlockDisplay",
+    "BlockBg",
+    "BlockGap",
+    "BlockRadius",
+    "BlockEmits",
+    "BlockProps"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

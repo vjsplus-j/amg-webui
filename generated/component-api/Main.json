@@ -1,0 +1,62 @@
+{
+  "name": "Main",
+  "generatedAt": "2026-08-07T12:41:35.015Z",
+  "source": {
+    "types": "packages/components/core/Main/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "padded",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "padding",
+      "optional": true,
+      "type": "MainPadding",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "overflow",
+      "optional": true,
+      "type": "\"auto\" | \"hidden\" | \"visible\"",
+      "description": ""
+    },
+    {
+      "name": "fill",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "scroll",
+      "payload": "event: Event",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "MainPadding",
+    "MainProps",
+    "MainEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

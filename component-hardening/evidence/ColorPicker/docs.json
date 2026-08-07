@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/color-picker.md",
+  "api": "generated/component-api/ColorPicker.json",
+  "demo": "example/demos/ColorPicker/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

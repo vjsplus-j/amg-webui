@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/resize-box.md",
+  "api": "generated/component-api/ResizeBox.json",
+  "demo": "example/demos/ResizeBox/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

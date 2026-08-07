@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "engines": [
+    "resolveKeyboardNavAction",
+    "moveRovingIndex",
+    "getFloatingPanelStyle"
+  ],
+  "components": [
+    "MonthPicker",
+    "YearPicker",
+    "WeekPicker",
+    "QuarterPicker",
+    "TemplateSelect",
+    "DragSelect"
+  ],
+  "source": "tests/unit/hardening/batch-b06-datetime-lowcode-pickers.spec.ts",
+  "verifiedAt": "2026-08-07T12:35:44.011Z"
+}

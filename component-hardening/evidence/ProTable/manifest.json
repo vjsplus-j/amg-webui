@@ -1,0 +1,7 @@
+{
+  "component": "ProTable",
+  "family": "table",
+  "batch": "B13",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:41:52.740Z"
+}

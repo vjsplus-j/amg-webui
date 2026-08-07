@@ -1,0 +1,79 @@
+{
+  "name": "AvatarGroup",
+  "generatedAt": "2026-08-07T12:39:09.856Z",
+  "source": {
+    "types": "packages/components/core/AvatarGroup/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "max",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "AvatarSize",
+      "description": ""
+    },
+    {
+      "name": "shape",
+      "optional": true,
+      "type": "AvatarShape",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "optional": true,
+      "type": "'default' | 'neon'",
+      "description": ""
+    },
+    {
+      "name": "overlap",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "maxTooltip",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [
+    {
+      "name": "default",
+      "props": "props: Record<string, never>",
+      "description": ""
+    },
+    {
+      "name": "overflowTooltip",
+      "props": "props: { overflowCount: number; labels: string[] }",
+      "description": ""
+    }
+  ],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "AvatarGroupEmits",
+    "AvatarGroupProps",
+    "AvatarGroupSlots"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": true,
+    "expose": false,
+    "models": false
+  }
+}

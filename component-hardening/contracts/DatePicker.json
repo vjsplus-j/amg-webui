@@ -1,0 +1,89 @@
+{
+  "name": "DatePicker",
+  "family": "datetime",
+  "package": "form",
+  "capability": "interaction",
+  "maturity": "stable",
+  "batch": "B06",
+  "api": {
+    "props": "required",
+    "emits": "required",
+    "slots": "required",
+    "expose": "required",
+    "models": "required",
+    "instance": "optional",
+    "service": "not-applicable",
+    "context": "internal"
+  },
+  "requiredExpose": [
+    "focus",
+    "blur",
+    "open",
+    "close"
+  ],
+  "requiredSlots": [
+    "default"
+  ],
+  "models": [
+    {
+      "name": "modelValue",
+      "type": "string | Date | null | undefined",
+      "clearValue": "undefined",
+      "notes": "valueFormat controls string serialization"
+    }
+  ],
+  "behavioralContract": {
+    "open": "Opens calendar panel",
+    "clear": "Clears value to undefined and emits change",
+    "minMax": "Dates outside min/max are not selectable",
+    "unmount": "Listeners, timers, observers, and abort controllers must be released",
+    "batch": "B06 Date Family",
+    "disabled": "Interactive actions no-op when disabled"
+  },
+  "states": [
+    "default",
+    "open",
+    "disabled",
+    "readonly"
+  ],
+  "keyboard": [
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowUp",
+    "ArrowDown",
+    "Enter",
+    "Escape"
+  ],
+  "gates": {
+    "api-props": "mandatory",
+    "api-emits": "mandatory",
+    "api-slots": "mandatory",
+    "api-docs": "mandatory",
+    "package": "mandatory",
+    "ssr": "mandatory",
+    "cleanup": "mandatory",
+    "tokens": "mandatory",
+    "i18n": "mandatory",
+    "visual": "optional",
+    "a11y": "mandatory",
+    "keyboard": "mandatory",
+    "perf": "na",
+    "theme": "optional",
+    "rtl": "optional",
+    "form-contract": "mandatory",
+    "ime": "optional",
+    "behavior": "mandatory",
+    "docs": "mandatory"
+  },
+  "apiFreeze": {
+    "version": "1",
+    "frozen": true,
+    "frozenAt": "2026-08-07T11:19:52.715Z"
+  },
+  "generated": false,
+  "generatedAt": "2026-08-07T09:57:01.123Z",
+  "template": true,
+  "updatedAt": "2026-08-07T11:19:52.715Z",
+  "promoteStable": true,
+  "batchTitle": "Date Family"
+}

@@ -2,14 +2,11 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Button, Card, Skeleton } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -101,67 +98,6 @@ const codeSlots = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'loading',
-    description: t('example.doc.skeleton.prop.loading'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'variant',
-    description: t('example.doc.skeleton.prop.variant'),
-    type: "'text' | 'paragraph' | 'image' | 'rect' | 'circle' | 'avatar' | 'card' | 'list-item' | 'page'",
-    defaultValue: "'text'"
-  },
-  {
-    name: 'rows',
-    description: t('example.doc.skeleton.prop.rows'),
-    type: 'number',
-    defaultValue: '3'
-  },
-  {
-    name: 'animated / animation',
-    description: t('example.doc.skeleton.prop.animation'),
-    type: "boolean / 'shimmer' | 'pulse' | false",
-    defaultValue: "true / 'shimmer'"
-  },
-  {
-    name: 'size',
-    description: t('example.doc.skeleton.prop.size'),
-    type: 'Size | number | string',
-    defaultValue: '-'
-  },
-  {
-    name: 'width / height',
-    description: t('example.doc.skeleton.prop.dimension'),
-    type: 'string | number | array',
-    defaultValue: '-'
-  },
-  {
-    name: 'round',
-    description: t('example.doc.skeleton.prop.round'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'ariaLabel',
-    description: t('example.doc.skeleton.prop.ariaLabel'),
-    type: 'string',
-    defaultValue: '-'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.skeleton.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -299,19 +235,7 @@ const slotRows = computed<ApiRow[]>(() => [
       </Skeleton>
     </DemoBlock>
 
-    <!-- 4. API: Props → Events → Slots -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 4. API: Props → Events → Slots -->
   </div>
 </template>
 
@@ -322,25 +246,6 @@ const slotRows = computed<ApiRow[]>(() => [
   gap: var(--theme-section-gap);
   width: 100%;
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-  line-height: var(--line-height-body);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-skel-stack {
   display: flex;
   flex-direction: column;

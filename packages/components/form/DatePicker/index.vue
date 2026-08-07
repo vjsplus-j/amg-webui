@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useLocale, usePopover } from '@amg-webui/hooks'
+import { LocaleKeys } from '@amg-webui/locale'
 import {
   getCalendarDays,
   getMonthYearLabel,
@@ -41,7 +42,7 @@ const {
 
 const { nativeAttrs } = useNativeInputAttrs()
 
-const { locale } = useLocale()
+const { locale, t } = useLocale()
 const { isOpen, triggerRef, panelRef, toggle, close } = usePopover()
 
 const viewDate = ref(new Date())
@@ -132,6 +133,7 @@ const selectDay = (day: Date | null) => {
       :aria-invalid="isInvalid || undefined"
       :aria-required="isRequired || undefined"
       :aria-describedby="ariaDescribedby"
+      :aria-label="placeholder || undefined"
       :disabled="isDisabled"
       @click="handleTriggerClick"
       @blur="handleTriggerBlur"
@@ -148,8 +150,22 @@ const selectDay = (day: Date | null) => {
       <div class="vp-datepicker__header">
         <span>{{ monthLabel }}</span>
         <div class="vp-datepicker__nav">
-          <button type="button" class="vp-datepicker__nav-btn" @click="prevMonth">‹</button>
-          <button type="button" class="vp-datepicker__nav-btn" @click="nextMonth">›</button>
+          <button
+            type="button"
+            class="vp-datepicker__nav-btn"
+            :aria-label="t(LocaleKeys.common.previous)"
+            @click="prevMonth"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            class="vp-datepicker__nav-btn"
+            :aria-label="t(LocaleKeys.common.next)"
+            @click="nextMonth"
+          >
+            ›
+          </button>
         </div>
       </div>
 

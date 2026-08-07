@@ -83,7 +83,7 @@ const toggleCollapse = () => {
 </script>
 
 <template>
-  <div :class="['vp-filter-bar', props.class, { 'vp-filter-bar--collapsed': isCollapsed }]" :style="style" data-component="FilterBar">
+  <div role="region" aria-label="FilterBar" :class="['vp-filter-bar', props.class, { 'vp-filter-bar--collapsed': isCollapsed }]" :style="style" data-component="FilterBar">
     <div class="vp-filter-bar__header">
       <h3 class="vp-filter-bar__title">{{ t('component.filter-bar.title') }}</h3>
       <Button variant="text" size="sm" :label="isCollapsed ? t(LocaleKeys.common.expandMenu) : t(LocaleKeys.common.collapseMenu)" @click="toggleCollapse" />

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "collapse toggle + stable panel id",
+  "tests": [
+    "tests/unit/hardening/batch-b03-form-family.spec.ts",
+    "tests/unit/form-contract.spec.ts"
+  ]
+}

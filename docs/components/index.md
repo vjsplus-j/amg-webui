@@ -48,7 +48,7 @@
 | SchemaRenderer | [schema-renderer](./schema-renderer) | `lab/lowcode` |
 
 **通用基础 / 展示阶段清单：已全部 ready。**  
-表单 wave1（Switch / Radio / RadioGroup / Checkbox / CheckboxGroup）已有 docs stub + example curated；深化节奏见 [`COMPONENT_DEEPEN_PLAN.md`](../COMPONENT_DEEPEN_PLAN.md)。  
+表单 wave1（Switch / Radio / RadioGroup / Checkbox / CheckboxGroup）已有 docs stub + example curated；治理节奏见 [`COMPONENT_HARDENING.md`](../COMPONENT_HARDENING.md)。  
 全库其余 shell / beta 仍属多迭代工作，**不能**在一次会话里「一口气」全部晋升。
 
 ## FAQ（本阶段范围）

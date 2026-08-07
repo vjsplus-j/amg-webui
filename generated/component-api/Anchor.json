@@ -1,0 +1,118 @@
+{
+  "name": "Anchor",
+  "generatedAt": "2026-08-07T12:39:09.852Z",
+  "source": {
+    "types": "packages/components/core/Anchor/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "items",
+      "optional": true,
+      "type": "NavItem[]",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "'horizontal' | 'vertical'",
+      "description": ""
+    },
+    {
+      "name": "offset",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "container",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "smooth",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bound",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "affix",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "affixOffset",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "item: NavItem, event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "AnchorProps",
+    "AnchorEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

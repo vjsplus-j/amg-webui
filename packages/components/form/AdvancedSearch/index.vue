@@ -79,7 +79,7 @@ const saveTemplate = () => {
 </script>
 
 <template>
-  <div :class="['vp-advanced-search', props.class]" :style="style" data-component="AdvancedSearch">
+  <div role="region" aria-label="AdvancedSearch" :class="['vp-advanced-search', props.class]" :style="style" data-component="AdvancedSearch">
     <div class="vp-advanced-search__head">
       <h3 class="vp-advanced-search__title">{{ t('component.advanced-search.title') }}</h3>
       <div class="vp-advanced-search__logic">

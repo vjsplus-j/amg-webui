@@ -1,0 +1,133 @@
+{
+  "name": "GbsSignMonitor",
+  "generatedAt": "2026-08-07T12:41:13.605Z",
+  "source": {
+    "types": "packages/components/gb28181/GbsSignMonitor/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "logs",
+      "optional": true,
+      "type": "GbsSignEntry[]",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "filter",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "selectedId",
+      "optional": true,
+      "type": "string | null",
+      "description": ""
+    },
+    {
+      "name": "autoFollow",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "clearable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:logs",
+      "payload": "logs: GbsSignEntry[]",
+      "description": ""
+    },
+    {
+      "name": "update:filter",
+      "payload": "filter: string",
+      "description": ""
+    },
+    {
+      "name": "update:type",
+      "payload": "type: string",
+      "description": ""
+    },
+    {
+      "name": "update:selectedId",
+      "payload": "id: string | null",
+      "description": ""
+    },
+    {
+      "name": "refresh",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "entry: GbsSignEntry",
+      "description": ""
+    },
+    {
+      "name": "filterChange",
+      "payload": "filter: string, type: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "GbsSignEntry",
+    "GbsSignMonitorProps",
+    "GbsSignMonitorEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

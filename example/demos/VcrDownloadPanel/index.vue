@@ -3,9 +3,7 @@ import { computed } from 'vue'
 import { VcrDownloadPanel } from '@amg-webui/media'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import { getSampleMountProps } from '../_shared/sampleMountProps'
 import '../../components/demo/curatedDemo.scss'
 
@@ -22,13 +20,6 @@ const codeBasic = demoSfc({
   template: [`  <VcrDownloadPanel v-bind="mountProps" />`]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'class / style',
-    type: 'BaseProps',
-    description: t('example.doc.vcrDownloadPanel.prop.base')
-  }
-])
 </script>
 
 <template>
@@ -42,6 +33,5 @@ const propRows = computed<PropRow[]>(() => [
     >
       <VcrDownloadPanel v-bind="mountProps" />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

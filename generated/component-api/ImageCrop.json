@@ -1,0 +1,54 @@
+{
+  "name": "ImageCrop",
+  "generatedAt": "2026-08-07T12:41:13.616Z",
+  "source": {
+    "types": "packages/components/core/ImageCrop/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "src",
+      "optional": true,
+      "type": "string | File | Blob | null",
+      "description": ""
+    },
+    {
+      "name": "aspectRatio",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "crop",
+      "payload": "blob: Blob",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "error: Error",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ImageCropProps",
+    "ImageCropEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

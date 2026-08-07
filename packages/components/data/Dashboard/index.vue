@@ -59,7 +59,7 @@ const onSelect = (stat: DashboardStat) => {
 </script>
 
 <template>
-  <div
+  <div role="region" aria-label="Dashboard"
     :class="['vp-dashboard', props.class, { 'vp-dashboard--loading': loading }]"
     :style="{ ...gridStyle, ...style }"
     data-component="Dashboard"

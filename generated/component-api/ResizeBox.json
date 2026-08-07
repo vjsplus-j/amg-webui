@@ -1,0 +1,74 @@
+{
+  "name": "ResizeBox",
+  "generatedAt": "2026-08-07T12:41:56.123Z",
+  "source": {
+    "types": "packages/components/core/ResizeBox/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "width",
+      "optional": true,
+      "type": "number | string",
+      "description": ""
+    },
+    {
+      "name": "height",
+      "optional": true,
+      "type": "number | string",
+      "description": ""
+    },
+    {
+      "name": "minWidth",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "minHeight",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "maxWidth",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "maxHeight",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "directions",
+      "optional": true,
+      "type": "ResizeDirection[]",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "resize",
+      "payload": "payload: { width: number; height: number }",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ResizeDirection",
+    "ResizeBoxProps",
+    "ResizeBoxEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

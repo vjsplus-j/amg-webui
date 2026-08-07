@@ -574,10 +574,20 @@
       "types": "./dist/locale/zh-CN/index.d.ts",
       "default": "./dist/locale/zh-CN/index.js"
     },
-    "./locale/zh-TW": {
-      "import": "./dist/locale/zh-TW/index.js",
-      "types": "./dist/locale/zh-TW/index.d.ts",
-      "default": "./dist/locale/zh-TW/index.js"
+        "./locale/hi-IN": {
+      "import": "./dist/locale/hi-IN/index.js",
+      "types": "./dist/locale/hi-IN/index.d.ts",
+      "default": "./dist/locale/hi-IN/index.js"
+    },
+    "./locale/ug-CN": {
+      "import": "./dist/locale/ug-CN/index.js",
+      "types": "./dist/locale/ug-CN/index.d.ts",
+      "default": "./dist/locale/ug-CN/index.js"
+    },
+    "./locale/zh-HK": {
+      "import": "./dist/locale/zh-HK/index.js",
+      "types": "./dist/locale/zh-HK/index.d.ts",
+      "default": "./dist/locale/zh-HK/index.js"
     },
     "./types": {
       "import": "./dist/types/index.js",
@@ -2350,6 +2360,23 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "check:boundaries": "node scripts/check-package-boundaries.mjs",
+    "hardening:generate": "node scripts/hardening/generate-governance.mjs",
+    "audit:api": "node scripts/hardening/audit-api.mjs",
+    "verify:component": "node scripts/hardening/verify-component.mjs",
+    "verify:family": "node scripts/hardening/verify-family.mjs",
+    "hardening:changed": "node scripts/hardening/changed-components.mjs",
+    "hardening:ssr": "node scripts/hardening/ssr-batch.mjs",
+    "hardening:visual": "node scripts/hardening/visual-harness.mjs",
+    "hardening:templates": "node scripts/hardening/enrich-template-contracts.mjs",
+    "hardening:demote": "node scripts/hardening/demote-fake-stable.mjs",
+    "hardening:extract-api": "node scripts/hardening/extract-component-api.mjs",
+    "hardening:promote": "node scripts/hardening/promote-stable.mjs",
+    "hardening:dashboard": "node scripts/hardening/build-dashboard.mjs",
+    "hardening:batches": "node scripts/hardening/enrich-batches.mjs",
+    "hardening:release": "node scripts/hardening/isolated-css-report.mjs && node scripts/hardening/release-reports.mjs",
+    "hardening:evidence": "npx vitest run tests/unit/hardening/family-evidence.spec.ts && npx playwright test tests/e2e/hardening-family-evidence.spec.ts --project=chromium && node scripts/hardening/summarize-family-evidence.mjs && node scripts/hardening/merge-family-evidence.mjs",
+    "hardening:templates-verify": "npm run verify:component -- Button && npm run verify:component -- Select && npm run verify:component -- DatePicker && npm run verify:component -- Dialog && npm run verify:component -- DataTable",
+    "hardening:all": "npm run hardening:generate && npm run hardening:templates && npm run hardening:batches && npm run audit:api && npm run hardening:demote && npm run verify:component -- --all && npm run hardening:ssr && npm run hardening:visual && npm run hardening:dashboard && npm run hardening:release",
     "ci": "vue-tsc --noEmit && npm run check:boundaries && npm run validate:catalog && npm run extract:i18n && npm run test && npm run test:ssr && npm run build:lib && npm run check:dist && npm run test:consumers",
     "generate:vitepress-api": "node scripts/generate-vitepress-api.mjs",
     "docs:dev": "vitepress dev docs --config vitepress.config.ts",

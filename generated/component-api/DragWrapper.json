@@ -1,0 +1,99 @@
+{
+  "name": "DragWrapper",
+  "generatedAt": "2026-08-07T12:40:46.825Z",
+  "source": {
+    "types": "packages/lowcode/ui/DragWrapper/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "nested",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "accept",
+      "optional": true,
+      "type": "string[]",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "drop",
+      "payload": "type: string",
+      "description": ""
+    },
+    {
+      "name": "dropData",
+      "payload": "payload: { type: string; data: string; event: DragEvent },",
+      "description": ""
+    },
+    {
+      "name": "dragEnter",
+      "payload": "event: DragEvent",
+      "description": ""
+    },
+    {
+      "name": "dragLeave",
+      "payload": "event: DragEvent",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "DragWrapperProps",
+    "DragWrapperEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

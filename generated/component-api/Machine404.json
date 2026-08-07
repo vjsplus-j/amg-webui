@@ -1,0 +1,121 @@
+{
+  "name": "Machine404",
+  "generatedAt": "2026-08-07T12:41:35.014Z",
+  "source": {
+    "types": "packages/components/core/Machine404/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "code",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "actions",
+      "optional": true,
+      "type": "NotFoundAction[]",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "retryable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "homeHref",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "homeText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "action",
+      "payload": "action: NotFoundAction, event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "retry",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "home",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "Machine404Props",
+    "Machine404Emits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

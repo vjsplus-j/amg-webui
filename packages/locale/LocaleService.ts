@@ -4,6 +4,7 @@ import {
   getLocaleMeta,
   getLocalePack,
   listLocaleCodes,
+  resolveLocaleCode,
   type LocaleCode,
   type LocaleKey,
   type LocaleMessages,
@@ -12,12 +13,14 @@ import {
 import { resolvePlurals } from './plural'
 
 const STORAGE_KEY = 'amg-webui-locale-v1'
+const DIR_STORAGE_KEY = 'amg-webui-dir-v1'
 const ATTR = 'data-locale'
 const DEFAULT: LocaleCode = 'zh-CN'
+const DEFAULT_DIR: TextDirection = 'ltr'
 
 let current: string = DEFAULT
-/** `null` = follow locale meta */
-let directionOverride: TextDirection | null = null
+/** Document reading direction — independent of locale pack. */
+let currentDir: TextDirection = DEFAULT_DIR
 const listeners = new Set<(code: string) => void>()
 const dirListeners = new Set<(dir: TextDirection) => void>()
 
@@ -26,8 +29,7 @@ function notify() {
 }
 
 function notifyDir() {
-  const dir = LocaleService.getDir()
-  dirListeners.forEach((fn) => fn(dir))
+  dirListeners.forEach((fn) => fn(currentDir))
 }
 
 function interpolate(template: string, params?: Record<string, string | number>) {
@@ -37,13 +39,17 @@ function interpolate(template: string, params?: Record<string, string | number>)
   )
 }
 
+function parseDir(raw: string | null | undefined): TextDirection | null {
+  if (raw === 'rtl' || raw === 'ltr') return raw
+  return null
+}
+
 function applyDocumentAttrs(code: string): void {
   if (typeof document === 'undefined') return
   const meta = getLocaleMeta(code) ?? LOCALE_META[DEFAULT]
-  const dir = directionOverride ?? meta.dir
   document.documentElement.setAttribute(ATTR, code)
   document.documentElement.setAttribute('lang', meta.lang)
-  document.documentElement.setAttribute('dir', dir)
+  document.documentElement.setAttribute('dir', currentDir)
 }
 
 export class LocaleService {
@@ -55,19 +61,29 @@ export class LocaleService {
     return getLocalePack(current) ?? getLocalePack(DEFAULT)!
   }
 
+  /** Active document direction (not derived from locale). */
   static getDir(): TextDirection {
-    if (directionOverride) return directionOverride
-    return getLocaleMeta(current)?.dir ?? 'ltr'
+    return currentDir
   }
 
   /**
-   * Force document / chrome direction, or `null` to follow the active locale meta.
-   * Enables RTL preview without switching language packs.
+   * Set document / chrome reading direction independently of language pack.
+   * `null` resets to `ltr` (legacy alias — does **not** follow locale meta).
    */
   static setDirection(dir: TextDirection | null): void {
-    directionOverride = dir
+    currentDir = dir ?? DEFAULT_DIR
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(DIR_STORAGE_KEY, currentDir)
+    }
     applyDocumentAttrs(current)
     notifyDir()
+  }
+
+  /** Flip between `ltr` and `rtl`. */
+  static toggleDirection(): TextDirection {
+    const next: TextDirection = currentDir === 'rtl' ? 'ltr' : 'rtl'
+    LocaleService.setDirection(next)
+    return next
   }
 
   static t(key: LocaleKey, params?: Record<string, string | number>, fallback?: string): string {
@@ -77,28 +93,42 @@ export class LocaleService {
   }
 
   static setLocale(code: string): void {
-    if (!getLocalePack(code)) return
-    current = code
-    applyDocumentAttrs(code)
+    const resolved = resolveLocaleCode(code) ?? code
+    if (!getLocalePack(resolved)) return
+    current = resolved
+    applyDocumentAttrs(resolved)
     if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(STORAGE_KEY, code)
+      localStorage.setItem(STORAGE_KEY, resolved)
     }
     notify()
-    notifyDir()
   }
 
   static init(): void {
-    const fromQuery =
-      typeof window !== 'undefined'
-        ? new URLSearchParams(window.location.search).get('lang')
-        : null
+    const params =
+      typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null
+    const fromQuery = params?.get('lang') ?? null
     const stored =
       typeof localStorage !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null
-    const next =
-      (fromQuery && getLocalePack(fromQuery) && fromQuery) ||
-      (stored && getLocalePack(stored) && stored) ||
-      DEFAULT
-    LocaleService.setLocale(next)
+    const candidate = fromQuery || stored || DEFAULT
+    const resolved = resolveLocaleCode(candidate) ?? candidate
+    const nextLocale =
+      (getLocalePack(resolved) && resolved) || DEFAULT
+
+    const fromDirQuery = parseDir(params?.get('dir'))
+    const storedDir =
+      typeof localStorage !== 'undefined'
+        ? parseDir(localStorage.getItem(DIR_STORAGE_KEY))
+        : null
+    currentDir = fromDirQuery ?? storedDir ?? DEFAULT_DIR
+
+    current = nextLocale
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(STORAGE_KEY, current)
+      localStorage.setItem(DIR_STORAGE_KEY, currentDir)
+    }
+    applyDocumentAttrs(current)
+    notify()
+    notifyDir()
   }
 
   /** Cycle through built-in locales (custom packs are not in the cycle). */

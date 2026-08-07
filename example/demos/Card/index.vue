@@ -3,14 +3,11 @@
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts`).
  * CardWidgets full page is Wave5; this page only teasers it with complete code.
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Avatar, Button, Card, CardWidgets, Progress, Space, Statistic, Tag } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t, tDyn } = useLocale()
 
@@ -245,86 +242,6 @@ const codeEvents = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'header / title / subtitle',
-    description: t('example.doc.card.prop.title'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'footer',
-    description: t('example.doc.card.prop.footer'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'hover / hoverable / raised / bordered',
-    description: t('example.doc.card.prop.chrome'),
-    type: 'boolean',
-    defaultValue: 'false / false / false / true'
-  },
-  {
-    name: 'loading',
-    description: t('example.doc.card.prop.loading'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'skeleton',
-    description: t('example.doc.card.prop.skeleton'),
-    type: 'CardSkeleton',
-    defaultValue: "'basic'"
-  },
-  {
-    name: 'trackId / telemetry',
-    description: t('example.doc.card.prop.telemetry'),
-    type: 'string / boolean',
-    defaultValue: '- / undefined'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'click',
-    description: t('example.doc.card.emit.click'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.card.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'header',
-    description: t('example.doc.card.slot.header'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'extra',
-    description: t('example.doc.card.slot.extra'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'cover',
-    description: t('example.doc.card.slot.cover'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'footer',
-    description: t('example.doc.card.slot.footer'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -491,19 +408,7 @@ const slotRows = computed<ApiRow[]>(() => [
       </div>
     </DemoBlock>
 
-    <!-- 5. API: Props → Events → Slots -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 5. API: Props → Events → Slots -->
   </div>
 </template>
 
@@ -513,25 +418,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-card-demo__group {
   display: flex;
   flex-direction: column;

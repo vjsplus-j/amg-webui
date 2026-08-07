@@ -1,0 +1,78 @@
+{
+  "name": "BatchUpload",
+  "generatedAt": "2026-08-07T12:39:09.861Z",
+  "source": {
+    "types": "packages/components/form/BatchUpload/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "BatchFileItem[]",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "concurrent",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "accept",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "drag",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: BatchFileItem[]",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: BatchFileItem[]",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "BatchFileItem",
+    "BatchUploadProps",
+    "BatchUploadEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

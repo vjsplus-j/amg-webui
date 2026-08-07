@@ -1,0 +1,125 @@
+{
+  "name": "Image",
+  "generatedAt": "2026-08-07T12:41:13.615Z",
+  "source": {
+    "types": "packages/components/core/Image/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "src",
+      "optional": false,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "alt",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "fit",
+      "optional": true,
+      "type": "ImageFit",
+      "description": ""
+    },
+    {
+      "name": "lazy",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "preview",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "previewSrc",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "previewSrcList",
+      "optional": true,
+      "type": "string[]",
+      "description": ""
+    },
+    {
+      "name": "initialIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "width",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "height",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "fallback",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "load",
+      "payload": "event: Event",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "event: Event",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "switch",
+      "payload": "index: number",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ImageFit",
+    "ImageProps",
+    "ImageEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

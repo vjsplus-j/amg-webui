@@ -1,0 +1,87 @@
+{
+  "name": "Skeleton",
+  "generatedAt": "2026-08-07T12:41:56.147Z",
+  "source": {
+    "types": "packages/components/core/Skeleton/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "optional": true,
+      "type": "SkeletonVariant",
+      "description": ""
+    },
+    {
+      "name": "rows",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "animated",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "animation",
+      "optional": true,
+      "type": "SkeletonAnimation",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size | number | string",
+      "description": ""
+    },
+    {
+      "name": "width",
+      "optional": true,
+      "type": "SkeletonWidth",
+      "description": ""
+    },
+    {
+      "name": "height",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "round",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "SkeletonVariant",
+    "SkeletonAnimation",
+    "SkeletonWidth",
+    "SkeletonProps"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

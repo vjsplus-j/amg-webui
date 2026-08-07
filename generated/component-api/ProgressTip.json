@@ -1,0 +1,199 @@
+{
+  "name": "ProgressTip",
+  "generatedAt": "2026-08-07T12:41:35.063Z",
+  "source": {
+    "types": "packages/components/core/ProgressTip/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "message",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "percentage",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "severity",
+      "optional": true,
+      "type": "Severity",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "ProgressTipSize",
+      "description": ""
+    },
+    {
+      "name": "showText",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "striped",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "indeterminate",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "closable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "currentStep",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "totalSteps",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "actionText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "state",
+      "optional": true,
+      "type": "ProgressTipState",
+      "description": ""
+    },
+    {
+      "name": "cancellable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "cancelText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "retryable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "retryText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: number",
+      "description": ""
+    },
+    {
+      "name": "complete",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "action",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "cancel",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "retry",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "pause",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "resume",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "ProgressTipSize",
+    "ProgressTipState",
+    "ProgressTipProps",
+    "ProgressTipEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "detail": "aria-invalid + aria-describedby on error",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts",
+  "family": "form"
+}

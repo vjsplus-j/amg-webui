@@ -1,0 +1,90 @@
+{
+  "name": "Timeline",
+  "generatedAt": "2026-08-07T12:42:17.038Z",
+  "source": {
+    "types": "packages/components/data/Timeline/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "items",
+      "optional": true,
+      "type": "TimelineItemProps[]",
+      "description": ""
+    },
+    {
+      "name": "mode",
+      "optional": true,
+      "type": "TimelineMode",
+      "description": ""
+    },
+    {
+      "name": "pending",
+      "optional": true,
+      "type": "boolean | string",
+      "description": ""
+    },
+    {
+      "name": "reverse",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "TimelineKey | null",
+      "description": ""
+    },
+    {
+      "name": "selectable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: TimelineKey",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: TimelineKey",
+      "description": ""
+    },
+    {
+      "name": "itemClick",
+      "payload": "item: TimelineItemProps | undefined, event: MouseEvent | KeyboardEvent,",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "TimelineMode",
+    "TimelineKey",
+    "TimelineItemTimestampPlacement",
+    "TimelineItemSide",
+    "TimelineItemColor",
+    "TimelineItemProps",
+    "TimelineContext",
+    "TimelineProps",
+    "TimelineEmits",
+    "TimelineItemEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

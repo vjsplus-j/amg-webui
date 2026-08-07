@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/notice-bar.md",
+  "api": "generated/component-api/NoticeBar.json",
+  "demo": "example/demos/NoticeBar/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

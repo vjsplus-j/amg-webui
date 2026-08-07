@@ -1,0 +1,17 @@
+{
+  "family": "datetime",
+  "batch": "B06",
+  "axe": {
+    "status": "PASS",
+    "blocking": 0
+  },
+  "keyboard": {
+    "status": "PASS",
+    "detail": "open panel + Escape"
+  },
+  "verifiedAt": "2026-08-07T12:28:51.749Z",
+  "unit": {
+    "status": "PASS",
+    "detail": "DatePicker trigger mounts"
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "generatedAt": "2026-08-07T12:53:16.927Z",
+  "scope": "example/ (internal playground, NOT docs SSOT)",
+  "summary": {
+    "routeImports": 35,
+    "missingRoutePages": 0,
+    "orphanPages": 0,
+    "catalogComponents": 287,
+    "demoFolders": 287,
+    "registryEntries": 287,
+    "orphanDemos": 0,
+    "missingDemoFolders": 0,
+    "registryDemoMismatch": 0,
+    "minimalShellDemos": 0,
+    "emptyShellDemos": 0,
+    "handwrittenApiInDemos": 0,
+    "codeDriftPartsPlusSfc": 0,
+    "partsBasedDemos": 5,
+    "handwrittenCodeDemos": 282,
+    "curatedRegistryGaps": 0
+  },
+  "p0": [],
+  "p1": [],
+  "p2": [],
+  "acceptedNotes": [
+    {
+      "severity": "info",
+      "id": "curated-architecture",
+      "title": "Example play shell uses demoSfc/demoCode; docs SSOT is VitePress + ApiRenderer",
+      "detail": "282 curated demos use demoCode helpers for copyable snippets; gold-standard parts/*.vue?raw migration is incremental (5 demos migrated).",
+      "paths": [
+        "example/demos/registry.ts",
+        "example/components/demo/demoCode.ts",
+        "example/pages/base/ComponentDocPage.vue"
+      ]
+    },
+    {
+      "severity": "info",
+      "id": "legacy-zone-redirects",
+      "title": "Legacy zone routes intentionally redirect to base-overview",
+      "detail": "11 legacy paths kept for bookmark compatibility; old zone pages removed.",
+      "paths": [
+        "example/router/routes.ts -> base/atoms",
+        "example/router/routes.ts -> base/forms",
+        "example/router/routes.ts -> base/data",
+        "example/router/routes.ts -> base/feedback",
+        "example/router/routes.ts -> base/third-party",
+        "example/router/routes.ts -> base/catalog",
+        "example/router/routes.ts -> base/industry",
+        "example/router/routes.ts -> demo/components",
+        "example/router/routes.ts -> demo/forms",
+        "example/router/routes.ts -> demo/users",
+        "example/router/routes.ts -> /:pathMatch(.*)*"
+      ]
+    }
+  ],
+  "details": {
+    "missingRoutePages": [],
+    "orphanPages": [],
+    "orphanDemos": [],
+    "missingDemoFolders": [],
+    "demosWithoutRegistry": [],
+    "registryWithoutDemo": [],
+    "emptyShellDemos": [],
+    "minimalDemos": [],
+    "fakeApiInDemos": [],
+    "codeDrift": [],
+    "partsBased": [
+      "Button",
+      "DataTable",
+      "DatePicker",
+      "Dialog",
+      "Select"
+    ],
+    "handwrittenCodeCount": 282,
+    "handwrittenCodeSample": [
+      "AdvancedSearch",
+      "Affix",
+      "Alert",
+      "Anchor",
+      "AudioPlay",
+      "AudioTalk",
+      "AutoComplete",
+      "Avatar",
+      "AvatarGroup",
+      "BackTop",
+      "Badge",
+      "BarChart",
+      "Barcode",
+      "BatchPanel",
+      "BatchUpload",
+      "Block",
+      "Breadcrumb",
+      "BreadcrumbItem",
+      "BrowserDetect",
+      "Business404",
+      "ButtonGroup",
+      "Calendar",
+      "CanvasIo",
+      "CanvasLayer",
+      "CanvasNode",
+      "CanvasPreview",
+      "CanvasShortcut",
+      "Card",
+      "CardGrid",
+      "CardList",
+      "CardNav",
+      "CardWidgets",
+      "Carousel",
+      "Cartoon404",
+      "Cascader",
+      "CategoryNav",
+      "Center",
+      "Checkbox",
+      "CheckboxGroup",
+      "ChunkUpload",
+      "Clipboard",
+      "CodeEditor",
+      "Col",
+      "Collapse",
+      "ColorInput",
+      "ColorPicker",
+      "ColumnLayout",
+      "ConfigProvider",
+      "Confirm",
+      "ConfirmDialog"
+    ],
+    "curatedMissing": [],
+    "legacyRedirects": [
+      "base/atoms",
+      "base/forms",
+      "base/data",
+      "base/feedback",
+      "base/third-party",
+      "base/catalog",
+      "base/industry",
+      "demo/components",
+      "demo/forms",
+      "demo/users",
+      "/:pathMatch(.*)*"
+    ]
+  },
+  "fixesApplied": [
+    {
+      "id": "orphan-pages",
+      "summary": "Deleted 6 unrouted legacy zone pages under example/pages/base/",
+      "paths": [
+        "example/pages/base/AtomsPage.vue",
+        "example/pages/base/DataDisplayPage.vue",
+        "example/pages/base/FeedbackPage.vue",
+        "example/pages/base/FormsPage.vue",
+        "example/pages/base/IndustryPage.vue",
+        "example/pages/base/ThirdPartyPage.vue"
+      ]
+    },
+    {
+      "id": "duplicate-api-tables",
+      "summary": "Removed inline PropsTable/propRows from 280 curated demos; API SSOT is ComponentDocPage ApiRenderer only",
+      "paths": [
+        "scripts/strip-demo-inline-api.mjs",
+        "scripts/fix-demo-strip-cleanup.mjs",
+        "example/demos/*/index.vue"
+      ]
+    },
+    {
+      "id": "code-drift-parts-sfc",
+      "summary": "Parts-based demos (Button, DataTable, DatePicker, Dialog, Select) use parts/*.vue?raw for Basic block; audit only flags parts without ?raw",
+      "paths": [
+        "example/demos/Button/parts/",
+        "scripts/audit-example.mjs"
+      ]
+    },
+    {
+      "id": "minimal-shell-demos",
+      "summary": "SchemaRenderer curated demo expanded to 2 DemoBlocks (populated + empty schema)",
+      "paths": [
+        "example/demos/SchemaRenderer/index.vue"
+      ]
+    },
+    {
+      "id": "audit-script",
+      "summary": "P1/P2 gaps cleared; intentional example-play patterns moved to acceptedNotes",
+      "paths": [
+        "scripts/audit-example.mjs"
+      ]
+    }
+  ]
+}

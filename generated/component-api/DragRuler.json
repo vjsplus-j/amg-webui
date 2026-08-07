@@ -1,0 +1,78 @@
+{
+  "name": "DragRuler",
+  "generatedAt": "2026-08-07T12:40:46.822Z",
+  "source": {
+    "types": "packages/lowcode/ui/DragRuler/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "scale",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "showGuides",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "toggle-guides",
+      "payload": "value: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "DragRulerProps",
+    "DragRulerEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

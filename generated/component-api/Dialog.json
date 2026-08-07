@@ -1,0 +1,164 @@
+{
+  "name": "Dialog",
+  "generatedAt": "2026-08-07T12:34:13.533Z",
+  "source": {
+    "types": "packages/components/overlay/Dialog/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "visible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "header",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "footer",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modal",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "dismissible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "closable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "maximizable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "minimizable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "DialogSize",
+      "description": ""
+    },
+    {
+      "name": "width",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "lockScroll",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "closeOnPressEscape",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "closeOnClickOverlay",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "teleportTo",
+      "optional": true,
+      "type": "string | HTMLElement",
+      "description": ""
+    },
+    {
+      "name": "zIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "maximize",
+      "payload": "maximized: boolean",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "payload": "event?: Event, reason?: DialogCloseReason",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "props": "props: Record<string, never>",
+      "description": ""
+    },
+    {
+      "name": "header",
+      "props": "props: Record<string, never>",
+      "description": ""
+    },
+    {
+      "name": "footer",
+      "props": "props: Record<string, never>",
+      "description": ""
+    }
+  ],
+  "expose": [
+    {
+      "name": "open",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "type": "(reason?: DialogCloseReason) => void",
+      "description": ""
+    }
+  ],
+  "models": [],
+  "publicTypes": [
+    "DialogSize",
+    "DialogCloseReason",
+    "DialogInstance",
+    "DialogProps",
+    "DialogEmits",
+    "DialogSlots",
+    "DialogExpose"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": true,
+    "expose": true,
+    "models": false
+  }
+}

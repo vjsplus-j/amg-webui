@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { LoginPanel } from '@amg-webui/form'
 import { StatusTip } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -26,11 +24,6 @@ const codeBasic = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'modelValue', type: 'LoginFormModel', description: t('example.doc.loginPanel.prop.modelValue') },
-  { name: 'rules', type: 'FormRules', description: t('example.doc.loginPanel.prop.rules') },
-  { name: 'showCaptcha', type: 'boolean', defaultValue: 'true', description: t('example.doc.loginPanel.prop.showCaptcha') }
-])
 </script>
 
 <template>
@@ -57,9 +50,7 @@ const propRows = computed<PropRow[]>(() => [
         />
       </div>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

@@ -46,7 +46,7 @@ export default {
   'biz.settings.profile': '账户资料',
   'biz.settings.displayName': '显示名',
   'biz.settings.themeHeading': '设计主题',
-  'biz.settings.themeDesc': '六套锁定主题来自 designmd，切换即写入 data-design。',
+  'biz.settings.themeDesc': '官方主题含 designmd 六套与微信 / 支付宝风格，切换即写入 data-design。',
   'biz.settings.securityDesc': '修改密码、会话超时等能力由宿主业务接入；此处为复合布局壳。',
   'biz.settings.changePassword': '修改密码',
   'biz.settings.mailNotify': '邮件通知',

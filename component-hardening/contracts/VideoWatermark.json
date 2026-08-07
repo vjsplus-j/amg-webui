@@ -1,0 +1,63 @@
+{
+  "name": "VideoWatermark",
+  "family": "media",
+  "package": "media",
+  "capability": "composite",
+  "maturity": "stable",
+  "batch": "B19",
+  "api": {
+    "props": "required",
+    "emits": "required",
+    "slots": "optional",
+    "expose": "required",
+    "models": "optional",
+    "instance": "not-applicable",
+    "service": "not-applicable",
+    "context": "internal"
+  },
+  "requiredExpose": [
+    "destroy"
+  ],
+  "requiredSlots": [],
+  "models": [],
+  "behavioralContract": {
+    "disabled": "Interactive actions no-op when disabled",
+    "unmount": "Listeners, timers, observers, and abort controllers must be released",
+    "batch": "B19 Media Core"
+  },
+  "states": [
+    "default",
+    "disabled"
+  ],
+  "keyboard": [],
+  "gates": {
+    "api-props": "mandatory",
+    "api-emits": "mandatory",
+    "api-slots": "mandatory",
+    "api-docs": "mandatory",
+    "package": "mandatory",
+    "ssr": "mandatory",
+    "cleanup": "mandatory",
+    "tokens": "mandatory",
+    "i18n": "mandatory",
+    "visual": "optional",
+    "a11y": "optional",
+    "keyboard": "optional",
+    "perf": "na",
+    "theme": "optional",
+    "rtl": "optional",
+    "adapter": "mandatory",
+    "destroy": "mandatory",
+    "mock": "mandatory"
+  },
+  "apiFreeze": {
+    "version": "1",
+    "frozen": true,
+    "frozenAt": "2026-08-07T12:42:55.908Z"
+  },
+  "generated": true,
+  "generatedAt": "2026-08-07T09:57:01.310Z",
+  "promoteStable": true,
+  "batchTitle": "Media Core",
+  "updatedAt": "2026-08-07T12:42:55.908Z"
+}

@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-08-07T10:05:40.146Z",
+  "requirement": "Consumers must be able to import component JS + per-component CSS without root dist/style.css",
+  "samples": [
+    "Button",
+    "Select",
+    "InputText",
+    "Dialog",
+    "DataTable"
+  ],
+  "verification": {
+    "script": "npm run test:consumers",
+    "fixtures": [
+      "tests/consumer-vite",
+      "tests/consumer-webpack",
+      "tests/consumer-nuxt"
+    ],
+    "ondemand": "npm run build:ondemand → dist/es/**"
+  },
+  "status": "covered-by-test-consumers"
+}

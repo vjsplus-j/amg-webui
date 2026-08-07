@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { computed, onBeforeUnmount } from 'vue';
 import { useLocale } from "@amg-webui/hooks";
 import { trackEmit } from "@amg-webui/telemetry";
 import { LocaleKeys } from "@amg-webui/locale";
@@ -87,6 +88,11 @@ function select(volume: VcrStorageVolume) {
   emit("update:selectedId", volume.id);
   emit("select", volume);
 }
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

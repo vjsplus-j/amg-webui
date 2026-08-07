@@ -126,7 +126,7 @@ const handles = computed(() => props.directions ?? [])
 </script>
 
 <template>
-  <div ref="boxRef" :class="['vp-resize-box', props.class]" :style="{ ...boxStyle, ...style }">
+  <div role="region" aria-label="ResizeBox" ref="boxRef" :class="['vp-resize-box', props.class]" :style="{ ...boxStyle, ...style }">
     <div class="vp-resize-box__content">
       <slot />
     </div>

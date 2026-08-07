@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "tests/unit/hardening/real-mount-remaining.spec.ts ButtonGroup uses package styles / semantic tokens gate",
+  "tests": [
+    "tests/unit/hardening/real-mount-remaining.spec.ts"
+  ],
+  "updatedAt": "2026-08-07T12:39:26.743Z"
+}

@@ -1,0 +1,130 @@
+{
+  "name": "DragSortNode",
+  "generatedAt": "2026-08-07T12:40:46.823Z",
+  "source": {
+    "types": "packages/lowcode/ui/DragSortNode/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "CanvasNodeData[]",
+      "description": ""
+    },
+    {
+      "name": "nodes",
+      "optional": true,
+      "type": "CanvasNodeData[]",
+      "description": ""
+    },
+    {
+      "name": "selectedId",
+      "optional": true,
+      "type": "string | null",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "clearable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "nodes: CanvasNodeData[]",
+      "description": ""
+    },
+    {
+      "name": "update:selectedId",
+      "payload": "id: string | null",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "nodes: CanvasNodeData[]",
+      "description": ""
+    },
+    {
+      "name": "reorder",
+      "payload": "nodes: CanvasNodeData[]",
+      "description": ""
+    },
+    {
+      "name": "move",
+      "payload": "node: CanvasNodeData, from: number, to: number",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "node: CanvasNodeData",
+      "description": ""
+    },
+    {
+      "name": "dragStart",
+      "payload": "node: CanvasNodeData, event: DragEvent",
+      "description": ""
+    },
+    {
+      "name": "dragEnd",
+      "payload": "node: CanvasNodeData, event: DragEvent",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "DragSortNodeProps",
+    "DragSortNodeEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

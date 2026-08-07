@@ -2,14 +2,11 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Button, Empty } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -76,80 +73,6 @@ const codeEvents = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'description',
-    description: t('example.doc.empty.prop.description'),
-    type: 'string',
-    defaultValue: 't(common.noData)'
-  },
-  {
-    name: 'title',
-    description: t('example.doc.empty.prop.title'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'image',
-    description: t('example.doc.empty.prop.image'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'imageAlt',
-    description: t('example.doc.empty.prop.imageAlt'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'imageSize',
-    description: t('example.doc.empty.prop.imageSize'),
-    type: "Size | number | string",
-    defaultValue: "'md'"
-  },
-  {
-    name: 'imageStyle',
-    description: t('example.doc.empty.prop.imageStyle'),
-    type: 'Record<string, string>',
-    defaultValue: '-'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'imageError',
-    description: t('example.doc.empty.emit.imageError'),
-    type: '(event: Event) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.empty.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'image',
-    description: t('example.doc.empty.slot.image'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'title',
-    description: t('example.doc.empty.slot.title'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'description',
-    description: t('example.doc.empty.slot.description'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -231,20 +154,7 @@ const slotRows = computed<ApiRow[]>(() => [
           }}
         </p>
       </div>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 

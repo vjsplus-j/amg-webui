@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, provide } from 'vue'
+import { moveRovingIndex, resolveKeyboardNavAction } from '@amg-webui/utils'
+import { computed, provide, ref } from 'vue'
 import Checkbox from '../Checkbox/index.vue'
 import { CHECKBOX_GROUP_INJECTION_KEY } from '../Checkbox/types'
 import type { CheckboxGroupProps, CheckboxGroupEmits } from './types'
@@ -73,10 +74,47 @@ provide(CHECKBOX_GROUP_INJECTION_KEY, {
   },
   toggle
 })
+
+const rootRef = ref<HTMLElement | null>(null)
+const activeIndex = ref(0)
+
+function focusOption(index: number) {
+  const root = rootRef.value
+  if (!root) return
+  const inputs = Array.from(
+    root.querySelectorAll<HTMLInputElement>('input[type="checkbox"]:not(:disabled)')
+  )
+  if (!inputs.length) return
+  const next = Math.max(0, Math.min(index, inputs.length - 1))
+  activeIndex.value = next
+  inputs[next]?.focus()
+}
+
+function onGroupKeydown(event: KeyboardEvent) {
+  if (isDisabled.value) return
+  const action = resolveKeyboardNavAction(event, {
+    orientation: orientation.value === 'vertical' ? 'vertical' : 'horizontal'
+  })
+  if (action === 'none' || action === 'close') return
+  const root = rootRef.value
+  if (!root) return
+  const inputs = Array.from(
+    root.querySelectorAll<HTMLInputElement>('input[type="checkbox"]:not(:disabled)')
+  )
+  if (!inputs.length) return
+  event.preventDefault()
+  if (action === 'select') {
+    const current = inputs[activeIndex.value]
+    current?.click()
+    return
+  }
+  focusOption(moveRovingIndex(activeIndex.value, action, inputs.length, true))
+}
 </script>
 
 <template>
   <div
+    ref="rootRef"
     :id="inputId"
     :class="rootClass"
     :style="style"
@@ -89,6 +127,7 @@ provide(CHECKBOX_GROUP_INJECTION_KEY, {
     :aria-describedby="ariaDescribedby"
     :data-selected="selectedCount"
     :data-at-max="atMax || undefined"
+    @keydown="onGroupKeydown"
   >
     <Checkbox
       v-for="(opt, idx) in optionList"

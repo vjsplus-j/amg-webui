@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/onvif-device-list.md",
+  "api": "generated/component-api/OnvifDeviceList.json",
+  "demo": "example/demos/OnvifDeviceList/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

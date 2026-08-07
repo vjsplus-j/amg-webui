@@ -4,8 +4,10 @@ import { useLocale, usePopover } from "@amg-webui/hooks";
 import { trackEmit } from "@amg-webui/telemetry";
 import {
   formatWithIntl,
+  getFloatingPanelStyle,
   getMonthLabels,
   parseISODate,
+  resolveKeyboardNavAction,
   toISODate,
 } from "@amg-webui/utils";
 import type { MonthPickerEmits, MonthPickerProps } from "./types";
@@ -42,6 +44,21 @@ const { nativeAttrs } = useNativeInputAttrs();
 
 const { locale, t } = useLocale();
 const { isOpen, triggerRef, panelRef, toggle, close, open } = usePopover();
+const floatingPanelStyle = ref<Record<string, string>>({});
+const panelMergedStyle = computed(() => ({ ...floatingPanelStyle.value }));
+function syncFloating() {
+  const trigger = triggerRef.value;
+  if (!isOpen.value || !trigger) {
+    floatingPanelStyle.value = {};
+    return;
+  }
+  const { style } = getFloatingPanelStyle(trigger, panelRef.value, {
+    placement: "bottom-start",
+    matchTriggerWidth: true,
+    offset: 4,
+  });
+  floatingPanelStyle.value = style;
+}
 function parse(value: string | Date | null | undefined) {
   if (!value) return null;
   if (value instanceof Date)
@@ -62,7 +79,11 @@ watch(selectedDate, (value) => {
   viewYear.value = value.getFullYear();
   activeMonth.value = value.getMonth();
 });
-watch(isOpen, (value) => emit("openChange", value));
+watch(isOpen, (value) => {
+  emit("openChange", value);
+  if (value) void nextTick(syncFloating);
+  else floatingPanelStyle.value = {};
+});
 const labels = computed(() => {
   void locale.value;
   return getMonthLabels(viewYear.value);
@@ -114,10 +135,20 @@ function togglePanel() {
 }
 function triggerKeydown(event: KeyboardEvent) {
   if (isDisabled.value || props.readonly) return;
-  if (event.key === "ArrowDown") {
+  const action = resolveKeyboardNavAction(event, { orientation: "vertical" });
+  if (!isOpen.value) {
+    if (action === "next" || action === "select" || event.key === "ArrowDown") {
+      event.preventDefault();
+      open();
+      void nextTick(focusActive);
+    }
+    return;
+  }
+  if (action === "close") {
     event.preventDefault();
-    open();
-    void nextTick(focusActive);
+    close();
+    floatingPanelStyle.value = {};
+    triggerRef.value?.focus?.();
   }
 }
 function focusActive() {
@@ -208,6 +239,7 @@ function gridKeydown(event: KeyboardEvent, month: number) {
       ref="panelRef"
       class="vp-monthpicker__panel"
       role="dialog"
+      :style="panelMergedStyle"
       :aria-label="ariaLabel ?? placeholder"
     >
       <div class="vp-monthpicker__header">

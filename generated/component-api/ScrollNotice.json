@@ -1,0 +1,117 @@
+{
+  "name": "ScrollNotice",
+  "generatedAt": "2026-08-07T12:41:56.133Z",
+  "source": {
+    "types": "packages/components/core/ScrollNotice/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "text",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "severity",
+      "optional": true,
+      "type": "Severity",
+      "description": ""
+    },
+    {
+      "name": "speed",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "\"left\" | \"right\"",
+      "description": ""
+    },
+    {
+      "name": "pauseOnHover",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "paused",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "closable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:paused",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "pause",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "resume",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ScrollNoticeProps",
+    "ScrollNoticeEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

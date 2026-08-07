@@ -1,0 +1,7 @@
+{
+  "component": "SearchFilterPanel",
+  "family": "form",
+  "batch": "B26R",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:42:13.689Z"
+}

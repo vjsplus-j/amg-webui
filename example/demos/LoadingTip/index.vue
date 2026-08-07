@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { LoadingTip, StatusTip, ProgressTip, Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -20,26 +18,6 @@ const codeTips = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'LoadingTip.loading',
-    type: 'boolean',
-    defaultValue: 'true',
-    description: t('example.doc.loadingTip.prop.loading')
-  },
-  {
-    name: 'StatusTip.severity',
-    type: "'info' | 'success' | 'warning' | 'danger'",
-    defaultValue: 'info',
-    description: t('example.doc.statusTip.prop.severity')
-  },
-  {
-    name: 'ProgressTip.percentage',
-    type: 'number',
-    defaultValue: '0',
-    description: t('example.doc.progressTip.prop.percentage')
-  }
-])
 </script>
 
 <template>
@@ -72,9 +50,7 @@ const propRows = computed<PropRow[]>(() => [
         </div>
       </div>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

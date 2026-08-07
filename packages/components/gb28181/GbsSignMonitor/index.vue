@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from "vue";
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { computed, nextTick, ref, watch, onBeforeUnmount } from 'vue';
 import { useLocale } from "@amg-webui/hooks";
 import { trackEmit } from "@amg-webui/telemetry";
 import { LocaleKeys } from "@amg-webui/locale";
@@ -109,6 +110,11 @@ function select(entry: GbsSignEntry) {
   emit("update:selectedId", entry.id);
   emit("select", entry);
 }
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Dashboard } from '@amg-webui/data'
 import { Card, StatusTip } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -32,12 +30,6 @@ const codeBasic = demoSfc({
     '  <Dashboard :stats="stats" :columns="3" @select-stat="onSelect" @refresh="onRefresh" />'
   ]
 })
-
-const propRows = computed<PropRow[]>(() => [
-  { name: 'stats', type: 'DashboardStat[]', description: t('example.doc.dashboard.prop.stats') },
-  { name: 'widgets', type: 'DashboardWidget[]', description: t('example.doc.dashboard.prop.widgets') },
-  { name: 'columns', type: 'number', defaultValue: '3', description: t('example.doc.dashboard.prop.columns') }
-])
 
 function onRefresh() {
   loading.value = true
@@ -84,9 +76,7 @@ function onRefresh() {
     <DemoBlock :title="t('example.doc.dashboard.demo.empty')" :description="t('example.doc.dashboard.demo.emptyDesc')">
       <Dashboard />
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

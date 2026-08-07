@@ -78,4 +78,4 @@ provide(OVERLAY_RUNTIME_KEY, rt)
 
 `namespace` 写入 AppContext（存储 / 调试隔离）。**栈归属**按 Runtime 实例；**Document 物理资源**（Escape / pointer / focus trap / scroll）由 Coordinator 统一协调。卸载 MFE 时 `rt.dispose()` 只清本 Runtime 登记，不会拆掉其他 MFE 的 scroll lock。
 
-详见 `packages/runtime/index.ts` · Cursor：`vue3-amg-webui-engineering.mdc`。
+详见 `packages/runtime/index.ts` · Cursor：`.cursor/rules/11-component-engineering.mdc`。

@@ -1,0 +1,117 @@
+{
+  "name": "NoticeBar",
+  "generatedAt": "2026-08-07T12:41:35.027Z",
+  "source": {
+    "types": "packages/components/core/NoticeBar/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "message",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "severity",
+      "optional": true,
+      "type": "Severity",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "string | boolean",
+      "description": ""
+    },
+    {
+      "name": "closable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "speed",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "pauseOnHover",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "wrap",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "actionText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "action",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "NoticeBarProps",
+    "NoticeBarEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

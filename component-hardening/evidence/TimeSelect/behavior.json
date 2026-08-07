@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "detail": "option list select",
+  "tests": [
+    "tests/unit/hardening/eng-004b-datetime-color.spec.ts"
+  ]
+}

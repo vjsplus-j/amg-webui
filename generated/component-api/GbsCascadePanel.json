@@ -1,0 +1,71 @@
+{
+  "name": "GbsCascadePanel",
+  "generatedAt": "2026-08-07T12:41:13.599Z",
+  "source": {
+    "types": "packages/components/gb28181/GbsCascadePanel/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "upstream",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "downstream",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:upstream",
+      "payload": "v: string",
+      "description": ""
+    },
+    {
+      "name": "update:downstream",
+      "payload": "v: string",
+      "description": ""
+    },
+    {
+      "name": "save",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "GbsCascadePanelProps",
+    "GbsCascadePanelEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

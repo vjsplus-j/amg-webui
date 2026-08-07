@@ -9,8 +9,8 @@ import {
   type LowcodeEditor,
   type ResizeHandle
 } from '../editor'
-import { resolveNodeRender } from '../bindings'
-import type { ComponentRegistry } from '../types'
+import { resolveRuntimeRender } from '../bindings'
+import type { ComponentRegistry, LowcodeEventHandlers, LowcodeRenderContext } from '../types'
 import type { LowcodeMaterial } from '../materials'
 import { canDropMaterial } from '../materials'
 import './studio.scss'
@@ -20,6 +20,9 @@ const props = defineProps<{
   registry: ComponentRegistry
   materials: LowcodeMaterial[]
   preview?: boolean
+  /** Shared with Preview — same resolveRuntimeRender path. */
+  context?: LowcodeRenderContext
+  handlers?: LowcodeEventHandlers
 }>()
 
 const surfaceRef = ref<HTMLElement | null>(null)
@@ -319,8 +322,9 @@ function onDragOver(e: DragEvent) {
   const hit = hitTestNodes(flatForHit.value, pt.x, pt.y)
   const childType = e.dataTransfer?.getData('application/vp-material-type') || ''
   if (hit) {
-    const mat = materialOf(hit.type)
-    if (mat && (canDropMaterial(mat, childType || '*') || mat.isContainer)) {
+    const parentMat = materialOf(hit.type)
+    const childMat = childType ? materialOf(childType) : undefined
+    if (canDropMaterial(parentMat, childType || '*', childMat)) {
       dropParentId.value = hit.id
       return
     }
@@ -340,7 +344,8 @@ function onDrop(e: DragEvent) {
   if (parentId) {
     const parent = props.editor.nodes.value.find((n) => n.id === parentId)
     const parentMat = parent ? materialOf(parent.type) : null
-    if (!canDropMaterial(parentMat, type) && !parentMat?.isContainer) parentId = null
+    const childMat = materialOf(type)
+    if (!canDropMaterial(parentMat, type, childMat)) parentId = null
   }
   let x = pt.x - 20
   let y = pt.y - 20
@@ -363,12 +368,24 @@ function onDrop(e: DragEvent) {
   dropParentId.value = null
 }
 
+function resolved(node: CanvasNodeData) {
+  return resolveRuntimeRender(node, {
+    registry: props.registry,
+    context: props.context,
+    handlers: props.handlers
+  })
+}
+
 function renderProps(node: CanvasNodeData) {
-  return resolveNodeRender(node, props.registry).props
+  return resolved(node).props
+}
+
+function renderOn(node: CanvasNodeData) {
+  return resolved(node).on
 }
 
 function compOf(node: CanvasNodeData) {
-  return resolveNodeRender(node, props.registry).component
+  return resolved(node).component
 }
 
 const handles: ResizeHandle[] = ['nw', 'n', 'ne', 'w', 'e', 'sw', 's', 'se']
@@ -419,7 +436,12 @@ onBeforeUnmount(() => {
         :data-node-id="node.id"
       >
         <div class="vp-studio-node__body">
-          <component :is="compOf(node)" v-bind="renderProps(node)" class="vp-studio-node__comp" />
+          <component
+            :is="compOf(node)"
+            v-bind="renderProps(node)"
+            v-on="renderOn(node)"
+            class="vp-studio-node__comp"
+          />
         </div>
         <template v-if="!preview && editor.selection.isSelected(node.id) && !node.locked">
           <span

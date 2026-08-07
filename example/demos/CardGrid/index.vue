@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { CardGrid, Card, Button, Space, Tag } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc, demoCode } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -80,44 +78,6 @@ function toggle(n: number) {
   }
 }
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'columns',
-    type: 'number (1–6)',
-    defaultValue: '-',
-    description: t('example.doc.cardGrid.prop.columns')
-  },
-  {
-    name: 'minTrack',
-    type: "'sm' | 'md' | 'lg'",
-    defaultValue: "'md'",
-    description: t('example.doc.cardGrid.prop.minTrack')
-  },
-  {
-    name: 'fit',
-    type: "'fill' | 'fit'",
-    defaultValue: "'fill'",
-    description: t('example.doc.cardGrid.prop.fit')
-  },
-  {
-    name: 'gap',
-    type: "'sm' | 'md' | 'lg' | 'xl' | 'section'",
-    defaultValue: "'lg'",
-    description: t('example.doc.cardGrid.prop.gap')
-  },
-  {
-    name: 'equalHeight',
-    type: 'boolean',
-    defaultValue: 'true',
-    description: t('example.doc.cardGrid.prop.equalHeight')
-  },
-  {
-    name: 'Card.selected / selectable',
-    type: 'boolean',
-    defaultValue: 'false / false',
-    description: t('example.doc.cardGrid.prop.selected')
-  }
-])
 </script>
 
 <template>
@@ -273,7 +233,5 @@ const propRows = computed<PropRow[]>(() => [
         </Card>
       </CardGrid>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

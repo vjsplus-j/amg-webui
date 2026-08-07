@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref } from 'vue';
 import { DragSortNode } from '@amg-webui/lowcode';
 import type { CanvasNodeData } from "@amg-webui/utils";
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
-import PropsTable from "../../components/demo/PropsTable.vue";
 import { demoSfc } from "../../components/demo/demoCode";
-import type { PropRow } from "../../components/demo/types";
 import { getSampleMountProps } from "../_shared/sampleMountProps";
 import "../../components/demo/curatedDemo.scss";
 
@@ -24,23 +22,7 @@ const codeBasic = demoSfc({
   template: [`  <DragSortNode v-bind="mountProps" />`],
 });
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: "modelValue / nodes",
-    type: "CanvasNodeData[]",
-    description: t("example.doc.dragSortNode.prop.base"),
-  },
-  {
-    name: "selectedId / disabled / clearable",
-    type: "string | boolean",
-    description: t("example.doc.dragSortNode.prop.base"),
-  },
-  {
-    name: "reorder / move / select / clear",
-    type: "events",
-    description: t("example.doc.dragSortNode.prop.base"),
-  },
-]);
+;
 </script>
 
 <template>
@@ -54,6 +36,5 @@ const propRows = computed<PropRow[]>(() => [
     >
       <DragSortNode v-bind="mountProps" v-model="nodes" />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

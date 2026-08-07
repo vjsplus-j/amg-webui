@@ -97,6 +97,7 @@
     'component.form-tabs.title': 'フォームタブ',
     'component.form-tabs.lead': 'タブ付きフォーム',
   'component.step-form.title': 'StepForm',
+  'component.step-form.navAria': 'ステップ',
   'component.step-form.lead': 'StepForm コンポーネントプレビュー',
   'component.image-crop.title': 'ImageCrop',
   'component.image-crop.lead': 'ImageCrop コンポーネントプレビュー',

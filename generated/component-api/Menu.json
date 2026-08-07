@@ -1,0 +1,114 @@
+{
+  "name": "Menu",
+  "generatedAt": "2026-08-07T12:41:35.021Z",
+  "source": {
+    "types": "packages/components/core/Menu/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "items",
+      "optional": true,
+      "type": "MenuItem[]",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "openKeys",
+      "optional": true,
+      "type": "string[]",
+      "description": ""
+    },
+    {
+      "name": "collapsed",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "'vertical' | 'horizontal'",
+      "description": ""
+    },
+    {
+      "name": "mode",
+      "optional": true,
+      "type": "'auto' | 'inline' | 'popup'",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "update:openKeys",
+      "payload": "value: string[]",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "item: MenuItem, event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "openChange",
+      "payload": "openKeys: string[]",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "MenuBadgeTone",
+    "NavItem",
+    "MenuBadge",
+    "MenuItem",
+    "MenuProps",
+    "MenuEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "name": "StatusTip",
+  "generatedAt": "2026-08-07T12:41:56.161Z",
+  "source": {
+    "types": "packages/components/core/StatusTip/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "message",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "severity",
+      "optional": true,
+      "type": "Severity",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "string | boolean",
+      "description": ""
+    },
+    {
+      "name": "closable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "actionText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "block",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "compact",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "close",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "action",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "StatusTipProps",
+    "StatusTipEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

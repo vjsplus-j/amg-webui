@@ -1,0 +1,138 @@
+{
+  "name": "Message",
+  "generatedAt": "2026-08-07T12:41:35.023Z",
+  "source": {
+    "types": "packages/components/overlay/Message/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "visible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "severity",
+      "optional": true,
+      "type": "Severity",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "text",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "showIcon",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "closable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "autoHide",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "hideDelay",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "pauseOnHover",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showProgress",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "optional": true,
+      "type": "MessageVariant",
+      "description": ""
+    },
+    {
+      "name": "actionText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLive",
+      "optional": true,
+      "type": "\"polite\" | \"assertive\" | \"off\"",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:visible",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "payload": "reason: MessageCloseReason, event?: Event",
+      "description": ""
+    },
+    {
+      "name": "action",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "closed",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "MessageVariant",
+    "MessageCloseReason",
+    "MessageProps",
+    "MessageEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

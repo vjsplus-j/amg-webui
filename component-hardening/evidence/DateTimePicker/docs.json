@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/date-time-picker.md",
+  "api": "generated/component-api/DateTimePicker.json",
+  "demo": "example/demos/DateTimePicker/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

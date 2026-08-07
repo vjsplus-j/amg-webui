@@ -1,0 +1,72 @@
+{
+  "name": "Cascader",
+  "generatedAt": "2026-08-07T12:34:13.526Z",
+  "source": {
+    "types": "packages/components/form/Cascader/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "unknown",
+      "description": ""
+    },
+    {
+      "name": "options",
+      "optional": true,
+      "type": "CascaderOption[]",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: unknown",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: unknown",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "CascaderOption",
+    "CascaderProps",
+    "CascaderEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

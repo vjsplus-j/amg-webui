@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue'
 import Icon from '@amg-webui/core/Icon/index.vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
+import { createFieldId } from '@amg-webui/utils'
 import './style.scss'
 
 const props = withDefaults(
@@ -30,7 +31,7 @@ const emit = defineEmits<{
 
 const { t } = useLocale()
 const isCollapsed = ref(props.collapsed)
-const panelId = `vp-form-group-panel-${Math.random().toString(36).slice(2, 9)}`
+const panelId = createFieldId('vp-form-group-panel')
 
 watch(
   () => props.collapsed,

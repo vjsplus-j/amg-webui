@@ -1,0 +1,7 @@
+{
+  "component": "OnvifGroupTree",
+  "family": "onvif",
+  "batch": "B22",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:46:46.797Z"
+}

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "detail": "tests/unit/hardening/real-mount-remaining.spec.ts ConfirmDialog mounts and renders public surface",
+  "tests": [
+    "tests/unit/hardening/real-mount-remaining.spec.ts"
+  ],
+  "mount": true,
+  "updatedAt": "2026-08-07T12:41:03.660Z"
+}

@@ -1,0 +1,141 @@
+{
+  "name": "VirtualTable",
+  "generatedAt": "2026-08-07T12:42:38.277Z",
+  "source": {
+    "types": "packages/components/data/VirtualTable/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "Record<string, unknown>[]",
+      "description": ""
+    },
+    {
+      "name": "rows",
+      "optional": true,
+      "type": "Record<string, unknown>[]",
+      "description": ""
+    },
+    {
+      "name": "columns",
+      "optional": true,
+      "type": "TableColumn[]",
+      "description": ""
+    },
+    {
+      "name": "virtual",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "rowKey",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "filterDebounce",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "Record<string, unknown> | null",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: Record<string, unknown>",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: Record<string, unknown>",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "props": "—",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "props": "—",
+      "description": ""
+    },
+    {
+      "name": "empty",
+      "props": "—",
+      "description": ""
+    }
+  ],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "VirtualTableProps",
+    "VirtualTableEmits",
+    "VirtualTableSlots"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": true,
+    "expose": false,
+    "models": true
+  }
+}

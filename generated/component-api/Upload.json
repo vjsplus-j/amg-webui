@@ -1,0 +1,94 @@
+{
+  "name": "Upload",
+  "generatedAt": "2026-08-07T12:42:17.054Z",
+  "source": {
+    "types": "packages/components/form/Upload/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "UploadFile[]",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "multiple",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "accept",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "drag",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "beforeUpload",
+      "optional": true,
+      "type": "(file: File) => boolean | void | Promise<boolean | void>",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: UploadFile[]",
+      "description": ""
+    },
+    {
+      "name": "beforeUpload",
+      "payload": "file: File",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "files: UploadFile[]",
+      "description": ""
+    },
+    {
+      "name": "remove",
+      "payload": "file: UploadFile",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "UploadFile",
+    "UploadProps",
+    "UploadEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

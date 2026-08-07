@@ -137,3 +137,23 @@ export interface ButtonEmits {
   (e: 'confirm', event: Event): void
   (e: 'cancelConfirm', event: Event): void
 }
+
+export interface ButtonSlots {
+  /** Default label content */
+  default?(props: Record<string, never>): unknown
+  /** Leading / custom icon */
+  icon?(props: Record<string, never>): unknown
+  /** Loading indicator override */
+  loading?(props: Record<string, never>): unknown
+}
+
+export interface ButtonExpose {
+  /** Native button / anchor element */
+  el: HTMLElement | null
+  /** Focus the control */
+  focus: () => void
+  /** Blur the control */
+  blur: () => void
+}
+
+export type ButtonInstance = ButtonExpose

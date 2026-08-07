@@ -46,7 +46,7 @@ const titleText = computed(() => props.title ?? t('component.edit-table.title'))
 </script>
 
 <template>
-  <div :class="['vp-edit-table', 'vp-edit-table__panel', { 'vp-edit-table--disabled': disabled }, props.class]" :style="style">
+  <div role="region" aria-label="EditTable" :class="['vp-edit-table', 'vp-edit-table__panel', { 'vp-edit-table--disabled': disabled }, props.class]" :style="style">
     <div class="vp-edit-table__toolbar">
       <strong class="vp-edit-table__heading">{{ titleText }}</strong>
       <input v-model="keyword" class="vp-edit-table__filter" type="search" :placeholder="t('common.search')" />

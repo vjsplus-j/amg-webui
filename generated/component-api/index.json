@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-08-07T12:46:30.692Z",
+  "components": [
+    {
+      "name": "GbsDeviceTree",
+      "props": 10,
+      "events": 5,
+      "slots": 0,
+      "expose": 0,
+      "models": 1
+    },
+    {
+      "name": "ImageViewer",
+      "props": 10,
+      "events": 3,
+      "slots": 0,
+      "expose": 0,
+      "models": 0
+    },
+    {
+      "name": "OnvifGroupTree",
+      "props": 10,
+      "events": 5,
+      "slots": 0,
+      "expose": 0,
+      "models": 1
+    }
+  ]
+}

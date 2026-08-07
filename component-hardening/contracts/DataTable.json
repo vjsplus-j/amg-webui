@@ -1,0 +1,77 @@
+{
+  "name": "DataTable",
+  "family": "table",
+  "package": "data",
+  "capability": "interaction",
+  "maturity": "stable",
+  "batch": "B13",
+  "api": {
+    "props": "required",
+    "emits": "required",
+    "slots": "required",
+    "expose": "required",
+    "models": "optional",
+    "instance": "optional",
+    "service": "not-applicable",
+    "context": "internal"
+  },
+  "requiredExpose": [
+    "scrollTo"
+  ],
+  "requiredSlots": [
+    "default",
+    "empty",
+    "loading"
+  ],
+  "models": [],
+  "behavioralContract": {
+    "sort": "Toggles column sort and emits sort-change",
+    "filter": "Applies column filters; virtual window resets to top",
+    "unmount": "Listeners, timers, observers, and abort controllers must be released",
+    "batch": "B13 Table Core",
+    "disabled": "Interactive actions no-op when disabled"
+  },
+  "states": [
+    "default",
+    "loading",
+    "empty",
+    "disabled"
+  ],
+  "keyboard": [
+    "ArrowUp",
+    "ArrowDown",
+    "Home",
+    "End"
+  ],
+  "gates": {
+    "api-props": "mandatory",
+    "api-emits": "mandatory",
+    "api-slots": "mandatory",
+    "api-docs": "mandatory",
+    "package": "mandatory",
+    "ssr": "mandatory",
+    "cleanup": "mandatory",
+    "tokens": "mandatory",
+    "i18n": "mandatory",
+    "visual": "optional",
+    "a11y": "mandatory",
+    "keyboard": "mandatory",
+    "perf": "optional",
+    "theme": "optional",
+    "rtl": "optional",
+    "virtual": "optional",
+    "behavior": "mandatory",
+    "docs": "mandatory"
+  },
+  "apiFreeze": {
+    "version": "1",
+    "frozen": true,
+    "frozenAt": "2026-08-07T11:19:52.715Z"
+  },
+  "generated": false,
+  "generatedAt": "2026-08-07T09:57:01.123Z",
+  "template": true,
+  "updatedAt": "2026-08-07T11:19:52.715Z",
+  "promoteStable": true,
+  "batchTitle": "Table Core"
+}

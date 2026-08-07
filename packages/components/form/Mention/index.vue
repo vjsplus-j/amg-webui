@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
+import {
+  getFloatingPanelStyle,
+  moveRovingIndex,
+  resolveKeyboardNavAction
+} from '@amg-webui/utils'
 import type { MentionProps, MentionEmits, MentionOption } from './types'
 import { useFormItem } from '../FormItem/useFormItem'
 import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
@@ -47,6 +52,7 @@ const isOpen = ref(false)
 const activeIndex = ref(0)
 const mentionStart = ref(-1)
 const mentionQuery = ref('')
+const floatingPanelStyle = ref<Record<string, string>>({})
 
 const filteredOptions = computed(() => {
   const q = mentionQuery.value.toLowerCase()
@@ -64,6 +70,23 @@ const showPopup = computed(
   () => isOpen.value && (filteredOptions.value.length > 0 || props.loading)
 )
 
+const panelMergedStyle = computed(() => ({
+  ...floatingPanelStyle.value
+}))
+
+function syncFloating() {
+  if (!showPopup.value || !textareaRef.value) {
+    floatingPanelStyle.value = {}
+    return
+  }
+  const { style } = getFloatingPanelStyle(textareaRef.value, popupRef.value, {
+    placement: 'bottom-start',
+    matchTriggerWidth: true,
+    offset: 4
+  })
+  floatingPanelStyle.value = style
+}
+
 const rootClass = computed(() => [
   'vp-mention',
   {
@@ -78,6 +101,7 @@ const closePopup = () => {
   mentionStart.value = -1
   mentionQuery.value = ''
   activeIndex.value = 0
+  floatingPanelStyle.value = {}
 }
 
 const detectMention = (value: string, cursor: number) => {
@@ -149,28 +173,31 @@ const onKeydown = (event: KeyboardEvent) => {
   const len = filteredOptions.value.length
   if (!len && !props.loading) return
 
-  switch (event.key) {
-    case 'ArrowDown':
-      event.preventDefault()
-      if (len) activeIndex.value = (activeIndex.value + 1) % len
-      break
-    case 'ArrowUp':
-      event.preventDefault()
-      if (len) activeIndex.value = (activeIndex.value - 1 + len) % len
-      break
-    case 'Enter':
-      if (len) {
-        event.preventDefault()
-        insertMention(filteredOptions.value[activeIndex.value])
-      }
-      break
-    case 'Escape':
-      event.preventDefault()
-      closePopup()
-      break
-    case 'Tab':
-      closePopup()
-      break
+  const action = resolveKeyboardNavAction(event, { orientation: 'vertical' })
+  if (action === 'none') {
+    if (event.key === 'Tab') closePopup()
+    return
+  }
+  // Keep typing Space in textarea
+  if (action === 'select' && event.key === ' ') return
+  event.preventDefault()
+  if (action === 'close') {
+    closePopup()
+    return
+  }
+  if (
+    action === 'next' ||
+    action === 'prev' ||
+    action === 'first' ||
+    action === 'last'
+  ) {
+    if (len) {
+      activeIndex.value = moveRovingIndex(activeIndex.value, action, len, true)
+    }
+    return
+  }
+  if (action === 'select' && len) {
+    insertMention(filteredOptions.value[activeIndex.value])
   }
 }
 
@@ -195,6 +222,11 @@ onMounted(() => {
 
 onUnmounted(() => {
   document.removeEventListener('click', handleOutsideClick)
+})
+
+watch(showPopup, (open) => {
+  if (open) nextTick(syncFloating)
+  else floatingPanelStyle.value = {}
 })
 </script>
 
@@ -224,6 +256,7 @@ onUnmounted(() => {
       ref="popupRef"
       class="vp-mention__popup"
       role="listbox"
+      :style="panelMergedStyle"
       :aria-label="t(LocaleKeys.component.mention.listAria)"
     >
       <li v-if="loading" class="vp-mention__option vp-mention__option--loading">

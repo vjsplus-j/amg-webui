@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "detail": "FormItem required marking",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts",
+  "family": "form"
+}

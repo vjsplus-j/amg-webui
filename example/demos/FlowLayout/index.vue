@@ -2,15 +2,12 @@
 /**
  * Curated demo — Layout wave2 FlowLayout
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { FlowLayout, Button, Space, Tag } from '@amg-webui/core'
 import type { FlowAlign, FlowGap, FlowJustify } from '@amg-webui/core/FlowLayout'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -45,26 +42,6 @@ const codeAlign = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'gap / rowGap / columnGap',
-    description: t('example.doc.flowLayout.prop.gap'),
-    type: 'spacing token',
-    defaultValue: "'md'"
-  },
-  {
-    name: 'align / justify',
-    description: t('example.doc.flowLayout.prop.align'),
-    type: 'flex align / justify',
-    defaultValue: "'start'"
-  },
-  {
-    name: 'reverse',
-    description: t('example.doc.flowLayout.prop.reverse'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
 </script>
 
 <template>
@@ -130,12 +107,6 @@ const propRows = computed<PropRow[]>(() => [
         </FlowLayout>
       </Space>
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-    </section>
   </div>
 </template>
 
@@ -169,19 +140,5 @@ const propRows = computed<PropRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

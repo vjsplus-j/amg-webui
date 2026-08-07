@@ -1,0 +1,108 @@
+{
+  "name": "Exception",
+  "generatedAt": "2026-08-07T12:41:13.583Z",
+  "source": {
+    "types": "packages/components/core/Exception/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "status",
+      "optional": true,
+      "type": "\"403\" | \"404\" | \"500\" | \"offline\"",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "actionText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "actionDisabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLive",
+      "optional": true,
+      "type": "\"polite\" | \"assertive\" | \"off\"",
+      "description": ""
+    },
+    {
+      "name": "secondaryActionText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "showCode",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "compact",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "action",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "secondaryAction",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ExceptionProps",
+    "ExceptionEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

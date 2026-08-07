@@ -2,16 +2,13 @@
 /**
  * Curated demo — Data wave1 Tree
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Tree } from '@amg-webui/data'
 import { Space } from '@amg-webui/core'
 import { Switch } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -81,77 +78,6 @@ function onNodeClick(node: { label: string }) {
   lastEvent.value = t('example.doc.tree.sample.clickEvent', { label: node.label })
 }
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'options / data',
-    description: t('example.doc.tree.prop.data'),
-    type: 'TreeNode[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'checkable',
-    description: t('example.doc.tree.prop.checkable'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'checkStrictly',
-    description: t('example.doc.tree.prop.checkStrictly'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'defaultExpandAll',
-    description: t('example.doc.tree.prop.defaultExpandAll'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'virtual',
-    description: t('example.doc.tree.prop.virtual'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'modelValue (v-model)',
-    description: t('example.doc.tree.prop.model'),
-    type: 'string[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'disabled / loading',
-    description: t('example.doc.tree.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:modelValue / change',
-    description: t('example.doc.tree.event.change'),
-    type: '(value: string[]) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'node-click',
-    description: t('example.doc.tree.event.nodeClick'),
-    type: '(node: TreeNode) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'check-change',
-    description: t('example.doc.tree.event.checkChange'),
-    type: '(node, checked, indeterminate) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'node-expand / node-collapse',
-    description: t('example.doc.tree.event.expand'),
-    type: '(node: TreeNode) => void',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -208,14 +134,6 @@ const eventRows = computed<ApiRow[]>(() => [
         <p class="vp-curated__hint">{{ t('example.doc.tree.sample.expandHint') }}</p>
       </Space>
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-    </section>
   </div>
 </template>
 
@@ -236,19 +154,5 @@ const eventRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

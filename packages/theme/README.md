@@ -1,6 +1,6 @@
 # @amg-webui/theme
 
-六套 designmd 锁定主题 · Design Token · Theme Core（SSR / 微前端宿主）· 主色色阶 · Theme Studio 导出契约。
+六套 designmd 锁定主题 + **WeChat（WeUI）/ Alipay（antd-mobile）** 官方语义复刻 · Design Token · Theme Core（SSR / 微前端宿主）· 主色色阶 · Theme Studio 导出契约。
 
 - 规范：[`SPEC.md`](./SPEC.md) · [`TOKENS.md`](./TOKENS.md)
 - 权威产品说明：[`docs/THEME_STUDIO.md`](../../docs/THEME_STUDIO.md) · [`docs/theme/index.md`](../../docs/theme/index.md)

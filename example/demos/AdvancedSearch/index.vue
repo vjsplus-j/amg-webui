@@ -2,17 +2,14 @@
 /**
  * Curated demo — Data wave2 AdvancedSearch
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { AdvancedSearch } from '@amg-webui/form'
 import { Space } from '@amg-webui/core'
 import type { FilterCondition } from '@amg-webui/form/FilterBar/types'
 import type { SearchLogic } from '@amg-webui/form/AdvancedSearch/types'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -73,47 +70,6 @@ function onSearch(payload: { conditions: FilterCondition[]; logic: SearchLogic }
   })
 }
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'modelValue',
-    description: t('example.doc.advancedSearch.prop.modelValue'),
-    type: 'FilterCondition[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'logic',
-    description: t('example.doc.advancedSearch.prop.logic'),
-    type: "'and' | 'or'",
-    defaultValue: "'and'"
-  },
-  {
-    name: 'fields / templates',
-    description: t('example.doc.advancedSearch.prop.fields'),
-    type: 'FilterFieldOption[] / template[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'disabled / loading',
-    description: t('example.doc.advancedSearch.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'search / save-template',
-    description: t('example.doc.advancedSearch.event.search'),
-    type: '—',
-    defaultValue: '-'
-  },
-  {
-    name: 'update:modelValue / change',
-    description: t('example.doc.advancedSearch.event.change'),
-    type: '(conditions: FilterCondition[]) => void',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -146,14 +102,6 @@ const eventRows = computed<ApiRow[]>(() => [
         :templates="templates"
       />
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-    </section>
   </div>
 </template>
 
@@ -167,19 +115,5 @@ const eventRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

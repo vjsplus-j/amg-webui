@@ -2,17 +2,14 @@
 /**
  * Curated demo — aligned with Avatar gold standard (demoCode / demoSfc / API thirds).
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Avatar, Badge, Button, Icon } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import MotionLivePanel from '../../components/demo/MotionLivePanel.vue'
 import { createMotionLiveState } from '../../components/demo/motionLive'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -197,98 +194,6 @@ const codeHost = demoCode(
   `</Badge>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'value',
-    description: t('example.doc.badge.prop.value'),
-    type: 'string | number',
-    defaultValue: '-'
-  },
-  {
-    name: 'max',
-    description: t('example.doc.badge.prop.max'),
-    type: 'number',
-    defaultValue: '99'
-  },
-  {
-    name: 'dot',
-    description: t('example.doc.badge.prop.dot'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'severity / type',
-    description: t('example.doc.badge.prop.severity'),
-    type: 'Severity',
-    defaultValue: "'danger'"
-  },
-  {
-    name: 'size',
-    description: t('example.doc.badge.prop.size'),
-    type: 'Size',
-    defaultValue: "'sm'"
-  },
-  {
-    name: 'position',
-    description: t('example.doc.badge.prop.position'),
-    type: "'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'",
-    defaultValue: "'top-right'"
-  },
-  {
-    name: 'offset',
-    description: t('example.doc.badge.prop.offset'),
-    type: '[number, number]',
-    defaultValue: '[0, 0]'
-  },
-  {
-    name: 'color / colorBg / colorText',
-    description: t('example.doc.badge.prop.color'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'tooltip / tooltipDelay',
-    description: t('example.doc.badge.prop.tooltip'),
-    type: 'string / number',
-    defaultValue: '- / 200'
-  },
-  {
-    name: 'hidden / disabled / pulse / decorative',
-    description: t('example.doc.badge.prop.state'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'spin / heartbeat / bounce',
-    description: t('example.doc.motion.demo.badge'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'animationDuration',
-    description: t('example.doc.motion.prop.animationDuration'),
-    type: 'number | string',
-    defaultValue: '-'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'click',
-    description: t('example.doc.badge.emit.click'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.badge.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -546,20 +451,7 @@ const slotRows = computed<ApiRow[]>(() => [
           <Icon name="Funnel" size="lg" />
         </Badge>
       </div>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -569,24 +461,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-badge-row {
   display: flex;
   flex-wrap: wrap;

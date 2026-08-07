@@ -1,0 +1,15 @@
+---
+description: Telemetry architecture, privacy and lifecycle rules
+globs: packages/telemetry/**/*,packages/**/*telemetry*.*,packages/**/*Telemetry*.*
+alwaysApply: false
+---
+
+# Telemetry
+- Telemetry is opt-in and configurable.
+- Do not collect raw sensitive/user-entered values by default.
+- Prefer redacted, hashed, categorical or structural metadata.
+- Telemetry failures must not break component behavior.
+- Sinks must be replaceable through explicit interfaces.
+- Avoid global mutable state when runtime-scoped state is sufficient.
+- Dispose listeners/subscriptions correctly.
+- Public telemetry events require stable typed contracts.

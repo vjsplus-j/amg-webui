@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "engines": [
+    "resolveKeyboardNavAction",
+    "moveRovingIndex",
+    "getFloatingPanelStyle"
+  ],
+  "components": [
+    "DateTimePicker",
+    "ColorPicker",
+    "TimeSelect",
+    "TimeRangeInput",
+    "Calendar"
+  ],
+  "source": "tests/unit/hardening/eng-004b-datetime-color.spec.ts",
+  "verifiedAt": "2026-08-07T12:28:51.139Z"
+}

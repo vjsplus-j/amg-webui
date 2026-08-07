@@ -110,7 +110,7 @@ const rootStyle = computed(() => ({
 </script>
 
 <template>
-  <div :class="rootClass" :style="rootStyle" data-component="Block">
+  <div role="presentation" :class="rootClass" :style="rootStyle" data-component="Block">
     <div class="vp-block__body">
       <slot></slot>
     </div>

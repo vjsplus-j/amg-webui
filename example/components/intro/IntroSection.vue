@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Card } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import type { LocaleKey } from '@amg-webui/locale'
 
 const props = defineProps<{
+  id: string
   titleKey: LocaleKey
+  leadKey?: LocaleKey
 }>()
 
 const { t, locale } = useLocale()
@@ -14,18 +15,61 @@ const title = computed(() => {
   void locale.value
   return t(props.titleKey)
 })
+
+const lead = computed(() => {
+  void locale.value
+  return props.leadKey ? t(props.leadKey) : ''
+})
 </script>
 
 <template>
-  <Card :title="title">
-    <div class="intro-section">
+  <section :id="id" class="intro-section">
+    <header class="intro-section__head">
+      <h2 class="intro-section__title">{{ title }}</h2>
+      <p v-if="lead" class="intro-section__lead">{{ lead }}</p>
+    </header>
+    <div class="intro-section__body">
       <slot />
     </div>
-  </Card>
+  </section>
 </template>
 
 <style scoped lang="scss">
 .intro-section {
+  scroll-margin-top: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  max-width: 52rem;
+}
+
+.intro-section--wide {
+  max-width: none;
+}
+
+.intro-section__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.intro-section__title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.intro-section__lead {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-body);
+  color: var(--text-secondary);
+  max-width: 40rem;
+}
+
+.intro-section__body {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
@@ -34,33 +78,16 @@ const title = computed(() => {
   line-height: var(--line-height-body);
 }
 
-.intro-section :deep(p) {
+.intro-section__body :deep(p) {
   margin: 0;
 }
 
-.intro-section :deep(ol),
-.intro-section :deep(ul) {
+.intro-section__body :deep(ul),
+.intro-section__body :deep(ol) {
   margin: 0;
-  padding-left: var(--spacing-xl);
+  padding-inline-start: var(--spacing-xl);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
-}
-
-.intro-section :deep(code),
-.intro-section :deep(pre) {
-  font-family: var(--font-family-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
-  font-size: var(--font-size-xs);
-}
-
-.intro-section :deep(pre) {
-  margin: 0;
-  padding: var(--spacing-md);
-  background: var(--surface-2, var(--surface-elevated, var(--surface-1)));
-  border: 1px solid var(--ds-border);
-  border-radius: var(--theme-input-radius, var(--border-radius-md));
-  color: var(--text-primary);
-  overflow-x: auto;
-  white-space: pre-wrap;
 }
 </style>

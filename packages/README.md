@@ -22,8 +22,8 @@
 | `lowcode` | `@amg-webui/lowcode` | Schema 引擎 + `ui/`（SchemaRenderer / Canvas*） |
 | `runtime` | `@amg-webui/runtime` | UI Overlay 统一内核（栈 / Focus / ScrollLock / Escape） |
 | `skill` | `@amg-webui/skill` · `@amg-webui/skill/core` | Skill Runtime（**experimental**；独立可选） |
-| `theme` | `@amg-webui/theme` | 六套 designmd 主题 · Token · Theme Studio |
-| `locale` | `@amg-webui/locale` | 8 语种 · `LocaleKeys` · `LocaleService` |
+| `theme` | `@amg-webui/theme` | designmd 六套 + WeChat / Alipay · Token · Theme Studio |
+| `locale` | `@amg-webui/locale` | 10 语种 · `LocaleKeys` · `LocaleService` |
 | `hooks` | `@amg-webui/hooks` | `useTheme` / `useLocale` / `useTrackedEmit` … |
 | `icons` | `@amg-webui/icons` | Lucide / SVG 目录 |
 | `animations` | `@amg-webui/animations` | 过渡 · motion · neon · shimmer |
@@ -37,7 +37,7 @@
 - **行业包可依赖 foundation**；基础组件库不知道 GB28181 是什么
 - **business → 只吃 foundation / hooks / theme / utils / locale / telemetry（旁路）**
 - 类名前缀 **`vp-`**；样式只消费语义 Token（`--ds-*` · `--theme-*` · spacing / type / radius）
-- 用户可见文案只走 i18n key（8 语种齐套）
+- 用户可见文案只走 i18n key（10 语种齐套）
 - 列表类组件：**虚拟滚动默认开启**
 - Skill 不进入组件源码、不渲染 UI；组件不得硬编码依赖 Skill Runtime
 - 组件归属 SSOT：`scripts/component-package-map.mjs`

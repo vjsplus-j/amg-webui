@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "detail": "Select engines (dropdown) + moveRovingIndex cards Enter",
+  "tests": [
+    "tests/unit/hardening/batch-b06-datetime-lowcode-pickers.spec.ts"
+  ],
+  "engines": [
+    "resolveKeyboardNavAction",
+    "moveRovingIndex",
+    "getFloatingPanelStyle"
+  ]
+}

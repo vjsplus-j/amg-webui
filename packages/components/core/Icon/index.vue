@@ -143,7 +143,10 @@ const rootStyle = computed(() => {
   }
   if (props.color) style.color = props.color
   if (props.opacity != null) style.opacity = String(props.opacity)
-  style['--icon-stroke-width'] = String(strokeWidth.value)
+  /* 仅显式/solid 时覆盖；否则继承 [data-design] 的 --icon-stroke-width */
+  if (strokeWidth.value != null) {
+    style['--icon-stroke-width'] = String(strokeWidth.value)
+  }
   return style
 })
 
@@ -213,7 +216,7 @@ function onBlur(event: FocusEvent) {
       :style="lucideSvgStyle"
       :size="lucideSize"
       :color="color || 'currentColor'"
-      :stroke-width="strokeWidth"
+      :stroke-width="strokeWidth ?? undefined"
       :absolute-stroke-width="absoluteStrokeWidth"
       aria-hidden="true"
     />

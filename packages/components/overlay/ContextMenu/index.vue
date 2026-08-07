@@ -132,11 +132,17 @@ onUnmounted(() => {
     props.target.removeEventListener('contextmenu', handleTargetContextMenu)
   }
 })
+
+defineExpose({
+  openAt: showMenu,
+  hide: hideMenu,
+  isOpen
+})
 </script>
 
 <template>
   <div
-    v-if="!target"
+    v-if="!target && $slots.default"
     ref="hostRef"
     class="vp-contextmenu__host"
     data-component="ContextMenu"

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/context-menu.md",
+  "api": "generated/component-api/ContextMenu.json",
+  "demo": "example/demos/ContextMenu/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

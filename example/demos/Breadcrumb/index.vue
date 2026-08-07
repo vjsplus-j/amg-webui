@@ -6,11 +6,8 @@ import { computed, ref } from 'vue'
 import { Breadcrumb, BreadcrumbItem } from '@amg-webui/core'
 import type { BreadcrumbItemData } from '@amg-webui/core/Breadcrumb'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -41,51 +38,6 @@ const codeItems = demoSfc({
 })
 
 const codeMax = demoCode(`<Breadcrumb :items="items" :max-count="3" />`)
-
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'items',
-    description: t('example.doc.breadcrumb.prop.items'),
-    type: 'BreadcrumbItemData[]',
-    defaultValue: '—'
-  },
-  {
-    name: 'separator',
-    description: t('example.doc.breadcrumb.prop.separator'),
-    type: 'string',
-    defaultValue: "'/'"
-  },
-  {
-    name: 'maxCount',
-    description: t('example.doc.breadcrumb.prop.maxCount'),
-    type: 'number',
-    defaultValue: '—'
-  },
-  {
-    name: 'ariaLabel',
-    description: t('example.doc.breadcrumb.prop.ariaLabel'),
-    type: 'string',
-    defaultValue: '—'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'click',
-    description: t('example.doc.breadcrumb.event.click'),
-    type: '({ index, href, to, event }) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default / separator',
-    description: t('example.doc.breadcrumb.slot.default'),
-    type: 'BreadcrumbItem | VNode',
-    defaultValue: '-'
-  }
-])
 
 function onItemsClick(p: { index: number }) {
   last.value = String(p.index)
@@ -128,17 +80,7 @@ function onItemsClick(p: { index: number }) {
       :code="codeMax"
     >
       <Breadcrumb :items="items" :max-count="3" />
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -152,19 +94,5 @@ function onItemsClick(p: { index: number }) {
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

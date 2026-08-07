@@ -97,6 +97,7 @@
     'component.form-tabs.title': 'علامات تبويب النموذج',
     'component.form-tabs.lead': 'حاوية نموذج بعلامات تبويب',
   'component.step-form.title': 'نموذج متعدّد الخطوات (StepForm)',
+  'component.step-form.navAria': 'الخطوات',
   'component.step-form.lead': 'معاينة مكوّن StepForm',
   'component.image-crop.title': 'قص الصورة (ImageCrop)',
   'component.image-crop.lead': 'معاينة مكوّن ImageCrop',

@@ -79,6 +79,7 @@ onUnmounted(() => {
   controller?.destroy()
   controller = null
 })
+
 </script>
 
 <template>
@@ -86,8 +87,7 @@ onUnmounted(() => {
     ref="rootRef"
     :class="['vp-infinite-scroll', props.class]"
     :style="props.style"
-    data-component="InfiniteScroll"
-  >
+    data-component="InfiniteScroll">
     <slot />
     <div ref="sentinelRef" class="vp-infinite-scroll__sentinel" aria-hidden="true" />
     <div v-if="showLoadingTip || $slots.loading" class="vp-infinite-scroll__tip">

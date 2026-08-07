@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "detail": "composed TimePicker range",
+  "tests": [
+    "tests/unit/hardening/eng-004b-datetime-color.spec.ts"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/split-video-wall.md",
+  "api": "generated/component-api/SplitVideoWall.json",
+  "demo": "example/demos/SplitVideoWall/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

@@ -8,17 +8,25 @@ import type { ComponentRegistry } from '../types'
 import { LOWCODE_BINDINGS_KEY, LOWCODE_EVENTS_KEY } from '../types'
 import type { LowcodeMaterial } from '../materials'
 import { DEFAULT_STYLE_SCHEMA } from '../materials'
-import type { LowcodeActionType, PageRuntime } from '../runtime'
+import type { DataSourceDef, LowcodeAction, LowcodeActionType, PageRuntime } from '../runtime'
 
 const props = defineProps<{
   editor: LowcodeEditor
   registry: ComponentRegistry
   materials: LowcodeMaterial[]
   runtime?: PageRuntime
+  actions: Record<string, LowcodeAction[]>
+  dataSources: DataSourceDef[]
+}>()
+
+const emit = defineEmits<{
+  'update:actions': [Record<string, LowcodeAction[]>]
+  'update:dataSources': [DataSourceDef[]]
 }>()
 
 const { t } = useLocale()
 const tab = ref<'props' | 'style' | 'data' | 'events' | 'advanced'>('props')
+const docTab = ref<'sources' | 'actions'>('sources')
 
 const selected = computed(() => props.editor.selectedNodes.value[0] ?? null)
 const material = computed(() =>
@@ -32,6 +40,7 @@ const localProps = ref<Record<string, unknown>>({})
 const styleBag = ref<Record<string, unknown>>({})
 const bindings = ref<Record<string, string>>({})
 const eventMap = ref<Record<string, string>>({})
+const editingHandler = ref('')
 
 watch(
   selected,
@@ -41,6 +50,7 @@ watch(
       styleBag.value = {}
       bindings.value = {}
       eventMap.value = {}
+      editingHandler.value = ''
       return
     }
     const { [LOWCODE_BINDINGS_KEY]: b, [LOWCODE_EVENTS_KEY]: ev, __style: st, ...rest } =
@@ -58,6 +68,8 @@ watch(
       string,
       string
     >
+    const first = Object.values(eventMap.value)[0]
+    editingHandler.value = first || ''
   },
   { immediate: true }
 )
@@ -71,7 +83,8 @@ function commitProps() {
       [LOWCODE_EVENTS_KEY]: { ...eventMap.value },
       __style: { ...styleBag.value }
     },
-    label: typeof localProps.value.label === 'string' ? localProps.value.label : selected.value.label
+    label:
+      typeof localProps.value.label === 'string' ? localProps.value.label : selected.value.label
   })
 }
 
@@ -80,15 +93,10 @@ function setGeom(field: 'x' | 'y' | 'w' | 'h', value: number) {
   props.editor.updateNode(selected.value.id, { [field]: value })
 }
 
-const propEntries = computed(() => {
-  const schema = meta.value?.propsSchema ?? {}
-  return Object.entries(schema)
-})
-
-const styleEntries = computed(() => {
-  const schema = material.value?.styleSchema ?? DEFAULT_STYLE_SCHEMA
-  return Object.entries(schema)
-})
+const propEntries = computed(() => Object.entries(meta.value?.propsSchema ?? {}))
+const styleEntries = computed(() =>
+  Object.entries(material.value?.styleSchema ?? DEFAULT_STYLE_SCHEMA)
+)
 
 const actionTypes: LowcodeActionType[] = [
   'SetState',
@@ -117,14 +125,62 @@ function applyBinding() {
   commitProps()
 }
 
-function setEventHandler(eventName: string, handlerName: string) {
-  eventMap.value = { ...eventMap.value, [eventName]: handlerName }
-  commitProps()
+function ensureAction(handlerName: string) {
+  const name = handlerName.trim()
+  if (!name) return
+  if (props.actions[name]?.length) return
+  const next = {
+    ...props.actions,
+    [name]: [{ type: 'CallApi' as const, dataSourceId: props.dataSources[0]?.id || 'queryUsers' }]
+  }
+  emit('update:actions', next)
 }
 
-const dsOptions = computed(() =>
-  (props.runtime?.dataSources.value ?? []).map((d) => ({ label: d.name || d.id, value: d.id }))
-)
+function setEventHandler(eventName: string, handlerName: string) {
+  const name = handlerName.trim()
+  eventMap.value = { ...eventMap.value, [eventName]: name }
+  editingHandler.value = name
+  commitProps()
+  if (name) ensureAction(name)
+}
+
+const activeChain = computed(() => {
+  const name = editingHandler.value.trim()
+  if (!name) return [] as LowcodeAction[]
+  return props.actions[name] ?? []
+})
+
+function updateChain(chain: LowcodeAction[]) {
+  const name = editingHandler.value.trim()
+  if (!name) return
+  emit('update:actions', { ...props.actions, [name]: chain })
+}
+
+function addActionStep(type: LowcodeActionType) {
+  const step: LowcodeAction = { type }
+  if (type === 'CallApi' || type === 'RefreshData') {
+    step.dataSourceId = props.dataSources[0]?.id || 'queryUsers'
+  }
+  if (type === 'SetState' || type === 'OpenDialog' || type === 'CloseDialog') {
+    step.target = 'state.createOpen'
+    step.value = type === 'CloseDialog' ? false : true
+  }
+  if (type === 'ShowMessage') {
+    step.message = 'OK'
+    step.severity = 'info'
+  }
+  if (type === 'Navigate') step.path = '/'
+  updateChain([...activeChain.value, step])
+}
+
+function patchStep(index: number, patch: Partial<LowcodeAction>) {
+  const next = activeChain.value.map((a, i) => (i === index ? { ...a, ...patch } : a))
+  updateChain(next)
+}
+
+function removeStep(index: number) {
+  updateChain(activeChain.value.filter((_, i) => i !== index))
+}
 
 function applyJsonProps(raw: string) {
   try {
@@ -145,13 +201,138 @@ const pathHints = [
   'user.name'
 ]
 
+const dsOptions = computed(() =>
+  props.dataSources.map((d) => ({ label: d.name || d.id, value: d.id }))
+)
+
+const draftDs = ref<DataSourceDef>({
+  id: 'queryUsers',
+  type: 'mock',
+  name: 'queryUsers',
+  transform: 'listTotal',
+  staticData: { list: [], total: 0 }
+})
+
+function saveDataSource() {
+  const id = draftDs.value.id.trim()
+  if (!id) return
+  const list = [...props.dataSources]
+  const idx = list.findIndex((d) => d.id === id)
+  const item: DataSourceDef = { ...draftDs.value, id }
+  if (idx >= 0) list[idx] = item
+  else list.push(item)
+  emit('update:dataSources', list)
+  props.runtime?.registerDataSource(item)
+}
+
+function loadDsIntoDraft(id: string) {
+  const found = props.dataSources.find((d) => d.id === id)
+  if (found) draftDs.value = { ...found }
+}
+
+function removeDataSource(id: string) {
+  emit(
+    'update:dataSources',
+    props.dataSources.filter((d) => d.id !== id)
+  )
+}
 </script>
 
 <template>
   <aside class="vp-studio-inspector">
-    <div v-if="!selected" class="vp-studio-inspector__empty">
-      {{ t('lowcode.studio.inspector.empty') }}
-    </div>
+    <!-- Document-level when nothing selected -->
+    <template v-if="!selected">
+      <header class="vp-studio-inspector__head">
+        <strong>{{ t('lowcode.studio.inspector.document') }}</strong>
+      </header>
+      <nav class="vp-studio-inspector__tabs">
+        <button
+          type="button"
+          class="vp-studio-inspector__tab"
+          :class="{ 'is-active': docTab === 'sources' }"
+          @click="docTab = 'sources'"
+        >
+          {{ t('lowcode.studio.inspector.dataSources') }}
+        </button>
+        <button
+          type="button"
+          class="vp-studio-inspector__tab"
+          :class="{ 'is-active': docTab === 'actions' }"
+          @click="docTab = 'actions'"
+        >
+          {{ t('lowcode.studio.inspector.actions') }}
+        </button>
+      </nav>
+      <div v-show="docTab === 'sources'" class="vp-studio-inspector__body">
+        <ul class="vp-studio-ds-list">
+          <li v-for="d in dataSources" :key="d.id">
+            <button type="button" class="vp-studio-chip" @click="loadDsIntoDraft(d.id)">
+              {{ d.name || d.id }} ({{ d.type }})
+            </button>
+            <Button
+              size="sm"
+              :label="t('lowcode.studio.inspector.remove')"
+              @click="removeDataSource(d.id)"
+            />
+          </li>
+        </ul>
+        <div class="vp-studio-field">
+          <label>id</label>
+          <InputText v-model="draftDs.id" />
+        </div>
+        <div class="vp-studio-field">
+          <label>name</label>
+          <InputText :model-value="draftDs.name ?? ''" @update:model-value="draftDs.name = String($event)" />
+        </div>
+        <div class="vp-studio-field">
+          <label>type</label>
+          <Select
+            :model-value="draftDs.type"
+            :options="[
+              { label: 'mock', value: 'mock' },
+              { label: 'static', value: 'static' },
+              { label: 'rest', value: 'rest' }
+            ]"
+            @update:model-value="draftDs.type = $event as DataSourceDef['type']"
+          />
+        </div>
+        <div v-if="draftDs.type === 'rest'" class="vp-studio-field">
+          <label>URL</label>
+          <InputText
+            :model-value="draftDs.request?.url ?? ''"
+            @update:model-value="
+              draftDs.request = { ...(draftDs.request ?? {}), method: 'GET', url: String($event) }
+            "
+          />
+        </div>
+        <div v-else class="vp-studio-field">
+          <label>static JSON</label>
+          <Textarea
+            :model-value="JSON.stringify(draftDs.staticData ?? {}, null, 2)"
+            :rows="6"
+            @update:model-value="
+              (() => {
+                try {
+                  draftDs.staticData = JSON.parse(String($event))
+                } catch {
+                  /* ignore */
+                }
+              })()
+            "
+          />
+        </div>
+        <Button
+          severity="primary"
+          :label="t('lowcode.studio.inspector.saveDs')"
+          @click="saveDataSource"
+        />
+      </div>
+      <div v-show="docTab === 'actions'" class="vp-studio-inspector__body">
+        <p class="vp-studio-hint">{{ t('lowcode.studio.inspector.actionsDocHint') }}</p>
+        <pre class="vp-studio-code">{{ JSON.stringify(actions, null, 2) }}</pre>
+      </div>
+    </template>
+
     <template v-else>
       <header class="vp-studio-inspector__head">
         <strong>{{ selected.type }}</strong>
@@ -308,17 +489,17 @@ const pathHints = [
             </button>
           </div>
         </div>
-        <Button :label="t('lowcode.studio.inspector.applyBinding')" severity="primary" @click="applyBinding" />
+        <Button
+          :label="t('lowcode.studio.inspector.applyBinding')"
+          severity="primary"
+          @click="applyBinding"
+        />
         <Divider />
         <pre class="vp-studio-code">{{ JSON.stringify(bindings, null, 2) }}</pre>
       </div>
 
       <div v-show="tab === 'events'" class="vp-studio-inspector__body">
-        <div
-          v-for="ev in meta?.events ?? ['click']"
-          :key="ev"
-          class="vp-studio-field"
-        >
+        <div v-for="ev in meta?.events ?? ['click']" :key="ev" class="vp-studio-field">
           <label>{{ ev }}</label>
           <InputText
             :model-value="eventMap[ev] ?? ''"
@@ -326,9 +507,64 @@ const pathHints = [
             @update:model-value="setEventHandler(ev, String($event))"
           />
         </div>
-        <p class="vp-studio-hint">{{ t('lowcode.studio.inspector.eventHint') }}</p>
-        <div class="vp-studio-chips">
-          <span v-for="a in actionTypes" :key="a" class="vp-studio-chip">{{ a }}</span>
+
+        <Divider />
+        <div class="vp-studio-field">
+          <label>{{ t('lowcode.studio.inspector.actionChain') }} · {{ editingHandler || '—' }}</label>
+          <div
+            v-for="(step, idx) in activeChain"
+            :key="idx"
+            class="vp-studio-action-step"
+          >
+            <Select
+              :model-value="step.type"
+              :options="actionTypes.map((a) => ({ label: a, value: a }))"
+              @update:model-value="patchStep(idx, { type: $event as LowcodeActionType })"
+            />
+            <InputText
+              v-if="step.type === 'CallApi' || step.type === 'RefreshData'"
+              :model-value="step.dataSourceId ?? ''"
+              :placeholder="t('lowcode.studio.inspector.dataSourceId')"
+              @update:model-value="patchStep(idx, { dataSourceId: String($event) })"
+            />
+            <InputText
+              v-if="
+                step.type === 'SetState' ||
+                step.type === 'OpenDialog' ||
+                step.type === 'CloseDialog' ||
+                step.type === 'SetValue'
+              "
+              :model-value="step.target ?? ''"
+              placeholder="state.xxx"
+              @update:model-value="patchStep(idx, { target: String($event) })"
+            />
+            <InputText
+              v-if="step.type === 'ShowMessage'"
+              :model-value="step.message ?? ''"
+              @update:model-value="patchStep(idx, { message: String($event) })"
+            />
+            <InputText
+              v-if="step.type === 'Navigate'"
+              :model-value="step.path ?? ''"
+              @update:model-value="patchStep(idx, { path: String($event) })"
+            />
+            <Button
+              size="sm"
+              :label="t('lowcode.studio.inspector.remove')"
+              @click="removeStep(idx)"
+            />
+          </div>
+          <div class="vp-studio-chips">
+            <button
+              v-for="a in actionTypes"
+              :key="a"
+              type="button"
+              class="vp-studio-chip"
+              @click="addActionStep(a)"
+            >
+              + {{ a }}
+            </button>
+          </div>
         </div>
         <div v-if="dsOptions.length" class="vp-studio-field">
           <label>{{ t('lowcode.studio.inspector.dataSources') }}</label>
@@ -343,9 +579,7 @@ const pathHints = [
           <label>parentId</label>
           <InputText
             :model-value="selected.parentId ?? ''"
-            @update:model-value="
-              editor.reparent(selected.id, $event ? String($event) : null)
-            "
+            @update:model-value="editor.reparent(selected.id, $event ? String($event) : null)"
           />
         </div>
         <div class="vp-studio-field">

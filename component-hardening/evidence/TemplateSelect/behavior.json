@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "dropdown Select delegate + cards keyboard select",
+  "tests": [
+    "tests/unit/hardening/batch-b06-datetime-lowcode-pickers.spec.ts"
+  ],
+  "demo": "example/demos/TemplateSelect/index.vue"
+}

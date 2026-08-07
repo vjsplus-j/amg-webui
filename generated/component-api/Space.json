@@ -1,0 +1,80 @@
+{
+  "name": "Space",
+  "generatedAt": "2026-08-07T12:41:56.151Z",
+  "source": {
+    "types": "packages/components/core/Space/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "size",
+      "optional": true,
+      "type": "SpaceSize",
+      "description": ""
+    },
+    {
+      "name": "gap",
+      "optional": true,
+      "type": "SpaceSize",
+      "description": ""
+    },
+    {
+      "name": "gutter",
+      "optional": true,
+      "type": "number | string",
+      "description": ""
+    },
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "SpaceDirection",
+      "description": ""
+    },
+    {
+      "name": "align",
+      "optional": true,
+      "type": "'start' | 'end' | 'center' | 'baseline' | 'stretch'",
+      "description": ""
+    },
+    {
+      "name": "justify",
+      "optional": true,
+      "type": "'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly'",
+      "description": ""
+    },
+    {
+      "name": "wrap",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "block",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "SpaceDirection",
+    "SpaceSize",
+    "SpaceProps"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

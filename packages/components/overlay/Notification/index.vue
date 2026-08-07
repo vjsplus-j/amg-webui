@@ -20,7 +20,7 @@ const forwardedProps = computed(() => {
 </script>
 
 <template>
-  <FeedbackNotice
+  <FeedbackNotice role="status" aria-live="polite"
     v-bind="forwardedProps"
     kind="notification"
     @update:visible="emit('update:visible', $event)"

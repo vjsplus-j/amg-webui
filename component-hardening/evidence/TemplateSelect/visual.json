@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "detail": "component style.scss tokens + curated demo render",
+  "demo": "example/demos/TemplateSelect/index.vue"
+}

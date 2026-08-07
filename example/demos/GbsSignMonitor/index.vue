@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref } from 'vue';
 import { GbsSignMonitor } from '@amg-webui/gb28181';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
-import PropsTable from "../../components/demo/PropsTable.vue";
 import { demoSfc } from "../../components/demo/demoCode";
-import type { PropRow } from "../../components/demo/types";
 import { getSampleMountProps } from "../_shared/sampleMountProps";
 import "../../components/demo/curatedDemo.scss";
 
@@ -31,23 +29,7 @@ const codeBasic = demoSfc({
   template: [`  <GbsSignMonitor v-bind="mountProps" />`],
 });
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: "logs / filter / type",
-    type: "GbsSignEntry[] / string",
-    description: t("example.doc.gbsSignMonitor.prop.base"),
-  },
-  {
-    name: "selectedId / autoFollow / clearable",
-    type: "string / boolean",
-    description: t("example.doc.gbsSignMonitor.prop.base"),
-  },
-  {
-    name: "refresh / clear / select / filterChange",
-    type: "events",
-    description: t("example.doc.gbsSignMonitor.prop.base"),
-  },
-]);
+;
 </script>
 
 <template>
@@ -61,6 +43,5 @@ const propRows = computed<PropRow[]>(() => [
     >
       <GbsSignMonitor v-bind="mountProps" v-model:logs="logs" />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

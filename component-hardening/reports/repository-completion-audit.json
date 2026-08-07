@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-08-07T12:53:00.487Z",
+  "packages": {
+    "complete": true,
+    "stable": 287,
+    "invMissingCode": 0,
+    "missingCode": [],
+    "stubKeydown": 0,
+    "stubApis": 0,
+    "weakKeyboardEvidence": 0
+  },
+  "example": {
+    "complete": true,
+    "p0": 0,
+    "p1": 0,
+    "p2": 0
+  },
+  "docs": {
+    "complete": true,
+    "docsPages": 287
+  },
+  "cross": {
+    "inventoryMatch": "100.0%",
+    "contractMatch": "100%",
+    "stableDocsCoverage": "100.0%",
+    "apiDrift": 0,
+    "missingEvidence": 0,
+    "backlogOpen": 0,
+    "ssrP0": 0
+  },
+  "paths": {
+    "docs/engineering/component-hardening": true,
+    ".component-hardening": true,
+    "component-hardening": true
+  }
+}

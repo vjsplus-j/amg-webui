@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { moveRovingIndex, resolveKeyboardNavAction } from '@amg-webui/utils'
 import { computed, provide, ref } from "vue";
 import { useLocale } from "@amg-webui/hooks";
 import { LocaleKeys } from "@amg-webui/locale";
@@ -60,9 +61,44 @@ const pendingLabel = computed(() =>
     ? props.pending
     : t(LocaleKeys.component.timeline.pending),
 );
+
+const rootRef = ref<HTMLElement | null>(null)
+const activeIndex = ref(0)
+
+function selectableKeys() {
+  return props.items
+    .map((item, index) => ({ key: (item.itemKey ?? index) as TimelineKey, disabled: !!item.disabled }))
+    .filter((item) => !item.disabled)
+    .map((item) => item.key)
+}
+
+function onRootKeydown(event: KeyboardEvent) {
+  if (!props.selectable) return
+  const keys = selectableKeys()
+  if (!keys.length) return
+  const action = resolveKeyboardNavAction(event, { orientation: 'vertical' })
+  if (action === 'none' || action === 'close') return
+  event.preventDefault()
+  if (action === 'select') {
+    const key = keys[activeIndex.value] ?? keys[0]
+    select(key, event)
+    return
+  }
+  activeIndex.value = moveRovingIndex(activeIndex.value, action, keys.length, true)
+  const key = keys[activeIndex.value]
+  if (key != null) select(key, event)
+}
 </script>
 <template>
-  <ul :class="rootClass" :style="style" role="list" data-component="Timeline">
+  <ul
+    ref="rootRef"
+    :class="rootClass"
+    :style="style"
+    role="list"
+    data-component="Timeline"
+    :tabindex="selectable ? 0 : undefined"
+    @keydown="onRootKeydown"
+  >
     <TimelineItem
       v-for="(item, index) in items"
       :key="item.itemKey ?? index"

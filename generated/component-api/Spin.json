@@ -1,0 +1,62 @@
+{
+  "name": "Spin",
+  "generatedAt": "2026-08-07T12:41:56.156Z",
+  "source": {
+    "types": "packages/components/core/Spin/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "spinning",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "tip",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "SpinSize",
+      "description": ""
+    },
+    {
+      "name": "delay",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "fullscreen",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "SpinSize",
+    "SpinProps",
+    "SpinEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

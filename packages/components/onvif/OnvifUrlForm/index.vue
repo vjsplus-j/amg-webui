@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { ref, watch, computed, onBeforeUnmount } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -45,6 +46,11 @@ function resetUrl() {
   url.value = props.modelValue ?? ''
   trackEmit({ component: 'OnvifUrlForm', type: 'reset', trackId: props.trackId, telemetry: props.telemetry })
 }
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

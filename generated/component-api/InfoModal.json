@@ -1,0 +1,24 @@
+{
+  "name": "InfoModal",
+  "generatedAt": "2026-08-07T12:45:59.835Z",
+  "source": {
+    "types": "packages/components/overlay/InfoModal/types.ts",
+    "vue": true
+  },
+  "props": [],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "InfoModalProps",
+    "InfoModalEmits"
+  ],
+  "completeness": {
+    "props": false,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

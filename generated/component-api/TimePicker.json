@@ -1,0 +1,123 @@
+{
+  "name": "TimePicker",
+  "generatedAt": "2026-08-07T12:34:13.552Z",
+  "source": {
+    "types": "packages/components/form/TimePicker/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | Date | null",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "showSeconds",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "valueFormat",
+      "optional": true,
+      "type": "'time' | 'date'",
+      "description": ""
+    },
+    {
+      "name": "minuteStep",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "secondStep",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "clearable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "skipFormItem",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | Date | null",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string | Date | null",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "open-change",
+      "payload": "open: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "TimePickerProps",
+    "TimePickerEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "name": "Preview",
+  "generatedAt": "2026-08-07T12:41:35.059Z",
+  "source": {
+    "types": "packages/components/core/Preview/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "zoom",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "minZoom",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "maxZoom",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "step",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "fullscreen",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "keyboard",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "rotatable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showToolbar",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: number",
+      "description": ""
+    },
+    {
+      "name": "update:zoom",
+      "payload": "value: number",
+      "description": ""
+    },
+    {
+      "name": "update:fullscreen",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "zoom-change",
+      "payload": "value: number",
+      "description": ""
+    },
+    {
+      "name": "fullscreen-change",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "rotate",
+      "payload": "value: number",
+      "description": ""
+    },
+    {
+      "name": "reset",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "payload: { zoom: number; fullscreen: boolean; rotation: number }",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "PreviewProps",
+    "PreviewEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

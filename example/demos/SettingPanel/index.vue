@@ -6,9 +6,7 @@ import type { SettingGroup } from '@amg-webui/form/SettingPanel/types'
 import { useLocale } from '@amg-webui/hooks'
 import { LOCALE_META } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -50,11 +48,6 @@ const codeBasic = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'modelValue', type: 'Record<string, unknown>', description: t('example.doc.settingPanel.prop.modelValue') },
-  { name: 'groups', type: 'SettingGroup[]', description: t('example.doc.settingPanel.prop.groups') },
-  { name: 'defaultValue', type: 'Record<string, unknown>', description: t('example.doc.settingPanel.prop.defaultValue') }
-])
 </script>
 
 <template>
@@ -77,9 +70,7 @@ const propRows = computed<PropRow[]>(() => [
         <StatusTip v-if="action" severity="success" :message="action" />
       </div>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

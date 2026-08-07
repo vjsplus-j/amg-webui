@@ -1,0 +1,107 @@
+{
+  "name": "FloatButton",
+  "generatedAt": "2026-08-07T12:41:13.586Z",
+  "source": {
+    "types": "packages/components/core/FloatButton/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "type",
+      "optional": true,
+      "type": "Severity",
+      "description": ""
+    },
+    {
+      "name": "severity",
+      "optional": true,
+      "type": "Severity",
+      "description": ""
+    },
+    {
+      "name": "shape",
+      "optional": true,
+      "type": "Shape",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "href",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "top",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "right",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "bottom",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "left",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "open",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "update:open",
+      "payload": "open: boolean",
+      "description": ""
+    },
+    {
+      "name": "openChange",
+      "payload": "open: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "FloatButtonProps",
+    "FloatButtonEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { computed, ref, watch, onBeforeUnmount } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import type { OnvifSearchProps, OnvifDevice } from './types'
 import './style.scss'
@@ -56,6 +57,11 @@ function pick(d: OnvifDevice) {
   if (props.disabled) return
   emit('select', d)
 }
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

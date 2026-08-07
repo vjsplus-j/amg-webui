@@ -5,6 +5,8 @@ export type DesignStyleName =
   | 'lamborghini'
   | 'ferrari'
   | 'apple'
+  | 'wechat'
+  | 'alipay'
 
 export type ColorScheme = 'dark' | 'light'
 export type ThemeIconSet = 'lucide' | 'material'
@@ -26,10 +28,10 @@ export interface DesignStyleConfig {
   name: DesignStyleName
   label: string
   description: string
-  category: 'Auto' | 'SaaS' | 'Retail'
+  category: 'Auto' | 'SaaS' | 'Retail' | 'CN'
   font: FontName
   iconSet: ThemeIconSet
-  /** designmd reference */
+  /** designmd / brand design reference */
   ref: string
   supportsScheme?: boolean
   preview: {
@@ -52,8 +54,8 @@ export interface IconStyleConfig {
 }
 
 /**
- * Locked brand themes — tokens aligned to designmd.
- * Do not invent alternate product skins outside this registry.
+ * Official brand themes — designmd baseline + CN product skins (WeChat / Alipay).
+ * Prefer tokens over component forks; extend via registry + design SCSS only.
  */
 export const designStyles: DesignStyleConfig[] = [
   {
@@ -117,6 +119,28 @@ export const designStyles: DesignStyleConfig[] = [
     supportsScheme: true,
     ref: 'https://designmd.santiagoalonso.com/apple',
     preview: { primary: '#0071e3', background: '#f5f5f7' }
+  },
+  {
+    name: 'wechat',
+    label: 'WeChat',
+    description: 'WeUI 复刻 · #07C160 · 选中绿字/图标 · 描边 2 · 发丝分割',
+    category: 'CN',
+    font: 'apple',
+    iconSet: 'lucide',
+    supportsScheme: true,
+    ref: 'https://developers.weixin.qq.com/miniprogram/design/',
+    preview: { primary: '#07c160', background: '#ededed' }
+  },
+  {
+    name: 'alipay',
+    label: 'Alipay',
+    description: 'antd-mobile 复刻 · #1677FF · 水色选中 · 描边 1.5 · 圆角 8/12',
+    category: 'CN',
+    font: 'apple',
+    iconSet: 'lucide',
+    supportsScheme: true,
+    ref: 'https://mobile.ant.design/',
+    preview: { primary: '#1677ff', background: '#f5f5f5' }
   }
 ]
 
@@ -173,7 +197,7 @@ export const fonts: FontConfig[] = [
   {
     name: 'apple',
     label: '系统苹方',
-    description: 'PingFang / SF 系统栈（非 Albert Sans）',
+    description: 'WeUI / 支付宝同源系统栈（PingFang · Helvetica Neue）',
     sample: '苹方 Aa 123'
   }
 ]
@@ -230,7 +254,9 @@ export const LEGACY_THEME_CLASSES = [
   'porsche',
   'lamborghini',
   'ferrari',
-  'apple'
+  'apple',
+  'wechat',
+  'alipay'
 ] as const
 
 export function getDesignConfig(style: DesignStyleName): DesignStyleConfig | undefined {
@@ -270,7 +296,12 @@ export function mapLegacyTheme(legacy: string | null): DesignStyleName | null {
     porsche: 'porsche',
     lamborghini: 'lamborghini',
     ferrari: 'ferrari',
-    apple: 'apple'
+    apple: 'apple',
+    wechat: 'wechat',
+    alipay: 'alipay',
+    weixin: 'wechat',
+    wx: 'wechat',
+    zhifubao: 'alipay'
   }
   return map[legacy] ?? null
 }

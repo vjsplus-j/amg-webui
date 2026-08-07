@@ -1,0 +1,51 @@
+{
+  "name": "Row",
+  "generatedAt": "2026-08-07T12:41:56.129Z",
+  "source": {
+    "types": "packages/components/core/Row/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "gutter",
+      "optional": true,
+      "type": "RowGutter",
+      "description": ""
+    },
+    {
+      "name": "wrap",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "align",
+      "optional": true,
+      "type": "RowAlign",
+      "description": ""
+    },
+    {
+      "name": "justify",
+      "optional": true,
+      "type": "RowJustify",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "RowAlign",
+    "RowJustify",
+    "RowGutter",
+    "RowProps"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

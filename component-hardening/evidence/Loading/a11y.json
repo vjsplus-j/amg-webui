@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Loading mount tree available for a11y contract",
+  "tests": [
+    "tests/unit/hardening/real-mount-remaining.spec.ts"
+  ],
+  "updatedAt": "2026-08-07T12:41:51.910Z"
+}

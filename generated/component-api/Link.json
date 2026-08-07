@@ -1,0 +1,184 @@
+{
+  "name": "Link",
+  "generatedAt": "2026-08-07T12:41:35.008Z",
+  "source": {
+    "types": "packages/components/core/Link/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "href",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "to",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "optional": true,
+      "type": "LinkType",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "underline",
+      "optional": true,
+      "type": "LinkUnderline",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "target",
+      "optional": true,
+      "type": "'_self' | '_blank' | '_parent' | '_top' | string",
+      "description": ""
+    },
+    {
+      "name": "replace",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "iconPos",
+      "optional": true,
+      "type": "LinkIconPos",
+      "description": ""
+    },
+    {
+      "name": "iconSize",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "iconGap",
+      "optional": true,
+      "type": "Size | string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "tooltip",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "stopPropagation",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "permission",
+      "optional": true,
+      "type": "boolean | (() => boolean)",
+      "description": ""
+    },
+    {
+      "name": "permissionMode",
+      "optional": true,
+      "type": "LinkPermissionMode",
+      "description": ""
+    },
+    {
+      "name": "permissionTip",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "beforeClick",
+      "optional": true,
+      "type": "(event: MouseEvent) => boolean | void | Promise<boolean | void>",
+      "description": ""
+    },
+    {
+      "name": "clickGuard",
+      "optional": true,
+      "type": "LinkClickGuard",
+      "description": ""
+    },
+    {
+      "name": "wait",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "focus",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "payload": "event: FocusEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "LinkType",
+    "LinkUnderline",
+    "LinkIconPos",
+    "LinkClickGuard",
+    "LinkPermissionMode",
+    "LinkProps",
+    "LinkEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

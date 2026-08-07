@@ -1,0 +1,104 @@
+{
+  "name": "DragMaterial",
+  "generatedAt": "2026-08-07T12:40:46.821Z",
+  "source": {
+    "types": "packages/lowcode/ui/DragMaterial/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "materials",
+      "optional": true,
+      "type": "CanvasMaterialItem[]",
+      "description": ""
+    },
+    {
+      "name": "filter",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "group",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "searchable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:filter",
+      "payload": "query: string",
+      "description": ""
+    },
+    {
+      "name": "drag-start",
+      "payload": "material: CanvasMaterialItem",
+      "description": ""
+    },
+    {
+      "name": "dragStart",
+      "payload": "material: CanvasMaterialItem, event: DragEvent",
+      "description": ""
+    },
+    {
+      "name": "dragEnd",
+      "payload": "material: CanvasMaterialItem, event: DragEvent",
+      "description": ""
+    },
+    {
+      "name": "search",
+      "payload": "query: string",
+      "description": ""
+    },
+    {
+      "name": "pick",
+      "payload": "material: CanvasMaterialItem, event: MouseEvent | KeyboardEvent,",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "DragMaterialProps",
+    "DragMaterialEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

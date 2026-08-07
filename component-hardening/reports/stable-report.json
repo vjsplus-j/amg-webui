@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-08-07T12:46:47.273Z",
+  "promoted": 3,
+  "skipped": 0,
+  "promotedNames": [
+    "GbsDeviceTree",
+    "ImageViewer",
+    "OnvifGroupTree"
+  ],
+  "blocked": [],
+  "publicCount": 287,
+  "note": "Stable only with verify PASS + mandatory evidence PASS|N/A"
+}

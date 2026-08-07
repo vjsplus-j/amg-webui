@@ -40,7 +40,7 @@ const titleText = computed(() => props.title ?? t('component.transfer-tree.title
 </script>
 
 <template>
-  <div :class="['vp-transfer-tree', 'vp-transfer-tree__panel', { 'vp-transfer-tree--disabled': disabled }, props.class]" :style="style">
+  <div role="region" aria-label="TransferTree" :class="['vp-transfer-tree', 'vp-transfer-tree__panel', { 'vp-transfer-tree--disabled': disabled }, props.class]" :style="style">
     <strong class="vp-transfer-tree__title">{{ titleText }}</strong>
     <div class="vp-transfer-tree__panes">
       <section class="vp-transfer-tree__pane">

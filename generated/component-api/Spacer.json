@@ -1,0 +1,110 @@
+{
+  "name": "Spacer",
+  "generatedAt": "2026-08-07T12:41:56.154Z",
+  "source": {
+    "types": "packages/components/core/Spacer/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "flex",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "grow",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "shrink",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "SpacerSize",
+      "description": ""
+    },
+    {
+      "name": "axis",
+      "optional": true,
+      "type": "SpacerAxis",
+      "description": ""
+    },
+    {
+      "name": "minSize",
+      "optional": true,
+      "type": "SpacerSize",
+      "description": ""
+    },
+    {
+      "name": "inline",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "basis",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaHidden",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "tabIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "observeResize",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "resize",
+      "payload": "payload: SpacerResizePayload",
+      "description": ""
+    },
+    {
+      "name": "focus",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "payload": "event: FocusEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "SpacerSize",
+    "SpacerAxis",
+    "SpacerProps",
+    "SpacerResizePayload",
+    "SpacerEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

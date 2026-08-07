@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref } from 'vue';
 import { TableDrag } from '@amg-webui/data';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
-import PropsTable from "../../components/demo/PropsTable.vue";
 import { demoSfc } from "../../components/demo/demoCode";
-import type { PropRow } from "../../components/demo/types";
 import { getSampleMountProps } from "../_shared/sampleMountProps";
 import "../../components/demo/curatedDemo.scss";
 
@@ -26,13 +24,7 @@ const codeBasic = demoSfc({
   template: [`  <TableDrag v-bind="mountProps" v-model="rows" row-key="id" />`],
 });
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: "class / style",
-    type: "BaseProps",
-    description: t("example.doc.tableDrag.prop.base"),
-  },
-]);
+;
 </script>
 
 <template>
@@ -46,6 +38,5 @@ const propRows = computed<PropRow[]>(() => [
     >
       <TableDrag v-bind="mountProps" v-model="rows" row-key="id" />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

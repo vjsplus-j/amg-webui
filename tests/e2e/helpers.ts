@@ -24,5 +24,7 @@ export const DESIGN_BRANDS = [
   'porsche',
   'lamborghini',
   'ferrari',
-  'apple'
+  'apple',
+  'wechat',
+  'alipay'
 ] as const

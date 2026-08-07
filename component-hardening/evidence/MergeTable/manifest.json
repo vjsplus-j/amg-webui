@@ -1,0 +1,7 @@
+{
+  "component": "MergeTable",
+  "family": "table",
+  "batch": "B41R",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:41:52.070Z"
+}

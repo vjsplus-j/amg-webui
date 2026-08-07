@@ -1,0 +1,65 @@
+{
+  "name": "AudioTalk",
+  "generatedAt": "2026-08-07T12:39:09.854Z",
+  "source": {
+    "types": "packages/components/media/AudioTalk/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "active",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:active",
+      "payload": "v: boolean",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "stop",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "AudioTalkProps",
+    "AudioTalkEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

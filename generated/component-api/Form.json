@@ -1,0 +1,87 @@
+{
+  "name": "Form",
+  "generatedAt": "2026-08-07T12:34:13.535Z",
+  "source": {
+    "types": "packages/components/form/Form/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "model",
+      "optional": true,
+      "type": "Record<string, unknown>",
+      "description": ""
+    },
+    {
+      "name": "rules",
+      "optional": true,
+      "type": "FormRules",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "labelWidth",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "labelPosition",
+      "optional": true,
+      "type": "'left' | 'top'",
+      "description": ""
+    },
+    {
+      "name": "sanitizeOnSubmit",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "validate",
+      "payload": "valid: boolean, errors: Record<string, string>",
+      "description": ""
+    },
+    {
+      "name": "submit",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "FormRules",
+    "FormRule",
+    "FormContext",
+    "FormProps",
+    "FormEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

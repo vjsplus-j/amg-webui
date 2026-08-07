@@ -1,0 +1,107 @@
+{
+  "name": "PTZControl",
+  "generatedAt": "2026-08-07T12:41:35.040Z",
+  "source": {
+    "types": "packages/components/media/PTZControl/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "PtzCommand | null",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "speed",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "minSpeed",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "maxSpeed",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "step",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "keyboard",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showAdvanced",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "presets",
+      "optional": true,
+      "type": "number[]",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "cmd: PtzCommand | null",
+      "description": ""
+    },
+    {
+      "name": "update:speed",
+      "payload": "value: number",
+      "description": ""
+    },
+    {
+      "name": "command",
+      "payload": "cmd: PtzCommand, payload: PtzCommandPayload",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "payload: PtzCommandPayload",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "PtzCommand",
+    "PtzCommandPayload",
+    "PTZControlProps",
+    "PTZControlEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

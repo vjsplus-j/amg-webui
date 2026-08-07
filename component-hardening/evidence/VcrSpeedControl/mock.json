@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "detail": "createMockMediaAdapter wired; destroy on unmount",
+  "source": "scripts/hardening/_inject-media-adapters.mjs"
+}

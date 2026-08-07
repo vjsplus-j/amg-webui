@@ -1,0 +1,7 @@
+{
+  "component": "TemplateSelect",
+  "family": "selection",
+  "batch": "B04",
+  "source": "tests/unit/hardening/batch-b06-datetime-lowcode-pickers.spec.ts",
+  "updatedAt": "2026-08-07T12:35:44.032Z"
+}

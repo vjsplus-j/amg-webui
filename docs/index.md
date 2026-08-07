@@ -36,6 +36,8 @@ Skill Runtime 位于 `packages/skill/`，只通过可选子路径 `amg-webui/ski
 | [VISION.md](./VISION.md) | 愿景口号 |
 | [OVERTAKE_ELEMENT_PLUS.md](./OVERTAKE_ELEMENT_PLUS.md) | 六大维度深度超车 |
 | [LIBRARY_PLAN.md](./LIBRARY_PLAN.md) | 大型库总计划 |
+| [COMPONENT_HARDENING.md](./COMPONENT_HARDENING.md) | **300 组件治理** · Inventory / verify / Stable |
+| [EXAMPLE_DOCUMENTATION.md](./EXAMPLE_DOCUMENTATION.md) | example 文档化方向（Track C） |
 | [TELEMETRY.md](./TELEMETRY.md) | **Vp Telemetry** 交互观测内核 |
 | [SKILL_RUNTIME.md](./SKILL_RUNTIME.md) | **Skill Runtime** 实验性契约、生命周期与安全编排 |
 | [THEME_STUDIO.md](./THEME_STUDIO.md) | 自定义主题生成工具 |

@@ -1,0 +1,7 @@
+{
+  "component": "PivotTable",
+  "family": "table",
+  "batch": "B14",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:41:52.660Z"
+}

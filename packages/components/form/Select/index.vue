@@ -2,7 +2,7 @@
 import { onMounted, onUnmounted } from "vue";
 import { useLocale } from "@amg-webui/hooks";
 import { LocaleKeys } from "@amg-webui/locale";
-import { isClient } from "@amg-webui/utils/env";
+import { isClient, resolveKeyboardNavAction } from "@amg-webui/utils";
 import type { SelectProps, SelectEmits } from "./types";
 import { useSelect } from "./useSelect";
 import { useFormItem } from "../FormItem/useFormItem";
@@ -58,17 +58,22 @@ const {
   triggerClass,
   selectClass,
   selectStyle,
+  panelMergedStyle,
   useVirtualScroll,
   virtual,
   remoteLoading,
   showFilter,
+  activeIndex,
   toggle,
+  open,
   close,
   shouldCloseAfterSelect,
   isOptionSelected,
   resolveSelectValue,
   resolveClearValue,
   resolveRemoveTagValue,
+  applyKeyboardAction,
+  resolveActiveOption,
 } = useSelect(props, (error, query) => emit("remote-error", error, query));
 
 const handleTriggerClick = () => {
@@ -133,12 +138,64 @@ const handleKeydown = (event: KeyboardEvent) => {
       toggle();
       emit("show");
     }
-  } else if (event.key === "Escape") {
-    event.preventDefault();
-    close();
+    return;
+  }
+
+  const target = event.target as HTMLElement | null;
+  const inFilter =
+    Boolean(filterRef.value) &&
+    (target === filterRef.value ||
+      Boolean(target?.closest?.(".vp-select__filter")));
+
+  const action = resolveKeyboardNavAction(event, { orientation: "vertical" });
+  // Let the filter input accept Space / printable text; still handle Escape / arrows / Enter.
+  if (inFilter && action === "select" && event.key === " ") return;
+  if (action === "none") return;
+  event.preventDefault();
+  const handled = applyKeyboardAction(action);
+  if (action === "close" && handled) {
     emit("hide");
+    return;
+  }
+  if (action === "select") {
+    const opt = resolveActiveOption();
+    if (opt) handleOptionClick(opt, event as unknown as MouseEvent);
   }
 };
+
+const focus = () => {
+  triggerRef.value?.focus();
+};
+
+const blur = () => {
+  triggerRef.value?.blur();
+};
+
+const clear = () => {
+  if (isDisabled.value || props.readonly) return;
+  const next = resolveClearValue();
+  emit("update:modelValue", next);
+  emit("clear");
+  void validateOnChange();
+};
+
+const closeAndHide = () => {
+  close();
+  emit("hide");
+};
+
+const openAndShow = () => {
+  open();
+  emit("show");
+};
+
+defineExpose({
+  focus,
+  blur,
+  open: openAndShow,
+  close: closeAndHide,
+  clear,
+});
 
 onMounted(() => {
   if (!isClient) return;
@@ -264,95 +321,101 @@ const handleOutsideClick = (event: MouseEvent) => {
       </span>
     </div>
 
-    <div
-      v-if="isOpen"
-      ref="panelRef"
-      :class="['vp-select__panel', panelClass]"
-      :style="panelStyle"
-    >
-      <div v-if="showFilter" class="vp-select__filter-wrap">
-        <input
-          ref="filterRef"
-          v-model="filterText"
-          type="text"
-          class="vp-select__filter"
-          :placeholder="t(LocaleKeys.component.select.search)"
-          :aria-label="t(LocaleKeys.component.select.search)"
-          @click.stop
-        />
-      </div>
-
+    <Teleport to="body">
       <div
-        ref="listRef"
-        :id="listboxId"
-        class="vp-select__list"
-        role="listbox"
-        :aria-label="t(LocaleKeys.component.select.listboxAria)"
-        :aria-busy="loading || remoteLoading || undefined"
-        @scroll="useVirtualScroll ? virtual.onScroll : undefined"
+        v-if="isOpen"
+        ref="panelRef"
+        :class="['vp-select__panel', panelClass]"
+        :style="panelMergedStyle"
+        @keydown="handleKeydown"
       >
-        <div v-if="loading || remoteLoading" class="vp-select__loading">
-          {{ t(LocaleKeys.component.select.loading) }}
+        <div v-if="showFilter" class="vp-select__filter-wrap">
+          <input
+            ref="filterRef"
+            v-model="filterText"
+            type="text"
+            class="vp-select__filter"
+            :placeholder="t(LocaleKeys.component.select.search)"
+            :aria-label="t(LocaleKeys.component.select.search)"
+            @click.stop
+            @keydown="handleKeydown"
+          />
         </div>
 
         <div
-          v-else-if="filteredOptions.length === 0"
-          class="vp-select__empty"
-          role="status"
+          ref="listRef"
+          :id="listboxId"
+          class="vp-select__list"
+          role="listbox"
+          :aria-label="t(LocaleKeys.component.select.listboxAria)"
+          :aria-busy="loading || remoteLoading || undefined"
+          @scroll="useVirtualScroll ? virtual.onScroll : undefined"
         >
-          {{ t(LocaleKeys.component.select.empty) }}
-        </div>
+          <div v-if="loading || remoteLoading" class="vp-select__loading">
+            {{ t(LocaleKeys.component.select.loading) }}
+          </div>
 
-        <template v-else-if="useVirtualScroll">
           <div
-            class="vp-select__virtual-spacer"
-            :style="{ height: `${virtual.totalHeight.value}px` }"
+            v-else-if="filteredOptions.length === 0"
+            class="vp-select__empty"
+            role="status"
           >
+            {{ t(LocaleKeys.component.select.empty) }}
+          </div>
+
+          <template v-else-if="useVirtualScroll">
             <div
-              class="vp-select__virtual-window"
-              :style="{ transform: `translateY(${virtual.offsetY.value}px)` }"
+              class="vp-select__virtual-spacer"
+              :style="{ height: `${virtual.totalHeight.value}px` }"
             >
               <div
-                v-for="{ item: option } in virtual.visibleItems.value"
-                :key="String(option.value)"
-                role="option"
-                :class="[
-                  'vp-select__option',
-                  {
-                    'vp-select__option--selected': isOptionSelected(option),
-                    'vp-select__option--disabled': option.disabled,
-                  },
-                ]"
-                :aria-selected="isOptionSelected(option)"
-                :style="{ height: `${virtual.itemHeight.value}px` }"
-                @click="handleOptionClick(option, $event)"
+                class="vp-select__virtual-window"
+                :style="{ transform: `translateY(${virtual.offsetY.value}px)` }"
               >
-                {{ option.label }}
+                <div
+                  v-for="{ item: option, index } in virtual.visibleItems.value"
+                  :key="String(option.value)"
+                  role="option"
+                  :class="[
+                    'vp-select__option',
+                    {
+                      'vp-select__option--selected': isOptionSelected(option),
+                      'vp-select__option--active': activeIndex === index,
+                      'vp-select__option--disabled': option.disabled,
+                    },
+                  ]"
+                  :aria-selected="isOptionSelected(option)"
+                  :style="{ height: `${virtual.itemHeight.value}px` }"
+                  @click="handleOptionClick(option, $event)"
+                >
+                  {{ option.label }}
+                </div>
               </div>
             </div>
-          </div>
-        </template>
+          </template>
 
-        <template v-else>
-          <div
-            v-for="option in filteredOptions"
-            :key="String(option.value)"
-            role="option"
-            :class="[
-              'vp-select__option',
-              {
-                'vp-select__option--selected': isOptionSelected(option),
-                'vp-select__option--disabled': option.disabled,
-              },
-            ]"
-            :aria-selected="isOptionSelected(option)"
-            @click="handleOptionClick(option, $event)"
-          >
-            {{ option.label }}
-          </div>
-        </template>
+          <template v-else>
+            <div
+              v-for="(option, index) in filteredOptions"
+              :key="String(option.value)"
+              role="option"
+              :class="[
+                'vp-select__option',
+                {
+                  'vp-select__option--selected': isOptionSelected(option),
+                  'vp-select__option--active': activeIndex === index,
+                  'vp-select__option--disabled': option.disabled,
+                },
+              ]"
+              :aria-selected="isOptionSelected(option)"
+              @click="handleOptionClick(option, $event)"
+            >
+              {{ option.label }}
+            </div>
+          </template>
+        </div>
       </div>
-    </div>
+    </Teleport>
 
     <slot />
   </div>

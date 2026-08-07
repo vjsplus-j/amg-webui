@@ -1,0 +1,83 @@
+{
+  "name": "GridLayoutDrag",
+  "generatedAt": "2026-08-07T12:41:13.609Z",
+  "source": {
+    "types": "packages/lowcode/ui/GridLayoutDrag/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "cols",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "enabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:enabled",
+      "payload": "enabled: boolean",
+      "description": ""
+    },
+    {
+      "name": "mode",
+      "payload": "mode: \"grid\"",
+      "description": ""
+    },
+    {
+      "name": "toggle",
+      "payload": "enabled: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "GridLayoutDragProps",
+    "GridLayoutDragEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

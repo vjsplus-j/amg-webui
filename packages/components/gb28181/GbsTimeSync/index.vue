@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, watch, computed, onUnmounted } from 'vue'
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { ref, watch, computed, onUnmounted, onBeforeUnmount } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
 import { LocaleKeys } from '@amg-webui/locale'
@@ -48,6 +49,11 @@ function resetServer() {
 
 onUnmounted(() => {
   if (syncTimer) clearTimeout(syncTimer)
+})
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
 })
 </script>
 

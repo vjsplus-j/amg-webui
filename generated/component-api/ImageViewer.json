@@ -1,0 +1,101 @@
+{
+  "name": "ImageViewer",
+  "generatedAt": "2026-08-07T12:46:30.691Z",
+  "source": {
+    "types": "packages/components/core/ImageViewer/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "visible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "urlList",
+      "optional": false,
+      "type": "string[]",
+      "description": ""
+    },
+    {
+      "name": "initialIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "infinite",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "zoomRate",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "minScale",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "maxScale",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "teleported",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "class",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "style",
+      "optional": true,
+      "type": "Record<string, string>",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:visible",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "payload": "event?: Event",
+      "description": ""
+    },
+    {
+      "name": "switch",
+      "payload": "index: number",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ImageViewerProps",
+    "ImageViewerEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

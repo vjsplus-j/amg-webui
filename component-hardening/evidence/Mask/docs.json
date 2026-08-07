@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/mask.md",
+  "api": "generated/component-api/Mask.json",
+  "demo": "example/demos/Mask/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

@@ -2,14 +2,11 @@
 /**
  * Curated demo — Display wave2 Watermark
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Watermark } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -34,26 +31,6 @@ const codeOpacity = demoCode(
   `</Watermark>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'content',
-    description: t('example.doc.watermark.prop.content'),
-    type: 'string | string[]',
-    defaultValue: '—'
-  },
-  {
-    name: 'opacity',
-    description: t('example.doc.watermark.prop.opacity'),
-    type: 'number',
-    defaultValue: '0.15'
-  },
-  {
-    name: 'gap / rotate / fontSize',
-    description: t('example.doc.watermark.prop.gap'),
-    type: '[number, number] / number / number',
-    defaultValue: '[0,0] / -22 / 14'
-  }
-])
 </script>
 
 <template>
@@ -99,12 +76,6 @@ const propRows = computed<PropRow[]>(() => [
         </Watermark>
       </div>
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-    </section>
   </div>
 </template>
 
@@ -143,19 +114,5 @@ const propRows = computed<PropRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

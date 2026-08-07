@@ -1,0 +1,108 @@
+{
+  "name": "RangeInput",
+  "generatedAt": "2026-08-07T12:34:13.546Z",
+  "source": {
+    "types": "packages/components/form/RangeInput/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "RangeValue",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "precision",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "step",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "min",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "allowCross",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "startPlaceholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "endPlaceholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: RangeValue",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: RangeValue",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "RangeValue",
+    "RangeInputProps",
+    "RangeInputEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

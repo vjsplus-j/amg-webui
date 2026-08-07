@@ -1,0 +1,7 @@
+{
+  "component": "EmbedLayout",
+  "family": "layout",
+  "batch": "B34R",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:41:30.726Z"
+}

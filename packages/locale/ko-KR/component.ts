@@ -97,6 +97,7 @@
     'component.form-tabs.title': '폼 탭',
     'component.form-tabs.lead': '탭 폼 컨테이너',
   'component.step-form.title': 'StepForm',
+  'component.step-form.navAria': '단계',
   'component.step-form.lead': 'StepForm 컴포넌트 미리보기',
   'component.image-crop.title': 'ImageCrop',
   'component.image-crop.lead': 'ImageCrop 컴포넌트 미리보기',

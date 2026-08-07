@@ -1,0 +1,85 @@
+{
+  "name": "Dialog",
+  "family": "overlay",
+  "package": "overlay",
+  "capability": "interaction",
+  "maturity": "stable",
+  "batch": "B08",
+  "api": {
+    "props": "required",
+    "emits": "required",
+    "slots": "required",
+    "expose": "required",
+    "models": "required",
+    "instance": "optional",
+    "service": "not-applicable",
+    "context": "internal"
+  },
+  "requiredExpose": [
+    "open",
+    "close"
+  ],
+  "requiredSlots": [
+    "default",
+    "header",
+    "footer"
+  ],
+  "models": [
+    {
+      "name": "visible",
+      "type": "boolean",
+      "clearValue": "false",
+      "notes": "v-model:visible; beforeClose may veto"
+    }
+  ],
+  "behavioralContract": {
+    "open": "Registers with OverlayRuntime; traps focus",
+    "close": "Emits close reason; restores focus; unlocks scroll",
+    "escape": "Escape closes topmost dialog only",
+    "unmount": "Listeners, timers, observers, and abort controllers must be released",
+    "batch": "B08 Overlay Family",
+    "disabled": "Interactive actions no-op when disabled"
+  },
+  "states": [
+    "default",
+    "open",
+    "disabled"
+  ],
+  "keyboard": [
+    "Escape",
+    "Tab"
+  ],
+  "gates": {
+    "api-props": "mandatory",
+    "api-emits": "mandatory",
+    "api-slots": "mandatory",
+    "api-docs": "mandatory",
+    "package": "mandatory",
+    "ssr": "mandatory",
+    "cleanup": "mandatory",
+    "tokens": "mandatory",
+    "i18n": "mandatory",
+    "visual": "optional",
+    "a11y": "mandatory",
+    "keyboard": "mandatory",
+    "perf": "na",
+    "theme": "optional",
+    "rtl": "optional",
+    "focus": "mandatory",
+    "escape": "mandatory",
+    "scroll-lock": "mandatory",
+    "behavior": "mandatory",
+    "docs": "mandatory"
+  },
+  "apiFreeze": {
+    "version": "1",
+    "frozen": true,
+    "frozenAt": "2026-08-07T10:51:53.798Z"
+  },
+  "generated": false,
+  "generatedAt": "2026-08-07T09:57:01.134Z",
+  "template": true,
+  "updatedAt": "2026-08-07T10:51:53.798Z",
+  "promoteStable": true,
+  "batchTitle": "Overlay Family"
+}

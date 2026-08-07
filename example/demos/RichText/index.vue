@@ -3,9 +3,7 @@ import { ref } from 'vue'
 import { RichText } from '@amg-webui/editor'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -17,23 +15,6 @@ const codeBasic = demoSfc({
   template: [`  <RichText v-model="html" />`]
 })
 
-const propRows: PropRow[] = [
-  {
-    name: 'modelValue',
-    type: 'string',
-    description: t('example.doc.richText.prop.base')
-  },
-  {
-    name: 'sanitize / sanitizeOptions',
-    type: 'boolean / SanitizeHtmlOptions',
-    description: t('example.doc.richText.prop.sanitize')
-  },
-  {
-    name: 'placeholder / disabled / historyLimit',
-    type: 'editor props',
-    description: t('example.doc.richText.prop.base')
-  }
-]
 </script>
 
 <template>
@@ -47,6 +28,5 @@ const propRows: PropRow[] = [
     >
       <RichText v-model="html" />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

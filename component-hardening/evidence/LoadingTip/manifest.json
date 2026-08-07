@@ -1,0 +1,7 @@
+{
+  "component": "LoadingTip",
+  "family": "feedback",
+  "batch": "B25R",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:41:51.918Z"
+}

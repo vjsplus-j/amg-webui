@@ -1,0 +1,7 @@
+{
+  "component": "VcrDownloadPanel",
+  "family": "vcr",
+  "batch": "B23",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:42:34.749Z"
+}

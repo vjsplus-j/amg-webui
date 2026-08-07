@@ -1,0 +1,23 @@
+{
+  "id": "overlay",
+  "gates": {
+    "api-props": "mandatory",
+    "api-emits": "mandatory",
+    "api-slots": "mandatory",
+    "api-docs": "mandatory",
+    "package": "mandatory",
+    "ssr": "mandatory",
+    "cleanup": "mandatory",
+    "tokens": "mandatory",
+    "i18n": "mandatory",
+    "visual": "mandatory",
+    "a11y": "mandatory",
+    "keyboard": "mandatory",
+    "perf": "na",
+    "theme": "optional",
+    "rtl": "optional",
+    "focus": "mandatory",
+    "escape": "mandatory",
+    "scroll-lock": "mandatory"
+  }
+}

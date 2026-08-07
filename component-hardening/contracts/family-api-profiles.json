@@ -1,0 +1,337 @@
+{
+  "foundation": {
+    "required": [
+      "props",
+      "emits",
+      "slots"
+    ],
+    "optional": [
+      "expose"
+    ],
+    "requiredExpose": [],
+    "requiredSlots": [
+      "default"
+    ]
+  },
+  "input": {
+    "required": [
+      "props",
+      "emits",
+      "slots",
+      "expose",
+      "models"
+    ],
+    "optional": [
+      "instance"
+    ],
+    "requiredExpose": [
+      "focus",
+      "blur"
+    ],
+    "requiredSlots": [
+      "default",
+      "prefix",
+      "suffix"
+    ]
+  },
+  "selection": {
+    "required": [
+      "props",
+      "emits",
+      "slots",
+      "expose",
+      "models"
+    ],
+    "optional": [
+      "instance"
+    ],
+    "requiredExpose": [
+      "focus",
+      "blur",
+      "open",
+      "close",
+      "clear"
+    ],
+    "requiredSlots": [
+      "default",
+      "option",
+      "empty",
+      "loading"
+    ]
+  },
+  "datetime": {
+    "required": [
+      "props",
+      "emits",
+      "slots",
+      "expose",
+      "models"
+    ],
+    "optional": [
+      "instance"
+    ],
+    "requiredExpose": [
+      "focus",
+      "blur",
+      "open",
+      "close"
+    ],
+    "requiredSlots": [
+      "default"
+    ]
+  },
+  "form": {
+    "required": [
+      "props",
+      "emits",
+      "slots",
+      "expose",
+      "context"
+    ],
+    "optional": [
+      "instance"
+    ],
+    "requiredExpose": [
+      "validate",
+      "resetFields",
+      "clearValidate"
+    ],
+    "requiredSlots": [
+      "default"
+    ]
+  },
+  "overlay": {
+    "required": [
+      "props",
+      "emits",
+      "slots",
+      "expose",
+      "models"
+    ],
+    "optional": [
+      "instance"
+    ],
+    "requiredExpose": [
+      "open",
+      "close"
+    ],
+    "requiredSlots": [
+      "default",
+      "header",
+      "footer"
+    ]
+  },
+  "feedback": {
+    "required": [
+      "props",
+      "emits",
+      "slots"
+    ],
+    "optional": [
+      "service",
+      "expose"
+    ],
+    "requiredExpose": [],
+    "requiredSlots": [
+      "default"
+    ]
+  },
+  "navigation": {
+    "required": [
+      "props",
+      "emits",
+      "slots"
+    ],
+    "optional": [
+      "expose",
+      "models"
+    ],
+    "requiredExpose": [],
+    "requiredSlots": [
+      "default"
+    ]
+  },
+  "layout": {
+    "required": [
+      "props",
+      "slots"
+    ],
+    "optional": [
+      "emits"
+    ],
+    "requiredExpose": [],
+    "requiredSlots": [
+      "default"
+    ]
+  },
+  "tree": {
+    "required": [
+      "props",
+      "emits",
+      "slots",
+      "expose",
+      "models"
+    ],
+    "optional": [
+      "instance"
+    ],
+    "requiredExpose": [
+      "getNode",
+      "filter",
+      "scrollTo"
+    ],
+    "requiredSlots": [
+      "default",
+      "node"
+    ]
+  },
+  "table": {
+    "required": [
+      "props",
+      "emits",
+      "slots",
+      "expose"
+    ],
+    "optional": [
+      "models",
+      "instance"
+    ],
+    "requiredExpose": [
+      "scrollTo"
+    ],
+    "requiredSlots": [
+      "default",
+      "empty",
+      "loading"
+    ]
+  },
+  "upload": {
+    "required": [
+      "props",
+      "emits",
+      "slots",
+      "expose"
+    ],
+    "optional": [
+      "models"
+    ],
+    "requiredExpose": [
+      "clear",
+      "abort"
+    ],
+    "requiredSlots": [
+      "default"
+    ]
+  },
+  "editor": {
+    "required": [
+      "props",
+      "emits",
+      "slots",
+      "expose",
+      "models"
+    ],
+    "optional": [
+      "instance"
+    ],
+    "requiredExpose": [
+      "focus",
+      "blur"
+    ],
+    "requiredSlots": [
+      "default"
+    ]
+  },
+  "charts": {
+    "required": [
+      "props",
+      "emits"
+    ],
+    "optional": [
+      "slots",
+      "expose"
+    ],
+    "requiredExpose": [
+      "resize"
+    ],
+    "requiredSlots": []
+  },
+  "lowcode": {
+    "required": [
+      "props",
+      "emits",
+      "slots"
+    ],
+    "optional": [
+      "expose"
+    ],
+    "requiredExpose": [],
+    "requiredSlots": [
+      "default"
+    ]
+  },
+  "media": {
+    "required": [
+      "props",
+      "emits",
+      "expose"
+    ],
+    "optional": [
+      "slots",
+      "models"
+    ],
+    "requiredExpose": [
+      "destroy"
+    ],
+    "requiredSlots": []
+  },
+  "gb28181": {
+    "required": [
+      "props",
+      "emits"
+    ],
+    "optional": [
+      "slots",
+      "expose"
+    ],
+    "requiredExpose": [],
+    "requiredSlots": []
+  },
+  "onvif": {
+    "required": [
+      "props",
+      "emits"
+    ],
+    "optional": [
+      "slots",
+      "expose"
+    ],
+    "requiredExpose": [],
+    "requiredSlots": []
+  },
+  "vcr": {
+    "required": [
+      "props",
+      "emits",
+      "expose"
+    ],
+    "optional": [
+      "slots"
+    ],
+    "requiredExpose": [
+      "destroy"
+    ],
+    "requiredSlots": []
+  },
+  "special": {
+    "required": [
+      "props"
+    ],
+    "optional": [
+      "emits",
+      "slots"
+    ],
+    "requiredExpose": [],
+    "requiredSlots": []
+  }
+}

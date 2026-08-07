@@ -1,0 +1,96 @@
+{
+  "name": "CheckboxGroup",
+  "generatedAt": "2026-08-07T12:40:46.794Z",
+  "source": {
+    "types": "packages/components/form/CheckboxGroup/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "unknown[]",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "'horizontal' | 'vertical'",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "min",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "options",
+      "optional": true,
+      "type": "CheckboxOption[]",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: unknown[]",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: unknown[]",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "CheckboxOption",
+    "CheckboxGroupProps",
+    "CheckboxGroupEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "name": "DragSelect",
+  "generatedAt": "2026-08-07T12:37:37.637Z",
+  "source": {
+    "types": "packages/lowcode/ui/DragSelect/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "(string | number)[]",
+      "description": ""
+    },
+    {
+      "name": "options",
+      "optional": true,
+      "type": "DragSelectItem[]",
+      "description": ""
+    },
+    {
+      "name": "clearable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "reorder",
+      "payload": "options: DragSelectItem[]",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "DragSelectItem",
+    "DragSelectProps",
+    "DragSelectEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
-import { formatWithIntl } from '@amg-webui/utils'
+import {
+  formatWithIntl,
+  moveRovingIndex,
+  resolveKeyboardNavAction
+} from '@amg-webui/utils'
 import type { QuarterPickerProps, QuarterPickerEmits } from './types'
 import { useFormItem } from '../FormItem/useFormItem'
 import { useNativeInputAttrs } from '../FormItem/useNativeInputAttrs'
@@ -35,6 +39,7 @@ const {
 const { nativeAttrs } = useNativeInputAttrs()
 
 const viewYear = ref(new Date().getFullYear())
+const focusQuarter = ref(1)
 
 const parsed = computed(() => {
   const raw = props.modelValue
@@ -93,6 +98,26 @@ const handleBlur = (event: FocusEvent) => {
   emit('blur', event)
   void validateOnBlur()
 }
+
+function handleGridKeydown(event: KeyboardEvent) {
+  if (isDisabled.value) return
+  const action = resolveKeyboardNavAction(event, { orientation: 'horizontal' })
+  if (action === 'none') return
+  event.preventDefault()
+  if (action === 'select') {
+    selectQuarter(focusQuarter.value)
+    return
+  }
+  if (
+    action === 'next' ||
+    action === 'prev' ||
+    action === 'first' ||
+    action === 'last'
+  ) {
+    const next = moveRovingIndex(focusQuarter.value - 1, action, 4, true)
+    focusQuarter.value = next + 1
+  }
+}
 </script>
 
 <template>
@@ -114,16 +139,24 @@ const handleBlur = (event: FocusEvent) => {
       :aria-required="isRequired || undefined"
       :aria-describedby="ariaDescribedby"
       @blur="handleBlur"
+      @keydown="handleGridKeydown"
     >
       <button
         v-for="item in quarters"
         :key="item.quarter"
         type="button"
         role="option"
-        :class="['vp-quarter-picker__cell', { 'vp-quarter-picker__cell--active': isSelected(item.quarter) }]"
+        :class="[
+          'vp-quarter-picker__cell',
+          {
+            'vp-quarter-picker__cell--active': isSelected(item.quarter),
+            'vp-quarter-picker__cell--focused': focusQuarter === item.quarter
+          }
+        ]"
         :disabled="isDisabled"
         :aria-selected="isSelected(item.quarter)"
         @click="selectQuarter(item.quarter)"
+        @mouseenter="focusQuarter = item.quarter"
       >
         {{ item.label }}
       </button>

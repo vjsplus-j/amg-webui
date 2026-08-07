@@ -15,7 +15,7 @@ describe('Theme Core (SSR-safe)', () => {
 
     const core = await import('@amg-webui/theme/core')
     expect(core.createThemeRuntime).toBeTypeOf('function')
-    expect(core.designStyles.length).toBe(6)
+    expect(core.designStyles.length).toBe(8)
 
     const runtime = core.createThemeRuntime({
       host: core.createNullHost(),
@@ -111,6 +111,8 @@ describe('Theme Core (SSR-safe)', () => {
   it('boot script is self-contained', async () => {
     const { createThemeBootScript, themeBootScriptTag } = await import('@amg-webui/theme/core')
     const script = createThemeBootScript({ namespace: 'amg-webui' })
+    expect(script).toContain('wechat')
+    expect(script).toContain('alipay')
     expect(script).toContain('localStorage')
     expect(script).toContain('data-design')
     expect(script).not.toContain('import ')

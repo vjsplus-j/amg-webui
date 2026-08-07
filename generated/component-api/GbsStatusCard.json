@@ -1,0 +1,67 @@
+{
+  "name": "GbsStatusCard",
+  "generatedAt": "2026-08-07T12:41:13.606Z",
+  "source": {
+    "types": "packages/components/gb28181/GbsStatusCard/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "registered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "deviceCount",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "channelCount",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "refresh",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "GbsStatusCardProps",
+    "GbsStatusCardEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

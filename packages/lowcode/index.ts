@@ -37,7 +37,7 @@ export {
   setByPath
 } from './bindings'
 export { splitMetaProps } from './meta'
-export { generateVueSfc, generateVueTemplate } from './codegen'
+export { generateVueSfc, generateVueTemplate, assertGeneratedSfcShape } from './codegen'
 export {
   buildCanvasTree,
   getRootNodes,

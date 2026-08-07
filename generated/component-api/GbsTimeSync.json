@@ -1,0 +1,66 @@
+{
+  "name": "GbsTimeSync",
+  "generatedAt": "2026-08-07T12:41:13.607Z",
+  "source": {
+    "types": "packages/components/gb28181/GbsTimeSync/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "server",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "syncing",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "sync",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "update:server",
+      "payload": "v: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "GbsTimeSyncProps",
+    "GbsTimeSyncEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

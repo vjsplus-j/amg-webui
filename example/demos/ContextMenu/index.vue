@@ -5,9 +5,7 @@ import { Space } from '@amg-webui/core'
 import type { ContextMenuItem } from '@amg-webui/overlay/ContextMenu'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -35,12 +33,6 @@ const codeBasic = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'items', type: 'ContextMenuItem[]', defaultValue: '[]', description: t('example.doc.contextMenu.prop.items') },
-  { name: 'target', type: 'HTMLElement | null', defaultValue: 'null', description: t('example.doc.contextMenu.prop.target') },
-  { name: 'modelValue', type: 'boolean', defaultValue: 'false', description: t('example.doc.contextMenu.prop.model') }
-])
-
 function onCommand(command: string) {
   lastCommand.value = command
 }
@@ -65,9 +57,7 @@ function onCommand(command: string) {
         </p>
       </Space>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

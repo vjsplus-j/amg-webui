@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref } from 'vue';
 import { Avatar, Button, Card, FixedLayout, Icon, Space, Tag } from '@amg-webui/core'
 import { InputText } from '@amg-webui/form';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
-import PropsTable from "../../components/demo/PropsTable.vue";
 import { demoSfc } from "../../components/demo/demoCode";
-import type { PropRow } from "../../components/demo/types";
 import "../../components/demo/curatedDemo.scss";
 
 const { t } = useLocale();
@@ -109,38 +107,7 @@ const codeFooter = demoSfc({
   ],
 });
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: "mode",
-    type: "'fixed'|'absolute'",
-    defaultValue: "'fixed'",
-    description: t("example.doc.fixedLayout.prop.mode"),
-  },
-  {
-    name: "position / offset",
-    type: "edge / spacing",
-    defaultValue: "'top' / 'none'",
-    description: t("example.doc.fixedLayout.prop.position"),
-  },
-  {
-    name: "placeholder / safeArea",
-    type: "boolean",
-    defaultValue: "true / false",
-    description: t("example.doc.fixedLayout.prop.placeholder"),
-  },
-  {
-    name: "as / teleportTo / ariaLabel",
-    type: "element / target / string",
-    defaultValue: "'div' / — / —",
-    description: t("example.doc.fixedLayout.prop.mode"),
-  },
-  {
-    name: "resize",
-    type: "(size) => void",
-    defaultValue: "—",
-    description: t("example.doc.fixedLayout.prop.placeholder"),
-  },
-]);
+;
 </script>
 
 <template>
@@ -419,9 +386,7 @@ const propRows = computed<PropRow[]>(() => [
         </FixedLayout>
       </div>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

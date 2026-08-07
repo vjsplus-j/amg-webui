@@ -34,3 +34,21 @@ export interface DialogEmits extends VisibleEmits {
   (e: 'maximize', maximized: boolean): void
   (e: 'close', event?: Event, reason?: DialogCloseReason): void
 }
+
+export interface DialogSlots {
+  /** Main dialog body */
+  default?(props: Record<string, never>): unknown
+  /** Header region — replaces `title` / `header` props when provided */
+  header?(props: Record<string, never>): unknown
+  /** Footer region — replaces `footer` prop when provided */
+  footer?(props: Record<string, never>): unknown
+}
+
+export interface DialogExpose {
+  /** Open the dialog (`update:visible` true) */
+  open: () => void
+  /** Close the dialog with an optional reason */
+  close: (reason?: DialogCloseReason) => void
+}
+
+export type DialogInstance = DialogExpose

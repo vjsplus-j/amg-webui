@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Button, Tag } from '@amg-webui/core'
 import { CanvasPreview } from '@amg-webui/lowcode'
 import { useLocale } from '@amg-webui/hooks'
 import { createComponentRegistry } from '@amg-webui/lowcode'
 import { createCanvasNode } from '@amg-webui/utils'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -64,18 +62,6 @@ import { CanvasPreview } from '@amg-webui/lowcode'`,
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'nodes / modelValue',
-    type: 'CanvasNodeData[] / string | null',
-    description: t('example.doc.canvasPreview.prop.base')
-  },
-  {
-    name: 'registry / renderMode',
-    type: 'ComponentRegistry / chrome | component',
-    description: t('example.doc.canvasPreview.when')
-  }
-])
 </script>
 
 <template>
@@ -96,6 +82,5 @@ const propRows = computed<PropRow[]>(() => [
         :canvas-height="240"
       />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

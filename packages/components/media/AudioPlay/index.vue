@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
 import { ref, toRef, watch, onBeforeUnmount, computed } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
@@ -45,6 +46,11 @@ function clearAudio() {
   emit('clear')
   trackEmit({ component: 'AudioPlay', type: 'clear', trackId: props.trackId, telemetry: props.telemetry })
 }
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

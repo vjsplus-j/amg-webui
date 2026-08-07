@@ -2,16 +2,13 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts` header).
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Typography } from '@amg-webui/core'
 import type { Severity } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import MotionLivePanel from '../../components/demo/MotionLivePanel.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import {
   createMotionLiveState,
   formatMotionLiveCode,
@@ -192,116 +189,6 @@ const codeEvents = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'type',
-    description: t('example.doc.typography.prop.type'),
-    type: "'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body' | 'body-lg' | 'body-sm' | 'caption' | 'secondary'",
-    defaultValue: "'body'"
-  },
-  {
-    name: 'typeColor / color',
-    description: t('example.doc.typography.prop.typeColor'),
-    type: 'Severity',
-    defaultValue: '-'
-  },
-  {
-    name: 'strong / italic / underline / delete / mark / code',
-    description: t('example.doc.typography.prop.style'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'ellipsis',
-    description: t('example.doc.typography.prop.ellipsis'),
-    type: 'boolean | { rows?: number; tooltip?: boolean }',
-    defaultValue: 'false'
-  },
-  {
-    name: 'copyable',
-    description: t('example.doc.typography.prop.copyable'),
-    type: 'boolean | { text?: string; icon?: boolean }',
-    defaultValue: 'false'
-  },
-  {
-    name: 'disabled / loading / shimmer / clickable',
-    description: t('example.doc.typography.prop.state'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'fontFamily',
-    description: t('example.doc.typography.prop.fontFamily'),
-    type: "'sans' | 'display' | 'mono'",
-    defaultValue: '-'
-  },
-  {
-    name: 'lineHeight',
-    description: t('example.doc.typography.prop.lineHeight'),
-    type: 'string | number',
-    defaultValue: '-'
-  },
-  {
-    name: 'content',
-    description: t('example.doc.typography.prop.content'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'blink / breathe / glow / marqueeLeft|Right / scrollUp|Down / dampOut',
-    description: t('example.doc.typography.prop.motion'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'pulse / heartbeat / bounce / spin',
-    description: t('example.doc.motion.prop.heartbeat'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'animationDuration',
-    description: t('example.doc.motion.prop.animationDuration'),
-    type: 'number | string',
-    defaultValue: '-'
-  },
-  {
-    name: 'trackId / telemetry',
-    description: t('example.doc.avatar.prop.telemetry'),
-    type: 'string / boolean',
-    defaultValue: '- / undefined'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'copy',
-    description: t('example.doc.typography.emit.copy'),
-    type: '(text: string) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'copyError',
-    description: t('example.doc.typography.emit.copyError'),
-    type: '(error: Error) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'click',
-    description: t('example.doc.typography.emit.click'),
-    type: '(event: MouseEvent) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.typography.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -573,19 +460,7 @@ const slotRows = computed<ApiRow[]>(() => [
       </MotionLivePanel>
     </DemoBlock>
 
-    <!-- 7. API: Props → Events → Slots -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 7. API: Props → Events → Slots -->
   </div>
 </template>
 
@@ -595,24 +470,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-typo-stack {
   display: flex;
   flex-direction: column;

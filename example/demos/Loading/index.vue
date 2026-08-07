@@ -2,15 +2,12 @@
 /**
  * Curated demo — feedback wave1 Loading
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Loading, Button, Space } from '@amg-webui/core'
 import type { LoadingSize } from '@amg-webui/core/Loading/types'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -49,35 +46,6 @@ const codeFullscreen = demoCode(
   `<Loading :visible="visible" fullscreen />`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'visible',
-    description: t('example.doc.loading.prop.visible'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'size',
-    description: t('example.doc.loading.prop.size'),
-    type: "'sm' | 'md' | 'lg'",
-    defaultValue: "'md'"
-  },
-  {
-    name: 'text / fullscreen / lockScroll',
-    description: t('example.doc.loading.prop.text'),
-    type: 'string | boolean',
-    defaultValue: '— / false / true'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'after-enter / after-leave',
-    description: t('example.doc.loading.event.transition'),
-    type: '() => void',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -142,14 +110,6 @@ const eventRows = computed<ApiRow[]>(() => [
         <Loading :visible="fullscreenVisible" fullscreen />
       </div>
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-    </section>
   </div>
 </template>
 
@@ -206,19 +166,5 @@ const eventRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

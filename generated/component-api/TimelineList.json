@@ -1,0 +1,149 @@
+{
+  "name": "TimelineList",
+  "generatedAt": "2026-08-07T12:42:17.041Z",
+  "source": {
+    "types": "packages/components/data/TimelineList/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "items",
+      "optional": true,
+      "type": "TimelineListItem[]",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "TimelineListItem[]",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "TimelineListKey | null",
+      "description": ""
+    },
+    {
+      "name": "selectable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "reverse",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "groupBy",
+      "optional": true,
+      "type": "\"day\" | \"none\" | ((item: TimelineListItem) => string)",
+      "description": ""
+    },
+    {
+      "name": "collapsible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "defaultExpandedKeys",
+      "optional": true,
+      "type": "string[]",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "pending",
+      "optional": true,
+      "type": "boolean | string",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: TimelineListKey",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: TimelineListKey, item: TimelineListItem",
+      "description": ""
+    },
+    {
+      "name": "itemClick",
+      "payload": "item: TimelineListItem, index: number, event: MouseEvent | KeyboardEvent,",
+      "description": ""
+    },
+    {
+      "name": "groupToggle",
+      "payload": "key: string, expanded: boolean",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "TimelineListKey",
+    "TimelineListStatus",
+    "TimelineListItem",
+    "TimelineListProps",
+    "TimelineListEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

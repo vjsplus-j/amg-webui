@@ -1,0 +1,92 @@
+{
+  "name": "Button",
+  "family": "foundation",
+  "package": "core",
+  "profile": "general",
+  "gates": [
+    {
+      "id": "package",
+      "status": "PASS",
+      "detail": "vue=true types=true style=true"
+    },
+    {
+      "id": "api-props",
+      "status": "PASS",
+      "detail": "Props interface or defineProps"
+    },
+    {
+      "id": "api-emits",
+      "status": "PASS",
+      "detail": "Emits typed or none"
+    },
+    {
+      "id": "api-slots",
+      "status": "PASS",
+      "detail": "Slots contract present or N/A"
+    },
+    {
+      "id": "i18n",
+      "status": "PASS",
+      "detail": "no hardcoded CJK literals"
+    },
+    {
+      "id": "tokens",
+      "status": "PASS",
+      "detail": "no raw hex/rgb in component scss"
+    },
+    {
+      "id": "cleanup",
+      "status": "PASS",
+      "detail": "cleanup patterns found"
+    },
+    {
+      "id": "behavior",
+      "status": "PASS",
+      "detail": "template-five.spec.ts + Button types Props/Emits/Slots/Expose"
+    },
+    {
+      "id": "visual",
+      "status": "PASS",
+      "detail": "foundation family visual matrix"
+    },
+    {
+      "id": "a11y",
+      "status": "PASS",
+      "detail": "foundation family axe on /lab/hardening"
+    },
+    {
+      "id": "keyboard",
+      "status": "N/A",
+      "detail": "keyboard optional for Button foundation profile"
+    },
+    {
+      "id": "theme",
+      "status": "N/A",
+      "detail": "theme optional"
+    },
+    {
+      "id": "rtl",
+      "status": "N/A",
+      "detail": "rtl optional"
+    },
+    {
+      "id": "perf",
+      "status": "N/A",
+      "detail": "not applicable"
+    },
+    {
+      "id": "docs",
+      "status": "PASS",
+      "detail": "VitePress docs page + generated API extract"
+    },
+    {
+      "id": "ssr",
+      "status": "PASS",
+      "detail": "structural=PASS; evidence=structural top-level DOM clean"
+    }
+  ],
+  "failCount": 0,
+  "status": "PASS",
+  "stable": true,
+  "verifiedAt": "2026-08-07T12:51:55.957Z"
+}

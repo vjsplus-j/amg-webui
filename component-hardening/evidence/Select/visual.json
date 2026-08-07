@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "detail": "selection family visual matrix mercedes/linear/porsche",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts"
+}

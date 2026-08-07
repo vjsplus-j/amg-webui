@@ -4,9 +4,7 @@ import { FloatNav, Space } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -30,26 +28,6 @@ const codeBasic = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'items',
-    type: 'NavItem[]',
-    defaultValue: '[]',
-    description: t('example.doc.floatNav.prop.items')
-  },
-  {
-    name: 'placement',
-    type: "'bottom-right' | 'bottom-left' | 'top-right' | 'top-left'",
-    defaultValue: "'bottom-right'",
-    description: t('example.doc.floatNav.prop.placement')
-  },
-  {
-    name: 'teleport',
-    type: 'boolean',
-    defaultValue: 'true',
-    description: t('example.doc.floatNav.prop.teleport')
-  }
-])
 </script>
 
 <template>
@@ -77,9 +55,7 @@ const propRows = computed<PropRow[]>(() => [
         />
       </div>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

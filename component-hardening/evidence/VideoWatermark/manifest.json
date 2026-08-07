@@ -1,0 +1,7 @@
+{
+  "component": "VideoWatermark",
+  "family": "media",
+  "batch": "B19",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:42:55.065Z"
+}

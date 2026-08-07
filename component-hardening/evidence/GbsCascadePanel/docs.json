@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/gbs-cascade-panel.md",
+  "api": "generated/component-api/GbsCascadePanel.json",
+  "demo": "example/demos/GbsCascadePanel/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

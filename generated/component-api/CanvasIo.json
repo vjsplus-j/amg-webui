@@ -1,0 +1,59 @@
+{
+  "name": "CanvasIo",
+  "generatedAt": "2026-08-07T12:39:09.871Z",
+  "source": {
+    "types": "packages/lowcode/ui/CanvasIo/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "schema",
+      "optional": true,
+      "type": "CanvasSchema",
+      "description": ""
+    },
+    {
+      "name": "filename",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "import",
+      "payload": "schema: CanvasSchema",
+      "description": ""
+    },
+    {
+      "name": "export",
+      "payload": "schema: CanvasSchema",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "error: Error",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "CanvasIoProps",
+    "CanvasIoEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

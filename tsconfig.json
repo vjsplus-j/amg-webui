@@ -55,6 +55,16 @@
       "@amg-webui/utils": ["packages/utils/index.ts"],
       "@amg-webui/types": ["packages/types/index.ts"],
       "@amg-webui/locale": ["packages/locale/index.ts"],
+      "amg-webui": ["packages/index.ts"],
+      "amg-webui/*": ["packages/*"],
+      "amg-webui/core": ["packages/components/core/index.ts"],
+      "amg-webui/core/*": ["packages/components/core/*"],
+      "amg-webui/form": ["packages/components/form/index.ts"],
+      "amg-webui/form/*": ["packages/components/form/*"],
+      "amg-webui/hooks": ["packages/hooks/index.ts"],
+      "amg-webui/locale": ["packages/locale/index.ts"],
+      "amg-webui/theme": ["packages/theme/index.ts"],
+      "amg-webui/icons": ["packages/icons/index.ts"],
       "@amg-webui/constants": ["packages/constants/index.ts"],
       "@amg-webui/animations": ["packages/animations/index.ts"],
       "@/*": ["packages/*"]
@@ -67,6 +77,9 @@
     "example/**/*.ts",
     "example/**/*.vue",
     "example/env.d.ts"
+  ],
+  "exclude": [
+    "example/**/snippets/**"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

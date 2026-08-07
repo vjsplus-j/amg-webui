@@ -1,0 +1,17 @@
+{
+  "family": "selection",
+  "batch": "B04",
+  "axe": {
+    "status": "PASS",
+    "blocking": 0
+  },
+  "keyboard": {
+    "status": "PASS",
+    "detail": "open + ArrowDown + Enter"
+  },
+  "verifiedAt": "2026-08-07T12:28:51.713Z",
+  "unit": {
+    "status": "PASS",
+    "detail": "Select trigger opens panel/listbox"
+  }
+}

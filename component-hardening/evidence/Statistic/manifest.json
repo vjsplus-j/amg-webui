@@ -1,0 +1,7 @@
+{
+  "component": "Statistic",
+  "family": "foundation",
+  "batch": "B30R",
+  "source": "tests/unit/hardening/real-mount-remaining.spec.ts",
+  "updatedAt": "2026-08-07T12:46:16.200Z"
+}

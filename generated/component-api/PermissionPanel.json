@@ -1,0 +1,60 @@
+{
+  "name": "PermissionPanel",
+  "generatedAt": "2026-08-07T12:41:35.046Z",
+  "source": {
+    "types": "packages/components/form/PermissionPanel/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string[]",
+      "description": ""
+    },
+    {
+      "name": "tree",
+      "optional": true,
+      "type": "PermissionNode[]",
+      "description": ""
+    },
+    {
+      "name": "checkStrictly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string[]",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string[]",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "PermissionNode",
+    "PermissionPanelProps",
+    "PermissionPanelEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

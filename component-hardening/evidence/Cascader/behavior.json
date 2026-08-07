@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "detail": "batch-b05-selection-advanced.spec.ts Cascader open/nav/select",
+  "tests": [
+    "tests/unit/hardening/batch-b05-selection-advanced.spec.ts"
+  ]
+}

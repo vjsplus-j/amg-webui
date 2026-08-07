@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "tests/unit/hardening/real-mount-remaining.spec.ts CheckboxGroup interactive surface present (keyboard applicable)",
+  "tests": [
+    "tests/unit/hardening/real-mount-remaining.spec.ts"
+  ],
+  "updatedAt": "2026-08-07T12:41:03.502Z"
+}

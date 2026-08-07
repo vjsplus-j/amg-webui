@@ -313,9 +313,14 @@ export function createStudioRegistry(onConflict: 'throw' | 'skip' | 'replace' = 
 
 export function canDropMaterial(
   parent: LowcodeMaterial | undefined | null,
-  childType: string
+  childType: string,
+  child?: LowcodeMaterial | null
 ): boolean {
+  // Free canvas root always accepts drops
   if (!parent) return true
+  if (child?.parentRules?.length && !child.parentRules.includes(parent.type)) {
+    return false
+  }
   if (!parent.isContainer && !parent.accepts?.length) return false
   if (!parent.accepts?.length || parent.accepts.includes('*')) return true
   return parent.accepts.includes(childType)

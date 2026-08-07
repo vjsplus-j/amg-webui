@@ -29,7 +29,7 @@ const titleText = computed(() => props.title ?? t('component.tree-form.title'))
 </script>
 
 <template>
-  <div :class="['vp-tree-form', 'vp-tree-form__panel', { 'vp-tree-form--disabled': disabled }, props.class]" :style="style">
+  <div role="region" aria-label="TreeForm" :class="['vp-tree-form', 'vp-tree-form__panel', { 'vp-tree-form--disabled': disabled }, props.class]" :style="style">
     <strong class="vp-tree-form__heading">{{ titleText }}</strong>
     <div class="vp-tree-form__layout">
       <ul class="vp-tree-form__tree">

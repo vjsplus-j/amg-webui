@@ -2,15 +2,12 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode` / `demoSfc`).
  */
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { Avatar, Button, Card, CardWidgets, Progress, Space, Statistic, Tag } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import { ToastService } from '@amg-webui/theme'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const STORAGE_KEY = 'vp-example-card-widgets-order'
 const DEFAULT_ORDER = ['a', 'b', 'c', 'd']
@@ -264,80 +261,6 @@ const codeEvents = demoCode(
 
 /* ─── API tables: Props → Events → Slots ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'v-model / modelValue',
-    description: t('example.doc.card-widgets.prop.order'),
-    type: 'string[]',
-    defaultValue: "['a','b','c','d']"
-  },
-  {
-    name: 'widgets',
-    description: t('example.doc.card-widgets.prop.widgets'),
-    type: 'CardWidgetItem[]',
-    defaultValue: '-'
-  },
-  {
-    name: 'cols',
-    description: t('example.doc.card-widgets.prop.cols'),
-    type: '1 | 2 | 3 | 4',
-    defaultValue: '2'
-  },
-  {
-    name: 'disabled',
-    description: t('example.doc.card-widgets.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'showHandle',
-    description: t('example.doc.card-widgets.prop.showHandle'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'trackId / telemetry',
-    description: t('example.doc.card-widgets.prop.telemetry'),
-    type: 'string / boolean',
-    defaultValue: '- / undefined'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:modelValue',
-    description: t('example.doc.card-widgets.emit.update'),
-    type: '(order: string[]) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'change',
-    description: t('example.doc.card-widgets.emit.change'),
-    type: '(order: string[]) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'swap',
-    description: t('example.doc.card-widgets.emit.swap'),
-    type: '(payload: { from; to; order }) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'dragEnd',
-    description: t('example.doc.card-widgets.emit.dragEnd'),
-    type: '(payload: { order; swapped; from?; to? }) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: '[key]',
-    description: t('example.doc.card-widgets.slot.named'),
-    type: '{ keyName: string }',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -592,19 +515,7 @@ const slotRows = computed<ApiRow[]>(() => [
       </Space>
     </DemoBlock>
 
-    <!-- 5. API: Props → Events → Slots -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 5. API: Props → Events → Slots -->
   </div>
 </template>
 
@@ -614,25 +525,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-card-widgets-demo__label {
   font-size: var(--font-size-sm);
   color: var(--text-secondary);

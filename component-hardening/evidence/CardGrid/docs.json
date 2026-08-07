@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/card-grid.md",
+  "api": "generated/component-api/CardGrid.json",
+  "demo": "example/demos/CardGrid/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

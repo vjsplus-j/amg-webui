@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/onvif-url-form.md",
+  "api": "generated/component-api/OnvifUrlForm.json",
+  "demo": "example/demos/OnvifUrlForm/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

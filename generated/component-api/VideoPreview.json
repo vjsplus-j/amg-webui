@@ -1,0 +1,94 @@
+{
+  "name": "VideoPreview",
+  "generatedAt": "2026-08-07T12:42:17.067Z",
+  "source": {
+    "types": "packages/components/media/VideoPreview/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "src",
+      "optional": true,
+      "type": "string | File | Blob | null",
+      "description": ""
+    },
+    {
+      "name": "poster",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "controls",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "autoplay",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loop",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "muted",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "play",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "pause",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "fullscreen",
+      "payload": "active: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "VideoPreviewProps",
+    "VideoPreviewEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

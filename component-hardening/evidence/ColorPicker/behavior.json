@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "detail": "preset select via keyboard",
+  "tests": [
+    "tests/unit/hardening/eng-004b-datetime-color.spec.ts"
+  ]
+}

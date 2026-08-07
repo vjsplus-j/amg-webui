@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "detail": "selection family unit+e2e",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts"
+}

@@ -1,0 +1,134 @@
+{
+  "general": {
+    "id": "general",
+    "gates": {
+      "api-props": "mandatory",
+      "api-emits": "mandatory",
+      "api-slots": "mandatory",
+      "api-docs": "mandatory",
+      "package": "mandatory",
+      "ssr": "mandatory",
+      "cleanup": "mandatory",
+      "tokens": "mandatory",
+      "i18n": "mandatory",
+      "visual": "mandatory",
+      "a11y": "mandatory",
+      "keyboard": "optional",
+      "perf": "na",
+      "theme": "optional",
+      "rtl": "optional"
+    }
+  },
+  "form": {
+    "id": "form",
+    "gates": {
+      "api-props": "mandatory",
+      "api-emits": "mandatory",
+      "api-slots": "mandatory",
+      "api-docs": "mandatory",
+      "package": "mandatory",
+      "ssr": "mandatory",
+      "cleanup": "mandatory",
+      "tokens": "mandatory",
+      "i18n": "mandatory",
+      "visual": "mandatory",
+      "a11y": "mandatory",
+      "keyboard": "mandatory",
+      "perf": "na",
+      "theme": "optional",
+      "rtl": "optional",
+      "form-contract": "mandatory",
+      "ime": "optional"
+    }
+  },
+  "overlay": {
+    "id": "overlay",
+    "gates": {
+      "api-props": "mandatory",
+      "api-emits": "mandatory",
+      "api-slots": "mandatory",
+      "api-docs": "mandatory",
+      "package": "mandatory",
+      "ssr": "mandatory",
+      "cleanup": "mandatory",
+      "tokens": "mandatory",
+      "i18n": "mandatory",
+      "visual": "mandatory",
+      "a11y": "mandatory",
+      "keyboard": "mandatory",
+      "perf": "na",
+      "theme": "optional",
+      "rtl": "optional",
+      "focus": "mandatory",
+      "escape": "mandatory",
+      "scroll-lock": "mandatory"
+    }
+  },
+  "data": {
+    "id": "data",
+    "gates": {
+      "api-props": "mandatory",
+      "api-emits": "mandatory",
+      "api-slots": "mandatory",
+      "api-docs": "mandatory",
+      "package": "mandatory",
+      "ssr": "mandatory",
+      "cleanup": "mandatory",
+      "tokens": "mandatory",
+      "i18n": "mandatory",
+      "visual": "mandatory",
+      "a11y": "mandatory",
+      "keyboard": "mandatory",
+      "perf": "optional",
+      "theme": "optional",
+      "rtl": "optional",
+      "virtual": "optional"
+    }
+  },
+  "media": {
+    "id": "media",
+    "gates": {
+      "api-props": "mandatory",
+      "api-emits": "mandatory",
+      "api-slots": "mandatory",
+      "api-docs": "mandatory",
+      "package": "mandatory",
+      "ssr": "mandatory",
+      "cleanup": "mandatory",
+      "tokens": "mandatory",
+      "i18n": "mandatory",
+      "visual": "optional",
+      "a11y": "optional",
+      "keyboard": "optional",
+      "perf": "na",
+      "theme": "optional",
+      "rtl": "optional",
+      "adapter": "mandatory",
+      "destroy": "mandatory",
+      "mock": "mandatory"
+    }
+  },
+  "domain": {
+    "id": "domain",
+    "gates": {
+      "api-props": "mandatory",
+      "api-emits": "mandatory",
+      "api-slots": "mandatory",
+      "api-docs": "mandatory",
+      "package": "mandatory",
+      "ssr": "mandatory",
+      "cleanup": "mandatory",
+      "tokens": "mandatory",
+      "i18n": "mandatory",
+      "visual": "optional",
+      "a11y": "optional",
+      "keyboard": "optional",
+      "perf": "na",
+      "theme": "optional",
+      "rtl": "optional",
+      "adapter": "mandatory",
+      "mock": "mandatory",
+      "no-backend-dto": "mandatory"
+    }
+  }
+}

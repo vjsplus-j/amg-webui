@@ -1,0 +1,72 @@
+{
+  "name": "RichText",
+  "generatedAt": "2026-08-07T12:41:56.126Z",
+  "source": {
+    "types": "packages/components/editor/RichText/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "sanitize",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "sanitizeOptions",
+      "optional": true,
+      "type": "SanitizeHtmlOptions",
+      "description": ""
+    },
+    {
+      "name": "historyLimit",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "RichTextCommand",
+    "RichTextProps",
+    "RichTextEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

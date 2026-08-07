@@ -1,0 +1,66 @@
+{
+  "name": "BrowserDetect",
+  "generatedAt": "2026-08-07T12:39:09.867Z",
+  "source": {
+    "types": "packages/components/core/BrowserDetect/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "userAgent",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "detected",
+      "payload": "info: BrowserInfo",
+      "description": ""
+    },
+    {
+      "name": "refresh",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "BrowserDetectProps",
+    "BrowserDetectEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

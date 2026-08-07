@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
 import { ref, toRef, watch, onBeforeUnmount, computed } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import { trackEmit } from '@amg-webui/telemetry'
@@ -67,6 +68,11 @@ function togglePlay() {
 
 onBeforeUnmount(() => {
   if (url.value.startsWith('blob:')) URL.revokeObjectURL(url.value)
+})
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
 })
 </script>
 

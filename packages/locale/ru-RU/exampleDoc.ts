@@ -1362,6 +1362,7 @@ export default {
   'example.doc.errorModal.prop.base': "Проброс class / style",
   'example.doc.errorModal.when': "Демо ErrorModal.",
   'example.doc.events': "Events",
+  'example.doc.expose': "Expose",
   'example.doc.excelIo.demo.basic': "Базовое использование",
   'example.doc.excelIo.demo.basicDesc': "Смонтируйте ExcelIo для проверки базового поведения.",
   'example.doc.excelIo.prop.base': "Проброс class / style",
@@ -2209,6 +2210,7 @@ export default {
   'example.doc.monthPicker.prop.valueFormat': "Формат date / iso",
   'example.doc.monthPicker.sample.placeholder': "Выберите месяц",
   'example.doc.monthPicker.when': "Демо MonthPicker.",
+  'example.doc.models': "Models",
   'example.doc.motion.demo.badge': "Общая анимация Badge",
   'example.doc.motion.demo.desc': "Общие эффекты хоста: spin / bounce / heartbeat / marqueeLeft|Right / scrollUp|Down / dampOut / blink / pulse / breathe / glow. Приоритет: spin > bounce > heartbeat > marqueeLeft > marqueeRight > scrollUp > scrollDown > dampOut > blink > pulse > breathe > glow.",
   'example.doc.motion.demo.title': "Общая анимация Motion",
@@ -4074,4 +4076,5 @@ export default {
   'example.doc.virtualTree.event.interaction': 'Interaction',
   'example.doc.virtualTree.sample.toggleLoading': 'Toggle Loading',
   'example.doc.richText.prop.sanitize': 'Санитизация HTML (вкл. по умолчанию)',
+  'example.doc.apiMissing': "Нет API extract — выполните hardening:extract-api",
 }

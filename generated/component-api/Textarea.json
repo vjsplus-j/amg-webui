@@ -1,0 +1,143 @@
+{
+  "name": "Textarea",
+  "generatedAt": "2026-08-07T12:34:13.551Z",
+  "source": {
+    "types": "packages/components/form/Textarea/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "autocomplete",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "maxlength",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "rows",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "cols",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "fluid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "autoResize",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showCounter",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "sanitizeInput",
+      "optional": true,
+      "type": "boolean | 'blur' | 'input' | 'off'",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "keydown",
+      "payload": "event: KeyboardEvent",
+      "description": ""
+    },
+    {
+      "name": "keyup",
+      "payload": "event: KeyboardEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "TextareaProps",
+    "TextareaEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

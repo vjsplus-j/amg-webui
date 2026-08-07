@@ -1,0 +1,447 @@
+{
+  "name": "Button",
+  "generatedAt": "2026-08-07T12:34:13.524Z",
+  "source": {
+    "types": "packages/components/core/Button/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "spin",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "pulse",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "heartbeat",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bounce",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "blink",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "breathe",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "glow",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "marqueeLeft",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "marqueeRight",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollUp",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "scrollDown",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "dampOut",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "animationDuration",
+      "optional": true,
+      "type": "number | string",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "iconPos",
+      "optional": true,
+      "type": "ButtonIconPos",
+      "description": ""
+    },
+    {
+      "name": "iconSize",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "iconGap",
+      "optional": true,
+      "type": "Size | string",
+      "description": ""
+    },
+    {
+      "name": "severity",
+      "optional": true,
+      "type": "ButtonSeverity",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "optional": true,
+      "type": "ButtonVariant",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "shape",
+      "optional": true,
+      "type": "ButtonShape",
+      "description": ""
+    },
+    {
+      "name": "rounded",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "borderRadius",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "raised",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "link",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "block",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "fluid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loadingText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabledTitle",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "optional": true,
+      "type": "ButtonNativeType",
+      "description": ""
+    },
+    {
+      "name": "badge",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "star",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "rated",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "img",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaExpanded",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaPressed",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "permission",
+      "optional": true,
+      "type": "boolean | (() => boolean)",
+      "description": ""
+    },
+    {
+      "name": "permissionMode",
+      "optional": true,
+      "type": "ButtonPermissionMode",
+      "description": ""
+    },
+    {
+      "name": "permissionTip",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "confirm",
+      "optional": true,
+      "type": "boolean | string",
+      "description": ""
+    },
+    {
+      "name": "confirmTitle",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "beforeClick",
+      "optional": true,
+      "type": "(event: MouseEvent) => boolean | void | Promise<boolean | void>",
+      "description": ""
+    },
+    {
+      "name": "clickGuard",
+      "optional": true,
+      "type": "ButtonClickGuard",
+      "description": ""
+    },
+    {
+      "name": "wait",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "href",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "to",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "target",
+      "optional": true,
+      "type": "'_self' | '_blank' | '_parent' | '_top'",
+      "description": ""
+    },
+    {
+      "name": "replace",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ripple",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "colorBg",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "colorText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "colorBorder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "colorHoverBg",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    },
+    {
+      "name": "focus",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "confirm",
+      "payload": "event: Event",
+      "description": ""
+    },
+    {
+      "name": "cancelConfirm",
+      "payload": "event: Event",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "props": "props: Record<string, never>",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "props": "props: Record<string, never>",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "props": "props: Record<string, never>",
+      "description": ""
+    }
+  ],
+  "expose": [
+    {
+      "name": "el",
+      "type": "HTMLElement | null",
+      "description": ""
+    },
+    {
+      "name": "focus",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "type": "() => void",
+      "description": ""
+    }
+  ],
+  "models": [],
+  "publicTypes": [
+    "ButtonSeverity",
+    "ButtonIconPos",
+    "ButtonShape",
+    "ButtonVariant",
+    "ButtonClickGuard",
+    "ButtonPermissionMode",
+    "ButtonNativeType",
+    "ButtonInstance",
+    "ButtonProps",
+    "ButtonEmits",
+    "ButtonSlots",
+    "ButtonExpose"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": true,
+    "expose": true,
+    "models": false
+  }
+}

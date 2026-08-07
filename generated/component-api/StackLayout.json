@@ -1,0 +1,94 @@
+{
+  "name": "StackLayout",
+  "generatedAt": "2026-08-07T12:41:56.159Z",
+  "source": {
+    "types": "packages/components/core/StackLayout/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "\"vertical\" | \"horizontal\"",
+      "description": ""
+    },
+    {
+      "name": "gap",
+      "optional": true,
+      "type": "StackGap",
+      "description": ""
+    },
+    {
+      "name": "align",
+      "optional": true,
+      "type": "StackAlign",
+      "description": ""
+    },
+    {
+      "name": "justify",
+      "optional": true,
+      "type": "StackJustify",
+      "description": ""
+    },
+    {
+      "name": "wrap",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "inline",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "block",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "reverse",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "divider",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "as",
+      "optional": true,
+      "type": "\"div\" | \"section\" | \"nav\" | \"ul\" | \"ol\"",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "StackGap",
+    "StackAlign",
+    "StackJustify",
+    "StackLayoutEmits",
+    "StackLayoutProps"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

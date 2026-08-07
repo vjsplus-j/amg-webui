@@ -1,0 +1,68 @@
+{
+  "name": "Footer",
+  "generatedAt": "2026-08-07T12:41:13.591Z",
+  "source": {
+    "types": "packages/components/core/Footer/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "bordered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "align",
+      "optional": true,
+      "type": "'start' | 'center' | 'end'",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "'sm' | 'md' | 'lg'",
+      "description": ""
+    },
+    {
+      "name": "sticky",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "fixed",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "padding",
+      "optional": true,
+      "type": "FooterPadding",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "FooterPadding",
+    "FooterProps",
+    "FooterEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "name": "Watermark",
+  "generatedAt": "2026-08-07T12:42:38.282Z",
+  "source": {
+    "types": "packages/components/core/Watermark/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "content",
+      "optional": true,
+      "type": "string | string[]",
+      "description": ""
+    },
+    {
+      "name": "image",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "imageCrossOrigin",
+      "optional": true,
+      "type": "\"\" | \"anonymous\" | \"use-credentials\"",
+      "description": ""
+    },
+    {
+      "name": "gap",
+      "optional": true,
+      "type": "[number, number]",
+      "description": ""
+    },
+    {
+      "name": "offset",
+      "optional": true,
+      "type": "[number, number]",
+      "description": ""
+    },
+    {
+      "name": "width",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "height",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "rotate",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "fontSize",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "font",
+      "optional": true,
+      "type": "WatermarkFont",
+      "description": ""
+    },
+    {
+      "name": "opacity",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "zIndex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "inherit",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "observe",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "enabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "render",
+      "payload": "dataUrl: string",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "error: Error",
+      "description": ""
+    },
+    {
+      "name": "tamper",
+      "payload": "type: WatermarkTamperType",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "WatermarkTamperType",
+    "WatermarkFont",
+    "WatermarkProps",
+    "WatermarkEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

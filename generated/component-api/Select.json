@@ -1,0 +1,272 @@
+{
+  "name": "Select",
+  "generatedAt": "2026-08-07T12:34:13.547Z",
+  "source": {
+    "types": "packages/components/form/Select/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "SelectModelValue",
+      "description": ""
+    },
+    {
+      "name": "options",
+      "optional": true,
+      "type": "SelectOption[]",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "filterable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "clearable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "fluid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "width",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "panelClass",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "panelStyle",
+      "optional": true,
+      "type": "Record<string, string>",
+      "description": ""
+    },
+    {
+      "name": "multiple",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "collapseTags",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "maxCollapseTags",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "virtual",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "virtualThreshold",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "filterDebounce",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "remote",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "remoteMethod",
+      "optional": true,
+      "type": "( query: string, context: SelectRemoteContext, ) => void | SelectOption[] | Promise<void | SelectOption[]>",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: SelectModelValue",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "event: { originalEvent: Event; value: SelectModelValue }",
+      "description": ""
+    },
+    {
+      "name": "focus",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "payload": "event: FocusEvent",
+      "description": ""
+    },
+    {
+      "name": "show",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "hide",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "remove-tag",
+      "payload": "value: string | number",
+      "description": ""
+    },
+    {
+      "name": "remote-error",
+      "payload": "error: Error, query: string",
+      "description": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "props": "props: Record<string, never>",
+      "description": ""
+    },
+    {
+      "name": "option",
+      "props": "props: { option: SelectOption }",
+      "description": ""
+    },
+    {
+      "name": "empty",
+      "props": "props: Record<string, never>",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "props": "props: Record<string, never>",
+      "description": ""
+    }
+  ],
+  "expose": [
+    {
+      "name": "focus",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "blur",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "open",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "close",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "type": "() => void",
+      "description": ""
+    }
+  ],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "SelectModelValue",
+    "SelectInstance",
+    "SelectRemoteContext",
+    "SelectProps",
+    "SelectEmits",
+    "SelectSlots",
+    "SelectExpose"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": true,
+    "expose": true,
+    "models": true
+  }
+}

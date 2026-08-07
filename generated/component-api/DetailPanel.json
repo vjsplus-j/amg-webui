@@ -1,0 +1,80 @@
+{
+  "name": "DetailPanel",
+  "generatedAt": "2026-08-07T12:40:46.816Z",
+  "source": {
+    "types": "packages/components/data/DetailPanel/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "sections",
+      "optional": true,
+      "type": "DetailSection[]",
+      "description": ""
+    },
+    {
+      "name": "activeTab",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "layout",
+      "optional": true,
+      "type": "'tabs' | 'stack'",
+      "description": ""
+    },
+    {
+      "name": "collapsible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "empty",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "column",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:activeTab",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "toggle-section",
+      "payload": "id: string, collapsed: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "DetailField",
+    "DetailSection",
+    "DetailPanelProps",
+    "DetailPanelEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

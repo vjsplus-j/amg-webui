@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "detail": "structural top-level DOM clean",
+  "checks": [
+    "gate-checks.checkTopLevelDom"
+  ]
+}

@@ -7,11 +7,8 @@ import { Dropdown } from '@amg-webui/overlay'
 import { Space } from '@amg-webui/core'
 import type { NavItem } from '@amg-webui/utils/nav'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -59,50 +56,6 @@ const codeNested = demoCode(
   `</Dropdown>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'items',
-    description: t('example.doc.dropdown.prop.items'),
-    type: 'NavItem[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'modelValue',
-    description: t('example.doc.dropdown.prop.model'),
-    type: 'string | number',
-    defaultValue: '—'
-  },
-  {
-    name: 'disabled',
-    description: t('example.doc.dropdown.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:modelValue / change / select',
-    description: t('example.doc.dropdown.event.change'),
-    type: '(value | item) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'openChange',
-    description: t('example.doc.dropdown.event.openChange'),
-    type: '(open: boolean) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'trigger',
-    description: t('example.doc.dropdown.slot.trigger'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -136,17 +89,7 @@ const slotRows = computed<ApiRow[]>(() => [
           {{ t('example.doc.dropdown.sample.active', { key: String(nestedActive) }) }}
         </p>
       </Space>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -161,19 +104,5 @@ const slotRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

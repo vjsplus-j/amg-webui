@@ -73,7 +73,7 @@ const onReset = () => {
 </script>
 
 <template>
-  <div
+  <div role="region" aria-label="SettingPanel"
     :class="['vp-setting-panel', props.class, { 'vp-setting-panel--disabled': disabled }]"
     :style="style"
     data-component="SettingPanel"

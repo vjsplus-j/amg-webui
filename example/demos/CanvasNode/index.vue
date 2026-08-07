@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import {  } from 'vue'
 import { CanvasNode } from '@amg-webui/lowcode'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import type { CanvasNodeData } from '@amg-webui/utils'
 import '../../components/demo/curatedDemo.scss'
 
@@ -27,13 +25,6 @@ const codeBasic = demoSfc({
   template: ['  <CanvasNode :node="sampleNode" />']
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'node',
-    type: 'CanvasNodeData',
-    description: t('example.doc.canvasNode.prop.base')
-  }
-])
 </script>
 
 <template>
@@ -49,8 +40,7 @@ const propRows = computed<PropRow[]>(() => [
         <CanvasNode :node="sampleNode" />
       </div>
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

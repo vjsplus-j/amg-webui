@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { MessageBox } from '@amg-webui/overlay'
 import { Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -47,11 +45,6 @@ const codeAlert = demoSfc({
   template: ['  await MessageBox.alert(msg, title)']
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'MessageBox.confirm', type: '(msg, title?, opts?) => Promise', description: t('example.doc.messageBox.prop.confirm') },
-  { name: 'MessageBox.alert', type: '(msg, title?, opts?) => Promise', description: t('example.doc.messageBox.prop.alert') },
-  { name: 'MessageBox.prompt', type: '(msg, title?, opts?) => Promise', description: t('example.doc.messageBox.prop.prompt') }
-])
 </script>
 
 <template>
@@ -76,8 +69,7 @@ const propRows = computed<PropRow[]>(() => [
     >
       <Button variant="outlined" :label="t('example.doc.messageBox.sample.openAlert')" @click="openAlert" />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

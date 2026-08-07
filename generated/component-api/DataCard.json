@@ -1,0 +1,145 @@
+{
+  "name": "DataCard",
+  "generatedAt": "2026-08-07T12:40:46.812Z",
+  "source": {
+    "types": "packages/components/data/DataCard/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "optional": true,
+      "type": "DataCardValue",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "DataCardValue",
+      "description": ""
+    },
+    {
+      "name": "prefix",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "suffix",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "formatter",
+      "optional": true,
+      "type": "(value: DataCardValue) => string",
+      "description": ""
+    },
+    {
+      "name": "trend",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "trendType",
+      "optional": true,
+      "type": "DataCardTrend",
+      "description": ""
+    },
+    {
+      "name": "trendLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "status",
+      "optional": true,
+      "type": "Severity",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "clickable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "selected",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "progress",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:selected",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "DataCardValue",
+    "DataCardTrend",
+    "DataCardProps",
+    "DataCardEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

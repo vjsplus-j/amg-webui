@@ -1,0 +1,61 @@
+{
+  "name": "Ellipsis",
+  "generatedAt": "2026-08-07T12:41:13.578Z",
+  "source": {
+    "types": "packages/components/core/Ellipsis/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "lines",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "tooltip",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "tooltipPlacement",
+      "optional": true,
+      "type": "TooltipPlacement",
+      "description": ""
+    },
+    {
+      "name": "content",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "overflowChange",
+      "payload": "overflowing: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "EllipsisProps",
+    "EllipsisEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

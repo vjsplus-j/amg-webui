@@ -1,0 +1,97 @@
+{
+  "name": "Header",
+  "generatedAt": "2026-08-07T12:41:13.611Z",
+  "source": {
+    "types": "packages/components/core/Header/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "sticky",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "fixed",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "bordered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "'sm' | 'md' | 'lg'",
+      "description": ""
+    },
+    {
+      "name": "padding",
+      "optional": true,
+      "type": "HeaderPadding",
+      "description": ""
+    },
+    {
+      "name": "translucent",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "elevated",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "centered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "subtitle",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "as",
+      "optional": true,
+      "type": "'header' | 'div'",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "HeaderPadding",
+    "HeaderProps"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

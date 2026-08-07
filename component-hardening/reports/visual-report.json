@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-08-07T11:19:52.090Z",
+  "familyEvidence": [
+    {
+      "family": "foundation",
+      "themes": [
+        "mercedes",
+        "linear",
+        "porsche"
+      ],
+      "artifacts": "reports/family-evidence/visual/"
+    }
+  ],
+  "status": "family-deepened"
+}

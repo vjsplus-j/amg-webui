@@ -20,6 +20,8 @@ export interface FormItemProps extends BaseProps {
   label?: string
   required?: boolean
   labelWidth?: string
+  trackId?: string
+  telemetry?: boolean
 }
 
 export interface FormItemEmits {

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/top-nav.md",
+  "api": "generated/component-api/TopNav.json",
+  "demo": "example/demos/TopNav/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

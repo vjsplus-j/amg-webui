@@ -2,16 +2,13 @@
 /**
  * Curated demo — Form wave1 Switch
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Switch } from '@amg-webui/form'
 import { Space } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -55,62 +52,6 @@ const codePrompt = demoCode(
 
 const codeLoading = demoCode(`<Switch v-model="loadingOn" loading />`)
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'modelValue',
-    description: t('example.doc.switch.prop.modelValue'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'size',
-    description: t('example.doc.switch.prop.size'),
-    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
-    defaultValue: "'md'"
-  },
-  {
-    name: 'disabled / loading',
-    description: t('example.doc.switch.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'inlinePrompt',
-    description: t('example.doc.switch.prop.inlinePrompt'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'activeText / inactiveText',
-    description: t('example.doc.switch.prop.texts'),
-    type: 'string',
-    defaultValue: '—'
-  },
-  {
-    name: 'ariaLabel',
-    description: t('example.doc.switch.prop.ariaLabel'),
-    type: 'string',
-    defaultValue: '—'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:modelValue / change',
-    description: t('example.doc.switch.event.change'),
-    type: '(value: boolean) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.switch.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -169,17 +110,7 @@ const slotRows = computed<ApiRow[]>(() => [
       <div class="vp-curated__row">
         <Switch v-model="loadingOn" loading />
       </div>
-    </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    </DemoBlock>
   </div>
 </template>
 
@@ -196,19 +127,5 @@ const slotRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

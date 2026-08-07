@@ -1,0 +1,55 @@
+{
+  "name": "OnvifDeviceList",
+  "generatedAt": "2026-08-07T12:41:35.034Z",
+  "source": {
+    "types": "packages/components/onvif/OnvifDeviceList/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "devices",
+      "optional": true,
+      "type": "OnvifDevice[]",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "select",
+      "payload": "device: OnvifDevice",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "OnvifDeviceListProps",
+    "OnvifDeviceListEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

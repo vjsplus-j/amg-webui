@@ -1,0 +1,60 @@
+{
+  "name": "OnvifRecordPlan",
+  "generatedAt": "2026-08-07T12:41:35.036Z",
+  "source": {
+    "types": "packages/components/onvif/OnvifRecordPlan/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "slots",
+      "optional": true,
+      "type": "boolean[]",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:slots",
+      "payload": "v: boolean[]",
+      "description": ""
+    },
+    {
+      "name": "toggle",
+      "payload": "index: number, on: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "OnvifRecordPlanProps",
+    "OnvifRecordPlanEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

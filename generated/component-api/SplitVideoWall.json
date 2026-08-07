@@ -1,0 +1,105 @@
+{
+  "name": "SplitVideoWall",
+  "generatedAt": "2026-08-07T12:41:56.158Z",
+  "source": {
+    "types": "packages/components/media/SplitVideoWall/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "layout",
+      "optional": true,
+      "type": "WallLayout",
+      "description": ""
+    },
+    {
+      "name": "selected",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "layouts",
+      "optional": true,
+      "type": "WallLayout[]",
+      "description": ""
+    },
+    {
+      "name": "showToolbar",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "keyboard",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "aspectRatio",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "index: number",
+      "description": ""
+    },
+    {
+      "name": "update:selected",
+      "payload": "index: number",
+      "description": ""
+    },
+    {
+      "name": "update:layout",
+      "payload": "layout: WallLayout",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "index: number",
+      "description": ""
+    },
+    {
+      "name": "layout-change",
+      "payload": "layout: WallLayout",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "WallLayout",
+    "SplitVideoWallProps",
+    "SplitVideoWallEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

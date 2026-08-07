@@ -1,9 +1,8 @@
 # AMG-WebUI 大型组件库计划（锁定）
 
 > **口号**：对标 Element Plus，超越 Element Plus —— 成为最强的国产 WebUI 库。  
-> 愿景：`docs/VISION.md` · **深度超车**：`docs/OVERTAKE_ELEMENT_PLUS.md` · 记忆：`vue3-amg-webui-vision.mdc` · `vue3-amg-webui-overtake.mdc`  
+> 愿景：`docs/VISION.md` · **深度超车**：`docs/OVERTAKE_ELEMENT_PLUS.md` · 记忆：`.cursor/rules/00-amg-webui-vision.mdc`  
 > 目标：强大齐全 + 高性能的 Vue 3 UI 库（200+ 组件、多主题、多语言、业务复合模块）  
-> Agent 记忆：`.cursor/rules/vue3-amg-webui-library-plan.mdc`  
 > 状态：规划基线（与当前骨架对齐，分期落地）  
 > 包边界：`packages/README.md` · 组件：`packages/components/README.md` · 遥测：`packages/telemetry/README.md` · Skill Runtime：`docs/SKILL_RUNTIME.md` / `packages/skill/README.md`
 
@@ -19,7 +18,8 @@
 | 交互 emit 契约 | ✅ Badge / FloatButton / Progress / Collapse / Statistic / Ellipsis / CopyText 等补齐 |
 | 工程护栏 | ✅ `validate:catalog` · `score:maturity`（**盘点启发式，≠ 质量证书**）· `generate:icons` · `vue-tsc` 完成必验 |
 | base 目录规模 | 📦 catalog ~285 **目录库存**（含行业扩展）——**库存 ≠ 成熟度 / ≠ 1.0**；以 `score:maturity` 的 **capability** 为准 |
-| 组件深化收口（2026-07-30） | ✅ 波次收口记录见 CHANGELOG / COMPONENT_DEEPEN_PLAN；勿把历史 ready 计数当作当前能力档 |
+| 组件深化收口（2026-07-30） | ✅ 波次收口记录见 CHANGELOG；执行主线已切换为 [`COMPONENT_HARDENING.md`](./COMPONENT_HARDENING.md) |
+| **300 组件治理 Hardening** | 🧭 SSOT `component-hardening/` · `hardening:*` / `verify:*` · Family 证据 lab · Stable ≠ score |
 | 当前成熟度契约（v2） | 🧭 **能力档优先**：thin / form / interaction / composite + 深度 stub→ready；`thin` 永不 ready；表单缺 FormItem → shell；**开发盘点 ≠ 产品质量证明** |
 | 质量止血（2026-07-30） | ✅ exampleDoc FFFD=0；DemoSafeHost；低 beta≥50；Loading/Result 等 SFC Emits 修复；模块 transform 冒烟 |
 | **v0.1 子集** | ✅ 契约 **0.1.3**（npm 仍为 0.1.0）· Core∪B1–B4 去重 **140** · 当前 gold gaps **7** · `docs/V0_1_SUBSET.md` |
@@ -105,13 +105,13 @@
 
 ### 3. 多主题（硬性）
 
-- 亮 / 暗 + designmd 六套锁定主题；运行时切换无刷新  
+- 亮 / 暗 + 官方主题（designmd 六套 + WeChat / Alipay）；运行时切换无刷新  
 - 自定义主色 / 辅色 / 圆角 / 尺寸；变量可导出覆写  
 - **无样式污染**：统一 **`vp-` 前缀**（规避 Element Plus / PrimeVue 冲突）  
 - **自定义主题生成工具（Theme Studio）**：对标 [designmd Build / Custom Remix](https://designmd.santiagoalonso.com/build?cat=Dev+Tools%2CSaaS&sort=popular)  
   - 活预览 Palette / Type / Button / Form / Card / Elevation / Alert / Table / Nav…  
   - 导出 `theme.ts` · CSS 变量 · SCSS；`ThemeService.applyCustom` 无刷新应用  
-  - 权威说明：`docs/THEME_STUDIO.md` · 记忆：`vue3-amg-webui-theme-studio.mdc`  
+  - 权威说明：`docs/THEME_STUDIO.md` · Theme Runtime：`.cursor/rules/42-theme-runtime.mdc`  
 
 ### 3.1 视觉质感（差异化传统后台）
 
@@ -121,7 +121,7 @@
 
 ### 4. 国际化
 
-- 已内置语种基线：`zh-CN` · `zh-TW` · `en-US` · `ja-JP` · `ko-KR` · `ko-KP` · `ru-RU` · `ar-SA`（RTL）（可无限扩展）
+- 已内置语种基线：`zh-CN` · `zh-HK` · `en-US` · `hi-IN` · `ja-JP` · `ko-KR` · `ko-KP` · `ru-RU` · `ar-SA` · `ug-CN`（可无限扩展）；阅读方向 LTR/RTL 与语种解耦
 - 组件文案托管语言包，禁止硬编码；`useLocale`；动态切换 + 本地缓存  
 - 见 `packages/locale/I18N.md`（含中英长度膨胀防 `…`）  
 

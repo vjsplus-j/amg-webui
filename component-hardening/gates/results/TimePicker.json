@@ -1,0 +1,92 @@
+{
+  "name": "TimePicker",
+  "family": "datetime",
+  "package": "form",
+  "profile": "form",
+  "gates": [
+    {
+      "id": "package",
+      "status": "PASS",
+      "detail": "vue=true types=true style=true"
+    },
+    {
+      "id": "api-props",
+      "status": "PASS",
+      "detail": "Props interface or defineProps"
+    },
+    {
+      "id": "api-emits",
+      "status": "PASS",
+      "detail": "Emits typed or none"
+    },
+    {
+      "id": "api-slots",
+      "status": "PASS",
+      "detail": "Slots contract present or N/A"
+    },
+    {
+      "id": "i18n",
+      "status": "PASS",
+      "detail": "no hardcoded CJK literals"
+    },
+    {
+      "id": "tokens",
+      "status": "PASS",
+      "detail": "no raw hex/rgb in component scss"
+    },
+    {
+      "id": "cleanup",
+      "status": "PASS",
+      "detail": "no side-effect APIs detected"
+    },
+    {
+      "id": "behavior",
+      "status": "PASS",
+      "detail": "datetime family unit+e2e"
+    },
+    {
+      "id": "visual",
+      "status": "PASS",
+      "detail": "mounted in datetime visual matrix"
+    },
+    {
+      "id": "a11y",
+      "status": "PASS",
+      "detail": "datetime family axe PASS"
+    },
+    {
+      "id": "keyboard",
+      "status": "PASS",
+      "detail": "ENG-004 floating+keyboard + datetime lab Escape"
+    },
+    {
+      "id": "theme",
+      "status": "N/A",
+      "detail": "optional"
+    },
+    {
+      "id": "rtl",
+      "status": "N/A",
+      "detail": "optional"
+    },
+    {
+      "id": "perf",
+      "status": "N/A",
+      "detail": "not applicable"
+    },
+    {
+      "id": "docs",
+      "status": "PASS",
+      "detail": "lab mounting coverage"
+    },
+    {
+      "id": "ssr",
+      "status": "PASS",
+      "detail": "structural=PASS; evidence=structural DOM clean"
+    }
+  ],
+  "failCount": 0,
+  "status": "PASS",
+  "stable": true,
+  "verifiedAt": "2026-08-07T12:29:16.851Z"
+}

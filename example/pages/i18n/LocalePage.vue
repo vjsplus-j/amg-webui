@@ -5,7 +5,7 @@ import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys, getLocaleMeta } from '@amg-webui/locale'
 import ExamplePageHero from '../../components/ExamplePageHero.vue'
 
-const { t, locale, dir, setDirection } = useLocale()
+const { t, locale, dir, toggleDirection } = useLocale()
 
 const samples = computed(() => {
   void locale.value
@@ -25,26 +25,22 @@ const localeLead = computed(() => {
   void locale.value
   void dir.value
   const m = meta.value
-  return `${locale.value} · ${m?.label ?? '—'} · ${m?.lang ?? '—'} / ${dir.value}`
+  return `${locale.value} · ${m?.label ?? '—'} · ${m?.lang ?? '—'} / dir=${dir.value}`
 })
 
-const rtlActionLabel = computed(() => {
+const dirActionLabel = computed(() => {
   void locale.value
   void dir.value
-  return dir.value === 'rtl' ? t('page.i18n.rtlAuto') : t('page.i18n.rtlForce')
+  return dir.value === 'rtl' ? t(LocaleKeys.chrome.dirLtr) : t(LocaleKeys.chrome.dirRtl)
 })
-
-function toggleRtlPreview() {
-  setDirection(dir.value === 'rtl' ? null : 'rtl')
-}
 </script>
 
 <template>
   <div class="i18n-lab">
     <ExamplePageHero title-key="page.i18n.title" :lead="localeLead">
       <template #actions>
-        <button type="button" class="i18n-lab__rtl-btn" @click="toggleRtlPreview">
-          {{ rtlActionLabel }}
+        <button type="button" class="i18n-lab__rtl-btn" @click="toggleDirection">
+          {{ t(LocaleKeys.chrome.direction) }} → {{ dirActionLabel }}
         </button>
       </template>
     </ExamplePageHero>

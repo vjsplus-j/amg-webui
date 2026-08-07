@@ -1,0 +1,66 @@
+{
+  "name": "VcrSpeedControl",
+  "generatedAt": "2026-08-07T12:42:17.061Z",
+  "source": {
+    "types": "packages/components/media/VcrSpeedControl/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "VcrSpeed",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "v: VcrSpeed",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "v: VcrSpeed",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "VcrSpeed",
+    "VcrSpeedControlProps",
+    "VcrSpeedControlEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

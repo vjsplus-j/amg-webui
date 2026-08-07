@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Confirm } from '@amg-webui/overlay'
 import { Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -80,23 +78,6 @@ import { Button } from '@amg-webui/core'`],
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'visible',
-    type: 'boolean',
-    description: t('example.doc.confirm.prop.visible')
-  },
-  {
-    name: 'severity',
-    type: "'success' | 'warning' | 'danger' | 'info' | 'secondary' | 'contrast' | 'primary'",
-    description: t('example.doc.confirm.prop.severity')
-  },
-  {
-    name: 'class / style',
-    type: 'BaseProps',
-    description: t('example.doc.confirm.prop.base')
-  }
-])
 </script>
 
 <template>
@@ -200,7 +181,5 @@ const propRows = computed<PropRow[]>(() => [
         :message="t('example.doc.confirm.sample.bodyContrast')"
       />
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>

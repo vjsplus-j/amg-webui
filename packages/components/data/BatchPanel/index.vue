@@ -58,10 +58,11 @@ const onAction = (key: string) => {
     payload: { action: key, selectedCount: props.selectedCount }
   })
 }
+
 </script>
 
 <template>
-  <div
+  <div role="region" aria-label="BatchPanel"
     v-show="hasSelection || showEmpty"
     :class="[
       'vp-batch-panel',
@@ -73,8 +74,7 @@ const onAction = (key: string) => {
       }
     ]"
     :style="style"
-    data-component="BatchPanel"
-  >
+    data-component="BatchPanel">
     <template v-if="hasSelection">
       <span class="vp-batch-panel__count">{{ countLabel }}</span>
       <div class="vp-batch-panel__actions">

@@ -1,0 +1,24 @@
+{
+  "name": "ErrorModal",
+  "generatedAt": "2026-08-07T12:45:59.830Z",
+  "source": {
+    "types": "packages/components/overlay/ErrorModal/types.ts",
+    "vue": true
+  },
+  "props": [],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ErrorModalProps",
+    "ErrorModalEmits"
+  ],
+  "completeness": {
+    "props": false,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "detail": "ArrowDown open + Enter select year cell",
+  "tests": [
+    "tests/unit/hardening/batch-b06-datetime-lowcode-pickers.spec.ts"
+  ],
+  "engines": [
+    "resolveKeyboardNavAction",
+    "moveRovingIndex",
+    "getFloatingPanelStyle"
+  ]
+}

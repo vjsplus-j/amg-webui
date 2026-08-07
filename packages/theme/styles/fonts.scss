@@ -13,8 +13,16 @@
   --font-cjk-fallback: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC';
 }
 
-[data-locale='zh-TW'] {
-  --font-cjk-fallback: 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', 'PingFang SC';
+[data-locale='zh-HK'] {
+  --font-cjk-fallback: 'PingFang TC', 'PingFang HK', 'Microsoft JhengHei', 'Noto Sans TC', 'PingFang SC';
+}
+
+[data-locale='hi-IN'] {
+  --font-cjk-fallback: 'Noto Sans Devanagari', 'Mangal', 'Arial Unicode MS', 'Noto Sans';
+}
+
+[data-locale='ug-CN'] {
+  --font-cjk-fallback: 'UKIJ Tuz Tom', 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', 'Segoe UI', 'Arial';
 }
 
 [data-locale='ja-JP'] {
@@ -141,24 +149,31 @@
   --font-family-mono: 'Consolas', 'SimHei', '黑体', monospace;
 }
 
+/* WeUI / antd-mobile / 微信·支付宝 App 同源系统栈 */
 [data-font='apple'] {
   --font-family-sans:
-    'PingFang SC',
-    'Hiragino Sans GB',
     -apple-system,
     BlinkMacSystemFont,
-    'SF Pro Text',
     'Helvetica Neue',
-    var(--font-cjk-fallback),
+    Helvetica,
     'Segoe UI',
+    Arial,
+    Roboto,
+    'PingFang SC',
+    miui,
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    var(--font-cjk-fallback),
     sans-serif;
   --font-family-display:
-    'PingFang SC',
-    'Hiragino Sans GB',
     -apple-system,
     BlinkMacSystemFont,
-    'SF Pro Display',
     'Helvetica Neue',
+    Helvetica,
+    'PingFang SC',
+    miui,
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
     var(--font-cjk-fallback),
     sans-serif;
   --font-family-mono: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;

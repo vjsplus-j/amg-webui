@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { DetailPanel } from '@amg-webui/data'
 import { Button, Tag } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -42,11 +40,6 @@ const codeBasic = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'sections', type: 'DetailSection[]', description: t('example.doc.detailPanel.prop.sections') },
-  { name: 'layout', type: "'tabs' | 'stack'", defaultValue: 'tabs', description: t('example.doc.detailPanel.prop.layout') },
-  { name: 'loading', type: 'boolean', defaultValue: 'false', description: t('example.doc.detailPanel.prop.loading') }
-])
 </script>
 
 <template>
@@ -83,9 +76,7 @@ const propRows = computed<PropRow[]>(() => [
         <DetailPanel v-else empty />
       </div>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

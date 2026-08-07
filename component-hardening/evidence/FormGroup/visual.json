@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "detail": "form family visual (lab form-default)",
+  "source": "tests/e2e/hardening-family-evidence.spec.ts"
+}

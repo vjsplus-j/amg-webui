@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/waterfall.md",
+  "api": "generated/component-api/Waterfall.json",
+  "demo": "example/demos/Waterfall/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

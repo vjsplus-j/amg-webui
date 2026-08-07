@@ -1,0 +1,100 @@
+{
+  "name": "AudioPlay",
+  "generatedAt": "2026-08-07T12:39:09.852Z",
+  "source": {
+    "types": "packages/components/media/AudioPlay/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "src",
+      "optional": true,
+      "type": "string | File | Blob | null",
+      "description": ""
+    },
+    {
+      "name": "controls",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "autoplay",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loop",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "play",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "pause",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "ended",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "AudioPlayProps",
+    "AudioPlayEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

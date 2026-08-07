@@ -102,6 +102,8 @@
   }
 }
 
+/* Docked shell sider hides on narrow viewports; AppShell (or host) must
+   provide a mobile replacement (e.g. header trigger + Drawer). */
 @media (max-width: 768px) {
   .vp-layout--shell .vp-sider {
     display: none;

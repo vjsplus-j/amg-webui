@@ -1,0 +1,70 @@
+{
+  "name": "ContextMenu",
+  "generatedAt": "2026-08-07T12:40:46.807Z",
+  "source": {
+    "types": "packages/components/overlay/ContextMenu/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "items",
+      "optional": true,
+      "type": "ContextMenuItem[]",
+      "description": ""
+    },
+    {
+      "name": "target",
+      "optional": true,
+      "type": "HTMLElement | null",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "show",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "hide",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "command",
+      "payload": "command: string, item: ContextMenuItem",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "ContextMenuItem",
+    "ContextMenuProps",
+    "ContextMenuEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { InfiniteScroll } from '@amg-webui/data'
 import { Button, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -46,10 +44,6 @@ import { Button } from '@amg-webui/core'`],
   template: ['  <Button @click="reset" />']
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'loading / finished', type: 'boolean', description: t('example.doc.infiniteScroll.prop.loading') },
-  { name: 'distance', type: 'number', defaultValue: '0', description: t('example.doc.infiniteScroll.prop.distance') }
-])
 </script>
 
 <template>
@@ -82,8 +76,7 @@ const propRows = computed<PropRow[]>(() => [
         <span class="vp-gap-hint">{{ items.length }}</span>
       </Space>
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

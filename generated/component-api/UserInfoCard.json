@@ -1,0 +1,72 @@
+{
+  "name": "UserInfoCard",
+  "generatedAt": "2026-08-07T12:42:17.054Z",
+  "source": {
+    "types": "packages/components/core/UserInfoCard/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "role",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "department",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "email",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "avatar",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "status",
+      "optional": true,
+      "type": "'online' | 'offline' | 'busy'",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "edit",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "action",
+      "payload": "action: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "UserInfoCardProps",
+    "UserInfoCardEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

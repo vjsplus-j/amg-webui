@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { Card, CardGrid, Qrcode, Space, Tag, Typography } from '@amg-webui/core'
 import { InputText, Select } from '@amg-webui/form'
 import type {
@@ -8,9 +8,7 @@ import type {
 } from '@amg-webui/core/Qrcode'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t, tDyn } = useLocale()
@@ -88,19 +86,6 @@ const codeBasic = demoSfc({
   template: [`  <Qrcode v-model="value" :standard="standard" />`]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'modelValue / value', type: 'string | number', defaultValue: "''", description: t('example.doc.qrcode.prop.value') },
-  { name: 'standard', type: 'QrcodeStandard', defaultValue: 'iso', description: t('example.doc.qrcode.prop.standard') },
-  { name: 'errorCorrection', type: "'L' | 'M' | 'Q' | 'H'", defaultValue: 'standard default', description: t('example.doc.qrcode.prop.errorCorrection') },
-  { name: 'pixelSize / quietZone', type: 'number', defaultValue: '4 / 8', description: t('example.doc.qrcode.prop.render') },
-  { name: 'editable / disabled / loading', type: 'boolean', defaultValue: 'true / false / false', description: t('example.doc.qrcode.prop.state') },
-  { name: 'class / style', type: 'BaseProps', description: t('example.doc.qrcode.prop.base') }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  { name: 'update:modelValue / change', description: t('example.doc.qrcode.event.change'), type: '(value: string) => void', defaultValue: '-' },
-  { name: 'error', description: t('example.doc.qrcode.event.error'), type: '(payload: QrcodeErrorPayload) => void', defaultValue: '-' }
-])
 </script>
 
 <template>
@@ -153,8 +138,5 @@ const eventRows = computed<ApiRow[]>(() => [
         </Card>
       </CardGrid>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-    <PropsTable :rows="eventRows" />
   </div>
 </template>

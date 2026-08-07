@@ -94,3 +94,29 @@ export interface SelectEmits {
   /** Fired for a non-abort remote lookup failure. */
   (e: "remote-error", error: Error, query: string): void;
 }
+
+export interface SelectSlots {
+  /** Trailing auxiliary content beside the control */
+  default?(props: Record<string, never>): unknown
+  /** Custom option row in the dropdown */
+  option?(props: { option: SelectOption }): unknown
+  /** Empty state when no options match */
+  empty?(props: Record<string, never>): unknown
+  /** Loading indicator while remote options load */
+  loading?(props: Record<string, never>): unknown
+}
+
+export interface SelectExpose {
+  /** Focus the trigger input */
+  focus: () => void
+  /** Blur the trigger input */
+  blur: () => void
+  /** Open the dropdown panel */
+  open: () => void
+  /** Close the dropdown panel */
+  close: () => void
+  /** Clear the current selection */
+  clear: () => void
+}
+
+export type SelectInstance = SelectExpose

@@ -1,0 +1,92 @@
+{
+  "name": "RangeInput",
+  "family": "input",
+  "package": "form",
+  "profile": "form",
+  "gates": [
+    {
+      "id": "package",
+      "status": "PASS",
+      "detail": "vue=true types=true style=true"
+    },
+    {
+      "id": "api-props",
+      "status": "PASS",
+      "detail": "Props interface or defineProps"
+    },
+    {
+      "id": "api-emits",
+      "status": "PASS",
+      "detail": "Emits typed or none"
+    },
+    {
+      "id": "api-slots",
+      "status": "PASS",
+      "detail": "Slots contract present or N/A"
+    },
+    {
+      "id": "i18n",
+      "status": "PASS",
+      "detail": "no hardcoded CJK literals"
+    },
+    {
+      "id": "tokens",
+      "status": "PASS",
+      "detail": "no raw hex/rgb in component scss"
+    },
+    {
+      "id": "cleanup",
+      "status": "PASS",
+      "detail": "no side-effect APIs detected"
+    },
+    {
+      "id": "behavior",
+      "status": "PASS",
+      "detail": "input family unit+e2e"
+    },
+    {
+      "id": "visual",
+      "status": "N/A",
+      "detail": "visual optional for this deepen"
+    },
+    {
+      "id": "a11y",
+      "status": "PASS",
+      "detail": "input family axe PASS"
+    },
+    {
+      "id": "keyboard",
+      "status": "PASS",
+      "detail": "input keyboard/interaction evidence"
+    },
+    {
+      "id": "theme",
+      "status": "N/A",
+      "detail": "optional"
+    },
+    {
+      "id": "rtl",
+      "status": "N/A",
+      "detail": "optional"
+    },
+    {
+      "id": "perf",
+      "status": "N/A",
+      "detail": "not applicable"
+    },
+    {
+      "id": "docs",
+      "status": "PASS",
+      "detail": "lab mounting coverage"
+    },
+    {
+      "id": "ssr",
+      "status": "PASS",
+      "detail": "structural=PASS; evidence=structural DOM clean"
+    }
+  ],
+  "failCount": 0,
+  "status": "PASS",
+  "stable": true,
+  "verifiedAt": "2026-08-07T12:29:16.771Z"
+}

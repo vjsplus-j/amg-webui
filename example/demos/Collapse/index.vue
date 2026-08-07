@@ -2,14 +2,11 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts`).
  */
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Avatar, Button, Card, Collapse, Progress, Space, Tag } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 const open = ref('a')
@@ -209,92 +206,6 @@ const codeEvents = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'panels',
-    description: t('example.doc.collapse.prop.panels'),
-    type: 'CollapsePanel[]',
-    defaultValue: '[]'
-  },
-  {
-    name: 'modelValue',
-    description: t('example.doc.collapse.prop.model'),
-    type: 'string | string[]',
-    defaultValue: '-'
-  },
-  {
-    name: 'accordion',
-    description: t('example.doc.collapse.prop.accordion'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'title',
-    description: t('example.doc.collapse.prop.title'),
-    type: 'string',
-    defaultValue: '-'
-  },
-  {
-    name: 'bordered / ghost',
-    description: t('example.doc.collapse.prop.chrome'),
-    type: 'boolean',
-    defaultValue: 'true / false'
-  },
-  {
-    name: 'disabled',
-    description: t('example.doc.collapse.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'trackId / telemetry',
-    description: t('example.doc.collapse.prop.telemetry'),
-    type: 'string / boolean',
-    defaultValue: '- / undefined'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:modelValue',
-    description: t('example.doc.collapse.emit.model'),
-    type: '(value: string | string[]) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'change',
-    description: t('example.doc.collapse.emit.change'),
-    type: '(value: string | string[]) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'expand',
-    description: t('example.doc.collapse.emit.expand'),
-    type: '(payload: { key; activeKeys }) => void',
-    defaultValue: '-'
-  },
-  {
-    name: 'collapse',
-    description: t('example.doc.collapse.emit.collapse'),
-    type: '(payload: { key; activeKeys }) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.collapse.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: '[panel.key]',
-    description: t('example.doc.collapse.slot.panel'),
-    type: 'VNode · scope: { panel }',
-    defaultValue: 'panel.content'
-  }
-])
 </script>
 
 <template>
@@ -430,19 +341,7 @@ const slotRows = computed<ApiRow[]>(() => [
       </div>
     </DemoBlock>
 
-    <!-- 5. API: Props → Events → Slots -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 5. API: Props → Events → Slots -->
   </div>
 </template>
 
@@ -452,25 +351,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-collapse-demo__meta {
   display: flex;
   flex-direction: column;

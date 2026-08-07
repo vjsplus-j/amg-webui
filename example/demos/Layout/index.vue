@@ -7,9 +7,7 @@ import { Layout, Sider, Header, Main, Footer, Menu, TabsNav, Space, Button, Card
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import type { MenuItem } from '@amg-webui/core/Menu'
 import type { TabsNavItem } from '@amg-webui/core/TabsNav'
 import '../../components/demo/curatedDemo.scss'
@@ -136,26 +134,6 @@ const codeStack = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'hasSider',
-    type: 'boolean',
-    defaultValue: 'false',
-    description: t('example.doc.layout.prop.hasSider')
-  },
-  {
-    name: 'shell / fill',
-    type: 'boolean',
-    defaultValue: 'false',
-    description: t('example.doc.layout.prop.shell')
-  },
-  {
-    name: 'direction',
-    type: "'horizontal'|'vertical'",
-    defaultValue: "'vertical'",
-    description: t('example.doc.layout.prop.direction')
-  }
-])
 </script>
 
 <template>
@@ -235,9 +213,7 @@ const propRows = computed<PropRow[]>(() => [
         </Layout>
       </div>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

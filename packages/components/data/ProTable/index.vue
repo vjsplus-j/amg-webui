@@ -72,7 +72,7 @@ const titleText = computed(() => props.title ?? t('component.pro-table.title'))
 </script>
 
 <template>
-  <div
+  <div role="region" aria-label="ProTable"
     ref="tableRoot"
     :class="['vp-pro-table', 'vp-pro-table__panel', { 'vp-pro-table--disabled': disabled, 'vp-pro-table--loading': loading }, props.class]"
     :style="style"

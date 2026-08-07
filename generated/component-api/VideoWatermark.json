@@ -1,0 +1,66 @@
+{
+  "name": "VideoWatermark",
+  "generatedAt": "2026-08-07T12:42:38.276Z",
+  "source": {
+    "types": "packages/components/media/VideoWatermark/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "text",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "opacity",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:text",
+      "payload": "v: string",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "v: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "VideoWatermarkProps",
+    "VideoWatermarkEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

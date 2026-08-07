@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Mask } from '@amg-webui/overlay'
 import { Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -26,26 +24,6 @@ import { Button } from '@amg-webui/core'`],
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'visible',
-    type: 'boolean',
-    defaultValue: 'false',
-    description: t('example.doc.mask.prop.visible')
-  },
-  {
-    name: 'dismissible',
-    type: 'boolean',
-    defaultValue: 'true',
-    description: t('example.doc.mask.prop.dismissible')
-  },
-  {
-    name: 'lockScroll',
-    type: 'boolean',
-    defaultValue: 'true',
-    description: t('example.doc.mask.prop.lockScroll')
-  }
-])
 </script>
 
 <template>
@@ -75,9 +53,7 @@ const propRows = computed<PropRow[]>(() => [
         </div>
       </Mask>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

@@ -1,0 +1,100 @@
+{
+  "name": "Mention",
+  "generatedAt": "2026-08-07T12:34:13.544Z",
+  "source": {
+    "types": "packages/components/form/Mention/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "options",
+      "optional": true,
+      "type": "MentionOption[]",
+      "description": ""
+    },
+    {
+      "name": "prefix",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "rows",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "maxLength",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "option: MentionOption",
+      "description": ""
+    },
+    {
+      "name": "search",
+      "payload": "query: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "MentionOption",
+    "MentionProps",
+    "MentionEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

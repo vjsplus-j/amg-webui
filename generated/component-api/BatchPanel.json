@@ -1,0 +1,61 @@
+{
+  "name": "BatchPanel",
+  "generatedAt": "2026-08-07T12:39:09.860Z",
+  "source": {
+    "types": "packages/components/data/BatchPanel/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "selectedCount",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "totalCount",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "showEmpty",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "actions",
+      "optional": true,
+      "type": "BatchPanelAction[]",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "action",
+      "payload": "action: string",
+      "description": ""
+    },
+    {
+      "name": "clear",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "BatchPanelAction",
+    "BatchPanelProps",
+    "BatchPanelEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

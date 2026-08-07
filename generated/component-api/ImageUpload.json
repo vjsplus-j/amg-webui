@@ -1,0 +1,78 @@
+{
+  "name": "ImageUpload",
+  "generatedAt": "2026-08-07T12:41:13.618Z",
+  "source": {
+    "types": "packages/components/form/ImageUpload/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "ImageFileItem[]",
+      "description": ""
+    },
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "multiple",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "maxCount",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "accept",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: ImageFileItem[]",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: ImageFileItem[]",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "ImageFileItem",
+    "ImageUploadProps",
+    "ImageUploadEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

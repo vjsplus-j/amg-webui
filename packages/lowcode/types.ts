@@ -125,6 +125,11 @@ export interface CodegenOptions {
   includeLayoutStyles?: boolean
   /** Registry supplies import paths / export names. */
   registry?: ComponentRegistry
+  /**
+   * Document action chains → emit valid handler stubs that document the chain.
+   * Handlers remain side-effect free (compilable); no eval.
+   */
+  actions?: Record<string, import('./runtime').LowcodeAction[]>
 }
 
 export type SchemaRenderMode = 'chrome' | 'component'

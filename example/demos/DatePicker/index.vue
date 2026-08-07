@@ -2,76 +2,25 @@
 /**
  * Curated demo — Form wave1 DatePicker
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { DatePicker } from '@amg-webui/form'
 import { Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
-import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
+import { demoCode } from '../../components/demo/demoCode'
+import Basic from './parts/Basic.vue'
+import basicSource from './parts/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
 const date = ref<string | null>('2026-07-30')
 const empty = ref<string | null>(null)
 
-const codeBasic = demoSfc({
-  imports: [
-    `import { ref } from 'vue'`,
-    `import { DatePicker } from '@amg-webui/form'`
-  ],
-  script: [`const date = ref('2026-07-30')`],
-  template: [
-    `  <DatePicker`,
-    `    v-model="date"`,
-    `    value-format="iso"`,
-    `    :placeholder="t('example.doc.datePicker.sample.placeholder')"`,
-    `  />`
-  ]
-})
-
 const codeDisabled = demoCode(
   `<DatePicker v-model="empty" :placeholder="t('example.doc.datePicker.sample.placeholder')" />`,
   `<DatePicker v-model="date" disabled />`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'modelValue',
-    description: t('example.doc.datePicker.prop.modelValue'),
-    type: 'string | Date | null',
-    defaultValue: 'null'
-  },
-  {
-    name: 'placeholder',
-    description: t('example.doc.datePicker.prop.placeholder'),
-    type: 'string',
-    defaultValue: '—'
-  },
-  {
-    name: 'valueFormat',
-    description: t('example.doc.datePicker.prop.valueFormat'),
-    type: "'date' | 'iso'",
-    defaultValue: "'iso'"
-  },
-  {
-    name: 'disabled',
-    description: t('example.doc.datePicker.prop.disabled'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:modelValue / change',
-    description: t('example.doc.datePicker.event.change'),
-    type: '(value: string | Date | null) => void',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -79,16 +28,10 @@ const eventRows = computed<ApiRow[]>(() => [
     <DemoBlock
       :title="t('example.doc.datePicker.demo.basic')"
       :description="t('example.doc.datePicker.demo.basicDesc')"
-      :code="codeBasic"
+      :code="basicSource"
       default-open
     >
-      <div class="vp-curated__row">
-        <DatePicker
-          v-model="date"
-          value-format="iso"
-          :placeholder="t('example.doc.datePicker.sample.placeholder')"
-        />
-      </div>
+      <Basic />
     </DemoBlock>
 
     <DemoBlock
@@ -106,14 +49,6 @@ const eventRows = computed<ApiRow[]>(() => [
         </Space>
       </div>
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-    </section>
   </div>
 </template>
 
@@ -130,19 +65,5 @@ const eventRows = computed<ApiRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

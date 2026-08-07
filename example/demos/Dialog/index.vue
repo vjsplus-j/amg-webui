@@ -2,38 +2,22 @@
 /**
  * Curated demo — Dialog
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Dialog } from '@amg-webui/overlay'
 import { Button } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
+import Basic from './parts/Basic.vue'
+import basicSource from './parts/Basic.vue?raw'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
-const basicOpen = ref(false)
 const footerOpen = ref(false)
 const maxOpen = ref(false)
 const nestedOuterOpen = ref(false)
 const nestedInnerOpen = ref(false)
-
-const codeBasic = demoSfc({
-  imports: [
-    `import { ref } from 'vue'`,
-    `import { Dialog } from '@amg-webui/overlay'
-import { Button } from '@amg-webui/core'`
-  ],
-  script: ['const open = ref(false)'],
-  template: [
-    `  <Button severity="primary" :label="t('example.doc.dialog.sample.open')" @click="open = true" />`,
-    `  <Dialog v-model:visible="open" :title="t('example.doc.dialog.sample.title')">`,
-    `    {{ t('example.doc.dialog.sample.body') }}`,
-    `  </Dialog>`
-  ]
-})
 
 const codeFooter = demoSfc({
   imports: [
@@ -74,62 +58,6 @@ import { Button } from '@amg-webui/core'`
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'visible',
-    description: t('example.doc.dialog.prop.visible'),
-    type: 'boolean',
-    defaultValue: 'false'
-  },
-  {
-    name: 'title / header',
-    description: t('example.doc.dialog.prop.title'),
-    type: 'string',
-    defaultValue: '—'
-  },
-  {
-    name: 'size',
-    description: t('example.doc.dialog.prop.size'),
-    type: "'sm' | 'md' | 'lg' | 'xl' | 'full'",
-    defaultValue: "'md'"
-  },
-  {
-    name: 'modal / dismissible / closable',
-    description: t('example.doc.dialog.prop.modal'),
-    type: 'boolean',
-    defaultValue: 'true'
-  },
-  {
-    name: 'maximizable',
-    description: t('example.doc.dialog.prop.maximizable'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [
-  {
-    name: 'update:visible / close / show / hide',
-    description: t('example.doc.dialog.event.visible'),
-    type: '(value: boolean | Event) => void',
-    defaultValue: '-'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.dialog.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'header / footer',
-    description: t('example.doc.dialog.slot.footer'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -139,19 +67,10 @@ const slotRows = computed<ApiRow[]>(() => [
     <DemoBlock
       :title="t('example.doc.dialog.demo.basic')"
       :description="t('example.doc.dialog.demo.basicDesc')"
-      :code="codeBasic"
+      :code="basicSource"
       default-open
     >
-      <div class="vp-curated__row">
-        <Button
-          severity="primary"
-          :label="t('example.doc.dialog.sample.open')"
-          @click="basicOpen = true"
-        />
-      </div>
-      <Dialog v-model:visible="basicOpen" :title="t('example.doc.dialog.sample.title')">
-        {{ t('example.doc.dialog.sample.body') }}
-      </Dialog>
+      <Basic />
     </DemoBlock>
 
     <DemoBlock
@@ -236,15 +155,5 @@ const slotRows = computed<ApiRow[]>(() => [
         </Dialog>
       </Dialog>
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
   </div>
 </template>

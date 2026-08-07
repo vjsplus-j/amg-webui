@@ -122,6 +122,10 @@
     background: var(--surface-3);
   }
 
+  &--active {
+    background: var(--surface-3);
+  }
+
   &--selected {
     color: var(--primary-500);
     background: var(--surface-2);

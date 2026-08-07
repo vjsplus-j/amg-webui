@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/drag-sort-node.md",
+  "api": "generated/component-api/DragSortNode.json",
+  "demo": "example/demos/DragSortNode/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

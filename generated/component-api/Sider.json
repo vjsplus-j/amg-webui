@@ -1,0 +1,84 @@
+{
+  "name": "Sider",
+  "generatedAt": "2026-08-07T12:41:56.145Z",
+  "source": {
+    "types": "packages/components/core/Sider/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "width",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "collapsedWidth",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "collapsed",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "collapsible",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "side",
+      "optional": true,
+      "type": "'left' | 'right'",
+      "description": ""
+    },
+    {
+      "name": "bordered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:collapsed",
+      "payload": "value: boolean",
+      "description": ""
+    },
+    {
+      "name": "collapse",
+      "payload": "collapsed: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "SiderProps",
+    "SiderEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

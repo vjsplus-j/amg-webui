@@ -1,0 +1,79 @@
+{
+  "name": "Col",
+  "generatedAt": "2026-08-07T12:40:46.798Z",
+  "source": {
+    "types": "packages/components/core/Col/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "span",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "offset",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "push",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "pull",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "flex",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "order",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "as",
+      "optional": true,
+      "type": "\"div\" | \"article\" | \"section\"",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "payload": "event: MouseEvent",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ColProps",
+    "ColEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

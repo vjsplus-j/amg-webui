@@ -1,0 +1,116 @@
+{
+  "name": "Print",
+  "generatedAt": "2026-08-07T12:41:35.060Z",
+  "source": {
+    "types": "packages/components/core/Print/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showToolbar",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "printClass",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "copyStyles",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "pageStyle",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "autoClose",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "windowFeatures",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "pendingLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "printing: boolean",
+      "description": ""
+    },
+    {
+      "name": "print",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "before-print",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "after-print",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "payload": "error: Error",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "PrintProps",
+    "PrintEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "detail": "batch-b05-selection-advanced.spec.ts SelectNav navigate emit",
+  "tests": [
+    "tests/unit/hardening/batch-b05-selection-advanced.spec.ts"
+  ]
+}

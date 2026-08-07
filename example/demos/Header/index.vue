@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Header, Button, Space, Avatar, Tag } from '@amg-webui/core'
 import { InputText } from '@amg-webui/form'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -43,11 +41,6 @@ const codeSticky = demoSfc({
   ]
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'sticky', type: 'boolean', defaultValue: 'false', description: t('example.doc.header.prop.sticky') },
-  { name: 'bordered', type: 'boolean', defaultValue: 'true', description: t('example.doc.header.prop.bordered') },
-  { name: 'size', type: "'sm'|'md'|'lg'", defaultValue: "'md'", description: t('example.doc.header.prop.size') }
-])
 </script>
 
 <template>
@@ -128,9 +121,7 @@ const propRows = computed<PropRow[]>(() => [
         </div>
       </Space>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

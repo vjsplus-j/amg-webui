@@ -2,7 +2,7 @@
 
 Vp Telemetry — **UI 交互观测内核**（企业基建独家能力；对标 EP「只做 UI」空缺）。
 
-权威说明：[`docs/TELEMETRY.md`](../../docs/TELEMETRY.md) · OVERTAKE「企业基建」§4 · Cursor：`vue3-amg-webui-telemetry.mdc`
+权威说明：[`docs/TELEMETRY.md`](../../docs/TELEMETRY.md) · OVERTAKE「企业基建」§4 · Cursor：`.cursor/rules/41-telemetry.mdc`
 
 ## 原则
 

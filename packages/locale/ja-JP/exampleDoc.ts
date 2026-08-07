@@ -1339,6 +1339,7 @@ export default {
   'example.doc.errorModal.prop.base': "class / style を転送",
   'example.doc.errorModal.when': "ErrorModal のデモ。",
   'example.doc.events': "Events",
+  'example.doc.expose': "Expose",
   'example.doc.excelIo.demo.basic': "基本用法",
   'example.doc.excelIo.demo.basicDesc': "ExcelIo をマウントして基本動作を確認します。",
   'example.doc.excelIo.prop.base': "class / style を転送",
@@ -2186,6 +2187,7 @@ export default {
   'example.doc.monthPicker.prop.valueFormat': "出力形式 date / iso",
   'example.doc.monthPicker.sample.placeholder': "月を選択",
   'example.doc.monthPicker.when': "MonthPicker のデモ。",
+  'example.doc.models': "Models",
   'example.doc.motion.demo.badge': "バッジ共有モーション",
   'example.doc.motion.demo.desc': "ライブラリ共通ホスト動效：spin / bounce / heartbeat / blink / pulse / breathe / glow（`useMotion` + `vp-motion--*`）。Avatar / Button / Tag / Icon / Typography で利用可能。Badge は共有動效（`pulse` はリング）。優先度：spin > bounce > heartbeat > blink > pulse > breathe > glow",
   'example.doc.motion.demo.title': "共有モーショ",
@@ -4074,4 +4076,5 @@ export default {
   'example.doc.virtualTree.event.interaction': 'Interaction',
   'example.doc.virtualTree.sample.toggleLoading': 'Toggle Loading',
   'example.doc.richText.prop.sanitize': 'HTML をサニタイズ（既定オン）',
+  'example.doc.apiMissing': "API 抽出がありません（hardening:extract-api を実行）",
 }

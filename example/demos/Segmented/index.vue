@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Segmented, Space } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -28,11 +26,6 @@ const codeBlock = demoSfc({
   template: ['  <Segmented v-model="value" :options="options" block />']
 })
 
-const propRows = computed<PropRow[]>(() => [
-  { name: 'modelValue', type: 'string | number | boolean', description: t('example.doc.segmented.prop.modelValue') },
-  { name: 'options', type: 'SegmentedOption[]', description: t('example.doc.segmented.prop.options') },
-  { name: 'block', type: 'boolean', defaultValue: 'false', description: t('example.doc.segmented.prop.block') }
-])
 </script>
 
 <template>
@@ -56,8 +49,7 @@ const propRows = computed<PropRow[]>(() => [
     >
       <Segmented v-model="value" :options="options" block />
     </DemoBlock>
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

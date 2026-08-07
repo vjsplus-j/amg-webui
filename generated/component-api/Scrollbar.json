@@ -1,0 +1,95 @@
+{
+  "name": "Scrollbar",
+  "generatedAt": "2026-08-07T12:41:56.135Z",
+  "source": {
+    "types": "packages/components/core/Scrollbar/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "height",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "maxHeight",
+      "optional": true,
+      "type": "string | number",
+      "description": ""
+    },
+    {
+      "name": "native",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "axis",
+      "optional": true,
+      "type": "\"both\" | \"x\" | \"y\"",
+      "description": ""
+    },
+    {
+      "name": "tabindex",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "endThreshold",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "scroll",
+      "payload": "event: Event",
+      "description": ""
+    },
+    {
+      "name": "reach-start",
+      "payload": "position: { top: number; left: number }",
+      "description": ""
+    },
+    {
+      "name": "reach-end",
+      "payload": "position: { top: number; left: number }",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ScrollbarProps",
+    "ScrollbarEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

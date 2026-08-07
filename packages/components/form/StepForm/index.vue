@@ -54,7 +54,7 @@ const next = () => {
 <template>
   <div :class="['vp-step-form', props.class, { 'vp-step-form--disabled': disabled }]" :style="style" data-component="StepForm">
     <Progress class="vp-step-form__progress" :percentage="progress" :show-text="true" />
-    <nav class="vp-step-form__nav" aria-label="Steps">
+    <nav class="vp-step-form__nav" :aria-label="t(LocaleKeys.component.stepForm.navAria)">
       <button
         v-for="(step, index) in steps"
         :key="String(step.name)"

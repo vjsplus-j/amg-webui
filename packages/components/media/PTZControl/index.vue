@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { computed, onBeforeUnmount } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import type { PTZControlProps, PTZControlEmits, PtzCommand, PtzCommandPayload } from './types'
 import './style.scss'
@@ -64,6 +65,11 @@ function onKeydown(event: KeyboardEvent) {
 }
 
 defineExpose({ send })
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

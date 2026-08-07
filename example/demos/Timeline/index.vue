@@ -2,15 +2,12 @@
 /**
  * Curated demo — Data wave1 Timeline
  */
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { Timeline, TimelineItem } from '@amg-webui/data'
 import { Button, Space, Tag } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 import type { TimelineMode } from '@amg-webui/data/Timeline'
 import '../../components/demo/curatedDemo.scss'
 
@@ -46,56 +43,6 @@ const codeInteractive = demoCode(
   `</Timeline>`
 )
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'mode',
-    description: t('example.doc.timeline.prop.mode'),
-    type: "'left' | 'right' | 'alternate'",
-    defaultValue: "'left'"
-  },
-  {
-    name: 'pending',
-    description: t('example.doc.timeline.prop.pending'),
-    type: 'boolean | string',
-    defaultValue: 'false'
-  },
-  {
-    name: 'reverse',
-    description: t('example.doc.timeline.prop.reverse'),
-    type: 'boolean',
-    defaultValue: 'false'
-  }
-])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.timeline.slot.default'),
-    type: 'TimelineItem[]',
-    defaultValue: '-'
-  }
-])
-
-const itemPropRows = computed<PropRow[]>(() => [
-  {
-    name: 'color / hollow',
-    description: t('example.doc.timeline.item.prop.color'),
-    type: 'Severity | string / boolean',
-    defaultValue: '—'
-  },
-  {
-    name: 'timestamp / label',
-    description: t('example.doc.timeline.item.prop.timestamp'),
-    type: 'string',
-    defaultValue: '—'
-  },
-  {
-    name: 'side / placement',
-    description: t('example.doc.timeline.item.prop.side'),
-    type: "'left' | 'right' / 'top' | 'bottom'",
-    defaultValue: '—'
-  }
-])
 </script>
 
 <template>
@@ -208,16 +155,6 @@ const itemPropRows = computed<PropRow[]>(() => [
         </Timeline>
       </Space>
     </DemoBlock>
-
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-      <h3 class="vp-curated__api-sub">{{ t('example.doc.timeline.item.apiTitle') }}</h3>
-      <PropsTable :rows="itemPropRows" />
-    </section>
   </div>
 </template>
 
@@ -239,19 +176,5 @@ const itemPropRows = computed<PropRow[]>(() => [
 .vp-curated__api {
   width: 100%;
   margin-top: var(--theme-section-gap);
-}
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-lg) 0 var(--spacing-sm);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-secondary);
 }
 </style>

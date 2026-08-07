@@ -1,0 +1,83 @@
+{
+  "name": "PropPanel",
+  "generatedAt": "2026-08-07T12:41:35.064Z",
+  "source": {
+    "types": "packages/lowcode/ui/PropPanel/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "fields",
+      "optional": true,
+      "type": "PropField[]",
+      "description": ""
+    },
+    {
+      "name": "registry",
+      "optional": true,
+      "type": "ComponentRegistry",
+      "description": ""
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "Record<string, unknown>",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:prop",
+      "payload": "payload: { key: string; value: unknown }",
+      "description": ""
+    },
+    {
+      "name": "update:modelValue",
+      "payload": "value: Record<string, unknown>",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "payload: { key: string; value: unknown }",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "PropField",
+    "PropPanelProps",
+    "PropPanelEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

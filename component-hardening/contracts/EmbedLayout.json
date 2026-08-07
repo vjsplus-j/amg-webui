@@ -1,0 +1,58 @@
+{
+  "name": "EmbedLayout",
+  "family": "layout",
+  "package": "core",
+  "capability": "thin",
+  "maturity": "stable",
+  "batch": "B34R",
+  "api": {
+    "props": "required",
+    "emits": "optional",
+    "slots": "required",
+    "expose": "not-applicable",
+    "models": "not-applicable",
+    "instance": "not-applicable",
+    "service": "not-applicable",
+    "context": "internal"
+  },
+  "requiredExpose": [],
+  "requiredSlots": [
+    "default"
+  ],
+  "models": [],
+  "behavioralContract": {
+    "disabled": "Interactive actions no-op when disabled",
+    "unmount": "Listeners, timers, observers, and abort controllers must be released"
+  },
+  "states": [
+    "default",
+    "disabled"
+  ],
+  "keyboard": [],
+  "gates": {
+    "api-props": "mandatory",
+    "api-emits": "mandatory",
+    "api-slots": "mandatory",
+    "api-docs": "mandatory",
+    "package": "mandatory",
+    "ssr": "mandatory",
+    "cleanup": "mandatory",
+    "tokens": "mandatory",
+    "i18n": "mandatory",
+    "visual": "mandatory",
+    "a11y": "mandatory",
+    "keyboard": "optional",
+    "perf": "na",
+    "theme": "optional",
+    "rtl": "optional"
+  },
+  "apiFreeze": {
+    "version": "1",
+    "frozen": true,
+    "frozenAt": "2026-08-07T12:41:34.777Z"
+  },
+  "generated": true,
+  "generatedAt": "2026-08-07T09:57:01.150Z",
+  "promoteStable": true,
+  "updatedAt": "2026-08-07T12:41:34.777Z"
+}

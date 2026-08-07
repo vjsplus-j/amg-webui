@@ -1,0 +1,21 @@
+{
+  "id": "data",
+  "gates": {
+    "api-props": "mandatory",
+    "api-emits": "mandatory",
+    "api-slots": "mandatory",
+    "api-docs": "mandatory",
+    "package": "mandatory",
+    "ssr": "mandatory",
+    "cleanup": "mandatory",
+    "tokens": "mandatory",
+    "i18n": "mandatory",
+    "visual": "mandatory",
+    "a11y": "mandatory",
+    "keyboard": "mandatory",
+    "perf": "optional",
+    "theme": "optional",
+    "rtl": "optional",
+    "virtual": "optional"
+  }
+}

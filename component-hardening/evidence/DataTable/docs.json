@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/data-table.md",
+  "api": "generated/component-api/DataTable.json",
+  "demo": "example/demos/DataTable/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

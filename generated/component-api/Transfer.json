@@ -1,0 +1,120 @@
+{
+  "name": "Transfer",
+  "generatedAt": "2026-08-07T12:42:17.046Z",
+  "source": {
+    "types": "packages/components/form/Transfer/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "TransferItem[]",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "(string | number)[]",
+      "description": ""
+    },
+    {
+      "name": "filterable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "leftTitle",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "rightTitle",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "filterPlaceholder",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "filterDebounce",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "filterMethod",
+      "optional": true,
+      "type": "( query: string, item: TransferItem, direction: \"left\" | \"right\", ) => boolean",
+      "description": ""
+    },
+    {
+      "name": "virtual",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "filter-change",
+      "payload": "payload: { direction: \"left\" | \"right\"; query: string },",
+      "description": ""
+    },
+    {
+      "name": "reach-end",
+      "payload": "direction: \"left\" | \"right\"",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "TransferItem",
+    "TransferProps",
+    "TransferEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

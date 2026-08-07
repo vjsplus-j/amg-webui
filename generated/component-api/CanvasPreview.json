@@ -1,0 +1,169 @@
+{
+  "name": "CanvasPreview",
+  "generatedAt": "2026-08-07T12:39:09.876Z",
+  "source": {
+    "types": "packages/lowcode/ui/CanvasPreview/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "nodes",
+      "optional": true,
+      "type": "CanvasNodeData[]",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | null",
+      "description": ""
+    },
+    {
+      "name": "mode",
+      "optional": true,
+      "type": "\"free\" | \"grid\"",
+      "description": ""
+    },
+    {
+      "name": "scale",
+      "optional": true,
+      "type": "number | \"fit\"",
+      "description": ""
+    },
+    {
+      "name": "minScale",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "maxScale",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "canvasWidth",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "canvasHeight",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "columns",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "showGrid",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "interactive",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "emptyText",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "registry",
+      "optional": true,
+      "type": "ComponentRegistry",
+      "description": ""
+    },
+    {
+      "name": "renderMode",
+      "optional": true,
+      "type": "SchemaRenderMode",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "id: string | null",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "id: string | null",
+      "description": ""
+    },
+    {
+      "name": "select",
+      "payload": "id: string",
+      "description": ""
+    },
+    {
+      "name": "nodeActivate",
+      "payload": "node: CanvasNodeData, event: MouseEvent | KeyboardEvent,",
+      "description": ""
+    },
+    {
+      "name": "scaleChange",
+      "payload": "scale: number",
+      "description": ""
+    },
+    {
+      "name": "refresh",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "CanvasPreviewProps",
+    "CanvasPreviewEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

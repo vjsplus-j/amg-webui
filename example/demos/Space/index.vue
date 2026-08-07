@@ -2,15 +2,12 @@
 /**
  * Curated demo — aligned to Avatar gold standard (`demoCode.ts`).
  */
-import { computed } from 'vue'
+import {  } from 'vue'
 import { Button, Space } from '@amg-webui/core'
 import type { Size } from '@amg-webui/types'
 import { useLocale } from '@amg-webui/hooks'
-import { LocaleKeys } from '@amg-webui/locale'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoCode, demoSfc } from '../../components/demo/demoCode'
-import type { ApiRow, PropRow } from '../../components/demo/types'
 
 const { t } = useLocale()
 
@@ -107,55 +104,6 @@ const codeSlots = demoCode(
 
 /* ─── API tables ─── */
 
-const propRows = computed<PropRow[]>(() => [
-  {
-    name: 'size / gap',
-    description: t('example.doc.space.prop.size'),
-    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | string",
-    defaultValue: "'md'"
-  },
-  {
-    name: 'direction',
-    description: t('example.doc.space.prop.direction'),
-    type: "'horizontal' | 'vertical'",
-    defaultValue: "'horizontal'"
-  },
-  {
-    name: 'align / justify',
-    description: t('example.doc.space.prop.align'),
-    type: "'start' | 'end' | 'center' | 'baseline' | 'stretch' / 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly'",
-    defaultValue: '-'
-  },
-  {
-    name: 'wrap / block',
-    description: t('example.doc.space.prop.layout'),
-    type: 'boolean',
-    defaultValue: 'true / false'
-  },
-  {
-    name: 'ariaLabel',
-    description: t('example.doc.space.prop.ariaLabel'),
-    type: 'string',
-    defaultValue: '-'
-  }
-])
-
-const eventRows = computed<ApiRow[]>(() => [])
-
-const slotRows = computed<ApiRow[]>(() => [
-  {
-    name: 'default',
-    description: t('example.doc.space.slot.default'),
-    type: 'VNode',
-    defaultValue: '-'
-  },
-  {
-    name: 'separator',
-    description: t('example.doc.space.slot.separator'),
-    type: 'VNode',
-    defaultValue: '-'
-  }
-])
 </script>
 
 <template>
@@ -251,19 +199,7 @@ const slotRows = computed<ApiRow[]>(() => [
       </Space>
     </DemoBlock>
 
-    <!-- 4. API: Props → Events → Slots -->
-    <section class="vp-curated__api">
-      <h2 class="vp-curated__api-title">{{ t(LocaleKeys.exampleDoc.api) }}</h2>
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.props) }}</h3>
-      <PropsTable :rows="propRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.events) }}</h3>
-      <PropsTable :rows="eventRows" />
-
-      <h3 class="vp-curated__api-sub">{{ t(LocaleKeys.exampleDoc.slots) }}</h3>
-      <PropsTable :rows="slotRows" />
-    </section>
+    <!-- 4. API: Props → Events → Slots -->
   </div>
 </template>
 
@@ -273,25 +209,6 @@ const slotRows = computed<ApiRow[]>(() => [
   flex-direction: column;
   gap: var(--theme-section-gap);
 }
-
-.vp-curated__api-title {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub {
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-heading, 600);
-  color: var(--text-primary);
-}
-
-.vp-curated__api-sub:first-of-type {
-  margin-top: 0;
-}
-
 .vp-space-demo__row {
   display: flex;
   flex-direction: column;

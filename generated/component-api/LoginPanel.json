@@ -1,0 +1,88 @@
+{
+  "name": "LoginPanel",
+  "generatedAt": "2026-08-07T12:41:35.013Z",
+  "source": {
+    "types": "packages/components/form/LoginPanel/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "LoginFormModel",
+      "description": ""
+    },
+    {
+      "name": "rules",
+      "optional": true,
+      "type": "Record<string, FormRule | FormRule[]>",
+      "description": ""
+    },
+    {
+      "name": "showCaptcha",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showRemember",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showForgot",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "showRegister",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: LoginFormModel",
+      "description": ""
+    },
+    {
+      "name": "submit",
+      "payload": "value: LoginFormModel",
+      "description": ""
+    },
+    {
+      "name": "forgot-password",
+      "payload": "void",
+      "description": ""
+    },
+    {
+      "name": "register",
+      "payload": "void",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "LoginFormModel",
+    "LoginPanelProps",
+    "LoginPanelEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

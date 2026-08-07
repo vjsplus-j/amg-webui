@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "detail": "structural DOM + component entry",
+  "tests": [
+    "tests/unit/hardening/batch-b06-datetime-lowcode-pickers.spec.ts"
+  ],
+  "checks": [
+    "gate-checks.checkTopLevelDom"
+  ]
+}

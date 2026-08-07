@@ -1,0 +1,61 @@
+{
+  "name": "Layout",
+  "generatedAt": "2026-08-07T12:41:13.624Z",
+  "source": {
+    "types": "packages/components/core/Layout/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "hasSider",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "'horizontal' | 'vertical'",
+      "description": ""
+    },
+    {
+      "name": "shell",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "fill",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "as",
+      "optional": true,
+      "type": "'div' | 'section' | 'main'",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "LayoutContext",
+    "LayoutProps"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

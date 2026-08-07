@@ -1,0 +1,72 @@
+{
+  "name": "ButtonGroup",
+  "generatedAt": "2026-08-07T12:39:09.870Z",
+  "source": {
+    "types": "packages/components/core/ButtonGroup/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    },
+    {
+      "name": "severity",
+      "optional": true,
+      "type": "ButtonSeverity",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "optional": true,
+      "type": "ButtonVariant",
+      "description": ""
+    },
+    {
+      "name": "block",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "'horizontal' | 'vertical'",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ariaLabel",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    }
+  ],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "ButtonGroupProps"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

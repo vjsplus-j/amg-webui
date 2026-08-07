@@ -1362,6 +1362,7 @@ export default {
   'example.doc.errorModal.prop.base': 'تمرير class / style',
   'example.doc.errorModal.when': 'عرض توضيحي لـ ErrorModal.',
   'example.doc.events': 'أحداث',
+  'example.doc.expose': 'Expose',
   'example.doc.excelIo.demo.basic': 'الاستخدام الأساسي',
   'example.doc.excelIo.demo.basicDesc': 'حمّل ExcelIo لمعاينة السلوك الأساسي.',
   'example.doc.excelIo.prop.base': 'تمرير class / style',
@@ -2209,6 +2210,7 @@ export default {
   'example.doc.monthPicker.prop.valueFormat': 'صيغة الإخراج date / iso',
   'example.doc.monthPicker.sample.placeholder': 'اختر شهرًا',
   'example.doc.monthPicker.when': 'عرض توضيحي لـ MonthPicker.',
+  'example.doc.models': 'النماذج',
   'example.doc.motion.demo.badge': 'حركة مشتركة للشارة',
   'example.doc.motion.demo.desc': 'حركة مضيف على مستوى المكتبة: spin / bounce / heartbeat / blink / pulse / breathe / glow عبر `useMotion` + `vp-motion--*`. يعمل على Avatar وButton وTag وIcon وTypography. علامة Badge تدعم الحركة المشتركة (`pulse` يبقى الحلقة). الأولوية: spin > bounce > heartbeat > blink > pulse > breathe > glow.',
   'example.doc.motion.demo.title': 'حركة مشتركة',
@@ -4074,4 +4076,5 @@ export default {
   'example.doc.virtualTree.event.interaction': 'تفاعل',
   'example.doc.virtualTree.sample.toggleLoading': 'تبديل التحميل',
   'example.doc.richText.prop.sanitize': 'تعقيم HTML (مفعّل افتراضياً)',
+  'example.doc.apiMissing': "استخراج API غير موجود — شغّل hardening:extract-api",
 }

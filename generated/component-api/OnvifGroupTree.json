@@ -1,0 +1,117 @@
+{
+  "name": "OnvifGroupTree",
+  "generatedAt": "2026-08-07T12:46:30.692Z",
+  "source": {
+    "types": "packages/components/onvif/OnvifGroupTree/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "data",
+      "optional": true,
+      "type": "OnvifGroupNode[]",
+      "description": ""
+    },
+    {
+      "name": "options",
+      "optional": true,
+      "type": "OnvifGroupNode[]",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "Array<string | number>",
+      "description": ""
+    },
+    {
+      "name": "expandedKeys",
+      "optional": true,
+      "type": "Array<string | number>",
+      "description": ""
+    },
+    {
+      "name": "filter",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "checkStrategy",
+      "optional": true,
+      "type": "\"all\" | \"leaf\"",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: Array<string | number>",
+      "description": ""
+    },
+    {
+      "name": "update:expandedKeys",
+      "payload": "value: Array<string | number>",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: Array<string | number>",
+      "description": ""
+    },
+    {
+      "name": "check",
+      "payload": "node: OnvifGroupNode, checked: boolean",
+      "description": ""
+    },
+    {
+      "name": "expand",
+      "payload": "node: OnvifGroupNode, expanded: boolean",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "OnvifGroupNode",
+    "OnvifGroupTreeProps",
+    "OnvifGroupTreeEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

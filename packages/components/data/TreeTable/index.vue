@@ -64,7 +64,7 @@ const titleText = computed(() => props.title ?? t('component.tree-table.title'))
 </script>
 
 <template>
-  <div :class="['vp-tree-table', 'vp-tree-table__panel', { 'vp-tree-table--disabled': disabled }, props.class]" :style="style">
+  <div role="region" aria-label="TreeTable" :class="['vp-tree-table', 'vp-tree-table__panel', { 'vp-tree-table--disabled': disabled }, props.class]" :style="style">
     <div class="vp-tree-table__toolbar">
       <strong class="vp-tree-table__heading">{{ titleText }}</strong>
       <input v-model="keyword" class="vp-tree-table__filter" type="search" :placeholder="t('common.search')" />

@@ -1,0 +1,94 @@
+{
+  "name": "InputOTP",
+  "generatedAt": "2026-08-07T12:34:13.542Z",
+  "source": {
+    "types": "packages/components/form/InputOTP/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "id",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "length",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "mask",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "autofocus",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "type",
+      "optional": true,
+      "type": "'text' | 'number'",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "Size",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string",
+      "description": ""
+    },
+    {
+      "name": "complete",
+      "payload": "value: string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "InputOTPProps",
+    "InputOTPEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

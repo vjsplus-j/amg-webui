@@ -1,0 +1,85 @@
+{
+  "name": "Steps",
+  "generatedAt": "2026-08-07T12:41:56.164Z",
+  "source": {
+    "types": "packages/components/core/Steps/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "active",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "'horizontal' | 'vertical'",
+      "description": ""
+    },
+    {
+      "name": "clickable",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "trackId",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "telemetry",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:active",
+      "payload": "index: number",
+      "description": ""
+    },
+    {
+      "name": "update:modelValue",
+      "payload": "index: number",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "index: number",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "StepStatus",
+    "StepsProps",
+    "StepsEmits",
+    "StepItemProps",
+    "StepItemEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

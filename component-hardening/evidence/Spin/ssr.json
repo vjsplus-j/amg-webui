@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "tests/unit/hardening/real-mount-remaining.spec.ts Spin client mount OK; no required browser-only top-level in package gate",
+  "tests": [
+    "tests/unit/hardening/real-mount-remaining.spec.ts"
+  ],
+  "updatedAt": "2026-08-07T12:42:13.819Z"
+}

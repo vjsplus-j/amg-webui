@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
+import { createMockMediaAdapter, type MediaAdapter } from '@amg-webui/utils'
+import { ref, watch, computed, onBeforeUnmount } from 'vue'
 import { useLocale } from '@amg-webui/hooks'
 import type { GbsRegisterFormProps, GbsRegister } from './types'
 import './style.scss'
@@ -66,6 +67,11 @@ function reset() {
 function togglePassword() {
   revealPassword.value = !revealPassword.value
 }
+
+const mediaAdapter: MediaAdapter = createMockMediaAdapter()
+onBeforeUnmount(() => {
+  mediaAdapter.destroy()
+})
 </script>
 
 <template>

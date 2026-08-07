@@ -1,0 +1,33 @@
+{
+  "name": "MessageBox",
+  "generatedAt": "2026-08-07T12:41:35.024Z",
+  "source": {
+    "types": "packages/components/overlay/MessageBox/types.ts",
+    "vue": false
+  },
+  "props": [],
+  "events": [],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "MessageBoxMode",
+    "MessageBoxAction",
+    "MessageBoxCloseReason",
+    "MessageBoxAutofocus",
+    "MessageBoxInputType",
+    "MessageBoxConfirmResult",
+    "MessageBoxAlertResult",
+    "MessageBoxPromptResult",
+    "MessageBoxOptions",
+    "MessageBoxHostProps",
+    "MessageBoxHostEmits"
+  ],
+  "completeness": {
+    "props": false,
+    "emits": false,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}

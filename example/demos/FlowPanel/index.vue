@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { FlowPanel } from '@amg-webui/data'
 import { StatusTip } from '@amg-webui/core'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
-import PropsTable from '../../components/demo/PropsTable.vue'
 import { demoSfc } from '../../components/demo/demoCode'
-import type { PropRow } from '../../components/demo/types'
 import '../../components/demo/curatedDemo.scss'
 
 const { t } = useLocale()
@@ -42,12 +40,6 @@ const codeBasic = demoSfc({
     '  <FlowPanel v-model:current="current" :steps="steps" show-nav @prev="onPrev" @next="onNext" />'
   ]
 })
-
-const propRows = computed<PropRow[]>(() => [
-  { name: 'steps', type: 'FlowStep[]', description: t('example.doc.flowPanel.prop.steps') },
-  { name: 'current', type: 'string', description: t('example.doc.flowPanel.prop.current') },
-  { name: 'showNav', type: 'boolean', defaultValue: 'false', description: t('example.doc.flowPanel.prop.showNav') }
-])
 
 const stepIds = computed(() => steps.value.map((s) => s.id))
 
@@ -86,9 +78,7 @@ const goNext = () => {
         <StatusTip v-if="navLog" severity="info" :message="navLog" />
       </div>
     </DemoBlock>
-
-    <PropsTable :rows="propRows" />
-  </div>
+</div>
 </template>
 
 <style scoped>

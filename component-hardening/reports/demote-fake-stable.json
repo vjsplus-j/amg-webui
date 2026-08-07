@@ -1,0 +1,7 @@
+{
+  "generatedAt": "2026-08-07T10:50:57.481Z",
+  "demoted": 287,
+  "keptStable": 0,
+  "keptNames": [],
+  "note": "Stable requires evidence/<Name>/{a11y,visual,...}.json PASS|N/A for mandatory gates"
+}

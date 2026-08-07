@@ -1,0 +1,92 @@
+{
+  "name": "TimeSelect",
+  "family": "datetime",
+  "package": "form",
+  "profile": "form",
+  "gates": [
+    {
+      "id": "package",
+      "status": "PASS",
+      "detail": "vue=true types=true style=true"
+    },
+    {
+      "id": "api-props",
+      "status": "PASS",
+      "detail": "Props interface or defineProps"
+    },
+    {
+      "id": "api-emits",
+      "status": "PASS",
+      "detail": "Emits typed or none"
+    },
+    {
+      "id": "api-slots",
+      "status": "PASS",
+      "detail": "Slots contract present or N/A"
+    },
+    {
+      "id": "i18n",
+      "status": "PASS",
+      "detail": "no hardcoded CJK literals"
+    },
+    {
+      "id": "tokens",
+      "status": "PASS",
+      "detail": "no raw hex/rgb in component scss"
+    },
+    {
+      "id": "cleanup",
+      "status": "PASS",
+      "detail": "cleanup patterns found"
+    },
+    {
+      "id": "behavior",
+      "status": "PASS",
+      "detail": "option list select"
+    },
+    {
+      "id": "visual",
+      "status": "PASS",
+      "detail": "datetime family visual matrix"
+    },
+    {
+      "id": "a11y",
+      "status": "PASS",
+      "detail": "datetime family axe + combobox/grid roles"
+    },
+    {
+      "id": "keyboard",
+      "status": "PASS",
+      "detail": "shared engines open/nav/select"
+    },
+    {
+      "id": "theme",
+      "status": "N/A",
+      "detail": "optional"
+    },
+    {
+      "id": "rtl",
+      "status": "N/A",
+      "detail": "optional"
+    },
+    {
+      "id": "perf",
+      "status": "N/A",
+      "detail": "not applicable"
+    },
+    {
+      "id": "docs",
+      "status": "PASS",
+      "detail": "curated demo path + API extract"
+    },
+    {
+      "id": "ssr",
+      "status": "PASS",
+      "detail": "structural=PASS; evidence=structural DOM + component entry"
+    }
+  ],
+  "failCount": 0,
+  "status": "PASS",
+  "stable": true,
+  "verifiedAt": "2026-08-07T12:29:16.854Z"
+}

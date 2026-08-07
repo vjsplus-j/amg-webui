@@ -1,0 +1,94 @@
+{
+  "name": "Collapse",
+  "generatedAt": "2026-08-07T12:40:46.799Z",
+  "source": {
+    "types": "packages/components/core/Collapse/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "modelValue",
+      "optional": true,
+      "type": "string | string[]",
+      "description": ""
+    },
+    {
+      "name": "panels",
+      "optional": true,
+      "type": "CollapsePanel[]",
+      "description": ""
+    },
+    {
+      "name": "accordion",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "bordered",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "ghost",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:modelValue",
+      "payload": "value: string | string[]",
+      "description": ""
+    },
+    {
+      "name": "change",
+      "payload": "value: string | string[]",
+      "description": ""
+    },
+    {
+      "name": "expand",
+      "payload": "payload: { key: string; activeKeys: string | string[] }",
+      "description": ""
+    },
+    {
+      "name": "collapse",
+      "payload": "payload: { key: string; activeKeys: string | string[] }",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [
+    {
+      "name": "modelValue",
+      "description": "v-model"
+    }
+  ],
+  "publicTypes": [
+    "CollapsePanel",
+    "CollapseProps",
+    "CollapseEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": true
+  }
+}

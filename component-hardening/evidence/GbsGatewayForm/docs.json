@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "detail": "VitePress docs page + generated API extract",
+  "page": "docs/components/gbs-gateway-form.md",
+  "api": "generated/component-api/GbsGatewayForm.json",
+  "demo": "example/demos/GbsGatewayForm/index.vue",
+  "updatedAt": "2026-08-07T12:53:08.188Z"
+}

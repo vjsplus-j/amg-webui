@@ -1,0 +1,92 @@
+{
+  "name": "Statistic",
+  "generatedAt": "2026-08-07T12:45:59.837Z",
+  "source": {
+    "types": "packages/components/core/Statistic/types.ts",
+    "vue": true
+  },
+  "props": [
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "value",
+      "optional": false,
+      "type": "number | string",
+      "description": ""
+    },
+    {
+      "name": "precision",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    },
+    {
+      "name": "prefix",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "suffix",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "groupSeparator",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "decimalSeparator",
+      "optional": true,
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "trend",
+      "optional": true,
+      "type": "StatisticTrend",
+      "description": ""
+    },
+    {
+      "name": "animate",
+      "optional": true,
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "duration",
+      "optional": true,
+      "type": "number",
+      "description": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "finish",
+      "payload": "value: number | string",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "expose": [],
+  "models": [],
+  "publicTypes": [
+    "StatisticTrend",
+    "StatisticProps",
+    "StatisticEmits"
+  ],
+  "completeness": {
+    "props": true,
+    "emits": true,
+    "slots": false,
+    "expose": false,
+    "models": false
+  }
+}
