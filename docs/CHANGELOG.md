@@ -4,6 +4,68 @@
 
 ---
 
+## 2026-08-07 — 强类型 i18n：`satisfies` + CI 门禁
+
+- 八语种 `packages/locale/*/index.ts`：`as LocaleMessages` → `satisfies LocaleMessages`（缺 key 编译失败，兑现 I18N 契约）。
+- CI / `npm run ci`：`npm run extract:i18n` + `git diff --exit-code packages/locale/message-schema.ts`。
+
+---
+
+## 2026-08-07 — 一口气收口：码制进 industry · 成熟度 v3 · SSR 矩阵
+
+- Barcode / Qrcode / MatrixCode / OcrScan：物理层 + catalog + example zone 全部迁入 `industry`（**47**）；base **240**。
+- 成熟度启发式 v3：`curated-demo` / `docs-stub` / `industry-layer` / `symbology-util` / `v01-subset`；`validate:maturity` · `validate:v01` 入 CI；RELEASE Step 3 勾选。
+- 生产 SSR 矩阵：`ssr-render-matrix.spec.ts`（`renderToString` + MessageBox SSR stub）；`test:ssr` 入 CI；Nuxt consumer 真 SSR（无 ClientOnly Button）+ `.output` 断言。
+- Gallery / Catalog / DemoSafeHost 同时 glob `base` + `industry`。
+
+---
+
+## 2026-08-07 — 剩余债一口气收口：PropPanel · E2E · CSS side-entry
+
+- PropPanel：显式 `fields` 时以独立属性编辑器渲染（不再误进「选中节点」空态）。
+- E2E：`tests/e2e/floating-teleport.spec.ts` — Select / DatePicker 面板 Teleport 到 `body` + `position:fixed` + Escape。
+- 逐组件 CSS side-entry：`build/compile-component-styles.mjs`（sass）→ `dist/es/components/{base|industry}/<Name>/style.css`；`exports` 增加 `amg-webui/<kebab>/style.css`；`npm run build:styles` / `validate:styles`；接入 `build:lib` / `build:ondemand`。
+- 文档：`ENGINEERING.md` · `RELEASE_0.1.md` Step 4 勾选 side-entry；CI 增加 `validate:styles`。
+
+---
+
+## 2026-08-07 — industry：catalog 行业件全部迁出 base
+
+- 一次性迁完剩余 **27** 件：`Vcr*` · `Video*` · `PTZControl` · `AudioTalk` · `SplitVideoWall` · `*404`。
+- 当时 `industry` **43** 件；码制 4 件续迁见上条（现 **47**）。
+- demos / IndustryPage / 相关单测 / entry·exports·catalog 同步；kebab 路径稳定指向 `dist/es/components/industry/...`。
+
+---
+
+## 2026-08-07 — industry：Onvif* 迁出 base
+
+- `Onvif*` 八件迁入 `packages/components/industry/`（与 `Gbs*` 同层）。
+- kebab 子路径保持（`amg-webui/onvif-*` → `dist/es/components/industry/...`）。
+- example demos / IndustryPage / 相关单测导入同步。
+- **未完成**：VCR / Video / PTZ / AudioTalk / 404 仍在 base。
+
+---
+
+## 2026-08-06 — Overlay 浮动统一 + industry 首批迁出（深度推进）
+
+- `usePopover` / Teleport floating pickers；Popover/Tooltip/Popconfirm 经 `useOverlay` 收口（见上条细节）。
+- 新增 `packages/components/industry/` 层；`Gbs*` 八件从 `base` 迁出；`generate:entry` / ondemand / exports / catalog / create:component 同步。
+- 根 kebab（`amg-webui/gbs-*`）保持；新增子路径 `amg-webui/components/industry`。
+- 单测：`floating-teleport-overflow`（Select/DatePicker 在 overflow:hidden 宿主外 Teleport）。
+- **未完成**：Onvif / VCR / Video / 404 等仍在 base；深 E2E；逐组件 CSS side-entry。
+
+---
+
+## 2026-08-06 — Overlay / floating 面板统一（深度推进，未宣称完成）
+
+- `usePopover` 改为 floating + 非模态 `useOverlay`，组件自行 `Teleport` 并绑定 `panelStyle`。
+- Select / Cascader / TreeSelect / Date* / Time* / Color / Month / Year / TimeSelect / AutoComplete / Mention / Dropdown / TabsNav more 菜单统一 Teleport 定位；去掉面板 `position: absolute` 相对触发器布局。
+- Popover / Tooltip / Popconfirm 外点与 Escape 收口到 `useOverlay`（不再手绑 document 监听）。
+- 单测：`overlay-core` 补 outside-click + ignore；`vue-tsc` 通过。
+- **未完成**：行业组件迁出 base、深 E2E、逐组件 CSS side-entry；Overlay 仍属内核加深，不作「完全解决」。
+
+---
+
 ## 2026-08-05 — Skill Runtime SR1 / SR2（experimental）
 
 - 新增独立可选 `packages/skill`，根 `amg-webui` 入口不导出；公开子路径为 `amg-webui/skill` 与 `amg-webui/skill/core`。

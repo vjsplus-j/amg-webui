@@ -27,16 +27,14 @@
   &__clear { position: absolute; inset-inline-end: var(--height-md); top: 50%; transform: translateY(-50%); display: inline-flex; padding: 0; border: 0; background: var(--surface-1); color: var(--text-secondary); cursor: pointer; }
 
   &__panel {
-    position: absolute;
-    z-index: var(--z-popover, 1000);
-    top: calc(100% + var(--spacing-xs));
-    inset-inline-start: 0;
-    min-width: 100%;
+    margin: 0;
+    min-width: 12rem;
     padding: var(--spacing-sm);
     border: 1px solid var(--ds-border);
     border-radius: var(--theme-card-radius, var(--border-radius-md));
     background: var(--surface-1);
     box-shadow: var(--shadow-md);
+    box-sizing: border-box;
   }
 
   &__columns { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(var(--height-lg), 1fr); gap: var(--spacing-xs); }

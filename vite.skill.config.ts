@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
+import { publicizePaths, isPublishExternal } from './build/shared.mjs'
 
 const root = __dirname
 
@@ -31,12 +32,12 @@ export default defineConfig({
     emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {
-      external: ['vue'],
+      external: isPublishExternal,
       output: {
         chunkFileNames: 'chunks/[name]-[hash].js',
+        paths: publicizePaths,
         globals: { vue: 'Vue' }
       }
     }
   }
 })
-

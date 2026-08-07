@@ -11,7 +11,6 @@ import Icon from '../Icon/index.vue'
 import { useLocale, usePopover } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import { trackEmit } from '@amg-webui/telemetry'
-import { getFixedPanelStyle } from '@amg-webui/utils/domPanel'
 import type { TabsNavItem } from './types'
 import './style.scss'
 
@@ -51,7 +50,6 @@ const scrollRef = ref<HTMLElement | null>(null)
 const listRef = ref<HTMLElement | null>(null)
 const moreTriggerRef = ref<HTMLElement | null>(null)
 const morePanelRef = ref<HTMLElement | null>(null)
-const morePanelStyle = ref<Record<string, string>>({})
 
 const overflowing = ref(false)
 const canScrollLeft = ref(false)
@@ -64,8 +62,9 @@ const {
   triggerRef: morePopoverTrigger,
   panelRef: morePopoverPanel,
   toggle: toggleMore,
-  close: closeMore
-} = usePopover()
+  close: closeMore,
+  panelStyle: morePanelStyle
+} = usePopover({ matchTriggerWidth: false, placement: 'bottom-end' })
 
 watch(moreTriggerRef, (el) => {
   morePopoverTrigger.value = el
@@ -208,35 +207,10 @@ function scrollActiveIntoView() {
   }
 }
 
-function syncMorePanel() {
-  if (!moreTriggerRef.value) return
-  morePanelStyle.value = getFixedPanelStyle(moreTriggerRef.value, {
-    align: 'end',
-    preferredWidth: 160
-  })
-}
-
 function onMoreToggle() {
   if (props.disabled) return
   toggleMore()
-  if (moreOpen.value) {
-    void nextTick(() => {
-      syncMorePanel()
-      window.addEventListener('scroll', syncMorePanel, true)
-      window.addEventListener('resize', syncMorePanel)
-    })
-  } else {
-    window.removeEventListener('scroll', syncMorePanel, true)
-    window.removeEventListener('resize', syncMorePanel)
-  }
 }
-
-watch(moreOpen, (open) => {
-  if (!open) {
-    window.removeEventListener('scroll', syncMorePanel, true)
-    window.removeEventListener('resize', syncMorePanel)
-  }
-})
 
 watch(
   () => [props.items, props.modelValue, props.overflow] as const,
@@ -265,8 +239,6 @@ onMounted(() => {
 onUnmounted(() => {
   ro?.disconnect()
   window.removeEventListener('resize', updateOverflowState)
-  window.removeEventListener('scroll', syncMorePanel, true)
-  window.removeEventListener('resize', syncMorePanel)
 })
 </script>
 

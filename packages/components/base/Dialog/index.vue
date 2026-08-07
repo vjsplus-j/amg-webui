@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { computed, ref, watch, onMounted, onUnmounted } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
+import { computed, ref, watch } from 'vue'
+import { useLocale, useOverlay } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
-import { isClient } from '@amg-webui/utils/env'
 import Icon from '../Icon/index.vue'
 import type { DialogProps, DialogEmits } from './types'
 import './style.scss'
@@ -21,8 +20,23 @@ const props = withDefaults(defineProps<DialogProps>(), {
 const emit = defineEmits<DialogEmits>()
 const { t } = useLocale()
 
+const panelRef = ref<HTMLElement | null>(null)
+const visibleRef = computed(() => props.visible)
+const modalRef = computed(() => props.modal)
+const dismissibleRef = computed(() => props.dismissible)
 const isMaximized = ref(false)
 const isMinimized = ref(false)
+
+const { zIndex } = useOverlay({
+  visible: visibleRef,
+  container: panelRef,
+  modal: modalRef,
+  trapFocus: modalRef,
+  closeOnEscape: dismissibleRef,
+  onClose: (reason) => {
+    if (reason === 'escape') closeDialog(new Event('keydown'))
+  }
+})
 
 const closeLabel = computed(() => t(LocaleKeys.common.close))
 const maximizeLabel = computed(() =>
@@ -39,6 +53,10 @@ const SIZE_MAP: Record<string, string> = {
   xl: '48rem',
   full: 'min(96vw, 72rem)'
 }
+
+const overlayStyle = computed(() => ({
+  zIndex: String(zIndex.value)
+}))
 
 const panelStyle = computed(() => {
   const style: Record<string, string> = { ...(props.style ?? {}) }
@@ -72,12 +90,6 @@ function handleOverlayClick(event: MouseEvent) {
   }
 }
 
-function handleKeydown(event: KeyboardEvent) {
-  if (props.visible && props.dismissible && event.key === 'Escape') {
-    closeDialog(event)
-  }
-}
-
 function toggleMaximize() {
   isMaximized.value = !isMaximized.value
   if (isMaximized.value) isMinimized.value = false
@@ -89,15 +101,9 @@ function toggleMinimize() {
   if (isMinimized.value) isMaximized.value = false
 }
 
-function lockScroll(lock: boolean) {
-  if (!isClient || !props.modal) return
-  document.documentElement.style.overflow = lock ? 'hidden' : ''
-}
-
 watch(
   () => props.visible,
   (val) => {
-    lockScroll(val)
     if (val) {
       emit('show', new Event('show'))
     } else {
@@ -108,16 +114,6 @@ watch(
   },
   { immediate: true }
 )
-
-onMounted(() => {
-  if (!isClient) return
-  document.addEventListener('keydown', handleKeydown)
-})
-onUnmounted(() => {
-  if (!isClient) return
-  document.removeEventListener('keydown', handleKeydown)
-  lockScroll(false)
-})
 </script>
 
 <template>
@@ -132,10 +128,12 @@ onUnmounted(() => {
             'vp-dialog-overlay--minimized': isMinimized
           }
         ]"
+        :style="overlayStyle"
         role="presentation"
         @click="handleOverlayClick"
       >
         <div
+          ref="panelRef"
           :class="[
             'vp-dialog',
             `vp-dialog--${size}`,

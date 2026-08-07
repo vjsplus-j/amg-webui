@@ -1,4 +1,4 @@
-import { mount } from "@vue/test-utils";
+import { flushPromises, mount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
 import FixedLayout from "../../../packages/components/base/FixedLayout/index.vue";
 import EmbedLayout from "../../../packages/components/base/EmbedLayout/index.vue";
@@ -7,8 +7,8 @@ import MergeTable from "../../../packages/components/base/MergeTable/index.vue";
 import CanvasPreview from "../../../packages/components/base/CanvasPreview/index.vue";
 import MonthPicker from "../../../packages/components/base/MonthPicker/index.vue";
 import YearPicker from "../../../packages/components/base/YearPicker/index.vue";
-import GbsSignMonitor from "../../../packages/components/base/GbsSignMonitor/index.vue";
-import VcrStorageDashboard from "../../../packages/components/base/VcrStorageDashboard/index.vue";
+import GbsSignMonitor from "../../../packages/components/industry/GbsSignMonitor/index.vue";
+import VcrStorageDashboard from "../../../packages/components/industry/VcrStorageDashboard/index.vue";
 
 const node = (id: string, locked = false) => ({
   id,
@@ -126,12 +126,14 @@ describe("lowest beta score 61-63 wave behavior", () => {
         max: "2026-08-01",
         clearable: true,
       },
+      attachTo: document.body,
     });
     await wrapper.find(".vp-monthpicker__trigger").trigger("click");
-    expect(
-      wrapper.find('[data-month="0"]').attributes("disabled"),
-    ).toBeDefined();
-    await wrapper.find('[data-month="6"]').trigger("click");
+    const jan = document.body.querySelector<HTMLElement>('[data-month="0"]');
+    const jul = document.body.querySelector<HTMLElement>('[data-month="6"]');
+    expect(jan?.hasAttribute("disabled")).toBe(true);
+    jul?.click();
+    await flushPromises();
     expect(wrapper.emitted("update:modelValue")?.[0]).toEqual(["2026-07-01"]);
     await wrapper.find(".vp-monthpicker__clear").trigger("click");
     expect(wrapper.emitted("clear")).toHaveLength(1);
@@ -141,14 +143,16 @@ describe("lowest beta score 61-63 wave behavior", () => {
   it("enforces YearPicker limits and keyboard selection", async () => {
     const wrapper = mount(YearPicker, {
       props: { modelValue: 2026, min: 2025, max: 2027, yearRange: 6 },
+      attachTo: document.body,
     });
     await wrapper.find(".vp-yearpicker__trigger").trigger("click");
-    expect(
-      wrapper.find('[data-year="2024"]').attributes("disabled"),
-    ).toBeDefined();
-    await wrapper
-      .find('[data-year="2027"]')
-      .trigger("keydown", { key: "Enter" });
+    const y2024 = document.body.querySelector<HTMLElement>('[data-year="2024"]');
+    const y2027 = document.body.querySelector<HTMLElement>('[data-year="2027"]');
+    expect(y2024?.hasAttribute("disabled")).toBe(true);
+    y2027?.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "Enter", bubbles: true }),
+    );
+    await flushPromises();
     expect(wrapper.emitted("update:modelValue")?.[0]).toEqual([2027]);
     wrapper.unmount();
   });

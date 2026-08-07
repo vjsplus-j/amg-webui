@@ -12,23 +12,32 @@
 | 命令 | 作用 |
 |------|------|
 | `npm run create:component -- base Foo` | 一键新建 base 组件骨架（`vp-`、types、style、桩） |
+| `npm run create:component -- industry Foo` | 一键新建 industry 行业套件骨架 |
 | `npm run create:component -- business bar` | 一键新建 business 模块骨架 |
 | `npm run generate:entry` | 扫描 `packages/components/**` 自动生成 / 刷新 `index.ts` 导出 |
 | `npm run generate:locale-types` | 从 zh-CN 生成 `LocaleKey` / `LocaleMessages`（`message-schema.ts`） |
-| `npm run extract:i18n` | 重生 schema + 校验全部语种 key 对齐 + `LocaleKeys` 叶子 ⊆ zh-CN（缺 key / 不对齐 = 失败） |
+| `npm run extract:i18n` | 重生 schema + 校验全部语种 key 对齐 + `LocaleKeys` 叶子 ⊆ zh-CN（缺 key / 不对齐 = 失败；**CI 已门禁** + `message-schema.ts` 无 diff） |
 | `npm run generate:icons` | 刷新图标目录 / 解析表 |
-| `npm run validate:catalog` | 校验 `example/component-catalog.json` ↔ base 目录覆盖 |
-| `npm run score:maturity` | 组件成熟度评分（**能力档** thin/form/interaction/composite + 深度 stub→ready；目录数≠成熟度） |
+| `npm run validate:catalog` | 校验 `example/component-catalog.json` ↔ base+industry 目录覆盖 |
+| `npm run validate:styles` | 校验每个 leaf 存在稳定 `dist/es/components/**/style.css` side-entry |
+| `npm run validate:maturity` | 成熟度 JSON 与重生结果一致（v3；`thinFormGaps` 空） |
+| `npm run validate:v01` | v0.1 子集 ↔ catalog ↔ maturity；Gallery「承诺」徽章仅子集 |
+| `npm run score:maturity` | 组件成熟度评分 v3（能力档 + 深度；目录数≠成熟度） |
+| `npm run test:ssr` | SSR env · import · `renderToString` 矩阵 |
 | `npm run sync:example-zones` | 同步 example 专区侧栏 / 区域元数据 |
 | `npm run generate:vitepress-api` | 根据 `types.ts` 生成 / 刷新 docs 组件 API stub |
 | `node scripts/classify-mvp.mjs` | 深化波次清单 → `scripts/.component-waves.json` |
 | `node scripts/check-coverage.mjs` | catalog / base 目录覆盖核对 |
-| `npm run build` / `build:lib` | **full**：主库 ESM+UMD+css+dts → `dist/`，再编 skill + theme |
-| `npm run build:ondemand` | **on-demand**：多入口 ESM → `dist/es/**`（组件 / 业务域可 tree-shake） |
+| `npm run build` / `build:lib` | **full**：主库 → runtime → on-demand → **component styles** → skill → theme → `generate:exports` |
+| `npm run build:runtime` | **runtime**：`security` / `telemetry` / `lowcode` / `icons` / `hooks` / `utils` / `locale` / … → `dist/<pkg>/` |
+| `npm run build:ondemand` | **on-demand**：多入口 ESM → `dist/es/**`；并打 leaf CSS side-entry |
+| `npm run build:styles` | **styles**：sass 编译 leaf `style.css` → `dist/es/components/{base\|industry}/<Name>/style.css` |
 | `npm run build:themes` | **multi-theme**：六品牌 CSS → `dist/themes/<brand>.css` |
 | `npm run build:dts` | **dts**：仅刷新类型 → `dist/**/*.d.ts`（不重打 JS/CSS） |
 | `npm run build:skill` | 仅构建独立 Skill Runtime → `dist/skill/`（ESM + CJS + `.d.ts`） |
 | `npm run build:theme` | 仅构建主题运行时包 → `dist/theme/`（`index` / `core` + `style.css`） |
+| `npm run generate:exports` | 重写 `package.json` `exports` / `files`（**仅 dist**） |
+| `npm run test:consumers` | `npm pack` → 安装进 `tests/consumer-{vite,webpack,nuxt}` 并 `build` |
 | `npm run build:example` | example 本地冒烟 → `example-dist/`（**不上线**） |
 | `npm run docs:dev` / `docs:build` | 官方文档站本地编写 / **可部署**构建 |
 | `npm run test` | Vitest |
@@ -53,9 +62,13 @@
 | `@amg-webui/theme/core` | `packages/theme/core.ts`（无 DOM Core） |
 | `@amg-webui/hooks` · `locale` · `icons` · … | 对应 `packages/*` |
 
-`package.json` `exports` 同步暴露：`.` · `./telemetry` · `./security` · `./lowcode` · `./skill` · `./skill/core` · `./theme` · `./theme/core` · `./theme/style.css` · `./icons` · `./components/base` · `./components/business` · `./es/*` · `./themes/*`。
+`package.json` `exports`（由 `generate:exports` 维护）暴露：`.` · kebab 组件（`./button`…）· `./telemetry` · `./security` · `./lowcode` · `./skill` · `./theme` · `./icons` · `./hooks` · `./utils`（及显式深路径）· `./locale` · `./components/base` · `./components/business` · `./es/*` · `./themes/*`。
 
-Skill / Theme 的 subpath 指向 `dist/skill/` · `dist/theme/` 独立产物；根入口 `packages/index.ts` **禁止** re-export Skill。Theme 根入口可再导出服务，但 SSR / 微前端应优先 `theme/core`。
+**全部公共子路径必须指向 `dist/**` 编译产物**。禁止再把 `packages/**/*.ts` 写进 `exports`。`files` 仅含 `dist` + 合同文档。On-demand / runtime 构建把内部 `@amg-webui/*` 改写为 `amg-webui/*`。
+
+Consumer 门禁：`tests/consumer-vite` · `consumer-webpack` · `consumer-nuxt` + `npm run test:consumers`（CI）。
+
+Skill / Theme 的 subpath 指向 `dist/skill/` · `dist/theme/`；根入口 **禁止** re-export Skill。
 
 ---
 
@@ -65,20 +78,23 @@ Skill / Theme 的 subpath 指向 `dist/skill/` · `dist/theme/` 独立产物；�
 
 | Mode | npm | 可观测产物 | 配置 / 脚本 |
 |------|-----|------------|-------------|
-| **full** | `build:lib` | `dist/amg-webui.{js,umd.cjs}` · `style.css` · types · `dist/skill/` · `dist/theme/` | `vite.config.ts` → skill → theme |
-| **on-demand** | `build:ondemand` | `dist/es/components/base/<Name>/…` · `dist/es/components/business/<domain>/…`（无 UMD 胖包） | `vite.ondemand.config.ts` |
-| **multi-theme** | `build:themes` | `dist/themes/{mercedes,linear,porsche,lamborghini,ferrari,apple}.css`（与 `dist/theme/` JS 运行时分离） | `vite.themes.config.ts` |
-| **dts** | `build:dts` | 刷新 `dist/**/*.d.ts`；不强制重编 JS/CSS | `build/emit-dts.mjs` + `tsconfig.dts.json` |
+| **full** | `build:lib` | 主库 · runtime 分包 · `dist/es/**` · skill · theme · 刷新 exports | main → runtime → ondemand → skill → theme → generate:exports |
+| **runtime** | `build:runtime` | `dist/security` · `telemetry` · `lowcode` · `hooks` · `utils` · … | `vite.runtime.config.ts` |
+| **on-demand** | `build:ondemand` | `dist/es/components/base/<Name>/…`；import 为 `amg-webui/*` | `vite.ondemand.config.ts` |
+| **multi-theme** | `build:themes` | `dist/themes/<brand>.css` | `vite.themes.config.ts` |
+| **dts** | `build:dts` | 刷新 `dist/**/*.d.ts` | `build/emit-dts.mjs` |
 | **skill** | `build:skill` | `dist/skill/` | `vite.skill.config.ts` |
 | **theme** | `build:theme` | `dist/theme/` | `vite.theme.config.ts` |
 
 验收冒烟：
 
-1. `node build/index.mjs on-demand` → 存在例如 `dist/es/components/base/Button/index.js`
-2. `node build/index.mjs multi-theme` → 六品牌 CSS，内容/体积随品牌不同
-3. `node build/index.mjs dts` → 更新 d.ts
-4. `node build/index.mjs nope` → exit ≠ 0 + usage
-5. `build:lib` 行为不回归
+1. `node build/index.mjs on-demand` → `dist/es/components/base/Button/index.js`，且无残留 `@amg-webui/`
+2. `node build/index.mjs runtime` → `dist/security/index.js` · `dist/utils/env.js`
+3. `node build/index.mjs multi-theme` → 六品牌 CSS
+4. `node build/index.mjs dts` → 更新 d.ts
+5. `node build/index.mjs nope` → exit ≠ 0 + usage
+6. `build:lib` + `test:consumers` 行为不回归
+7. `exports["./security"].import` 以 `./dist/` 开头，不以 `./packages/` 开头
 
 一次性 `patch-*` 类脚本不得冒充长期构建入口；模式差异必须是**真实产物差异**，禁止只改注释。
 
@@ -141,15 +157,17 @@ scripts/
 
 ---
 
-## 组件成熟度评分契约（`score:maturity` v2）
+## 组件成熟度评分契约（`score:maturity` v3）
 
-产物：`example/component-maturity.json`（example 调试用启发式，**非**对外 1.0 宣称）。
+产物：`example/component-maturity.json`（example 调试用启发式，**非**对外 1.0 宣称）。  
+门禁：`npm run validate:maturity`（重生比对、忽略 `generatedAt`；`thinFormGaps` 必须为空；契约 version ≥ 3）。
 
 | 轴 | 含义 |
 |----|------|
-| `total` | **仅目录库存**（base 文件夹数）。禁止把它读成「已成熟组件数」或 1.0 就绪度。 |
+| `total` | **仅目录库存**（base+industry）。禁止把它读成「已成熟组件数」或 1.0 就绪度。 |
 | `byCapability` | **主轴**：`thin`（薄封装）· `form`（FormItem 自动接线）· `interaction`（权限/确认/节流等完整交互）· `composite`（复合面） |
 | `summary` / `level` | **深度副轴**：`stub` → `shell` → `beta` → `ready`（`ready` = 该能力档基线，**≠** 库整体 1.0） |
+| v3 信号 | `curated-demo` · `docs-stub` · `industry-layer` · `symbology-util` · `v01-subset`（加权，不单独刷 ready） |
 
 硬规则：
 
@@ -157,5 +175,6 @@ scripts/
 - 原生文本控件还须 `useNativeInputAttrs`（`inheritAttrs: false` + 落到真实 input）才可进 form 档 `ready`。
 - `thin` **永不**标 `ready`；行数/props 堆高不能单独刷成熟度。
 - 强组件参照：`Button`（interaction）；表单参照：已接线的 `InputText`（form）。
+- v0.1 子集与 catalog / maturity 对齐：`npm run validate:v01`（Gallery / DocPage / Catalog 仅对子集显示 v0.1「承诺」徽章）。
 
 控制台会打印 `byCapability` 与 `thinFormGaps`。Gallery 仍可按 depth level 筛选；读报告时先看能力档。

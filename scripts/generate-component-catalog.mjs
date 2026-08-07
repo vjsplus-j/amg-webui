@@ -7,11 +7,17 @@ import path from 'node:path'
 
 const root = process.cwd()
 const baseDir = path.join(root, 'packages', 'components', 'base')
-const names = fs
-  .readdirSync(baseDir, { withFileTypes: true })
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name)
-  .sort()
+const industryDir = path.join(root, 'packages', 'components', 'industry')
+
+function dirsOf(dir) {
+  if (!fs.existsSync(dir)) return []
+  return fs
+    .readdirSync(dir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+}
+
+const names = [...dirsOf(baseDir), ...dirsOf(industryDir)].sort()
 
 function toKebab(name) {
   return name
@@ -250,7 +256,6 @@ const cats = {
   ]),
   other: new Set([
     'AudioPlay',
-    'Barcode',
     'BrowserDetect',
     'CanvasIo',
     'CanvasLayer',
@@ -270,13 +275,10 @@ const cats = {
     'FreeLayoutDrag',
     'GridLayoutDrag',
     'ImageCrop',
-    'MatrixCode',
-    'OcrScan',
     'PdfPreview',
     'Preview',
     'Print',
     'PropPanel',
-    'Qrcode',
     'TablePrint',
     'TelemetryProvider',
     'ThemeProvider',
@@ -285,6 +287,7 @@ const cats = {
   ]),
   industry: new Set([
     'AudioTalk',
+    'Barcode',
     'Business404',
     'Cartoon404',
     'Doodle404',
@@ -298,6 +301,8 @@ const cats = {
     'GbsTimeSync',
     'Ink404',
     'Machine404',
+    'MatrixCode',
+    'OcrScan',
     'OnvifAlarmPanel',
     'OnvifChannelManage',
     'OnvifDeviceList',
@@ -309,6 +314,7 @@ const cats = {
     'PTZControl',
     'Pixel404',
     'Plant404',
+    'Qrcode',
     'Simple404',
     'Space404',
     'SplitVideoWall',

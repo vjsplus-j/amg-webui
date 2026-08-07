@@ -51,12 +51,7 @@
 }
 
 .vp-mention__popup {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  margin: var(--spacing-xs) 0 0;
+  margin: 0;
   padding: var(--spacing-xs);
   list-style: none;
   background: var(--surface-1);
@@ -66,6 +61,7 @@
   max-height: calc(var(--height-md) * 6);
   overflow-y: auto;
   box-sizing: border-box;
+  min-width: 12rem;
 }
 
 .vp-mention__option {

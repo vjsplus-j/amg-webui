@@ -3,7 +3,6 @@ import { computed, nextTick, onUnmounted, ref, watch } from 'vue'
 import { useLocale, usePopover, useFocusTrap } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import { KEYS } from '@amg-webui/utils/keyboard'
-import { getWindow } from '@amg-webui/utils/env'
 import { getFixedPanelStyle } from '@amg-webui/utils/domPanel'
 import { useNavSelection, type NavItem, isNavItemActive } from '@amg-webui/utils/nav'
 import Icon from '../Icon/index.vue'
@@ -34,11 +33,12 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useLocale()
-const { isOpen, triggerRef, panelRef, toggle, close } = usePopover()
+const { isOpen, triggerRef, panelRef, toggle, close, panelStyle } = usePopover({
+  matchTriggerWidth: false
+})
 const { selectItem } = useNavSelection(props, emit, 'Dropdown')
 useFocusTrap(panelRef, isOpen, { restoreFocus: true })
 
-const panelStyle = ref<Record<string, string>>({})
 const activeIndex = ref(-1)
 const itemRefs = ref<(HTMLButtonElement | null)[]>([])
 const openSubIndex = ref<number | null>(null)
@@ -86,22 +86,10 @@ const enabledIndexes = computed(() =>
     .map(({ i }) => i)
 )
 
-function syncPanel() {
-  if (!triggerRef.value) return
-  panelStyle.value = getFixedPanelStyle(triggerRef.value, { align: 'start' })
-}
-
 function syncSubPanel(index: number) {
   const el = itemRefs.value[index]
   if (!el) return
   subPanelStyle.value = getFixedPanelStyle(el, { placement: 'right-start' })
-}
-
-function teardownPos() {
-  const win = getWindow()
-  if (!win) return
-  win.removeEventListener('scroll', syncPanel, true)
-  win.removeEventListener('resize', syncPanel)
 }
 
 function clearSubCloseTimer() {
@@ -226,12 +214,6 @@ watch(isOpen, (open) => {
   emit('openChange', open)
   if (open) {
     void nextTick(() => {
-      syncPanel()
-      const win = getWindow()
-      if (win) {
-        win.addEventListener('scroll', syncPanel, true)
-        win.addEventListener('resize', syncPanel)
-      }
       const active = props.items.findIndex(
         (i) => isSelectable(i) && isNavItemActive(i, props.modelValue)
       )
@@ -239,7 +221,6 @@ watch(isOpen, (open) => {
       else focusFirst()
     })
   } else {
-    teardownPos()
     activeIndex.value = -1
     openSubIndex.value = null
     clearSubCloseTimer()
@@ -247,7 +228,6 @@ watch(isOpen, (open) => {
 })
 
 onUnmounted(() => {
-  teardownPos()
   clearSubCloseTimer()
 })
 </script>

@@ -2,8 +2,6 @@
 import { ref } from 'vue'
 import {
   Card,
-  Barcode,
-  Qrcode,
   Clipboard,
   ImageCrop,
   Print,
@@ -28,8 +26,6 @@ const clip = ref('AMG-WebUI')
   >
     <template #featured>
       <div class="featured-grid">
-        <Qrcode :model-value="clip" />
-        <Barcode :model-value="clip" />
         <Clipboard v-model="clip" />
         <ImageCrop />
         <Print />

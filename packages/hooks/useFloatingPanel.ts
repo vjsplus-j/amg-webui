@@ -8,7 +8,7 @@ import { getWindow } from "@amg-webui/utils/env";
 export function useFloatingPanel(
   trigger: Ref<HTMLElement | null | undefined>,
   panel: Ref<HTMLElement | null | undefined>,
-  visible: Ref<boolean>,
+  visible: Readonly<Ref<boolean>>,
   placement: Ref<FloatingPlacement>,
   options?: {
     offset?: Ref<number>;

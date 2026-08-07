@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<YearPickerProps>(), {
 });
 const emit = defineEmits<YearPickerEmits>();
 const { t } = useLocale();
-const { isOpen, triggerRef, panelRef, toggle, close, open } = usePopover();
+const { isOpen, triggerRef, panelRef, toggle, close, open, panelStyle } = usePopover();
 function yearOf(value: string | Date | number | null | undefined) {
   if (value == null || value === "") return null;
   if (typeof value === "number")
@@ -161,53 +161,56 @@ function gridKeydown(event: KeyboardEvent, year: number) {
     >
       ×
     </button>
-    <div
-      v-if="isOpen"
-      ref="panelRef"
-      class="vp-yearpicker__panel"
-      role="dialog"
-      :aria-label="ariaLabel ?? placeholder"
-    >
-      <div class="vp-yearpicker__header">
-        <strong>{{ years[0] }} – {{ years.at(-1) }}</strong>
-        <div class="vp-yearpicker__nav">
+    <Teleport to="body">
+      <div
+        v-if="isOpen"
+        ref="panelRef"
+        class="vp-yearpicker__panel"
+        role="dialog"
+        :aria-label="ariaLabel ?? placeholder"
+        :style="panelStyle"
+      >
+        <div class="vp-yearpicker__header">
+          <strong>{{ years[0] }} – {{ years.at(-1) }}</strong>
+          <div class="vp-yearpicker__nav">
+            <button
+              type="button"
+              :disabled="minYear != null && years[0] <= minYear"
+              @click="startYear -= rangeSize"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              :disabled="maxYear != null && (years.at(-1) ?? 0) >= maxYear"
+              @click="startYear += rangeSize"
+            >
+              ›
+            </button>
+          </div>
+        </div>
+        <div class="vp-yearpicker__grid" role="grid">
           <button
+            v-for="year in years"
+            :key="year"
             type="button"
-            :disabled="minYear != null && years[0] <= minYear"
-            @click="startYear -= rangeSize"
+            :data-year="year"
+            :class="[
+              'vp-yearpicker__year',
+              { 'vp-yearpicker__year--selected': selectedYear === year },
+            ]"
+            :disabled="disabledYear(year)"
+            :tabindex="year === activeYear ? 0 : -1"
+            role="gridcell"
+            :aria-selected="selectedYear === year"
+            @focus="activeYear = year"
+            @click="choose(year)"
+            @keydown="gridKeydown($event, year)"
           >
-            ‹
-          </button>
-          <button
-            type="button"
-            :disabled="maxYear != null && (years.at(-1) ?? 0) >= maxYear"
-            @click="startYear += rangeSize"
-          >
-            ›
+            {{ year }}
           </button>
         </div>
       </div>
-      <div class="vp-yearpicker__grid" role="grid">
-        <button
-          v-for="year in years"
-          :key="year"
-          type="button"
-          :data-year="year"
-          :class="[
-            'vp-yearpicker__year',
-            { 'vp-yearpicker__year--selected': selectedYear === year },
-          ]"
-          :disabled="disabledYear(year)"
-          :tabindex="year === activeYear ? 0 : -1"
-          role="gridcell"
-          :aria-selected="selectedYear === year"
-          @focus="activeYear = year"
-          @click="choose(year)"
-          @keydown="gridKeydown($event, year)"
-        >
-          {{ year }}
-        </button>
-      </div>
-    </div>
+    </Teleport>
   </div>
 </template>

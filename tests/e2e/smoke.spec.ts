@@ -25,8 +25,8 @@ test.describe('example shell smoke', () => {
   test('DataTable doc page renders table chrome', async ({ page }) => {
     await page.goto('/base/DataTable')
     await expect(page.locator('.vp-doc-page')).toBeVisible()
-    await expect(page.locator('.vp-datatable')).toBeVisible()
-    await expect(page.locator('.vp-datatable__table')).toBeVisible()
+    await expect(page.locator('.vp-datatable').first()).toBeVisible()
+    await expect(page.locator('.vp-datatable__table').first()).toBeVisible()
   })
 
   test('Dialog doc page renders curated demo controls', async ({ page }) => {

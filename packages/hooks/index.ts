@@ -15,6 +15,12 @@ export { usePopover } from "./usePopover";
 export { useFocusTrap } from "./useFocusTrap";
 export { useBodyScrollLock } from "./useBodyScrollLock";
 export { useFloatingPanel } from "./useFloatingPanel";
+export { useZIndex } from "./useZIndex";
+export {
+  useOverlay,
+  type UseOverlayOptions,
+  type OverlayCloseReason,
+} from "./useOverlay";
 export { useAutoDismiss } from "./useAutoDismiss";
 export { useObjectUrl } from "./useObjectUrl";
 export { useNotFoundActions, type NotFoundAction } from "./useNotFoundActions";

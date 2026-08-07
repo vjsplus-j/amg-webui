@@ -32,19 +32,25 @@ import { Button, ThemeService } from 'amg-webui'
 | 路径 | 用途 |
 |------|------|
 | `amg-webui` | 主入口（`dist` ESM/UMD + types） |
-| `amg-webui/style.css` | 全量样式 |
-| `amg-webui/theme` | 主题服务（源码导出，需 Vite/TS 路径解析） |
-| `amg-webui/telemetry` | 遥测（默认关闭） |
-| `amg-webui/skill` | Skill Runtime Core + Vue 集成（experimental，不纳入 0.1 稳定承诺） |
-| `amg-webui/skill/core` | 框架无关 Skill Core / Pipeline（experimental） |
-| `amg-webui/icons` | 图标 catalog / resolver |
-| `amg-webui/components/base` | 按需深路径（源码，利于 tree-shake） |
+| `amg-webui/style.css` | 全量样式（仍可用） |
+| `amg-webui/<kebab>/style.css` | 单组件 CSS side-entry（需另引 `theme/style.css`） |
+| `amg-webui/button` · `amg-webui/data-table` · … | 按需组件（kebab → `dist/es` 编译产物） |
+| `amg-webui/theme` · `theme/core` · `theme/style.css` | 主题运行时（`dist/theme/`） |
+| `amg-webui/security` · `telemetry` · `lowcode` · `icons` | 子系统（**编译后的** `dist/<pkg>/`） |
+| `amg-webui/hooks` · `utils` · `locale` · … | 运行时深路径（显式 exports，如 `amg-webui/utils/env`） |
+| `amg-webui/skill` · `skill/core` | Skill Runtime（experimental） |
+| `amg-webui/biz-login` · … | 业务域按需入口 |
+| `amg-webui/components/base` · `components/business` | 域 barrel（编译 re-export，非源码） |
+
+> **合同硬约束**：公共子路径禁止指向 `packages/**/*.ts` / `.vue`。消费者不应需要仓库 alias、编译 SFC 或处理内部 SCSS。
 
 ## 本地打库
 
 ```bash
-npm run build:lib   # → 主库产物 + dist/skill/ 独立 ESM/CJS/types
-npm run build:skill # → 仅 dist/skill/
+npm run build:lib      # → 主库 + runtime + on-demand + skill + theme + generate:exports
+npm run build:runtime  # → 仅 dist/{security,telemetry,lowcode,hooks,utils,…}
+npm run build:ondemand # → dist/es/** + exports 刷新
+npm run test:consumers # → npm pack 后在 vite / webpack / nuxt fixture 中安装并构建
 ```
 
 ## 验收（Release 0.1 分步）
@@ -57,28 +63,44 @@ npm run build:skill # → 仅 dist/skill/
 - [x] README 声明试用合同
 - [x] `npm run build:lib` → `dist/amg-webui.js` · `.umd.cjs` · `style.css` · `index.d.ts`
 - [x] Skill Runtime 独立 `dist/skill/index.*` · `core.*` · `.d.ts`；根入口不导出 Skill
+- [x] Theme / Skill / security / telemetry / lowcode / icons / hooks / utils / locale 子路径指向 **dist 编译产物**
+- [x] Consumer fixtures：`tests/consumer-vite` · `consumer-webpack` · `consumer-nuxt`（`npm run test:consumers`）
 
 ### Step 3 — 子集 & Gallery 对齐
 
-- [ ] v0.1 子集路由 / catalog / maturity 与 `example/v0.1-subset.ts` 一致
-- [ ] Gallery 仅对子集显示「承诺」标记
+- [x] v0.1 子集路由 / catalog / maturity 与 `example/v0.1-subset.ts` 一致（`npm run validate:v01`）
+- [x] Gallery / Catalog / DocPage 仅对子集显示「承诺」标记（`isV01Component` → `page.gallery.v01.badge`）
 
 ### Step 4 — 构建 & 按需
 
 - [ ] `build:lib` 产物体积基线记录
-- [ ] 深路径 `@amg-webui/components/base/*` tree-shake 冒烟
+- [x] 按需入口 `amg-webui/<kebab>` + 深路径经 consumer fixture 冒烟
+- [x] 按需 CSS side-entry：`amg-webui/<kebab>/style.css` → `dist/es/components/{base\|industry}/<Name>/style.css`（`build:styles` / `validate:styles`）
 
-### Step 5 — SSR 基础（本步）
+### Step 5 — SSR 基础 + 生产矩阵（本步）
 
 - [x] `packages/utils/env.ts` — `isClient` · `isServer` · `getDocument` · `getWindow`
 - [x] `packages/utils/dom.ts` — env 守卫，无 bare `window`/`document` 抛错
 - [x]  overlay 最小守卫：Select · Dialog · Dropdown · MessageBox · Affix · Tour · ImageViewer · InfiniteScroll
 - [x] `tests/unit/ssr-env.spec.ts` · `tests/unit/ssr-import.spec.ts`
-- [x] `npm run test:ssr`
-- [ ] Nuxt 示例应用（留 Step 6）
+- [x] `tests/unit/ssr-render-matrix.spec.ts` — Node `renderToString`（Button / Alert / Tag / Barcode / Qrcode / MatrixCode）+ MessageBox SSR stub
+- [x] `npm run test:ssr`（已入 CI / `npm run ci`）
+- [x] Nuxt consumer：Button **无** `ClientOnly` 真 SSR；`test:consumers` 校验 `.output` SSR marker + Button footprint
 
 ### Step 6 — 合规 & 1.0 预备
 
 - [ ] `docs/MIGRATION.md` 定稿（当前为 skeleton）
 - [ ] API freeze · codemod · 对外文档站补齐
 - [ ] 见 `docs/MIGRATION.md` Final checklist
+
+## 本轮范围（包发布契约）
+
+已闭环：源码子路径导出 → dist 导出；ondemand 改写 `amg-webui/*`；consumer 三套安装构建；CI `test:consumers`。
+
+本轮已闭环：成熟度 v3 + `validate:maturity` / `validate:v01`；Barcode/Qrcode/MatrixCode/OcrScan → industry；SSR render 矩阵 + Nuxt 真 SSR 门禁。
+
+## Overlay 内核（本轮深度续做）
+
+- [x] `packages/utils/zIndexManager.ts` · `useZIndex` · `useOverlay`
+- [x] `ConfigProvider.zIndex` → `setZIndexBase`
+- [x] 接入：`Dialog` / `Confirm` / `MessageBox` / `Drawer` / `Mask`（引用计数 scroll lock + focus trap + Escape）

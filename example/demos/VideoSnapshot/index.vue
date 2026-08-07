@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, shallowRef } from "vue";
-import { VideoSnapshot } from "@amg-webui/components/base";
+import { VideoSnapshot } from '@amg-webui/components/industry';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
 import PropsTable from "../../components/demo/PropsTable.vue";
@@ -56,7 +56,7 @@ onUnmounted(() => {
 });
 
 const codeBasic = demoSfc({
-  imports: [`import { VideoSnapshot } from '@amg-webui/components/base'`],
+  imports: [`import { VideoSnapshot } from '@amg-webui/components/industry'`],
   template: [`  <VideoSnapshot src="/sample.mp4" downloadable />`],
 });
 

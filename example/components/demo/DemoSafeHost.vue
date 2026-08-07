@@ -21,13 +21,15 @@ const { t, locale } = useLocale()
 const errorMessage = shallowRef('')
 const hasError = ref(false)
 
-const modules = import.meta.glob('../../../packages/components/base/*/index.vue') as Record<
-  string,
-  () => Promise<{ default: Component }>
->
+const modules = {
+  ...import.meta.glob('../../../packages/components/base/*/index.vue'),
+  ...import.meta.glob('../../../packages/components/industry/*/index.vue')
+} as Record<string, () => Promise<{ default: Component }>>
 
 function loadMount(name: string) {
-  const key = Object.keys(modules).find((p) => p.includes(`/base/${name}/`))
+  const key = Object.keys(modules).find(
+    (p) => p.includes(`/base/${name}/`) || p.includes(`/industry/${name}/`)
+  )
   if (!key) return null
   return defineAsyncComponent(modules[key])
 }

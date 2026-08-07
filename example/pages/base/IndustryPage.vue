@@ -3,12 +3,14 @@ import {
   VideoPlayer,
   SplitVideoWall,
   PTZControl,
-  OnvifSearch,
-  GbsStatusCard,
-  VcrTimelinePlayer,
   Simple404,
-  Tech404
-} from '@amg-webui/components/base'
+  Tech404,
+  VcrTimelinePlayer,
+  GbsStatusCard,
+  OnvifSearch,
+  Barcode,
+  Qrcode
+} from '@amg-webui/components/industry'
 import ComponentGallery from '../../components/ComponentGallery.vue'
 </script>
 
@@ -28,6 +30,8 @@ import ComponentGallery from '../../components/ComponentGallery.vue'
         <OnvifSearch />
         <GbsStatusCard />
         <VcrTimelinePlayer />
+        <Barcode model-value="6901234567892" format="ean13" :editable="false" />
+        <Qrcode model-value="AMG-WebUI" standard="iso" />
       </div>
     </template>
   </ComponentGallery>
@@ -38,5 +42,6 @@ import ComponentGallery from '../../components/ComponentGallery.vue'
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: var(--theme-section-gap);
+  width: 100%;
 }
 </style>

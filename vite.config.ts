@@ -8,6 +8,7 @@ const root = __dirname
 const alias = {
   '@amg-webui/components/base': resolve(root, 'packages/components/base'),
   '@amg-webui/components/business': resolve(root, 'packages/components/business'),
+  '@amg-webui/components/industry': resolve(root, 'packages/components/industry'),
   '@amg-webui/components': resolve(root, 'packages/components'),
   '@amg-webui/hooks': resolve(root, 'packages/hooks'),
   '@amg-webui/telemetry': resolve(root, 'packages/telemetry/index.ts'),

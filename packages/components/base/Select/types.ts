@@ -79,6 +79,8 @@ export interface SelectProps extends BaseProps {
   ) => void | SelectOption[] | Promise<void | SelectOption[]>;
   /** Loading indicator while remote options are fetched */
   loading?: boolean;
+  /** Teleport target for the dropdown panel @default 'body' */
+  teleportTo?: string | HTMLElement;
 }
 
 export interface SelectEmits {

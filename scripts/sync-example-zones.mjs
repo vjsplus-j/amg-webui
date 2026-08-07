@@ -1,16 +1,22 @@
 /**
- * Partition packages/components/base into example zone lists → example/component-zones.json
+ * Partition packages/components/{base,industry} into example zone lists → example/component-zones.json
  */
-import { readdirSync, writeFileSync } from 'node:fs'
+import { readdirSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { execFileSync } from 'node:child_process'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const names = readdirSync(resolve(root, 'packages/components/base'), { withFileTypes: true })
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name)
-  .sort()
+
+function dirsOf(layer) {
+  const dir = resolve(root, 'packages/components', layer)
+  if (!existsSync(dir)) return []
+  return readdirSync(dir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+}
+
+const names = [...dirsOf('base'), ...dirsOf('industry')].sort()
 
 const zones = {
   atoms: [],
@@ -23,9 +29,9 @@ const zones = {
 }
 
 const re = {
-  industry: /404$|Video|PTZ|AudioTalk|Onvif|Gbs|Vcr|SplitVideo/,
+  industry: /404$|Video|PTZ|AudioTalk|Onvif|Gbs|Vcr|SplitVideo|Barcode|Qrcode|MatrixCode|OcrScan/,
   third:
-    /Preview|Print|Excel|Pdf|AudioPlay|Ocr|Crypto|Clipboard|Browser|DragCanvas|DragMaterial|Canvas|PropPanel|TemplateDrag|FreeLayout|GridLayout|DragVerify|CanvasIo|DragWrapper|DragRuler|DragSort|Qrcode|Barcode|MatrixCode|FilePreview|ImageCrop/,
+    /Preview|Print|Excel|Pdf|AudioPlay|Crypto|Clipboard|Browser|DragCanvas|DragMaterial|Canvas|PropPanel|TemplateDrag|FreeLayout|GridLayout|DragVerify|CanvasIo|DragWrapper|DragRuler|DragSort|FilePreview|ImageCrop/,
   data: /Table|Tree|Chart|HeatMap|WordCloud|Ranking|Carousel|Collapse|Waterfall|CardList|TimelineList|Thumbnail|ImageGroup|ScrollNotice|DataCard|Pivot|Drill|Virtual|ProTable|Merge|EditTable|Sticky|TableDrag|TableExport|Calendar|Timeline$/,
   forms:
     /Picker|Form|Upload|Search|Select|Captcha|Sms|Editor|Range|Color|Filter|Transfer|Crop|Template|Password|Checkbox|Radio|Switch|Rate|Slider|AutoComplete|TagInput|Input|Textarea|Cascader|TreeSelect|DragSelect|Quarter|Week|RichText|MdEditor|CodeEditor|Chunk|Batch|Dynamic|StepForm|FormTabs|FormGroup|TimeRange|AdvancedSearch|LoginPanel|UserInfoCard|PermissionPanel|SettingPanel|DetailPanel|FlowPanel|BatchPanel|Dashboard|SearchFilter/,
@@ -44,26 +50,22 @@ for (const n of names) {
   else if (re.forms.test(n)) zones.forms.push(n)
   else if (re.feedback.test(n)) zones.feedback.push(n)
   else if (re.layout.test(n)) zones.layout.push(n)
-  else if (re.atoms.test(n)) zones.atoms.push(n)
   else zones.atoms.push(n)
 }
 
-for (const k of Object.keys(zones)) {
-  zones[k] = [...new Set(zones[k])].sort()
+for (const k of Object.keys(zones)) zones[k].sort()
+
+const out = resolve(root, 'example/component-zones.json')
+writeFileSync(out, `${JSON.stringify(zones, null, 2)}\n`, 'utf8')
+console.log(
+  '[sync:example-zones]',
+  Object.fromEntries(Object.entries(zones).map(([k, v]) => [k, v.length]))
+)
+
+try {
+  execFileSync('node', [resolve(root, 'scripts/generate-component-catalog.mjs')], {
+    stdio: 'inherit'
+  })
+} catch {
+  process.exit(1)
 }
-
-const assigned = new Set(Object.values(zones).flat())
-const missing = names.filter((n) => !assigned.has(n))
-if (missing.length) {
-  console.warn('unassigned → atoms:', missing.join(', '))
-  zones.atoms.push(...missing)
-  zones.atoms.sort()
-}
-
-writeFileSync(resolve(root, 'example/component-zones.json'), `${JSON.stringify(zones, null, 2)}\n`)
-const counts = Object.fromEntries(Object.entries(zones).map(([k, v]) => [k, v.length]))
-console.log('[sync-example-zones]', counts, 'total', Object.values(counts).reduce((a, b) => a + b, 0))
-
-execFileSync(process.execPath, [resolve(root, 'scripts/score-component-maturity.mjs')], {
-  stdio: 'inherit'
-})

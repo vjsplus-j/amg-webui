@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from "vue";
-import { useBodyScrollLock, useFocusTrap, useLocale } from "@amg-webui/hooks";
+import { useLocale, useOverlay } from "@amg-webui/hooks";
 import { trackEmit } from "@amg-webui/telemetry";
 import type { MaskCloseReason, MaskEmits, MaskProps } from "./types";
 import "./style.scss";
@@ -24,14 +24,25 @@ const panelRef = ref<HTMLElement | null>(null);
 const closing = ref(false);
 const visibleRef = computed(() => props.visible);
 const lockRef = computed(() => props.lockScroll);
-const focusActive = computed(() => props.visible && props.trapFocus);
+const trapRef = computed(() => props.trapFocus);
+const escapeRef = computed(() => props.closeOnPressEscape);
+const explicitZ = computed(() => props.zIndex);
 
-useBodyScrollLock(visibleRef, lockRef);
-useFocusTrap(panelRef, focusActive);
+const { zIndex } = useOverlay({
+  visible: visibleRef,
+  container: panelRef,
+  modal: lockRef,
+  trapFocus: trapRef,
+  closeOnEscape: escapeRef,
+  zIndex: explicitZ,
+  onClose: (reason) => {
+    if (reason === "escape") void close("escape");
+  },
+});
 
 const overlayStyle = computed(() => ({
   ...(props.style ?? {}),
-  zIndex: String(props.zIndex),
+  zIndex: String(zIndex.value),
 }));
 
 async function close(reason: MaskCloseReason = "programmatic", event?: Event) {
@@ -63,14 +74,6 @@ async function close(reason: MaskCloseReason = "programmatic", event?: Event) {
 function onOverlay(event: MouseEvent) {
   if (props.dismissible && event.target === event.currentTarget) {
     void close("overlay", event);
-  }
-}
-
-function onKeydown(event: KeyboardEvent) {
-  if (props.closeOnPressEscape && event.key === "Escape") {
-    event.preventDefault();
-    event.stopPropagation();
-    void close("escape", event);
   }
 }
 
@@ -112,7 +115,6 @@ watch(
           "
           :tabindex="trapFocus ? -1 : undefined"
           @click.stop
-          @keydown="onKeydown"
         >
           <slot :close="close" :closing="closing" />
         </div>

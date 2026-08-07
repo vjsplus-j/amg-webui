@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { VcrStorageDashboard } from "@amg-webui/components/base";
+import { VcrStorageDashboard } from '@amg-webui/components/industry';
 import { useLocale } from "@amg-webui/hooks";
 import DemoBlock from "../../components/demo/DemoBlock.vue";
 import PropsTable from "../../components/demo/PropsTable.vue";
@@ -16,7 +16,7 @@ const selectedId = ref<string | null>(null);
 
 const codeBasic = demoSfc({
   imports: [
-    `import { VcrStorageDashboard } from '@amg-webui/components/base'`,
+    `import { VcrStorageDashboard } from '@amg-webui/components/industry'`,
     `import { getSampleMountProps } from '../_shared/sampleMountProps'`,
   ],
   script: [`const mountProps = getSampleMountProps('VcrStorageDashboard')`],

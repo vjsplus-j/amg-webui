@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, ref, useId, watch } from 'vue'
-import { useLocale } from '@amg-webui/hooks'
-import { useFocusTrap } from '@amg-webui/hooks/useFocusTrap'
+import { computed, nextTick, onMounted, ref, useId, watch } from 'vue'
+import { useLocale, useOverlay } from '@amg-webui/hooks'
 import { LocaleKeys } from '@amg-webui/locale'
 import { trackEmit } from '@amg-webui/telemetry'
-import { getDocument } from '@amg-webui/utils/env'
+import { KEYS } from '@amg-webui/utils/keyboard'
 import Icon from '../Icon/index.vue'
 import Button from '../Button/index.vue'
 import InputText from '../InputText/index.vue'
@@ -48,14 +47,33 @@ const confirmButtonRef = ref<{ $el?: HTMLElement } | null>(null)
 const visibleRef = computed(() => props.visible)
 const uid = useId()
 
-useFocusTrap(dialogRef, visibleRef)
+const closeOnOverlay = computed(
+  () => props.closeOnClickOverlay ?? props.dismissible
+)
+const closeOnEscape = computed(
+  () => props.closeOnPressEscape ?? props.dismissible
+)
+
+const { zIndex } = useOverlay({
+  visible: visibleRef,
+  container: dialogRef,
+  modal: true,
+  trapFocus: true,
+  closeOnEscape,
+  onClose: (reason) => {
+    if (reason === 'escape') void close('escape')
+  }
+})
 
 const confirmText = computed(() => props.confirmLabel || t(LocaleKeys.button.confirm))
 const cancelText = computed(() => props.cancelLabel || t(LocaleKeys.button.cancel))
 const closeLabel = computed(() => t(LocaleKeys.common.close))
 const titleText = computed(() => props.title || t(LocaleKeys.button.confirm))
 const inputErrorText = computed(
-  () => validatorMessage.value || props.inputErrorMessage || t(LocaleKeys.component.messageBox.inputError)
+  () =>
+    validatorMessage.value ||
+    props.inputErrorMessage ||
+    t(LocaleKeys.component.messageBox.inputError)
 )
 const titleId = `${uid}-title`
 const descriptionId = `${uid}-description`
@@ -76,12 +94,6 @@ const ICON_MAP: Record<ConfirmSeverity, string> = {
 }
 
 const iconName = computed(() => ICON_MAP[props.severity] ?? 'TriangleAlert')
-const closeOnOverlay = computed(
-  () => props.closeOnClickOverlay ?? props.dismissible
-)
-const closeOnEscape = computed(
-  () => props.closeOnPressEscape ?? props.dismissible
-)
 const resolvedAutofocus = computed(
   () => props.autofocus ?? (props.mode === 'prompt' ? 'input' : 'confirm')
 )
@@ -110,6 +122,10 @@ const rootClass = computed(() => [
   `vp-message-box--${props.severity}`,
   props.class
 ])
+
+const overlayStyle = computed(() => ({
+  zIndex: String(zIndex.value)
+}))
 
 async function validateInput(): Promise<boolean> {
   if (props.mode !== 'prompt') return true
@@ -203,29 +219,11 @@ function onOverlay(e: MouseEvent) {
   if (closeOnOverlay.value && e.target === e.currentTarget) void close('overlay')
 }
 
-function onKey(e: KeyboardEvent) {
+function onEnter(e: KeyboardEvent) {
   if (!props.visible) return
-  if (closeOnEscape.value && e.key === 'Escape') {
-    e.preventDefault()
-    void close('escape')
-  }
-  if (e.key === 'Enter' && props.mode === 'prompt' && e.target instanceof HTMLInputElement) {
+  if (e.key === KEYS.ENTER && props.mode === 'prompt' && e.target instanceof HTMLInputElement) {
     e.preventDefault()
     void confirm()
-  }
-}
-
-let previousOverflow: string | undefined
-
-function lockScroll(lock: boolean) {
-  const root = getDocument()?.documentElement
-  if (!root) return
-  if (lock) {
-    if (previousOverflow === undefined) previousOverflow = root.style.overflow
-    root.style.overflow = 'hidden'
-  } else if (previousOverflow !== undefined) {
-    root.style.overflow = previousOverflow
-    previousOverflow = undefined
   }
 }
 
@@ -251,7 +249,6 @@ watch(
 watch(
   () => props.visible,
   (v) => {
-    lockScroll(v)
     if (v) void nextTick(focusInitial)
   },
   { immediate: true }
@@ -262,12 +259,7 @@ watch(inputModel, () => {
 })
 
 onMounted(() => {
-  getDocument()?.addEventListener('keydown', onKey)
   if (props.visible) void nextTick(focusInitial)
-})
-onUnmounted(() => {
-  getDocument()?.removeEventListener('keydown', onKey)
-  lockScroll(false)
 })
 </script>
 
@@ -277,8 +269,10 @@ onUnmounted(() => {
       <div
         v-if="visible"
         class="vp-message-box-overlay"
+        :style="overlayStyle"
         role="presentation"
         @click="onOverlay"
+        @keydown="onEnter"
       >
         <div
           ref="dialogRef"

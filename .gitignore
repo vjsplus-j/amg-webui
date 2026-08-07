@@ -15,7 +15,9 @@ playwright-report
 *.tsbuildinfo
 .trae
 backup
-
 # Windows reserved device name artifact
 NUL
 nul
+
+# Transient vite multi-entry style stubs (prefer sass compile-component-styles)
+build/.generated-style-entries/

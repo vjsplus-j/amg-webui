@@ -1,9 +1,10 @@
 /**
- * Score packages/components/base maturity → example/component-maturity.json
+ * Score packages/components/{base,industry} maturity → example/component-maturity.json
  *
- * HONEST CONTRACT (v2):
- * - Directory / catalog count ≠ product maturity. ~280 folders is inventory, not 1.0 readiness.
+ * HONEST CONTRACT (v3):
+ * - Directory / catalog count ≠ product maturity. Inventory size is not 1.0 readiness.
  * - Primary axis is **capability tier**, then depth level (stub/shell/beta/ready).
+ * - Extra signals (v3): curated demo · docs stub · industry layer · symbology util · v0.1 subset.
  *
  * Capability tiers:
  *   thin         — native/slot wrapper or scaffold; missing form/interaction contracts
@@ -18,6 +19,7 @@
  *   ready — substantial baseline for *that capability tier* — still not library 1.0
  *
  * Usage: node scripts/score-component-maturity.mjs
+ * Validate: node scripts/validate-component-maturity.mjs
  */
 import {
   readdirSync,
@@ -30,6 +32,13 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const baseDir = resolve(root, "packages/components/base");
+const industryDir = resolve(root, "packages/components/industry");
+
+function resolveComponentDir(name) {
+  const industry = join(industryDir, name);
+  if (existsSync(industry)) return industry;
+  return join(baseDir, name);
+}
 
 const LEVELS = ["stub", "shell", "beta", "ready"];
 const CAPABILITIES = ["thin", "form", "interaction", "composite"];
@@ -138,7 +147,7 @@ function fileLines(path) {
 }
 
 function scoreOne(name) {
-  const dir = join(baseDir, name);
+  const dir = resolveComponentDir(name);
   const primaryVuePath = join(dir, "index.vue");
   const vueCandidates = readdirSync(dir)
     .filter((file) => file.endsWith(".vue"))
@@ -176,8 +185,38 @@ function scoreOne(name) {
       style + vue,
     );
   const hasBehaviorTest = new RegExp(
-    `components/base/${name}/index\\.vue`,
+    `components/(?:base|industry)/${name}/index\\.vue`,
   ).test(testSource.replaceAll("\\\\", "/"));
+  const hasCuratedDemo = existsSync(
+    join(root, "example", "demos", name, "index.vue"),
+  );
+  const kebab = name
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .replace(/([A-Z])([A-Z][a-z])/g, "$1-$2")
+    .toLowerCase();
+  const hasDocsStub = existsSync(
+    join(root, "docs", "components", `${kebab}.md`),
+  );
+  const isIndustryLayer = existsSync(join(industryDir, name));
+  const symbologyUtilMap = {
+    Barcode: "barcodePattern.ts",
+    Qrcode: "qrcodeMatrix.ts",
+    MatrixCode: "matrixCode.ts",
+  };
+  const hasSymbologyUtil = Boolean(
+    symbologyUtilMap[name] &&
+      existsSync(join(root, "packages", "utils", symbologyUtilMap[name])),
+  );
+  let isV01Subset = false;
+  try {
+    const subsetSrc = readFileSync(
+      join(root, "example", "v0.1-subset.ts"),
+      "utf8",
+    );
+    isV01Subset = new RegExp(`['"]${name}['"]`).test(subsetSrc);
+  } catch {
+    isV01Subset = false;
+  }
   const delegatesComponent =
     /import\s+\w+\s+from\s+['"]\.\.\/\w+\/index\.vue['"]/.test(vue);
   const slotOnly =
@@ -251,6 +290,26 @@ function scoreOne(name) {
   if (hasBehaviorTest) {
     score += 8;
     signals.push("behavior-test");
+  }
+  if (hasCuratedDemo) {
+    score += 4;
+    signals.push("curated-demo");
+  }
+  if (hasDocsStub) {
+    score += 3;
+    signals.push("docs-stub");
+  }
+  if (isIndustryLayer) {
+    score += 2;
+    signals.push("industry-layer");
+  }
+  if (hasSymbologyUtil) {
+    score += 6;
+    signals.push("symbology-util");
+  }
+  if (isV01Subset) {
+    score += 2;
+    signals.push("v01-subset");
   }
   if (delegatesComponent) {
     score += 4;
@@ -440,10 +499,18 @@ function scoreOne(name) {
   };
 }
 
-const names = readdirSync(baseDir, { withFileTypes: true })
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name)
-  .sort();
+function listLeafDirs() {
+  const out = [];
+  for (const layer of [baseDir, industryDir]) {
+    if (!existsSync(layer)) continue;
+    for (const d of readdirSync(layer, { withFileTypes: true })) {
+      if (d.isDirectory()) out.push(d.name);
+    }
+  }
+  return out.sort();
+}
+
+const names = listLeafDirs();
 
 const components = {};
 const summary = { stub: 0, shell: 0, beta: 0, ready: 0 };
@@ -466,7 +533,7 @@ for (const name of names) {
 
 const generatedAt = new Date().toISOString();
 const out = {
-  version: 2,
+  version: 3,
   generatedAt,
   /** Inventory size only — NOT a maturity or 1.0 claim */
   total: names.length,
@@ -483,7 +550,7 @@ const out = {
 const outPath = resolve(root, "example/component-maturity.json");
 writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`);
 
-console.log("[score-component-maturity] capability-first (v2)");
+console.log("[score-component-maturity] capability-first (v3)");
 console.log("  inventory (directories):", out.total, "← not a maturity metric");
 console.log("  byCapability:", byCapability);
 console.log("  byDepth:", summary);

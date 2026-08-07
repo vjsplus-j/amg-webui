@@ -1,0 +1,4 @@
+node_modules/
+dist/
+amg-webui-packed.tgz
+package-lock.json

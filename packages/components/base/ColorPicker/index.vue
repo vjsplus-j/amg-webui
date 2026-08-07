@@ -46,7 +46,7 @@ const {
 
 const { nativeAttrs } = useNativeInputAttrs()
 
-const { isOpen, triggerRef, panelRef, toggle } = usePopover()
+const { isOpen, triggerRef, panelRef, toggle, panelStyle } = usePopover()
 
 const displayColor = computed(() => props.modelValue || 'var(--surface-2)')
 
@@ -97,25 +97,32 @@ const handleInput = (event: Event) => {
       <span class="vp-colorpicker__value">{{ modelValue || '' }}</span>
     </button>
 
-    <div v-if="isOpen" ref="panelRef" class="vp-colorpicker__panel">
-      <div class="vp-colorpicker__presets">
-        <button
-          v-for="(preset, index) in presets"
-          :key="index"
-          type="button"
-          class="vp-colorpicker__preset"
-          :class="{ 'vp-colorpicker__preset--active': cssVarToHex(preset) === modelValue }"
-          :style="{ background: preset }"
-          @click="selectPreset(preset)"
+    <Teleport to="body">
+      <div
+        v-if="isOpen"
+        ref="panelRef"
+        class="vp-colorpicker__panel"
+        :style="panelStyle"
+      >
+        <div class="vp-colorpicker__presets">
+          <button
+            v-for="(preset, index) in presets"
+            :key="index"
+            type="button"
+            class="vp-colorpicker__preset"
+            :class="{ 'vp-colorpicker__preset--active': cssVarToHex(preset) === modelValue }"
+            :style="{ background: preset }"
+            @click="selectPreset(preset)"
+          />
+        </div>
+        <input
+          class="vp-colorpicker__input"
+          type="text"
+          :value="modelValue"
+          :disabled="isDisabled"
+          @input="handleInput"
         />
       </div>
-      <input
-        class="vp-colorpicker__input"
-        type="text"
-        :value="modelValue"
-        :disabled="isDisabled"
-        @input="handleInput"
-      />
-    </div>
+    </Teleport>
   </div>
 </template>

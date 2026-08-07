@@ -47,16 +47,13 @@
   }
 
   &__panel {
-    position: absolute;
-    top: calc(100% + var(--spacing-xs));
-    left: 0;
-    right: 0;
-    z-index: 10;
+    margin: 0;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-md);
     background: var(--surface-1);
     box-shadow: var(--shadow-md);
     overflow: hidden;
+    box-sizing: border-box;
   }
 
   &__list {

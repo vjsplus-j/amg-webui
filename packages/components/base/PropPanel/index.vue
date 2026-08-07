@@ -126,7 +126,10 @@ function onChange(field: PropField, e: Event) {
   emit('change', payload)
 }
 
-const hasSource = computed(() => Boolean(node.value) || resolvedFields.value.length > 0)
+/** Explicit `fields` = standalone editor; layout defaults alone do not count. */
+const hasSource = computed(
+  () => Boolean(node.value) || Boolean(props.fields?.length)
+)
 const titleText = computed(() => props.title ?? t('component.prop-panel.title'))
 const emptyText = computed(() => props.emptyText ?? t('component.prop-panel.empty'))
 </script>
@@ -140,7 +143,7 @@ const emptyText = computed(() => props.emptyText ?? t('component.prop-panel.empt
     :aria-label="titleText"
   >
     <h3 class="vp-prop-panel__title">{{ titleText }}</h3>
-    <template v-if="hasSource && node">
+    <template v-if="hasSource">
       <label v-for="field in resolvedFields" :key="field.key" class="vp-prop-panel__field">
         <span>{{ field.label ?? field.key }}</span>
         <small v-if="field.description" class="vp-prop-panel__description">{{

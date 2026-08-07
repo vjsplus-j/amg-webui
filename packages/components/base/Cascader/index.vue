@@ -31,7 +31,7 @@ const {
 
 const { nativeAttrs } = useNativeInputAttrs()
 
-const { isOpen, triggerRef, panelRef, toggle, close } = usePopover()
+const { isOpen, triggerRef, panelRef, toggle, close, panelStyle } = usePopover()
 const activePath = ref<CascaderOption[]>([])
 
 const menus = computed(() => {
@@ -121,26 +121,28 @@ const handleItemHover = (menuIndex: number, option: CascaderOption) => {
       <span class="vp-cascader__icon" aria-hidden="true">•</span>
     </button>
 
-    <div v-if="isOpen" ref="panelRef" class="vp-cascader__panel">
-      <div v-for="(menu, menuIndex) in menus" :key="menuIndex" class="vp-cascader__menu">
-        <div
-          v-for="option in menu"
-          :key="String(option.value)"
-          :class="[
-            'vp-cascader__item',
-            {
-              'vp-cascader__item--active': activePath[menuIndex]?.value === option.value,
-              'vp-cascader__item--selected': option.value === modelValue,
-              'vp-cascader__item--disabled': option.disabled
-            }
-          ]"
-          @click="handleItemClick(menuIndex, option)"
-          @mouseenter="handleItemHover(menuIndex, option)"
-        >
-          <span>{{ option.label }}</span>
-          <span v-if="option.children?.length" class="vp-cascader__arrow" aria-hidden="true">›</span>
+    <Teleport to="body">
+      <div v-if="isOpen" ref="panelRef" class="vp-cascader__panel" :style="panelStyle">
+        <div v-for="(menu, menuIndex) in menus" :key="menuIndex" class="vp-cascader__menu">
+          <div
+            v-for="option in menu"
+            :key="String(option.value)"
+            :class="[
+              'vp-cascader__item',
+              {
+                'vp-cascader__item--active': activePath[menuIndex]?.value === option.value,
+                'vp-cascader__item--selected': option.value === modelValue,
+                'vp-cascader__item--disabled': option.disabled
+              }
+            ]"
+            @click="handleItemClick(menuIndex, option)"
+            @mouseenter="handleItemHover(menuIndex, option)"
+          >
+            <span>{{ option.label }}</span>
+            <span v-if="option.children?.length" class="vp-cascader__arrow" aria-hidden="true">›</span>
+          </div>
         </div>
       </div>
-    </div>
+    </Teleport>
   </div>
 </template>

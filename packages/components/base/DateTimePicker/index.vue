@@ -44,7 +44,7 @@ const {
 const { nativeAttrs } = useNativeInputAttrs()
 
 const { locale } = useLocale()
-const { isOpen, triggerRef, panelRef, toggle } = usePopover()
+const { isOpen, triggerRef, panelRef, toggle, panelStyle } = usePopover()
 
 const viewDate = ref(new Date())
 const selectedHour = ref(0)
@@ -197,87 +197,94 @@ const selectSecond = (s: number) => {
       <span aria-hidden="true">v</span>
     </button>
 
-    <div v-if="isOpen" ref="panelRef" class="vp-datetimepicker__panel">
-      <div class="vp-datetimepicker__body">
-        <div class="vp-datetimepicker__date">
-          <div class="vp-datepicker__header">
-            <span>{{ monthLabel }}</span>
-            <div class="vp-datepicker__nav">
-              <button type="button" class="vp-datepicker__nav-btn" @click="prevMonth">‹</button>
-              <button type="button" class="vp-datepicker__nav-btn" @click="nextMonth">›</button>
+    <Teleport to="body">
+      <div
+        v-if="isOpen"
+        ref="panelRef"
+        class="vp-datetimepicker__panel"
+        :style="panelStyle"
+      >
+        <div class="vp-datetimepicker__body">
+          <div class="vp-datetimepicker__date">
+            <div class="vp-datepicker__header">
+              <span>{{ monthLabel }}</span>
+              <div class="vp-datepicker__nav">
+                <button type="button" class="vp-datepicker__nav-btn" @click="prevMonth">‹</button>
+                <button type="button" class="vp-datepicker__nav-btn" @click="nextMonth">›</button>
+              </div>
             </div>
-          </div>
-          <div class="vp-datepicker__weekdays">
-            <span v-for="(wd, i) in weekdayLabels" :key="i" class="vp-datepicker__weekday">{{
-              wd
-            }}</span>
-          </div>
-          <div v-for="(week, wi) in weeks" :key="wi" class="vp-datepicker__grid">
-            <button
-              v-for="(day, di) in week"
-              :key="di"
-              type="button"
-              :class="[
-                'vp-datepicker__day',
-                {
-                  'vp-datepicker__day--selected': sameDate(day, pickedDate),
-                  'vp-datepicker__day--empty': !day
-                }
-              ]"
-              :disabled="!day"
-              @click="selectDay(day)"
-            >
-              {{ day ? day.getDate() : '' }}
-            </button>
-          </div>
-        </div>
-        <div class="vp-datetimepicker__time">
-          <div class="vp-timepicker__columns">
-            <div class="vp-timepicker__column">
+            <div class="vp-datepicker__weekdays">
+              <span v-for="(wd, i) in weekdayLabels" :key="i" class="vp-datepicker__weekday">{{
+                wd
+              }}</span>
+            </div>
+            <div v-for="(week, wi) in weeks" :key="wi" class="vp-datepicker__grid">
               <button
-                v-for="h in hours"
-                :key="h"
+                v-for="(day, di) in week"
+                :key="di"
                 type="button"
                 :class="[
-                  'vp-timepicker__item',
-                  { 'vp-timepicker__item--selected': h === selectedHour }
+                  'vp-datepicker__day',
+                  {
+                    'vp-datepicker__day--selected': sameDate(day, pickedDate),
+                    'vp-datepicker__day--empty': !day
+                  }
                 ]"
-                @click="selectHour(h)"
+                :disabled="!day"
+                @click="selectDay(day)"
               >
-                {{ pad(h) }}
+                {{ day ? day.getDate() : '' }}
               </button>
             </div>
-            <div class="vp-timepicker__column">
-              <button
-                v-for="m in minutes"
-                :key="m"
-                type="button"
-                :class="[
-                  'vp-timepicker__item',
-                  { 'vp-timepicker__item--selected': m === selectedMinute }
-                ]"
-                @click="selectMinute(m)"
-              >
-                {{ pad(m) }}
-              </button>
-            </div>
-            <div v-if="showSeconds" class="vp-timepicker__column">
-              <button
-                v-for="s in seconds"
-                :key="s"
-                type="button"
-                :class="[
-                  'vp-timepicker__item',
-                  { 'vp-timepicker__item--selected': s === selectedSecond }
-                ]"
-                @click="selectSecond(s)"
-              >
-                {{ pad(s) }}
-              </button>
+          </div>
+          <div class="vp-datetimepicker__time">
+            <div class="vp-timepicker__columns">
+              <div class="vp-timepicker__column">
+                <button
+                  v-for="h in hours"
+                  :key="h"
+                  type="button"
+                  :class="[
+                    'vp-timepicker__item',
+                    { 'vp-timepicker__item--selected': h === selectedHour }
+                  ]"
+                  @click="selectHour(h)"
+                >
+                  {{ pad(h) }}
+                </button>
+              </div>
+              <div class="vp-timepicker__column">
+                <button
+                  v-for="m in minutes"
+                  :key="m"
+                  type="button"
+                  :class="[
+                    'vp-timepicker__item',
+                    { 'vp-timepicker__item--selected': m === selectedMinute }
+                  ]"
+                  @click="selectMinute(m)"
+                >
+                  {{ pad(m) }}
+                </button>
+              </div>
+              <div v-if="showSeconds" class="vp-timepicker__column">
+                <button
+                  v-for="s in seconds"
+                  :key="s"
+                  type="button"
+                  :class="[
+                    'vp-timepicker__item',
+                    { 'vp-timepicker__item--selected': s === selectedSecond }
+                  ]"
+                  @click="selectSecond(s)"
+                >
+                  {{ pad(s) }}
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Teleport>
   </div>
 </template>

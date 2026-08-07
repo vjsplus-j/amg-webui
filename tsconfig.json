@@ -22,6 +22,7 @@
       "@amg-webui/components": ["packages/components/index.ts"],
       "@amg-webui/components/base": ["packages/components/base/index.ts"],
       "@amg-webui/components/business": ["packages/components/business/index.ts"],
+      "@amg-webui/components/industry": ["packages/components/industry/index.ts"],
       "@amg-webui/hooks": ["packages/hooks/index.ts"],
       "@amg-webui/telemetry": ["packages/telemetry/index.ts"],
       "@amg-webui/security": ["packages/security/index.ts"],

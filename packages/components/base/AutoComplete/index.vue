@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed } from 'vue'
+import { useFloatingPanel, useOverlay } from '@amg-webui/hooks'
 import type { AutoCompleteProps, AutoCompleteEmits } from './types'
 import { useAutoComplete } from './useAutoComplete'
 import { useVirtualWindow } from '../Transfer/useVirtualWindow'
@@ -17,10 +18,32 @@ const emit = defineEmits<AutoCompleteEmits>()
 const inputRef = ref<HTMLInputElement | null>(null)
 const panelRef = ref<HTMLElement | null>(null)
 const activeIndex = ref(-1)
+const placement = ref<'bottom-start'>('bottom-start')
 
 const { isOpen, suggestions, rootClass, fetchSuggestions } = useAutoComplete(
   props,
   (query, cb) => emit('fetchSuggestions', query, cb)
+)
+
+const { zIndex } = useOverlay({
+  visible: isOpen,
+  container: panelRef,
+  modal: false,
+  trapFocus: false,
+  closeOnEscape: true,
+  closeOnClickOutside: true,
+  ignore: [inputRef],
+  onClose: () => {
+    isOpen.value = false
+  }
+})
+
+const { panelStyle } = useFloatingPanel(
+  inputRef,
+  panelRef,
+  isOpen,
+  placement,
+  { zIndex, matchTriggerWidth: ref(true) }
 )
 
 const suggestionValues = computed(() => suggestions.value)
@@ -55,19 +78,6 @@ const handleKeydown = (event: KeyboardEvent) => {
     isOpen.value = false
   }
 }
-
-const handleOutsideClick = (event: MouseEvent) => {
-  const target = event.target as Node
-  if (
-    !inputRef.value?.contains(target) &&
-    !panelRef.value?.contains(target)
-  ) {
-    isOpen.value = false
-  }
-}
-
-onMounted(() => document.addEventListener('click', handleOutsideClick))
-onUnmounted(() => document.removeEventListener('click', handleOutsideClick))
 </script>
 
 <template>
@@ -87,23 +97,30 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick))
       @blur="emit('blur', $event)"
       @keydown="handleKeydown"
     />
-    <div v-if="isOpen && suggestions.length" ref="panelRef" class="vp-autocomplete__panel">
-      <div class="vp-autocomplete__list" @scroll="virtual.onScroll">
-        <div :style="{ height: `${virtual.totalHeight.value}px`, position: 'relative' }">
-          <div :style="{ transform: `translateY(${virtual.offsetY.value}px)` }">
-            <div
-              v-for="{ item, index } in virtual.visibleItems.value"
-              :key="`${item.value}-${index}`"
-              class="vp-autocomplete__item"
-              :class="{ 'vp-autocomplete__item--active': index === activeIndex }"
-              :style="{ height: `${virtual.ITEM_HEIGHT}px` }"
-              @mousedown.prevent="selectItem(item.value)"
-            >
-              {{ item.label }}
+    <Teleport to="body">
+      <div
+        v-if="isOpen && suggestions.length"
+        ref="panelRef"
+        class="vp-autocomplete__panel"
+        :style="panelStyle"
+      >
+        <div class="vp-autocomplete__list" @scroll="virtual.onScroll">
+          <div :style="{ height: `${virtual.totalHeight.value}px`, position: 'relative' }">
+            <div :style="{ transform: `translateY(${virtual.offsetY.value}px)` }">
+              <div
+                v-for="{ item, index } in virtual.visibleItems.value"
+                :key="`${item.value}-${index}`"
+                class="vp-autocomplete__item"
+                :class="{ 'vp-autocomplete__item--active': index === activeIndex }"
+                :style="{ height: `${virtual.ITEM_HEIGHT}px` }"
+                @mousedown.prevent="selectItem(item.value)"
+              >
+                {{ item.label ?? item.value }}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Teleport>
   </div>
 </template>

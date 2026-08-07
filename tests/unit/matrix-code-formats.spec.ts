@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import { LocaleService } from '@amg-webui/locale'
 import MatrixCodeDemo from '../../example/demos/MatrixCode/index.vue'
-import MatrixCode from '../../packages/components/base/MatrixCode/index.vue'
+import MatrixCode from '../../packages/components/industry/MatrixCode/index.vue'
 import {
   generateMatrixCodeSvg,
   MATRIX_CODE_FORMATS,

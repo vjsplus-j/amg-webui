@@ -4,16 +4,16 @@ import {
   Card,
   CardGrid,
   InputText,
-  Qrcode,
   Select,
   Space,
   Tag,
   Typography
 } from '@amg-webui/components/base'
-import type {
-  QrcodeErrorCorrectionLevel,
-  QrcodeStandard
-} from '@amg-webui/components/base/Qrcode'
+import {
+  Qrcode,
+  type QrcodeErrorCorrectionLevel,
+  type QrcodeStandard
+} from '@amg-webui/components/industry/Qrcode'
 import { useLocale } from '@amg-webui/hooks'
 import DemoBlock from '../../components/demo/DemoBlock.vue'
 import PropsTable from '../../components/demo/PropsTable.vue'
@@ -87,7 +87,7 @@ watch(activeStandard, (standard) => {
 const codeBasic = demoSfc({
   imports: [
     `import { ref } from 'vue'`,
-    `import { Qrcode } from '@amg-webui/components/base'`
+    `import { Qrcode } from '@amg-webui/components/industry'`
   ],
   script: [
     `const standard = ref('gb')`,

@@ -4,6 +4,22 @@
 
 试用发包（pre-1.0）。**API 可变**；正式 1.0 见 `docs/LIBRARY_PLAN.md` P4–P5。
 
+### 包发布契约
+
+- `build:lib` 串联：主库 → runtime 分包 → on-demand → skill → theme → `generate:exports`
+- 公共 `exports` 全部指向 `dist/**`；`files` 不再打包 `packages/` 源码树
+- 按需入口：`amg-webui/button` · `amg-webui/data-table` · …；深路径显式导出（`amg-webui/utils/env` 等）
+- on-demand / runtime 产物将 `@amg-webui/*` 改写为 `amg-webui/*`
+- Consumer fixtures：`tests/consumer-vite` · `consumer-webpack` · `consumer-nuxt` + CI `test:consumers`
+
+### Overlay 内核（深度补齐）
+
+- 新增 `zIndexManager` · `useZIndex` · `useOverlay`（FocusTrap + 引用计数 ScrollLock + Escape + 栈 z-index）
+- `ConfigProvider.zIndex` 写入 `setZIndexBase`（此前 `--vp-z-index` 无人消费）
+- 接入：`Dialog` · `Confirm` · `MessageBox` · `Drawer` · `Mask`（去掉各自 raw overflow 锁）
+- 单测：`tests/unit/overlay-core.spec.ts`
+- **仍未全量**：Select 无 Teleport、部分浮层未迁 `useFloatingPanel`/`useOverlay`、行业件仍在 base、E2E 深度
+
 ### Theme 运行时（多实例 / 色阶 / SSR / Shadow）
 
 - Theme Core：`generatePrimaryScale` · `createShadowHost` · `serializeThemeStyle` / `toStyleTag` · `runtime.setPrimary`

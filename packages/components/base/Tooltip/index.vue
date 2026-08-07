@@ -2,13 +2,12 @@
 import {
   computed,
   getCurrentInstance,
-  onMounted,
   onUnmounted,
   ref,
   useId,
   watch,
 } from "vue";
-import { useFloatingPanel } from "@amg-webui/hooks";
+import { useFloatingPanel, useOverlay } from "@amg-webui/hooks";
 import { trackEmit } from "@amg-webui/telemetry";
 import type { TooltipEmits, TooltipProps, TooltipTrigger } from "./types";
 import { useTooltipTimers } from "./useTooltip";
@@ -43,14 +42,30 @@ const triggers = computed<TooltipTrigger[]>(() =>
 );
 const placementRef = computed(() => props.placement);
 const offsetRef = computed(() => props.offset);
-const zIndexRef = computed(() => props.zIndex);
+const zIndexProp = computed(() => props.zIndex);
 const openDelay = computed(() => props.delay ?? props.openDelay);
+const clickDismiss = computed(() => triggers.value.includes("click"));
+
+const { zIndex } = useOverlay({
+  visible: isOpen,
+  container: panelRef,
+  modal: false,
+  trapFocus: false,
+  closeOnEscape: true,
+  closeOnClickOutside: clickDismiss,
+  ignore: [triggerRef],
+  zIndex: zIndexProp,
+  onClose: (reason) => {
+    close(reason === "escape" ? "escape" : "outside", undefined, false);
+  },
+});
+
 const { panelStyle, actualPlacement } = useFloatingPanel(
   triggerRef,
   panelRef,
   isOpen,
   placementRef,
-  { offset: offsetRef, zIndex: zIndexRef },
+  { offset: offsetRef, zIndex },
 );
 const { clear, clearClose, scheduleOpen, scheduleClose } = useTooltipTimers();
 function has(trigger: TooltipTrigger) {
@@ -113,28 +128,14 @@ function onKeydown(event: KeyboardEvent) {
     toggle(event);
   }
 }
-function onDocumentPointer(event: Event) {
-  if (
-    isOpen.value &&
-    has("click") &&
-    !triggerRef.value?.contains(event.target as Node) &&
-    !panelRef.value?.contains(event.target as Node)
-  )
-    close("outside", event, false);
-}
 watch(
   () => props.disabled,
   (disabled) => {
     if (disabled && isOpen.value) close("disabled", undefined, false);
   },
 );
-onMounted(() => {
-  document.addEventListener("pointerdown", onDocumentPointer, true);
-  document.addEventListener("keydown", onKeydown);
-});
 onUnmounted(() => {
-  document.removeEventListener("pointerdown", onDocumentPointer, true);
-  document.removeEventListener("keydown", onKeydown);
+  clear();
 });
 </script>
 <template>
